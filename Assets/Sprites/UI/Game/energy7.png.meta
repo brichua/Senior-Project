@@ -1,0 +1,1378 @@
+fileFormatVersion: 2
+guid: 7af6c136fefd210468c8450802c6dd75
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1760780438859611467
+    second: energy7_0
+  - first:
+      213: -2183311544575881641
+    second: energy7_1
+  - first:
+      213: -7707586705069965042
+    second: energy7_2
+  - first:
+      213: 7394028802604619722
+    second: energy7_3
+  - first:
+      213: -1042953033364333648
+    second: energy7_4
+  - first:
+      213: 8033773774044801783
+    second: energy7_5
+  - first:
+      213: 2847760270534024151
+    second: energy7_6
+  - first:
+      213: -6904864980998421298
+    second: energy7_7
+  - first:
+      213: 6466595878437528410
+    second: energy7_8
+  - first:
+      213: -7544513278630933375
+    second: energy7_9
+  - first:
+      213: 6028906521914313854
+    second: energy7_10
+  - first:
+      213: 6147431636312334506
+    second: energy7_11
+  - first:
+      213: -6090633204631598127
+    second: energy7_12
+  - first:
+      213: -3234814001047246886
+    second: energy7_13
+  - first:
+      213: -1955382075148590321
+    second: energy7_14
+  - first:
+      213: 5152686152398178104
+    second: energy7_15
+  - first:
+      213: 4395122934725171298
+    second: energy7_16
+  - first:
+      213: -4498890480773106253
+    second: energy7_17
+  - first:
+      213: 9011201352122474498
+    second: energy7_18
+  - first:
+      213: -8838485659822642292
+    second: energy7_19
+  - first:
+      213: 6053996055447165531
+    second: energy7_20
+  - first:
+      213: -2919768987025082745
+    second: energy7_21
+  - first:
+      213: 692096818101332850
+    second: energy7_22
+  - first:
+      213: -3336334638052436147
+    second: energy7_23
+  - first:
+      213: -537100974175841673
+    second: energy7_24
+  - first:
+      213: -4339130239987059860
+    second: energy7_25
+  - first:
+      213: -2786609822803519416
+    second: energy7_26
+  - first:
+      213: 7118400159541741383
+    second: energy7_27
+  - first:
+      213: 489571073737160687
+    second: energy7_28
+  - first:
+      213: 5136416986936797814
+    second: energy7_29
+  - first:
+      213: 219401191884867582
+    second: energy7_30
+  - first:
+      213: 4666404473794992048
+    second: energy7_31
+  - first:
+      213: -1252617175740827545
+    second: energy7_32
+  - first:
+      213: -920161728644812076
+    second: energy7_33
+  - first:
+      213: -3903231446743652505
+    second: energy7_34
+  - first:
+      213: 666680728642252456
+    second: energy7_35
+  - first:
+      213: 4927205688951918789
+    second: energy7_36
+  - first:
+      213: -7180614655647341540
+    second: energy7_37
+  - first:
+      213: -8011152528195714433
+    second: energy7_38
+  - first:
+      213: 9086473779225440971
+    second: energy7_39
+  - first:
+      213: -8004025057552940384
+    second: energy7_40
+  - first:
+      213: -8747161396639990408
+    second: energy7_41
+  - first:
+      213: 564838768534826223
+    second: energy7_42
+  - first:
+      213: -1297573228175304813
+    second: energy7_43
+  - first:
+      213: -6801781433017947811
+    second: energy7_44
+  - first:
+      213: 8701613406166707376
+    second: energy7_45
+  - first:
+      213: -1678960157236614428
+    second: energy7_46
+  - first:
+      213: 7388940968678654974
+    second: energy7_47
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: energy7_0
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 449
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b2015615837097e0800000000000000
+      internalID: -1760780438859611467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_1
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 449
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75e8b87c7b153b1e0800000000000000
+      internalID: -2183311544575881641
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_2
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 449
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e0108c07ab6290590800000000000000
+      internalID: -7707586705069965042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_3
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 449
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac7514e450edc9660800000000000000
+      internalID: 7394028802604619722
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_4
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 449
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bb17e0fdbfa681f0800000000000000
+      internalID: -1042953033364333648
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_5
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 449
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fa2ac7cea2bd7f60800000000000000
+      internalID: 8033773774044801783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_6
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 449
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7db96a2c0e6458720800000000000000
+      internalID: 2847760270534024151
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_7
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 449
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec40e8122edfc20a0800000000000000
+      internalID: -6904864980998421298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_8
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 369
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a532640a0b6fdb950800000000000000
+      internalID: 6466595878437528410
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_9
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 369
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18c4cf745218c4790800000000000000
+      internalID: -7544513278630933375
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_10
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 369
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7c0db60a8afaa350800000000000000
+      internalID: 6028906521914313854
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_11
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 369
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: aa02563b080105550800000000000000
+      internalID: 6147431636312334506
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_12
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 369
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1db0cb4be59b97ba0800000000000000
+      internalID: -6090633204631598127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_13
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 369
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad76e190ec1ab13d0800000000000000
+      internalID: -3234814001047246886
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_14
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 369
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f032a9adc561dd4e0800000000000000
+      internalID: -1955382075148590321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_15
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 369
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83784c861c4028740800000000000000
+      internalID: 5152686152398178104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_16
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 289
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2685774d50d9efc30800000000000000
+      internalID: 4395122934725171298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_17
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 289
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3b5f122a1fab091c0800000000000000
+      internalID: -4498890480773106253
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_18
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 289
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 200a7c8e2e73e0d70800000000000000
+      internalID: 9011201352122474498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_19
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 289
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c8b23e5ee14675580800000000000000
+      internalID: -8838485659822642292
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_20
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 289
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b5a5b84465d140450800000000000000
+      internalID: 6053996055447165531
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_21
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 289
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 786fa2e6395ea77d0800000000000000
+      internalID: -2919768987025082745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_22
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 289
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 27bab11a362da9900800000000000000
+      internalID: 692096818101332850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_23
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 289
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d479d07c255f2b1d0800000000000000
+      internalID: -3336334638052436147
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_24
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 209
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7729bb97285db88f0800000000000000
+      internalID: -537100974175841673
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_25
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 209
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c637a63590058c3c0800000000000000
+      internalID: -4339130239987059860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_26
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 209
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8489e285129f359d0800000000000000
+      internalID: -2786609822803519416
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_27
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 209
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 747c19eea33a9c260800000000000000
+      internalID: 7118400159541741383
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_28
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 209
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe7f8663c4e4bc600800000000000000
+      internalID: 489571073737160687
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_29
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 209
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 67a66a42908384740800000000000000
+      internalID: 5136416986936797814
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_30
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 209
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef74899b8387b0300800000000000000
+      internalID: 219401191884867582
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_31
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 209
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0b718de252662c040800000000000000
+      internalID: 4666404473794992048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_32
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 129
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7683a68b05fcd9ee0800000000000000
+      internalID: -1252617175740827545
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_33
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 129
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d2773478cdea33f0800000000000000
+      internalID: -920161728644812076
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_34
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 129
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 767e5bcedafe4d9c0800000000000000
+      internalID: -3903231446743652505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_35
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 129
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8aee1592796804900800000000000000
+      internalID: 666680728642252456
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_36
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 129
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5c05349f773f06440800000000000000
+      internalID: 4927205688951918789
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_37
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 129
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c142d25e305595c90800000000000000
+      internalID: -7180614655647341540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_38
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 129
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f720c63783ba2d090800000000000000
+      internalID: -8011152528195714433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_39
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 129
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc232af82c3a91e70800000000000000
+      internalID: 9086473779225440971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_40
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 49
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a24b370e9dfbe090800000000000000
+      internalID: -8004025057552940384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_41
+      rect:
+        serializedVersion: 2
+        x: 88
+        y: 49
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 87d7340ed07db9680800000000000000
+      internalID: -8747161396639990408
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_42
+      rect:
+        serializedVersion: 2
+        x: 147
+        y: 49
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fec23e90ed5b6d700800000000000000
+      internalID: 564838768534826223
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_43
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 49
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 397dd8816081efde0800000000000000
+      internalID: -1297573228175304813
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_44
+      rect:
+        serializedVersion: 2
+        x: 364
+        y: 49
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d592e15f2d73b91a0800000000000000
+      internalID: -6801781433017947811
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_45
+      rect:
+        serializedVersion: 2
+        x: 424
+        y: 49
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0bce75f2a4752c870800000000000000
+      internalID: 8701613406166707376
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_46
+      rect:
+        serializedVersion: 2
+        x: 483
+        y: 49
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4eaa0ebe1a223b8e0800000000000000
+      internalID: -1678960157236614428
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: energy7_47
+      rect:
+        serializedVersion: 2
+        x: 543
+        y: 49
+        width: 51
+        height: 54
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ef30c68a9aaca8660800000000000000
+      internalID: 7388940968678654974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      energy7_0: -1760780438859611467
+      energy7_1: -2183311544575881641
+      energy7_10: 6028906521914313854
+      energy7_11: 6147431636312334506
+      energy7_12: -6090633204631598127
+      energy7_13: -3234814001047246886
+      energy7_14: -1955382075148590321
+      energy7_15: 5152686152398178104
+      energy7_16: 4395122934725171298
+      energy7_17: -4498890480773106253
+      energy7_18: 9011201352122474498
+      energy7_19: -8838485659822642292
+      energy7_2: -7707586705069965042
+      energy7_20: 6053996055447165531
+      energy7_21: -2919768987025082745
+      energy7_22: 692096818101332850
+      energy7_23: -3336334638052436147
+      energy7_24: -537100974175841673
+      energy7_25: -4339130239987059860
+      energy7_26: -2786609822803519416
+      energy7_27: 7118400159541741383
+      energy7_28: 489571073737160687
+      energy7_29: 5136416986936797814
+      energy7_3: 7394028802604619722
+      energy7_30: 219401191884867582
+      energy7_31: 4666404473794992048
+      energy7_32: -1252617175740827545
+      energy7_33: -920161728644812076
+      energy7_34: -3903231446743652505
+      energy7_35: 666680728642252456
+      energy7_36: 4927205688951918789
+      energy7_37: -7180614655647341540
+      energy7_38: -8011152528195714433
+      energy7_39: 9086473779225440971
+      energy7_4: -1042953033364333648
+      energy7_40: -8004025057552940384
+      energy7_41: -8747161396639990408
+      energy7_42: 564838768534826223
+      energy7_43: -1297573228175304813
+      energy7_44: -6801781433017947811
+      energy7_45: 8701613406166707376
+      energy7_46: -1678960157236614428
+      energy7_47: 7388940968678654974
+      energy7_5: 8033773774044801783
+      energy7_6: 2847760270534024151
+      energy7_7: -6904864980998421298
+      energy7_8: 6466595878437528410
+      energy7_9: -7544513278630933375
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
