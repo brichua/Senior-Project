@@ -21,6 +21,7 @@ MonoBehaviour:
   playerTile: {fileID: 1807125615787039003, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
   enemyTile: {fileID: 349823833441268365, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
   contestedTile: {fileID: -7995846982363831464, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  movingTile: {fileID: 5560954434011818755, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
   tiedPopup: {fileID: -2701375301171583563, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   player:
     skill: {fileID: -2833775182555582667, guid: 51e79bdb9a4940240aeab5d12fb4fa62, type: 3}
