@@ -1,0 +1,269 @@
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+namespace VocaloidTCG.BoardUI
+{
+    public sealed class BoardUIController : MonoBehaviour
+    {
+        public BoardSetup setup;
+        public BoardGameBridge game;
+        public Image background, topBar, cd;
+        public Button endTurn, pause;
+        public SideHUD playerHUD, enemyHUD;
+        public CardInfoView playerInfo, enemyInfo;
+        public PausePanel pausePanel;
+        public TMP_Text phaseText;
+        public bool subtitleTimerOnlyDuringCountdown;
+        public TileView tilePrefab;
+        public Transform gridRoot;
+        public CardPointer handPrefab;
+        public Transform playerHandRoot, enemyHandRoot;
+        public RectTransform dragLayer;
+        public bool mirrorColumnsForSide1 = true;
+        public Vector2 ghostSize = new Vector2(120, 160);
+
+        public BoardSnapshot State { get { return game ? game.Snapshot : null; } }
+        private readonly List<TileView> tiles = new List<TileView>();
+        private readonly List<CardPointer> hands = new List<CardPointer>();
+        private CardPointer dragSource;
+        private CardState dragged;
+        private BoardActionKind dragKind;
+        private int sourceColumn, sourceRow;
+        private Image ghost;
+        private string selectedPlayer, selectedEnemy;
+        private bool ready;
+
+        private void Start(){
+            if(!setup || !game || !tilePrefab || !gridRoot || !handPrefab || !playerHandRoot || !enemyHandRoot || !dragLayer){
+                Debug.LogError("BoardUI: assign setup, bridge, prefabs, grid/hand roots and drag layer.", this);
+                enabled = false; return;
+            }
+            SetImage(background, setup.background); SetImage(topBar, setup.topBar);
+
+            if(endTurn){
+                SetImage(endTurn.image, setup.endTurn); endTurn.onClick.AddListener(Pass);
+            }
+            if(pause){
+                SetImage(pause.image, setup.pause); pause.onClick.AddListener(OpenPause);
+            }
+            if(playerHUD) playerHUD.Apply(setup.player);
+            if(enemyHUD) enemyHUD.Apply(setup.enemy);
+
+            for(int i = 0; i < 25; i++) tiles.Add(Instantiate(tilePrefab, gridRoot));
+            var go = new GameObject("Drag character", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
+            go.transform.SetParent(dragLayer, false);
+            ghost = go.GetComponent<Image>(); ghost.raycastTarget = false; ghost.preserveAspect = true;
+            ghost.rectTransform.sizeDelta = ghostSize; go.SetActive(false);
+
+            if(pausePanel) pausePanel.Initialize(this, game);
+            ready = true;
+            game.Changed += Refresh;
+            Refresh();
+        }
+
+        private void OnEnable(){
+            if(ready){
+                game.Changed += Refresh;
+                Refresh();
+            }
+        }
+        private void OnDisable(){
+            if(game) game.Changed -= Refresh;
+            CancelDrag();
+            if(pausePanel && pausePanel.IsOpen) pausePanel.Close();
+            if(playerHUD && setup) playerHUD.Countdown(false, setup.countdownParameter);
+            if(enemyHUD && setup) enemyHUD.Countdown(false, setup.countdownParameter);
+            if(playerHUD) playerHUD.ClearSubtitle();
+            if(enemyHUD) enemyHUD.ClearSubtitle();
+        }
+        private void OnDestroy(){
+            if(endTurn) endTurn.onClick.RemoveListener(Pass);
+            if(pause) pause.onClick.RemoveListener(OpenPause);
+            foreach (var t in tiles) if(t) Destroy(t.gameObject);
+            foreach (var h in hands) if(h) Destroy(h.gameObject);
+            if(ghost) Destroy(ghost.gameObject);
+        }
+
+        private bool CanInteract(){
+            var s = State;
+            return isActiveAndEnabled && s != null && s.inputAllowed && s.activePlayerId == s.localPlayerId &&
+                (s.phase == RoundPhase.Preparation || s.phase == RoundPhase.Performance) &&
+                (!pausePanel || !pausePanel.IsOpen);
+        }
+
+        public void Refresh(){
+            if(!ready || State == null) return;
+            CancelDrag();
+            var s = State;
+            if(playerHUD) playerHUD.Render(s.Side(s.localPlayerId), s.winScore, setup.player);
+            if(enemyHUD) enemyHUD.Render(s.Side(1 - s.localPlayerId), s.winScore, setup.enemy);
+            
+            for(int visualRow = 0; visualRow < 5; visualRow++)
+                for(int visualColumn = 0; visualColumn < 5; visualColumn++)
+                {
+                    int x = mirrorColumnsForSide1 && s.localPlayerId == 1 ? 4 - visualColumn : visualColumn;
+                    int index = visualRow * 5 + x;
+                    tiles[visualRow * 5 + visualColumn].Bind(this, x, visualRow,
+                        s.tiles != null && index < s.tiles.Length ? s.tiles[index] : null);
+                }
+            foreach (var h in hands){
+                h.gameObject.SetActive(false); Destroy(h.gameObject);
+            }
+            hands.Clear();
+            var localHand = s.Side(s.localPlayerId).hand;
+            if(localHand != null) foreach (var card in localHand)
+            {
+                if(card == null || !card.data) continue;
+                var h = Instantiate(handPrefab, playerHandRoot);
+                h.Bind(this, card, card.data.cardImage, true, true); hands.Add(h);
+            }
+            for(int i = 0; i < s.Side(1 - s.localPlayerId).hiddenHandCount; i++)
+            {
+                var h = Instantiate(handPrefab, enemyHandRoot);
+                h.Bind(this, null, setup.enemy.cardBack, true, false); hands.Add(h);
+            }
+            RenderSelection(playerInfo, selectedPlayer, setup.player);
+            RenderSelection(enemyInfo, selectedEnemy, setup.enemy);
+            UpdateTurnDisplay();
+        }
+
+        private void Update(){
+            if(!ready) return;
+            if(State != null) UpdateTurnDisplay();
+            else if(enemyHUD) enemyHUD.SetTimerSubtitle("");
+        }
+        private void UpdateTurnDisplay(){
+            var s = State;
+            bool localTurn = s.activePlayerId == s.localPlayerId;
+            bool playing = s.phase == RoundPhase.Preparation || s.phase == RoundPhase.Performance;
+            if(endTurn)
+            {
+                endTurn.gameObject.SetActive(localTurn && playing);
+                endTurn.interactable = CanInteract();
+            }
+            SetImage(cd, localTurn ? setup.player.cd : setup.enemy.cd);
+            bool showTimer = playing && game.RemainingSeconds > 0 &&
+                (!subtitleTimerOnlyDuringCountdown || game.RemainingSeconds <= 10);
+            if(enemyHUD) enemyHUD.SetTimerSubtitle(showTimer ?
+                "Time left: " + Mathf.CeilToInt(game.RemainingSeconds) + "s" : "");
+            string phaseLabel = "Round " + s.roundNumber + " — " + s.phase;
+            if(s.phase == RoundPhase.EndRound || s.phase == RoundPhase.Finished)
+                phaseLabel += "\n" + s.roundSummary;
+            CardInfoView.Put(phaseText, phaseLabel);
+            bool countdown = playing && game.RemainingSeconds > 0 && game.RemainingSeconds <= 10 &&
+                !(pausePanel && pausePanel.IsOpen && !s.multiplayer);
+            if(playerHUD) playerHUD.Countdown(countdown && !localTurn, setup.countdownParameter);
+            if(enemyHUD) enemyHUD.Countdown(countdown && localTurn, setup.countdownParameter);
+            if(dragged != null && !CanInteract()) CancelDrag();
+        }
+
+        private void Pass(){
+            if(CanInteract()){
+                CancelDrag(); game.RequestPass();
+            }
+        }
+
+        private void OpenPause(){
+            CancelDrag(); if(pausePanel) pausePanel.Open();
+        }
+
+        public void Select(CardState card){
+            if(card == null || State == null || (pausePanel && pausePanel.IsOpen)) return;
+            bool local = card.ownerId == State.localPlayerId;
+            if(local) selectedPlayer = card.instanceId; else selectedEnemy = card.instanceId;
+            var view = local ? playerInfo : enemyInfo;
+            if(view) view.Show(card, local ? setup.player : setup.enemy, setup);
+        }
+
+        private void RenderSelection(CardInfoView view, string id, SideArt side){
+            if(view) view.Show(FindCard(id), side, setup);
+        }
+
+        private CardState FindCard(string id){
+            if(string.IsNullOrEmpty(id)) return null;
+            var hand = State.Side(State.localPlayerId).hand;
+            if(hand != null) foreach (var c in hand) if(c != null && c.instanceId == id) return c;
+            if(State.tiles != null) foreach (var t in State.tiles)
+            {
+                if(t == null) continue;
+                foreach (var c in new[] { t.side0, t.side1, t.assist0, t.assist1 })
+                    if(c != null && c.instanceId == id) return c;
+            }
+            return null;
+        }
+
+        public bool BeginDrag(CardPointer source, CardState card, bool hand, int x, int y, PointerEventData e){
+            if(!CanInteract() || card == null || !card.data || card.ownerId != State.localPlayerId) return false;
+            if(!hand && !HasLegalMove(card, x, y)) return false;
+            CancelDrag(); dragSource = source; dragged = card;
+            dragKind = hand ? BoardActionKind.PlayCard : BoardActionKind.MovePerformer;
+            sourceColumn = x; sourceRow = y;
+            SetImage(ghost, card.data.characterImage ? card.data.characterImage : card.data.cardImage);
+            ghost.gameObject.SetActive(true); MoveGhost(e);
+            foreach (var t in tiles) t.RefreshHover();
+            return true;
+        }
+
+        private bool HasLegalMove(CardState card, int fromX, int fromY){
+            for(int y = 0; y < 5; y++) for(int x = 0; x < 5; x++)
+            {
+                if(x == fromX && y == fromY) continue;
+                string reason;
+                if(game.CanSubmit(new BoardAction(BoardActionKind.MovePerformer, card.instanceId,
+                    fromX, fromY, x, y), out reason)) return true;
+            }
+            return false;
+        }
+        public bool IsMovingFrom(int x, int y){
+            return dragged != null && dragKind == BoardActionKind.MovePerformer &&
+                sourceColumn == x && sourceRow == y;
+        }
+        public bool TryGetContestPreview(int x, int y, out int localInfluence, out int enemyInfluence){
+            localInfluence = enemyInfluence = 0;
+            if(!CanDrop(x, y) || !dragged.data || !dragged.data.performer) return false;
+            return game.TryPreviewContest(ActionAt(x, y), dragged, out localInfluence, out enemyInfluence);
+        }
+        public void MoveGhost(PointerEventData e){
+            if(!ghost || !dragLayer) return;
+            var canvas = dragLayer.GetComponentInParent<Canvas>();
+            Camera camera = canvas && canvas.renderMode != RenderMode.ScreenSpaceOverlay ? canvas.worldCamera : null;
+            Vector2 point;
+            if(RectTransformUtility.ScreenPointToLocalPointInRectangle(dragLayer, e.position, camera, out point))
+                ghost.rectTransform.localPosition = new Vector3(point.x, point.y, 0);
+        }
+        private BoardAction ActionAt(int x, int y){
+            return new BoardAction(dragKind, dragged.instanceId, sourceColumn, sourceRow, x, y);
+        }
+
+        public bool CanDrop(int x, int y){
+            string reason;
+            return dragged != null && CanInteract() && x >= 0 && x < 5 && y >= 0 && y < 5 &&
+                game.CanSubmit(ActionAt(x, y), out reason);
+        }
+        public void Drop(int x, int y){
+            if(!CanDrop(x, y)){
+                CancelDrag(); return;
+            }
+
+            var action = ActionAt(x, y);
+            CancelDrag();
+            if(game.TrySubmit(action)) Refresh();
+        }
+        public void CancelDrag(){
+            var source = dragSource;
+            dragSource = null; dragged = null;
+            if(source) source.Restore();
+            if(ghost) ghost.gameObject.SetActive(false);
+            if(ready && State != null) foreach (var t in tiles) t.RefreshHover();
+        }
+
+        public static void SetImage(Image image, Sprite sprite){
+            if(image){
+                image.sprite = sprite; image.enabled = sprite != null;
+            }
+        }
+    }
+}

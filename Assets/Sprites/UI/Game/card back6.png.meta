@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c68a0e2a0b7fd074b9b4c757a86a9142
+guid: 1f19988ebcef2254c95badc40e82d13e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7844258600106801264
-    second: deep sea girl card_0
+      213: -6211537428295518410
+    second: card template6_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -37,7 +37,7 @@ TextureImporter:
   maxTextureSize: 2048
   textureSettings:
     serializedVersion: 2
-    filterMode: 0
+    filterMode: 1
     aniso: 1
     mipBias: 0
     wrapU: 1
@@ -113,12 +113,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: deep sea girl card_0
+      name: card template6_0
       rect:
         serializedVersion: 2
-        x: 54
+        x: 63
         y: 13
-        width: 124
+        width: 115
         height: 232
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 097c4562d58932390800000000000000
-      internalID: -7844258600106801264
+      spriteID: 637f66d7e9f2cc9a0800000000000000
+      internalID: -6211537428295518410
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      deep sea girl card_0: -7844258600106801264
+      card template6_0: -6211537428295518410
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

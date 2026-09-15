@@ -20,6 +20,9 @@ TextureImporter:
   - first:
       213: 7677845770918009091
     second: popups_5
+  - first:
+      213: -2701375301171583563
+    second: popups_6
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -259,6 +262,28 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: popups_6
+      rect:
+        serializedVersion: 2
+        x: 42
+        y: 271
+        width: 46
+        height: 44
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b567a0e979c28ad0800000000000000
+      internalID: -2701375301171583563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -279,6 +304,7 @@ TextureImporter:
       popups_3: -8004225029083858605
       popups_4: -2067420961456691871
       popups_5: 7677845770918009091
+      popups_6: -2701375301171583563
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
