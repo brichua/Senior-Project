@@ -212,13 +212,9 @@ namespace VocaloidTCG.BoardUI
         
         private void Recompute(){
             foreach (var tile in state.tiles){
-                tile.total0 = tile.side0 != null ? tile.side0.currentInfluence + AssistInfluence(tile.assist0) : 0;
-                tile.total1 = tile.side1 != null ? tile.side1.currentInfluence + AssistInfluence(tile.assist1) : 0;
+                tile.total0 = tile.side0 != null ? tile.side0.currentInfluence : 0;
+                tile.total1 = tile.side1 != null ? tile.side1.currentInfluence : 0;
             }
-        }
-
-        private static int AssistInfluence(CardState card){
-            return card != null && card.data ? card.data.assistInfluence : 0;
         }
 
         private void BeginTurn(int actor){

@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -9,6 +10,9 @@ namespace VocaloidTCG.BoardUI
         IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
     {
         public Image art;
+        public Image influencePopup;
+        public TMP_Text cardName, influence, cost;
+        public GameObject detailsRoot;
         public RectTransform visual;
         public float hoverLift = 24f;
         private CanvasGroup group;
@@ -26,7 +30,32 @@ namespace VocaloidTCG.BoardUI
         public void Bind(BoardUIController owner, CardState state, Sprite sprite, bool hand, bool canMove, int x = -1, int y = -1){
             board = owner; card = state; inHand = hand; movable = canMove; column = x; row = y;
             BoardUIController.SetImage(art, sprite);
+            RenderDetails(state);
             gameObject.SetActive(state != null || sprite != null);
+        }
+
+        private void RenderDetails(CardState state){
+            bool revealed = state != null && state.data;
+            bool performer = revealed && state.data.performer;
+            if(detailsRoot) detailsRoot.SetActive(revealed);
+            PutDetail(cardName, revealed ? state.data.cardName : "", revealed);
+            PutDetail(cost, revealed ? state.currentCost.ToString() : "", revealed);
+            if(influencePopup) influencePopup.gameObject.SetActive(performer);
+            influencePopup.sprite = state != null && state.data ? state.data.popupImage : null;
+            PutDetail(influence, performer ? state.currentInfluence.ToString() : "", performer);
+        }
+
+        private static void PutDetail(TMP_Text label, string text, bool visible){
+            if(!label) return;
+            label.richText = false;
+            CardInfoView.Put(label, text ?? "");
+            label.gameObject.SetActive(visible);
+        }
+
+        public void MakeDragPreview(){
+            if(!group) group = GetComponent<CanvasGroup>();
+            group.interactable = false; group.blocksRaycasts = false;
+            foreach(var graphic in GetComponentsInChildren<Graphic>(true)) graphic.raycastTarget = false;
         }
 
         public void OnPointerClick(PointerEventData e){

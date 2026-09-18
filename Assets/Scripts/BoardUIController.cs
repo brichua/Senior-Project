@@ -32,7 +32,8 @@ namespace VocaloidTCG.BoardUI
         private CardState dragged;
         private BoardActionKind dragKind;
         private int sourceColumn, sourceRow;
-        private Image ghost;
+        private CardPointer ghost;
+        private RectTransform ghostRect;
         private string selectedPlayer, selectedEnemy;
         private bool ready;
 
@@ -53,10 +54,16 @@ namespace VocaloidTCG.BoardUI
             if(enemyHUD) enemyHUD.Apply(setup.enemy);
 
             for(int i = 0; i < 25; i++) tiles.Add(Instantiate(tilePrefab, gridRoot));
-            var go = new GameObject("Drag character", typeof(RectTransform), typeof(CanvasRenderer), typeof(Image));
-            go.transform.SetParent(dragLayer, false);
-            ghost = go.GetComponent<Image>(); ghost.raycastTarget = false; ghost.preserveAspect = true;
-            ghost.rectTransform.sizeDelta = ghostSize; go.SetActive(false);
+            ghost = Instantiate(handPrefab, dragLayer);
+            ghost.name = "Drag card";
+            ghostRect = ghost.GetComponent<RectTransform>();
+            ghostRect.anchorMin = ghostRect.anchorMax = ghostRect.pivot = new Vector2(0.5f, 0.5f);
+            float ghostScale = Mathf.Min(ghostSize.x / Mathf.Max(1, ghostRect.rect.width),
+                ghostSize.y / Mathf.Max(1, ghostRect.rect.height));
+            ghostRect.localScale = Vector3.one * ghostScale;
+            var ghostLayout = ghost.GetComponent<LayoutElement>();
+            if(ghostLayout) ghostLayout.ignoreLayout = true;
+            ghost.gameObject.SetActive(false);
 
             if(pausePanel) pausePanel.Initialize(this, game);
             ready = true;
@@ -201,8 +208,8 @@ namespace VocaloidTCG.BoardUI
             CancelDrag(); dragSource = source; dragged = card;
             dragKind = hand ? BoardActionKind.PlayCard : BoardActionKind.MovePerformer;
             sourceColumn = x; sourceRow = y;
-            SetImage(ghost, card.data.characterImage ? card.data.characterImage : card.data.cardImage);
-            ghost.gameObject.SetActive(true); MoveGhost(e);
+            ghost.Bind(this, card, card.data.cardImage ? card.data.cardImage : card.data.characterImage, false, false);
+            ghost.MakeDragPreview(); MoveGhost(e);
             foreach (var t in tiles) t.RefreshHover();
             return true;
         }
@@ -232,7 +239,7 @@ namespace VocaloidTCG.BoardUI
             Camera camera = canvas && canvas.renderMode != RenderMode.ScreenSpaceOverlay ? canvas.worldCamera : null;
             Vector2 point;
             if(RectTransformUtility.ScreenPointToLocalPointInRectangle(dragLayer, e.position, camera, out point))
-                ghost.rectTransform.localPosition = new Vector3(point.x, point.y, 0);
+                ghostRect.localPosition = new Vector3(point.x, point.y, 0);
         }
         private BoardAction ActionAt(int x, int y){
             return new BoardAction(dragKind, dragged.instanceId, sourceColumn, sourceRow, x, y);

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace VocaloidTCG
@@ -16,13 +17,15 @@ namespace VocaloidTCG
         [Header("Gameplay")]
         [Min(0)] public int cost;
         [Min(0)] public int influence;
-        [Tooltip("Influence added by this card when it is used as a showdown assist.")]
-        public int assistInfluence;
+        public List<string> flags = new List<string>();
+        [Tooltip("Basic stage effect: permanently change a friendly performer's influence by this amount.")]
+        public int stageInfluenceChange = 1;
 
         [Header("Art and Audio")]
         public Sprite cardImage;
         public Sprite characterImage;
         public Sprite iconImage;
+        public Sprite popupImage;
         public AudioClip playSfx;
 
         private void OnValidate()
