@@ -37,11 +37,16 @@ namespace VocaloidTCG.BoardUI
         private void RenderDetails(CardState state){
             bool revealed = state != null && state.data;
             bool performer = revealed && state.data.performer;
-            if(detailsRoot) detailsRoot.SetActive(revealed);
+            if(detailsRoot){
+                bool containsArt = art && art.transform.IsChildOf(detailsRoot.transform);
+                detailsRoot.SetActive(revealed || containsArt);
+            }
             PutDetail(cardName, revealed ? state.data.cardName : "", revealed);
             PutDetail(cost, revealed ? state.currentCost.ToString() : "", revealed);
-            if(influencePopup) influencePopup.gameObject.SetActive(performer);
-            influencePopup.sprite = state != null && state.data ? state.data.popupImage : null;
+            if(influencePopup){
+                influencePopup.gameObject.SetActive(performer);
+                influencePopup.sprite = state != null && state.data ? state.data.popupImage : null;
+            }
             PutDetail(influence, performer ? state.currentInfluence.ToString() : "", performer);
         }
 
