@@ -992,31 +992,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.GameplayBoardBridge
   localPlayerId: 0
   player0Cards:
-  - {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
-  - {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
-  - {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
-  - {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
-  - {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
-  - {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
-  - {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
   - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
   - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
-  - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
-  - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
-  - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
+  - {fileID: 11400000, guid: aa9a761ca1a246347abef6daa6ef5d45, type: 2}
+  - {fileID: 11400000, guid: aa9a761ca1a246347abef6daa6ef5d45, type: 2}
+  - {fileID: 11400000, guid: 2c9bee9d08e838f4b8bac5071656c12a, type: 2}
+  - {fileID: 11400000, guid: 2c9bee9d08e838f4b8bac5071656c12a, type: 2}
+  - {fileID: 11400000, guid: 8320e54cccaaf8a4c808f0ae69ef95af, type: 2}
+  - {fileID: 11400000, guid: 8320e54cccaaf8a4c808f0ae69ef95af, type: 2}
+  - {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  - {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  - {fileID: 11400000, guid: af0772d448374e247b01ef4c10cc5f24, type: 2}
+  - {fileID: 11400000, guid: af0772d448374e247b01ef4c10cc5f24, type: 2}
+  - {fileID: 11400000, guid: c2d359daf5d832149bf76863e64cb26d, type: 2}
+  - {fileID: 11400000, guid: c2d359daf5d832149bf76863e64cb26d, type: 2}
+  - {fileID: 11400000, guid: 6583a1897eee0d744add7bc99a893801, type: 2}
+  - {fileID: 11400000, guid: 6583a1897eee0d744add7bc99a893801, type: 2}
+  - {fileID: 11400000, guid: 6e4d70bdfb9763b429d8c8eeff366575, type: 2}
+  - {fileID: 11400000, guid: 6e4d70bdfb9763b429d8c8eeff366575, type: 2}
+  - {fileID: 11400000, guid: edb40c36ed214e84bb6cfa3922067025, type: 2}
+  - {fileID: 11400000, guid: edb40c36ed214e84bb6cfa3922067025, type: 2}
   player1Cards:
   - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
   - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
-  - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
-  - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
-  - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
-  - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
-  - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
-  - {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
-  - {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
-  - {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
-  - {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
-  - {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
+  - {fileID: 11400000, guid: aa9a761ca1a246347abef6daa6ef5d45, type: 2}
+  - {fileID: 11400000, guid: aa9a761ca1a246347abef6daa6ef5d45, type: 2}
+  - {fileID: 11400000, guid: 2c9bee9d08e838f4b8bac5071656c12a, type: 2}
+  - {fileID: 11400000, guid: 2c9bee9d08e838f4b8bac5071656c12a, type: 2}
+  - {fileID: 11400000, guid: 8320e54cccaaf8a4c808f0ae69ef95af, type: 2}
+  - {fileID: 11400000, guid: 8320e54cccaaf8a4c808f0ae69ef95af, type: 2}
+  - {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  - {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  - {fileID: 11400000, guid: af0772d448374e247b01ef4c10cc5f24, type: 2}
+  - {fileID: 11400000, guid: af0772d448374e247b01ef4c10cc5f24, type: 2}
+  - {fileID: 11400000, guid: c2d359daf5d832149bf76863e64cb26d, type: 2}
+  - {fileID: 11400000, guid: c2d359daf5d832149bf76863e64cb26d, type: 2}
+  - {fileID: 11400000, guid: 6583a1897eee0d744add7bc99a893801, type: 2}
+  - {fileID: 11400000, guid: 6583a1897eee0d744add7bc99a893801, type: 2}
+  - {fileID: 11400000, guid: 6e4d70bdfb9763b429d8c8eeff366575, type: 2}
+  - {fileID: 11400000, guid: 6e4d70bdfb9763b429d8c8eeff366575, type: 2}
+  - {fileID: 11400000, guid: edb40c36ed214e84bb6cfa3922067025, type: 2}
+  - {fileID: 11400000, guid: edb40c36ed214e84bb6cfa3922067025, type: 2}
   player0OpeningCard: {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
   player1OpeningCard: {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
   clock: {fileID: 398325096}
@@ -3212,8 +3228,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -4687,8 +4703,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
-  m_fontSizeBase: 25
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
