@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
-  m_Name: deep sea girl
+  m_Name: monitoring
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
-  cardName: Deep Sea Girl
-  info: 
+  cardName: Monitoring
+  info: While on field apply inf to 1 adjacent performer
   performer: 1
   stageEffect: 0
-  cost: 2
-  influence: 3
+  cost: 1
+  influence: 1
   flags: []
   stageInfluenceChange: 1
-  cardImage: {fileID: -4039141699768191999, guid: 96c3f5eaf49305d4eadd8fb075a16797, type: 3}
-  characterImage: {fileID: 3478207744609133590, guid: 70cd1b75d68c76d4fb75df8d08abe5bb, type: 3}
-  iconImage: {fileID: 1049178153790319149, guid: e8b9fd8added3cb4fa8250e2f160dce3, type: 3}
+  cardImage: {fileID: -8902266200501662865, guid: 5b174675f0281684eba2618adcd8639f, type: 3}
+  characterImage: {fileID: -5193898187859195741, guid: d785aa500c9a1eb4fae3c7a465fca42a, type: 3}
+  iconImage: {fileID: -1331112895632428632, guid: 96b4ace9b38611141980f4d1fab9fcf4, type: 3}
   popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

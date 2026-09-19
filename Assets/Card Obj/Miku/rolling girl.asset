@@ -10,18 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
-  m_Name: deep sea girl
+  m_Name: rolling girl
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
-  cardName: Deep Sea Girl
-  info: 
+  cardName: Rolling Girl
+  info: All adjacent minions get +1 inf, harmonize 1
   performer: 1
   stageEffect: 0
-  cost: 2
-  influence: 3
+  cost: 1
+  influence: 0
   flags: []
   stageInfluenceChange: 1
-  cardImage: {fileID: -4039141699768191999, guid: 96c3f5eaf49305d4eadd8fb075a16797, type: 3}
-  characterImage: {fileID: 3478207744609133590, guid: 70cd1b75d68c76d4fb75df8d08abe5bb, type: 3}
-  iconImage: {fileID: 1049178153790319149, guid: e8b9fd8added3cb4fa8250e2f160dce3, type: 3}
+  cardImage: {fileID: 6134400434847133543, guid: e395b4b17043c4045b6f59433786f0fe, type: 3}
+  characterImage: {fileID: 7572011137138834060, guid: 144a2263b77f72843bb09fefece27b97, type: 3}
+  iconImage: {fileID: -2593745517465982352, guid: 7d19453a49381ff44b05ac3ac4119903, type: 3}
   popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

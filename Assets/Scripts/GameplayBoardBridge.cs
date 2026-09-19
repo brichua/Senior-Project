@@ -314,12 +314,12 @@ namespace VocaloidTCG.BoardUI
             }
             Recompute();
             int total0 = 0, total1 = 0;
-            for(int x = 0; x < 5; x++){
-                total0 += state.tiles[2 * 5 + x].total0;
-                total1 += state.tiles[2 * 5 + x].total1;
+            for(int row = 0; row < 5; row++){
+                total0 += state.tiles[row * 5 + 2].total0;
+                total1 += state.tiles[row * 5 + 2].total1;
             }
             state.side0.score += total0; state.side1.score += total1;
-            state.roundSummary = "Middle row: Player +" + (state.localPlayerId == 0 ? total0 : total1) +
+            state.roundSummary = "Third column: Player +" + (state.localPlayerId == 0 ? total0 : total1) +
                 " / Opponent +" + (state.localPlayerId == 0 ? total1 : total0) + ".";
             if(deckExhausted) state.roundSummary += " A deck is empty; this is the final round.";
             Log("Round scored: Player 0 +" + total0 + ", Player 1 +" + total1 + ". Total scores: " + state.side0.score + " / " + state.side1.score + ".");

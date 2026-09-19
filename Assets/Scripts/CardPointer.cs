@@ -29,6 +29,7 @@ namespace VocaloidTCG.BoardUI
 
         public void Bind(BoardUIController owner, CardState state, Sprite sprite, bool hand, bool canMove, int x = -1, int y = -1){
             board = owner; card = state; inHand = hand; movable = canMove; column = x; row = y;
+            if(!art) art = GetComponent<Image>();
             BoardUIController.SetImage(art, sprite);
             RenderDetails(state);
             gameObject.SetActive(state != null || sprite != null);

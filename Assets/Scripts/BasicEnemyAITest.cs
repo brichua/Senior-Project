@@ -37,8 +37,8 @@ namespace VocaloidTCG.BoardUI
                     var action = new BoardAction(BoardActionKind.PlayCard, card.instanceId, -1, -1, x, y);
                     string reason;
                     if(!game.CanSubmitFor(actor, action, out reason)) continue;
-                    int value = (y == 2 ? 100 : 0) + card.currentInfluence;
-                    if(card.data.flags != null && card.data.flags.Contains("center") && y == 2) value += 10;
+                    int value = (x == 2 ? 100 : 0) + card.currentInfluence;
+                    if(card.data.flags != null && card.data.flags.Contains("center") && x == 2) value += 10;
                     if(!found || value > bestValue){ best = action; bestValue = value; found = true; }
                 }
             }

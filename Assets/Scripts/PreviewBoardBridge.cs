@@ -265,22 +265,21 @@ namespace VocaloidTCG.BoardUI
                 total1 += state.tiles[row * 5 + 2].total1;
             }
 
-            int margin = total0 - total1;
-            if(margin > 0) state.side0.score += margin;
-            else if(margin < 0) state.side1.score -= margin;
+            state.side0.score += total0;
+            state.side1.score += total1;
             playerStats.score = state.Side(state.localPlayerId).score;
             enemyStats.score = state.Side(1 - state.localPlayerId).score;
             int localTotal = state.localPlayerId == 0 ? total0 : total1;
             int enemyTotal = state.localPlayerId == 0 ? total1 : total0;
-            state.roundSummary = "Center: Player " + localTotal + " / Enemy " + enemyTotal + ". " + (margin == 0 ? "Tie — no points." : ((margin > 0 ? 0 : 1) == state.localPlayerId ? "Player" : "Enemy") + " +" + Mathf.Abs(margin) + " points.");
+            state.roundSummary = "Third column: Player +" + localTotal + " / Enemy +" + enemyTotal + ".";
             endRoundWait = Mathf.Max(0.1f, endRoundDisplaySeconds);
         }
 
         private void FinishRoundDisplay(){
             if(state.side0.score >= state.winScore || state.side1.score >= state.winScore){
                 state.phase = RoundPhase.Finished;
-                state.winnerId = state.side0.score >= state.winScore ? 0 : 1;
-                state.roundSummary += " " + (state.winnerId == state.localPlayerId ? "Player wins!" : "Enemy wins!");
+                state.winnerId = state.side0.score == state.side1.score ? -1 : state.side0.score > state.side1.score ? 0 : 1;
+                state.roundSummary += " " + (state.winnerId < 0 ? "Draw!" : state.winnerId == state.localPlayerId ? "Player wins!" : "Enemy wins!");
             }else{
                 state.roundNumber++;
                 state.roundStarterId = 1 - state.roundStarterId;
