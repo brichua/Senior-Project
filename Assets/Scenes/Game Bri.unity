@@ -403,6 +403,7 @@ GameObject:
   m_Component:
   - component: {fileID: 46646701}
   - component: {fileID: 46646702}
+  - component: {fileID: 46646703}
   m_Layer: 0
   m_Name: sfx
   m_TagString: Untagged
@@ -436,8 +437,8 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_Resource: {fileID: 8300000, guid: 17bdae8b71fe57943b1492784efaf027, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -522,6 +523,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &46646703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 46646700}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 70ee13e653337b34cbd9d671082c17cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SFXManager
+  card_hover: {fileID: 8300000, guid: 069799ebaea722948bef402156c8da5a, type: 3}
+  card_click: {fileID: 8300000, guid: 38aac9ac465517d4b9a6b2c46e142c29, type: 3}
+  card_drop: {fileID: 8300000, guid: f4d6d8204c93cb84f956e439d8012fb8, type: 3}
+  ticket_tear: {fileID: 8300000, guid: 70a8cc77244c69b408fadf35714b6551, type: 3}
+  end_turn_click: {fileID: 8300000, guid: 17bdae8b71fe57943b1492784efaf027, type: 3}
+  tile_hover: {fileID: 8300000, guid: 04bbe232225605d4898da8a0883e1659, type: 3}
 --- !u!1 &80136551
 GameObject:
   m_ObjectHideFlags: 0
@@ -4171,6 +4190,7 @@ MonoBehaviour:
   dragLayer: {fileID: 1501404901}
   mirrorColumnsForSide1: 1
   ghostSize: {x: 120, y: 160}
+  sfx: {fileID: 46646703}
 --- !u!1 &975901353
 GameObject:
   m_ObjectHideFlags: 0
@@ -5486,7 +5506,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1498824243}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 46646702}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: Play
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1498824243
 MonoBehaviour:
   m_ObjectHideFlags: 0
