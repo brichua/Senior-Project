@@ -14,6 +14,7 @@ namespace VocaloidTCG.BoardUI
         [Min(1)] public int winningScore = 50;
         [Min(0)] public float turnSeconds = 60;
         [Min(0)] public float endRoundDisplaySeconds = 2;
+        [Min(1)] public int minimumRoundEnergy = 1;
         public bool startAutomatically = true;
         public bool enableDebugLogs = true;
 
@@ -272,7 +273,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void RefillRoundEnergy(){
-            int energy = Mathf.Clamp(state.roundNumber, 1, 8);
+            int energy = Mathf.Clamp(Mathf.Max(minimumRoundEnergy, state.roundNumber), 1, 8);
             state.side0.energy = state.side1.energy = energy;
             Log("Round energy refilled to " + energy + " for both players.");
         }
@@ -314,12 +315,12 @@ namespace VocaloidTCG.BoardUI
             }
             Recompute();
             int total0 = 0, total1 = 0;
-            for(int x = 0; x < 5; x++){
-                total0 += state.tiles[2 * 5 + x].total0;
-                total1 += state.tiles[2 * 5 + x].total1;
+            for(int y = 0; y < 5; y++){
+                total0 += state.tiles[y * 5 + 2].total0;
+                total1 += state.tiles[y * 5 + 2].total1;
             }
             state.side0.score += total0; state.side1.score += total1;
-            state.roundSummary = "Middle row: Player +" + (state.localPlayerId == 0 ? total0 : total1) +
+            state.roundSummary = "Center column: Player +" + (state.localPlayerId == 0 ? total0 : total1) +
                 " / Opponent +" + (state.localPlayerId == 0 ? total1 : total0) + ".";
             if(deckExhausted) state.roundSummary += " A deck is empty; this is the final round.";
             Log("Round scored: Player 0 +" + total0 + ", Player 1 +" + total1 + ". Total scores: " + state.side0.score + " / " + state.side1.score + ".");

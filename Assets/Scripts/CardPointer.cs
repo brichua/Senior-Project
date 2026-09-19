@@ -40,8 +40,10 @@ namespace VocaloidTCG.BoardUI
             if(detailsRoot) detailsRoot.SetActive(revealed);
             PutDetail(cardName, revealed ? state.data.cardName : "", revealed);
             PutDetail(cost, revealed ? state.currentCost.ToString() : "", revealed);
-            if(influencePopup) influencePopup.gameObject.SetActive(performer);
-            influencePopup.sprite = state != null && state.data ? state.data.popupImage : null;
+            if(influencePopup){
+                influencePopup.gameObject.SetActive(performer);
+                influencePopup.sprite = state != null && state.data ? state.data.popupImage : null;
+            }
             PutDetail(influence, performer ? state.currentInfluence.ToString() : "", performer);
         }
 
