@@ -16,8 +16,8 @@ MonoBehaviour:
   info: Target an ally to get +1 inf
   performer: 1
   stageEffect: 0
-  cost: 0
-  influence: 0
+  cost: 2
+  influence: 2
   flags: []
   stageInfluenceChange: 1
   cardImage: {fileID: -6680316786894631701, guid: 8a2735c89711194468183e1bc7118a25, type: 3}
