@@ -12,6 +12,7 @@ namespace VocaloidTCG.BoardUI
         public TMP_Text cardName, influence, cost, description;
         public Image art, icon;
         public GameObject influenceRoot;
+        private KeywordTooltip keywordTooltip;
 
         public void Clear(){
             gameObject.SetActive(false);
@@ -31,14 +32,20 @@ namespace VocaloidTCG.BoardUI
             BoardUIController.SetImage(art, card.data.iconImage);
             bool statlessStageEffect = card.data.stageEffect && !card.hasInfluence;
             BoardUIController.SetImage(icon, statlessStageEffect ? side.stageEffectInfoIcon : side.infoIcon);
-            var body = new StringBuilder(Format(card.data.info, setup.boldKeywords));
+            var body = new StringBuilder(Format(card.data.info, setup));
 
             if(card.activeEffects != null && card.activeEffects.Count > 0){
                 body.Append("\n\n<b>Active effects</b>");
                 foreach (var effect in card.activeEffects)
-                    body.Append("\n• ").Append(Format(effect, setup.boldKeywords));
+                    body.Append("\n• ").Append(Format(effect, setup));
             }
             Put(description, body.ToString());
+            if(description){
+                description.richText = true;
+                if(!keywordTooltip) keywordTooltip = description.GetComponent<KeywordTooltip>();
+                if(!keywordTooltip) keywordTooltip = description.gameObject.AddComponent<KeywordTooltip>();
+                keywordTooltip.Configure(description, setup);
+            }
         }
 
         public static void Put(TMP_Text label, string value){
@@ -49,13 +56,21 @@ namespace VocaloidTCG.BoardUI
             return (value ?? "").Replace("<", "‹").Replace(">", "›");
         }
         
-        private static string Format(string text, string[] keywords){
+        private static string Format(string text, BoardSetup setup){
             var literal = Escape(text);
-            if(keywords == null) return literal;
-            var words = keywords.Where(k => !string.IsNullOrWhiteSpace(k)).Select(Regex.Escape).ToArray();
+            var definitions = setup.keywordDescriptions ?? new KeywordDefinition[0];
+            var words = (setup.boldKeywords ?? new string[0])
+                .Concat(definitions.Where(d => d != null).Select(d => d.keyword))
+                .Where(k => !string.IsNullOrWhiteSpace(k)).Distinct()
+                .OrderByDescending(k => k.Length).Select(k => Regex.Escape(Escape(k))).ToArray();
             if(words.Length == 0) return literal;
             return Regex.Replace(literal, @"\b(?:" + string.Join("|", words) + @")\b",
-                m => "<b>" + m.Value + "</b>", RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+                m => {
+                    int index = System.Array.FindIndex(definitions, d => d != null &&
+                        string.Equals(Escape(d.keyword), m.Value, System.StringComparison.OrdinalIgnoreCase));
+                    string bold = "<b>" + m.Value + "</b>";
+                    return index < 0 ? bold : "<link=\"keyword-" + index + "\">" + bold + "</link>";
+                }, RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
         }
     }
 }

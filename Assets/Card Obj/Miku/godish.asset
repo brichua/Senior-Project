@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: godish
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: God-ish
+  info: 'While on the firld, when you play a minion it gets +1 inf  '
+  performer: 1
+  stageEffect: 0
+  cost: 3
+  influence: 3
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: -5771072680023555302, guid: fd2420b126f1bf043949220137f919c5, type: 3}
+  characterImage: {fileID: 800711898269296950, guid: f11f6252e1fa8984fb98b0705c24e5fa, type: 3}
+  iconImage: {fileID: 3509312292521935542, guid: 625582c0e37186a4a9de52ca4b44e664, type: 3}
+  popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 0}

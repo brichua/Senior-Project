@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: darling dance
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Darling Dance
+  info: ' '
+  performer: 1
+  stageEffect: 0
+  cost: 4
+  influence: 3
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: -2199262137000290008, guid: 76ee6759b6297f44287759feb6d5cfd4, type: 3}
+  characterImage: {fileID: -634410968344741977, guid: 3de4a31a5b691664682aa706c01eaaa6, type: 3}
+  iconImage: {fileID: 3507695491513951802, guid: e841990f5dd29f4459e07fb1a3475172, type: 3}
+  popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 0}

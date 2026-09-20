@@ -21,6 +21,9 @@ namespace VocaloidTCG.BoardUI
         private CardState card;
         private int column = -1, row = -1;
         private bool inHand, movable, dragging;
+        private Canvas handCanvas;
+        private bool originalOverrideSorting;
+        private int originalSortingOrder, originalSortingLayer;
 
         private void Awake(){
             group = GetComponent<CanvasGroup>();
@@ -32,7 +35,35 @@ namespace VocaloidTCG.BoardUI
             if(!art) art = GetComponent<Image>();
             BoardUIController.SetImage(art, sprite);
             RenderDetails(state);
+            if(inHand && state != null) PrepareHandHover();
             gameObject.SetActive(state != null || sprite != null);
+        }
+
+        private void PrepareHandHover(){
+            if(handCanvas || !visual || visual == transform) return;
+            handCanvas = visual.GetComponent<Canvas>();
+            if(!handCanvas) handCanvas = visual.gameObject.AddComponent<Canvas>();
+            originalOverrideSorting = handCanvas.overrideSorting;
+            originalSortingOrder = handCanvas.sortingOrder;
+            originalSortingLayer = handCanvas.sortingLayerID;
+
+            // Keep mouse targets in the layout's original order and position.
+            // Raising the visual must not steal the next card's hover strip.
+            if(!GetComponent<Graphic>()){
+                var hitTarget = gameObject.AddComponent<Image>();
+                hitTarget.color = Color.clear;
+                hitTarget.raycastTarget = true;
+            }
+            foreach(var graphic in visual.GetComponentsInChildren<Graphic>(true))
+                graphic.raycastTarget = false;
+        }
+
+        public void ResetHandHover(){
+            if(visual) visual.anchoredPosition = rest;
+            if(!handCanvas) return;
+            handCanvas.sortingLayerID = originalSortingLayer;
+            handCanvas.sortingOrder = originalSortingOrder;
+            handCanvas.overrideSorting = originalOverrideSorting;
         }
 
         private void RenderDetails(CardState state){
@@ -70,11 +101,21 @@ namespace VocaloidTCG.BoardUI
         }
 
         public void OnPointerEnter(PointerEventData e){
-            if(inHand && card != null && !dragging && visual) visual.anchoredPosition = rest + Vector2.up * hoverLift;
+            if(!inHand || card == null || dragging || !visual || !board || !board.CanHoverHand) return;
+            board.ClearHandHover();
+            visual.anchoredPosition = rest + Vector2.up * hoverLift;
+            if(handCanvas){
+                var parentCanvas = transform.GetComponentInParent<Canvas>();
+                if(parentCanvas){
+                    handCanvas.overrideSorting = true;
+                    handCanvas.sortingLayerID = parentCanvas.sortingLayerID;
+                    handCanvas.sortingOrder = parentCanvas.sortingOrder + 1;
+                }
+            }
         }
 
         public void OnPointerExit(PointerEventData e){
-            if(visual) visual.anchoredPosition = rest;
+            ResetHandHover();
         }
 
         public void OnBeginDrag(PointerEventData e){
@@ -83,7 +124,7 @@ namespace VocaloidTCG.BoardUI
             if(dragging)
             {
                 group.alpha = 0; group.blocksRaycasts = false;
-                if(visual) visual.anchoredPosition = rest;
+                ResetHandHover();
             }
         }
 
@@ -100,7 +141,7 @@ namespace VocaloidTCG.BoardUI
             if(group){
                 group.alpha = 1; group.blocksRaycasts = true;
             }
-            if(visual) visual.anchoredPosition = rest;
+            ResetHandHover();
         }
 
         private void OnDisable(){

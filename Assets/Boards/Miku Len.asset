@@ -15,7 +15,7 @@ MonoBehaviour:
   background: {fileID: -4364034832326165938, guid: 390983383697a374c9e9b08595560531, type: 3}
   topBar: {fileID: 7696310992836849271, guid: 604ef45f5954915409895c2e80754e9e, type: 3}
   endTurn: {fileID: 6205698181614936460, guid: 20689b9858594fe4a94753a798dc10ae, type: 3}
-  pause: {fileID: -8878088185706026076, guid: 37d31f7132ccce04ea18ef48babc807c, type: 3}
+  pause: {fileID: -6643546833652701967, guid: 0ddfc38fe67f8724a9f98ff2026bbf66, type: 3}
   defaultTile: {fileID: -6614373457484812694, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
   hoverTile: {fileID: 1639214462598301798, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
   playerTile: {fileID: 1807125615787039003, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
@@ -80,4 +80,10 @@ MonoBehaviour:
   boldKeywords:
   - assist
   - solo
+  keywordDescriptions:
+  - keyword: harmonize
+    description: n/a
+  - keyword: stage share
+    description: n/a
+  keywordTooltipBackground: {fileID: 0}
   countdownParameter: Countdown

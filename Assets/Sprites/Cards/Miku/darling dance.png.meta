@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 0ddfc38fe67f8724a9f98ff2026bbf66
+guid: 76ee6759b6297f44287759feb6d5cfd4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6643546833652701967
-    second: pause 1_0
-  - first:
-      213: -6649447910955372547
-    second: pause 1_1
+      213: -2199262137000290008
+    second: darling dance_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -116,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: pause 1_0
+      name: darling dance_0
       rect:
         serializedVersion: 2
-        x: 42
-        y: 468
-        width: 45
-        height: 41
+        x: 63
+        y: 13
+        width: 115
+        height: 232
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -131,30 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 1f4a5739a516dc3a0800000000000000
-      internalID: -6643546833652701967
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: pause 1_1
-      rect:
-        serializedVersion: 2
-        x: 42
-        y: 388
-        width: 45
-        height: 41
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: dffaa03fa5a68b3a0800000000000000
-      internalID: -6649447910955372547
+      spriteID: 82991241db6aa71e0800000000000000
+      internalID: -2199262137000290008
       vertices: []
       indices: 
       edges: []
@@ -173,8 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      pause 1_0: -6643546833652701967
-      pause 1_1: -6649447910955372547
+      darling dance_0: -2199262137000290008
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
