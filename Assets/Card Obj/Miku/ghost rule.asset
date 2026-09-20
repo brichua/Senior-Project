@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: ghost rule
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Ghost Rule
+  info: Create minion with 0 inf on an adjacent tile
+  performer: 1
+  stageEffect: 0
+  cost: 1
+  influence: 1
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: 4975603077277909672, guid: 576d1a70215147244ab9e2d1a165fa6d, type: 3}
+  characterImage: {fileID: -5193898187859195741, guid: 67b8ec59e4d071145a4358b3fb600d3e, type: 3}
+  iconImage: {fileID: -1331112895632428632, guid: 51bd8a68e7fedbf43a66d81e99dfb95e, type: 3}
+  popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 0}

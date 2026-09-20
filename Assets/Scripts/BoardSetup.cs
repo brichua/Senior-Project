@@ -27,7 +27,13 @@ namespace VocaloidTCG.BoardUI
         public Sprite tiedPopup;
         public SideArt player = new SideArt();
         public SideArt enemy = new SideArt();
-        public string[] boldKeywords = { "assist", "solo" };
+        public string[] boldKeywords = { "harmonize", "stage share" };
+        [Header("Keyword tooltips")]
+        public KeywordDefinition[] keywordDescriptions = {
+            new KeywordDefinition { keyword = "harmonize" },
+            new KeywordDefinition { keyword = "stage share" }
+        };
+        public Sprite keywordTooltipBackground;
         public string countdownParameter = "Countdown";
 
         private void OnValidate()
@@ -37,5 +43,12 @@ namespace VocaloidTCG.BoardUI
             Array.Resize(ref player.energy, 9);
             Array.Resize(ref enemy.energy, 9);
         }
+    }
+
+    [Serializable]
+    public sealed class KeywordDefinition
+    {
+        public string keyword;
+        [TextArea(2, 6)] public string description = "n/a";
     }
 }

@@ -36,6 +36,12 @@ namespace VocaloidTCG.BoardUI
         private RectTransform ghostRect;
         private string selectedPlayer, selectedEnemy;
         private bool ready;
+        public bool CanHoverHand => isActiveAndEnabled && dragged == null &&
+            (!pausePanel || !pausePanel.IsOpen);
+
+        public void ClearHandHover(){
+            foreach(var hand in hands) if(hand) hand.ResetHandHover();
+        }
 
         private void Start(){
             if(!setup || !game || !tilePrefab || !gridRoot || !handPrefab || !playerHandRoot || !enemyHandRoot || !dragLayer){
@@ -78,6 +84,7 @@ namespace VocaloidTCG.BoardUI
             }
         }
         private void OnDisable(){
+            ClearHandHover();
             if(game) game.Changed -= Refresh;
             CancelDrag();
             if(pausePanel && pausePanel.IsOpen) pausePanel.Close();
@@ -103,6 +110,7 @@ namespace VocaloidTCG.BoardUI
 
         public void Refresh(){
             if(!ready || State == null) return;
+            ClearHandHover();
             CancelDrag();
             var s = State;
             if(playerHUD) playerHUD.Render(s.Side(s.localPlayerId), s.winScore, setup.player);
@@ -174,6 +182,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void OpenPause(){
+            ClearHandHover();
             CancelDrag(); if(pausePanel) pausePanel.Open();
         }
 
@@ -205,6 +214,7 @@ namespace VocaloidTCG.BoardUI
         public bool BeginDrag(CardPointer source, CardState card, bool hand, int x, int y, PointerEventData e){
             if(!CanInteract() || card == null || !card.data || card.ownerId != State.localPlayerId) return false;
             if(!hand && !HasLegalMove(card, x, y)) return false;
+            ClearHandHover();
             CancelDrag(); dragSource = source; dragged = card;
             dragKind = hand ? BoardActionKind.PlayCard : BoardActionKind.MovePerformer;
             sourceColumn = x; sourceRow = y;
