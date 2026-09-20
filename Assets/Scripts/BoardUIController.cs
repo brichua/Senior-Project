@@ -26,10 +26,16 @@ namespace VocaloidTCG.BoardUI
         public bool mirrorColumnsForSide1 = true;
         public Vector2 ghostSize = new Vector2(120, 160);
         public SFXManager sfx;
+        public CardDrawAnimator drawAnimator;
 
         public BoardSnapshot State { get { return game ? game.Snapshot : null; } }
         private readonly List<TileView> tiles = new List<TileView>();
         private readonly List<CardPointer> hands = new List<CardPointer>();
+        private readonly Dictionary<string, CardPointer> handViews = new Dictionary<string, CardPointer>();
+        public CardPointer GetHandView(string instanceId){
+            CardPointer view;
+            return handViews.TryGetValue(instanceId, out view) ? view : null;
+        }
         private CardPointer dragSource;
         private CardState dragged;
         private BoardActionKind dragKind;
@@ -38,6 +44,13 @@ namespace VocaloidTCG.BoardUI
         private RectTransform ghostRect;
         private string selectedPlayer, selectedEnemy;
         private bool ready;
+        public bool CanHoverHand => isActiveAndEnabled && dragged == null &&
+            (!drawAnimator || !drawAnimator.IsPlaying) &&
+            (!pausePanel || !pausePanel.IsOpen);
+
+        public void ClearHandHover(){
+            foreach(var hand in hands) if(hand) hand.ResetHandHover();
+        }
 
         private void Start()
         {
@@ -71,7 +84,10 @@ namespace VocaloidTCG.BoardUI
             if (ghostLayout) ghostLayout.ignoreLayout = true;
             ghost.gameObject.SetActive(false);
 
-            if (pausePanel) pausePanel.Initialize(this, game);
+            if(pausePanel) pausePanel.Initialize(this, game);
+            if(!drawAnimator) drawAnimator = GetComponent<CardDrawAnimator>();
+            if(!drawAnimator) drawAnimator = gameObject.AddComponent<CardDrawAnimator>();
+            drawAnimator.Initialize(this);
             ready = true;
             game.Changed += Refresh;
             Refresh();
@@ -85,9 +101,10 @@ namespace VocaloidTCG.BoardUI
                 Refresh();
             }
         }
-        private void OnDisable()
-        {
-            if (game) game.Changed -= Refresh;
+        private void OnDisable(){
+            if(drawAnimator) drawAnimator.Cancel();
+            ClearHandHover();
+            if(game) game.Changed -= Refresh;
             CancelDrag();
             if (pausePanel && pausePanel.IsOpen) pausePanel.Close();
             if (playerHUD && setup) playerHUD.Countdown(false, setup.countdownParameter);
@@ -108,13 +125,15 @@ namespace VocaloidTCG.BoardUI
         {
             var s = State;
             return isActiveAndEnabled && s != null && s.inputAllowed && s.activePlayerId == s.localPlayerId &&
+                (!drawAnimator || !drawAnimator.IsPlaying) &&
                 (s.phase == RoundPhase.Preparation || s.phase == RoundPhase.Performance) &&
                 (!pausePanel || !pausePanel.IsOpen);
         }
 
-        public void Refresh()
-        {
-            if (!ready || State == null) return;
+        public void Refresh(){
+            if(!ready || State == null) return;
+            if(drawAnimator) drawAnimator.CollectDraws();
+            ClearHandHover();
             CancelDrag();
             var s = State;
             if (playerHUD) playerHUD.Render(s.Side(s.localPlayerId), s.winScore, setup.player);
@@ -133,18 +152,24 @@ namespace VocaloidTCG.BoardUI
                 h.gameObject.SetActive(false); Destroy(h.gameObject);
             }
             hands.Clear();
+            handViews.Clear();
             var localHand = s.Side(s.localPlayerId).hand;
             if (localHand != null) foreach (var card in localHand)
             {
                 if (card == null || !card.data) continue;
                 var h = Instantiate(handPrefab, playerHandRoot);
                 h.Bind(this, card, card.data.cardImage, true, true); hands.Add(h);
+                handViews[card.instanceId] = h;
             }
             for (int i = 0; i < s.Side(1 - s.localPlayerId).hiddenHandCount; i++)
             {
                 var h = Instantiate(handPrefab, enemyHandRoot);
                 h.Bind(this, null, setup.enemy.cardBack, true, false); hands.Add(h);
+                var enemyHand = s.Side(1 - s.localPlayerId).hand;
+                if(enemyHand != null && i < enemyHand.Count && enemyHand[i] != null)
+                    handViews[enemyHand[i].instanceId] = h;
             }
+            if(drawAnimator) drawAnimator.PresentDraws();
             RenderSelection(playerInfo, selectedPlayer, setup.player);
             RenderSelection(enemyInfo, selectedEnemy, setup.enemy);
             UpdateTurnDisplay();
@@ -190,9 +215,9 @@ namespace VocaloidTCG.BoardUI
             }
         }
 
-        private void OpenPause()
-        {
-            CancelDrag(); if (pausePanel) pausePanel.Open();
+        private void OpenPause(){
+            ClearHandHover();
+            CancelDrag(); if(pausePanel) pausePanel.Open();
         }
 
         public void Select(CardState card)
@@ -223,11 +248,10 @@ namespace VocaloidTCG.BoardUI
             return null;
         }
 
-        public bool BeginDrag(CardPointer source, CardState card, bool hand, int x, int y, PointerEventData e)
-        {
-
-            if (!CanInteract() || card == null || !card.data || card.ownerId != State.localPlayerId) return false;
-            if (!hand && !HasLegalMove(card, x, y)) return false;
+        public bool BeginDrag(CardPointer source, CardState card, bool hand, int x, int y, PointerEventData e){
+            if(!CanInteract() || card == null || !card.data || card.ownerId != State.localPlayerId) return false;
+            if(!hand && !HasLegalMove(card, x, y)) return false;
+            ClearHandHover();
             CancelDrag(); dragSource = source; dragged = card;
             dragKind = hand ? BoardActionKind.PlayCard : BoardActionKind.MovePerformer;
             sourceColumn = x; sourceRow = y;

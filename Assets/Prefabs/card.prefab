@@ -684,6 +684,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42b2d88657c3264c8d117625bf11e0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.CardPointer
+  cardRoot: {fileID: 6789926721516024320}
+  canvas: {fileID: 0}
   art: {fileID: 6763606157990691317}
   influencePopup: {fileID: 7190609832521191810}
   cardName: {fileID: 6556765693394331348}

@@ -22,8 +22,27 @@ namespace VocaloidTCG.BoardUI
         private int serial, turnNumber;
         private float roundWait;
         private bool deckExhausted;
+        public struct DrawPresentation {
+            public CardState card;
+            public bool discarded;
+        }
+        private readonly Queue<DrawPresentation> drawPresentations = new Queue<DrawPresentation>();
+        public bool DrawAnimationPlaying { get; private set; }
+
+        public bool TryTakeDrawPresentation(out DrawPresentation draw){
+            draw = default(DrawPresentation);
+            if(drawPresentations.Count == 0) return false;
+            draw = drawPresentations.Dequeue();
+            return true;
+        }
+
+        public void SetDrawAnimationPlaying(bool playing){
+            DrawAnimationPlaying = playing;
+            if(clock) clock.DrawAnimationPlaying = playing;
+        }
         private readonly Queue<CardState>[] decks = { new Queue<CardState>(), new Queue<CardState>() };
         private readonly int[] lastMoveTurn = { -1, -1 };
+        private readonly int[] lastDrawRound = { 0, 0 };
         private readonly Dictionary<string, int> placedTurns = new Dictionary<string, int>();
 
         public override BoardSnapshot Snapshot { get { return state; } }
@@ -52,10 +71,15 @@ namespace VocaloidTCG.BoardUI
         public void StartMatch(int firstPlayerId = -1){
             if(firstPlayerId < -1 || firstPlayerId > 1){ Log("Match start rejected: invalid starting player."); return; }
             if(clock){ clock.Stop(); clock.Paused = false; }
+            drawPresentations.Clear();
+            SetDrawAnimationPlaying(false);
             serial = turnNumber = 0;
             deckExhausted = false;
             placedTurns.Clear();
-            for(int i = 0; i < 2; i++) lastMoveTurn[i] = -1;
+            for(int i = 0; i < 2; i++){
+                lastMoveTurn[i] = -1;
+                lastDrawRound[i] = 1;
+            }
             int starter = firstPlayerId < 0 ? Random.Range(0, 2) : firstPlayerId;
             state = new BoardSnapshot {
                 localPlayerId = Mathf.Clamp(localPlayerId, 0, 1), roundStarterId = starter,
@@ -107,6 +131,9 @@ namespace VocaloidTCG.BoardUI
             int drawn = 0, discarded = 0;
             while(drawn < count && decks[actor].Count > 0){
                 var card = decks[actor].Dequeue(); drawn++;
+                drawPresentations.Enqueue(new DrawPresentation {
+                    card = card, discarded = side.hand.Count >= MaxHandSize
+                });
                 if(side.hand.Count >= MaxHandSize){
                     discarded++;
                     Log("Player " + actor + " discarded newly drawn card " + card.data.cardName + " because their hand is full (" + MaxHandSize + ").");
@@ -133,7 +160,7 @@ namespace VocaloidTCG.BoardUI
 
         private bool CanAct(int actor){
             return isActiveAndEnabled && IsPlaying() && actor >= 0 && actor < 2 &&
-                state.inputAllowed && state.activePlayerId == actor && !IsPaused;
+                state.inputAllowed && state.activePlayerId == actor && !IsPaused && !DrawAnimationPlaying;
         }
 
         private static bool InBounds(int x, int y){
@@ -274,6 +301,10 @@ namespace VocaloidTCG.BoardUI
 
         private void BeginTurn(int actor){
             state.activePlayerId = actor; turnNumber++;
+            if(lastDrawRound[actor] < state.roundNumber){
+                lastDrawRound[actor] = state.roundNumber;
+                DrawCards(actor, 1);
+            }
             Log("Player " + actor + " turn begins. Remaining energy: " + state.Side(actor).energy + ".");
             StartClock();
         }
@@ -351,7 +382,6 @@ namespace VocaloidTCG.BoardUI
                 state.roundNumber++; state.roundStarterId = 1 - state.roundStarterId;
                 state.phase = RoundPhase.Preparation; state.inputAllowed = true;
                 Log("New round begins. Player " + state.roundStarterId + " goes first.");
-                DrawCards(0, 1); DrawCards(1, 1);
                 RefillRoundEnergy();
                 BeginTurn(state.roundStarterId);
             }
