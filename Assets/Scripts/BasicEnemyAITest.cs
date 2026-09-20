@@ -10,7 +10,7 @@ namespace VocaloidTCG.BoardUI
         private float wait;
 
         private void Update(){
-            if(!game || !game.isActiveAndEnabled || game.IsPaused) return;
+            if(!game || !game.isActiveAndEnabled || game.IsPaused || game.DrawAnimationPlaying) return;
             var state = game.Snapshot;
             if(state == null || state.multiplayer || !state.inputAllowed ||
                 state.activePlayerId == state.localPlayerId ||
