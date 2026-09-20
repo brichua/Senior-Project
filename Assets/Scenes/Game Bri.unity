@@ -1009,6 +1009,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0346737f87764a3eb36f047bdd0a3fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.GameplayBoardBridge
+  sfx: {fileID: 46646703}
   localPlayerId: 0
   player0Cards:
   - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
@@ -4328,6 +4329,7 @@ MonoBehaviour:
   mirrorColumnsForSide1: 1
   ghostSize: {x: 120, y: 160}
   sfx: {fileID: 46646703}
+  drawAnimator: {fileID: 0}
 --- !u!1 &975901353
 GameObject:
   m_ObjectHideFlags: 0
@@ -5539,7 +5541,6 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 57988209}
   - {fileID: 1682025406}
   - {fileID: 1492461602}
   - {fileID: 281122979}

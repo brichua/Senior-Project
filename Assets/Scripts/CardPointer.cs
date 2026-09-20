@@ -116,6 +116,7 @@ namespace VocaloidTCG.BoardUI
             if(!inHand || card == null || dragging || !visual || !board || !board.CanHoverHand) return;
             board.ClearHandHover();
             visual.anchoredPosition = rest + Vector2.up * hoverLift;
+            board.sfx.PlayHoverSound();
             if(handCanvas){
                 var parentCanvas = transform.GetComponentInParent<Canvas>();
                 if(parentCanvas){
