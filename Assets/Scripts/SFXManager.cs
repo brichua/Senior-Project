@@ -57,4 +57,10 @@ public class SFXManager : MonoBehaviour
         return ticket_tear.length;
     }
 
+    public void PlayCardSound(AudioClip clip)
+    {
+        if (audioSource && clip)
+            audioSource.PlayOneShot(clip);
+    }
+
 }

@@ -5,6 +5,7 @@ namespace VocaloidTCG.BoardUI
 {
     public sealed class GameplayBoardBridge : BoardGameBridge
     {
+        public SFXManager sfx;
         public const int MaxHandSize = 8;
         [Range(0, 1)] public int localPlayerId;
         [Tooltip("Full decks excluding opening card")]
@@ -238,7 +239,13 @@ namespace VocaloidTCG.BoardUI
                     ") to (" + action.toColumn + ", " + action.toRow + ").");
             }
             state.consecutivePasses = 0;
-            Recompute(); Publish(); return true;
+            Recompute();
+            if (action.kind == BoardActionKind.PlayCard && sfx)
+            {
+                sfx.PlayCardSound(card.data.playSfx);
+            }
+            Publish();
+            return true;
         }
 
         public override void RequestPass(){
