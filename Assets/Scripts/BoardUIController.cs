@@ -224,6 +224,7 @@ namespace VocaloidTCG.BoardUI
 
         public bool BeginDrag(CardPointer source, CardState card, bool hand, int x, int y, PointerEventData e)
         {
+
             if (!CanInteract() || card == null || !card.data || card.ownerId != State.localPlayerId) return false;
             if (!hand && !HasLegalMove(card, x, y)) return false;
             CancelDrag(); dragSource = source; dragged = card;
@@ -284,7 +285,6 @@ namespace VocaloidTCG.BoardUI
                 CancelDrag(); return;
             }
 
-            //sfx.PlayTicketTearSound();
             var action = ActionAt(x, y);
             CancelDrag();
             sfx.PlayDropSound();

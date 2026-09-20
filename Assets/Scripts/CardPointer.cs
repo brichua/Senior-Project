@@ -99,6 +99,10 @@ namespace VocaloidTCG.BoardUI
         public void OnBeginDrag(PointerEventData e)
         {
             if (e.button != PointerEventData.InputButton.Left || !movable || card == null) return;
+            
+            // temp until i find a good way to pause the ticket drop
+            if (board.sfx) board.sfx.PlayTicketTearSound();
+            
             dragging = board.BeginDrag(this, card, inHand, column, row, e);
             if (dragging)
             {
