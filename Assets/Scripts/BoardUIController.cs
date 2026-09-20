@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace VocaloidTCG.BoardUI
 {
@@ -24,6 +25,7 @@ namespace VocaloidTCG.BoardUI
         public RectTransform dragLayer;
         public bool mirrorColumnsForSide1 = true;
         public Vector2 ghostSize = new Vector2(120, 160);
+        public SFXManager sfx;
         public CardDrawAnimator drawAnimator;
 
         public BoardSnapshot State { get { return game ? game.Snapshot : null; } }
@@ -50,23 +52,27 @@ namespace VocaloidTCG.BoardUI
             foreach(var hand in hands) if(hand) hand.ResetHandHover();
         }
 
-        private void Start(){
-            if(!setup || !game || !tilePrefab || !gridRoot || !handPrefab || !playerHandRoot || !enemyHandRoot || !dragLayer){
+        private void Start()
+        {
+            if (!setup || !game || !tilePrefab || !gridRoot || !handPrefab || !playerHandRoot || !enemyHandRoot || !dragLayer)
+            {
                 Debug.LogError("BoardUI: assign setup, bridge, prefabs, grid/hand roots and drag layer.", this);
                 enabled = false; return;
             }
             SetImage(background, setup.background); SetImage(topBar, setup.topBar);
 
-            if(endTurn){
+            if (endTurn)
+            {
                 SetImage(endTurn.image, setup.endTurn); endTurn.onClick.AddListener(Pass);
             }
-            if(pause){
+            if (pause)
+            {
                 SetImage(pause.image, setup.pause); pause.onClick.AddListener(OpenPause);
             }
-            if(playerHUD) playerHUD.Apply(setup.player);
-            if(enemyHUD) enemyHUD.Apply(setup.enemy);
+            if (playerHUD) playerHUD.Apply(setup.player);
+            if (enemyHUD) enemyHUD.Apply(setup.enemy);
 
-            for(int i = 0; i < 25; i++) tiles.Add(Instantiate(tilePrefab, gridRoot));
+            for (int i = 0; i < 25; i++) tiles.Add(Instantiate(tilePrefab, gridRoot));
             ghost = Instantiate(handPrefab, dragLayer);
             ghost.name = "Drag card";
             ghostRect = ghost.GetComponent<RectTransform>();
@@ -75,7 +81,7 @@ namespace VocaloidTCG.BoardUI
                 ghostSize.y / Mathf.Max(1, ghostRect.rect.height));
             ghostRect.localScale = Vector3.one * ghostScale;
             var ghostLayout = ghost.GetComponent<LayoutElement>();
-            if(ghostLayout) ghostLayout.ignoreLayout = true;
+            if (ghostLayout) ghostLayout.ignoreLayout = true;
             ghost.gameObject.SetActive(false);
 
             if(pausePanel) pausePanel.Initialize(this, game);
@@ -87,8 +93,10 @@ namespace VocaloidTCG.BoardUI
             Refresh();
         }
 
-        private void OnEnable(){
-            if(ready){
+        private void OnEnable()
+        {
+            if (ready)
+            {
                 game.Changed += Refresh;
                 Refresh();
             }
@@ -98,21 +106,23 @@ namespace VocaloidTCG.BoardUI
             ClearHandHover();
             if(game) game.Changed -= Refresh;
             CancelDrag();
-            if(pausePanel && pausePanel.IsOpen) pausePanel.Close();
-            if(playerHUD && setup) playerHUD.Countdown(false, setup.countdownParameter);
-            if(enemyHUD && setup) enemyHUD.Countdown(false, setup.countdownParameter);
-            if(playerHUD) playerHUD.ClearSubtitle();
-            if(enemyHUD) enemyHUD.ClearSubtitle();
+            if (pausePanel && pausePanel.IsOpen) pausePanel.Close();
+            if (playerHUD && setup) playerHUD.Countdown(false, setup.countdownParameter);
+            if (enemyHUD && setup) enemyHUD.Countdown(false, setup.countdownParameter);
+            if (playerHUD) playerHUD.ClearSubtitle();
+            if (enemyHUD) enemyHUD.ClearSubtitle();
         }
-        private void OnDestroy(){
-            if(endTurn) endTurn.onClick.RemoveListener(Pass);
-            if(pause) pause.onClick.RemoveListener(OpenPause);
-            foreach (var t in tiles) if(t) Destroy(t.gameObject);
-            foreach (var h in hands) if(h) Destroy(h.gameObject);
-            if(ghost) Destroy(ghost.gameObject);
+        private void OnDestroy()
+        {
+            if (endTurn) endTurn.onClick.RemoveListener(Pass);
+            if (pause) pause.onClick.RemoveListener(OpenPause);
+            foreach (var t in tiles) if (t) Destroy(t.gameObject);
+            foreach (var h in hands) if (h) Destroy(h.gameObject);
+            if (ghost) Destroy(ghost.gameObject);
         }
 
-        private bool CanInteract(){
+        private bool CanInteract()
+        {
             var s = State;
             return isActiveAndEnabled && s != null && s.inputAllowed && s.activePlayerId == s.localPlayerId &&
                 (!drawAnimator || !drawAnimator.IsPlaying) &&
@@ -126,31 +136,32 @@ namespace VocaloidTCG.BoardUI
             ClearHandHover();
             CancelDrag();
             var s = State;
-            if(playerHUD) playerHUD.Render(s.Side(s.localPlayerId), s.winScore, setup.player);
-            if(enemyHUD) enemyHUD.Render(s.Side(1 - s.localPlayerId), s.winScore, setup.enemy);
-            
-            for(int visualRow = 0; visualRow < 5; visualRow++)
-                for(int visualColumn = 0; visualColumn < 5; visualColumn++)
+            if (playerHUD) playerHUD.Render(s.Side(s.localPlayerId), s.winScore, setup.player);
+            if (enemyHUD) enemyHUD.Render(s.Side(1 - s.localPlayerId), s.winScore, setup.enemy);
+
+            for (int visualRow = 0; visualRow < 5; visualRow++)
+                for (int visualColumn = 0; visualColumn < 5; visualColumn++)
                 {
                     int x = mirrorColumnsForSide1 && s.localPlayerId == 1 ? 4 - visualColumn : visualColumn;
                     int index = visualRow * 5 + x;
                     tiles[visualRow * 5 + visualColumn].Bind(this, x, visualRow,
                         s.tiles != null && index < s.tiles.Length ? s.tiles[index] : null);
                 }
-            foreach (var h in hands){
+            foreach (var h in hands)
+            {
                 h.gameObject.SetActive(false); Destroy(h.gameObject);
             }
             hands.Clear();
             handViews.Clear();
             var localHand = s.Side(s.localPlayerId).hand;
-            if(localHand != null) foreach (var card in localHand)
+            if (localHand != null) foreach (var card in localHand)
             {
-                if(card == null || !card.data) continue;
+                if (card == null || !card.data) continue;
                 var h = Instantiate(handPrefab, playerHandRoot);
                 h.Bind(this, card, card.data.cardImage, true, true); hands.Add(h);
                 handViews[card.instanceId] = h;
             }
-            for(int i = 0; i < s.Side(1 - s.localPlayerId).hiddenHandCount; i++)
+            for (int i = 0; i < s.Side(1 - s.localPlayerId).hiddenHandCount; i++)
             {
                 var h = Instantiate(handPrefab, enemyHandRoot);
                 h.Bind(this, null, setup.enemy.cardBack, true, false); hands.Add(h);
@@ -164,16 +175,18 @@ namespace VocaloidTCG.BoardUI
             UpdateTurnDisplay();
         }
 
-        private void Update(){
-            if(!ready) return;
-            if(State != null) UpdateTurnDisplay();
-            else if(enemyHUD) enemyHUD.SetTimerSubtitle("");
+        private void Update()
+        {
+            if (!ready) return;
+            if (State != null) UpdateTurnDisplay();
+            else if (enemyHUD) enemyHUD.SetTimerSubtitle("");
         }
-        private void UpdateTurnDisplay(){
+        private void UpdateTurnDisplay()
+        {
             var s = State;
             bool localTurn = s.activePlayerId == s.localPlayerId;
             bool playing = s.phase == RoundPhase.Preparation || s.phase == RoundPhase.Performance;
-            if(endTurn)
+            if (endTurn)
             {
                 endTurn.gameObject.SetActive(localTurn && playing);
                 endTurn.interactable = CanInteract();
@@ -181,21 +194,23 @@ namespace VocaloidTCG.BoardUI
             SetImage(cd, localTurn ? setup.player.cd : setup.enemy.cd);
             bool showTimer = playing && game.RemainingSeconds > 0 &&
                 (!subtitleTimerOnlyDuringCountdown || game.RemainingSeconds <= 10);
-            if(enemyHUD) enemyHUD.SetTimerSubtitle(showTimer ?
+            if (enemyHUD) enemyHUD.SetTimerSubtitle(showTimer ?
                 "Time left: " + Mathf.CeilToInt(game.RemainingSeconds) + "s" : "");
             string phaseLabel = "Round " + s.roundNumber + " — " + s.phase;
-            if(s.phase == RoundPhase.EndRound || s.phase == RoundPhase.Finished)
+            if (s.phase == RoundPhase.EndRound || s.phase == RoundPhase.Finished)
                 phaseLabel += "\n" + s.roundSummary;
             CardInfoView.Put(phaseText, phaseLabel);
             bool countdown = playing && game.RemainingSeconds > 0 && game.RemainingSeconds <= 10 &&
                 !(pausePanel && pausePanel.IsOpen && !s.multiplayer);
-            if(playerHUD) playerHUD.Countdown(countdown && !localTurn, setup.countdownParameter);
-            if(enemyHUD) enemyHUD.Countdown(countdown && localTurn, setup.countdownParameter);
-            if(dragged != null && !CanInteract()) CancelDrag();
+            if (playerHUD) playerHUD.Countdown(countdown && !localTurn, setup.countdownParameter);
+            if (enemyHUD) enemyHUD.Countdown(countdown && localTurn, setup.countdownParameter);
+            if (dragged != null && !CanInteract()) CancelDrag();
         }
 
-        private void Pass(){
-            if(CanInteract()){
+        private void Pass()
+        {
+            if (CanInteract())
+            {
                 CancelDrag(); game.RequestPass();
             }
         }
@@ -205,27 +220,30 @@ namespace VocaloidTCG.BoardUI
             CancelDrag(); if(pausePanel) pausePanel.Open();
         }
 
-        public void Select(CardState card){
-            if(card == null || State == null || (pausePanel && pausePanel.IsOpen)) return;
+        public void Select(CardState card)
+        {
+            if (card == null || State == null || (pausePanel && pausePanel.IsOpen)) return;
             bool local = card.ownerId == State.localPlayerId;
-            if(local) selectedPlayer = card.instanceId; else selectedEnemy = card.instanceId;
+            if (local) selectedPlayer = card.instanceId; else selectedEnemy = card.instanceId;
             var view = local ? playerInfo : enemyInfo;
-            if(view) view.Show(card, local ? setup.player : setup.enemy, setup);
+            if (view) view.Show(card, local ? setup.player : setup.enemy, setup);
         }
 
-        private void RenderSelection(CardInfoView view, string id, SideArt side){
-            if(view) view.Show(FindCard(id), side, setup);
+        private void RenderSelection(CardInfoView view, string id, SideArt side)
+        {
+            if (view) view.Show(FindCard(id), side, setup);
         }
 
-        private CardState FindCard(string id){
-            if(string.IsNullOrEmpty(id)) return null;
+        private CardState FindCard(string id)
+        {
+            if (string.IsNullOrEmpty(id)) return null;
             var hand = State.Side(State.localPlayerId).hand;
-            if(hand != null) foreach (var c in hand) if(c != null && c.instanceId == id) return c;
-            if(State.tiles != null) foreach (var t in State.tiles)
+            if (hand != null) foreach (var c in hand) if (c != null && c.instanceId == id) return c;
+            if (State.tiles != null) foreach (var t in State.tiles)
             {
-                if(t == null) continue;
+                if (t == null) continue;
                 foreach (var c in new[] { t.side0, t.side1, t.assist0, t.assist1 })
-                    if(c != null && c.instanceId == id) return c;
+                    if (c != null && c.instanceId == id) return c;
             }
             return null;
         }
@@ -243,61 +261,87 @@ namespace VocaloidTCG.BoardUI
             return true;
         }
 
-        private bool HasLegalMove(CardState card, int fromX, int fromY){
-            for(int y = 0; y < 5; y++) for(int x = 0; x < 5; x++)
+        private bool HasLegalMove(CardState card, int fromX, int fromY)
+        {
+            for (int y = 0; y < 5; y++) for (int x = 0; x < 5; x++)
             {
-                if(x == fromX && y == fromY) continue;
+                if (x == fromX && y == fromY) continue;
                 string reason;
-                if(game.CanSubmit(new BoardAction(BoardActionKind.MovePerformer, card.instanceId,
+                if (game.CanSubmit(new BoardAction(BoardActionKind.MovePerformer, card.instanceId,
                     fromX, fromY, x, y), out reason)) return true;
             }
             return false;
         }
-        public bool IsMovingFrom(int x, int y){
+        public bool IsMovingFrom(int x, int y)
+        {
             return dragged != null && dragKind == BoardActionKind.MovePerformer &&
                 sourceColumn == x && sourceRow == y;
         }
-        public bool TryGetContestPreview(int x, int y, out int localInfluence, out int enemyInfluence){
+        public bool TryGetContestPreview(int x, int y, out int localInfluence, out int enemyInfluence)
+        {
             localInfluence = enemyInfluence = 0;
-            if(!CanDrop(x, y) || !dragged.data || !dragged.data.performer) return false;
+            if (!CanDrop(x, y) || !dragged.data || !dragged.data.performer) return false;
             return game.TryPreviewContest(ActionAt(x, y), dragged, out localInfluence, out enemyInfluence);
         }
-        public void MoveGhost(PointerEventData e){
-            if(!ghost || !dragLayer) return;
+        public void MoveGhost(PointerEventData e)
+        {
+            if (!ghost || !dragLayer) return;
             var canvas = dragLayer.GetComponentInParent<Canvas>();
             Camera camera = canvas && canvas.renderMode != RenderMode.ScreenSpaceOverlay ? canvas.worldCamera : null;
             Vector2 point;
-            if(RectTransformUtility.ScreenPointToLocalPointInRectangle(dragLayer, e.position, camera, out point))
+            if (RectTransformUtility.ScreenPointToLocalPointInRectangle(dragLayer, e.position, camera, out point))
                 ghostRect.localPosition = new Vector3(point.x, point.y, 0);
         }
-        private BoardAction ActionAt(int x, int y){
+        private BoardAction ActionAt(int x, int y)
+        {
             return new BoardAction(dragKind, dragged.instanceId, sourceColumn, sourceRow, x, y);
         }
 
-        public bool CanDrop(int x, int y){
+        public bool CanDrop(int x, int y)
+        {
             string reason;
             return dragged != null && CanInteract() && x >= 0 && x < 5 && y >= 0 && y < 5 &&
                 game.CanSubmit(ActionAt(x, y), out reason);
         }
-        public void Drop(int x, int y){
-            if(!CanDrop(x, y)){
+        public void Drop(int x, int y)
+        {
+            if (!CanDrop(x, y))
+            {
                 CancelDrag(); return;
             }
 
-            var action = ActionAt(x, y);
-            CancelDrag();
-            if(game.TrySubmit(action)) Refresh();
-        }
-        public void CancelDrag(){
-            var source = dragSource;
-            dragSource = null; dragged = null;
-            if(source) source.Restore();
-            if(ghost) ghost.gameObject.SetActive(false);
-            if(ready && State != null) foreach (var t in tiles) t.RefreshHover();
+            StartCoroutine(DropCoroutine(x, y));
         }
 
-        public static void SetImage(Image image, Sprite sprite){
-            if(image){
+        // wait for ticket tear sound to complete before placing card
+        private IEnumerator DropCoroutine(int x, int y)
+        {
+            sfx.PlayTicketTearSound();
+            var action = ActionAt(x, y);
+            if (dragSource)
+                dragSource.gameObject.SetActive(false);
+
+            yield return new WaitForSeconds(sfx.GetTicketTearSoundLength()+0.50f);
+            
+            sfx.PlayDropSound();
+            CancelDrag();
+            if (game.TrySubmit(action)) Refresh();
+
+        }
+
+        public void CancelDrag()
+        {
+            var source = dragSource;
+            dragSource = null; dragged = null;
+            if (source) source.Restore();
+            if (ghost) ghost.gameObject.SetActive(false);
+            if (ready && State != null) foreach (var t in tiles) t.RefreshHover();
+        }
+
+        public static void SetImage(Image image, Sprite sprite)
+        {
+            if (image)
+            {
                 image.sprite = sprite; image.enabled = sprite != null;
             }
         }
