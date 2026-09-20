@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace VocaloidTCG.BoardUI
 {
@@ -285,10 +286,23 @@ namespace VocaloidTCG.BoardUI
                 CancelDrag(); return;
             }
 
+            StartCoroutine(DropCoroutine(x, y));
+        }
+
+        // wait for ticket tear sound to complete before placing card
+        private IEnumerator DropCoroutine(int x, int y)
+        {
+            sfx.PlayTicketTearSound();
             var action = ActionAt(x, y);
-            CancelDrag();
+            if (dragSource)
+                dragSource.gameObject.SetActive(false);
+
+            yield return new WaitForSeconds(sfx.GetTicketTearSoundLength()+0.50f);
+            
             sfx.PlayDropSound();
+            CancelDrag();
             if (game.TrySubmit(action)) Refresh();
+
         }
 
         public void CancelDrag()
