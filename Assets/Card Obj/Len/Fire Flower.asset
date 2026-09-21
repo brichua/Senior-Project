@@ -20,8 +20,8 @@ MonoBehaviour:
   influence: 3
   flags: []
   stageInfluenceChange: 1
-  cardImage: {fileID: 0}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: 0}
+  cardImage: {fileID: -4130590633020424461, guid: c653becdb8ae3ff4fbb06ede18e029a8, type: 3}
+  characterImage: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+  iconImage: {fileID: 949429570715648884, guid: 865f7f8a95d05444e87a1d1d1c38edfa, type: 3}
   popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

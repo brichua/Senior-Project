@@ -7,6 +7,7 @@ namespace VocaloidTCG.BoardUI
     [Serializable]
     public sealed class SideArt
     {
+        public string name = "";
         public Sprite skill, barBackground, barFill, deckIcon, deck;
         public Sprite infoBackground, avatar, avatarBackground, infoIcon, cardBack;
         public Sprite stageEffectInfoIcon;
@@ -25,8 +26,8 @@ namespace VocaloidTCG.BoardUI
         public Sprite defaultTile, hoverTile, playerTile, enemyTile, contestedTile;
         public Sprite movingTile;
         public Sprite tiedPopup;
-        public SideArt player = new SideArt();
-        public SideArt enemy = new SideArt();
+        public SideArt player = new SideArt { name = "Player" };
+        public SideArt enemy = new SideArt { name = "Enemy" };
         public string[] boldKeywords = { "harmonize", "stage share" };
         [Header("Keyword tooltips")]
         public KeywordDefinition[] keywordDescriptions = {
@@ -38,8 +39,8 @@ namespace VocaloidTCG.BoardUI
 
         private void OnValidate()
         {
-            if(player == null) player = new SideArt();
-            if(enemy == null) enemy = new SideArt();
+            if(player == null) player = new SideArt { name = "Player" };
+            if(enemy == null) enemy = new SideArt { name = "Enemy" };
             Array.Resize(ref player.energy, 9);
             Array.Resize(ref enemy.energy, 9);
         }

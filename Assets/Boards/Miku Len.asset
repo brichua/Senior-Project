@@ -24,6 +24,7 @@ MonoBehaviour:
   movingTile: {fileID: 5560954434011818755, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
   tiedPopup: {fileID: -2701375301171583563, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   player:
+    name: Hatsune Miku
     skill: {fileID: -2833775182555582667, guid: 51e79bdb9a4940240aeab5d12fb4fa62, type: 3}
     barBackground: {fileID: 6973280408294809845, guid: 2d6147d1675670246a90bd321eae57cd, type: 3}
     barFill: {fileID: -2228575465514830839, guid: 223dfd1e8eecc3546b8dc9dcbfd87640, type: 3}
@@ -51,6 +52,7 @@ MonoBehaviour:
     avatarAnimator: {fileID: 0}
     textColor: {r: 0.7843138, g: 0.98823535, b: 0.9058824, a: 1}
   enemy:
+    name: Kagamine Len
     skill: {fileID: -5079361727716339306, guid: a5ba4041dccd579458a74f42db70680e, type: 3}
     barBackground: {fileID: 7034301446983221607, guid: 2d6147d1675670246a90bd321eae57cd, type: 3}
     barFill: {fileID: -6167297425018093162, guid: 223dfd1e8eecc3546b8dc9dcbfd87640, type: 3}

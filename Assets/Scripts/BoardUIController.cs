@@ -16,7 +16,7 @@ namespace VocaloidTCG.BoardUI
         public SideHUD playerHUD, enemyHUD;
         public CardInfoView playerInfo, enemyInfo;
         public PausePanel pausePanel;
-        public TMP_Text phaseText;
+        [SerializeField, HideInInspector] private TMP_Text phaseText;
         public bool subtitleTimerOnlyDuringCountdown;
         public TileView tilePrefab;
         public Transform gridRoot;
@@ -196,10 +196,11 @@ namespace VocaloidTCG.BoardUI
                 (!subtitleTimerOnlyDuringCountdown || game.RemainingSeconds <= 10);
             if (enemyHUD) enemyHUD.SetTimerSubtitle(showTimer ?
                 "Time left: " + Mathf.CeilToInt(game.RemainingSeconds) + "s" : "");
-            string phaseLabel = "Round " + s.roundNumber + " — " + s.phase;
-            if (s.phase == RoundPhase.EndRound || s.phase == RoundPhase.Finished)
-                phaseLabel += "\n" + s.roundSummary;
-            CardInfoView.Put(phaseText, phaseLabel);
+            if(playerHUD) playerHUD.RenderPhase(s.phase, playing && localTurn);
+            if(enemyHUD) enemyHUD.RenderPhase(s.phase, playing && s.activePlayerId == 1 - s.localPlayerId);
+            if(phaseText && (!playerHUD || phaseText != playerHUD.phaseText) &&
+                (!enemyHUD || phaseText != enemyHUD.phaseText))
+                CardInfoView.Put(phaseText, "");
             bool countdown = playing && game.RemainingSeconds > 0 && game.RemainingSeconds <= 10 &&
                 !(pausePanel && pausePanel.IsOpen && !s.multiplayer);
             if (playerHUD) playerHUD.Countdown(countdown && !localTurn, setup.countdownParameter);

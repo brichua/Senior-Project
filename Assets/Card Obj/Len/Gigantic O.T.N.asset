@@ -22,6 +22,6 @@ MonoBehaviour:
   stageInfluenceChange: 1
   cardImage: {fileID: 8192908359464255853, guid: 8860fe02c6a63a1439bddaab1ba0f4f0, type: 3}
   characterImage: {fileID: -1355299995888248386, guid: 9b1d45d431c63674eac52b2624b9ba34, type: 3}
-  iconImage: {fileID: -1355299995888248386, guid: 9b1d45d431c63674eac52b2624b9ba34, type: 3}
+  iconImage: {fileID: 5507046747607084061, guid: 95d21512df2eabf4d86a49c98c944f62, type: 3}
   popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

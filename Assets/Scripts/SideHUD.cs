@@ -9,6 +9,8 @@ namespace VocaloidTCG.BoardUI
         public Image skill, barBackground, barFill, deckIcon, deck, infoBackground;
         public Image avatar, avatarBackground, infoIcon, energy;
         public TMP_Text score, deckCount;
+        public TMP_Text nameText, phaseText;
+        [Range(0f, 1f)] public float inactivePhaseOpacity = 0.4f;
         public Animator avatarAnimator;
         public TMP_Text subtitle;
         public GameObject subtitleRoot;
@@ -51,6 +53,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         public void Apply(SideArt art){
+            RenderName(art);
             BoardUIController.SetImage(skill, art.skill);
             BoardUIController.SetImage(barBackground, art.barBackground);
             BoardUIController.SetImage(barFill, art.barFill);
@@ -72,6 +75,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         public void Render(SideState state, int winScore, SideArt art){
+            RenderName(art);
             CardInfoView.Put(score, state.score.ToString());
             CardInfoView.Put(deckCount, state.deckCount.ToString());
 
@@ -81,6 +85,28 @@ namespace VocaloidTCG.BoardUI
 
             int index = Mathf.Clamp(state.energy, 0, 8);
             BoardUIController.SetImage(energy, art.energy != null && index < art.energy.Length ? art.energy[index] : null);
+        }
+
+        private void RenderName(SideArt art){
+            if(!nameText) return;
+            nameText.richText = false;
+            CardInfoView.Put(nameText, art.name);
+            nameText.color = art.textColor;
+        }
+
+        public void RenderPhase(RoundPhase phase, bool isCurrentTurn){
+            if(!phaseText) return;
+            string label;
+            switch(phase){
+                case RoundPhase.Preparation: label = "Preparation"; break;
+                case RoundPhase.Performance: label = "Performance"; break;
+                case RoundPhase.EndRound: label = "End of Round"; break;
+                case RoundPhase.Finished: label = "Finished"; break;
+                default: label = "Mulligan"; break;
+            }
+            CardInfoView.Put(phaseText, label);
+            phaseText.color = new Color(1f, 1f, 1f,
+                isCurrentTurn ? 1f : Mathf.Clamp01(inactivePhaseOpacity));
         }
 
         public void Countdown(bool active, string parameter){
