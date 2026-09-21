@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: lll Toluthin Antenna lll
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: ' lll Toluthin Antenna lll'
+  info: Once per turn you can give an enemy minion -2 inf. It cannot move this round
+  performer: 1
+  stageEffect: 0
+  cost: 3
+  influence: 3
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: -8302032143981679745, guid: 5e3209ef67842854b904cd2a86379e76, type: 3}
+  characterImage: {fileID: -3315067093188254844, guid: ff539e3dc456e644fa0909797f8f28a3, type: 3}
+  iconImage: {fileID: -7536180405774857378, guid: cdcabdbdd31727d46af11e9e384d5353, type: 3}
+  popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 0}

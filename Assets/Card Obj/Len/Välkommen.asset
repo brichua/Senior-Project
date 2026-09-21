@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: "V\xE4lkommen"
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: "V\xE4lkommen"
+  info: 'Draw an extra card at the beginning of a round. When played, revive an ally
+    that has 4 or less inf '
+  performer: 1
+  stageEffect: 0
+  cost: 7
+  influence: 9
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: -218636848679759252, guid: f38c1371fd3622a4bbb81a3dbedb2300, type: 3}
+  characterImage: {fileID: 2107996051193857009, guid: ab4291904d3d0cd4ea8e8547a3ae0565, type: 3}
+  iconImage: {fileID: 1227343529477706588, guid: c9d729a627bf8d649b50668ed983e2db, type: 3}
+  popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 0}

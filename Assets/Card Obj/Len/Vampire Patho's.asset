@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: Vampire Patho's
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Vampire Patho's
+  info: 'When opponent wins performance phase reduce VP by 2 '
+  performer: 1
+  stageEffect: 0
+  cost: 6
+  influence: 8
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: -218636848679759252, guid: f38c1371fd3622a4bbb81a3dbedb2300, type: 3}
+  characterImage: {fileID: -2944828647414139295, guid: 22768d639b999764eb3b91b8705719ed, type: 3}
+  iconImage: {fileID: 1847276110145919348, guid: cfbe15d154314694487f7d90a131d22f, type: 3}
+  popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 0}
