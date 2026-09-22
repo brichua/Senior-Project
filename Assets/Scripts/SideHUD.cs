@@ -64,8 +64,6 @@ namespace VocaloidTCG.BoardUI
             BoardUIController.SetImage(avatarBackground, art.avatarBackground);
             BoardUIController.SetImage(infoIcon, art.infoIcon);
 
-            if(score) score.color = art.textColor;
-            if(deckCount) deckCount.color = art.textColor;
             if(avatarAnimator) avatarAnimator.runtimeAnimatorController = art.avatarAnimator;
             if(barFill){
                 barFill.type = Image.Type.Filled;
@@ -79,8 +77,6 @@ namespace VocaloidTCG.BoardUI
             CardInfoView.Put(score, state.score.ToString());
             CardInfoView.Put(deckCount, state.deckCount.ToString());
 
-            if(score) score.color = art.textColor;
-            if(deckCount) deckCount.color = art.textColor;
             if(barFill) barFill.fillAmount = Mathf.Clamp01((float)state.score / Mathf.Max(1, winScore));
 
             int index = Mathf.Clamp(state.energy, 0, 8);

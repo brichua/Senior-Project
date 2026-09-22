@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332ae9204dc7e054c8a4c585481483d5, type: 3}
+  m_Name: Miku Meiko
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.BoardSetup
+  background: {fileID: -4364034832326165938, guid: 390983383697a374c9e9b08595560531, type: 3}
+  topBar: {fileID: 7696310992836849271, guid: 604ef45f5954915409895c2e80754e9e, type: 3}
+  endTurn: {fileID: 6205698181614936460, guid: 20689b9858594fe4a94753a798dc10ae, type: 3}
+  pause: {fileID: -6643546833652701967, guid: 0ddfc38fe67f8724a9f98ff2026bbf66, type: 3}
+  defaultTile: {fileID: -6614373457484812694, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  hoverTile: {fileID: 1639214462598301798, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  playerTile: {fileID: 1807125615787039003, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  enemyTile: {fileID: 349823833441268365, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  contestedTile: {fileID: -7995846982363831464, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  movingTile: {fileID: 5560954434011818755, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  tiedPopup: {fileID: -2701375301171583563, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  player:
+    name: Hatsune Miku
+    skill: {fileID: -2833775182555582667, guid: 51e79bdb9a4940240aeab5d12fb4fa62, type: 3}
+    barBackground: {fileID: 6973280408294809845, guid: 2d6147d1675670246a90bd321eae57cd, type: 3}
+    barFill: {fileID: -2228575465514830839, guid: 223dfd1e8eecc3546b8dc9dcbfd87640, type: 3}
+    deckIcon: {fileID: -7774026537370076429, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
+    deck: {fileID: -5315569271729811991, guid: 1da61ae484b705244b0ef7bf9ef09e43, type: 3}
+    infoBackground: {fileID: -7877689742819290246, guid: 919ae275686f5f9449142058c99d9a77, type: 3}
+    avatar: {fileID: 0}
+    avatarBackground: {fileID: 3028295558620724323, guid: 919ae275686f5f9449142058c99d9a77, type: 3}
+    infoIcon: {fileID: -4097042886051959093, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    cardBack: {fileID: 4517764280863850651, guid: b2e10475b0590b04bac35ebc13a68704, type: 3}
+    stageEffectInfoIcon: {fileID: 392097720186651936, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    performerPopup: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+    assistance: {fileID: 0}
+    cd: {fileID: 4595359845773140606, guid: 4def2d55b7f9a854eb260b9aa041a61f, type: 3}
+    energy:
+    - {fileID: 6713158252528036025, guid: d04a98cf94983ab479073947426db3da, type: 3}
+    - {fileID: -8841960985847760941, guid: b7afbcd0352e9de409cd90690c2e088d, type: 3}
+    - {fileID: 1201763747713666843, guid: f17e3b6ff7c310d498ec8469ae79d955, type: 3}
+    - {fileID: -8171442433607327672, guid: f99d24dc88bfbd546bc76b13be76ce42, type: 3}
+    - {fileID: 3408630788434481320, guid: dde9e25e849a33d47a911f1a28de845a, type: 3}
+    - {fileID: -5588959874567735996, guid: e85bbbea7f0503141b9c1afc3c2de4c9, type: 3}
+    - {fileID: 4395122934725171298, guid: 7af6c136fefd210468c8450802c6dd75, type: 3}
+    - {fileID: -4693863053339272666, guid: a43f521a9baa3d04983b73638811a1bd, type: 3}
+    - {fileID: 8271445111443002235, guid: be1169cb907f71444a75674b61684bbd, type: 3}
+    avatarAnimator: {fileID: 0}
+    textColor: {r: 0.7843138, g: 0.98823535, b: 0.9058824, a: 1}
+  enemy:
+    name: Kagamine Len
+    skill: {fileID: -5079361727716339306, guid: a5ba4041dccd579458a74f42db70680e, type: 3}
+    barBackground: {fileID: 7034301446983221607, guid: 2d6147d1675670246a90bd321eae57cd, type: 3}
+    barFill: {fileID: -6167297425018093162, guid: 223dfd1e8eecc3546b8dc9dcbfd87640, type: 3}
+    deckIcon: {fileID: -2545133708530324268, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
+    deck: {fileID: -7265774990130075282, guid: 1da61ae484b705244b0ef7bf9ef09e43, type: 3}
+    infoBackground: {fileID: 1817935808979777827, guid: e8793d0ea2ab15a4aa1f21a8ffaebd96, type: 3}
+    avatar: {fileID: 0}
+    avatarBackground: {fileID: 647146822407843397, guid: e8793d0ea2ab15a4aa1f21a8ffaebd96, type: 3}
+    infoIcon: {fileID: 8385808797875470449, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    cardBack: {fileID: 2338155783449749344, guid: e41da413e382ac14980152f2ac035106, type: 3}
+    stageEffectInfoIcon: {fileID: 7604335191168160132, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    performerPopup: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+    assistance: {fileID: 0}
+    cd: {fileID: -5830422381108907953, guid: f8b5f67398fa00a46b5286e1ed8c97a8, type: 3}
+    energy:
+    - {fileID: 972150253908146371, guid: d04a98cf94983ab479073947426db3da, type: 3}
+    - {fileID: -7244343741994295752, guid: b7afbcd0352e9de409cd90690c2e088d, type: 3}
+    - {fileID: -2793746032673952490, guid: f17e3b6ff7c310d498ec8469ae79d955, type: 3}
+    - {fileID: 4410950913820770240, guid: f99d24dc88bfbd546bc76b13be76ce42, type: 3}
+    - {fileID: -4172579292816158894, guid: dde9e25e849a33d47a911f1a28de845a, type: 3}
+    - {fileID: -4569177500789379628, guid: e85bbbea7f0503141b9c1afc3c2de4c9, type: 3}
+    - {fileID: -6801781433017947811, guid: 7af6c136fefd210468c8450802c6dd75, type: 3}
+    - {fileID: 1512942143604442956, guid: a43f521a9baa3d04983b73638811a1bd, type: 3}
+    - {fileID: 4146987261126792813, guid: be1169cb907f71444a75674b61684bbd, type: 3}
+    avatarAnimator: {fileID: 0}
+    textColor: {r: 0.98823535, g: 0.95294124, b: 0.7843138, a: 1}
+  boldKeywords:
+  - assist
+  - solo
+  keywordDescriptions:
+  - keyword: harmonize
+    description: n/a
+  - keyword: stage share
+    description: n/a
+  keywordTooltipBackground: {fileID: 0}
+  countdownParameter: Countdown

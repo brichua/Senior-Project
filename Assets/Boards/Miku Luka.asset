@@ -1,0 +1,91 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332ae9204dc7e054c8a4c585481483d5, type: 3}
+  m_Name: Miku Luka
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.BoardSetup
+  background: {fileID: 222235970670543418, guid: 5bfb6c567ff935a48b036c3cef69a0ac, type: 3}
+  topBar: {fileID: -3283094239574165128, guid: fbb878b30cdbb774a8fa0f993cd894e9, type: 3}
+  endTurn: {fileID: 6205698181614936460, guid: 20689b9858594fe4a94753a798dc10ae, type: 3}
+  pause: {fileID: -6643546833652701967, guid: 0ddfc38fe67f8724a9f98ff2026bbf66, type: 3}
+  defaultTile: {fileID: -6614373457484812694, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  hoverTile: {fileID: 1639214462598301798, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  playerTile: {fileID: 1807125615787039003, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  enemyTile: {fileID: 349823833441268365, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  contestedTile: {fileID: -7995846982363831464, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  movingTile: {fileID: 5560954434011818755, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  tiedPopup: {fileID: -2701375301171583563, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  player:
+    name: Hatsune Miku
+    skill: {fileID: -2833775182555582667, guid: 51e79bdb9a4940240aeab5d12fb4fa62, type: 3}
+    barBackground: {fileID: 6973280408294809845, guid: 2d6147d1675670246a90bd321eae57cd, type: 3}
+    barFill: {fileID: -2228575465514830839, guid: 223dfd1e8eecc3546b8dc9dcbfd87640, type: 3}
+    deckIcon: {fileID: -7774026537370076429, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
+    deck: {fileID: -5315569271729811991, guid: 1da61ae484b705244b0ef7bf9ef09e43, type: 3}
+    infoBackground: {fileID: -7877689742819290246, guid: 919ae275686f5f9449142058c99d9a77, type: 3}
+    avatar: {fileID: 0}
+    avatarBackground: {fileID: 3028295558620724323, guid: 919ae275686f5f9449142058c99d9a77, type: 3}
+    infoIcon: {fileID: -4097042886051959093, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    cardBack: {fileID: 4517764280863850651, guid: b2e10475b0590b04bac35ebc13a68704, type: 3}
+    stageEffectInfoIcon: {fileID: 392097720186651936, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    performerPopup: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+    assistance: {fileID: 0}
+    cd: {fileID: 4595359845773140606, guid: 4def2d55b7f9a854eb260b9aa041a61f, type: 3}
+    energy:
+    - {fileID: 6713158252528036025, guid: d04a98cf94983ab479073947426db3da, type: 3}
+    - {fileID: -8841960985847760941, guid: b7afbcd0352e9de409cd90690c2e088d, type: 3}
+    - {fileID: 1201763747713666843, guid: f17e3b6ff7c310d498ec8469ae79d955, type: 3}
+    - {fileID: -8171442433607327672, guid: f99d24dc88bfbd546bc76b13be76ce42, type: 3}
+    - {fileID: 3408630788434481320, guid: dde9e25e849a33d47a911f1a28de845a, type: 3}
+    - {fileID: -5588959874567735996, guid: e85bbbea7f0503141b9c1afc3c2de4c9, type: 3}
+    - {fileID: 4395122934725171298, guid: 7af6c136fefd210468c8450802c6dd75, type: 3}
+    - {fileID: -4693863053339272666, guid: a43f521a9baa3d04983b73638811a1bd, type: 3}
+    - {fileID: 8271445111443002235, guid: be1169cb907f71444a75674b61684bbd, type: 3}
+    avatarAnimator: {fileID: 0}
+    textColor: {r: 0.7843138, g: 0.98823535, b: 0.9058824, a: 1}
+  enemy:
+    name: Megurine Luka
+    skill: {fileID: 2623153894425097250, guid: 55634f28da06ad147ab337d04908a4ed, type: 3}
+    barBackground: {fileID: 9138732652610848791, guid: 2d6147d1675670246a90bd321eae57cd, type: 3}
+    barFill: {fileID: 1454754465042162988, guid: 223dfd1e8eecc3546b8dc9dcbfd87640, type: 3}
+    deckIcon: {fileID: -6754969496120312333, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
+    deck: {fileID: -1161245751803813995, guid: 1da61ae484b705244b0ef7bf9ef09e43, type: 3}
+    infoBackground: {fileID: -8675756568269393829, guid: 743597fbc1fec8348975ee2f4dd23834, type: 3}
+    avatar: {fileID: 0}
+    avatarBackground: {fileID: -570113712981489795, guid: 743597fbc1fec8348975ee2f4dd23834, type: 3}
+    infoIcon: {fileID: 5726822437706720215, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    cardBack: {fileID: -3766673046611072397, guid: ff59ef5bf770a3d4082f99ecd18a2b83, type: 3}
+    stageEffectInfoIcon: {fileID: 2657779482387495465, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    performerPopup: {fileID: -3350101939418175136, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+    assistance: {fileID: 0}
+    cd: {fileID: 8727807300652680345, guid: eb37038a3e116c544bb251d00c9603ed, type: 3}
+    energy:
+    - {fileID: -6324106167696351281, guid: d04a98cf94983ab479073947426db3da, type: 3}
+    - {fileID: -4725048805230483166, guid: b7afbcd0352e9de409cd90690c2e088d, type: 3}
+    - {fileID: -4747911992345541759, guid: f17e3b6ff7c310d498ec8469ae79d955, type: 3}
+    - {fileID: -8959523235691172457, guid: f99d24dc88bfbd546bc76b13be76ce42, type: 3}
+    - {fileID: 8877447868010575591, guid: dde9e25e849a33d47a911f1a28de845a, type: 3}
+    - {fileID: -1554212895988484994, guid: e85bbbea7f0503141b9c1afc3c2de4c9, type: 3}
+    - {fileID: -1042953033364333648, guid: 7af6c136fefd210468c8450802c6dd75, type: 3}
+    - {fileID: -8578474392096460344, guid: a43f521a9baa3d04983b73638811a1bd, type: 3}
+    - {fileID: -1908808996523175110, guid: be1169cb907f71444a75674b61684bbd, type: 3}
+    avatarAnimator: {fileID: 0}
+    textColor: {r: 1, g: 0.8941177, b: 0.9960785, a: 1}
+  boldKeywords:
+  - assist
+  - solo
+  keywordDescriptions:
+  - keyword: harmonize
+    description: n/a
+  - keyword: stage share
+    description: n/a
+  keywordTooltipBackground: {fileID: 0}
+  countdownParameter: Countdown
