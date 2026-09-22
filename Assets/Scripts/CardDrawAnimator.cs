@@ -69,6 +69,7 @@ namespace VocaloidTCG.BoardUI
             try{
                 while(draws[actor].Count > 0){
                     var draw = draws[actor].Dequeue();
+                    if (board.sfx) board.sfx.PlayCardDrawSound();
                     yield return AnimateCard(draw);
                     pending.Remove(draw.card.instanceId);
                     SetVisible(draw.card.instanceId, true);

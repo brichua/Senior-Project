@@ -8,6 +8,8 @@ public class SFXManager : MonoBehaviour
     public AudioClip ticket_tear;
     public AudioClip end_turn_click;
     public AudioClip tile_hover;
+    public AudioClip card_draw;
+    public AudioClip card_destroy;
 
     private AudioSource audioSource;
 
@@ -61,6 +63,18 @@ public class SFXManager : MonoBehaviour
     {
         if (audioSource && clip)
             audioSource.PlayOneShot(clip);
+    }
+
+    public void PlayCardDrawSound()
+    {
+        if (audioSource && card_draw)
+            audioSource.PlayOneShot(card_draw);
+    }
+
+    public void PlayDestroySound()
+    {
+        if (audioSource && card_destroy)
+            audioSource.PlayOneShot(card_destroy);
     }
 
 }

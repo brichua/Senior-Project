@@ -134,10 +134,12 @@ namespace VocaloidTCG.BoardUI
                 drawPresentations.Enqueue(new DrawPresentation {
                     card = card, discarded = side.hand.Count >= MaxHandSize
                 });
-                if(side.hand.Count >= MaxHandSize){
+                if (side.hand.Count >= MaxHandSize)
+                {
                     discarded++;
                     Log("Player " + actor + " discarded newly drawn card " + card.data.cardName + " because their hand is full (" + MaxHandSize + ").");
-                }else side.hand.Add(card);
+                }
+                else side.hand.Add(card);
             }
             side.deckCount = decks[actor].Count;
             side.hiddenHandCount = side.hand.Count;
@@ -269,6 +271,7 @@ namespace VocaloidTCG.BoardUI
             Recompute();
             if (action.kind == BoardActionKind.PlayCard && sfx)
             {
+                sfx.PlayDropSound();
                 sfx.PlayCardSound(card.data.playSfx);
             }
             Publish();
@@ -329,6 +332,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void RemovePerformer(TileState tile, int actor){
+            if (sfx) sfx.PlayDestroySound();
             var card = Performer(tile, actor);
             if(card != null) placedTurns.Remove(card.instanceId);
             SetPerformer(tile, actor, null);

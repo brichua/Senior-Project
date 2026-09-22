@@ -324,7 +324,7 @@ namespace VocaloidTCG.BoardUI
 
             yield return new WaitForSeconds(sfx.GetTicketTearSoundLength()+0.50f);
             
-            sfx.PlayDropSound();
+            //sfx.PlayDropSound();
             CancelDrag();
             if (game.TrySubmit(action)) Refresh();
 
