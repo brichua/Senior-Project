@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e41da413e382ac14980152f2ac035106
+guid: afafcd2ad86b4bc42989b5d95ccdfec0
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2338155783449749344
-    second: card template3_0
+      213: 7347833542617226780
+    second: edit deck bg_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: card template3_0
+      name: edit deck bg_0
       rect:
         serializedVersion: 2
-        x: 63
-        y: 13
-        width: 115
-        height: 232
+        x: 0
+        y: 0
+        width: 1792
+        height: 1008
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0672c060c4cc27020800000000000000
-      internalID: 2338155783449749344
+      spriteID: c1e56603dafb8f560800000000000000
+      internalID: 7347833542617226780
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      card template3_0: 2338155783449749344
+      edit deck bg_0: 7347833542617226780
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
