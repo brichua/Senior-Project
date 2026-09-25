@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: vampire
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Vampire
+  id: 6e4d70bdfb9763b429d8c8eeff366575
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 0
   info: Encore, if next to ally minion gets additional +2 inf
   performer: 1
   stageEffect: 0

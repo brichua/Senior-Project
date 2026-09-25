@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Holy Lance Explosion Boy
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Holy Lance Explosion Boy
+  id: 0fb44630f3ed1334ea410bd7d9fcbb64
+  cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
+  vip: 0
   info: 'All enemy minions in middle zone get -1 inf  '
   performer: 1
   stageEffect: 0

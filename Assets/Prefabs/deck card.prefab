@@ -284,6 +284,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8708286879054908958}
   - component: {fileID: 1941775592316640312}
+  - component: {fileID: 5136137078566742306}
   m_Layer: 0
   m_Name: deck card
   m_TagString: Untagged
@@ -334,6 +335,22 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &5136137078566742306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4586790922920556805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1637358a9f7479580ba4e1073153307, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.DeckCardView
+  button: {fileID: 0}
+  art: {fileID: 563172560053529579}
+  cardName: {fileID: 1730555217760978100}
+  amount: {fileID: 4497889630687084687}
 --- !u!1 &5092450135152140412
 GameObject:
   m_ObjectHideFlags: 0

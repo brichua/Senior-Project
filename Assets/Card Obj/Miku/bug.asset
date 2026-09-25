@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: bug
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Bug
+  id: 856278b3ccaa51e42925bc9e967cad0f
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 0
   info: 'Surrounding allies get +1 inf on contested tiles '
   performer: 1
   stageEffect: 0

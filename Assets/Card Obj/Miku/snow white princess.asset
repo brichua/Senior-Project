@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: snow white princess
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Snow White Princess
+  id: c2d359daf5d832149bf76863e64cb26d
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 0
   info: Target an ally to get +1 inf
   performer: 1
   stageEffect: 0

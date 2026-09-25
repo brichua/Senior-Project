@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332ae9204dc7e054c8a4c585481483d5, type: 3}
+  m_Name: Rin Luka
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.BoardSetup
+  playerClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
+  enemyClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  playerCardBack: {fileID: 11400000, guid: d9ba12aad6731974ea5d731c7d0afc97, type: 2}
+  enemyCardBack: {fileID: 11400000, guid: 842f7be049f1c43478c6906d4374ce67, type: 2}
+  legacyPlayerClasses: []
+  legacyEnemyClasses: []
+  background: {fileID: 7703679106554052364, guid: d56325abb7915b545818283f01b7382d, type: 3}
+  topBar: {fileID: -5977330662634713225, guid: 2c28ccf39502e2349bef51a199b0f6ba, type: 3}
+  pause: {fileID: -6643546833652701967, guid: 0ddfc38fe67f8724a9f98ff2026bbf66, type: 3}
+  tiedPopup: {fileID: -2701375301171583563, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  defaultTile: {fileID: -6614373457484812694, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  contestedTile: {fileID: -7995846982363831464, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  movingTile: {fileID: 5560954434011818755, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  hoverTile: {fileID: 0}
+  playerTile: {fileID: 0}
+  enemyTile: {fileID: 0}
+  endTurn: {fileID: 0}
+  player:
+    name: Player
+    skill: {fileID: 0}
+    barBackground: {fileID: 0}
+    barFill: {fileID: 0}
+    deckIcon: {fileID: 0}
+    deck: {fileID: 0}
+    infoBackground: {fileID: 0}
+    avatar: {fileID: 0}
+    avatarBackground: {fileID: 0}
+    infoIcon: {fileID: 0}
+    cardBack: {fileID: 0}
+    stageEffectInfoIcon: {fileID: 0}
+    hoverTile: {fileID: 0}
+    tile: {fileID: 0}
+    performerPopup: {fileID: 0}
+    assistance: {fileID: 0}
+    cd: {fileID: 0}
+    energy:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    avatarAnimator: {fileID: 0}
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  enemy:
+    name: Enemy
+    skill: {fileID: 0}
+    barBackground: {fileID: 0}
+    barFill: {fileID: 0}
+    deckIcon: {fileID: 0}
+    deck: {fileID: 0}
+    infoBackground: {fileID: 0}
+    avatar: {fileID: 0}
+    avatarBackground: {fileID: 0}
+    infoIcon: {fileID: 0}
+    cardBack: {fileID: 0}
+    stageEffectInfoIcon: {fileID: 0}
+    hoverTile: {fileID: 0}
+    tile: {fileID: 0}
+    performerPopup: {fileID: 0}
+    assistance: {fileID: 0}
+    cd: {fileID: 0}
+    energy:
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    - {fileID: 0}
+    avatarAnimator: {fileID: 0}
+    textColor: {r: 1, g: 1, b: 1, a: 1}
+  boldKeywords:
+  - harmonize
+  - stage share
+  keywordDescriptions:
+  - keyword: harmonize
+    description: n/a
+  - keyword: stage share
+    description: n/a
+  keywordTooltipBackground: {fileID: 0}
+  countdownParameter: Countdown

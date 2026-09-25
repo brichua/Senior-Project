@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332ae9204dc7e054c8a4c585481483d5, type: 3}
   m_Name: Miku Luka
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.BoardSetup
+  playerClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  enemyClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  playerCardBack: {fileID: 11400000, guid: 9e592ee3b2c080f44ab43eeda5b509e1, type: 2}
+  enemyCardBack: {fileID: 11400000, guid: 842f7be049f1c43478c6906d4374ce67, type: 2}
+  legacyPlayerClasses: []
+  legacyEnemyClasses: []
   background: {fileID: 222235970670543418, guid: 5bfb6c567ff935a48b036c3cef69a0ac, type: 3}
   topBar: {fileID: -3283094239574165128, guid: fbb878b30cdbb774a8fa0f993cd894e9, type: 3}
   endTurn: {fileID: 6205698181614936460, guid: 20689b9858594fe4a94753a798dc10ae, type: 3}
@@ -36,6 +42,8 @@ MonoBehaviour:
     infoIcon: {fileID: -4097042886051959093, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
     cardBack: {fileID: 4517764280863850651, guid: b2e10475b0590b04bac35ebc13a68704, type: 3}
     stageEffectInfoIcon: {fileID: 392097720186651936, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    hoverTile: {fileID: 0}
+    tile: {fileID: 0}
     performerPopup: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
     assistance: {fileID: 0}
     cd: {fileID: 4595359845773140606, guid: 4def2d55b7f9a854eb260b9aa041a61f, type: 3}
@@ -64,6 +72,8 @@ MonoBehaviour:
     infoIcon: {fileID: 5726822437706720215, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
     cardBack: {fileID: -3766673046611072397, guid: ff59ef5bf770a3d4082f99ecd18a2b83, type: 3}
     stageEffectInfoIcon: {fileID: 2657779482387495465, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    hoverTile: {fileID: 0}
+    tile: {fileID: 0}
     performerPopup: {fileID: -3350101939418175136, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
     assistance: {fileID: 0}
     cd: {fileID: 8727807300652680345, guid: eb37038a3e116c544bb251d00c9603ed, type: 3}

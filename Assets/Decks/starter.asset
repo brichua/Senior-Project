@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0868907308d47e08c6fdd7899237687, type: 3}
+  m_Name: starter
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.DeckData
+  deckName: Starter Deck
+  cardBack: {fileID: 11400000, guid: 9e592ee3b2c080f44ab43eeda5b509e1, type: 2}
+  cards:
+  - {fileID: 11400000, guid: 856278b3ccaa51e42925bc9e967cad0f, type: 2}
+  - {fileID: 11400000, guid: 856278b3ccaa51e42925bc9e967cad0f, type: 2}
+  - {fileID: 11400000, guid: 47c26e48cd17c704d9a65804ec4bc466, type: 2}
+  - {fileID: 11400000, guid: 47c26e48cd17c704d9a65804ec4bc466, type: 2}
+  - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
+  - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
+  - {fileID: 11400000, guid: 11d685df179a4324ea4c1c28fc65d77d, type: 2}
+  - {fileID: 11400000, guid: 11d685df179a4324ea4c1c28fc65d77d, type: 2}
+  - {fileID: 11400000, guid: 35a539bc5dea235469031314a7fe559a, type: 2}
+  - {fileID: 11400000, guid: 35a539bc5dea235469031314a7fe559a, type: 2}
+  - {fileID: 11400000, guid: aa9a761ca1a246347abef6daa6ef5d45, type: 2}
+  - {fileID: 11400000, guid: aa9a761ca1a246347abef6daa6ef5d45, type: 2}
+  - {fileID: 11400000, guid: 2c9bee9d08e838f4b8bac5071656c12a, type: 2}
+  - {fileID: 11400000, guid: 2c9bee9d08e838f4b8bac5071656c12a, type: 2}
+  - {fileID: 11400000, guid: 8320e54cccaaf8a4c808f0ae69ef95af, type: 2}
+  - {fileID: 11400000, guid: 8320e54cccaaf8a4c808f0ae69ef95af, type: 2}
+  - {fileID: 11400000, guid: af0772d448374e247b01ef4c10cc5f24, type: 2}
+  - {fileID: 11400000, guid: af0772d448374e247b01ef4c10cc5f24, type: 2}
+  - {fileID: 11400000, guid: c2d359daf5d832149bf76863e64cb26d, type: 2}
+  - {fileID: 11400000, guid: c2d359daf5d832149bf76863e64cb26d, type: 2}
+  - {fileID: 11400000, guid: 6583a1897eee0d744add7bc99a893801, type: 2}
+  - {fileID: 11400000, guid: 6583a1897eee0d744add7bc99a893801, type: 2}
+  - {fileID: 11400000, guid: 6e4d70bdfb9763b429d8c8eeff366575, type: 2}
+  - {fileID: 11400000, guid: 6e4d70bdfb9763b429d8c8eeff366575, type: 2}
+  - {fileID: 11400000, guid: edb40c36ed214e84bb6cfa3922067025, type: 2}
+  vipCard: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  classes:
+  - {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}

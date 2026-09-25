@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: FPS
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: FPS
+  id: 8287bf7f839a1274abe989f816e17202
+  cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
+  vip: 0
   info: When played, opposing minions in this tile get -2 inf
   performer: 1
   stageEffect: 0

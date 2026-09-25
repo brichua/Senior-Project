@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: monitoring
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Monitoring
+  id: aa9a761ca1a246347abef6daa6ef5d45
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 0
   info: While on field apply inf to 1 adjacent performer
   performer: 1
   stageEffect: 0

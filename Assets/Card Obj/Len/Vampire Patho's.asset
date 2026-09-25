@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Vampire Patho's
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Vampire Patho's
+  id: 6be636323e8b2fe4b9d07bf7d000bdde
+  cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
+  vip: 0
   info: 'When opponent wins performance phase reduce VP by 2 '
   performer: 1
   stageEffect: 0

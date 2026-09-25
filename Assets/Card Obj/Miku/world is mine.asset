@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: world is mine
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: World is Mine
+  id: edb40c36ed214e84bb6cfa3922067025
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 0
   info: 'If 2+ adjacent performers +5 inf instead '
   performer: 1
   stageEffect: 0

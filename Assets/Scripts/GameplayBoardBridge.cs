@@ -1,11 +1,76 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace VocaloidTCG.BoardUI
 {
-    public sealed class GameplayBoardBridge : BoardGameBridge
+    public sealed partial class GameplayBoardBridge : BoardGameBridge
     {
         public SFXManager sfx;
+        [Header("Saved deck and class-based boards")]
+        public bool useSelectedDeck = true;
+        public DeckCatalog deckCatalog;
+        public DeckData enemyDeck;
+        public BasicEnemyAITest enemyAI;
+        public List<CharacterClassData> playerClasses = new List<CharacterClassData>();
+        public List<CharacterClassData> enemyClasses = new List<CharacterClassData>();
+        public List<BoardSetup> boardSetups = new List<BoardSetup>();
+        public Sprite playerCardBack, enemyCardBack;
+        public string MatchSetupError { get; private set; }
+        public int ConfigurationVersion { get; private set; }
+        private BoardSetup chosenBoard;
+        private CardBackData selectedPlayerBack, selectedEnemyBack;
+
+        private bool ConfigureDecks()
+        {
+            MatchSetupError = "";
+            selectedPlayerBack = selectedEnemyBack = null;
+            if(useSelectedDeck) {
+                var catalog = deckCatalog ? deckCatalog : Resources.Load<DeckCatalog>("DeckCatalog");
+                if(catalog) {
+                    try {
+                        var library = DeckLibrary.Get(catalog); catalog = library.Catalog;
+                        var selected = library.Selected;
+                        string error;
+                        if(!DeckRules.Validate(selected, catalog, library.Owned, out error)) {
+                            MatchSetupError = "Select a valid deck: " + error; return false;
+                        }
+                        var cards = selected.cardIds.Select(catalog.Card).ToArray();
+                        if(localPlayerId == 0) { player0Cards = cards; player0OpeningCard = catalog.Card(selected.vipCardId); }
+                        else { player1Cards = cards; player1OpeningCard = catalog.Card(selected.vipCardId); }
+                        playerClasses = selected.classes.Select(catalog.Class).ToList();
+                        selectedPlayerBack = catalog.BackData(selected);
+                        playerCardBack = selectedPlayerBack ? selectedPlayerBack.image : null;
+                    } catch(System.Exception ex) { MatchSetupError = ex.Message; return false; }
+                }
+            }
+            if(enemyDeck) {
+                var cards = enemyDeck.cards.Where(c => c).ToArray();
+                if(localPlayerId == 0) { player1Cards = cards; player1OpeningCard = enemyDeck.vipCard; }
+                else { player0Cards = cards; player0OpeningCard = enemyDeck.vipCard; }
+                enemyClasses = new List<CharacterClassData>(enemyDeck.classes);
+                selectedEnemyBack = enemyDeck.cardBack;
+                enemyCardBack = selectedEnemyBack ? selectedEnemyBack.image : null;
+            } else if(enemyAI) enemyClasses = new List<CharacterClassData>(enemyAI.classes);
+            if(enemyAI) { enemyAI.game = this; enemyAI.classes = new List<CharacterClassData>(enemyClasses); }
+            chosenBoard = null;
+            if(boardSetups.Count > 0) {
+                var matches = boardSetups.Where(b => b && b.Matches(playerClasses, enemyClasses)).ToList();
+                if(matches.Count == 0) { MatchSetupError = "No board matches both the player and enemy classes."; return false; }
+                chosenBoard = matches[Random.Range(0, matches.Count)];
+            }
+            ConfigurationVersion++;
+            return true;
+        }
+        public BoardSetup CreatePresentationSetup(BoardSetup fallback)
+        {
+            var template = chosenBoard ? chosenBoard : fallback;
+            if(!template) return null;
+            var result = template.CreateRuntimeSetup(selectedPlayerBack, selectedEnemyBack);
+            if(!selectedPlayerBack && playerCardBack) result.player.cardBack = playerCardBack;
+            if(!selectedEnemyBack && enemyCardBack) result.enemy.cardBack = enemyCardBack;
+            return result;
+        }
         public const int MaxHandSize = 8;
         [Range(0, 1)] public int localPlayerId;
         [Tooltip("Full decks excluding opening card")]
@@ -53,6 +118,7 @@ namespace VocaloidTCG.BoardUI
         private void Awake(){
             if(!clock) clock = gameObject.AddComponent<LocalTurnClock>();
             clock.Expired += OnTurnExpired;
+            if(PuzzleLaunch.Pending) { puzzle = PuzzleLaunch.Pending; deckCatalog = PuzzleLaunch.Catalog; PuzzleLaunch.Clear(); }
             if(startAutomatically) StartMatch();
         }
 
@@ -69,7 +135,9 @@ namespace VocaloidTCG.BoardUI
         }
 
         public void StartMatch(int firstPlayerId = -1){
+            if(puzzle) { StartPuzzle(); return; }
             if(firstPlayerId < -1 || firstPlayerId > 1){ Log("Match start rejected: invalid starting player."); return; }
+            if(!ConfigureDecks()) { Debug.LogError(MatchSetupError, this); return; }
             if(clock){ clock.Stop(); clock.Paused = false; }
             drawPresentations.Clear();
             SetDrawAnimationPlaying(false);
@@ -142,7 +210,7 @@ namespace VocaloidTCG.BoardUI
             side.deckCount = decks[actor].Count;
             side.hiddenHandCount = side.hand.Count;
             Log("Player " + actor + " drew " + drawn + " card(s); discarded: " + discarded + ". Hand: " + side.hand.Count + "; deck: " + side.deckCount + ".");
-            if(side.deckCount == 0){
+            if(side.deckCount == 0 && !IsPuzzle){
                 deckExhausted = true;
                 Log("Player " + actor + " has an empty deck. The match ends after this round's scoring.");
             }
@@ -271,6 +339,7 @@ namespace VocaloidTCG.BoardUI
             {
                 sfx.PlayCardSound(card.data.playSfx);
             }
+            if(IsPuzzle) CheckPuzzle(false, false);
             Publish();
             return true;
         }
@@ -281,6 +350,7 @@ namespace VocaloidTCG.BoardUI
 
         public bool TryPassFor(int actor){
             if(!CanAct(actor)){ Log("Player " + actor + " pass rejected: not an active, unpaused turn."); return false; }
+            if(IsPuzzle && actor == state.localPlayerId) puzzlePlayerTurns++;
             state.consecutivePasses++;
             Log("Player " + actor + " passed. Consecutive passes: " + state.consecutivePasses + ".");
             if(state.consecutivePasses < 2) BeginTurn(1 - actor);
@@ -300,8 +370,10 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void BeginTurn(int actor){
+            if(IsPuzzle && actor == state.localPlayerId && CheckPuzzle(false, true)) return;
             state.activePlayerId = actor; turnNumber++;
-            if(lastDrawRound[actor] < state.roundNumber){
+            if(IsPuzzle) GivePuzzleTurnCards(actor);
+            else if(lastDrawRound[actor] < state.roundNumber){
                 lastDrawRound[actor] = state.roundNumber;
                 DrawCards(actor, 1);
             }
@@ -317,8 +389,9 @@ namespace VocaloidTCG.BoardUI
 
         private void StartClock(){
             if(!clock) return;
-            clock.BeginTurn(Mathf.Max(0, turnSeconds));
-            if(turnSeconds <= 0) clock.Stop();
+            float seconds = IsPuzzle ? puzzle.turnSeconds : turnSeconds;
+            clock.BeginTurn(Mathf.Max(0, seconds));
+            if(seconds <= 0) clock.Stop();
         }
 
         private void Recompute(){
@@ -362,9 +435,11 @@ namespace VocaloidTCG.BoardUI
             if(deckExhausted) state.roundSummary += " A deck is empty; this is the final round.";
             Log("Round scored: Player 0 +" + total0 + ", Player 1 +" + total1 + ". Total scores: " + state.side0.score + " / " + state.side1.score + ".");
             roundWait = Mathf.Max(0, endRoundDisplaySeconds);
+            if(IsPuzzle) { puzzleRounds++; CheckPuzzle(true, false); }
         }
 
         private void Update(){
+            UpdatePuzzleEnemy();
             if(state == null || state.phase != RoundPhase.EndRound || IsPaused) return;
             roundWait -= Time.unscaledDeltaTime;
             if(roundWait <= 0) CompleteRound();
@@ -372,7 +447,7 @@ namespace VocaloidTCG.BoardUI
 
         public bool CompleteRound(){
             if(!isActiveAndEnabled || state == null || state.phase != RoundPhase.EndRound || IsPaused) return false;
-            if(deckExhausted || state.side0.score >= state.winScore || state.side1.score >= state.winScore){
+            if(!IsPuzzle && (deckExhausted || state.side0.score >= state.winScore || state.side1.score >= state.winScore)){
                 state.phase = RoundPhase.Finished;
                 state.winnerId = state.side0.score == state.side1.score ? -1 : state.side0.score > state.side1.score ? 0 : 1;
                 state.roundSummary += state.winnerId < 0 ? " Draw!" : state.winnerId == state.localPlayerId ? " Player wins!" : " Opponent wins!";

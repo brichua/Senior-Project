@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: lll Toluthin Antenna lll
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: ' lll Toluthin Antenna lll'
+  id: 6dee510ddc563954cac4f6cf30fc5745
+  cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
+  vip: 0
   info: Once per turn you can give an enemy minion -2 inf. It cannot move this round
   performer: 1
   stageEffect: 0

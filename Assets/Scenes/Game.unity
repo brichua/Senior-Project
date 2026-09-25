@@ -1158,6 +1158,7 @@ RectTransform:
   - {fileID: 121588214}
   - {fileID: 171503175}
   - {fileID: 1881567694}
+  - {fileID: 1013681119}
   - {fileID: 834615039}
   - {fileID: 1852603593}
   - {fileID: 131052907}
@@ -1194,6 +1195,7 @@ MonoBehaviour:
   deckIcon: {fileID: 1881567695}
   deck: {fileID: 838736982}
   infoBackground: {fileID: 772687137}
+  secondDeckIcon: {fileID: 1013681120}
   avatar: {fileID: 0}
   avatarBackground: {fileID: 1307503290}
   infoIcon: {fileID: 764002657}
@@ -4059,6 +4061,81 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1013681118
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1013681119}
+  - component: {fileID: 1013681121}
+  - component: {fileID: 1013681120}
+  m_Layer: 5
+  m_Name: deck icon enemy (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1013681119
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013681118}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 202653458}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 526.9, y: 438}
+  m_SizeDelta: {x: 71, y: 70}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1013681120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013681118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -2545133708530324268, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1013681121
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1013681118}
+  m_CullTransparentMesh: 1
 --- !u!1 &1017000765
 GameObject:
   m_ObjectHideFlags: 0
@@ -4986,6 +5063,81 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1256653375}
+  m_CullTransparentMesh: 1
+--- !u!1 &1258215834
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1258215835}
+  - component: {fileID: 1258215837}
+  - component: {fileID: 1258215836}
+  m_Layer: 5
+  m_Name: deck icon player (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1258215835
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258215834}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 2097574948}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -526.9, y: 438}
+  m_SizeDelta: {x: 71, y: 70}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1258215836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258215834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.Image
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: -7774026537370076429, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1258215837
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1258215834}
   m_CullTransparentMesh: 1
 --- !u!1 &1263813592
 GameObject:
@@ -8330,60 +8482,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0346737f87764a3eb36f047bdd0a3fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.GameplayBoardBridge
+  puzzle: {fileID: 0}
+  puzzleEnemyActionDelay: 0.5
   sfx: {fileID: 1288955613}
+  useSelectedDeck: 1
+  deckCatalog: {fileID: 11400000, guid: 6da9310bbc7fa804099e153453b00a12, type: 2}
+  enemyDeck: {fileID: 11400000, guid: d1c376575e622ba4ea509d93cd2ae101, type: 2}
+  enemyAI: {fileID: 2001978996}
+  playerClasses:
+  - {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  enemyClasses:
+  - {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
+  boardSetups: []
+  playerCardBack: {fileID: 0}
+  enemyCardBack: {fileID: 0}
   localPlayerId: 0
-  player0Cards:
-  - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
-  - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
-  - {fileID: 11400000, guid: aa9a761ca1a246347abef6daa6ef5d45, type: 2}
-  - {fileID: 11400000, guid: aa9a761ca1a246347abef6daa6ef5d45, type: 2}
-  - {fileID: 11400000, guid: 2c9bee9d08e838f4b8bac5071656c12a, type: 2}
-  - {fileID: 11400000, guid: 2c9bee9d08e838f4b8bac5071656c12a, type: 2}
-  - {fileID: 11400000, guid: 8320e54cccaaf8a4c808f0ae69ef95af, type: 2}
-  - {fileID: 11400000, guid: 8320e54cccaaf8a4c808f0ae69ef95af, type: 2}
-  - {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
-  - {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
-  - {fileID: 11400000, guid: af0772d448374e247b01ef4c10cc5f24, type: 2}
-  - {fileID: 11400000, guid: af0772d448374e247b01ef4c10cc5f24, type: 2}
-  - {fileID: 11400000, guid: c2d359daf5d832149bf76863e64cb26d, type: 2}
-  - {fileID: 11400000, guid: c2d359daf5d832149bf76863e64cb26d, type: 2}
-  - {fileID: 11400000, guid: 6583a1897eee0d744add7bc99a893801, type: 2}
-  - {fileID: 11400000, guid: 6583a1897eee0d744add7bc99a893801, type: 2}
-  - {fileID: 11400000, guid: 6e4d70bdfb9763b429d8c8eeff366575, type: 2}
-  - {fileID: 11400000, guid: 6e4d70bdfb9763b429d8c8eeff366575, type: 2}
-  - {fileID: 11400000, guid: edb40c36ed214e84bb6cfa3922067025, type: 2}
-  - {fileID: 11400000, guid: edb40c36ed214e84bb6cfa3922067025, type: 2}
-  - {fileID: 11400000, guid: 856278b3ccaa51e42925bc9e967cad0f, type: 2}
-  - {fileID: 11400000, guid: 856278b3ccaa51e42925bc9e967cad0f, type: 2}
-  - {fileID: 11400000, guid: 47c26e48cd17c704d9a65804ec4bc466, type: 2}
-  - {fileID: 11400000, guid: 47c26e48cd17c704d9a65804ec4bc466, type: 2}
-  - {fileID: 11400000, guid: 11d685df179a4324ea4c1c28fc65d77d, type: 2}
-  - {fileID: 11400000, guid: 11d685df179a4324ea4c1c28fc65d77d, type: 2}
-  - {fileID: 11400000, guid: 35a539bc5dea235469031314a7fe559a, type: 2}
-  - {fileID: 11400000, guid: 35a539bc5dea235469031314a7fe559a, type: 2}
+  player0Cards: []
   player1Cards:
-  - {fileID: 11400000, guid: 3084d19a045bb404ebfd96362265a847, type: 2}
-  - {fileID: 11400000, guid: 3084d19a045bb404ebfd96362265a847, type: 2}
-  - {fileID: 11400000, guid: 727dd3ac0ef89354593ec27b315a4767, type: 2}
-  - {fileID: 11400000, guid: 727dd3ac0ef89354593ec27b315a4767, type: 2}
-  - {fileID: 11400000, guid: b39416e7f5c7d5b4da097ce24c1d461b, type: 2}
-  - {fileID: 11400000, guid: b39416e7f5c7d5b4da097ce24c1d461b, type: 2}
-  - {fileID: 11400000, guid: c9341641abecfd04596f7b38b8156ac6, type: 2}
-  - {fileID: 11400000, guid: c9341641abecfd04596f7b38b8156ac6, type: 2}
-  - {fileID: 11400000, guid: 840a8011cb920614193627793316de04, type: 2}
-  - {fileID: 11400000, guid: 840a8011cb920614193627793316de04, type: 2}
-  - {fileID: 11400000, guid: 8287bf7f839a1274abe989f816e17202, type: 2}
-  - {fileID: 11400000, guid: 8287bf7f839a1274abe989f816e17202, type: 2}
-  - {fileID: 11400000, guid: 8b3db4a3382c3c043acde3018085077c, type: 2}
-  - {fileID: 11400000, guid: 8b3db4a3382c3c043acde3018085077c, type: 2}
-  - {fileID: 11400000, guid: 0fb44630f3ed1334ea410bd7d9fcbb64, type: 2}
-  - {fileID: 11400000, guid: 0fb44630f3ed1334ea410bd7d9fcbb64, type: 2}
-  - {fileID: 11400000, guid: d687edf23c2cddc478edab69407244bd, type: 2}
-  - {fileID: 11400000, guid: d687edf23c2cddc478edab69407244bd, type: 2}
-  - {fileID: 11400000, guid: 6dee510ddc563954cac4f6cf30fc5745, type: 2}
-  - {fileID: 11400000, guid: 6dee510ddc563954cac4f6cf30fc5745, type: 2}
-  - {fileID: 11400000, guid: 6be636323e8b2fe4b9d07bf7d000bdde, type: 2}
-  - {fileID: 11400000, guid: 6be636323e8b2fe4b9d07bf7d000bdde, type: 2}
   - {fileID: 11400000, guid: a14f576bedc8115418e22b378f480190, type: 2}
   - {fileID: 11400000, guid: a14f576bedc8115418e22b378f480190, type: 2}
   player0OpeningCard: {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
@@ -8407,6 +8522,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.BasicEnemyAITest
   game: {fileID: 2001978995}
+  classes:
+  - {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   actionDelay: 0.75
 --- !u!4 &2001978997
 Transform:
@@ -8639,6 +8756,7 @@ RectTransform:
   - {fileID: 1353424819}
   - {fileID: 2120487427}
   - {fileID: 884865502}
+  - {fileID: 1258215835}
   - {fileID: 1402252538}
   - {fileID: 1723403024}
   - {fileID: 2019970743}
@@ -8675,6 +8793,7 @@ MonoBehaviour:
   deckIcon: {fileID: 884865503}
   deck: {fileID: 581627674}
   infoBackground: {fileID: 1566043571}
+  secondDeckIcon: {fileID: 1258215836}
   avatar: {fileID: 0}
   avatarBackground: {fileID: 1308917291}
   infoIcon: {fileID: 251893884}

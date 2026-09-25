@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Fantasy Pianist
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Fantasy Pianist
+  id: c9341641abecfd04596f7b38b8156ac6
+  cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
+  vip: 0
   info: Draw a spell after 1 round
   performer: 1
   stageEffect: 0

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Chilledren
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Chilledren
+  id: b39416e7f5c7d5b4da097ce24c1d461b
+  cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
+  vip: 0
   info: If this is the only minion in middle zone gets +3 inf
   performer: 1
   stageEffect: 0

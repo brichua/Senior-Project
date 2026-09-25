@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: darling dance
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Darling Dance
+  id: 47c26e48cd17c704d9a65804ec4bc466
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 0
   info: ' '
   performer: 1
   stageEffect: 0

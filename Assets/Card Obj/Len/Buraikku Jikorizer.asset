@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Buraikku Jikorizer
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Buraikku Jikorizer
+  id: 3084d19a045bb404ebfd96362265a847
+  cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
+  vip: 0
   info: Draw 2 minions, gain their keywords
   performer: 1
   stageEffect: 0
