@@ -8,6 +8,9 @@ namespace VocaloidTCG
     {
         [Header("Identity")]
         public string cardName;
+        public string id;
+        public CharacterClassData cardClass;
+        public bool vip;
         [TextArea(3, 8)] public string info;
 
         [Header("Type (choose exactly one)")]
@@ -30,6 +33,11 @@ namespace VocaloidTCG
 
         private void OnValidate()
         {
+#if UNITY_EDITOR
+            var path = UnityEditor.AssetDatabase.GetAssetPath(this);
+            if(!string.IsNullOrEmpty(path)) id = UnityEditor.AssetDatabase.AssetPathToGUID(path);
+#endif
+            if(string.IsNullOrWhiteSpace(id)) id = System.Guid.NewGuid().ToString("N");
             if (performer == stageEffect)
                 stageEffect = !performer;
         }

@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: romeo and cinderella
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Romeo and Cinderella
+  id: 77cf392e8b795b0408c55d3c59d6d1b5
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 1
   info: Stage share
   performer: 1
   stageEffect: 0

@@ -44,6 +44,24 @@ namespace VocaloidTCG.BoardUI
         private RectTransform ghostRect;
         private string selectedPlayer, selectedEnemy;
         private bool ready;
+        private BoardSetup setupTemplate, runtimeSetup;
+        private int configurationVersion = -1;
+        private void ApplyMatchSetup()
+        {
+            var gameplay = game as GameplayBoardBridge;
+            int version = gameplay ? gameplay.ConfigurationVersion : 0;
+            if(configurationVersion == version) return;
+            if(!setupTemplate) setupTemplate = setup;
+            var next = gameplay ? gameplay.CreatePresentationSetup(setupTemplate) : setupTemplate ? setupTemplate.CreateRuntimeSetup() : null;
+            if(!next) return;
+            if(runtimeSetup) Destroy(runtimeSetup);
+            setup = runtimeSetup = next; configurationVersion = version;
+            SetImage(background, setup.background); SetImage(topBar, setup.topBar);
+            if(endTurn) SetImage(endTurn.image, setup.endTurn);
+            if(pause) SetImage(pause.image, setup.pause);
+            if(playerHUD) { playerHUD.Apply(setup.player); if(gameplay) playerHUD.ApplyClasses(gameplay.playerClasses); }
+            if(enemyHUD) { enemyHUD.Apply(setup.enemy); if(gameplay) enemyHUD.ApplyClasses(gameplay.enemyClasses, true); }
+        }
         public bool CanHoverHand => isActiveAndEnabled && dragged == null &&
             (!drawAnimator || !drawAnimator.IsPlaying) &&
             (!pausePanel || !pausePanel.IsOpen);
@@ -54,6 +72,7 @@ namespace VocaloidTCG.BoardUI
 
         private void Start()
         {
+            ApplyMatchSetup();
             if (!setup || !game || !tilePrefab || !gridRoot || !handPrefab || !playerHandRoot || !enemyHandRoot || !dragLayer)
             {
                 Debug.LogError("BoardUI: assign setup, bridge, prefabs, grid/hand roots and drag layer.", this);
@@ -71,6 +90,11 @@ namespace VocaloidTCG.BoardUI
             }
             if (playerHUD) playerHUD.Apply(setup.player);
             if (enemyHUD) enemyHUD.Apply(setup.enemy);
+            var gameplay = game as GameplayBoardBridge;
+            if(gameplay) {
+                if(playerHUD) playerHUD.ApplyClasses(gameplay.playerClasses);
+                if(enemyHUD) enemyHUD.ApplyClasses(gameplay.enemyClasses, true);
+            }
 
             for (int i = 0; i < 25; i++) tiles.Add(Instantiate(tilePrefab, gridRoot));
             ghost = Instantiate(handPrefab, dragLayer);
@@ -114,6 +138,7 @@ namespace VocaloidTCG.BoardUI
         }
         private void OnDestroy()
         {
+            if(runtimeSetup) Destroy(runtimeSetup);
             if (endTurn) endTurn.onClick.RemoveListener(Pass);
             if (pause) pause.onClick.RemoveListener(OpenPause);
             foreach (var t in tiles) if (t) Destroy(t.gameObject);
@@ -132,6 +157,7 @@ namespace VocaloidTCG.BoardUI
 
         public void Refresh(){
             if(!ready || State == null) return;
+            ApplyMatchSetup();
             if(drawAnimator) drawAnimator.CollectDraws();
             ClearHandHover();
             CancelDrag();

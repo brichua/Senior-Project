@@ -5,12 +5,13 @@ namespace VocaloidTCG.BoardUI
     public sealed class BasicEnemyAITest : MonoBehaviour
     {
         public GameplayBoardBridge game;
+        public System.Collections.Generic.List<CharacterClassData> classes = new System.Collections.Generic.List<CharacterClassData>();
         [Min(0.1f)] public float actionDelay = 0.75f;
         private int observedTurn = -1;
         private float wait;
 
         private void Update(){
-            if(!game || !game.isActiveAndEnabled || game.IsPaused || game.DrawAnimationPlaying) return;
+            if(!game || game.IsPuzzle || !game.isActiveAndEnabled || game.IsPaused || game.DrawAnimationPlaying) return;
             var state = game.Snapshot;
             if(state == null || state.multiplayer || !state.inputAllowed ||
                 state.activePlayerId == state.localPlayerId ||

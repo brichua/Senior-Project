@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: "V\xE4lkommen"
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: "V\xE4lkommen"
+  id: a14f576bedc8115418e22b378f480190
+  cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
+  vip: 1
   info: 'Draw an extra card at the beginning of a round. When played, revive an ally
     that has 4 or less inf '
   performer: 1

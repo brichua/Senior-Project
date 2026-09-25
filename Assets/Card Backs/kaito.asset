@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd14c3276a2e465b930bc7528fa6ecad, type: 3}
+  m_Name: kaito
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardBackData
+  id: ad07cb418dc6ffe4997fb442cad69cf9
+  image: {fileID: -8625527311305253520, guid: 6baae42bb33ee1640a0a4ae1d0aa2726, type: 3}
+  deckImage: {fileID: 7219675327990602642, guid: 1da61ae484b705244b0ef7bf9ef09e43, type: 3}

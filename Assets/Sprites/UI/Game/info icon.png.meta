@@ -144,7 +144,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -207,10 +207,10 @@ TextureImporter:
       name: info icon_1
       rect:
         serializedVersion: 2
-        x: 89
-        y: 432
-        width: 46
-        height: 44
+        x: 42
+        y: 462
+        width: 47
+        height: 47
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -251,10 +251,10 @@ TextureImporter:
       name: info icon_3
       rect:
         serializedVersion: 2
-        x: 217
-        y: 432
-        width: 46
-        height: 44
+        x: 170
+        y: 462
+        width: 47
+        height: 47
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -383,10 +383,10 @@ TextureImporter:
       name: info icon_9
       rect:
         serializedVersion: 2
-        x: 89
-        y: 351
-        width: 46
-        height: 44
+        x: 42
+        y: 381
+        width: 47
+        height: 47
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -427,10 +427,10 @@ TextureImporter:
       name: info icon_11
       rect:
         serializedVersion: 2
-        x: 217
-        y: 352
-        width: 46
-        height: 44
+        x: 170
+        y: 382
+        width: 47
+        height: 47
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -559,10 +559,10 @@ TextureImporter:
       name: info icon_17
       rect:
         serializedVersion: 2
-        x: 89
-        y: 256
-        width: 46
-        height: 44
+        x: 42
+        y: 286
+        width: 47
+        height: 47
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -603,10 +603,10 @@ TextureImporter:
       name: info icon_19
       rect:
         serializedVersion: 2
-        x: 217
-        y: 256
-        width: 46
-        height: 44
+        x: 170
+        y: 286
+        width: 47
+        height: 47
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

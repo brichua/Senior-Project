@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: godish
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: God-ish
+  id: 35a539bc5dea235469031314a7fe559a
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 0
   info: 'While on the firld, when you play a minion it gets +1 inf  '
   performer: 1
   stageEffect: 0

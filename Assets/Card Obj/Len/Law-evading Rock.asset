@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Law-evading Rock
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Law-evading Rock
+  id: d687edf23c2cddc478edab69407244bd
+  cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
+  vip: 0
   info: Gain 1 energy after 2 rounds
   performer: 1
   stageEffect: 0

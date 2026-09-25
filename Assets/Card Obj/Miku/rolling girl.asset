@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: rolling girl
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Rolling Girl
+  id: 8320e54cccaaf8a4c808f0ae69ef95af
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 0
   info: All adjacent minions get +1 inf, harmonize 1
   performer: 1
   stageEffect: 0

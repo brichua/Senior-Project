@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: deep sea girl
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Deep Sea Girl
+  id: b30e01cc53295814d8c9b889c7dec5b3
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 0
   info: 
   performer: 1
   stageEffect: 0

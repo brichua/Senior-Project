@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Gigantic O.T.N
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Gigantic O.T.N.
+  id: 8b3db4a3382c3c043acde3018085077c
+  cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
+  vip: 0
   info: The next spell you play cost 1 less
   performer: 1
   stageEffect: 0

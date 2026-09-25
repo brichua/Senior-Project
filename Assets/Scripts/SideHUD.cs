@@ -7,6 +7,16 @@ namespace VocaloidTCG.BoardUI
     public sealed class SideHUD : MonoBehaviour
     {
         public Image skill, barBackground, barFill, deckIcon, deck, infoBackground;
+        public Image secondDeckIcon;
+
+        public void ApplyClasses(System.Collections.Generic.List<CharacterClassData> classes, bool enemySide = false)
+        {
+            if(classes.Count > 0 && classes[0]) BoardUIController.SetImage(deckIcon, classes[0].DeckIcon(enemySide));
+            if(secondDeckIcon) {
+                secondDeckIcon.gameObject.SetActive(classes.Count > 1);
+                BoardUIController.SetImage(secondDeckIcon, classes.Count > 1 && classes[1] ? classes[1].DeckIcon(enemySide) : null);
+            }
+        }
         public Image avatar, avatarBackground, infoIcon, energy;
         public TMP_Text score, deckCount;
         public TMP_Text nameText, phaseText;

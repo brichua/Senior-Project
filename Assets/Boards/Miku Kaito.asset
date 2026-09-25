@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 332ae9204dc7e054c8a4c585481483d5, type: 3}
   m_Name: Miku Kaito
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.BoardSetup
+  playerClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  enemyClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
+  playerCardBack: {fileID: 11400000, guid: 9e592ee3b2c080f44ab43eeda5b509e1, type: 2}
+  enemyCardBack: {fileID: 11400000, guid: ad07cb418dc6ffe4997fb442cad69cf9, type: 2}
+  legacyPlayerClasses: []
+  legacyEnemyClasses: []
   background: {fileID: 8480495153441287743, guid: d7537cceeddc27944a77aca38dc3db35, type: 3}
   topBar: {fileID: -7536414992925726643, guid: f6c668296bca6b3479da71626d71d32b, type: 3}
   endTurn: {fileID: 6205698181614936460, guid: 20689b9858594fe4a94753a798dc10ae, type: 3}
@@ -36,6 +42,8 @@ MonoBehaviour:
     infoIcon: {fileID: -4097042886051959093, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
     cardBack: {fileID: 4517764280863850651, guid: b2e10475b0590b04bac35ebc13a68704, type: 3}
     stageEffectInfoIcon: {fileID: 392097720186651936, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    hoverTile: {fileID: 0}
+    tile: {fileID: 0}
     performerPopup: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
     assistance: {fileID: 0}
     cd: {fileID: 4595359845773140606, guid: 4def2d55b7f9a854eb260b9aa041a61f, type: 3}
@@ -64,6 +72,8 @@ MonoBehaviour:
     infoIcon: {fileID: -7724924303093997559, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
     cardBack: {fileID: -8625527311305253520, guid: 6baae42bb33ee1640a0a4ae1d0aa2726, type: 3}
     stageEffectInfoIcon: {fileID: -2774434106059315162, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    hoverTile: {fileID: 0}
+    tile: {fileID: 0}
     performerPopup: {fileID: 7385751347671569172, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
     assistance: {fileID: 0}
     cd: {fileID: -3569974197465283514, guid: b81b3ade61b2d61409473719f836dba6, type: 3}

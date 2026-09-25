@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: tell your world
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Tell Your World
+  id: 6583a1897eee0d744add7bc99a893801
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 0
   info: Create 2 minions with +1 inf
   performer: 1
   stageEffect: 0

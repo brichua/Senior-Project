@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: odds and ends
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Odds&Ends
+  id: 2c9bee9d08e838f4b8bac5071656c12a
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 0
   info: Reduce 1 adjacent performer influence to half
   performer: 1
   stageEffect: 0
