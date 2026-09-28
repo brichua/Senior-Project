@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd14c3276a2e465b930bc7528fa6ecad, type: 3}
+  m_Name: miku
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardBackData
+  id: 9e592ee3b2c080f44ab43eeda5b509e1
+  image: {fileID: 4517764280863850651, guid: b2e10475b0590b04bac35ebc13a68704, type: 3}
+  deckImage: {fileID: -5315569271729811991, guid: 1da61ae484b705244b0ef7bf9ef09e43, type: 3}

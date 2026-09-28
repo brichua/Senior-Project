@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 332ae9204dc7e054c8a4c585481483d5, type: 3}
+  m_Name: Miku Miku
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.BoardSetup
+  playerClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  enemyClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  playerCardBack: {fileID: 11400000, guid: 9e592ee3b2c080f44ab43eeda5b509e1, type: 2}
+  enemyCardBack: {fileID: 11400000, guid: 9e592ee3b2c080f44ab43eeda5b509e1, type: 2}
+  legacyPlayerClasses: []
+  legacyEnemyClasses: []
+  background: {fileID: -7870576594608500360, guid: 284a868a834f1f14eae3ae1be873393e, type: 3}
+  topBar: {fileID: 8562099907429287292, guid: 0d3f3495bf0cecf488819c311afb5750, type: 3}
+  pause: {fileID: -6643546833652701967, guid: 0ddfc38fe67f8724a9f98ff2026bbf66, type: 3}
+  tiedPopup: {fileID: -2701375301171583563, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  defaultTile: {fileID: -6614373457484812694, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  contestedTile: {fileID: -7995846982363831464, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  movingTile: {fileID: 5560954434011818755, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  hoverTile: {fileID: 1639214462598301798, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  playerTile: {fileID: 1807125615787039003, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  enemyTile: {fileID: -7708644975649761358, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  endTurn: {fileID: 6205698181614936460, guid: 20689b9858594fe4a94753a798dc10ae, type: 3}
+  player:
+    name: Hatsune Miku
+    skill: {fileID: -2833775182555582667, guid: 51e79bdb9a4940240aeab5d12fb4fa62, type: 3}
+    barBackground: {fileID: 6973280408294809845, guid: 2d6147d1675670246a90bd321eae57cd, type: 3}
+    barFill: {fileID: -2228575465514830839, guid: 223dfd1e8eecc3546b8dc9dcbfd87640, type: 3}
+    deckIcon: {fileID: -7774026537370076429, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
+    deck: {fileID: -5315569271729811991, guid: 1da61ae484b705244b0ef7bf9ef09e43, type: 3}
+    infoBackground: {fileID: -7877689742819290246, guid: 919ae275686f5f9449142058c99d9a77, type: 3}
+    avatar: {fileID: 0}
+    avatarBackground: {fileID: 3028295558620724323, guid: 919ae275686f5f9449142058c99d9a77, type: 3}
+    infoIcon: {fileID: -4097042886051959093, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    cardBack: {fileID: 4517764280863850651, guid: b2e10475b0590b04bac35ebc13a68704, type: 3}
+    stageEffectInfoIcon: {fileID: 392097720186651936, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    hoverTile: {fileID: 0}
+    tile: {fileID: 0}
+    performerPopup: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+    assistance: {fileID: 0}
+    cd: {fileID: 4595359845773140606, guid: 4def2d55b7f9a854eb260b9aa041a61f, type: 3}
+    energy:
+    - {fileID: 6713158252528036025, guid: d04a98cf94983ab479073947426db3da, type: 3}
+    - {fileID: -8841960985847760941, guid: b7afbcd0352e9de409cd90690c2e088d, type: 3}
+    - {fileID: 1201763747713666843, guid: f17e3b6ff7c310d498ec8469ae79d955, type: 3}
+    - {fileID: -8171442433607327672, guid: f99d24dc88bfbd546bc76b13be76ce42, type: 3}
+    - {fileID: 3408630788434481320, guid: dde9e25e849a33d47a911f1a28de845a, type: 3}
+    - {fileID: -5588959874567735996, guid: e85bbbea7f0503141b9c1afc3c2de4c9, type: 3}
+    - {fileID: 4395122934725171298, guid: 7af6c136fefd210468c8450802c6dd75, type: 3}
+    - {fileID: -4693863053339272666, guid: a43f521a9baa3d04983b73638811a1bd, type: 3}
+    - {fileID: 8271445111443002235, guid: be1169cb907f71444a75674b61684bbd, type: 3}
+    avatarAnimator: {fileID: 0}
+    textColor: {r: 0.7843138, g: 0.98823535, b: 0.9058824, a: 1}
+  enemy:
+    name: Kaito
+    skill: {fileID: -3847023258212419216, guid: bc2782fba03b463419180cdeea3eff8d, type: 3}
+    barBackground: {fileID: 4192355886241320053, guid: 2d6147d1675670246a90bd321eae57cd, type: 3}
+    barFill: {fileID: -2163626567969100453, guid: 223dfd1e8eecc3546b8dc9dcbfd87640, type: 3}
+    deckIcon: {fileID: 45705842623540115, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
+    deck: {fileID: 7219675327990602642, guid: 1da61ae484b705244b0ef7bf9ef09e43, type: 3}
+    infoBackground: {fileID: 6264394838482478058, guid: 7d3afa4b7a342284387a79ee8953887f, type: 3}
+    avatar: {fileID: 0}
+    avatarBackground: {fileID: 7306952320694336915, guid: 7d3afa4b7a342284387a79ee8953887f, type: 3}
+    infoIcon: {fileID: -7724924303093997559, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    cardBack: {fileID: -8625527311305253520, guid: 6baae42bb33ee1640a0a4ae1d0aa2726, type: 3}
+    stageEffectInfoIcon: {fileID: -2774434106059315162, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    hoverTile: {fileID: 0}
+    tile: {fileID: 0}
+    performerPopup: {fileID: 7385751347671569172, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+    assistance: {fileID: 0}
+    cd: {fileID: -3569974197465283514, guid: b81b3ade61b2d61409473719f836dba6, type: 3}
+    energy:
+    - {fileID: -2908127333880795696, guid: d04a98cf94983ab479073947426db3da, type: 3}
+    - {fileID: -1233716915446555418, guid: b7afbcd0352e9de409cd90690c2e088d, type: 3}
+    - {fileID: 8989932918898668733, guid: f17e3b6ff7c310d498ec8469ae79d955, type: 3}
+    - {fileID: 1768809808471484637, guid: f99d24dc88bfbd546bc76b13be76ce42, type: 3}
+    - {fileID: -7024672158242077461, guid: dde9e25e849a33d47a911f1a28de845a, type: 3}
+    - {fileID: 3530903763424169239, guid: e85bbbea7f0503141b9c1afc3c2de4c9, type: 3}
+    - {fileID: -6090633204631598127, guid: 7af6c136fefd210468c8450802c6dd75, type: 3}
+    - {fileID: 5140661888408281889, guid: a43f521a9baa3d04983b73638811a1bd, type: 3}
+    - {fileID: -177851131477641722, guid: be1169cb907f71444a75674b61684bbd, type: 3}
+    avatarAnimator: {fileID: 0}
+    textColor: {r: 0.6666667, g: 0.8313726, b: 1, a: 1}
+  boldKeywords:
+  - assist
+  - solo
+  keywordDescriptions:
+  - keyword: harmonize
+    description: n/a
+  - keyword: stage share
+    description: n/a
+  keywordTooltipBackground: {fileID: 0}
+  countdownParameter: Countdown

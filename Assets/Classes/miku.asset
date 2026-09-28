@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c322361276e04446a5fb5dbbd4a7afc4, type: 3}
+  m_Name: miku
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CharacterClassData
+  identity: 0
+  displayName: Hatsune Miku
+  color: {r: 0.82745105, g: 1, b: 0.9568628, a: 1}
+  classIcon: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+  puzzleArt: {fileID: 8376220829089352778, guid: ab5f8a4c24ab8174fa7d0423f85c1906, type: 3}
+  playerDeckIcon: {fileID: -7774026537370076429, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
+  enemyDeckIcon: {fileID: 7160492205017776766, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
+  popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  costImage: {fileID: 368339622367814498, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+  performerBorder: {fileID: -1147319987236858982, guid: e514e7a1c6c8d4a479a3a22d0f03f823, type: 3}
+  stageEffectBorder: {fileID: 1807971552307836446, guid: e514e7a1c6c8d4a479a3a22d0f03f823, type: 3}
+  vipImage: {fileID: 2633589480389795961, guid: 2550388b7ac4e5642a754b82c3438f60, type: 3}
+  buttonImage: {fileID: -260842711412954152, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+  selectedButtonImage: {fileID: -1999215036243188937, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+  specialCardBack: {fileID: 11400000, guid: 9e592ee3b2c080f44ab43eeda5b509e1, type: 2}
+  playerEnergyIcons:
+  - {fileID: 6713158252528036025, guid: d04a98cf94983ab479073947426db3da, type: 3}
+  - {fileID: -8841960985847760941, guid: b7afbcd0352e9de409cd90690c2e088d, type: 3}
+  - {fileID: 1201763747713666843, guid: f17e3b6ff7c310d498ec8469ae79d955, type: 3}
+  - {fileID: -8171442433607327672, guid: f99d24dc88bfbd546bc76b13be76ce42, type: 3}
+  - {fileID: 3408630788434481320, guid: dde9e25e849a33d47a911f1a28de845a, type: 3}
+  - {fileID: -5588959874567735996, guid: e85bbbea7f0503141b9c1afc3c2de4c9, type: 3}
+  - {fileID: 4395122934725171298, guid: 7af6c136fefd210468c8450802c6dd75, type: 3}
+  - {fileID: -4693863053339272666, guid: a43f521a9baa3d04983b73638811a1bd, type: 3}
+  - {fileID: 8271445111443002235, guid: be1169cb907f71444a75674b61684bbd, type: 3}
+  enemyEnergyIcons:
+  - {fileID: 6713158252528036025, guid: d04a98cf94983ab479073947426db3da, type: 3}
+  - {fileID: 1583350390675746804, guid: b7afbcd0352e9de409cd90690c2e088d, type: 3}
+  - {fileID: 6195386251278113316, guid: f17e3b6ff7c310d498ec8469ae79d955, type: 3}
+  - {fileID: -522677451624444550, guid: f99d24dc88bfbd546bc76b13be76ce42, type: 3}
+  - {fileID: 6397345791715875864, guid: dde9e25e849a33d47a911f1a28de845a, type: 3}
+  - {fileID: -1105785971888565104, guid: e85bbbea7f0503141b9c1afc3c2de4c9, type: 3}
+  - {fileID: 6053996055447165531, guid: 7af6c136fefd210468c8450802c6dd75, type: 3}
+  - {fileID: -3674699645859906929, guid: a43f521a9baa3d04983b73638811a1bd, type: 3}
+  - {fileID: -7970927055869732393, guid: be1169cb907f71444a75674b61684bbd, type: 3}
+  playerSkillImage: {fileID: -2833775182555582667, guid: 51e79bdb9a4940240aeab5d12fb4fa62, type: 3}
+  enemySkillImage: {fileID: -5708941596360452247, guid: 51e79bdb9a4940240aeab5d12fb4fa62, type: 3}
+  endTurnImage: {fileID: 6205698181614936460, guid: 20689b9858594fe4a94753a798dc10ae, type: 3}
+  cdImage: {fileID: 4595359845773140606, guid: 4def2d55b7f9a854eb260b9aa041a61f, type: 3}
+  hoverTile: {fileID: 1639214462598301798, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  tile: {fileID: 1807125615787039003, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  stageEffectInfoIcon: {fileID: 392097720186651936, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+  infoIcon: {fileID: -4097042886051959093, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+  avatar: {fileID: 0}
+  avatarBackground: {fileID: 3028295558620724323, guid: 919ae275686f5f9449142058c99d9a77, type: 3}
+  infoBackground: {fileID: -7877689742819290246, guid: 919ae275686f5f9449142058c99d9a77, type: 3}
+  barBackground: {fileID: 6973280408294809845, guid: 2d6147d1675670246a90bd321eae57cd, type: 3}
+  barFill: {fileID: -2228575465514830839, guid: 223dfd1e8eecc3546b8dc9dcbfd87640, type: 3}

@@ -5,12 +5,13 @@ namespace VocaloidTCG.BoardUI
     public sealed class BasicEnemyAITest : MonoBehaviour
     {
         public GameplayBoardBridge game;
+        public System.Collections.Generic.List<CharacterClassData> classes = new System.Collections.Generic.List<CharacterClassData>();
         [Min(0.1f)] public float actionDelay = 0.75f;
         private int observedTurn = -1;
         private float wait;
 
         private void Update(){
-            if(!game || !game.isActiveAndEnabled || game.IsPaused) return;
+            if(!game || game.IsPuzzle || !game.isActiveAndEnabled || game.IsPaused || game.DrawAnimationPlaying) return;
             var state = game.Snapshot;
             if(state == null || state.multiplayer || !state.inputAllowed ||
                 state.activePlayerId == state.localPlayerId ||
@@ -37,8 +38,8 @@ namespace VocaloidTCG.BoardUI
                     var action = new BoardAction(BoardActionKind.PlayCard, card.instanceId, -1, -1, x, y);
                     string reason;
                     if(!game.CanSubmitFor(actor, action, out reason)) continue;
-                    int value = (y == 2 ? 100 : 0) + card.currentInfluence;
-                    if(card.data.flags != null && card.data.flags.Contains("center") && y == 2) value += 10;
+                    int value = (x == 2 ? 100 : 0) + card.currentInfluence;
+                    if(card.data.flags != null && card.data.flags.Contains("center") && x == 2) value += 10;
                     if(!found || value > bestValue){ best = action; bestValue = value; found = true; }
                 }
             }

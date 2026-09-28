@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: snow white princess
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Snow White Princess
+  id: c2d359daf5d832149bf76863e64cb26d
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 0
+  info: Target an ally to get +1 inf
+  performer: 1
+  stageEffect: 0
+  cost: 2
+  influence: 2
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: -6680316786894631701, guid: 8a2735c89711194468183e1bc7118a25, type: 3}
+  characterImage: {fileID: 907863873407092834, guid: 441cf2881fbd27e49b0531102f1d6b58, type: 3}
+  iconImage: {fileID: -4939752768659673990, guid: cf156d5bcc0f9414cb68cf5470d88ccc, type: 3}
+  popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 8300000, guid: 70ab43f9effdcce468dc80d943e7f3eb, type: 3}

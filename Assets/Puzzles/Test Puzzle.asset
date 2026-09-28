@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d75c0d85338724ca61f930e6603d18, type: 3}
+  m_Name: Test Puzzle
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
+  id: bb1ef1898fff0084083d3dff8ee6f2ad
+  number: 1
+  puzzleName: Test Puzzle
+  shortDescription: puzzle test
+  longDescription: temp puzzle test
+  puzzleClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  againstClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
+  rewardCard: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  boardSetup: {fileID: 11400000, guid: 083aeda2e3b583146866fa867183e3ab, type: 2}
+  player:
+    energy: 3
+    score: 0
+    startingHand:
+    - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
+    cardsOnTurns: []
+  enemy:
+    energy: 3
+    score: 0
+    startingHand: []
+    cardsOnTurns: []
+  placements: []
+  enemyTurns: []
+  enemyStarts: 0
+  turnSeconds: 0
+  startingPhase: 1
+  startingRound: 1
+  objective: 1
+  targetScore: 2
+  roundLimit: 1
+  playerTurnLimit: 0

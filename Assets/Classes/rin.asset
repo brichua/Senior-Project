@@ -1,0 +1,62 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c322361276e04446a5fb5dbbd4a7afc4, type: 3}
+  m_Name: rin
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CharacterClassData
+  identity: 2
+  displayName: Kagamine Rin
+  color: {r: 1, g: 0.89019614, b: 0.77647066, a: 1}
+  classIcon: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+  puzzleArt: {fileID: 0}
+  playerDeckIcon: {fileID: 1363283377247377253, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
+  enemyDeckIcon: {fileID: -4285498806430741326, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
+  popupImage: {fileID: -8004225029083858605, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  costImage: {fileID: 5500945549185880875, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+  performerBorder: {fileID: 3800131462966958116, guid: e514e7a1c6c8d4a479a3a22d0f03f823, type: 3}
+  stageEffectBorder: {fileID: -2320362861567082247, guid: e514e7a1c6c8d4a479a3a22d0f03f823, type: 3}
+  vipImage: {fileID: -1182226319691094553, guid: 2550388b7ac4e5642a754b82c3438f60, type: 3}
+  buttonImage: {fileID: -7527750230799149382, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+  selectedButtonImage: {fileID: -7734485123957443193, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+  specialCardBack: {fileID: 11400000, guid: d9ba12aad6731974ea5d731c7d0afc97, type: 2}
+  playerEnergyIcons:
+  - {fileID: 1904957743826459537, guid: d04a98cf94983ab479073947426db3da, type: 3}
+  - {fileID: 4571064794213586288, guid: b7afbcd0352e9de409cd90690c2e088d, type: 3}
+  - {fileID: -4759135552830867543, guid: f17e3b6ff7c310d498ec8469ae79d955, type: 3}
+  - {fileID: 6415626766191088429, guid: f99d24dc88bfbd546bc76b13be76ce42, type: 3}
+  - {fileID: 2661132093681602268, guid: dde9e25e849a33d47a911f1a28de845a, type: 3}
+  - {fileID: -3438739831487205524, guid: e85bbbea7f0503141b9c1afc3c2de4c9, type: 3}
+  - {fileID: -1252617175740827545, guid: 7af6c136fefd210468c8450802c6dd75, type: 3}
+  - {fileID: -1120869885246633654, guid: a43f521a9baa3d04983b73638811a1bd, type: 3}
+  - {fileID: -4619427959108224357, guid: be1169cb907f71444a75674b61684bbd, type: 3}
+  enemyEnergyIcons:
+  - {fileID: 1904957743826459537, guid: d04a98cf94983ab479073947426db3da, type: 3}
+  - {fileID: -237301068720689995, guid: b7afbcd0352e9de409cd90690c2e088d, type: 3}
+  - {fileID: 8656611603189353325, guid: f17e3b6ff7c310d498ec8469ae79d955, type: 3}
+  - {fileID: -310003572601377176, guid: f99d24dc88bfbd546bc76b13be76ce42, type: 3}
+  - {fileID: -3258936024279694053, guid: dde9e25e849a33d47a911f1a28de845a, type: 3}
+  - {fileID: -6241781935160952069, guid: e85bbbea7f0503141b9c1afc3c2de4c9, type: 3}
+  - {fileID: 4927205688951918789, guid: 7af6c136fefd210468c8450802c6dd75, type: 3}
+  - {fileID: -9207464421751566775, guid: a43f521a9baa3d04983b73638811a1bd, type: 3}
+  - {fileID: -4644704167641475349, guid: be1169cb907f71444a75674b61684bbd, type: 3}
+  playerSkillImage: {fileID: 3644853782810630361, guid: 68db88a487b1c60479084b42e59a48f1, type: 3}
+  enemySkillImage: {fileID: -7781370358509433554, guid: 68db88a487b1c60479084b42e59a48f1, type: 3}
+  endTurnImage: {fileID: -592661308802885862, guid: 20689b9858594fe4a94753a798dc10ae, type: 3}
+  cdImage: {fileID: 3506287711250879809, guid: e00c5bff82bac704eb9d89936bc33983, type: 3}
+  hoverTile: {fileID: -8305803365058092108, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  tile: {fileID: -1530080802165054831, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
+  stageEffectInfoIcon: {fileID: -994693644016785934, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+  infoIcon: {fileID: 3564376639946065616, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+  avatar: {fileID: 0}
+  avatarBackground: {fileID: 6308847496899898642, guid: 7324c21ff860e6849b4462f8fc6c5fb0, type: 3}
+  infoBackground: {fileID: -1365507705589576809, guid: 7324c21ff860e6849b4462f8fc6c5fb0, type: 3}
+  barBackground: {fileID: 8946162703707547869, guid: 2d6147d1675670246a90bd321eae57cd, type: 3}
+  barFill: {fileID: -32143523594085893, guid: 223dfd1e8eecc3546b8dc9dcbfd87640, type: 3}

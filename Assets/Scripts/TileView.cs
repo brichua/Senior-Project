@@ -69,6 +69,9 @@ namespace VocaloidTCG.BoardUI
             CardInfoView.Put(soloInfluence, normalSoloInfluence);
             int localTotal, enemyTotal;
 
+            if(legalHover)
+                if (board.sfx) board.sfx.PlayTileHoverSound();
+
             if(enemyOnly && legalHover && board.TryGetContestPreview(column, row, out localTotal, out enemyTotal))
             {
                 BoardUIController.SetImage(soloPopup, localTotal > enemyTotal ? theme.player.performerPopup : enemyTotal > localTotal ? theme.enemy.performerPopup : theme.tiedPopup);
@@ -85,7 +88,10 @@ namespace VocaloidTCG.BoardUI
         }
         
         public void OnDrop(PointerEventData e){
-            if(e.button == PointerEventData.InputButton.Left) board.Drop(column, row);
+            if (e.button == PointerEventData.InputButton.Left)
+            {
+                board.Drop(column, row);
+            }
         }
     }
 }
