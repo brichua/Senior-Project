@@ -80,7 +80,8 @@ namespace VocaloidTCG.BoardUI
                         : card.currentInfluence;
                     var evaluation = EnemyActionScorer.Evaluate(
                         x, x, resultingInfluence, opponent == null ? 0 : tile.total1,
-                        card.currentCost, false);
+                        card.currentCost, false, card.data.stageEffect && friendly != null
+                            ? Mathf.Max(0, resultingInfluence - friendly.currentInfluence) : resultingInfluence);
 
                     if (!found || evaluation.score > bestEvaluation.score)
                     {

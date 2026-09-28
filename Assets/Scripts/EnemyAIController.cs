@@ -8,9 +8,10 @@ namespace VocaloidTCG.BoardUI
     /// The first official enemy AI. It examines legal actions, scores them with
     /// EnemyActionScorer, performs the best positive action, or passes.
     /// </summary>
-    public sealed class EnemyAIController : MonoBehaviour
+    public class EnemyAIController : MonoBehaviour
     {
         public GameplayBoardBridge game;
+        public System.Collections.Generic.List<CharacterClassData> classes = new System.Collections.Generic.List<CharacterClassData>();
         [Min(0.1f)] public float actionDelay = 0.75f;
         [Tooltip("Use the same axis that GameplayBoardBridge uses for end-of-round scoring.")]
         public EnemyAIScoringAxis scoringAxis = EnemyAIScoringAxis.Column;
@@ -19,9 +20,9 @@ namespace VocaloidTCG.BoardUI
         private int observedTurn = -1;
         private float wait;
 
-        private void Update()
+        protected virtual void Update()
         {
-            if (!game || !game.isActiveAndEnabled || game.IsPaused) return;
+            if (!game || game.IsPuzzle || !game.isActiveAndEnabled || game.IsPaused || game.DrawAnimationPlaying) return;
             var state = game.Snapshot;
             if (state == null || state.multiplayer || !state.inputAllowed ||
                 state.activePlayerId == state.localPlayerId ||
@@ -56,6 +57,7 @@ namespace VocaloidTCG.BoardUI
             best = default(BoardAction);
             bestEvaluation = new EnemyActionEvaluation(int.MinValue, "no legal action");
             var state = game.Snapshot;
+            var placementBoard = PlacementBoard(state, actor);
             bool found = false;
 
             foreach (var card in state.Side(actor).hand)
@@ -73,8 +75,13 @@ namespace VocaloidTCG.BoardUI
                         ? Mathf.Max(0, friendly.currentInfluence + card.data.stageInfluenceChange)
                         : card.currentInfluence;
                     int opponentInfluence = opponent == null ? 0 : (actor == 0 ? tile.total1 : tile.total0);
+                    int influenceGain = card.data.stageEffect && friendly != null
+                        ? resultingInfluence - friendly.currentInfluence : resultingInfluence;
                     var evaluation = EnemyActionScorer.Evaluate(
-                        Lane(x, y), -1, resultingInfluence, opponentInfluence, card.currentCost, false);
+                        Lane(x, y), -1, resultingInfluence, opponentInfluence, card.currentCost, false, Mathf.Max(0, influenceGain));
+                    if (card.data.performer)
+                        evaluation = EnemyPlacementScorer.Evaluate(evaluation, card.data.flags, placementBoard,
+                            x, y, -1, -1, false, resultingInfluence < opponentInfluence);
                     Consider(candidate, evaluation, ref found, ref best, ref bestEvaluation);
                 }
             }
@@ -85,8 +92,8 @@ namespace VocaloidTCG.BoardUI
                 var card = actor == 0 ? source.side0 : source.side1;
                 if (card == null) continue;
 
-                ConsiderMove(actor, card, x, y, x - 1, state, ref found, ref best, ref bestEvaluation);
-                ConsiderMove(actor, card, x, y, x + 1, state, ref found, ref best, ref bestEvaluation);
+                ConsiderMove(actor, card, x, y, x - 1, state, placementBoard, ref found, ref best, ref bestEvaluation);
+                ConsiderMove(actor, card, x, y, x + 1, state, placementBoard, ref found, ref best, ref bestEvaluation);
             }
 
             // A deterministic tie-breaker comes from the candidate generation order.
@@ -94,7 +101,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void ConsiderMove(int actor, CardState card, int fromX, int fromY, int toX,
-            BoardSnapshot state, ref bool found, ref BoardAction best, ref EnemyActionEvaluation bestEvaluation)
+            BoardSnapshot state, EnemyPlacementBoard placementBoard, ref bool found, ref BoardAction best, ref EnemyActionEvaluation bestEvaluation)
         {
             var candidate = new BoardAction(BoardActionKind.MovePerformer, card.instanceId, fromX, fromY, toX, fromY);
             string rejectedReason;
@@ -105,7 +112,22 @@ namespace VocaloidTCG.BoardUI
             int opponentInfluence = opponent == null ? 0 : (actor == 0 ? target.total1 : target.total0);
             var evaluation = EnemyActionScorer.Evaluate(
                 Lane(toX, fromY), Lane(fromX, fromY), card.currentInfluence, opponentInfluence, 0, true);
+            evaluation = EnemyPlacementScorer.Evaluate(evaluation, card.data.flags, placementBoard,
+                toX, fromY, fromX, fromY, true, card.currentInfluence < opponentInfluence);
             Consider(candidate, evaluation, ref found, ref best, ref bestEvaluation);
+        }
+
+        private static EnemyPlacementBoard PlacementBoard(BoardSnapshot state, int actor)
+        {
+            var board = new EnemyPlacementBoard();
+            board.forwardDirection = actor == 0 ? 1 : -1;
+            for (int y = 0; y < 5; y++) for (int x = 0; x < 5; x++)
+            {
+                var tile = state.tiles[y * 5 + x];
+                board.allies[x, y] = (actor == 0 ? tile.side0 : tile.side1) != null;
+                board.enemies[x, y] = (actor == 0 ? tile.side1 : tile.side0) != null;
+            }
+            return board;
         }
 
         private static void Consider(BoardAction candidate, EnemyActionEvaluation evaluation,

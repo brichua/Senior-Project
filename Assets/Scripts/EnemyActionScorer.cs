@@ -45,7 +45,8 @@ namespace VocaloidTCG.BoardUI
             int influence,
             int opponentInfluence,
             int energyCost,
-            bool isMove)
+            bool isMove,
+            int unopposedInfluenceGain = -1)
         {
             int score = 0;
             string reason = "";
@@ -96,6 +97,14 @@ namespace VocaloidTCG.BoardUI
             }
             else
             {
+                // Compare the strength of plays on empty opposing slots as well
+                // as their cost. Stage effects supply only their actual added INF.
+                if (opponentInfluence == 0)
+                {
+                    int strength = Math.Max(0, unopposedInfluenceGain < 0 ? influence : unopposedInfluenceGain);
+                    score += strength;
+                    AddReason(ref reason, "unopposed influence +" + strength);
+                }
                 // A lower-cost performer is slightly preferred when two plays
                 // offer the same board value. This bonus is deliberately small.
                 int efficiencyBonus = Math.Max(0, 8 - energyCost);

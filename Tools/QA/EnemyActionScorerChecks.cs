@@ -36,6 +36,15 @@ internal static class EnemyActionScorerChecks
             var expensivePlay = EnemyActionScorer.Evaluate(1, -1, 2, 0, 7, false);
             Check(cheapPlay.score > expensivePlay.score, "Lower-cost equal play is preferred");
 
+            var weakCheap = EnemyActionScorer.Evaluate(2, -1, 1, 0, 1, false);
+            var strongExpensive = EnemyActionScorer.Evaluate(2, -1, 9, 0, 7, false);
+            Check(strongExpensive.score > weakCheap.score, "A substantial influence gain can outweigh the cost bonus");
+            var highInfluenceBuff = EnemyActionScorer.Evaluate(2, -1, 10, 0, 2, false, 1);
+            var lowInfluenceBuff = EnemyActionScorer.Evaluate(2, -1, 2, 0, 2, false, 1);
+            Check(highInfluenceBuff.score == lowInfluenceBuff.score, "Stage effects count added influence, not existing friendly influence");
+            var strongLosingContest = EnemyActionScorer.Evaluate(2, -1, 9, 10, 1, false);
+            Check(strongLosingContest.score <= 0, "Unopposed strength bonus cannot make a losing contest attractive");
+
             Check(centerPlay.reason.Contains("center position"), "Evaluation includes a debug reason");
             Console.WriteLine("PASS: " + checks + " EnemyActionScorer checks.");
             return 0;

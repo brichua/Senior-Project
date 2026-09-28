@@ -21,7 +21,8 @@ MonoBehaviour:
   stageEffect: 0
   cost: 1
   influence: 0
-  flags: []
+  flags:
+  - ally_cluster
   stageInfluenceChange: 1
   cardImage: {fileID: 6134400434847133543, guid: e395b4b17043c4045b6f59433786f0fe, type: 3}
   characterImage: {fileID: 7572011137138834060, guid: 144a2263b77f72843bb09fefece27b97, type: 3}

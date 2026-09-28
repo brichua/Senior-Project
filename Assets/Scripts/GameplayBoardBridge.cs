@@ -11,7 +11,7 @@ namespace VocaloidTCG.BoardUI
         public bool useSelectedDeck = true;
         public DeckCatalog deckCatalog;
         public DeckData enemyDeck;
-        public BasicEnemyAITest enemyAI;
+        public EnemyAIController enemyAI;
         public List<CharacterClassData> playerClasses = new List<CharacterClassData>();
         public List<CharacterClassData> enemyClasses = new List<CharacterClassData>();
         public List<BoardSetup> boardSetups = new List<BoardSetup>();
