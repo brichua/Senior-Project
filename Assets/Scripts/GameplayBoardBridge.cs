@@ -30,7 +30,7 @@ namespace VocaloidTCG.BoardUI
                 if(catalog) {
                     try {
                         var library = DeckLibrary.Get(catalog); catalog = library.Catalog;
-                        var selected = library.Selected;
+                        var selected = IsStory ? storyPlayerDeck : library.Selected;
                         string error;
                         if(!DeckRules.Validate(selected, catalog, library.Owned, out error)) {
                             MatchSetupError = "Select a valid deck: " + error; return false;
@@ -119,6 +119,7 @@ namespace VocaloidTCG.BoardUI
             if(!clock) clock = gameObject.AddComponent<LocalTurnClock>();
             clock.Expired += OnTurnExpired;
             if(PuzzleLaunch.Pending) { puzzle = PuzzleLaunch.Pending; deckCatalog = PuzzleLaunch.Catalog; PuzzleLaunch.Clear(); }
+            ConsumeStoryLaunch();
             if(startAutomatically) StartMatch();
         }
 
@@ -135,9 +136,12 @@ namespace VocaloidTCG.BoardUI
         }
 
         public void StartMatch(int firstPlayerId = -1){
+            if(!string.IsNullOrEmpty(storyLaunchError)) { MatchSetupError = storyLaunchError; Publish(); return; }
+            if(IsStory && !string.IsNullOrEmpty(StorySaveError)) return;
+            StorySaveError = "";
             if(puzzle) { StartPuzzle(); return; }
             if(firstPlayerId < -1 || firstPlayerId > 1){ Log("Match start rejected: invalid starting player."); return; }
-            if(!ConfigureDecks()) { Debug.LogError(MatchSetupError, this); return; }
+            if(!ConfigureDecks()) { Debug.LogError(MatchSetupError, this); Publish(); return; }
             if(clock){ clock.Stop(); clock.Paused = false; }
             drawPresentations.Clear();
             SetDrawAnimationPlaying(false);
@@ -455,6 +459,7 @@ namespace VocaloidTCG.BoardUI
                 state.phase = RoundPhase.Finished;
                 state.winnerId = state.side0.score == state.side1.score ? -1 : state.side0.score > state.side1.score ? 0 : 1;
                 state.roundSummary += state.winnerId < 0 ? " Draw!" : state.winnerId == state.localPlayerId ? " Player wins!" : " Opponent wins!";
+                SaveStoryReward();
                 Log("Match finished (" + (deckExhausted ? "empty deck" : "winning score reached") + "). " +
                     (state.winnerId < 0 ? "Draw." : "Player " + state.winnerId + " wins.") + " Scores: " + state.side0.score + " / " + state.side1.score + ".");
             }else{

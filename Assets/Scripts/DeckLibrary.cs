@@ -15,6 +15,7 @@ namespace VocaloidTCG
             public List<string> owned = new List<string>();
             public string selectedId;
             public List<string> completedPuzzles = new List<string>();
+            public List<StoryClearRecord> storyClears = new List<StoryClearRecord>();
         }
         private static DeckLibrary instance;
         private SaveData data;
@@ -58,6 +59,17 @@ namespace VocaloidTCG
                     owned = catalog.startingCollection.Where(c => c).Select(c => c.id).Distinct().ToList()
                 };
             }
+
+            var startingCardIds = catalog.startingCollection
+                .Where(card => card && !string.IsNullOrWhiteSpace(card.id))
+                .Select(card => card.id)
+                .Distinct()
+                .ToList();
+            bool saveNeedsUpdate = startingCardIds.Any(id => !data.owned.Contains(id));
+            if(saveNeedsUpdate){
+                data.owned = data.owned.Concat(startingCardIds).Distinct().ToList();
+            }
+
             if(data.decks.Count == 0) {
                 var starter = catalog.starterDeck.CreateRecord();
                 if(string.IsNullOrEmpty(starter.cardBackId)) starter.cardBackId = catalog.defaultCardBacks.First(b => b).id;
@@ -68,8 +80,9 @@ namespace VocaloidTCG
                     throw new InvalidOperationException("Invalid starter deck: " + error);
                 
                 data.decks.Add(starter); data.selectedId = starter.id;
-                Write(data);
+                saveNeedsUpdate = true;
             }
+            if(saveNeedsUpdate) Write(data);
         }
 
         private static SaveData Read(string file){
@@ -82,6 +95,7 @@ namespace VocaloidTCG
             
             if(!loaded.decks.Any(d => d.id == loaded.selectedId)) loaded.selectedId = loaded.decks.FirstOrDefault()?.id;
             if(loaded.completedPuzzles == null) loaded.completedPuzzles = new List<string>();
+            if(loaded.storyClears == null) loaded.storyClears = new List<StoryClearRecord>();
             return loaded;
         }
 
@@ -147,6 +161,40 @@ namespace VocaloidTCG
         }
 
         public bool IsPuzzleCompleted(PuzzleData puzzle) => puzzle && data.completedPuzzles.Contains(puzzle.id);
+
+        [Serializable]
+        public sealed class StoryClearRecord
+        {
+            public string storyId;
+            public CharacterClass opponent;
+            public string firstClearUtc;
+        }
+
+        public string StoryFirstClear(StoryData story, CharacterClass opponent) => !story ? null :
+            data.storyClears.Find(c => c != null && c.storyId == story.id && c.opponent == opponent)?.firstClearUtc;
+
+        public bool IsAuditionCompleted(StoryData story, CharacterClass opponent) => StoryFirstClear(story, opponent) != null;
+        public int StoryClearCount(StoryData story) => !story || story.auditions == null ? 0 : story.auditions
+            .Where(a => a != null).Select(a => a.opponent).Distinct().Count(c => IsAuditionCompleted(story, c));
+        public bool IsStoryCompleted(StoryData story) => story && story.Validate(out _) && StoryClearCount(story) == 5;
+
+        public bool CompleteAudition(StoryData story, CharacterClass opponent, out string error)
+        {
+            error = "Story or audition is not configured.";
+            if(!story || !story.Validate(out error)) return false;
+            var audition = story.Audition(opponent);
+            if(audition == null) return false;
+            if(IsAuditionCompleted(story, opponent)) { error = ""; return true; }
+            error = "Register the audition's first clear reward in the deck catalog.";
+            if(!audition.firstClearReward || Catalog.Card(audition.firstClearReward.id) != audition.firstClearReward) return false;
+            bool saved = Commit(next => {
+                next.storyClears.Add(new StoryClearRecord { storyId = story.id, opponent = opponent,
+                    firstClearUtc = DateTime.UtcNow.ToString("O", System.Globalization.CultureInfo.InvariantCulture) });
+                if(!next.owned.Contains(audition.firstClearReward.id)) next.owned.Add(audition.firstClearReward.id);
+            }, out error);
+            if(saved && story.tutorial && IsStoryCompleted(story)) TutorialProgress.SetCompleted();
+            return saved;
+        }
 
         public bool CompletePuzzle(PuzzleData puzzle, out string error){
             error = "Puzzle needs a stable ID and a reward registered in the deck catalog.";

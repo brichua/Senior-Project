@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: teo
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Teo
+  id: 5a4ca13c112bad64190b371a46fc13d9
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 0
+  info: Play a 2 cost or lower minion from hand (ignoring cost), then add a 3 cost
+    or higher minion to your hand
+  performer: 0
+  stageEffect: 1
+  cost: 4
+  influence: 0
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: -1613103173096073737, guid: 8b3deb4ecfd6337459ca6ba69e6d9f01, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: 5944057338082246566, guid: 128b32b23c2df104dbb4e14be87e40c3, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

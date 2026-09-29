@@ -14,6 +14,7 @@ namespace VocaloidTCG
         [Header("Deck and card artwork")]
         public Sprite classIcon;
         public Sprite puzzleArt;
+        public Sprite storyArt;
         [FormerlySerializedAs("deckIcon")] public Sprite playerDeckIcon;
         public Sprite enemyDeckIcon;
         public Sprite popupImage, costImage, performerBorder, stageEffectBorder, vipImage;

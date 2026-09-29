@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: reincarnation apple
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Reincarnation Apple
+  id: b16c8463a9efe6c41b9672374436e37f
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 0
+  info: Return a minion to hand, then apply its inf to any tile this round (quick)
+  performer: 0
+  stageEffect: 1
+  cost: 3
+  influence: 0
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: -2482228239522228181, guid: ed462ae9664d0484789a710582140d3b, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: 1479289002742990156, guid: 67e576e75c05a3c44965149a47522215, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}
