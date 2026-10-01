@@ -116,6 +116,7 @@ namespace VocaloidTCG
         }
         
         public void Back(){
+            if(StorySession.ReturnFromEditor()) return;
             draft = null;
             if(selectRoot) selectRoot.SetActive(true);
             if(deckSelect) deckSelect.Refresh();

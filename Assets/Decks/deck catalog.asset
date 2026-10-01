@@ -39,6 +39,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6be636323e8b2fe4b9d07bf7d000bdde, type: 2}
   - {fileID: 11400000, guid: a14f576bedc8115418e22b378f480190, type: 2}
   - {fileID: 11400000, guid: edb40c36ed214e84bb6cfa3922067025, type: 2}
+  - {fileID: 11400000, guid: 0b21359d7409b094d8933b5b4d6bd0da, type: 2}
+  - {fileID: 11400000, guid: 2a55cd481cf55c344bbc28b64e00e025, type: 2}
+  - {fileID: 11400000, guid: 0b21cc092eb618240ab6629d284db2da, type: 2}
+  - {fileID: 11400000, guid: e6588ac7bdd72e743b794f6a720ed2e0, type: 2}
+  - {fileID: 11400000, guid: d0ccc814f2d9cde44a7ddfe1facf531a, type: 2}
+  - {fileID: 11400000, guid: b29b801172e82654f843958ca3e3c387, type: 2}
+  - {fileID: 11400000, guid: b16c8463a9efe6c41b9672374436e37f, type: 2}
+  - {fileID: 11400000, guid: 005a073a5c1c2aa438f70c21cfb96e6a, type: 2}
+  - {fileID: 11400000, guid: 5a4ca13c112bad64190b371a46fc13d9, type: 2}
   classes:
   - {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   - {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
@@ -76,4 +85,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6be636323e8b2fe4b9d07bf7d000bdde, type: 2}
   - {fileID: 11400000, guid: a14f576bedc8115418e22b378f480190, type: 2}
   - {fileID: 11400000, guid: edb40c36ed214e84bb6cfa3922067025, type: 2}
+  - {fileID: 11400000, guid: 0b21359d7409b094d8933b5b4d6bd0da, type: 2}
+  - {fileID: 11400000, guid: 2a55cd481cf55c344bbc28b64e00e025, type: 2}
+  - {fileID: 11400000, guid: 0b21cc092eb618240ab6629d284db2da, type: 2}
+  - {fileID: 11400000, guid: e6588ac7bdd72e743b794f6a720ed2e0, type: 2}
+  - {fileID: 11400000, guid: d0ccc814f2d9cde44a7ddfe1facf531a, type: 2}
+  - {fileID: 11400000, guid: b16c8463a9efe6c41b9672374436e37f, type: 2}
+  - {fileID: 11400000, guid: 005a073a5c1c2aa438f70c21cfb96e6a, type: 2}
+  - {fileID: 11400000, guid: 5a4ca13c112bad64190b371a46fc13d9, type: 2}
+  - {fileID: 11400000, guid: b29b801172e82654f843958ca3e3c387, type: 2}
   starterDeck: {fileID: 11400000, guid: 1fb6640ce062beb46bf698583498f40d, type: 2}
