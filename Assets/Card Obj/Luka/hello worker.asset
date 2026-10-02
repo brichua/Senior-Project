@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: hello worker
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: 
+  id: 34de31542b30f76479e98467831850cf
+  cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  vip: 0
+  info: ' All allies on contested tiles get +1'
+  performer: 1
+  stageEffect: 0
+  cost: 3
+  influence: 3
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: -7269242790079337175, guid: fcf3d65873a1f564685843569e5a1d4f, type: 3}
+  characterImage: {fileID: 5390562831427903309, guid: 6e9f6abdfd5e7034c970d6435bcd3360, type: 3}
+  iconImage: {fileID: 2854625686471350372, guid: dd3f4bbfea33c6d49affd52e302dbed7, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

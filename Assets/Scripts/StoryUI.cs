@@ -27,11 +27,15 @@ namespace VocaloidTCG
             location, auditionText, rewardName, selectedDeckName, deckCount, firstClear, status;
         public Slider storySlider, overallSlider, mapSlider;
         public StoryDialogueUI dialogue;
+        [Range(0f, 1f)] public float lockedClassOpacity = 0.4f;
+        [Tooltip("Bypass the tutorial requirement for story selection without changing saved tutorial progress.")]
+        public bool debugTutorialCompleted;
         private DeckLibrary library;
         private StoryData selected;
         private StoryAudition audition;
         private string selectedDeckId;
         private StoryDifficulty? chosenDifficulty;
+        private bool lastDebugTutorialCompleted;
 
         private readonly List<StoryChoiceView> classViews = new List<StoryChoiceView>();
         private readonly List<StoryChoiceView> rivalViews = new List<StoryChoiceView>();
@@ -104,7 +108,16 @@ namespace VocaloidTCG
             if(!string.IsNullOrEmpty(message)) Debug.LogWarning(message, this);
         }
 
-        private bool CanPlay(StoryData story) => story && (story.tutorial || TutorialProgress.Completed || library.IsStoryCompleted(catalog.Tutorial));
+        private bool CanPlay(StoryData story) => story && (story.tutorial || debugTutorialCompleted || TutorialProgress.Completed || library.IsStoryCompleted(catalog.Tutorial));
+
+        private void Update(){
+            if(library == null || !catalog || lastDebugTutorialCompleted == debugTutorialCompleted) return;
+            BuildClasses();
+            if(selected && !CanPlay(selected)){
+                selected = null; audition = null;
+                ShowClasses();
+            }
+        }
 
         private static void Clear(List<StoryChoiceView> views){
             foreach(var view in views) if(view){
@@ -121,12 +134,17 @@ namespace VocaloidTCG
         }
 
         private void BuildClasses(){
+            lastDebugTutorialCompleted = debugTutorialCompleted;
             Clear(classViews);
 
             foreach(var story in catalog.stories.OrderByDescending(s => s.tutorial)){
                 var view = Spawn(story.tutorial && tutorialPrefab ? tutorialPrefab : classPrefab, classRoot, classViews);
                 if(!view) continue;
-                view.Bind(() => SelectStory(story), CanPlay(story));
+                bool unlocked = CanPlay(story);
+                view.Bind(() => SelectStory(story), unlocked);
+                var group = view.GetComponent<CanvasGroup>();
+                if(!group) group = view.gameObject.AddComponent<CanvasGroup>();
+                group.alpha = unlocked ? 1f : lockedClassOpacity;
                 if(!story.tutorial) view.SetClass(library.Catalog.Class(story.Class));
                 view.SetProgress(library.StoryClearCount(story));
             }

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: queen of hearts
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Queen of Hearts
+  id: 92247ec2d6d602e45b2fb4ad0491dbab
+  cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  vip: 0
+  info: Encore, harmonize 1
+  performer: 1
+  stageEffect: 0
+  cost: 1
+  influence: 2
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: -4413037252481611134, guid: 5712f21bf6895d44a994d1b09352794d, type: 3}
+  characterImage: {fileID: 7171651607054373481, guid: fa488b6c532ab654283feede471c436e, type: 3}
+  iconImage: {fileID: -1613532758727149675, guid: 0e53ef3ce812cbc40abe80ca19edff74, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

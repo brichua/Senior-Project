@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: lady bug
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Lady Bug
+  id: 046f178192c48654b921248b4e257dcb
+  cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  vip: 0
+  info: If you have 3 or more minions in the middle zone draw 1
+  performer: 1
+  stageEffect: 0
+  cost: 4
+  influence: 4
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: -875298624287937212, guid: 7fc73f0ad9bb52b419146f27fe262673, type: 3}
+  characterImage: {fileID: -118816054172994528, guid: 476f52ec2d6d74e4a8ad6a77eaccfd56, type: 3}
+  iconImage: {fileID: 7908820760310793228, guid: 2d6ca914a5632824eb1c0c3e5be53c7d, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

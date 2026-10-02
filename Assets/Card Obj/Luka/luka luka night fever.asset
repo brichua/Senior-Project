@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: luka luka night fever
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: "Luka Luka \u2605 Night Fever"
+  id: e1c3ea33750b1ad4ab5759bb2a999649
+  cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  vip: 0
+  info: When played, all minions get +1 inf and encore. All minions in contested
+    tiles get an additional +1 inf
+  performer: 1
+  stageEffect: 0
+  cost: 6
+  influence: 5
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: -8846709549525473289, guid: f0ac79cba2784644b8b87121331a79e8, type: 3}
+  characterImage: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+  iconImage: {fileID: 2241086661626358962, guid: cf2226bb0a63db343a530d527b21227b, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: just be friends
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Just Be Friends
+  id: 87d2026cf21132d47ae26b0afacc5fab
+  cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  vip: 0
+  info: If this tile becomes contested gets -1 inf
+  performer: 1
+  stageEffect: 0
+  cost: 1
+  influence: 3
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: 1570348686737819508, guid: 7f4423e9cfa6d3a438af7ab8e52763d7, type: 3}
+  characterImage: {fileID: 1482504767357339586, guid: e05fdce06c7d0ea41aefa101d84b2aff, type: 3}
+  iconImage: {fileID: 8194920755609518513, guid: cc540089033b0584ea12590304954bd9, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

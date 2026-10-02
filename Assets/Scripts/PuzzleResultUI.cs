@@ -36,12 +36,15 @@ namespace VocaloidTCG
         }
         
         private void Back(){
-            if(!Application.CanStreamedLevelBeLoaded(puzzleScene)) { DeckUI.Text(result, "Add the puzzle scene to the build's scene list."); return; }
-            SceneManager.LoadScene(puzzleScene);
+            string destination = bridge && !string.IsNullOrEmpty(bridge.PuzzleReturnScene) ? bridge.PuzzleReturnScene : puzzleScene;
+            if(!Application.CanStreamedLevelBeLoaded(destination)) { DeckUI.Text(result, "Add the puzzle scene to the build's scene list."); return; }
+            SceneManager.LoadScene(destination);
         }
         
         private void Refresh(){
             bool visible = bridge && bridge.IsPuzzle && (bridge.Snapshot != null && bridge.Snapshot.phase == RoundPhase.Finished || !string.IsNullOrEmpty(bridge.MatchSetupError));
+            if(bridge && bridge.Snapshot != null && bridge.Snapshot.phase == RoundPhase.Finished &&
+                bridge.resultPresenter && bridge.resultPresenter.IsAvailable) visible = false;
             if(panel) panel.SetActive(visible);
             if(!visible) return;
             

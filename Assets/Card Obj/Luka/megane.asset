@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: megane
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: MEGANE
+  id: 3f3f4bdb23f460a4786b7bf98ae09cd9
+  cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  vip: 0
+  info: Harmonize, the next spell played by your opponent costs 1 more
+  performer: 1
+  stageEffect: 0
+  cost: 2
+  influence: 2
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: 3386457547556907450, guid: 1dcdc6b7c6158c2409a5d67c3b11c7d8, type: 3}
+  characterImage: {fileID: -5660181260468230333, guid: d0abb48400575a9459d1888b58ce34e2, type: 3}
+  iconImage: {fileID: 4326800360373132340, guid: 2c032e1799381c846a6374493eee0888, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

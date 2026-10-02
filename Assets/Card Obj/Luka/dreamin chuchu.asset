@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: dreamin chuchu
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Dreamin ChuChu
+  id: 16e13ed84fa284f40933ec46c8c08b1f
+  cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  vip: 0
+  info: If this is in the middle zone, restore 1 inf after performance phase
+  performer: 1
+  stageEffect: 0
+  cost: 4
+  influence: 3
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: 848607554796465451, guid: b886ae9395e75b84e9d2c9e42f60bec8, type: 3}
+  characterImage: {fileID: -7507373443239499118, guid: 880a2fc18b538a04c988b9e18a5d8ac3, type: 3}
+  iconImage: {fileID: 8132635324721384545, guid: 177264ebd4716464a820101c61003a8e, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

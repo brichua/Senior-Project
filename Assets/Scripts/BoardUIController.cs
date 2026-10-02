@@ -27,6 +27,46 @@ namespace VocaloidTCG.BoardUI
         public Vector2 ghostSize = new Vector2(120, 160);
         public SFXManager sfx;
         public CardDrawAnimator drawAnimator;
+        public PhaseAnnouncementAnimator phaseAnimator;
+        [Tooltip("Particle and accent color for the End of Round announcement. Preparation and Performance use the round starter's board class color.")]
+        public Color endRoundAnnouncementColor = new Color(207f / 255f, 211f / 255f, 1f);
+        [Header("Round scoring animation")]
+        [Tooltip("Scene positions for the floating score awards. Defaults to the HUD score labels if unassigned.")]
+        public RectTransform playerScorePopupAnchor, enemyScorePopupAnchor;
+        public EndRoundScoringAnimator scoringAnimator;
+        public MatchOpeningAnimator openingAnimator;
+        public MatchResultAnimator resultAnimator;
+
+        [ContextMenu("Set Up Animation Components")]
+        public void SetUpAnimationComponents(){
+#if UNITY_EDITOR
+            if(!Application.isPlaying) UnityEditor.Undo.RecordObject(this, "Set up board animations");
+#endif
+            if(!drawAnimator) drawAnimator = FindOrAddAnimation<CardDrawAnimator>();
+            if(!phaseAnimator) phaseAnimator = FindOrAddAnimation<PhaseAnnouncementAnimator>();
+            if(!openingAnimator) openingAnimator = FindOrAddAnimation<MatchOpeningAnimator>();
+            if(!resultAnimator) resultAnimator = FindOrAddAnimation<MatchResultAnimator>();
+            if(!scoringAnimator) scoringAnimator = FindOrAddAnimation<EndRoundScoringAnimator>();
+#if UNITY_EDITOR
+            if(!Application.isPlaying){
+                UnityEditor.EditorUtility.SetDirty(this);
+                UnityEditor.PrefabUtility.RecordPrefabInstancePropertyModifications(this);
+            }
+#endif
+        }
+
+        private T FindOrAddAnimation<T>() where T : Component {
+            var existing = GetComponentInChildren<T>(true);
+            if(existing) return existing;
+#if UNITY_EDITOR
+            if(!Application.isPlaying) return UnityEditor.Undo.AddComponent<T>(gameObject);
+#endif
+            return gameObject.AddComponent<T>();
+        }
+
+        public TileView GetMiddleTileView(int row){
+            return row >= 0 && row < 5 && tiles.Count >= 25 ? tiles[row * 5 + 2] : null;
+        }
 
         public BoardSnapshot State { get { return game ? game.Snapshot : null; } }
         private readonly List<TileView> tiles = new List<TileView>();
@@ -63,6 +103,7 @@ namespace VocaloidTCG.BoardUI
             if(enemyHUD) { enemyHUD.Apply(setup.enemy); if(gameplay) enemyHUD.ApplyClasses(gameplay.enemyClasses, true); }
         }
         public bool CanHoverHand => isActiveAndEnabled && dragged == null &&
+            (!phaseAnimator || !phaseAnimator.IsPlaying) &&
             (!drawAnimator || !drawAnimator.IsPlaying) &&
             (!pausePanel || !pausePanel.IsOpen);
 
@@ -112,6 +153,21 @@ namespace VocaloidTCG.BoardUI
             if(!drawAnimator) drawAnimator = GetComponent<CardDrawAnimator>();
             if(!drawAnimator) drawAnimator = gameObject.AddComponent<CardDrawAnimator>();
             drawAnimator.Initialize(this);
+            if(!phaseAnimator) phaseAnimator = GetComponentInChildren<PhaseAnnouncementAnimator>(true);
+            if(!phaseAnimator){
+                var prefab = Resources.Load<PhaseAnnouncementAnimator>("PhaseAnnouncement");
+                phaseAnimator = prefab ? Instantiate(prefab, transform) : gameObject.AddComponent<PhaseAnnouncementAnimator>();
+            }
+            phaseAnimator.Initialize(this);
+            if(!scoringAnimator) scoringAnimator = GetComponent<EndRoundScoringAnimator>();
+            if(!scoringAnimator) scoringAnimator = gameObject.AddComponent<EndRoundScoringAnimator>();
+            scoringAnimator.Initialize(this);
+            if(!openingAnimator) openingAnimator = GetComponent<MatchOpeningAnimator>();
+            if(!openingAnimator) openingAnimator = gameObject.AddComponent<MatchOpeningAnimator>();
+            openingAnimator.Initialize(this);
+            if(!resultAnimator) resultAnimator = GetComponent<MatchResultAnimator>();
+            if(!resultAnimator) resultAnimator = gameObject.AddComponent<MatchResultAnimator>();
+            resultAnimator.Initialize(this);
             ready = true;
             game.Changed += Refresh;
             Refresh();
@@ -126,6 +182,10 @@ namespace VocaloidTCG.BoardUI
             }
         }
         private void OnDisable(){
+            if(resultAnimator) resultAnimator.Cancel();
+            if(openingAnimator) openingAnimator.Cancel();
+            if(scoringAnimator) scoringAnimator.Cancel();
+            if(phaseAnimator) phaseAnimator.Cancel();
             if(drawAnimator) drawAnimator.Cancel();
             ClearHandHover();
             if(game) game.Changed -= Refresh;
@@ -150,6 +210,7 @@ namespace VocaloidTCG.BoardUI
         {
             var s = State;
             return isActiveAndEnabled && s != null && s.inputAllowed && s.activePlayerId == s.localPlayerId &&
+                (!phaseAnimator || !phaseAnimator.IsPlaying) &&
                 (!drawAnimator || !drawAnimator.IsPlaying) &&
                 (s.phase == RoundPhase.Preparation || s.phase == RoundPhase.Performance) &&
                 (!pausePanel || !pausePanel.IsOpen);
@@ -158,6 +219,9 @@ namespace VocaloidTCG.BoardUI
         public void Refresh(){
             if(!ready || State == null) return;
             ApplyMatchSetup();
+            if(openingAnimator) openingAnimator.Observe(State);
+            if(phaseAnimator) phaseAnimator.Observe(State);
+            if(resultAnimator) resultAnimator.Observe(State);
             if(drawAnimator) drawAnimator.CollectDraws();
             ClearHandHover();
             CancelDrag();

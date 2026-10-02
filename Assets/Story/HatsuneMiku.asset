@@ -17,7 +17,13 @@ MonoBehaviour:
   storyClass: 0
   header: HatsuneMiku
   prologue:
-    lines: []
+    lines:
+    - speaker: 
+      portrait: {fileID: 0}
+      text: 
+      avatars:
+      - slot: 0
+        sprite: {fileID: 0}
   epilogue:
     lines: []
   auditions:

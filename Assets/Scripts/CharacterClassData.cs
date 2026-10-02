@@ -11,6 +11,12 @@ namespace VocaloidTCG
         public CharacterClass identity;
         public string displayName;
         public Color color = Color.white;
+        [Tooltip("Character portrait shown in the concert-style match introduction for this class, on either side.")]
+        public Sprite playerArt;
+        [Tooltip("Transparent full character artwork for the centered match result screen.")]
+        public Sprite fullPlayerImage;
+        [Tooltip("Optional class icon for match introductions. Falls back to Class Icon.")]
+        public Sprite gameIcon;
         [Header("Deck and card artwork")]
         public Sprite classIcon;
         public Sprite puzzleArt;
