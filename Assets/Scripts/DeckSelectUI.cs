@@ -28,6 +28,7 @@ namespace VocaloidTCG
         public GameObject information;
         public TMP_Text deckName, count, vipName, vipText, stats;
         public Image cover, firstClass, secondClass, vipArt, vipBorder, vipIcon;
+        public SFXManager sfx;
         [SerializeField, HideInInspector, FormerlySerializedAs("vipClass")]
         private TMP_Text legacyVIPClassText;
         [SerializeField, HideInInspector, FormerlySerializedAs("deckClasses")]
@@ -80,14 +81,25 @@ namespace VocaloidTCG
 
         private void Choose(string id){
             string error; library.Select(id, out error); StatusTextFade.Show(status, error);
+            if (sfx) sfx.PlayButtonClick1();
         }
         
         private void Favorite(string id){
             string error; library.Favorite(id, out error); StatusTextFade.Show(status, error);
+            var deck = library.Decks.FirstOrDefault(d => d.id == id);
+
+            if (sfx) { 
+                if (deck.favorite)
+                    sfx.PlayFavDeckSound();
+                else
+                    sfx.PlayUnfavDeckSound();
+            }
+            
         }
         
         private void Delete(){
-            if(library.Selected == null) return; string error; library.Delete(library.Selected.id, out error); StatusTextFade.Show(status, error);
+            if(library.Selected == null) return; string error; library.Delete(library.Selected.id, out error); StatusTextFade.Show(status, error); 
+            if (sfx) sfx.PlayButtonClick2();
         }
        
        private void SetDeckActionsVisible(bool selected){
@@ -152,7 +164,8 @@ namespace VocaloidTCG
                 RenderVIPBorder(null); return;
             }
             
-            DeckUI.Text(deckName, selected.deckName); DeckUI.Count(count, selected.Count);
+            DeckUI.Text(deckName, selected.deckName); 
+            DeckUI.Count(count, selected.Count);
             DeckUI.Classes(firstClass, secondClass, selected, catalog); DeckUI.Image(cover, catalog.Cover(selected)?.cardImage);
             var vip = catalog.Card(selected.vipCardId);
             DeckUI.Image(vipArt, vip ? (vip.iconImage ? vip.iconImage : vip.cardImage) : null);
