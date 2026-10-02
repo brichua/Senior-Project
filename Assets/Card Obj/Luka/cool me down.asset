@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: cool me down
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Cool Me Down
+  id: 9c4fbec4ad49cd849a5ee0274d91d301
+  cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  vip: 0
+  info: if you have x or more score this costs 0
+  performer: 1
+  stageEffect: 0
+  cost: 2
+  influence: 3
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: 6025122263036835777, guid: ab1629a51492c6c46878139d08dcf200, type: 3}
+  characterImage: {fileID: 4215792470811505543, guid: 8fe782fd5a653624696b560f4cc89939, type: 3}
+  iconImage: {fileID: -1938906339396790950, guid: 2408ca25019c5bf4cb04540d11c2aa6c, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

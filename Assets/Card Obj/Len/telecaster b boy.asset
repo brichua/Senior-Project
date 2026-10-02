@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: telecaster b boy
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Telecaster b boy
+  id: 06bc7ba20a5852e449a82d1d2a84e414
+  cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
+  vip: 0
+  info: "Remove a minion\u2019s effects and keywords. It cannot score this round"
+  performer: 0
+  stageEffect: 1
+  cost: 3
+  influence: 0
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: 7217063342039617359, guid: 692bc620b20407e46ab01327d346e1ce, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: -1817339574392787471, guid: 62c3b2fdc128a404c82cdee484874a9b, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

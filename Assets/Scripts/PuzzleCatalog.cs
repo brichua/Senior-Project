@@ -53,8 +53,12 @@ namespace VocaloidTCG
     {
         public static PuzzleData Pending { get; private set; }
         public static DeckCatalog Catalog { get; private set; }
-        public static void Prepare(PuzzleData puzzle, DeckCatalog catalog) { Pending = puzzle; Catalog = catalog; }
-        public static void Clear() { Pending = null; Catalog = null; }
+        public static string ReturnScene { get; private set; }
+        public static void Prepare(PuzzleData puzzle, DeckCatalog catalog, string returnScene = null) {
+            Pending = puzzle; Catalog = catalog; ReturnScene = returnScene;
+            StorySession.PendingBattle = false;
+        }
+        public static void Clear() { Pending = null; Catalog = null; ReturnScene = null; }
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         private static void Reset() { Clear(); }
     }

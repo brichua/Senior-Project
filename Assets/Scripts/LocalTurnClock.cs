@@ -9,6 +9,7 @@ namespace VocaloidTCG.BoardUI
         public float RemainingSeconds { get; private set; }
         public bool Paused { get; set; }
         public bool DrawAnimationPlaying { get; set; }
+        public bool PhaseAnimationPlaying { get; set; }
         private bool running;
 
         public void BeginTurn(float seconds = 60){
@@ -20,7 +21,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void Update(){
-            if(!running || Paused || DrawAnimationPlaying) return;
+            if(!running || Paused || DrawAnimationPlaying || PhaseAnimationPlaying) return;
             RemainingSeconds = Mathf.Max(0, RemainingSeconds - Time.unscaledDeltaTime);
             if(RemainingSeconds > 0) return;
             running = false;

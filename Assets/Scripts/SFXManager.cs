@@ -27,6 +27,12 @@ public class SFXManager : MonoBehaviour
     private void Awake() {
 
         audioSource = GetComponent<AudioSource>();
+        if (audioSource)
+        {
+            var channel = GetComponent<VocaloidTCG.AudioCategorySource>();
+            if (!channel) channel = gameObject.AddComponent<VocaloidTCG.AudioCategorySource>();
+            channel.SetCategory(VocaloidTCG.AudioCategory.Effects);
+        }
     }
 
     public void PlayHoverSound() {

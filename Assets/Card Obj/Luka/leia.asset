@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: leia
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Leia
+  id: b8ffd2082dbffe34e8446ef50597ec7d
+  cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  vip: 0
+  info: Stage share. Discard 1 to play
+  performer: 1
+  stageEffect: 0
+  cost: 1
+  influence: 3
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: 1595316701722030894, guid: e36f6e9da165ed24cb98d3123e756d38, type: 3}
+  characterImage: {fileID: -2013489194625329698, guid: 3d6e36685e3a6484387157758ed0c161, type: 3}
+  iconImage: {fileID: -1610959686036378563, guid: 7b191f3c7c210444095a58e8fd76b9d5, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

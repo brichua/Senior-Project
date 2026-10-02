@@ -1534,6 +1534,8 @@ MonoBehaviour:
   startPuzzle: {fileID: 1504264817}
   backButton: {fileID: 1112801646}
   mainScene: Main
+  totalPuzzleCount: {fileID: 664450288}
+  totalPuzzleSlider: {fileID: 1513252612}
 --- !u!1 &856944436
 GameObject:
   m_ObjectHideFlags: 0
