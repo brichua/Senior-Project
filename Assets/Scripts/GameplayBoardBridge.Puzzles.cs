@@ -11,6 +11,7 @@ namespace VocaloidTCG.BoardUI
         public PuzzleData puzzle;
         [Min(0)] public float puzzleEnemyActionDelay = 0.5f;
         public bool IsPuzzle => puzzle;
+        public string PuzzleReturnScene { get; private set; }
         public bool PuzzleSucceeded { get; private set; }
         public string PuzzleSaveError { get; private set; }
         private int puzzlePlayerTurns, puzzleRounds, puzzleEnemyTurn, puzzleAction, puzzleObservedTurn;
@@ -146,7 +147,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void UpdatePuzzleEnemy(){
-            if(!IsPuzzle || !IsPlaying() || IsPaused || DrawAnimationPlaying || !state.inputAllowed || state.activePlayerId == localPlayerId) return;
+            if(!IsPuzzle || !IsPlaying() || IsPaused || DrawAnimationPlaying || PhaseAnimationPlaying || !state.inputAllowed || state.activePlayerId == localPlayerId) return;
             if(puzzleObservedTurn != turnNumber) {
                 puzzleObservedTurn = turnNumber; puzzleEnemyTurn++; puzzleAction = 0;
                 puzzleEnemyWait = puzzleEnemyActionDelay;

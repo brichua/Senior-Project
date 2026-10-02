@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: the wanderlast
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: The Wanderlast
+  id: 1e9e5147bdb3ab64da77dfb5946f0c4a
+  cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  vip: 0
+  info: Give all allies +1 inf. for each ally in the middle zone, gain 1 score.
+  performer: 0
+  stageEffect: 1
+  cost: 3
+  influence: 0
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: -2147299825508012314, guid: fa9cb4ed830e5eb409995ee6c076ef12, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: 6680848119693424910, guid: 0088a3d02a2f1b64aab6737d464d80a9, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

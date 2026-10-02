@@ -37,6 +37,18 @@ namespace VocaloidTCG.BoardUI
         public CharacterClassData EnemyClass => enemyClass ? enemyClass : FirstClass(legacyEnemyClasses);
         [Header("Shared board artwork")]
         public Sprite background, topBar, pause, tiedPopup;
+        [Header("Concert presentation artwork")]
+        public Sprite gameIcon;
+        [Tooltip("Shared opening/result background. Falls back to the board background.")]
+        public Sprite concertBackground;
+        [Tooltip("Optional ordered background frames. Null entries are ignored.")]
+        public Sprite[] concertBackgroundFrames;
+        [Min(0.1f)] public float backgroundFramesPerSecond = 2f;
+        [Min(1f)] public float selectedBackgroundSpeed = 3f;
+        public Sprite redrawBackground;
+        [Tooltip("Redraw box artwork, tinted with each side's class color.")]
+        public Sprite redrawBoxImage;
+        public Sprite concertButtonImage;
         public Sprite defaultTile, contestedTile, movingTile, hoverTile, playerTile, enemyTile;
         public Sprite endTurn;
         [Tooltip("Class and card-back artwork is supplied by the assets above. Keep animator and assistance artwork here.")]

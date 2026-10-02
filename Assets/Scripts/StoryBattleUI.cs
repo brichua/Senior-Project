@@ -11,8 +11,6 @@ namespace VocaloidTCG
         private GameObject panel;
         private TMP_Text message;
         private Button retry, back, save;
-        private PausePanel pause;
-        private GameObject pauseActions;
 
         private void Start(){
             if(!bridge || !bridge.IsStory) return;
@@ -26,14 +24,6 @@ namespace VocaloidTCG
             retry = StoryUIElements.Button(panel.transform, "Restart audition", new Vector2(-230, -105), () => { bridge.StartMatch(); });
             back = StoryUIElements.Button(panel.transform, "Back to audition", new Vector2(0, -105), () => bridge.ReturnToStory());
             save = StoryUIElements.Button(panel.transform, "Retry save", new Vector2(230, -105), bridge.RetryStorySave);
-            pause = FindAnyObjectByType<PausePanel>(FindObjectsInactive.Include);
-            pauseActions = new GameObject("Story pause actions", typeof(RectTransform));
-            pauseActions.transform.SetParent(canvas.transform, false);
-            StoryUIElements.Button(pauseActions.transform, "Restart audition", new Vector2(-130, -370), () => {
-                if(!string.IsNullOrEmpty(bridge.StorySaveError)) return;
-                if(pause) pause.Close(); bridge.StartMatch();
-            });
-            StoryUIElements.Button(pauseActions.transform, "Back to audition", new Vector2(130, -370), () => bridge.ReturnToStory());
             Refresh();
         }
 
@@ -44,8 +34,8 @@ namespace VocaloidTCG
         private void Refresh(){
             bool finished = bridge.Snapshot != null && bridge.Snapshot.phase == RoundPhase.Finished;
             bool visible = finished || !string.IsNullOrEmpty(bridge.MatchSetupError);
+            if(finished && bridge.resultPresenter && bridge.resultPresenter.IsAvailable) visible = false;
             panel.SetActive(visible);
-            pauseActions.SetActive(pause && pause.IsOpen && !visible);
             if(!visible) return;
             bool failedSave = !string.IsNullOrEmpty(bridge.StorySaveError);
             message.text = !string.IsNullOrEmpty(bridge.MatchSetupError) ? bridge.MatchSetupError :
