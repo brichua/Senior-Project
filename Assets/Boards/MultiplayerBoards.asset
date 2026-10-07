@@ -1,0 +1,123 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7fefec409ce8474fb9403106c8c02bd4, type: 3}
+  m_Name: MultiplayerBoards
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.BoardSetupCatalog
+  boards:
+  - player: 3
+    enemy: 3
+    setup: {fileID: 11400000, guid: e003bbb5232e8474b8d63e13281df0a7, type: 2}
+  - player: 3
+    enemy: 1
+    setup: {fileID: 11400000, guid: 699edfbba8150e944b7c8f85cc17e3ef, type: 2}
+  - player: 3
+    enemy: 5
+    setup: {fileID: 11400000, guid: 05fb0dc212222a8449f52dc0ad888262, type: 2}
+  - player: 3
+    enemy: 4
+    setup: {fileID: 11400000, guid: 28cb7fb70600be149b4e88497afb411a, type: 2}
+  - player: 3
+    enemy: 0
+    setup: {fileID: 11400000, guid: 1aae4a4aaed558d45acf72ff3b927fed, type: 2}
+  - player: 3
+    enemy: 2
+    setup: {fileID: 11400000, guid: 044d6b3c6a33b894090477d171220152, type: 2}
+  - player: 1
+    enemy: 3
+    setup: {fileID: 11400000, guid: 930665771d9bf97418e8a4ea3cc047ef, type: 2}
+  - player: 1
+    enemy: 1
+    setup: {fileID: 11400000, guid: ad810444ab095d74f8a41886fe3d7f23, type: 2}
+  - player: 1
+    enemy: 5
+    setup: {fileID: 11400000, guid: b2727e4012f1a5b46837327eaa6b7163, type: 2}
+  - player: 1
+    enemy: 4
+    setup: {fileID: 11400000, guid: 9d6e8013efd7ad5468384c794d854eb7, type: 2}
+  - player: 1
+    enemy: 0
+    setup: {fileID: 11400000, guid: 70cf9601d4c749e4093cb59421c8b690, type: 2}
+  - player: 1
+    enemy: 2
+    setup: {fileID: 11400000, guid: f6e9b9b5ffb65384c8a425ae937cd322, type: 2}
+  - player: 5
+    enemy: 3
+    setup: {fileID: 11400000, guid: a887c4a731f3ccf40bb17331ad1db4b1, type: 2}
+  - player: 5
+    enemy: 1
+    setup: {fileID: 11400000, guid: a4a2f3fbc3787fb48af0f5c0102d9d9f, type: 2}
+  - player: 5
+    enemy: 5
+    setup: {fileID: 11400000, guid: 94675cefee5472d40a662b5746a800ff, type: 2}
+  - player: 5
+    enemy: 4
+    setup: {fileID: 11400000, guid: 23b9f6b2c0d8f2240a138baefe6f6fe3, type: 2}
+  - player: 5
+    enemy: 0
+    setup: {fileID: 11400000, guid: 52c6d2d10e6de0e489e39f6affd24ee6, type: 2}
+  - player: 5
+    enemy: 2
+    setup: {fileID: 11400000, guid: 54546bfe06f79934497d606ae1aa92f9, type: 2}
+  - player: 4
+    enemy: 3
+    setup: {fileID: 11400000, guid: 27de6b3e99770c84ca2b383ab0ac9366, type: 2}
+  - player: 4
+    enemy: 1
+    setup: {fileID: 11400000, guid: 3a7b42427428937408c63c67956e3b98, type: 2}
+  - player: 4
+    enemy: 5
+    setup: {fileID: 11400000, guid: beb2331f7e1e4794689b1431a46d600c, type: 2}
+  - player: 4
+    enemy: 4
+    setup: {fileID: 11400000, guid: c6d5aaa0e836f0c4aacbe651127116eb, type: 2}
+  - player: 4
+    enemy: 0
+    setup: {fileID: 11400000, guid: 56aac7daa8cc95c4db62e8707d620450, type: 2}
+  - player: 4
+    enemy: 2
+    setup: {fileID: 11400000, guid: aeff11d034d51cd4d81f42b51cd07efb, type: 2}
+  - player: 0
+    enemy: 3
+    setup: {fileID: 11400000, guid: 28906a6a67c24f742afb1211e2420868, type: 2}
+  - player: 0
+    enemy: 1
+    setup: {fileID: 11400000, guid: 083aeda2e3b583146866fa867183e3ab, type: 2}
+  - player: 0
+    enemy: 5
+    setup: {fileID: 11400000, guid: cf420e2cd5019854f83a874feef6d995, type: 2}
+  - player: 0
+    enemy: 4
+    setup: {fileID: 11400000, guid: 1863d102f5aa22a4ba1a26d95c1f0a2c, type: 2}
+  - player: 0
+    enemy: 0
+    setup: {fileID: 11400000, guid: 069ba3d30fd48c04fa093a761150cb90, type: 2}
+  - player: 0
+    enemy: 2
+    setup: {fileID: 11400000, guid: 9efdd5cc0610b504d838fa5bbed220cd, type: 2}
+  - player: 2
+    enemy: 3
+    setup: {fileID: 11400000, guid: 3c129262362e4d44abcdad436a4a7b89, type: 2}
+  - player: 2
+    enemy: 1
+    setup: {fileID: 11400000, guid: 8da29261034ab9c459530fd10f4c4a6d, type: 2}
+  - player: 2
+    enemy: 5
+    setup: {fileID: 11400000, guid: 91a8fcfeb902452488fcad9ea1a15d35, type: 2}
+  - player: 2
+    enemy: 4
+    setup: {fileID: 11400000, guid: 034844330593bf140ac9ec0b39338284, type: 2}
+  - player: 2
+    enemy: 0
+    setup: {fileID: 11400000, guid: 1c35f10a45c12ce46b8983c0455704fd, type: 2}
+  - player: 2
+    enemy: 2
+    setup: {fileID: 11400000, guid: 65ada98a6f0ad0142bdc49a75785ebdb, type: 2}

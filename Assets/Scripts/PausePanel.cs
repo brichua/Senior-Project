@@ -15,6 +15,9 @@ namespace VocaloidTCG.BoardUI
         [Header("Puzzle pause buttons (scene objects)")]
         public GameObject puzzleButtons;
         public Button puzzleRestart, puzzleReturn;
+        [Header("Multiplayer pause (never pauses or restarts the match)")]
+        public GameObject multiplayerButtons;
+        public Button multiplayerReturn;
         [Header("Audio")]
         public Slider effects, voices, music;
         public AudioMixer mixer;
@@ -39,10 +42,12 @@ namespace VocaloidTCG.BoardUI
             var gameplay = game as GameplayBoardBridge;
             bool story = gameplay && gameplay.IsStory;
             bool puzzle = gameplay && !story && gameplay.IsPuzzle;
+            bool multiplayer = gameplay && gameplay.IsOnline;
+            if(multiplayerButtons) multiplayerButtons.SetActive(multiplayer);
             if(storyButtons) storyButtons.SetActive(story);
             if(puzzleButtons) puzzleButtons.SetActive(puzzle);
             restartMode = story ? storyRestart : puzzle ? puzzleRestart : null;
-            returnMode = story ? storyReturn : puzzle ? puzzleReturn : null;
+            returnMode = multiplayer ? multiplayerReturn : story ? storyReturn : puzzle ? puzzleReturn : null;
             if(restartMode) restartMode.onClick.AddListener(RestartMode);
             if(returnMode) returnMode.onClick.AddListener(ReturnMode);
             if(!gameplay) return;
@@ -62,6 +67,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void ReturnMode(){
+            if(game is GameplayBoardBridge online && online.IsOnline){ MultiplayerSession.Instance.ReturnToLobby(); return; }
             if(!CanLeaveMode()) return;
             var gameplay = (GameplayBoardBridge)game;
             if(gameplay.IsStory){ gameplay.ReturnToStory(); return; }

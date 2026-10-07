@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace VocaloidTCG.BoardUI
 {
-    public enum ConcertEffectStyle { Opening, Redraw, Victory, Finish, RedrawButton }
+    public enum ConcertEffectStyle { Opening, Redraw, Victory, Finish, RedrawButton, LobbyStar }
 
     [System.Serializable]
     public sealed class ConcertEffectSettings
@@ -22,8 +22,12 @@ namespace VocaloidTCG.BoardUI
         public bool confirm;
         private float clock;
         private GameplayBoardBridge bridge;
-        private ConcertEffectStyle style;
-        private ConcertEffectSettings settings = new ConcertEffectSettings();
+        [SerializeField] private ConcertEffectStyle style;
+        [SerializeField] private ConcertEffectSettings settings = new ConcertEffectSettings();
+        [Header("Lobby star")]
+        [SerializeField, Min(10)] private float lobbyStarRadius = 115;
+        [SerializeField, Min(20)] private float lobbyOrbitRadius = 220;
+        private float lobbyTransition = -1;
         private struct Burst { public Vector2 position; public Color tint; public float start; }
         private readonly System.Collections.Generic.List<Burst> bursts = new System.Collections.Generic.List<Burst>(8);
 
@@ -41,7 +45,7 @@ namespace VocaloidTCG.BoardUI
             effect.raycastTarget = false; effect.left = left; effect.right = right;
             effect.style = style; effect.settings = settings ?? new ConcertEffectSettings();
             effect.split = style == ConcertEffectStyle.Opening || style == ConcertEffectStyle.Redraw;
-            effect.bridge = board.game as GameplayBoardBridge;
+            effect.bridge = board ? board.game as GameplayBoardBridge : null;
             effect.color = Color.white;
             effect.canvasRenderer.SetColor(Color.white);
             effect.SetAllDirty();
@@ -51,6 +55,7 @@ namespace VocaloidTCG.BoardUI
         private void Update(){
             if(bridge && bridge.IsPaused) return;
             clock += Time.unscaledDeltaTime * Mathf.Clamp(settings.speed, 0.1f, 3);
+            if(lobbyTransition >= 0) lobbyTransition += Time.unscaledDeltaTime;
             bursts.RemoveAll(b => clock - b.start >= 1.5f);
             SetVerticesDirty();
         }
@@ -61,14 +66,86 @@ namespace VocaloidTCG.BoardUI
             SetVerticesDirty();
         }
 
+        public void BeginLobbyTransition(){ lobbyTransition = 0; SetVerticesDirty(); }
+        public void ResetLobbyTransition(){ lobbyTransition = -1; SetVerticesDirty(); }
+
         protected override void OnPopulateMesh(VertexHelper mesh){
             mesh.Clear();
             if(settings == null || !settings.enabled || settings.intensity <= 0) return;
             if(style == ConcertEffectStyle.Opening) Opening(mesh);
             else if(style == ConcertEffectStyle.Redraw) Redraw(mesh);
             else if(style == ConcertEffectStyle.RedrawButton) RedrawButton(mesh);
+            else if(style == ConcertEffectStyle.LobbyStar) LobbyStar(mesh);
             else Result(mesh);
             DrawBursts(mesh);
+        }
+
+        private void LobbyStar(VertexHelper mesh)
+        {
+            float charge = lobbyTransition < 0 ? 0 : Mathf.Clamp01(lobbyTransition / 0.85f);
+            float release = lobbyTransition < 0 ? 0 : Mathf.Clamp01((lobbyTransition - 0.85f) / 0.95f);
+            float pulse = 1 + 0.055f * Mathf.Sin(clock * 2);
+            float radius = lobbyStarRadius * pulse * (1 - charge * 0.22f + release * release * 3);
+            float rotation = Mathf.Sin(clock * 0.45f) * 0.13f + charge * charge * Mathf.PI * 2;
+            Color blend = Color.Lerp(left, right, 0.5f);
+            Glow(mesh, Vector2.zero, radius * 2.5f, Tint(blend, 0.26f + charge * 0.18f));
+
+            int start = mesh.currentVertCount;
+            mesh.AddVert(Vector2.zero, Tint(Color.Lerp(blend, Color.white, 0.65f), 0.8f), Vector2.zero);
+            for(int i = 0; i <= 10; i++){
+                float angle = Mathf.PI / 2 - i * Mathf.PI / 5 + rotation;
+                Vector2 point = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius * (i % 2 == 0 ? 1 : 0.45f);
+                Color tint = Color.Lerp(left, right, Mathf.InverseLerp(-radius, radius, point.x));
+                mesh.AddVert(point, Tint(tint, 0.4f + charge * 0.3f), Vector2.zero);
+                if(i > 0) mesh.AddTriangle(start, start + i, start + i + 1);
+            }
+            for(int i = 0; i < 10; i++){
+                float a = Mathf.PI / 2 - i * Mathf.PI / 5 + rotation;
+                float b = a - Mathf.PI / 5;
+                Vector2 from = new Vector2(Mathf.Cos(a), Mathf.Sin(a)) * radius * (i % 2 == 0 ? 1 : 0.45f);
+                Vector2 to = new Vector2(Mathf.Cos(b), Mathf.Sin(b)) * radius * (i % 2 == 0 ? 0.45f : 1);
+                Color tint = Color.Lerp(left, right, Mathf.InverseLerp(-radius, radius, (from.x + to.x) * 0.5f));
+                Line(mesh, from, to, 10, Tint(tint, 0.12f));
+                Line(mesh, from, to, 2, Tint(Color.Lerp(tint, Color.white, 0.45f), 0.9f));
+                if(i % 2 == 0) Flare(mesh, from, 5 + charge * 4, tint, i);
+            }
+
+            float orbit = lobbyOrbitRadius * (1 - charge * 0.82f) + release * release * 650;
+            for(int band = 0; band < 2; band++){
+                Color tint = band == 0 ? left : right;
+                float tilt = band == 0 ? 0.55f : -0.55f;
+                float head = clock * (band == 0 ? 0.7f : -0.6f) + charge * 5;
+                for(int i = 0; i < 90; i++){
+                    float angle = head - i * Mathf.PI * 2 / 90;
+                    Vector2 from = LobbyOrbit(angle, orbit, tilt);
+                    Vector2 to = LobbyOrbit(angle - Mathf.PI * 2 / 90, orbit, tilt);
+                    Line(mesh, from, to, 1.4f, Tint(tint, (1 - i / 90f) * 0.55f * (1 - release)));
+                }
+                Star(mesh, LobbyOrbit(head, orbit, tilt), 9, Tint(tint, 0.9f * (1 - release)));
+            }
+            for(int i = 0; i < Mathf.Clamp(settings.particleCount, 0, 120); i++){
+                float seed = i * 2.399963f;
+                float angle = seed + clock * (i % 2 == 0 ? 0.18f : -0.15f) + charge * charge * 4;
+                float distance = lobbyOrbitRadius * (0.6f + (i % 13) / 22f) * (1 - charge * 0.9f)
+                    + release * release * (300 + i % 7 * 65);
+                Vector2 direction = new Vector2(Mathf.Cos(angle), Mathf.Sin(angle));
+                Vector2 point = direction * distance;
+                float twinkle = 0.5f + 0.5f * Mathf.Sin(clock * (1.5f + i % 3 * 0.4f) + seed);
+                Color tint = Tint(i % 2 == 0 ? left : right, (0.15f + twinkle * 0.65f) * (1 - release));
+                if(i % 3 == 0) Star(mesh, point, 2 + twinkle * 5, tint);
+                else Glow(mesh, point, 2 + twinkle * 2, tint);
+                if(release > 0) Trail(mesh, point, direction, release * 55, tint);
+            }
+            if(release > 0){
+                Glow(mesh, Vector2.zero, 160 + release * 650, Tint(blend, Mathf.Sin(release * Mathf.PI) * 0.5f));
+                Flare(mesh, Vector2.zero, 15 + release * 65, blend, 0);
+            }
+        }
+
+        private static Vector2 LobbyOrbit(float angle, float radius, float tilt)
+        {
+            float x = Mathf.Cos(angle) * radius, y = Mathf.Sin(angle) * radius * 0.42f;
+            return new Vector2(x * Mathf.Cos(tilt) - y * Mathf.Sin(tilt), x * Mathf.Sin(tilt) + y * Mathf.Cos(tilt));
         }
 
         private void Rings(VertexHelper mesh){

@@ -58,7 +58,7 @@ namespace VocaloidTCG
             if(newDeck) newDeck.onClick.AddListener(() => { if(editor) editor.OpenNew(); });
             if(editDeck) editDeck.onClick.AddListener(() => { if(editor && library.Selected != null) editor.Open(library.Selected); });
             if(deleteDeck) deleteDeck.onClick.AddListener(Delete);
-            if(back) back.onClick.AddListener(() => { if(!StorySession.ReturnFromEditor()) SceneManager.LoadScene(mainMenuScene); });
+            if(back) back.onClick.AddListener(() => { if(!MultiplayerSession.ReturnFromDeckEditor() && !StorySession.ReturnFromEditor()) SceneManager.LoadScene(mainMenuScene); });
         }
 
         private void Start()
