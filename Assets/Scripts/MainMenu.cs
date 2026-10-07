@@ -12,13 +12,15 @@ namespace VocaloidTCG
         public DeckCatalog catalog;
         [FormerlySerializedAs("playButton")]
         public Button storyButton;
-        [Tooltip("Unlocked after the tutorial and opens the lobby.")]
+        [Tooltip("Unlocked after the tutorial or with Debug Unlock Buttons enabled; opens the lobby.")]
         public Button multiplayerButton;
         public Button decksButton, puzzlesButton;
         public Button settingsButton;
         [FormerlySerializedAs("gameScene")]
         public string storyScene = "Story";
-        public string lobbyScene = "Lobby";
+        public string lobbyScene = "Multiplayer";
+        [Tooltip("Gameplay scene used for online matches.")]
+        public string multiplayerGameScene = "Game";
         public string deckScene = "Edit Deck";
         public string puzzleScene = "Puzzles";
         public string settingsScene = "Settings";
@@ -84,7 +86,7 @@ namespace VocaloidTCG
         {
             bool unlocked = CanAccessModes;
             SetLocked(storyButton, false);
-            SetLocked(multiplayerButton, !HasCompletedTutorial);
+            SetLocked(multiplayerButton, !unlocked);
             SetLocked(decksButton, !unlocked);
             SetLocked(puzzlesButton, !unlocked);
             previousAccess = unlocked;
@@ -158,12 +160,13 @@ namespace VocaloidTCG
         
         public void OpenMultiplayer()
         {
-            if (!HasCompletedTutorial)
+            if (!CanAccessModes)
             {
                 DeckUI.Text(status, "Complete the tutorial to unlock multiplayer.");
                 return;
             }
-            OpenScene(lobbyScene);
+            try { MultiplayerSession.Open(catalog, SceneManager.GetActiveScene().name, deckScene, lobbyScene).GameScene = multiplayerGameScene; }
+            catch(Exception ex) { DeckUI.Text(status, ex.Message); }
         }
         
         public void OpenDeckEditor(){

@@ -98,10 +98,20 @@ namespace VocaloidTCG.BoardUI
             selecting = true; submit.gameObject.SetActive(true); RefreshSelection();
             while(!submitted) yield return null;
             selecting = false; submit.gameObject.SetActive(false);
+            var playerIds = cards[0].Where(c => c.selected).Select(c => bridge.OpeningCards(snapshot.localPlayerId)[c.index].instanceId).ToList();
+            if(bridge.IsOnline){
+                if(!bridge.SubmitOpeningRedraw(playerIds, Array.Empty<string>())){
+                    instruction.text = "Unable to confirm this hand."; yield break;
+                }
+                instruction.text = "Waiting for your opponent to confirm…";
+                while(bridge.OpeningPending && !bridge.OnlineRedrawReady) yield return null;
+                if(!bridge.OpeningPending) yield break;
+                instruction.text = "Both players confirmed!";
+            }
             var enemyIds = bridge.ChooseOpponentRedraw();
             foreach(var card in cards[1]){
                 var state = bridge.OpeningCards(1 - snapshot.localPlayerId)[card.index];
-                if(!enemyIds.Contains(state.instanceId)) continue;
+                if(bridge.IsOnline ? !bridge.OnlineOpponentRedrawSlots.Contains(card.index) : !enemyIds.Contains(state.instanceId)) continue;
                 card.selected = true;
                 redrawParticles.EmitBurst(HandPosition(1, card.index, true), colors[1]);
                 Vector2 from = card.Rect.anchoredPosition;
@@ -109,7 +119,6 @@ namespace VocaloidTCG.BoardUI
             }
             
             var selectedCards = cards.SelectMany(c => c).Where(c => c.selected).ToList();
-            var playerIds = cards[0].Where(c => c.selected).Select(c => bridge.OpeningCards(snapshot.localPlayerId)[c.index].instanceId).ToList();
             var positions = selectedCards.Select(c => c.Rect.anchoredPosition).ToArray();
             yield return Animate(cardTravelSeconds, t => {
                 for(int i = 0; i < selectedCards.Count; i++){
@@ -119,7 +128,7 @@ namespace VocaloidTCG.BoardUI
                 }
             });
             
-            if(!bridge.SubmitOpeningRedraw(playerIds, enemyIds)){
+            if(!bridge.IsOnline && !bridge.SubmitOpeningRedraw(playerIds, enemyIds)){
                 instruction.text = "Unable to redraw this hand. Restart the match to try again.";
                 yield break;
             }
@@ -147,6 +156,10 @@ namespace VocaloidTCG.BoardUI
             foreach(var card in allCards) card.gameObject.SetActive(false);
             yield return Animate(0.45f, t => group.alpha = 1 - Smooth(t));
             bridge.CompleteOpening();
+            if(bridge.IsOnline){
+                group.alpha = 1;
+                instruction.text = "Waiting for your opponent…";
+            }
         }
 
         public void SelectCard(OpeningHandCard card, bool selected){

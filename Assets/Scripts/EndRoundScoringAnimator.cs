@@ -67,7 +67,7 @@ namespace VocaloidTCG.BoardUI
                     sticks[i].localRotation = stickRotations[i] * Quaternion.Euler(0, 0,
                         (i % 2 == 0 ? -1 : 1) * Mathf.Sin(t * Mathf.PI * 3) * 22 * swell);
                 Burst(t);
-                if(t >= 1 && bridge.ResolveNextScoringTile()){
+                if(t >= 1 && (bridge.IsOnline && !bridge.OnlineAuthority ? bridge.ScoringRow > currentRow : bridge.ResolveNextScoringTile())){
                     stage = 1; elapsed = 0;
                     score.text = points > 0 ? "+" + points : contested ? "Tie" : "+0";
                     score.color = accent;

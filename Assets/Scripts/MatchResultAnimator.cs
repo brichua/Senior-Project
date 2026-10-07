@@ -63,18 +63,20 @@ namespace VocaloidTCG.BoardUI
         private void RefreshActions(){
             bool unsaved = !string.IsNullOrEmpty(SaveError);
             back.interactable = !unsaved; retry.interactable = !unsaved;
-            retry.gameObject.SetActive(lost && showRestartOnDefeat && !unsaved);
+            retry.gameObject.SetActive(!bridge.IsOnline && lost && showRestartOnDefeat && !unsaved);
             save.gameObject.SetActive(unsaved);
-            status.text = unsaved ? "Your reward could not be saved.\n" + SaveError : navigationError ?? "";
+            status.text = unsaved ? "Your reward could not be saved.\n" + SaveError : navigationError ?? (bridge.IsOnline ? bridge.Snapshot.roundSummary : "");
         }
 
         private void Restart(){
+            if(bridge.IsOnline) return;
             if(!lost || !string.IsNullOrEmpty(SaveError)) return;
             if(board.pausePanel) board.pausePanel.Close();
             bridge.StartMatch();
         }
 
         private void Return(){
+            if(bridge.IsOnline){ MultiplayerSession.Instance.ReturnToLobby(); return; }
             if(!string.IsNullOrEmpty(SaveError)) return;
             if(bridge.IsStory){
                 if(!bridge.ReturnToStory()) { navigationError = "Unable to return to the story scene. Check its build settings."; RefreshActions(); }

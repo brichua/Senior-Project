@@ -24,6 +24,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         public List<string> ChooseOpponentRedraw(){
+            if(IsOnline) return new List<string>();
             int enemy = 1 - state.localPlayerId;
             return openingCards[enemy].Where(c => c.currentCost > 3)
                 .OrderByDescending(c => c.currentCost).Take(Mathf.Min(2, decks[enemy].Count))
@@ -31,6 +32,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         public bool SubmitOpeningRedraw(IEnumerable<string> playerIds, IEnumerable<string> enemyIds){
+            if(IsOnline) return online.Command("redraw", default(BoardAction), (playerIds ?? Enumerable.Empty<string>()).ToArray());
             if(!OpeningPending || OpeningRedrawSubmitted || IsPaused) return false;
             var local = new HashSet<string>(playerIds ?? Enumerable.Empty<string>());
             var enemy = new HashSet<string>(enemyIds ?? Enumerable.Empty<string>());
@@ -73,6 +75,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         public bool CompleteOpening(){
+            if(IsOnline) return online.Command("openingDone", default(BoardAction));
             if(!OpeningPending || !OpeningRedrawSubmitted || IsPaused) return false;
             state.phase = RoundPhase.Preparation; state.inputAllowed = true;
             BeginTurn(state.roundStarterId);

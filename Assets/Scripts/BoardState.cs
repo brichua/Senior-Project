@@ -11,7 +11,8 @@ namespace VocaloidTCG.BoardUI
     public sealed class CardState{
         public string instanceId;
         public int ownerId;
-        public CardData data;
+        [NonSerialized] public CardData data;
+        public string definitionId;
         public int currentInfluence, currentCost;
         public bool hasInfluence = true;
         public bool isClassCard;
@@ -46,6 +47,7 @@ namespace VocaloidTCG.BoardUI
         public SideState Side(int id) { return id == 0 ? side0 : side1; }
     }
 
+    [Serializable]
     public struct BoardAction{
         public BoardActionKind kind;
         public string cardInstanceId;

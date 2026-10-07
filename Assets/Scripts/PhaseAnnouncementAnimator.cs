@@ -64,7 +64,7 @@ namespace VocaloidTCG.BoardUI
         private void Update(){
             if(!IsPlaying || !board) return;
             if((bridge && (bridge.IsPaused || bridge.DrawAnimationPlaying)) ||
-                (board.pausePanel && board.pausePanel.IsOpen)) { group.alpha = 0; return; }
+                (board.pausePanel && board.pausePanel.IsOpen && (!bridge || !bridge.IsOnline))) { group.alpha = 0; return; }
             
             elapsed += Time.unscaledDeltaTime;
             float enter = Mathf.Max(0.05f, enterSeconds), exit = Mathf.Max(0.05f, exitSeconds);
