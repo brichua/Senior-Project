@@ -16,6 +16,7 @@ namespace VocaloidTCG
             public string selectedId;
             public List<string> completedPuzzles = new List<string>();
             public List<StoryClearRecord> storyClears = new List<StoryClearRecord>();
+            public List<string> viewedStoryDialogues = new List<string>();
         }
         private static DeckLibrary instance;
         private SaveData data;
@@ -96,6 +97,7 @@ namespace VocaloidTCG
             if(!loaded.decks.Any(d => d.id == loaded.selectedId)) loaded.selectedId = loaded.decks.FirstOrDefault()?.id;
             if(loaded.completedPuzzles == null) loaded.completedPuzzles = new List<string>();
             if(loaded.storyClears == null) loaded.storyClears = new List<StoryClearRecord>();
+            if(loaded.viewedStoryDialogues == null) loaded.viewedStoryDialogues = new List<string>();
             return loaded;
         }
 
@@ -177,6 +179,16 @@ namespace VocaloidTCG
         public int StoryClearCount(StoryData story) => !story || story.auditions == null ? 0 : story.auditions
             .Where(a => a != null).Select(a => a.opponent).Distinct().Count(c => IsAuditionCompleted(story, c));
         public bool IsStoryCompleted(StoryData story) => story && story.Validate(out _) && StoryClearCount(story) == 5;
+
+        public bool HasViewedStoryDialogue(StoryData story, bool ending) => story &&
+            data.viewedStoryDialogues.Contains(story.id + (ending ? "/epilogue" : "/prologue"));
+
+        public bool MarkStoryDialogueViewed(StoryData story, bool ending, out string error){
+            error = "Story needs a permanent save key.";
+            if(!story || string.IsNullOrWhiteSpace(story.id)) return false;
+            if(HasViewedStoryDialogue(story, ending)) { error = ""; return true; }
+            return Commit(next => next.viewedStoryDialogues.Add(story.id + (ending ? "/epilogue" : "/prologue")), out error);
+        }
 
         public bool CompleteAudition(StoryData story, CharacterClass opponent, out string error)
         {

@@ -16,6 +16,7 @@ MonoBehaviour:
   displayName: Kagamine Rin
   color: {r: 1, g: 0.89019614, b: 0.77647066, a: 1}
   classIcon: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+  storyArt: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
   puzzleArt: {fileID: 0}
   playerDeckIcon: {fileID: 1363283377247377253, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   enemyDeckIcon: {fileID: -4285498806430741326, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}

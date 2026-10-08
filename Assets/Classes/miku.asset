@@ -16,6 +16,7 @@ MonoBehaviour:
   displayName: Hatsune Miku
   color: {r: 0.82745105, g: 1, b: 0.9568628, a: 1}
   classIcon: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+  storyArt: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
   puzzleArt: {fileID: 8376220829089352778, guid: ab5f8a4c24ab8174fa7d0423f85c1906, type: 3}
   playerDeckIcon: {fileID: -7774026537370076429, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   enemyDeckIcon: {fileID: 7160492205017776766, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}

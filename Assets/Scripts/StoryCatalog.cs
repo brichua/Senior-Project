@@ -43,6 +43,10 @@ namespace VocaloidTCG
 
         [ContextMenu("Validate Story Catalog")]
         public void ValidateSetup(){
+            ValidateSetup(true);
+        }
+
+        public void ValidateSetup(bool checkContent){
             if(!Validate(out var error)) StoryDiagnostics.Report(this, new[] { error });
             if(deckCatalog){
                 if(deckCatalog.cards == null || deckCatalog.classes == null)
@@ -63,8 +67,9 @@ namespace VocaloidTCG
                 }
             }
 
-            foreach(var story in (stories ?? new List<StoryData>()).Where(s => s).Distinct())
-                story.ValidateContent(deckCatalog && deckCatalog.cards != null ? deckCatalog : null);
+            if(checkContent)
+                foreach(var story in (stories ?? new List<StoryData>()).Where(s => s).Distinct())
+                    story.ValidateContent(deckCatalog && deckCatalog.cards != null ? deckCatalog : null);
         }
     }
 }

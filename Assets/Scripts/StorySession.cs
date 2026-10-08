@@ -12,6 +12,7 @@ namespace VocaloidTCG
         public static string ReturnScene;
         public static bool EditingDeck;
         public static bool PendingBattle;
+        public static bool PlayAfterBattle;
         public static DeckRecord PlayerDeck;
         public static DeckData EnemyDeck;
         public static DeckCatalog Catalog;
@@ -19,7 +20,7 @@ namespace VocaloidTCG
         [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
         public static void Clear(){
             Story = null; DeckId = null; Difficulty = null; ReturnScene = null;
-            EditingDeck = PendingBattle = false; PlayerDeck = null; EnemyDeck = null; Catalog = null;
+            EditingDeck = PendingBattle = PlayAfterBattle = false; PlayerDeck = null; EnemyDeck = null; Catalog = null;
         }
 
         public static bool ReturnFromEditor(){

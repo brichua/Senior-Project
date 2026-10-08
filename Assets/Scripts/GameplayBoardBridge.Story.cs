@@ -68,6 +68,8 @@ namespace VocaloidTCG.BoardUI
                 return false;
             }
 
+            StorySession.PlayAfterBattle = state != null && state.phase == RoundPhase.Finished &&
+                state.winnerId == state.localPlayerId && string.IsNullOrEmpty(MatchSetupError);
             SetLocalPause(false); SceneManager.LoadScene(storyReturnScene); return true;
         }
     }

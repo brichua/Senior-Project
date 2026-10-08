@@ -15,75 +15,601 @@ MonoBehaviour:
   id: story-hatsunemiku
   tutorial: 0
   storyClass: 0
-  header: HatsuneMiku
+  header: "World Tour Auditions — An Unfinished Song"
   prologue:
     lines:
-    - speaker: 
+    - speaker: "Narrator"
       portrait: {fileID: 0}
-      text: 
+      text: "The tour invitation lands on Miku's desk beside an unfinished song."
       avatars:
       - slot: 0
-        sprite: {fileID: 0}
+        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+    - speaker: "Narrator"
+      portrait: {fileID: 0}
+      text: "Its map is crowded with names of cities. Her score has room for more than one voice."
+      avatars:
+      - slot: 0
+        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+    - speaker: "Miku"
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "Five auditions. One headline spot."
+      avatars:
+      - slot: 0
+        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+    - speaker: "Miku"
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "I'll need a song worth taking all that way."
+      avatars:
+      - slot: 0
+        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+    - speaker: "Miku"
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "And people who'll argue with me until it's right."
+      avatars:
+      - slot: 0
+        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+    - speaker: "Narrator"
+      portrait: {fileID: 0}
+      text: "She packs the empty pages."
+      avatars:
+      - slot: 0
+        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
   epilogue:
-    lines: []
+    lines:
+    - speaker: "Narrator"
+      portrait: {fileID: 0}
+      text: "Under HEADLINER, the final screen shows Miku's name. Her notebook has five other signatures."
+      avatars:
+      - slot: 0
+        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - slot: 1
+        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - slot: 2
+        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 3
+        sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 4
+        sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 5
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Rin"
+      portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "They gave you the whole stage. Why are you marking out six places?"
+      avatars:
+      - slot: 0
+        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - slot: 1
+        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - slot: 2
+        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 3
+        sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 4
+        sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 5
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Miku"
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "Because this song needs all of us."
+      avatars:
+      - slot: 0
+        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - slot: 1
+        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - slot: 2
+        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 3
+        sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 4
+        sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 5
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Rin"
+      portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "You could have warned us."
+      avatars:
+      - slot: 0
+        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - slot: 1
+        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - slot: 2
+        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 3
+        sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 4
+        sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 5
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Miku"
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "Would you have said yes?"
+      avatars:
+      - slot: 0
+        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - slot: 1
+        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - slot: 2
+        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 3
+        sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 4
+        sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 5
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Narrator"
+      portrait: {fileID: 0}
+      text: "Rin takes the pencil and circles a place beside Miku's."
+      avatars:
+      - slot: 0
+        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - slot: 1
+        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - slot: 2
+        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 3
+        sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 4
+        sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 5
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
   auditions:
   - opponent: 1
-    deckDescription: 
-    location: 
-    auditionText: 
-    firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 0}
-    mediumDeck: {fileID: 0}
-    hardDeck: {fileID: 0}
+    deckDescription: "A melody with a name of its own."
+    location: "The Rooftop Theatre"
+    auditionText: "A rooftop performance against Len."
+    firstClearReward: {fileID: 11400000, guid: 2c9bee9d08e838f4b8bac5071656c12a, type: 2}
+    easyDeck: {fileID: 11400000, guid: d1c376575e622ba4ea509d93cd2ae101, type: 2}
+    mediumDeck: {fileID: 11400000, guid: d1c376575e622ba4ea509d93cd2ae101, type: 2}
+    hardDeck: {fileID: 11400000, guid: d1c376575e622ba4ea509d93cd2ae101, type: 2}
     before:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "The rooftop stage looks down on a thousand windows. Len keeps checking a folded KAITO concert ticket."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Len"
+        portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "One day, I want my name on a ticket beside his."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "What would your opening song sound like?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Len"
+        portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Let me show you."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
     after:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "Len turns the ticket over. On its blank back, he scribbles a stubborn little melody."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Len"
+        portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "I kept trying to sound like him."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "That last phrase sounded like you."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Len"
+        portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Use it. But leave my name on it."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Deal."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
   - opponent: 2
-    deckDescription: 
-    location: 
-    auditionText: 
-    firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 0}
-    mediumDeck: {fileID: 0}
-    hardDeck: {fileID: 0}
+    deckDescription: "Win over a crowd that already knows Rin."
+    location: "The Tram Depot"
+    auditionText: "A spirited challenge in an old tram depot."
+    firstClearReward: {fileID: 11400000, guid: 5a4ca13c112bad64190b371a46fc13d9, type: 2}
+    easyDeck: {fileID: 11400000, guid: 05c75a68ffcd49039f41d5c0a3b6d766, type: 2}
+    mediumDeck: {fileID: 11400000, guid: 05c75a68ffcd49039f41d5c0a3b6d766, type: 2}
+    hardDeck: {fileID: 11400000, guid: 05c75a68ffcd49039f41d5c0a3b6d766, type: 2}
     before:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "The old tram depot shakes with a bass test. Rin taps the railing until the sound crew taps back."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Rin"
+        portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "I've warmed up the crowd. Try to keep them."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "All of them?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Rin"
+        portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Especially the ones who came for me."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "I like a challenge."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
     after:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "A whistle from the back starts a ragged encore. Rin whistles the answer before she catches herself."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Rin"
+        portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Fine. That ending worked."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Was that you asking for an encore?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Rin"
+        portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "I was correcting their timing."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Then help me keep it."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "Rin steals Miku's pencil and writes four sharp beats."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
   - opponent: 3
-    deckDescription: 
-    location: 
-    auditionText: 
-    firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 0}
-    mediumDeck: {fileID: 0}
-    hardDeck: {fileID: 0}
+    deckDescription: "Make a chorus carry beyond the broadcast."
+    location: "The Harbor Stage"
+    auditionText: "A harbor performance for a small crowd and a large stream."
+    firstClearReward: {fileID: 11400000, guid: 6583a1897eee0d744add7bc99a893801, type: 2}
+    easyDeck: {fileID: 11400000, guid: 67abe06bb10144adb820be6c188de4b8, type: 2}
+    mediumDeck: {fileID: 11400000, guid: 67abe06bb10144adb820be6c188de4b8, type: 2}
+    hardDeck: {fileID: 11400000, guid: 67abe06bb10144adb820be6c188de4b8, type: 2}
     before:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "On a harbor stage, a red camera light blinks. KAITO checks it twice, then faces the few occupied seats."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "KAITO"
+        portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Small crowd. Big broadcast."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Which one are you singing to?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "KAITO"
+        portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Both. I'd like them to remember where to find me."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Then don't let that camera steal the show."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
     after:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "The camera goes dark. Beyond the fence, a dockworker is still singing KAITO's chorus."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "KAITO"
+        portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "The stream ended. I thought everyone had gone."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Someone kept your song."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "KAITO"
+        portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Ask him to join us for the next one."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "I'll save him a part."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
   - opponent: 4
-    deckDescription: 
-    location: 
-    auditionText: 
-    firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 0}
-    mediumDeck: {fileID: 0}
-    hardDeck: {fileID: 0}
+    deckDescription: "Give the quiet verse room to breathe."
+    location: "The Converted Cinema"
+    auditionText: "A full-song performance in a converted cinema."
+    firstClearReward: {fileID: 11400000, guid: 0b21cc092eb618240ab6629d284db2da, type: 2}
+    easyDeck: {fileID: 11400000, guid: 30f2d81003ba4753b31fc0ffff3d5e57, type: 2}
+    mediumDeck: {fileID: 11400000, guid: 30f2d81003ba4753b31fc0ffff3d5e57, type: 2}
+    hardDeck: {fileID: 11400000, guid: 30f2d81003ba4753b31fc0ffff3d5e57, type: 2}
     before:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "In a converted cinema, a poster promises 'FIFTEEN SECONDS TO FAME.' MEIKO pins tonight's full set list over it."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "MEIKO"
+        portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "They asked me to cut the quiet verse."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Does it need cutting?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "MEIKO"
+        portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "It needs someone willing to listen."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Then I'm keeping mine, too."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
     after:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "The final note fades. For a moment, nobody reaches for a phone. Then the applause comes."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "I thought I'd lost them."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "MEIKO"
+        portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "You gave them a second to breathe."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Will you listen when I've finished the whole song?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "MEIKO"
+        portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Start with that quiet verse."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
   - opponent: 5
-    deckDescription: 
-    location: 
-    auditionText: 
-    firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 0}
-    mediumDeck: {fileID: 0}
-    hardDeck: {fileID: 0}
+    deckDescription: "Answer a melody with an unknown writer."
+    location: "The Planetarium"
+    auditionText: "A shared musical mystery beneath the planetarium stars."
+    firstClearReward: {fileID: 11400000, guid: 2a55cd481cf55c344bbc28b64e00e025, type: 2}
+    easyDeck: {fileID: 11400000, guid: 672111fe4515472988b5c2aebc23cacc, type: 2}
+    mediumDeck: {fileID: 11400000, guid: 672111fe4515472988b5c2aebc23cacc, type: 2}
+    hardDeck: {fileID: 11400000, guid: 672111fe4515472988b5c2aebc23cacc, type: 2}
     before:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "Stars wheel across the planetarium dome. Luka holds a score with three sets of lyrics and no name."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Same melody. Three cities. Nobody claims it."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Maybe they're afraid it isn't finished."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Or somebody took their name off it."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Let's hear what they've left us."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
     after:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "A folded note waits at the stage door: 'For whoever sings it next.'"
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "An invitation? Or another clue?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Let's keep a place for its writer."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "On your set list?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "They started the song. They deserve to hear the answer."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}

@@ -50,6 +50,8 @@ namespace VocaloidTCG.BoardUI
                 if(localPlayerId == 0) { player1Cards = cards; player1OpeningCard = enemyDeck.vipCard; }
                 else { player0Cards = cards; player0OpeningCard = enemyDeck.vipCard; }
                 enemyClasses = enemyDeck.classes.Where(c => c).OrderByDescending(c => enemyDeck.cards.Count(card => card && card.cardClass == c) + (enemyDeck.vipCard && enemyDeck.vipCard.cardClass == c ? 1 : 0)).ToList();
+                // Keep the named rival on stage when a story deck includes a support class.
+                if(IsStory) enemyClasses = enemyClasses.OrderByDescending(c => c.identity == storyOpponent).ToList();
                 selectedEnemyBack = enemyDeck.cardBack;
                 enemyCardBack = selectedEnemyBack ? selectedEnemyBack.image : null;
             } else if(enemyAI) enemyClasses = new List<CharacterClassData>(enemyAI.classes);
