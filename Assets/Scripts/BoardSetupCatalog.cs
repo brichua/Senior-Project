@@ -14,10 +14,10 @@ namespace VocaloidTCG.BoardUI
         
         public List<Entry> boards = new List<Entry>();
 
-        public static BoardSetup Find(CharacterClassData player, CharacterClassData enemy){
+        public static BoardSetup Find(CharacterClassData player, CharacterClassData enemy, BoardSetupCatalog catalog = null){
             if(!player || !enemy) return null;
-            var catalog = Resources.Load<BoardSetupCatalog>("MultiplayerBoards");
-            return catalog ? catalog.boards.FirstOrDefault(entry => entry != null && entry.setup && entry.player == player.identity && entry.enemy == enemy.identity)?.setup : null;
+            if(!catalog) catalog = Resources.Load<BoardSetupCatalog>("MultiplayerBoards");
+            return catalog && catalog.boards != null ? catalog.boards.FirstOrDefault(entry => entry != null && entry.setup && entry.player == player.identity && entry.enemy == enemy.identity)?.setup : null;
         }
     }
 }

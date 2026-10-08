@@ -13,8 +13,14 @@ namespace VocaloidTCG.BoardUI
         public Image art, icon;
         public GameObject influenceRoot;
         private KeywordTooltip keywordTooltip;
+        private ScrollRect descriptionScroll;
+        private string shownCardId;
+        private bool resetDescriptionScroll;
+
+        private void OnEnable(){ resetDescriptionScroll = true; }
 
         public void Clear(){
+            shownCardId = null;
             gameObject.SetActive(false);
         }
 
@@ -39,13 +45,28 @@ namespace VocaloidTCG.BoardUI
                 foreach (var effect in card.activeEffects)
                     body.Append("\n• ").Append(Format(effect, setup));
             }
-            Put(description, body.ToString());
+            string bodyText = body.ToString();
+            bool descriptionChanged = description && description.text != bodyText;
+            resetDescriptionScroll |= shownCardId != card.instanceId || descriptionChanged;
+            shownCardId = card.instanceId;
+            Put(description, bodyText);
             if(description){
                 description.richText = true;
                 if(!keywordTooltip) keywordTooltip = description.GetComponent<KeywordTooltip>();
                 if(!keywordTooltip) keywordTooltip = description.gameObject.AddComponent<KeywordTooltip>();
                 keywordTooltip.Configure(description, setup);
             }
+        }
+
+        private void LateUpdate(){
+            if(!resetDescriptionScroll || !description) return;
+            if(!descriptionScroll) descriptionScroll = description.GetComponentInParent<ScrollRect>();
+            resetDescriptionScroll = false;
+            if(!descriptionScroll || !descriptionScroll.content) return;
+            Canvas.ForceUpdateCanvases();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(descriptionScroll.content);
+            descriptionScroll.StopMovement();
+            descriptionScroll.verticalNormalizedPosition = 1;
         }
 
         public static void Put(TMP_Text label, string value){

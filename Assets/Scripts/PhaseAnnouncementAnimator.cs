@@ -12,6 +12,9 @@ namespace VocaloidTCG.BoardUI
         [Min(0)] public float holdSeconds = 1.15f;
         [Range(0, 1)] public float overlayOpacity = 0.72f;
         public bool IsPlaying { get; private set; }
+        [Header("Puzzle introduction")]
+        [Min(0)] public float puzzleHoldSeconds = 1.8f;
+        public ConcertEffectSettings puzzleEffects = new ConcertEffectSettings { particleCount = 40, intensity = 0.7f };
 
         private BoardUIController board;
         private GameplayBoardBridge bridge;
@@ -28,6 +31,8 @@ namespace VocaloidTCG.BoardUI
         private readonly CanvasGroup[] moteGroups = new CanvasGroup[28];
         private readonly Image[] sparkArms = new Image[28];
         private Color accent;
+        private bool puzzleIntro;
+        private ConcertEffects puzzleParticles;
 
         public void Initialize(BoardUIController owner){
             board = owner; bridge = board.game as GameplayBoardBridge;
@@ -37,19 +42,32 @@ namespace VocaloidTCG.BoardUI
         public void Observe(BoardSnapshot state){
             if(!isActiveAndEnabled || state == null) { Cancel(); return; }
             if(observed == state && phase == state.phase && round == state.roundNumber) return;
+            bool newPuzzle = bridge && bridge.IsPuzzle && observed != state;
             Cancel();
             
             observed = state; phase = state.phase; round = state.roundNumber;
             if(phase != RoundPhase.Preparation && phase != RoundPhase.Performance && phase != RoundPhase.EndRound) return;
+            puzzleIntro = newPuzzle;
             accent = phase == RoundPhase.EndRound ? board.endRoundAnnouncementColor : StarterColor(state);
-            title.text = phase == RoundPhase.EndRound ? "END OF ROUND" : phase.ToString().ToUpperInvariant();
-            subtitle.text = "round " + round;
+            if(puzzleIntro && bridge.puzzle.puzzleClass) accent = bridge.puzzle.puzzleClass.color;
+            title.text = puzzleIntro ? bridge.puzzle.puzzleName : phase == RoundPhase.EndRound ? "END OF ROUND" : phase.ToString().ToUpperInvariant();
+            if(puzzleIntro && string.IsNullOrWhiteSpace(title.text)) title.text = "Puzzle " + bridge.puzzle.number;
+            title.enableAutoSizing = puzzleIntro; title.fontSizeMin = 26; title.fontSizeMax = 62;
+            title.fontSize = 62; title.richText = !puzzleIntro;
+            subtitle.text = puzzleIntro ? "PUZZLE " + bridge.puzzle.number + "  /  BEGIN" : "round " + round;
             subtitle.color = accent; line.color = accent;
+            if(puzzleIntro){
+                puzzleParticles = ConcertEffects.Create(group.transform, board, accent, Color.white, ConcertEffectStyle.Victory, puzzleEffects);
+                puzzleParticles.rectTransform.localScale = Vector3.one * 0.65f;
+                puzzleParticles.transform.SetSiblingIndex(1);
+                puzzleParticles.EmitBurst(new Vector2(-460, 80), accent);
+                puzzleParticles.EmitBurst(new Vector2(460, 80), accent);
+            }
             
             for(int i = 0; i < motes.Length; i++){
                 motes[i].GetComponent<Image>().color = accent;
                 sparkArms[i].color = accent;
-                sparkArms[i].gameObject.SetActive(phase == RoundPhase.Performance);
+                sparkArms[i].gameObject.SetActive(puzzleIntro || phase == RoundPhase.Performance);
             }
             
             for(int i = 0; i < sticks.Length; i++)
@@ -68,7 +86,7 @@ namespace VocaloidTCG.BoardUI
             
             elapsed += Time.unscaledDeltaTime;
             float enter = Mathf.Max(0.05f, enterSeconds), exit = Mathf.Max(0.05f, exitSeconds);
-            float total = enter + Mathf.Max(0, holdSeconds) + exit;
+            float total = enter + Mathf.Max(0, puzzleIntro ? puzzleHoldSeconds : holdSeconds) + exit;
             
             if(elapsed >= total){ Cancel(); return; }
             float inT = Mathf.Clamp01(elapsed / enter);
@@ -104,7 +122,7 @@ namespace VocaloidTCG.BoardUI
 
         private void AnimateMote(int i, float enter, float exit){
             float seed = i * 2.399963f;
-            bool spark = phase == RoundPhase.Performance;
+            bool spark = puzzleIntro || phase == RoundPhase.Performance;
             float pulse = Mathf.Repeat(elapsed * (spark ? 1.3f : 0.3f) + i * 0.137f, 1);
             float radius = spark ? 1 + (1 - Mathf.Pow(1 - pulse, 4)) * 0.12f : 1;
             float x = Mathf.Cos(seed) * (spark ? 355 : 560) * radius;
@@ -139,6 +157,8 @@ namespace VocaloidTCG.BoardUI
             
             titleRoot = MakeRect(layer.transform, "Phase text", new Vector2(840, 200));
             title = MakeText(titleRoot, "Phase", 62, new Vector2(0, 28), new Vector2(840, 100));
+            var titleShadow = title.gameObject.AddComponent<Shadow>();
+            titleShadow.effectColor = new Color(0.02f, 0.02f, 0.06f, 0.85f); titleShadow.effectDistance = new Vector2(2, -3);
             subtitle = MakeText(titleRoot, "Round", 30, new Vector2(0, -49), new Vector2(840, 50));
             line = MakeImage(titleRoot, "Accent line", new Vector2(240, 2));
             line.rectTransform.anchoredPosition = new Vector2(0, -12);
@@ -171,6 +191,8 @@ namespace VocaloidTCG.BoardUI
         }
 
         public void Cancel(){
+            if(puzzleParticles) { puzzleParticles.gameObject.SetActive(false); Destroy(puzzleParticles.gameObject); }
+            puzzleParticles = null; puzzleIntro = false;
             IsPlaying = false;
             if(group) { group.alpha = 0; group.gameObject.SetActive(false); }
             if(bridge) bridge.SetPhaseAnimationPlaying(false);

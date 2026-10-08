@@ -14,6 +14,9 @@ namespace VocaloidTCG.BoardUI
         [Min(0.1f)] public float cardTravelSeconds = 0.4f;
         [Tooltip("Optional presentation font. Use a serif TMP font for the reference artwork's lettering.")]
         public TMP_FontAsset font;
+        [Header("Redraw hover info")]
+        [Tooltip("Editable hover layout. Keep the Card Info View text/icon references assigned; artwork is optional.")]
+        public CardInfoView redrawInfoPrefab;
         [Header("Screen effects")]
         public ConcertEffectSettings openingEffects = new ConcertEffectSettings();
         public ConcertEffectSettings redrawEffects = new ConcertEffectSettings { particleCount = 36, intensity = 0.8f };
@@ -39,13 +42,121 @@ namespace VocaloidTCG.BoardUI
         private readonly Vector3[] portraitScales = new Vector3[2];
         public RectTransform RedrawZone { get; private set; }
         public bool CanSelect => selecting && !submitted && bridge && bridge.OpeningPending && !bridge.IsPaused;
+        private CardInfoView hoverInfo;
+        private RectTransform hoverPanel;
+        private Vector2 hoverDesignSize;
+        private Image hoverBackground;
+        private Sprite defaultHoverBackground;
+        private Color defaultHoverBackgroundColor;
+        private Color defaultHoverNameColor;
+        private OpeningHandCard hoveredCard, draggingCard;
+
+        public void ShowCardInfo(OpeningHandCard card){
+            if(!CanSelect || draggingCard || !card || card.opponent || !root) return;
+            var hand = bridge.OpeningCards(snapshot.localPlayerId);
+            if(card.index < 0 || card.index >= hand.Count || hand[card.index] == null || !hand[card.index].data) return;
+            if(!hoverPanel){
+                BuildCardInfo();
+                hoverDesignSize = hoverPanel.rect.size;
+                if(hoverInfo.cardName) defaultHoverNameColor = hoverInfo.cardName.color;
+                hoverBackground = hoverPanel.GetComponent<Image>();
+                if(hoverBackground){
+                    defaultHoverBackground = hoverBackground.sprite;
+                    defaultHoverBackgroundColor = hoverBackground.color;
+                }
+            }
+            hoveredCard = card;
+            hoverInfo.Show(hand[card.index], board.setup.player, board.setup);
+            var cardClass = hand[card.index].data.cardClass;
+            if(hoverInfo.cardName) hoverInfo.cardName.color = cardClass ? cardClass.color : defaultHoverNameColor;
+            if(hoverBackground){
+                var background = cardClass ? cardClass.avatarBackground : null;
+                hoverBackground.sprite = background ? background : defaultHoverBackground;
+                hoverBackground.color = background ? Color.white : defaultHoverBackgroundColor;
+            }
+            float width = Mathf.Min(hoverDesignSize.x, root.rect.width - 32);
+            hoverPanel.sizeDelta = new Vector2(width, hoverDesignSize.y);
+            hoverPanel.ForceUpdateRectTransforms();
+            float height = hoverDesignSize.y;
+            if(hoverInfo.description){
+                var bodyRect = hoverInfo.description.rectTransform;
+                float bodyHeight = hoverInfo.description.GetPreferredValues(hoverInfo.description.text, Mathf.Max(1, bodyRect.rect.width), Mathf.Infinity).y;
+                height = Mathf.Max(height, bodyHeight + hoverDesignSize.y - bodyRect.rect.height);
+            }
+            height = Mathf.Min(height, root.rect.height - 32);
+            hoverPanel.sizeDelta = new Vector2(width, height);
+            hoverPanel.SetAsLastSibling();
+            var corners = new Vector3[4]; card.Rect.GetWorldCorners(corners);
+            Vector3 left = root.InverseTransformPoint(corners[0]), right = root.InverseTransformPoint(corners[2]);
+            float x = right.x + 18 + width * 0.5f;
+            if(x + width * 0.5f > root.rect.xMax - 16) x = left.x - 18 - width * 0.5f;
+            KeywordTooltipPanel.Place(hoverPanel, root, new Vector2(x, (left.y + right.y) * 0.5f));
+        }
+
+        public void HideCardInfo(OpeningHandCard card = null){
+            if(card && hoveredCard != card) return;
+            hoveredCard = null;
+            if(hoverInfo) hoverInfo.Clear();
+        }
+        public void BeginCardDrag(OpeningHandCard card){ draggingCard = card; HideCardInfo(); }
+        public void EndCardDrag(OpeningHandCard card){ if(draggingCard == card) draggingCard = null; }
+        private void LateUpdate(){ if(hoveredCard && (!CanSelect || draggingCard)) HideCardInfo(); }
+
+        private void BuildCardInfo(){
+            if(redrawInfoPrefab){
+                hoverInfo = Instantiate(redrawInfoPrefab, root);
+                hoverPanel = (RectTransform)hoverInfo.transform;
+                hoverPanel.anchorMin = hoverPanel.anchorMax = hoverPanel.pivot = Vector2.one * 0.5f;
+                var input = hoverPanel.GetComponent<CanvasGroup>();
+                if(!input) input = hoverPanel.gameObject.AddComponent<CanvasGroup>();
+                input.interactable = false; input.blocksRaycasts = false;
+                return;
+            }
+            hoverPanel = Rect(root, "Redraw card info", Vector2.zero, new Vector2(380, 300));
+            var background = hoverPanel.gameObject.AddComponent<Image>();
+            background.color = new Color(0.035f, 0.045f, 0.085f, 0.98f); background.raycastTarget = false;
+            var border = hoverPanel.gameObject.AddComponent<Outline>();
+            border.effectColor = board.setup.player.textColor; border.effectDistance = new Vector2(2, -2);
+            var hoverGroup = hoverPanel.gameObject.AddComponent<CanvasGroup>();
+            hoverGroup.interactable = false; hoverGroup.blocksRaycasts = false;
+            hoverInfo = hoverPanel.gameObject.AddComponent<CardInfoView>();
+            hoverInfo.cardName = Text(hoverPanel, "", Vector2.zero, Vector2.zero, 27, Color.white);
+            TopBounds(hoverInfo.cardName.rectTransform, 18, 18, 14, 54);
+            hoverInfo.cardName.enableAutoSizing = true; hoverInfo.cardName.fontSizeMin = 16; hoverInfo.cardName.fontSizeMax = 27;
+            hoverInfo.cardName.alignment = TextAlignmentOptions.TopLeft;
+            hoverInfo.icon = Image(hoverPanel, "Info icon", Vector2.zero, new Vector2(72, 54), null, Color.white);
+            TopBounds(hoverInfo.icon.rectTransform, 18, 290, 73, 54);
+            var costLabel = Text(hoverPanel, "COST", Vector2.zero, Vector2.zero, 15, board.setup.player.textColor);
+            TopBounds(costLabel.rectTransform, 110, 180, 74, 22);
+            hoverInfo.cost = Text(hoverPanel, "", Vector2.zero, Vector2.zero, 25, Color.white);
+            TopBounds(hoverInfo.cost.rectTransform, 110, 180, 97, 30);
+            var influenceRoot = Rect(hoverPanel, "Influence", Vector2.zero, Vector2.zero);
+            influenceRoot.anchorMin = Vector2.zero; influenceRoot.anchorMax = Vector2.one;
+            influenceRoot.offsetMin = influenceRoot.offsetMax = Vector2.zero;
+            hoverInfo.influenceRoot = influenceRoot.gameObject;
+            var influenceLabel = Text(influenceRoot, "INFLUENCE", Vector2.zero, Vector2.zero, 15, board.setup.player.textColor);
+            TopBounds(influenceLabel.rectTransform, 225, 18, 74, 22);
+            hoverInfo.influence = Text(influenceRoot, "", Vector2.zero, Vector2.zero, 25, Color.white);
+            TopBounds(hoverInfo.influence.rectTransform, 225, 18, 97, 30);
+            hoverInfo.description = Text(hoverPanel, "", Vector2.zero, Vector2.zero, 21, Color.white);
+            var body = hoverInfo.description.rectTransform;
+            body.anchorMin = Vector2.zero; body.anchorMax = Vector2.one;
+            body.offsetMin = new Vector2(18, 18); body.offsetMax = new Vector2(-18, -140);
+            hoverInfo.description.alignment = TextAlignmentOptions.TopLeft;
+            hoverInfo.description.enableAutoSizing = true; hoverInfo.description.fontSizeMin = 12; hoverInfo.description.fontSizeMax = 21;
+        }
+
+        private static void TopBounds(RectTransform rect, float left, float right, float top, float height){
+            rect.anchorMin = new Vector2(0, 1); rect.anchorMax = Vector2.one; rect.pivot = new Vector2(0.5f, 1);
+            rect.offsetMin = new Vector2(left, -top - height); rect.offsetMax = new Vector2(-right, -top);
+        }
 
         public void Initialize(BoardUIController owner){
             board = owner; bridge = board.game as GameplayBoardBridge;
         }
 
         public void Observe(BoardSnapshot state){
-            if(!isActiveAndEnabled || state == null || !bridge || !bridge.OpeningPending){ Cancel(); snapshot = state; return; }
+            if(!isActiveAndEnabled || state == null || !bridge || bridge.IsPuzzle || !bridge.OpeningPending){ Cancel(); snapshot = state; return; }
             if(snapshot == state && root) return;
             Cancel(); snapshot = state;
             Build();
@@ -322,7 +433,7 @@ namespace VocaloidTCG.BoardUI
             SpawnCards(side);
         }
 
-        private void SubmitHand(){ if(CanSelect) submitted = true; }
+        private void SubmitHand(){ if(CanSelect){ submitted = true; HideCardInfo(); } }
 
         private void Diamond(Transform parent, Vector2 center, float radius, Color tint){
             for(int i = 0; i < 4; i++){
@@ -368,6 +479,8 @@ namespace VocaloidTCG.BoardUI
         }
 
         public void Cancel(){
+            HideCardInfo(); hoverInfo = null; hoverPanel = null; hoveredCard = draggingCard = null;
+            hoverBackground = null; defaultHoverBackground = null;
             StopAllCoroutines(); selecting = submitted = false;
             if(root){ root.gameObject.SetActive(false); Destroy(root.gameObject); }
             root = null; RedrawZone = null; backdrop = null; cards[0].Clear(); cards[1].Clear();

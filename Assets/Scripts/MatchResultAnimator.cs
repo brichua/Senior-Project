@@ -17,11 +17,14 @@ namespace VocaloidTCG.BoardUI
         public Color defeatColor = new Color(166f / 255f, 178f / 255f, 242f / 255f);
         [Tooltip("Optional one-shot result audio, using the Effects volume setting.")]
         public AudioClip victoryStinger, defeatStinger;
+        [Header("Compact puzzle results")]
+        public ConcertEffectSettings puzzleEffects = new ConcertEffectSettings { particleCount = 45, intensity = 0.7f };
         private BoardUIController board;
         private GameplayBoardBridge bridge;
         private BoardSnapshot shown;
         private RectTransform root, portrait, content;
         private CanvasGroup contentGroup;
+        private Image puzzleShade;
         private TMP_Text status;
         private Button back, retry, save;
         private bool won, lost;
@@ -44,7 +47,8 @@ namespace VocaloidTCG.BoardUI
             accent = won ? victoryColor : defeatColor;
             var cls = board.setup.PlayerClass;
             classColor = cls ? cls.color : board.setup.player.textColor;
-            Build(); RefreshActions();
+            if(bridge.IsPuzzle) BuildPuzzle(); else Build();
+            RefreshActions();
         }
 
         private void Update(){
@@ -52,8 +56,15 @@ namespace VocaloidTCG.BoardUI
             time += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(time / Mathf.Max(0.1f, entranceSeconds));
             float ease = 1 - Mathf.Pow(1 - t, 3);
-            portrait.anchoredPosition = new Vector2(0, Mathf.Lerp(20, 100, ease));
-            portrait.localScale = Vector3.one * Mathf.Lerp(0.9f, 1, ease);
+            if(puzzleShade){
+                float opacity = board.phaseAnimator ? board.phaseAnimator.overlayOpacity : 0.72f;
+                puzzleShade.color = new Color(0.015f, 0.02f, 0.055f, opacity * ease);
+            }
+            if(portrait){
+                portrait.anchoredPosition = new Vector2(0, Mathf.Lerp(20, 100, ease));
+                portrait.localScale = Vector3.one * Mathf.Lerp(0.9f, 1, ease);
+            }
+            if(bridge.IsPuzzle) content.localScale = Vector3.one * (Mathf.Lerp(0.88f, 1, ease) + Mathf.Sin(t * Mathf.PI) * 0.025f);
             content.anchoredPosition = new Vector2(0, Mathf.Lerp(-35, 0, ease));
             contentGroup.alpha = Mathf.SmoothStep(0.1f, 1, t);
             contentGroup.interactable = t >= 1;
@@ -63,7 +74,7 @@ namespace VocaloidTCG.BoardUI
         private void RefreshActions(){
             bool unsaved = !string.IsNullOrEmpty(SaveError);
             back.interactable = !unsaved; retry.interactable = !unsaved;
-            retry.gameObject.SetActive(!bridge.IsOnline && lost && showRestartOnDefeat && !unsaved);
+            retry.gameObject.SetActive(!bridge.IsOnline && lost && (bridge.IsPuzzle || showRestartOnDefeat) && !unsaved);
             save.gameObject.SetActive(unsaved);
             status.text = unsaved ? "Your reward could not be saved.\n" + SaveError : navigationError ?? (bridge.IsOnline ? bridge.Snapshot.roundSummary : "");
         }
@@ -133,6 +144,48 @@ namespace VocaloidTCG.BoardUI
             }
         }
 
+        private void BuildPuzzle(){
+            var obj = new GameObject("Puzzle result", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
+            obj.transform.SetParent(transform, false); root = (RectTransform)obj.transform;
+            var canvas = obj.GetComponent<Canvas>(); canvas.renderMode = RenderMode.ScreenSpaceOverlay; canvas.sortingOrder = 30001;
+            var scaler = obj.GetComponent<CanvasScaler>(); scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            scaler.referenceResolution = new Vector2(1920, 1080); scaler.matchWidthOrHeight = 0.5f;
+            puzzleShade = Image(root, "Dark overlay", Vector2.zero, Vector2.zero, null, Color.clear);
+            puzzleShade.rectTransform.anchorMin = Vector2.zero; puzzleShade.rectTransform.anchorMax = Vector2.one;
+            puzzleShade.rectTransform.offsetMin = puzzleShade.rectTransform.offsetMax = Vector2.zero;
+            content = Rect(root, "Puzzle result and actions", Vector2.zero, new Vector2(1000, 500));
+            contentGroup = content.gameObject.AddComponent<CanvasGroup>(); contentGroup.alpha = 0; contentGroup.interactable = false;
+            accent = won ? classColor : new Color(1f, 0.56f, 0.64f);
+            var particles = ConcertEffects.Create(content, board, accent, Color.white,
+                won ? ConcertEffectStyle.Victory : ConcertEffectStyle.Finish, puzzleEffects);
+            particles.rectTransform.localScale = Vector3.one * 0.65f;
+            particles.rectTransform.anchoredPosition = new Vector2(0, 90);
+            particles.EmitBurst(new Vector2(-440, 80), accent);
+            particles.EmitBurst(new Vector2(440, 80), accent);
+            var eyebrow = Text(content, "PUZZLE " + bridge.puzzle.number, new Vector2(0, 150), new Vector2(800, 40), 24, Color.white);
+            eyebrow.characterSpacing = 6;
+            var title = Text(content, won ? "PASS" : "FAIL", new Vector2(0, 70), new Vector2(800, 125), 92, Color.white);
+            title.characterSpacing = 12; title.enableVertexGradient = true;
+            title.colorGradient = new VertexGradient(Color.white, Color.white, accent, accent);
+            string name = string.IsNullOrWhiteSpace(bridge.puzzle.puzzleName) ? "Puzzle " + bridge.puzzle.number : bridge.puzzle.puzzleName;
+            var puzzleName = Text(content, name, new Vector2(0, -20), new Vector2(840, 70), 32, Color.white);
+            puzzleName.richText = false; puzzleName.enableAutoSizing = true; puzzleName.fontSizeMin = 20; puzzleName.fontSizeMax = 32;
+            foreach(var label in new[] { eyebrow, title, puzzleName }){
+                var shadow = label.gameObject.AddComponent<Shadow>(); shadow.effectColor = new Color(0.02f, 0.02f, 0.06f, 0.9f);
+                shadow.effectDistance = new Vector2(2, -3);
+            }
+            back = Button(content, "RETURN", new Vector2(lost ? -180 : 0, -145), Return);
+            retry = Button(content, "RESTART", new Vector2(180, -145), Restart);
+            save = Button(content, "RETRY SAVE", new Vector2(0, -220), RetrySave);
+            foreach(var button in new[] { back, retry, save }) button.GetComponent<RectTransform>().sizeDelta = new Vector2(300, 60);
+            status = Text(content, "", new Vector2(0, -310), new Vector2(1000, 110), 23, Color.white);
+            var clip = won ? victoryStinger : defeatStinger;
+            if(clip){
+                var audio = obj.AddComponent<AudioSource>(); audio.playOnAwake = false; audio.spatialBlend = 0;
+                obj.AddComponent<AudioCategorySource>().SetCategory(AudioCategory.Effects); audio.PlayOneShot(clip);
+            }
+        }
+
         private Button Button(Transform parent, string label, Vector2 position, UnityEngine.Events.UnityAction action){
             var button = StoryUIElements.Button(parent, label, position, action);
             button.GetComponent<RectTransform>().sizeDelta = new Vector2(420, 65);
@@ -158,7 +211,7 @@ namespace VocaloidTCG.BoardUI
         }
         public void Cancel(){
             if(root){ root.gameObject.SetActive(false); Destroy(root.gameObject); }
-            root = null; shown = null; time = 0; navigationError = null;
+            root = null; portrait = null; puzzleShade = null; shown = null; time = 0; navigationError = null;
         }
         private void OnDisable(){ Cancel(); }
     }

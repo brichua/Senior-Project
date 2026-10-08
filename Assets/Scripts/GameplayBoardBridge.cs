@@ -15,6 +15,8 @@ namespace VocaloidTCG.BoardUI
         public List<CharacterClassData> playerClasses = new List<CharacterClassData>();
         public List<CharacterClassData> enemyClasses = new List<CharacterClassData>();
         public List<BoardSetup> boardSetups = new List<BoardSetup>();
+        [Tooltip("Class matchup boards for multiplayer. This catalog can be stored anywhere in Assets.")]
+        public BoardSetupCatalog multiplayerBoards;
         public Sprite playerCardBack, enemyCardBack;
         public string MatchSetupError { get; private set; }
         public int ConfigurationVersion { get; private set; }

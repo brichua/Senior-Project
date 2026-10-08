@@ -61,7 +61,7 @@ namespace VocaloidTCG.BoardUI
             player0OpeningCard = deckCatalog.Card(records[0].vipCardId);
             player1OpeningCard = deckCatalog.Card(records[1].vipCardId);
             chosenBoard = boardSetups.FirstOrDefault(b => b && b.PlayerClass == playerClasses.FirstOrDefault() && b.EnemyClass == enemyClasses.FirstOrDefault())
-                ?? BoardSetupCatalog.Find(playerClasses.FirstOrDefault(), enemyClasses.FirstOrDefault());
+                ?? BoardSetupCatalog.Find(playerClasses.FirstOrDefault(), enemyClasses.FirstOrDefault(), multiplayerBoards);
             ConfigurationVersion++; MatchSetupError = ""; return true;
         }
         private bool SubmitOnline(string kind, BoardAction action) => online.Command(kind, action);
