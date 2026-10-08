@@ -137,7 +137,7 @@ MonoBehaviour:
   decksButton: {fileID: 247436760}
   puzzlesButton: {fileID: 393782110}
   settingsButton: {fileID: 277548709}
-  storyScene: Game
+  storyScene: Story
   lobbyScene: Multiplayer
   multiplayerGameScene: Game
   deckScene: Edit Deck

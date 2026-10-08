@@ -162,6 +162,16 @@ namespace VocaloidTCG
 
         public bool IsPuzzleCompleted(PuzzleData puzzle) => puzzle && data.completedPuzzles.Contains(puzzle.id);
 
+#if UNITY_EDITOR
+        public bool SetPuzzleClearedForDebugging(PuzzleData puzzle, bool cleared, out string error){
+            error = "Puzzle needs a stable ID.";
+            if(!puzzle || string.IsNullOrWhiteSpace(puzzle.id)) return false;
+            if(cleared) return CompletePuzzle(puzzle, out error);
+            if(!IsPuzzleCompleted(puzzle)) { error = ""; return true; }
+            return Commit(next => next.completedPuzzles.RemoveAll(id => id == puzzle.id), out error);
+        }
+#endif
+
         [Serializable]
         public sealed class StoryClearRecord
         {
