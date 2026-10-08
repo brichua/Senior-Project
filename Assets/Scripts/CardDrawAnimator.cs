@@ -12,6 +12,8 @@ namespace VocaloidTCG.BoardUI
         [Min(0.01f)] public float handEnterSeconds = 0.4f;
         [Min(0)] public float betweenCardsSeconds = 0.08f;
         [Min(0)] public float belowScreenPadding = 40f;
+        [Min(0)] public float overflowRevealSeconds = 1.5f;
+        [Min(0.01f)] public float overflowDisappearSeconds = 0.45f;
 
         private BoardUIController board;
         private GameplayBoardBridge bridge;
@@ -124,9 +126,8 @@ namespace VocaloidTCG.BoardUI
             yield return Slide(rect, start, belowDeck, deckExitSeconds, null);
             DestroyFlyingCard(actor);
 
-            if(draw.discarded) yield break;
             var target = board.GetHandView(draw.card.instanceId);
-            if(!target) yield break;
+            if(!draw.discarded && !target) yield break;
 
             flyingCard = Instantiate(board.handPrefab, board.dragLayer);
             flyingCards[actor] = flyingCard;
@@ -142,6 +143,32 @@ namespace VocaloidTCG.BoardUI
             rect.localScale = Vector3.one;
             rect.localRotation = Quaternion.identity;
             Canvas.ForceUpdateCanvases();
+            if(draw.discarded){
+                var handRoot = (local ? board.playerHandRoot : board.enemyHandRoot) as RectTransform;
+                var reference = handRoot ? handRoot.GetComponentInChildren<CardPointer>() : null;
+                SizeLike(rect, reference ? reference.GetComponent<RectTransform>() : deck);
+                Vector3 reveal = handRoot ? CenterInLayer(handRoot) : CenterInLayer(deck);
+                reveal.y += (local ? 1 : -1) * rect.rect.height * 0.75f;
+                yield return Slide(rect, BelowScreen(reveal.x, rect), reveal, handEnterSeconds, null);
+                float elapsed = 0;
+                while(elapsed < overflowRevealSeconds){
+                    if(!bridge.IsPaused) elapsed += Time.unscaledDeltaTime;
+                    yield return null;
+                }
+                var group = flyingCard.GetComponent<CanvasGroup>();
+                elapsed = 0;
+                float duration = Mathf.Max(0.01f, overflowDisappearSeconds);
+                while(elapsed < duration){
+                    if(!bridge.IsPaused) elapsed += Time.unscaledDeltaTime;
+                    float t = Mathf.Clamp01(elapsed / duration);
+                    group.alpha = 1 - t;
+                    rect.localScale = Vector3.one * Mathf.Lerp(1, 0.6f, t);
+                    rect.localPosition = reveal + Vector3.down * (rect.rect.height * 0.25f * t);
+                    yield return null;
+                }
+                DestroyFlyingCard(actor);
+                yield break;
+            }
             var targetRect = target.GetComponent<RectTransform>();
             SizeLike(rect, targetRect);
             Vector3 destination = CenterInLayer(targetRect);

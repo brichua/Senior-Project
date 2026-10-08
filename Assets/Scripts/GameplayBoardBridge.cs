@@ -23,6 +23,7 @@ namespace VocaloidTCG.BoardUI
 
         private bool ConfigureDecks()
         {
+            if(IsOnline) return ConfigureOnlineDecks();
             MatchSetupError = "";
             selectedPlayerBack = selectedEnemyBack = null;
             if(useSelectedDeck) {
@@ -30,7 +31,7 @@ namespace VocaloidTCG.BoardUI
                 if(catalog) {
                     try {
                         var library = DeckLibrary.Get(catalog); catalog = library.Catalog;
-                        var selected = library.Selected;
+                        var selected = IsStory ? storyPlayerDeck : library.Selected;
                         string error;
                         if(!DeckRules.Validate(selected, catalog, library.Owned, out error)) {
                             MatchSetupError = "Select a valid deck: " + error; return false;
@@ -38,7 +39,7 @@ namespace VocaloidTCG.BoardUI
                         var cards = selected.cardIds.Select(catalog.Card).ToArray();
                         if(localPlayerId == 0) { player0Cards = cards; player0OpeningCard = catalog.Card(selected.vipCardId); }
                         else { player1Cards = cards; player1OpeningCard = catalog.Card(selected.vipCardId); }
-                        playerClasses = selected.classes.Select(catalog.Class).ToList();
+                        playerClasses = DeckPresentation.Classes(selected, catalog);
                         selectedPlayerBack = catalog.BackData(selected);
                         playerCardBack = selectedPlayerBack ? selectedPlayerBack.image : null;
                     } catch(System.Exception ex) { MatchSetupError = ex.Message; return false; }
@@ -48,16 +49,17 @@ namespace VocaloidTCG.BoardUI
                 var cards = enemyDeck.cards.Where(c => c).ToArray();
                 if(localPlayerId == 0) { player1Cards = cards; player1OpeningCard = enemyDeck.vipCard; }
                 else { player0Cards = cards; player0OpeningCard = enemyDeck.vipCard; }
-                enemyClasses = new List<CharacterClassData>(enemyDeck.classes);
+                enemyClasses = enemyDeck.classes.Where(c => c).OrderByDescending(c => enemyDeck.cards.Count(card => card && card.cardClass == c) + (enemyDeck.vipCard && enemyDeck.vipCard.cardClass == c ? 1 : 0)).ToList();
+                // Keep the named rival on stage when a story deck includes a support class.
+                if(IsStory) enemyClasses = enemyClasses.OrderByDescending(c => c.identity == storyOpponent).ToList();
                 selectedEnemyBack = enemyDeck.cardBack;
                 enemyCardBack = selectedEnemyBack ? selectedEnemyBack.image : null;
             } else if(enemyAI) enemyClasses = new List<CharacterClassData>(enemyAI.classes);
             if(enemyAI) { enemyAI.game = this; enemyAI.classes = new List<CharacterClassData>(enemyClasses); }
             chosenBoard = null;
             if(boardSetups.Count > 0) {
-                var matches = boardSetups.Where(b => b && b.Matches(playerClasses, enemyClasses)).ToList();
-                if(matches.Count == 0) { MatchSetupError = "No board matches both the player and enemy classes."; return false; }
-                chosenBoard = matches[Random.Range(0, matches.Count)];
+                var matches = boardSetups.Where(b => b && b.PlayerClass == playerClasses.FirstOrDefault() && b.EnemyClass == enemyClasses.FirstOrDefault()).ToList();
+                chosenBoard = matches.FirstOrDefault() ?? boardSetups.FirstOrDefault(b => b);
             }
             ConfigurationVersion++;
             return true;
@@ -66,7 +68,11 @@ namespace VocaloidTCG.BoardUI
         {
             var template = chosenBoard ? chosenBoard : fallback;
             if(!template) return null;
-            var result = template.CreateRuntimeSetup(selectedPlayerBack, selectedEnemyBack);
+            var source = Instantiate(template);
+            if(playerClasses.Count > 0) source.playerClass = playerClasses[0];
+            if(enemyClasses.Count > 0) source.enemyClass = enemyClasses[0];
+            var result = source.CreateRuntimeSetup(selectedPlayerBack, selectedEnemyBack);
+            Destroy(source);
             if(!selectedPlayerBack && playerCardBack) result.player.cardBack = playerCardBack;
             if(!selectedEnemyBack && enemyCardBack) result.enemy.cardBack = enemyCardBack;
             return result;
@@ -82,10 +88,13 @@ namespace VocaloidTCG.BoardUI
         [Min(0)] public float endRoundDisplaySeconds = 2;
         [Min(1)] public int minimumRoundEnergy = 1;
         public bool startAutomatically = true;
+        public bool enableOpeningSequence = true;
+        [HideInInspector] public MatchResultAnimator resultPresenter;
         public bool enableDebugLogs = true;
 
         private BoardSnapshot state;
         private int serial, turnNumber;
+        private bool turnHadAction;
         private float roundWait;
         private bool deckExhausted;
         public struct DrawPresentation {
@@ -94,6 +103,12 @@ namespace VocaloidTCG.BoardUI
         }
         private readonly Queue<DrawPresentation> drawPresentations = new Queue<DrawPresentation>();
         public bool DrawAnimationPlaying { get; private set; }
+        public bool PhaseAnimationPlaying { get; private set; }
+
+        public void SetPhaseAnimationPlaying(bool playing){
+            PhaseAnimationPlaying = playing;
+            if(clock) clock.PhaseAnimationPlaying = !IsOnline && playing;
+        }
 
         public bool TryTakeDrawPresentation(out DrawPresentation draw){
             draw = default(DrawPresentation);
@@ -104,7 +119,7 @@ namespace VocaloidTCG.BoardUI
 
         public void SetDrawAnimationPlaying(bool playing){
             DrawAnimationPlaying = playing;
-            if(clock) clock.DrawAnimationPlaying = playing;
+            if(clock) clock.DrawAnimationPlaying = !IsOnline && playing;
         }
         private readonly Queue<CardState>[] decks = { new Queue<CardState>(), new Queue<CardState>() };
         private readonly int[] lastMoveTurn = { -1, -1 };
@@ -112,14 +127,21 @@ namespace VocaloidTCG.BoardUI
         private readonly Dictionary<string, int> placedTurns = new Dictionary<string, int>();
 
         public override BoardSnapshot Snapshot { get { return state; } }
-        public override float RemainingSeconds { get { return clock ? clock.RemainingSeconds : 0; } }
+        public override float RemainingSeconds { get { return IsOnline && !OnlineAuthority ? OnlineRemaining : clock ? clock.RemainingSeconds : 0; } }
         public int TurnNumber { get { return turnNumber; } }
         public bool IsPaused { get { return clock && clock.Paused; } }
 
         private void Awake(){
             if(!clock) clock = gameObject.AddComponent<LocalTurnClock>();
             clock.Expired += OnTurnExpired;
-            if(PuzzleLaunch.Pending) { puzzle = PuzzleLaunch.Pending; deckCatalog = PuzzleLaunch.Catalog; PuzzleLaunch.Clear(); }
+            if(MultiplayerSession.Instance && MultiplayerSession.Instance.InMatch){
+                MultiplayerSession.Instance.AttachBoard(this); return;
+            }
+            if(PuzzleLaunch.Pending) {
+                puzzle = PuzzleLaunch.Pending; deckCatalog = PuzzleLaunch.Catalog;
+                PuzzleReturnScene = PuzzleLaunch.ReturnScene; PuzzleLaunch.Clear();
+            }
+            ConsumeStoryLaunch();
             if(startAutomatically) StartMatch();
         }
 
@@ -136,13 +158,19 @@ namespace VocaloidTCG.BoardUI
         }
 
         public void StartMatch(int firstPlayerId = -1){
+            if(IsOnline && (!OnlineAuthority || state != null)) return;
+            if(!string.IsNullOrEmpty(storyLaunchError)) { MatchSetupError = storyLaunchError; Publish(); return; }
+            if(IsStory && !string.IsNullOrEmpty(StorySaveError)) return;
+            StorySaveError = "";
+            RoundResolutionPending = false;
             if(puzzle) { StartPuzzle(); return; }
             if(firstPlayerId < -1 || firstPlayerId > 1){ Log("Match start rejected: invalid starting player."); return; }
-            if(!ConfigureDecks()) { Debug.LogError(MatchSetupError, this); return; }
+            if(!ConfigureDecks()) { Debug.LogError(MatchSetupError, this); Publish(); return; }
             if(clock){ clock.Stop(); clock.Paused = false; }
             drawPresentations.Clear();
             SetDrawAnimationPlaying(false);
             serial = turnNumber = 0;
+            turnHadAction = false;
             deckExhausted = false;
             placedTurns.Clear();
             for(int i = 0; i < 2; i++){
@@ -151,6 +179,7 @@ namespace VocaloidTCG.BoardUI
             }
             int starter = firstPlayerId < 0 ? Random.Range(0, 2) : firstPlayerId;
             state = new BoardSnapshot {
+                multiplayer = IsOnline,
                 localPlayerId = Mathf.Clamp(localPlayerId, 0, 1), roundStarterId = starter,
                 winScore = Mathf.Max(1, winningScore)
             };
@@ -160,6 +189,11 @@ namespace VocaloidTCG.BoardUI
             AddOpeningCard(player0OpeningCard, 0); AddOpeningCard(player1OpeningCard, 1);
             DrawCards(0, 3); DrawCards(1, 3);
             RefillRoundEnergy();
+            if(enableOpeningSequence){
+                PrepareOpeningHand();
+                Publish();
+                return;
+            }
             BeginTurn(starter); Publish();
         }
 
@@ -231,7 +265,7 @@ namespace VocaloidTCG.BoardUI
 
         private bool CanAct(int actor){
             return isActiveAndEnabled && IsPlaying() && actor >= 0 && actor < 2 &&
-                state.inputAllowed && state.activePlayerId == actor && !IsPaused && !DrawAnimationPlaying;
+                state.inputAllowed && state.activePlayerId == actor && !IsPaused && (IsOnline || (!DrawAnimationPlaying && !PhaseAnimationPlaying));
         }
 
         private static bool InBounds(int x, int y){
@@ -306,10 +340,12 @@ namespace VocaloidTCG.BoardUI
         }
 
         public override bool TrySubmit(BoardAction action){
+            if(IsOnline) return SubmitOnline("action", action);
             return TrySubmitFor(state == null ? -1 : state.localPlayerId, action);
         }
 
         public bool TrySubmitFor(int actor, BoardAction action){
+            if(IsOnline && !OnlineAuthority) return false;
             string reason;
             if(!CanSubmitFor(actor, action, out reason)){
                 Log("Player " + actor + " action rejected: " + reason); return false;
@@ -336,8 +372,10 @@ namespace VocaloidTCG.BoardUI
                 Log("Player " + actor + " moved " + card.data.cardName + " from (" + action.fromColumn + ", " + action.fromRow +
                     ") to (" + action.toColumn + ", " + action.toRow + ").");
             }
+            turnHadAction = true;
             state.consecutivePasses = 0;
             Recompute();
+            if(IsOnline && action.kind == BoardActionKind.PlayCard){ onlinePlayedCard = card.data.id; onlinePlayEvent++; }
             if (action.kind == BoardActionKind.PlayCard && sfx)
             {
                 sfx.PlayDropSound();
@@ -349,14 +387,16 @@ namespace VocaloidTCG.BoardUI
         }
 
         public override void RequestPass(){
+            if(IsOnline){ SubmitOnline("pass", default(BoardAction)); return; }
             if(state != null) TryPassFor(state.localPlayerId);
         }
 
         public bool TryPassFor(int actor){
+            if(IsOnline && !OnlineAuthority) return false;
             if(!CanAct(actor)){ Log("Player " + actor + " pass rejected: not an active, unpaused turn."); return false; }
             if(IsPuzzle && actor == state.localPlayerId) puzzlePlayerTurns++;
-            state.consecutivePasses++;
-            Log("Player " + actor + " passed. Consecutive passes: " + state.consecutivePasses + ".");
+            state.consecutivePasses = turnHadAction ? 0 : state.consecutivePasses + 1;
+            Log("Player " + actor + " ended their turn. Consecutive empty turns: " + state.consecutivePasses + ".");
             if(state.consecutivePasses < 2) BeginTurn(1 - actor);
             else if(state.phase == RoundPhase.Preparation){
                 state.consecutivePasses = 0; state.phase = RoundPhase.Performance;
@@ -367,6 +407,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void OnTurnExpired(){
+            if(IsOnline && !OnlineAuthority) return;
             if(state != null){
                 Log("Player " + state.activePlayerId + " timer expired; passing turn.");
                 TryPassFor(state.activePlayerId);
@@ -376,6 +417,7 @@ namespace VocaloidTCG.BoardUI
         private void BeginTurn(int actor){
             if(IsPuzzle && actor == state.localPlayerId && CheckPuzzle(false, true)) return;
             state.activePlayerId = actor; turnNumber++;
+            turnHadAction = false;
             if(IsPuzzle) GivePuzzleTurnCards(actor);
             else if(lastDrawRound[actor] < state.roundNumber){
                 lastDrawRound[actor] = state.roundNumber;
@@ -418,44 +460,74 @@ namespace VocaloidTCG.BoardUI
             if(clock) clock.Stop();
             Recompute();
             Log("Resolving round.");
-            for(int i = 0; i < state.tiles.Length; i++){
-                var tile = state.tiles[i];
-                if(tile.side0 == null || tile.side1 == null) continue;
-                int difference = tile.total0 - tile.total1;
-                Log("Contest at (" + (i % 5) + ", " + (i / 5) + "): " + tile.total0 + " vs " + tile.total1 + ". " +
-                    (difference == 0 ? "Tie; both performers removed." : "Player " + (difference > 0 ? 0 : 1) + " survives with " + Mathf.Abs(difference) + " influence."));
-                if(difference > 0){ tile.side0.currentInfluence = difference; RemovePerformer(tile, 1); }
-                else if(difference < 0){ tile.side1.currentInfluence = -difference; RemovePerformer(tile, 0); }
-                else { RemovePerformer(tile, 0); RemovePerformer(tile, 1); }
-            }
+            for(int i = 0; i < state.tiles.Length; i++)
+                if(i % 5 != 2) ResolveContest(i);
             Recompute();
-            int total0 = 0, total1 = 0;
-            for(int row = 0; row < 5; row++){
-                total0 += state.tiles[row * 5 + 2].total0;
-                total1 += state.tiles[row * 5 + 2].total1;
-            }
-            state.side0.score += total0; state.side1.score += total1;
-            state.roundSummary = "Third column: Player +" + (state.localPlayerId == 0 ? total0 : total1) +
-                " / Opponent +" + (state.localPlayerId == 0 ? total1 : total0) + ".";
-            if(deckExhausted) state.roundSummary += " A deck is empty; this is the final round.";
-            Log("Round scored: Player 0 +" + total0 + ", Player 1 +" + total1 + ". Total scores: " + state.side0.score + " / " + state.side1.score + ".");
-            roundWait = Mathf.Max(0, endRoundDisplaySeconds);
-            if(IsPuzzle) { puzzleRounds++; CheckPuzzle(true, false); }
+            ScoringRow = 0; roundScore0 = roundScore1 = 0;
+            RoundResolutionPending = true;
         }
 
+        private void ResolveContest(int index){
+            var tile = state.tiles[index];
+            if(tile.side0 == null || tile.side1 == null) return;
+            int difference = tile.total0 - tile.total1;
+            if(difference > 0){ tile.side0.currentInfluence = difference; RemovePerformer(tile, 1); }
+            else if(difference < 0){ tile.side1.currentInfluence = -difference; RemovePerformer(tile, 0); }
+            else { RemovePerformer(tile, 0); RemovePerformer(tile, 1); }
+        }
+
+        public EndRoundScoringAnimator scoringPresenter;
+        public bool RoundResolutionPending { get; private set; }
+        public int ScoringRow { get; private set; }
+        private int roundScore0, roundScore1;
+
+        public bool ResolveNextScoringTile(){
+            if(IsOnline && !OnlineAuthority) return false;
+            if(!RoundResolutionPending || ScoringRow >= 5 || IsPaused || PhaseAnimationPlaying) return false;
+            int index = ScoringRow * 5 + 2;
+            ResolveContest(index);
+            Recompute();
+            var tile = state.tiles[index];
+            roundScore0 += tile.total0; roundScore1 += tile.total1;
+            state.side0.score += tile.total0; state.side1.score += tile.total1;
+            ScoringRow++;
+            Publish();
+            return true;
+        }
+
+        public void FinishRoundResolution(){
+            if(IsOnline && !OnlineAuthority) return;
+            if(!RoundResolutionPending || ScoringRow < 5 || IsPaused || PhaseAnimationPlaying) return;
+            RoundResolutionPending = false;
+            state.roundSummary = "Third column: Player +" + (state.localPlayerId == 0 ? roundScore0 : roundScore1) +
+                " / Opponent +" + (state.localPlayerId == 0 ? roundScore1 : roundScore0) + ".";
+            if(deckExhausted) state.roundSummary += " A deck is empty; this is the final round.";
+            roundWait = Mathf.Max(0, endRoundDisplaySeconds);
+            if(IsPuzzle) { puzzleRounds++; CheckPuzzle(true, false); }
+            Publish();
+        }
         private void Update(){
+            if(IsOnline && !OnlineAuthority) return;
             UpdatePuzzleEnemy();
-            if(state == null || state.phase != RoundPhase.EndRound || IsPaused) return;
+            if(state == null || state.phase != RoundPhase.EndRound || IsPaused || PhaseAnimationPlaying) return;
+            if(RoundResolutionPending){
+                if(scoringPresenter && scoringPresenter.IsAvailable) return;
+                while(ScoringRow < 5) if(!ResolveNextScoringTile()) return;
+                FinishRoundResolution();
+                return;
+            }
             roundWait -= Time.unscaledDeltaTime;
             if(roundWait <= 0) CompleteRound();
         }
 
         public bool CompleteRound(){
-            if(!isActiveAndEnabled || state == null || state.phase != RoundPhase.EndRound || IsPaused) return false;
+            if(IsOnline && !OnlineAuthority) return false;
+            if(!isActiveAndEnabled || state == null || state.phase != RoundPhase.EndRound || IsPaused || PhaseAnimationPlaying || RoundResolutionPending) return false;
             if(!IsPuzzle && (deckExhausted || state.side0.score >= state.winScore || state.side1.score >= state.winScore)){
                 state.phase = RoundPhase.Finished;
                 state.winnerId = state.side0.score == state.side1.score ? -1 : state.side0.score > state.side1.score ? 0 : 1;
                 state.roundSummary += state.winnerId < 0 ? " Draw!" : state.winnerId == state.localPlayerId ? " Player wins!" : " Opponent wins!";
+                SaveStoryReward();
                 Log("Match finished (" + (deckExhausted ? "empty deck" : "winning score reached") + "). " +
                     (state.winnerId < 0 ? "Draw." : "Player " + state.winnerId + " wins.") + " Scores: " + state.side0.score + " / " + state.side1.score + ".");
             }else{

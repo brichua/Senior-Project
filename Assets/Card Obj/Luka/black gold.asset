@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: black gold
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Black Gold
+  id: 1876c2ab772e21f4f8ab396092831036
+  cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  vip: 0
+  info: Return an ally minion from the enemy side to the middle zone and give it
+    +2 inf this round
+  performer: 0
+  stageEffect: 1
+  cost: 1
+  influence: 0
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: 4080819495476567119, guid: cdb262ac75e776a4d90fc611543d7cfd, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: 7832665692305116407, guid: a41fb636c550deb458ea8bf1337a4bd2, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

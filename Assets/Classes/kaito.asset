@@ -16,6 +16,7 @@ MonoBehaviour:
   displayName: KAITO
   color: {r: 0.6666667, g: 0.8313726, b: 1, a: 1}
   classIcon: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+  storyArt: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
   puzzleArt: {fileID: 0}
   playerDeckIcon: {fileID: -8413651515308622559, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   enemyDeckIcon: {fileID: 45705842623540115, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}

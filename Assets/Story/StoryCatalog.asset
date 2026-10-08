@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24141c717831f2f4dbaebd564eff4e4b, type: 3}
+  m_Name: StoryCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.StoryCatalog
+  deckCatalog: {fileID: 11400000, guid: 6da9310bbc7fa804099e153453b00a12, type: 2}
+  stories:
+  - {fileID: 11400000, guid: 0054fd533f28464468ddf0174da8457c, type: 2}
+  - {fileID: 11400000, guid: 586f303c85988f34387aae4b988c3d50, type: 2}
+  - {fileID: 11400000, guid: 52235ab4544998c4da0491b5443ccaf4, type: 2}
+  - {fileID: 11400000, guid: 62d630821d6c1be46bec75107d53d71a, type: 2}
+  - {fileID: 11400000, guid: 9a571b16428c01a42b5b4e60f1c642fa, type: 2}
+  - {fileID: 11400000, guid: 1890eae50f600f24caa75f20d56ab80c, type: 2}
+  - {fileID: 11400000, guid: 26708d6cc141e8241bdee036003de485, type: 2}

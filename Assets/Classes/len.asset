@@ -16,6 +16,7 @@ MonoBehaviour:
   displayName: Kagamine Len
   color: {r: 1, g: 0.9725491, b: 0.76470596, a: 1}
   classIcon: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+  storyArt: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
   puzzleArt: {fileID: -2566321668903677826, guid: d28610d4d714b8f4bb7332ade60844a9, type: 3}
   playerDeckIcon: {fileID: -7245848298881891724, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   enemyDeckIcon: {fileID: -2545133708530324268, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}

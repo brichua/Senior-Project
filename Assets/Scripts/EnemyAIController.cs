@@ -22,7 +22,7 @@ namespace VocaloidTCG.BoardUI
 
         protected virtual void Update()
         {
-            if (!game || game.IsPuzzle || !game.isActiveAndEnabled || game.IsPaused || game.DrawAnimationPlaying) return;
+            if (!game || game.IsPuzzle || !game.isActiveAndEnabled || game.IsPaused || game.DrawAnimationPlaying || game.PhaseAnimationPlaying) return;
             var state = game.Snapshot;
             if (state == null || state.multiplayer || !state.inputAllowed ||
                 state.activePlayerId == state.localPlayerId ||

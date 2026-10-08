@@ -23,5 +23,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Puzzles.unity
     guid: 478cadfa8a4bdfe4b8456723f68907ae
+  - enabled: 1
+    path: Assets/Scenes/Multiplayer.unity
+    guid: 4a992328186ba7542bbaf81b4724f482
+  - enabled: 1
+    path: Assets/Scenes/Story.unity
+    guid: 3068648fd57ee5c4488b406b0628ad22
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

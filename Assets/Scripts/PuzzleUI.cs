@@ -170,7 +170,7 @@ namespace VocaloidTCG
             
             if(!selected.Validate(out error)) { ReportError(error, selected); return; }
             if(!Application.CanStreamedLevelBeLoaded(gameScene)) { ReportError("Game Scene: add \"" + gameScene + "\" to the build's scene list.", this); return; }
-            PuzzleLaunch.Prepare(selected, catalog.deckCatalog);
+            PuzzleLaunch.Prepare(selected, catalog.deckCatalog, SceneManager.GetActiveScene().name);
             
             try{
                 SceneManager.LoadScene(gameScene);

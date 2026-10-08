@@ -16,6 +16,7 @@ MonoBehaviour:
   displayName: MEIKO
   color: {r: 1, g: 0.8235295, b: 0.8196079, a: 1}
   classIcon: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+  storyArt: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
   puzzleArt: {fileID: 0}
   playerDeckIcon: {fileID: 8128594830842719023, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   enemyDeckIcon: {fileID: -3831577885175149228, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}

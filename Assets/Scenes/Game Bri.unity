@@ -543,6 +543,8 @@ MonoBehaviour:
   tile_hover: {fileID: 8300000, guid: 04bbe232225605d4898da8a0883e1659, type: 3}
   card_draw: {fileID: 8300000, guid: 4ab5aae8505a7714784973268e1e85ec, type: 3}
   card_destroy: {fileID: 8300000, guid: 837da4b06e1359242990a00d4501f873, type: 3}
+  fav_deck: {fileID: 8300000, guid: 49a1528d5d4f0a84bb84441df8fadf05, type: 3}
+  unfav_deck: {fileID: 0}
 --- !u!1 &80136551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1011,7 +1013,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0346737f87764a3eb36f047bdd0a3fef, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.GameplayBoardBridge
+  puzzle: {fileID: 0}
+  puzzleEnemyActionDelay: 0.5
   sfx: {fileID: 46646703}
+  useSelectedDeck: 1
+  deckCatalog: {fileID: 0}
+  enemyDeck: {fileID: 0}
+  enemyAI: {fileID: 0}
+  playerClasses: []
+  enemyClasses: []
+  boardSetups: []
+  playerCardBack: {fileID: 0}
+  enemyCardBack: {fileID: 0}
   localPlayerId: 0
   player0Cards:
   - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
@@ -1088,6 +1101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.BasicEnemyAITest
   game: {fileID: 181535722}
+  classes: []
   actionDelay: 0.75
 --- !u!4 &181535724
 Transform:
@@ -1248,6 +1262,7 @@ MonoBehaviour:
   deckIcon: {fileID: 551935458}
   deck: {fileID: 1642500852}
   infoBackground: {fileID: 1665476742}
+  secondDeckIcon: {fileID: 0}
   avatar: {fileID: 0}
   avatarBackground: {fileID: 394437275}
   infoIcon: {fileID: 1007033394}
@@ -4229,6 +4244,7 @@ MonoBehaviour:
   deckIcon: {fileID: 412249779}
   deck: {fileID: 136098479}
   infoBackground: {fileID: 468306506}
+  secondDeckIcon: {fileID: 0}
   avatar: {fileID: 0}
   avatarBackground: {fileID: 527212935}
   infoIcon: {fileID: 1503281037}

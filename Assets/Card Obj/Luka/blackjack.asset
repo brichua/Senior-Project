@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: blackjack
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Blackjack
+  id: 284b9ef9db2bb4e478cdddb2cda87b3e
+  cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  vip: 0
+  info: Once per turn you may play a minion from your discard pile by paying the
+    cost. If you have x or more score they cost 0
+  performer: 1
+  stageEffect: 0
+  cost: 0
+  influence: 0
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: -8074874087796675718, guid: e6dc9e995c845c5458d6d2a8a8b1188e, type: 3}
+  characterImage: {fileID: 3579603979471667736, guid: 8bfc675cb82543a479e9955453440ee8, type: 3}
+  iconImage: {fileID: 2036259212056758599, guid: ee5c1ee9b5ccb7243b8b23cb9f9ac3ec, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

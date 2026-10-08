@@ -28,4 +28,4 @@ MonoBehaviour:
   characterImage: {fileID: 2262344520712702872, guid: 1f22e6be2b344344b9ec82bca7fdfbae, type: 3}
   iconImage: {fileID: 2726957020727081604, guid: 959357c41e6b2d54088086d4d63efaf0, type: 3}
   popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
-  playSfx: {fileID: 0}
+  playSfx: {fileID: 8300000, guid: 064b7ddc806e6a845a3d6434d5e7a265, type: 3}

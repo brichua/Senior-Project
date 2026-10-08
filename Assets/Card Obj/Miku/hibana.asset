@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: hibana
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Hibana
+  id: e6588ac7bdd72e743b794f6a720ed2e0
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 0
+  info: 'Move a minion to any tile on your side (including middle) (quick) '
+  performer: 0
+  stageEffect: 1
+  cost: 1
+  influence: 0
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: -28490359535183769, guid: 23a3dea36c813604882f80c393849c32, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: 228201058075415409, guid: c27cbf56452bca04d8c85c9f1dc2f204, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

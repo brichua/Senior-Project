@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: batsbubyou
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Batsubyou
+  id: eef2c099c8d40a446a5a93090ff2c29b
+  cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  vip: 0
+  info: An ally on a contested tile gets +3 this round
+  performer: 0
+  stageEffect: 1
+  cost: 1
+  influence: 0
+  flags: []
+  stageInfluenceChange: 1
+  cardImage: {fileID: 6117298332840646152, guid: 3de123c342b27f44ca6dcb82a7762e38, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: 7182879251152026069, guid: a1f562f90eef7de4798f0fc53b6d3978, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

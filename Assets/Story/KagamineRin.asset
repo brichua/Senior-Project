@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5dcffc070f2c7d45a208d446b2d3945, type: 3}
+  m_Name: KagamineRin
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.StoryData
+  id: story-kagaminerin
+  tutorial: 0
+  storyClass: 2
+  header: KagamineRin
+  prologue:
+    lines: []
+  epilogue:
+    lines: []
+  auditions:
+  - opponent: 0
+    deckDescription: 
+    location: 
+    auditionText: 
+    firstClearReward: {fileID: 0}
+    easyDeck: {fileID: 0}
+    mediumDeck: {fileID: 0}
+    hardDeck: {fileID: 0}
+    before:
+      lines: []
+    after:
+      lines: []
+  - opponent: 1
+    deckDescription: 
+    location: 
+    auditionText: 
+    firstClearReward: {fileID: 0}
+    easyDeck: {fileID: 0}
+    mediumDeck: {fileID: 0}
+    hardDeck: {fileID: 0}
+    before:
+      lines: []
+    after:
+      lines: []
+  - opponent: 3
+    deckDescription: 
+    location: 
+    auditionText: 
+    firstClearReward: {fileID: 0}
+    easyDeck: {fileID: 0}
+    mediumDeck: {fileID: 0}
+    hardDeck: {fileID: 0}
+    before:
+      lines: []
+    after:
+      lines: []
+  - opponent: 4
+    deckDescription: 
+    location: 
+    auditionText: 
+    firstClearReward: {fileID: 0}
+    easyDeck: {fileID: 0}
+    mediumDeck: {fileID: 0}
+    hardDeck: {fileID: 0}
+    before:
+      lines: []
+    after:
+      lines: []
+  - opponent: 5
+    deckDescription: 
+    location: 
+    auditionText: 
+    firstClearReward: {fileID: 0}
+    easyDeck: {fileID: 0}
+    mediumDeck: {fileID: 0}
+    hardDeck: {fileID: 0}
+    before:
+      lines: []
+    after:
+      lines: []
