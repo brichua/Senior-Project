@@ -9,6 +9,8 @@ and run a small reproducible test.
 1. Open this repository in **Unity 6000.5.4f1**. The required version is also
    recorded in `ProjectSettings/ProjectVersion.txt`.
 2. Open one scene from `Assets/Scenes/`:
+   - `Story.unity` contains the Miku route. Enter Play Mode, select Hatsune Miku,
+     then Begin. Choose a rival and Miku deck to start an audition.
    - `Game Bri.unity` is the current team gameplay scene.
    - `Game Bri - Enemy AI Test.unity` is an isolated manual test scene for the
      Enemy AI. It uses a minimum of 3 energy so the supplied cost-3 cards can
@@ -25,6 +27,7 @@ states whether it is your turn, the enemy's turn, scoring, or a paused state.
 - [Game rules](Docs/GameRules.md) — current implemented rules, not a future design wish list.
 - [Enemy AI](Docs/EnemyAI.md) — explainable scoring policy and scene setup.
 - [Playtest log](Docs/Playtest.md) — reproducible tests and observed results.
+- [Story integration](Docs/StoryIntegration.md) — Miku flow, prototype content and verification.
 
 Run the Enemy AI scorer checks from the repository root with:
 
@@ -41,3 +44,11 @@ Discord is for short updates and links, not the only location of a decision.
 
 When changing a gameplay feature, update the relevant `Docs/` page and add a
 short playtest entry with the scene, steps, result, and any remaining issue.
+
+## Local workspace
+
+The user's single Unity project directory is `D:/2026 Fall/开发/VirtualEncore`.
+Story, current main and the existing enemy AI are combined here on
+`weien/preview-rules-qa`. Continue in this directory; do not create another Unity
+project or worktree unless the user requests it. The temporary story worktree was
+removed after its committed contents were merged and its verification logs preserved.
