@@ -29,3 +29,7 @@ record the outcome above:
 6. Phase transition: two consecutive passes move Preparation → Performance →
    EndRound → next round.
 7. Pause and resume: no side can act while paused; state resumes afterward.
+
+## October 7, 2026: narrator nameplate
+
+Scene: `Assets/Scenes/Story.unity`, in the original `VirtualEncore` project. Opened the Miku prologue in Play Mode and advanced through narrator, Miku and narrator lines. Confirmed that narration hides both the speaker label and the complete nameplate, character speech restores both, and returning to narration hides them again. All four narration background sprite references resolve. Visual captures in `Logs/NarratorUI/narrator.png` and `character.png` show the body frame and text remain in place. No C# compile errors were found and Console reported no errors after the preview. Startup had an existing Unity MCP HTTP 403 transport error. Preview did not complete a story dialogue or write viewed-story progress.

@@ -14,6 +14,18 @@ TextureImporter:
   - first:
       213: 5710066188115360323
     second: dialogue ui_3
+  - first:
+      213: 77010001
+    second: narration body
+  - first:
+      213: 77010002
+    second: narration top left
+  - first:
+      213: 77010003
+    second: narration top
+  - first:
+      213: 77010004
+    second: narration top right
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -209,6 +221,94 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: narration body
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 35
+        width: 1494
+        height: 209
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d3693337802d477fbacb1f6daddfee03
+      internalID: 77010001
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narration top left
+      rect:
+        serializedVersion: 2
+        x: 43
+        y: 244
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 01a13c617d3d4f16a62f8bbf8fe4cc9c
+      internalID: 77010002
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narration top
+      rect:
+        serializedVersion: 2
+        x: 420
+        y: 244
+        width: 1093
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cfb45e64b147493b9dc106e45c04c6a1
+      internalID: 77010003
+      vertices: []
+      indices:
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: narration top right
+      rect:
+        serializedVersion: 2
+        x: 1513
+        y: 244
+        width: 24
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData:
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94b0b2a1dcbb47f181d9b6fc52397680
+      internalID: 77010004
+      vertices: []
+      indices:
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -227,6 +327,10 @@ TextureImporter:
       dialogue ui_1: -3627492542125140155
       dialogue ui_2: -4574108362338576619
       dialogue ui_3: 5710066188115360323
+      narration body: 77010001
+      narration top left: 77010002
+      narration top: 77010003
+      narration top right: 77010004
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

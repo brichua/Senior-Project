@@ -56,3 +56,7 @@ The initial story implementation was authored on `weien/miku-story`, based on fe
 ### Verification after consolidation
 
 On October 7, Unity 6000.5.4f1 compiled the combined original project and the full Miku flow check again returned PASS (`Logs/miku-story-checks.txt`; `Logs/one-project-unity-checks.log`). It exercises the same twelve sequences and five encounters with the flag-aware enemy AI now present. Standalone checks also passed: 766 PreviewRules, 10 EnemyActionScorer and 671 EnemyPlacementScorer checks. Original local Unity MCP package edits and the untracked preview QA files were checked against their pre-merge hashes and preserved exactly. The editor was restarted after refresh stopped responding.
+
+### Narrator presentation
+
+Narrator (case-insensitive) or blank speakers hide the speaker label and use the background without the nameplate; character dialogue restores the original background and name. The original nameplate is baked into the dialogue atlas, so the narration background assembles four clean sprite regions from the same unchanged PNG. Dialogue text, portraits and the log keep their existing behavior. The Story scene assigns both background variants.
