@@ -20,6 +20,7 @@ public class SFXManager : MonoBehaviour
     public AudioClip adjust_card_num_3;
     public AudioClip typing;
     public AudioClip class_select;
+    public AudioClip enter_game;
     
 
     private AudioSource audioSource;
@@ -147,5 +148,10 @@ public class SFXManager : MonoBehaviour
     {
         if (audioSource && class_select)
             audioSource.PlayOneShot(class_select);
+    }
+    public void PlayEnterGameSound()
+    {
+        if (audioSource && enter_game)
+            audioSource.PlayOneShot(enter_game);
     }
 }

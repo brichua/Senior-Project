@@ -183,8 +183,10 @@ namespace VocaloidTCG.BoardUI
             
             backdrop.Speed = Mathf.Max(1, board.setup.selectedBackgroundSpeed);
             openingParticles.EmitBurst(portraitHomes[starter], colors[starter]);
-            if(board.sfx) board.sfx.PlayClickSound();
             
+            //filler sound
+            if (board.sfx) board.sfx.PlayEndTurnSound();
+
             yield return Animate(winnerSeconds, t => {
                 AimSpotlight(targetX);
                 float pop = 1 + 0.16f * Smooth(Mathf.Clamp01(t * 4)) + Mathf.Sin(Mathf.Clamp01(t * 3) * Mathf.PI) * 0.07f;
@@ -196,6 +198,7 @@ namespace VocaloidTCG.BoardUI
             backdrop.ShowRedraw();
             for(int i = 0; i < Math.Max(cards[0].Count, cards[1].Count); i++){
                 int slot = i;
+                if (board.sfx) board.sfx.PlayCardDrawSound();
                 yield return Animate(cardTravelSeconds, t => {
                     for(int side = 0; side < 2; side++) if(slot < cards[side].Count){
                         var card = cards[side][slot]; card.gameObject.SetActive(true);
@@ -203,7 +206,6 @@ namespace VocaloidTCG.BoardUI
                         card.Rect.localScale = Vector3.one * Mathf.Lerp(0.5f, 1, Smooth(t));
                     }
                 });
-                if(board.sfx) board.sfx.PlayCardDrawSound();
             }
             
             selecting = true; submit.gameObject.SetActive(true); RefreshSelection();
@@ -226,13 +228,15 @@ namespace VocaloidTCG.BoardUI
                 card.selected = true;
                 redrawParticles.EmitBurst(HandPosition(1, card.index, true), colors[1]);
                 Vector2 from = card.Rect.anchoredPosition;
+                if (board.sfx) board.sfx.PlayCardDrawSound();
                 yield return Animate(0.25f, t => card.Rect.anchoredPosition = Vector2.Lerp(from, HandPosition(1, card.index, true), Smooth(t)));
             }
             
             var selectedCards = cards.SelectMany(c => c).Where(c => c.selected).ToList();
             var positions = selectedCards.Select(c => c.Rect.anchoredPosition).ToArray();
+            if (selectedCards.Count > 0) { if (board.sfx) board.sfx.PlayCardDrawSound(); }
             yield return Animate(cardTravelSeconds, t => {
-                for(int i = 0; i < selectedCards.Count; i++){
+                for (int i = 0; i < selectedCards.Count; i++){ 
                     var card = selectedCards[i];
                     card.Rect.anchoredPosition = Vector2.Lerp(positions[i], DeckPosition(card.opponent ? 1 : 0), Smooth(t));
                     card.Rect.localScale = Vector3.one * (1 - t);
@@ -245,8 +249,9 @@ namespace VocaloidTCG.BoardUI
             }
             
             foreach(var card in selectedCards) BindCard(card);
+            if (selectedCards.Count > 0) { if (board.sfx) board.sfx.PlayCardDrawSound(); }
             yield return Animate(cardTravelSeconds, t => {
-                foreach(var card in selectedCards){
+                foreach (var card in selectedCards) {
                     int side = card.opponent ? 1 : 0;
                     card.Rect.anchoredPosition = Vector2.Lerp(DeckPosition(side), HandPosition(side, card.index, false), Smooth(t));
                     card.Rect.localScale = Vector3.one * t;
@@ -256,8 +261,9 @@ namespace VocaloidTCG.BoardUI
             yield return Animate(0.8f, t => {});
             var allCards = cards.SelectMany(c => c).ToList();
             var starts = allCards.Select(c => c.Rect.anchoredPosition).ToArray();
+            if (board.sfx) board.sfx.PlayCardDrawSound();
             yield return Animate(0.65f, t => {
-                for(int i = 0; i < allCards.Count; i++){
+                for (int i = 0; i < allCards.Count; i++){
                     var card = allCards[i];
                     card.Rect.anchoredPosition = Vector2.Lerp(starts[i], BoardDeckPosition(card.opponent ? 1 : 0), Smooth(t));
                     card.Rect.localScale = Vector3.one * Mathf.Lerp(1, 0.22f, t);
@@ -280,7 +286,13 @@ namespace VocaloidTCG.BoardUI
             bool changed = card.selected != selected;
             card.selected = selected;
             card.Rect.anchoredPosition = HandPosition(0, card.index, selected);
-            if(changed && redrawParticles) redrawParticles.EmitBurst(card.Rect.anchoredPosition, colors[0]);
+            if (changed)
+            {
+                if (board.sfx) board.sfx.PlayClickSound();
+
+                if (redrawParticles)
+                    redrawParticles.EmitBurst(card.Rect.anchoredPosition, colors[0]);
+            }
             RefreshSelection();
         }
 
@@ -433,7 +445,7 @@ namespace VocaloidTCG.BoardUI
             SpawnCards(side);
         }
 
-        private void SubmitHand(){ if(CanSelect){ submitted = true; HideCardInfo(); } }
+        private void SubmitHand(){ if(CanSelect){ submitted = true; HideCardInfo(); if (board.sfx) board.sfx.PlayEnterGameSound(); } }
 
         private void Diamond(Transform parent, Vector2 center, float radius, Color tint){
             for(int i = 0; i < 4; i++){

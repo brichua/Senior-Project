@@ -5596,6 +5596,7 @@ MonoBehaviour:
   adjust_card_num_3: {fileID: 0}
   typing: {fileID: 0}
   class_select: {fileID: 0}
+  enter_game: {fileID: 8300000, guid: a169265f980b6f4488583108cd8c4372, type: 3}
 --- !u!82 &1288955614
 AudioSource:
   m_ObjectHideFlags: 0
