@@ -9,8 +9,9 @@ and run a small reproducible test.
 1. Open this repository in **Unity 6000.5.4f1**. The required version is also
    recorded in `ProjectSettings/ProjectVersion.txt`.
 2. Open one scene from `Assets/Scenes/`:
-   - `Story.unity` contains the Miku route. Enter Play Mode, select Hatsune Miku,
-     then Begin. Choose a rival and Miku deck to start an audition.
+   - `Story.unity` contains all six reviewed character routes. Enter Play Mode,
+     select a singer, then Begin. A starter deck is provided if no usable deck
+     for that singer exists. Choose a rival and deck to start an audition.
    - `Game Bri.unity` is the current team gameplay scene.
    - `Game Bri - Enemy AI Test.unity` is an isolated manual test scene for the
      Enemy AI. It uses a minimum of 3 energy so the supplied cost-3 cards can
@@ -27,7 +28,7 @@ states whether it is your turn, the enemy's turn, scoring, or a paused state.
 - [Game rules](Docs/GameRules.md) — current implemented rules, not a future design wish list.
 - [Enemy AI](Docs/EnemyAI.md) — explainable scoring policy and scene setup.
 - [Playtest log](Docs/Playtest.md) — reproducible tests and observed results.
-- [Story integration](Docs/StoryIntegration.md) — Miku flow, prototype content and verification.
+- [Story integration](Docs/StoryIntegration.md) — six-route flow, prototype content and verification.
 
 Run the Enemy AI scorer checks from the repository root with:
 

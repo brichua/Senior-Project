@@ -1,0 +1,2205 @@
+{
+  "sourceSha256": "ac62c0d89298727a8c776711744198dee4046d3d93aba6ffe1a605b25f98acab",
+  "routes": [
+    {
+      "assetName": "HatsuneMiku",
+      "characterClass": 0,
+      "opening": {
+        "lines": [
+          {
+            "speaker": "Narrator",
+            "text": "A tour audition notice sits beside Miku's open notebook. The chorus on the page has been crossed out twice."
+          },
+          {
+            "speaker": "Miku",
+            "text": "Hmm. Nope. Still doesn't sound right."
+          },
+          {
+            "speaker": "Miku",
+            "text": "Maybe if I move the chorus up..."
+          },
+          {
+            "speaker": "Narrator",
+            "text": "Her phone buzzes with another reminder about the auditions."
+          },
+          {
+            "speaker": "Miku",
+            "text": "I know, I know! I'm entering!"
+          },
+          {
+            "speaker": "Miku",
+            "text": "...Just as soon as I figure out what I'm singing."
+          }
+        ]
+      },
+      "ending": {
+        "lines": [
+          {
+            "speaker": "Narrator",
+            "text": "The final audition results name Miku as headliner. Her notebook is open to a finished song."
+          },
+          {
+            "speaker": "Rin",
+            "text": "So, what's the first song?"
+          },
+          {
+            "speaker": "Miku",
+            "text": "I was hoping we could all do it together."
+          },
+          {
+            "speaker": "Len",
+            "text": "All six of us? You could've asked first!"
+          },
+          {
+            "speaker": "Miku",
+            "text": "I'm asking now!"
+          },
+          {
+            "speaker": "MEIKO",
+            "text": "You already wrote the parts, didn't you?"
+          },
+          {
+            "speaker": "Miku",
+            "text": "...Maybe a few."
+          },
+          {
+            "speaker": "Narrator",
+            "text": "She turns the notebook around. Six names are written beside the first verse."
+          }
+        ]
+      },
+      "auditions": [
+        {
+          "opponent": 1,
+          "location": "The Rooftop Theatre",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Len is checking the sound on the rooftop stage. A KAITO concert ticket sticks out of his notebook."
+              },
+              {
+                "speaker": "Miku",
+                "text": "You've got that ticket with you again?"
+              },
+              {
+                "speaker": "Len",
+                "text": "It's good luck!"
+              },
+              {
+                "speaker": "Miku",
+                "text": "Does it work for auditions?"
+              },
+              {
+                "speaker": "Len",
+                "text": "Guess we're about to find out."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Hey, save some luck for me!"
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Len keeps humming a phrase as he unplugs his microphone."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Was that in your song? I don't remember it."
+              },
+              {
+                "speaker": "Len",
+                "text": "Made it up just now."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Can you sing it again? I liked it!"
+              },
+              {
+                "speaker": "Len",
+                "text": "Sure. But I'm writing it down first."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Fair. It's already stuck in my head."
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 2,
+          "location": "The Tram Depot",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Rin is testing the speakers at the old tram depot. The bass rattles the railing."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Miku! You're up next. Hope you brought something good!"
+              },
+              {
+                "speaker": "Miku",
+                "text": "I did. Mostly."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Mostly?"
+              },
+              {
+                "speaker": "Miku",
+                "text": "I'm still deciding on the ending."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Then you'd better decide fast. I'm not going easy on you!"
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "The crowd starts clapping the rhythm from Miku's final chorus. Rin joins in before noticing."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Ah! You're doing it too!"
+              },
+              {
+                "speaker": "Rin",
+                "text": "It's stuck in my head. That's not a compliment."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Then why are you still clapping?"
+              },
+              {
+                "speaker": "Rin",
+                "text": "Next time, I'm bringing a chorus you can't get rid of."
+              },
+              {
+                "speaker": "Miku",
+                "text": "I'll look forward to it!"
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 3,
+          "location": "The Harbor Stage",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "KAITO is waving at the camera set up by the harbor stage. Its indicator light is still off."
+              },
+              {
+                "speaker": "Miku",
+                "text": "KAITO, you're not live yet."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Ah. That explains why nobody's waving back."
+              },
+              {
+                "speaker": "Miku",
+                "text": "You could wave at the people right in front of you."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "You're right! Hello, everyone!"
+              },
+              {
+                "speaker": "Miku",
+                "text": "Haha! Save some energy for our match!"
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "The broadcast ends, but someone beyond the harbor fence is still singing KAITO's chorus."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Oh! He stayed for the whole show."
+              },
+              {
+                "speaker": "Miku",
+                "text": "And he's singing your chorus! I worked hard on mine, too."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Want to try yours together?"
+              },
+              {
+                "speaker": "Miku",
+                "text": "Really?"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Sure. Let's give him another song to take home."
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 4,
+          "location": "The Converted Cinema",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "MEIKO pins a full set list over a poster advertising fifteen-second song previews."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Are the previews really only fifteen seconds?"
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "That's what the organizers asked for."
+              },
+              {
+                "speaker": "Miku",
+                "text": "That's barely enough for my intro!"
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Then maybe the intro needs some editing."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Hey! I worked hard on it!"
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "The applause is still going when Miku returns to the side of the stage."
+              },
+              {
+                "speaker": "Miku",
+                "text": "I thought that quiet part was going to lose them."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "You looked ready to skip it."
+              },
+              {
+                "speaker": "Miku",
+                "text": "I almost did."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Glad you didn't. It was my favorite part."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Really? ...Okay, that one's staying."
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 5,
+          "location": "The Planetarium",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Luka is comparing three lyric sheets under the planetarium's projected stars."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Three versions? Which one are you using?"
+              },
+              {
+                "speaker": "Luka",
+                "text": "I haven't decided yet."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Oh, good. My own ending's still a mess."
+              },
+              {
+                "speaker": "Luka",
+                "text": "You don't seem especially worried."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Ask me again when we're onstage!"
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "A folded note beside Luka's music stand reads: 'For whoever sings it next.'"
+              },
+              {
+                "speaker": "Miku",
+                "text": "Is that from whoever wrote your song?"
+              },
+              {
+                "speaker": "Luka",
+                "text": "I wish I knew."
+              },
+              {
+                "speaker": "Miku",
+                "text": "They could've signed it, at least."
+              },
+              {
+                "speaker": "Luka",
+                "text": "There isn't much else to go on."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Well, I hope they get to hear you sing it!"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "assetName": "KagamineLen",
+      "characterClass": 1,
+      "opening": {
+        "lines": [
+          {
+            "speaker": "Narrator",
+            "text": "Len replays an old KAITO concert for the third time today."
+          },
+          {
+            "speaker": "Rin",
+            "text": "Watching it again?"
+          },
+          {
+            "speaker": "Len",
+            "text": "Shh. This is the best part."
+          },
+          {
+            "speaker": "Rin",
+            "text": "You say that about every song. What are you singing at the auditions?"
+          },
+          {
+            "speaker": "Len",
+            "text": "...Still working on it."
+          }
+        ]
+      },
+      "ending": {
+        "lines": [
+          {
+            "speaker": "Narrator",
+            "text": "Len's name tops the tour poster. In his notebook is an old KAITO concert ticket, covered in notes on the back."
+          },
+          {
+            "speaker": "KAITO",
+            "text": "Ready for opening night?"
+          },
+          {
+            "speaker": "Len",
+            "text": "Yeah. I've got the first song picked out."
+          },
+          {
+            "speaker": "KAITO",
+            "text": "Oh? Which one?"
+          },
+          {
+            "speaker": "Len",
+            "text": "Mine. Lights Left On. You'll sing the second verse, right?"
+          },
+          {
+            "speaker": "KAITO",
+            "text": "If you teach it to me!"
+          },
+          {
+            "speaker": "Len",
+            "text": "Just try to keep up."
+          },
+          {
+            "speaker": "Narrator",
+            "text": "Len laughs and heads toward the stage, with KAITO following him."
+          }
+        ]
+      },
+      "auditions": [
+        {
+          "opponent": 0,
+          "location": "The Lantern Courtyard",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Miku catches Len practicing KAITO's chorus near the courtyard stage."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Isn't that KAITO's song?"
+              },
+              {
+                "speaker": "Len",
+                "text": "You recognized it that fast?!"
+              },
+              {
+                "speaker": "Miku",
+                "text": "You've been humming it all morning."
+              },
+              {
+                "speaker": "Len",
+                "text": "It's a warm-up. I've got my own song too!"
+              },
+              {
+                "speaker": "Miku",
+                "text": "Then let's hear it!"
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "People near the food stalls are humming a melody from Len's winning performance."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Hear that? They're singing your chorus!"
+              },
+              {
+                "speaker": "Len",
+                "text": "Wait. My chorus?"
+              },
+              {
+                "speaker": "Miku",
+                "text": "It's catchy. I nearly joined in myself."
+              },
+              {
+                "speaker": "Len",
+                "text": "Then next time, you should."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Deal! You'll have to teach me the words."
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 2,
+          "location": "The Tram Depot",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Rin stops rehearsing when Len changes the rhythm without warning."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Hey! That's not the count!"
+              },
+              {
+                "speaker": "Len",
+                "text": "It is now."
+              },
+              {
+                "speaker": "Rin",
+                "text": "You could've warned me!"
+              },
+              {
+                "speaker": "Len",
+                "text": "What, can't keep up?"
+              },
+              {
+                "speaker": "Rin",
+                "text": "Just watch me."
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Rin is still tapping the rhythm Len used in their final round."
+              },
+              {
+                "speaker": "Rin",
+                "text": "That pause was so annoying."
+              },
+              {
+                "speaker": "Len",
+                "text": "You liked it."
+              },
+              {
+                "speaker": "Rin",
+                "text": "I did not!"
+              },
+              {
+                "speaker": "Len",
+                "text": "You're tapping it right now."
+              },
+              {
+                "speaker": "Rin",
+                "text": "So I can beat it next time!"
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 3,
+          "location": "The Harbor Stage",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "KAITO notices an old concert ticket sticking out of Len's notebook."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "You were at that show? The wind took my set list halfway through!"
+              },
+              {
+                "speaker": "Len",
+                "text": "Wait. That long pause wasn't planned?"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "I was waiting for someone to bring it back."
+              },
+              {
+                "speaker": "Len",
+                "text": "I thought you were building suspense!"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "...Can we keep that between us?"
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Len checks the results twice. KAITO holds out his hand."
+              },
+              {
+                "speaker": "Len",
+                "text": "I really won? You didn't go easy on me?"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Not a bit. That last chorus almost got away from me."
+              },
+              {
+                "speaker": "Len",
+                "text": "I used to practice your songs every day."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Then it's about time I practiced one of yours."
+              },
+              {
+                "speaker": "Len",
+                "text": "Heh. I've got a new one for you."
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 4,
+          "location": "The Converted Cinema",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Len finishes rehearsing a high note. MEIKO looks up from her set list."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Nice note. What happened to the verse before it?"
+              },
+              {
+                "speaker": "Len",
+                "text": "I cut it. It's about missing the last train. Not exactly exciting."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Hah. KAITO and I did that once."
+              },
+              {
+                "speaker": "Len",
+                "text": "Really? What happened?"
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Long story. Sing me that verse first."
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Len keeps the verse about missing the train in his winning performance."
+              },
+              {
+                "speaker": "Len",
+                "text": "I thought everyone would get bored during that part."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Did you see the guy in the front row? He laughed at the last line."
+              },
+              {
+                "speaker": "Len",
+                "text": "Really? I nearly cut the whole verse."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Good thing you didn't."
+              },
+              {
+                "speaker": "Len",
+                "text": "I'm keeping the high note too, just saying."
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 5,
+          "location": "The Planetarium",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Luka plays an unsigned melody. Len stops to listen."
+              },
+              {
+                "speaker": "Len",
+                "text": "Huh. Never heard this one. Who's it by?"
+              },
+              {
+                "speaker": "Luka",
+                "text": "That's what I'm trying to find out."
+              },
+              {
+                "speaker": "Len",
+                "text": "Really? You don't know?"
+              },
+              {
+                "speaker": "Luka",
+                "text": "I know how it goes. That's a start."
+              },
+              {
+                "speaker": "Len",
+                "text": "Play the chorus again? I like that bit."
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Luka listens as Len stops halfway through a melody of his own."
+              },
+              {
+                "speaker": "Luka",
+                "text": "You changed the ending."
+              },
+              {
+                "speaker": "Len",
+                "text": "Twice. Neither version sounds right."
+              },
+              {
+                "speaker": "Luka",
+                "text": "Try ending it a beat earlier."
+              },
+              {
+                "speaker": "Len",
+                "text": "Won't it sound unfinished?"
+              },
+              {
+                "speaker": "Luka",
+                "text": "Play it once and see."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "assetName": "KagamineRin",
+      "characterClass": 2,
+      "opening": {
+        "lines": [
+          {
+            "speaker": "Narrator",
+            "text": "Rin pins the audition invitation to an amp and starts circling names."
+          },
+          {
+            "speaker": "Len",
+            "text": "You circled my name twice."
+          },
+          {
+            "speaker": "Rin",
+            "text": "Making sure you don't chicken out."
+          },
+          {
+            "speaker": "Len",
+            "text": "I'm entering. And I'm going to beat you."
+          },
+          {
+            "speaker": "Rin",
+            "text": "You've been saying that all week."
+          },
+          {
+            "speaker": "Len",
+            "text": "Just giving you time to prepare!"
+          }
+        ]
+      },
+      "ending": {
+        "lines": [
+          {
+            "speaker": "Narrator",
+            "text": "The final results name Rin as headliner. She folds her marked-up audition invitation."
+          },
+          {
+            "speaker": "Len",
+            "text": "You won. Can you stop looking so smug now?"
+          },
+          {
+            "speaker": "Rin",
+            "text": "Nope."
+          },
+          {
+            "speaker": "Len",
+            "text": "So what are you doing with the headline spot?"
+          },
+          {
+            "speaker": "Rin",
+            "text": "Putting everyone on the opening-night set list."
+          },
+          {
+            "speaker": "Len",
+            "text": "Even me?"
+          },
+          {
+            "speaker": "Rin",
+            "text": "Especially you. I still want that rematch."
+          },
+          {
+            "speaker": "Narrator",
+            "text": "Len writes REMATCH on the back of her invitation. Rin grins."
+          }
+        ]
+      },
+      "auditions": [
+        {
+          "opponent": 0,
+          "location": "The Lantern Courtyard",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "People waiting for food are singing along as Miku checks her microphone."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Did you start without me?!"
+              },
+              {
+                "speaker": "Miku",
+                "text": "It's just a sound check!"
+              },
+              {
+                "speaker": "Rin",
+                "text": "Tell that to your fan club over there."
+              },
+              {
+                "speaker": "Miku",
+                "text": "They know the chorus. Want to give them a new one?"
+              },
+              {
+                "speaker": "Rin",
+                "text": "Gladly. Hope you can keep up!"
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Rin wins, but the crowd keeps singing the chorus with the wrong words."
+              },
+              {
+                "speaker": "Rin",
+                "text": "That's not even close to the lyrics!"
+              },
+              {
+                "speaker": "Miku",
+                "text": "I think they're singing about noodles."
+              },
+              {
+                "speaker": "Rin",
+                "text": "...Okay, that does fit the rhythm."
+              },
+              {
+                "speaker": "Miku",
+                "text": "See? It's catchy!"
+              },
+              {
+                "speaker": "Rin",
+                "text": "Don't encourage them. I'm gonna start singing it too."
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 1,
+          "location": "The Rooftop Theatre",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Len is rehearsing an ending Rin hasn't heard before."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Hold on. Since when do you sing it like that?"
+              },
+              {
+                "speaker": "Len",
+                "text": "Since yesterday."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Yesterday?! We practiced this all week!"
+              },
+              {
+                "speaker": "Len",
+                "text": "Worried?"
+              },
+              {
+                "speaker": "Rin",
+                "text": "About you? Never. About your timing? Constantly."
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Rin wins, but Len is still humming the new ending he tried in the final round."
+              },
+              {
+                "speaker": "Len",
+                "text": "I almost had you with that last bit."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Almost. I heard you coming a mile away."
+              },
+              {
+                "speaker": "Len",
+                "text": "Then I'll change it again."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Go ahead. I'll come up with something new, too."
+              },
+              {
+                "speaker": "Len",
+                "text": "You never let me have anything, do you?"
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 3,
+          "location": "The Harbor Stage",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "KAITO adjusts a microphone while the harbor broadcast camera gets into position."
+              },
+              {
+                "speaker": "Rin",
+                "text": "KAITO! Bet I get the louder cheer!"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "You might want to test your microphone first."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Already did!"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "It's switched off."
+              },
+              {
+                "speaker": "Rin",
+                "text": "...That was a practice cheer."
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Rin strikes a victory pose at the camera just as its red light clicks off."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Hey! I wasn't finished!"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "The broadcast was."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Did anybody see that?"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "That gentleman by the fence did."
+              },
+              {
+                "speaker": "Narrator",
+                "text": "A dockworker copies her pose. Rin bursts out laughing."
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 4,
+          "location": "The Converted Cinema",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Rin is drumming on a seat back while MEIKO checks the set list."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Could you give that poor seat a break?"
+              },
+              {
+                "speaker": "Rin",
+                "text": "There's nobody here! It's too quiet."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "The doors don't open for another ten minutes."
+              },
+              {
+                "speaker": "Rin",
+                "text": "...Right. Well, they'll hear me when they get here."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "I'm counting on it."
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Rin wins with a slower song than usual and drops into a seat beside MEIKO."
+              },
+              {
+                "speaker": "Rin",
+                "text": "I thought I was going to speed up in that last verse."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Your foot definitely wanted to."
+              },
+              {
+                "speaker": "Rin",
+                "text": "But I didn't!"
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Nope. You kept it steady."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Don't sound so surprised!"
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 5,
+          "location": "The Planetarium",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Luka has three versions of the same song spread across a bench."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Is that homework? You look like you're grading papers."
+              },
+              {
+                "speaker": "Luka",
+                "text": "I'm trying to decide which verse to sing."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Pick the one you like best."
+              },
+              {
+                "speaker": "Luka",
+                "text": "And if I change my mind halfway through?"
+              },
+              {
+                "speaker": "Rin",
+                "text": "Then change the verse. You can do that!"
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Rin forgets a lyric, makes up another one, and still wins."
+              },
+              {
+                "speaker": "Luka",
+                "text": "Since when did that song mention the last tram?"
+              },
+              {
+                "speaker": "Rin",
+                "text": "Since I forgot what came next."
+              },
+              {
+                "speaker": "Luka",
+                "text": "It actually suited the melody."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Great! Then I meant to do it."
+              },
+              {
+                "speaker": "Luka",
+                "text": "Of course you did."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "assetName": "KAITO",
+      "characterClass": 3,
+      "opening": {
+        "lines": [
+          {
+            "speaker": "Narrator",
+            "text": "KAITO's phone plays the same chorus again. Miku looks over from her seat."
+          },
+          {
+            "speaker": "Miku",
+            "text": "Still watching that clip?"
+          },
+          {
+            "speaker": "KAITO",
+            "text": "It's past a hundred thousand views!"
+          },
+          {
+            "speaker": "Miku",
+            "text": "That's great! Does anyone know the next verse?"
+          },
+          {
+            "speaker": "KAITO",
+            "text": "Not yet. I'm entering the auditions to fix that."
+          },
+          {
+            "speaker": "Miku",
+            "text": "Then you'd better get rehearsing!"
+          }
+        ]
+      },
+      "ending": {
+        "lines": [
+          {
+            "speaker": "Narrator",
+            "text": "KAITO has won the headline spot. Backstage, he's trying to squeeze the words NEXT SHOW onto a small sign."
+          },
+          {
+            "speaker": "Len",
+            "text": "You're still making that sign?"
+          },
+          {
+            "speaker": "KAITO",
+            "text": "Of course! People keep asking where they can hear the full song."
+          },
+          {
+            "speaker": "Len",
+            "text": "Aren't they about to hear it right now?"
+          },
+          {
+            "speaker": "KAITO",
+            "text": "That's tonight. I'm thinking about the next concert!"
+          },
+          {
+            "speaker": "Len",
+            "text": "Haha! One show at a time, KAITO."
+          },
+          {
+            "speaker": "Narrator",
+            "text": "KAITO laughs, sets the sign by the entrance, and hurries onstage as the audience calls his name."
+          }
+        ]
+      },
+      "auditions": [
+        {
+          "opponent": 0,
+          "location": "The Lantern Courtyard",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Someone in the food queue is singing KAITO's famous chorus. Unfortunately, they've got the lyrics wrong."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "That's not quite how it goes..."
+              },
+              {
+                "speaker": "Miku",
+                "text": "They're having fun!"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "I know, I know. It's just—there's a whole second verse!"
+              },
+              {
+                "speaker": "Miku",
+                "text": "Then sing it! I'm curious too."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "You haven't heard it either?!"
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "KAITO wins. A few people near the stalls call for the second verse again."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Wait, you want that part?"
+              },
+              {
+                "speaker": "Miku",
+                "text": "They were singing along by the end!"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "I spent ages writing those lyrics, you know."
+              },
+              {
+                "speaker": "Miku",
+                "text": "And now you've got backup singers. Very enthusiastic ones."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Haha! All right, one more time!"
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 1,
+          "location": "The Rooftop Theatre",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Len pulls a worn concert ticket from his notebook as KAITO walks up."
+              },
+              {
+                "speaker": "Len",
+                "text": "KAITO! Could you sign this?"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Of course! Oh, that show—the wind took my set list."
+              },
+              {
+                "speaker": "Len",
+                "text": "So that long pause wasn't planned?"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "I was waiting for someone to bring it back."
+              },
+              {
+                "speaker": "Len",
+                "text": "I thought it was dramatic!"
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "After KAITO's win, Len hands him a demo with a handwritten track list."
+              },
+              {
+                "speaker": "Len",
+                "text": "I made you a recording. It's a bit rough."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "A song of your own? I'd love to hear it."
+              },
+              {
+                "speaker": "Len",
+                "text": "Just ignore the second verse. I'm fixing it."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Now I'm curious about the second verse."
+              },
+              {
+                "speaker": "Len",
+                "text": "KAITO!"
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 2,
+          "location": "The Tram Depot",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Rin leans over KAITO's shoulder while he reads comments on his phone."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Still checking those numbers?"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Just seeing what people think."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Then here's my review: you're taking forever to start."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "That's a little harsh, don't you think?"
+              },
+              {
+                "speaker": "Rin",
+                "text": "Want a better review? Beat me first!"
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "KAITO wins, but the crowd immediately starts chanting for another song."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Hah! Looks like you're not getting off that easily."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "I hadn't planned an encore."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Seriously? You've got all these people right here!"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Well, do you know the harmony?"
+              },
+              {
+                "speaker": "Rin",
+                "text": "Obviously. Move over!"
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 4,
+          "location": "The Converted Cinema",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "KAITO studies a promotional message on his phone. MEIKO glances at his expression."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Bad news?"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "They want another fifteen-second clip. The exact same chorus."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Well, are you going to give them one?"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "I was hoping to sing the whole thing for once."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Then put the phone down. You've got a stage right there."
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "KAITO comes backstage after singing the whole song, still out of breath."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "They stayed! Even for the quiet verse."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Good. You looked pretty happy up there."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "I was! Do you think they'd want an encore?"
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Probably. But have some water first."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Okay. Then an encore!"
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 5,
+          "location": "The Planetarium",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "KAITO has his phone out, ready to share a clip of Luka rehearsing."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "That sounded lovely. Mind if I post it?"
+              },
+              {
+                "speaker": "Luka",
+                "text": "Not yet. I still don't know who wrote the song."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Oh. I was about to credit you."
+              },
+              {
+                "speaker": "Luka",
+                "text": "Which would make things rather awkward if the writer saw it."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Right. Good thing I asked first!"
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "KAITO shows Luka a draft post asking who wrote her unsigned melody."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "I included the opening notes. What do you think?"
+              },
+              {
+                "speaker": "Luka",
+                "text": "Much better. But please change that photo."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "You look very thoughtful."
+              },
+              {
+                "speaker": "Luka",
+                "text": "KAITO. My eyes are closed."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "...I'll change it."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "assetName": "MEIKO",
+      "characterClass": 4,
+      "opening": {
+        "lines": [
+          {
+            "speaker": "Narrator",
+            "text": "KAITO holds up the proposed tour promo. Almost every part of MEIKO's song is crossed out except the chorus."
+          },
+          {
+            "speaker": "KAITO",
+            "text": "Good news! They love your chorus."
+          },
+          {
+            "speaker": "MEIKO",
+            "text": "And the rest of the song apparently offended them."
+          },
+          {
+            "speaker": "KAITO",
+            "text": "It's a fifteen-second preview."
+          },
+          {
+            "speaker": "MEIKO",
+            "text": "I know. I'm not putting on a fifteen-second concert, though."
+          },
+          {
+            "speaker": "Narrator",
+            "text": "She takes out a red pencil and circles the full set list."
+          }
+        ]
+      },
+      "ending": {
+        "lines": [
+          {
+            "speaker": "Narrator",
+            "text": "MEIKO's name tops the tour poster. She checks the full opening set list while KAITO holds up his phone."
+          },
+          {
+            "speaker": "KAITO",
+            "text": "The new preview's doing well. They're asking when the full version comes out."
+          },
+          {
+            "speaker": "MEIKO",
+            "text": "Tonight, if everyone gets onstage on time."
+          },
+          {
+            "speaker": "KAITO",
+            "text": "So... should I post the whole song afterward?"
+          },
+          {
+            "speaker": "MEIKO",
+            "text": "Sure. First, let's give them a show worth recording."
+          },
+          {
+            "speaker": "Narrator",
+            "text": "She tucks the red pencil behind her ear and heads toward the stage as the house lights dim."
+          }
+        ]
+      },
+      "auditions": [
+        {
+          "opponent": 0,
+          "location": "The Lantern Courtyard",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "MEIKO rehearses an introduction. She stops halfway through and scratches out three lines."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Wait, I liked that part!"
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "The part where I explain the song before singing it?"
+              },
+              {
+                "speaker": "Miku",
+                "text": "...When you put it like that."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "You can tell me if you miss it after the show."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Deal! But I'm keeping my own introduction."
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "The crowd is still cheering after MEIKO's win. Miku picks up the discarded introduction sheet."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Okay, I didn't miss it."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Should I frame that sentence?"
+              },
+              {
+                "speaker": "Miku",
+                "text": "Don't get too excited. I have notes about the second verse."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Now you're talking. Let's hear them."
+              },
+              {
+                "speaker": "Miku",
+                "text": "First, can I borrow that pencil?"
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 1,
+          "location": "The Rooftop Theatre",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Len tries the same high note for the fourth time. MEIKO sets a bottle of water beside him."
+              },
+              {
+                "speaker": "Len",
+                "text": "I can hit it. I just need one more try."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "That's what you said three tries ago."
+              },
+              {
+                "speaker": "Len",
+                "text": "You've never had trouble with a note?"
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Ask KAITO about my first live show. Actually, don't."
+              },
+              {
+                "speaker": "Len",
+                "text": "Now I definitely have to ask him."
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "MEIKO wins despite a brief crack on one high note. Len meets her backstage."
+              },
+              {
+                "speaker": "Len",
+                "text": "You missed that note."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "I noticed."
+              },
+              {
+                "speaker": "Len",
+                "text": "But you kept going."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "The rest of the song wasn't going to sing itself."
+              },
+              {
+                "speaker": "Len",
+                "text": "Hah. Fair point."
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 2,
+          "location": "The Tram Depot",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Rin claps a fast beat while MEIKO adjusts her microphone."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Come on! This place needs something LOUD!"
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "It was loud before you got here."
+              },
+              {
+                "speaker": "Rin",
+                "text": "That's a compliment, right?"
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Sure. Let's see if you can make it through the slow part without speeding up."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Oh, it's a challenge now?"
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "A few people call for MEIKO's quiet opening verse again. Rin looks offended on principle."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Seriously? They want the slow bit?"
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "You could sing it with me."
+              },
+              {
+                "speaker": "Rin",
+                "text": "At that speed? I'll fall asleep!"
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Then I'll wake you when it's your turn."
+              },
+              {
+                "speaker": "Rin",
+                "text": "...Fine. But next time, we do my version too."
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 3,
+          "location": "The Harbor Stage",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "KAITO plays MEIKO a proposed fifteen-second promo clip on his phone."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "This is the version the organizers want to post."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "It cuts off in the middle of my sentence."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Technically, the middle of your verse."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Thank you, that's much better."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "...I'll take that as a no."
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "KAITO shows MEIKO a recording of the audience leaning forward before her quiet verse."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Look. They all leaned in right here."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "That's where we should end the preview."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Right before the verse? That's cruel."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "They can hear the rest at the show."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "...I see what you're doing."
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 5,
+          "location": "The Planetarium",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Luka shows MEIKO two lyric sheets with the same melody and different words."
+              },
+              {
+                "speaker": "Luka",
+                "text": "I can't choose which verse to sing."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Why not use both?"
+              },
+              {
+                "speaker": "Luka",
+                "text": "One asks someone to stay. The other tells them to go."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Try them in a different order. See how they sound together."
+              },
+              {
+                "speaker": "Luka",
+                "text": "I'll give it a try."
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "After MEIKO's win, Luka shows her an updated arrangement backstage."
+              },
+              {
+                "speaker": "Luka",
+                "text": "I tried both verses, like you suggested."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "How'd they sound?"
+              },
+              {
+                "speaker": "Luka",
+                "text": "Better. I kept the pause before the second one."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Then keep it. It's your arrangement."
+              },
+              {
+                "speaker": "Luka",
+                "text": "I think I will."
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "assetName": "MegurineLuka",
+      "characterClass": 5,
+      "opening": {
+        "lines": [
+          {
+            "speaker": "Narrator",
+            "text": "Luka has three copies of the same tune spread across the train seat beside her. Her audition map is open on her lap."
+          },
+          {
+            "speaker": "Luka",
+            "text": "\"Come home\"... \"Keep going\"... and \"Wait for me.\""
+          },
+          {
+            "speaker": "Narrator",
+            "text": "She hums the melody. It's the one she heard someone singing backstage years ago."
+          },
+          {
+            "speaker": "Luka",
+            "text": "I still remember it. I wish I'd asked who was singing."
+          },
+          {
+            "speaker": "Narrator",
+            "text": "She checks the pages again. None of them names a writer."
+          },
+          {
+            "speaker": "Luka",
+            "text": "Maybe someone at the auditions will recognize it."
+          }
+        ]
+      },
+      "ending": {
+        "lines": [
+          {
+            "speaker": "Narrator",
+            "text": "Luka's name tops the tour poster. Backstage, an envelope on a lighting case is signed 'Aya — touring electrician.'"
+          },
+          {
+            "speaker": "Luka",
+            "text": "So it was you."
+          },
+          {
+            "speaker": "Narrator",
+            "text": "Aya writes that she made up the melody to keep her crew awake on long drives. The crews who came after her added their own verses."
+          },
+          {
+            "speaker": "Luka",
+            "text": "I heard one of them singing it years ago."
+          },
+          {
+            "speaker": "Narrator",
+            "text": "Below her signature, Aya adds: 'Please tell me they cut the verse about my driving.'"
+          },
+          {
+            "speaker": "Luka",
+            "text": "Sorry, Aya. I think that one's staying."
+          },
+          {
+            "speaker": "Narrator",
+            "text": "Onstage, Luka credits Aya and the touring crews before singing. She leaves the last line for whoever picks it up next."
+          }
+        ]
+      },
+      "auditions": [
+        {
+          "opponent": 0,
+          "location": "The Lantern Courtyard",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Luka hears Miku humming the familiar melody while she sets up her microphone."
+              },
+              {
+                "speaker": "Luka",
+                "text": "Miku. Where did you hear that?"
+              },
+              {
+                "speaker": "Miku",
+                "text": "Hm? Oh! Someone sang it here last week. It's been stuck in my head."
+              },
+              {
+                "speaker": "Luka",
+                "text": "What came after the chorus?"
+              },
+              {
+                "speaker": "Miku",
+                "text": "Uh... I made up that part."
+              },
+              {
+                "speaker": "Luka",
+                "text": "Of course you did."
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "A stagehand hands Miku a folded note while the crowd is leaving."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Hey, Luka! I think this one's for you."
+              },
+              {
+                "speaker": "Luka",
+                "text": "\"For whoever sings it next.\" That's all?"
+              },
+              {
+                "speaker": "Miku",
+                "text": "Wait, there's a drawing on the back. Is that... a ladder?"
+              },
+              {
+                "speaker": "Luka",
+                "text": "A lighting rig, I think."
+              },
+              {
+                "speaker": "Miku",
+                "text": "Oh! So maybe ask the crew instead of the singers?"
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 1,
+          "location": "The Rooftop Theatre",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Len flips through souvenirs from his first KAITO concert. A few notes are scribbled on the back of a program."
+              },
+              {
+                "speaker": "Luka",
+                "text": "Wait. I know that melody. Did you write those notes?"
+              },
+              {
+                "speaker": "Len",
+                "text": "Yeah. I heard someone humming while I waited for the doors to open."
+              },
+              {
+                "speaker": "Luka",
+                "text": "Someone from the audience?"
+              },
+              {
+                "speaker": "Len",
+                "text": "No, it came from inside. One of the crew, I think."
+              },
+              {
+                "speaker": "Luka",
+                "text": "Could I take a closer look?"
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "After Luka's win, Len turns the program over. A pencil note reads: LIGHT CHECK."
+              },
+              {
+                "speaker": "Len",
+                "text": "Oh, right. They were testing the lights before the show."
+              },
+              {
+                "speaker": "Luka",
+                "text": "So it wasn't part of KAITO's set."
+              },
+              {
+                "speaker": "Len",
+                "text": "Nope. I could hear it while I waited outside."
+              },
+              {
+                "speaker": "Luka",
+                "text": "Mind if I take a picture of this?"
+              },
+              {
+                "speaker": "Len",
+                "text": "Sure. I'm keeping the original, though!"
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 2,
+          "location": "The Tram Depot",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Two workers are tapping a rhythm against a tram. Rin has joined in—loudly."
+              },
+              {
+                "speaker": "Luka",
+                "text": "That rhythm. Do you know the song that goes with it?"
+              },
+              {
+                "speaker": "Rin",
+                "text": "There's a song? They taught me the beat five minutes ago."
+              },
+              {
+                "speaker": "Luka",
+                "text": "The version I heard was rather slow."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Then your version needs help. C'mon, listen to this!"
+              },
+              {
+                "speaker": "Narrator",
+                "text": "Rin speeds up. One of the workers almost drops his wrench."
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "A depot worker passes Rin a creased lyric sheet."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Here! Apparently the old touring crew used to sing it on night shifts."
+              },
+              {
+                "speaker": "Luka",
+                "text": "This verse is about terrible coffee."
+              },
+              {
+                "speaker": "Rin",
+                "text": "Best verse so far, if you ask me."
+              },
+              {
+                "speaker": "Luka",
+                "text": "I suppose someone had to write it."
+              },
+              {
+                "speaker": "Rin",
+                "text": "And now I'm going to sing it. You can complain after!"
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 3,
+          "location": "The Harbor Stage",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "KAITO is warming up for a broadcast rehearsal. Luka stops when he sings a familiar line."
+              },
+              {
+                "speaker": "Luka",
+                "text": "KAITO, where did you learn that verse?"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "A technician was singing it during a sound check."
+              },
+              {
+                "speaker": "Luka",
+                "text": "Do you remember who?"
+              },
+              {
+                "speaker": "KAITO",
+                "text": "I remember thanking her. Not asking her name."
+              },
+              {
+                "speaker": "Luka",
+                "text": "That's a shame."
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "The broadcast camera is still on after Luka's win. KAITO points to it."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "Want to ask about the song while we're live?"
+              },
+              {
+                "speaker": "Luka",
+                "text": "If you know who first wrote this melody, please leave a message with the tour crew."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "I'll make sure the clip stays up afterward."
+              },
+              {
+                "speaker": "Luka",
+                "text": "Thanks, KAITO."
+              },
+              {
+                "speaker": "KAITO",
+                "text": "And I'll check the credits this time."
+              }
+            ]
+          }
+        },
+        {
+          "opponent": 4,
+          "location": "The Converted Cinema",
+          "before": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "Luka hums the melody for MEIKO, who pulls an old rehearsal book from the cabinet behind the screen."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "Is this the tune you've been looking for?"
+              },
+              {
+                "speaker": "Luka",
+                "text": "That's it. You know it?"
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "The crews sang it while packing up. Every city had a new verse."
+              },
+              {
+                "speaker": "Luka",
+                "text": "Do you know who started it?"
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "No. But look at all these different handwritings."
+              }
+            ]
+          },
+          "after": {
+            "lines": [
+              {
+                "speaker": "Narrator",
+                "text": "MEIKO opens the book to a page covered in several hands."
+              },
+              {
+                "speaker": "Luka",
+                "text": "Someone crossed out the second verse."
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "The next crew wrote a new one under it."
+              },
+              {
+                "speaker": "Luka",
+                "text": "And that empty line at the end?"
+              },
+              {
+                "speaker": "MEIKO",
+                "text": "They always left it for the next person."
+              },
+              {
+                "speaker": "Luka",
+                "text": "So it was meant to keep changing."
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

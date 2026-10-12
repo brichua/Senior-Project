@@ -53,11 +53,31 @@ namespace VocaloidTCG
         public bool tutorial;
         public CharacterClass storyClass;
         public string header;
+        [Tooltip("Optional starting deck provided when the player has no usable deck for this route.")]
+        public DeckData playerStarterDeck;
         public StoryDialogue prologue = new StoryDialogue(), epilogue = new StoryDialogue();
         public List<StoryAudition> auditions = new List<StoryAudition>();
         public CharacterClass Class => tutorial ? CharacterClass.HatsuneMiku : storyClass;
 
         public StoryAudition Audition(CharacterClass opponent) => auditions?.Find(a => a != null && a.opponent == opponent);
+
+        public bool HasPlayableContent(DeckCatalog catalog){
+            if(!catalog || !Validate(out _) || !HasLines(prologue) || !HasLines(epilogue)) return false;
+            foreach(var audition in auditions){
+                if(string.IsNullOrWhiteSpace(audition.location) || string.IsNullOrWhiteSpace(audition.deckDescription) ||
+                    string.IsNullOrWhiteSpace(audition.auditionText) || !HasLines(audition.before) || !HasLines(audition.after) ||
+                    !audition.firstClearReward || catalog.Card(audition.firstClearReward.id) != audition.firstClearReward) return false;
+                foreach(StoryDifficulty difficulty in Enum.GetValues(typeof(StoryDifficulty))){
+                    var deck = audition.Deck(difficulty);
+                    if(!deck || deck.classes == null || !deck.classes.Any(c => c && c.identity == audition.opponent) ||
+                        deck.cards == null || deck.cards.Count == 0 || deck.cards.Any(c => !c || !deck.classes.Contains(c.cardClass) || catalog.Card(c.id) != c)) return false;
+                }
+            }
+            return true;
+        }
+
+        private static bool HasLines(StoryDialogue dialogue) => dialogue?.lines != null && dialogue.lines.Count > 0 &&
+            dialogue.lines.All(l => l != null && !string.IsNullOrWhiteSpace(l.text));
 
         public bool Validate(out string error){
             var issues = new List<string>();

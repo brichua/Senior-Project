@@ -15,42 +15,43 @@ MonoBehaviour:
   id: story-hatsunemiku
   tutorial: 0
   storyClass: 0
-  header: "World Tour Auditions — An Unfinished Song"
+  header: "World Tour Auditions — Miku"
+  playerStarterDeck: {fileID: 11400000, guid: a7e6abbe28874768abb2635096f32d45, type: 2}
   prologue:
     lines:
     - speaker: "Narrator"
       portrait: {fileID: 0}
-      text: "The tour invitation lands on Miku's desk beside an unfinished song."
+      text: "A tour audition notice sits beside Miku's open notebook. The chorus on the page has been crossed out twice."
+      avatars:
+      - slot: 0
+        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+    - speaker: "Miku"
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "Hmm. Nope. Still doesn't sound right."
+      avatars:
+      - slot: 0
+        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+    - speaker: "Miku"
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "Maybe if I move the chorus up..."
       avatars:
       - slot: 0
         sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
     - speaker: "Narrator"
       portrait: {fileID: 0}
-      text: "Its map is crowded with names of cities. Her score has room for more than one voice."
+      text: "Her phone buzzes with another reminder about the auditions."
       avatars:
       - slot: 0
         sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
     - speaker: "Miku"
       portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "Five auditions. One headline spot."
+      text: "I know, I know! I'm entering!"
       avatars:
       - slot: 0
         sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
     - speaker: "Miku"
       portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "I'll need a song worth taking all that way."
-      avatars:
-      - slot: 0
-        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
-    - speaker: "Miku"
-      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "And people who'll argue with me until it's right."
-      avatars:
-      - slot: 0
-        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
-    - speaker: "Narrator"
-      portrait: {fileID: 0}
-      text: "She packs the empty pages."
+      text: "...Just as soon as I figure out what I'm singing."
       avatars:
       - slot: 0
         sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -58,7 +59,7 @@ MonoBehaviour:
     lines:
     - speaker: "Narrator"
       portrait: {fileID: 0}
-      text: "Under HEADLINER, the final screen shows Miku's name. Her notebook has five other signatures."
+      text: "The final audition results name Miku as headliner. Her notebook is open to a finished song."
       avatars:
       - slot: 0
         sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -74,7 +75,7 @@ MonoBehaviour:
         sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
     - speaker: "Rin"
       portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "They gave you the whole stage. Why are you marking out six places?"
+      text: "So, what's the first song?"
       avatars:
       - slot: 0
         sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -90,7 +91,7 @@ MonoBehaviour:
         sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
     - speaker: "Miku"
       portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "Because this song needs all of us."
+      text: "I was hoping we could all do it together."
       avatars:
       - slot: 0
         sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -104,9 +105,9 @@ MonoBehaviour:
         sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - slot: 5
         sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
-    - speaker: "Rin"
-      portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "You could have warned us."
+    - speaker: "Len"
+      portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "All six of us? You could've asked first!"
       avatars:
       - slot: 0
         sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -122,7 +123,39 @@ MonoBehaviour:
         sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
     - speaker: "Miku"
       portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "Would you have said yes?"
+      text: "I'm asking now!"
+      avatars:
+      - slot: 0
+        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - slot: 1
+        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - slot: 2
+        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 3
+        sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 4
+        sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 5
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "MEIKO"
+      portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "You already wrote the parts, didn't you?"
+      avatars:
+      - slot: 0
+        sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - slot: 1
+        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - slot: 2
+        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 3
+        sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 4
+        sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - slot: 5
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Miku"
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "...Maybe a few."
       avatars:
       - slot: 0
         sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -138,7 +171,7 @@ MonoBehaviour:
         sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
     - speaker: "Narrator"
       portrait: {fileID: 0}
-      text: "Rin takes the pencil and circles a place beside Miku's."
+      text: "She turns the notebook around. Six names are written beside the first verse."
       avatars:
       - slot: 0
         sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -154,9 +187,9 @@ MonoBehaviour:
         sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
   auditions:
   - opponent: 1
-    deckDescription: "A melody with a name of its own."
+    deckDescription: "An original melody and a familiar rival."
     location: "The Rooftop Theatre"
-    auditionText: "A rooftop performance against Len."
+    auditionText: "An audition against Len."
     firstClearReward: {fileID: 11400000, guid: 2c9bee9d08e838f4b8bac5071656c12a, type: 2}
     easyDeck: {fileID: 11400000, guid: d1c376575e622ba4ea509d93cd2ae101, type: 2}
     mediumDeck: {fileID: 11400000, guid: d1c376575e622ba4ea509d93cd2ae101, type: 2}
@@ -165,15 +198,7 @@ MonoBehaviour:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
-        text: "The rooftop stage looks down on a thousand windows. Len keeps checking a folded KAITO concert ticket."
-        avatars:
-        - slot: 0
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
-        - slot: 5
-          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
-      - speaker: "Len"
-        portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "One day, I want my name on a ticket beside his."
+        text: "Len is checking the sound on the rooftop stage. A KAITO concert ticket sticks out of his notebook."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -181,7 +206,7 @@ MonoBehaviour:
           sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "What would your opening song sound like?"
+        text: "You've got that ticket with you again?"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -189,7 +214,31 @@ MonoBehaviour:
           sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
       - speaker: "Len"
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Let me show you."
+        text: "It's good luck!"
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Does it work for auditions?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Len"
+        portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Guess we're about to find out."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Hey, save some luck for me!"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -199,15 +248,7 @@ MonoBehaviour:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
-        text: "Len turns the ticket over. On its blank back, he scribbles a stubborn little melody."
-        avatars:
-        - slot: 0
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
-        - slot: 5
-          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
-      - speaker: "Len"
-        portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "I kept trying to sound like him."
+        text: "Len keeps humming a phrase as he unplugs his microphone."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -215,7 +256,7 @@ MonoBehaviour:
           sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "That last phrase sounded like you."
+        text: "Was that in your song? I don't remember it."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -223,7 +264,7 @@ MonoBehaviour:
           sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
       - speaker: "Len"
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Use it. But leave my name on it."
+        text: "Made it up just now."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -231,16 +272,32 @@ MonoBehaviour:
           sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Deal."
+        text: "Can you sing it again? I liked it!"
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Len"
+        portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Sure. But I'm writing it down first."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Fair. It's already stuck in my head."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
         - slot: 5
           sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
   - opponent: 2
-    deckDescription: "Win over a crowd that already knows Rin."
+    deckDescription: "A lively challenge from Rin."
     location: "The Tram Depot"
-    auditionText: "A spirited challenge in an old tram depot."
+    auditionText: "An audition against Rin."
     firstClearReward: {fileID: 11400000, guid: 5a4ca13c112bad64190b371a46fc13d9, type: 2}
     easyDeck: {fileID: 11400000, guid: 05c75a68ffcd49039f41d5c0a3b6d766, type: 2}
     mediumDeck: {fileID: 11400000, guid: 05c75a68ffcd49039f41d5c0a3b6d766, type: 2}
@@ -249,7 +306,7 @@ MonoBehaviour:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
-        text: "The old tram depot shakes with a bass test. Rin taps the railing until the sound crew taps back."
+        text: "Rin is testing the speakers at the old tram depot. The bass rattles the railing."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -257,7 +314,7 @@ MonoBehaviour:
           sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "I've warmed up the crowd. Try to keep them."
+        text: "Miku! You're up next. Hope you brought something good!"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -265,7 +322,7 @@ MonoBehaviour:
           sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "All of them?"
+        text: "I did. Mostly."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -273,7 +330,7 @@ MonoBehaviour:
           sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Especially the ones who came for me."
+        text: "Mostly?"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -281,7 +338,15 @@ MonoBehaviour:
           sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "I like a challenge."
+        text: "I'm still deciding on the ending."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Rin"
+        portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Then you'd better decide fast. I'm not going easy on you!"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -291,15 +356,7 @@ MonoBehaviour:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
-        text: "A whistle from the back starts a ragged encore. Rin whistles the answer before she catches herself."
-        avatars:
-        - slot: 0
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
-        - slot: 5
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      - speaker: "Rin"
-        portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Fine. That ending worked."
+        text: "The crowd starts clapping the rhythm from Miku's final chorus. Rin joins in before noticing."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -307,7 +364,7 @@ MonoBehaviour:
           sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Was that you asking for an encore?"
+        text: "Ah! You're doing it too!"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -315,7 +372,7 @@ MonoBehaviour:
           sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "I was correcting their timing."
+        text: "It's stuck in my head. That's not a compliment."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -323,24 +380,32 @@ MonoBehaviour:
           sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Then help me keep it."
+        text: "Then why are you still clapping?"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
         - slot: 5
           sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      - speaker: "Narrator"
-        portrait: {fileID: 0}
-        text: "Rin steals Miku's pencil and writes four sharp beats."
+      - speaker: "Rin"
+        portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Next time, I'm bringing a chorus you can't get rid of."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "I'll look forward to it!"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
         - slot: 5
           sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
   - opponent: 3
-    deckDescription: "Make a chorus carry beyond the broadcast."
+    deckDescription: "A full song beyond a famous chorus."
     location: "The Harbor Stage"
-    auditionText: "A harbor performance for a small crowd and a large stream."
+    auditionText: "An audition against KAITO."
     firstClearReward: {fileID: 11400000, guid: 6583a1897eee0d744add7bc99a893801, type: 2}
     easyDeck: {fileID: 11400000, guid: 67abe06bb10144adb820be6c188de4b8, type: 2}
     mediumDeck: {fileID: 11400000, guid: 67abe06bb10144adb820be6c188de4b8, type: 2}
@@ -349,15 +414,7 @@ MonoBehaviour:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
-        text: "On a harbor stage, a red camera light blinks. KAITO checks it twice, then faces the few occupied seats."
-        avatars:
-        - slot: 0
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
-        - slot: 5
-          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      - speaker: "KAITO"
-        portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Small crowd. Big broadcast."
+        text: "KAITO is waving at the camera set up by the harbor stage. Its indicator light is still off."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -365,7 +422,7 @@ MonoBehaviour:
           sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Which one are you singing to?"
+        text: "KAITO, you're not live yet."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -373,7 +430,7 @@ MonoBehaviour:
           sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "KAITO"
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Both. I'd like them to remember where to find me."
+        text: "Ah. That explains why nobody's waving back."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -381,7 +438,23 @@ MonoBehaviour:
           sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Then don't let that camera steal the show."
+        text: "You could wave at the people right in front of you."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "KAITO"
+        portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "You're right! Hello, everyone!"
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Haha! Save some energy for our match!"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -391,7 +464,7 @@ MonoBehaviour:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
-        text: "The camera goes dark. Beyond the fence, a dockworker is still singing KAITO's chorus."
+        text: "The broadcast ends, but someone beyond the harbor fence is still singing KAITO's chorus."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -399,7 +472,7 @@ MonoBehaviour:
           sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "KAITO"
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "The stream ended. I thought everyone had gone."
+        text: "Oh! He stayed for the whole show."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -407,7 +480,7 @@ MonoBehaviour:
           sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Someone kept your song."
+        text: "And he's singing your chorus! I worked hard on mine, too."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -415,7 +488,7 @@ MonoBehaviour:
           sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "KAITO"
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Ask him to join us for the next one."
+        text: "Want to try yours together?"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -423,16 +496,24 @@ MonoBehaviour:
           sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "I'll save him a part."
+        text: "Really?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "KAITO"
+        portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Sure. Let's give him another song to take home."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
         - slot: 5
           sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
   - opponent: 4
-    deckDescription: "Give the quiet verse room to breathe."
+    deckDescription: "A complete live performance."
     location: "The Converted Cinema"
-    auditionText: "A full-song performance in a converted cinema."
+    auditionText: "An audition against MEIKO."
     firstClearReward: {fileID: 11400000, guid: 0b21cc092eb618240ab6629d284db2da, type: 2}
     easyDeck: {fileID: 11400000, guid: 30f2d81003ba4753b31fc0ffff3d5e57, type: 2}
     mediumDeck: {fileID: 11400000, guid: 30f2d81003ba4753b31fc0ffff3d5e57, type: 2}
@@ -441,15 +522,7 @@ MonoBehaviour:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
-        text: "In a converted cinema, a poster promises 'FIFTEEN SECONDS TO FAME.' MEIKO pins tonight's full set list over it."
-        avatars:
-        - slot: 0
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
-        - slot: 5
-          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      - speaker: "MEIKO"
-        portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "They asked me to cut the quiet verse."
+        text: "MEIKO pins a full set list over a poster advertising fifteen-second song previews."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -457,7 +530,7 @@ MonoBehaviour:
           sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Does it need cutting?"
+        text: "Are the previews really only fifteen seconds?"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -465,7 +538,7 @@ MonoBehaviour:
           sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "MEIKO"
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "It needs someone willing to listen."
+        text: "That's what the organizers asked for."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -473,7 +546,23 @@ MonoBehaviour:
           sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Then I'm keeping mine, too."
+        text: "That's barely enough for my intro!"
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "MEIKO"
+        portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Then maybe the intro needs some editing."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Hey! I worked hard on it!"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -483,7 +572,7 @@ MonoBehaviour:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
-        text: "The final note fades. For a moment, nobody reaches for a phone. Then the applause comes."
+        text: "The applause is still going when Miku returns to the side of the stage."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -491,7 +580,7 @@ MonoBehaviour:
           sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "I thought I'd lost them."
+        text: "I thought that quiet part was going to lose them."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -499,7 +588,7 @@ MonoBehaviour:
           sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "MEIKO"
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "You gave them a second to breathe."
+        text: "You looked ready to skip it."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -507,7 +596,7 @@ MonoBehaviour:
           sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Will you listen when I've finished the whole song?"
+        text: "I almost did."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -515,16 +604,24 @@ MonoBehaviour:
           sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - speaker: "MEIKO"
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Start with that quiet verse."
+        text: "Glad you didn't. It was my favorite part."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Really? ...Okay, that one's staying."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
         - slot: 5
           sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
   - opponent: 5
-    deckDescription: "Answer a melody with an unknown writer."
+    deckDescription: "Different words for an unsigned melody."
     location: "The Planetarium"
-    auditionText: "A shared musical mystery beneath the planetarium stars."
+    auditionText: "An audition against Luka."
     firstClearReward: {fileID: 11400000, guid: 2a55cd481cf55c344bbc28b64e00e025, type: 2}
     easyDeck: {fileID: 11400000, guid: 672111fe4515472988b5c2aebc23cacc, type: 2}
     mediumDeck: {fileID: 11400000, guid: 672111fe4515472988b5c2aebc23cacc, type: 2}
@@ -533,15 +630,7 @@ MonoBehaviour:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
-        text: "Stars wheel across the planetarium dome. Luka holds a score with three sets of lyrics and no name."
-        avatars:
-        - slot: 0
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
-        - slot: 5
-          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
-      - speaker: "Luka"
-        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Same melody. Three cities. Nobody claims it."
+        text: "Luka is comparing three lyric sheets under the planetarium's projected stars."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -549,7 +638,7 @@ MonoBehaviour:
           sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Maybe they're afraid it isn't finished."
+        text: "Three versions? Which one are you using?"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -557,7 +646,7 @@ MonoBehaviour:
           sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
       - speaker: "Luka"
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Or somebody took their name off it."
+        text: "I haven't decided yet."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -565,7 +654,23 @@ MonoBehaviour:
           sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Let's hear what they've left us."
+        text: "Oh, good. My own ending's still a mess."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "You don't seem especially worried."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Ask me again when we're onstage!"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -575,15 +680,7 @@ MonoBehaviour:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
-        text: "A folded note waits at the stage door: 'For whoever sings it next.'"
-        avatars:
-        - slot: 0
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
-        - slot: 5
-          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
-      - speaker: "Luka"
-        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "An invitation? Or another clue?"
+        text: "A folded note beside Luka's music stand reads: 'For whoever sings it next.'"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -591,7 +688,7 @@ MonoBehaviour:
           sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Let's keep a place for its writer."
+        text: "Is that from whoever wrote your song?"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -599,7 +696,7 @@ MonoBehaviour:
           sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
       - speaker: "Luka"
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "On your set list?"
+        text: "I wish I knew."
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
@@ -607,7 +704,23 @@ MonoBehaviour:
           sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "They started the song. They deserve to hear the answer."
+        text: "They could've signed it, at least."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "There isn't much else to go on."
+        avatars:
+        - slot: 0
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 5
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Well, I hope they get to hear you sing it!"
         avatars:
         - slot: 0
           sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}

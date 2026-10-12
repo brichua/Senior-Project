@@ -51,8 +51,8 @@ public static class MikuStoryChecks
         Check(catalog.deckCatalog.ValidateCatalog(out _), "Deck catalog is valid.");
         Check(story.id == "story-hatsunemiku" && story.Validate(out _), "Miku keeps its permanent ID and five opponents.");
         var scripts = new[] { story.prologue, story.epilogue }.Concat(story.auditions.SelectMany(a => new[] { a.before, a.after })).ToList();
-        Check(scripts.Count == 12 && scripts.Sum(s => s.lines.Count) == 62, "Twelve sequences contain 62 dialogue boxes.");
-        Check(scripts.All(s => s.lines.Count >= 4 && s.lines.Count <= 6 && s.lines.All(l => !string.IsNullOrWhiteSpace(l.text))), "Every sequence has four to six nonempty lines.");
+        Check(scripts.Count == 12 && scripts.Sum(s => s.lines.Count) == 74, "Twelve reviewed Miku sequences contain 74 dialogue boxes.");
+        Check(scripts.All(s => s.lines.Count >= 4 && s.lines.Count <= (s == story.epilogue ? 8 : 6) && s.lines.All(l => !string.IsNullOrWhiteSpace(l.text))), "Reviewed scenes obey the master box limits.");
         Check(scripts.All(s => s.lines.All(l => l.avatars.All(a => a.sprite))), "Every dialogue avatar resolves to an existing sprite.");
         foreach(var audition in story.auditions){
             Check(catalog.deckCatalog.Card(audition.firstClearReward.id) == audition.firstClearReward, audition.opponent + " reward is registered.");
@@ -91,8 +91,8 @@ public static class MikuStoryChecks
         }catch(Exception ex){ Finish(false, ex.ToString()); }
     }
 
-    private static StoryUI UI() => UnityEngine.Object.FindFirstObjectByType<StoryUI>();
-    private static GameplayBoardBridge Bridge() => UnityEngine.Object.FindFirstObjectByType<GameplayBoardBridge>();
+    private static StoryUI UI() => UnityEngine.Object.FindAnyObjectByType<StoryUI>();
+    private static GameplayBoardBridge Bridge() => UnityEngine.Object.FindAnyObjectByType<GameplayBoardBridge>();
     private static object Field(object obj, string name) => obj.GetType().GetField(name, Private).GetValue(obj);
     private static void Set(object obj, string name, object value) => obj.GetType().GetField(name, Private).SetValue(obj, value);
     private static void Call(object obj, string name) => obj.GetType().GetMethod(name, Private).Invoke(obj, null);

@@ -132,6 +132,24 @@ namespace VocaloidTCG
                 next.selectedId = copy.id;
             }, out error);
         }
+
+        public bool EnsureStoryDeck(StoryData story, out string deckId, out string error){
+            deckId = null; error = "Select a configured story.";
+            if(!story) return false;
+            var existing = data.decks.Find(d => d.classes.Contains(story.Class) && DeckRules.Validate(d, Catalog, data.owned, out _));
+            if(existing != null){ deckId = existing.id; error = ""; return true; }
+            error = "Create a deck containing " + Catalog.Class(story.Class).DisplayName + " to begin.";
+            if(!story.playerStarterDeck) return false;
+            var starter = story.playerStarterDeck.CreateRecord();
+            if(!starter.classes.Contains(story.Class)) return false;
+            if(!DeckRules.Validate(starter, Catalog, data.owned, out error)) return false;
+            starter.id = story.id + "/starter";
+            // A previously edited starter with this ID may still exist. Never replace a player's deck.
+            if(data.decks.Any(d => d.id == starter.id)) starter.id = Guid.NewGuid().ToString("N");
+            if(!Commit(next => next.decks.Add(starter.Copy()), out error)) return false;
+            deckId = starter.id;
+            return true;
+        }
         
         public bool Select(string id, out string error){
             error = "Deck no longer exists.";

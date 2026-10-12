@@ -40,6 +40,7 @@ namespace VocaloidTCG.BoardUI
                         if(localPlayerId == 0) { player0Cards = cards; player0OpeningCard = catalog.Card(selected.vipCardId); }
                         else { player1Cards = cards; player1OpeningCard = catalog.Card(selected.vipCardId); }
                         playerClasses = DeckPresentation.Classes(selected, catalog);
+                        if(IsStory) playerClasses = playerClasses.OrderByDescending(c => c.identity == story.Class).ToList();
                         selectedPlayerBack = catalog.BackData(selected);
                         playerCardBack = selectedPlayerBack ? selectedPlayerBack.image : null;
                     } catch(System.Exception ex) { MatchSetupError = ex.Message; return false; }

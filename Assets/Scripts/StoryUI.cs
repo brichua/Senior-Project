@@ -116,7 +116,7 @@ namespace VocaloidTCG
             if(!string.IsNullOrEmpty(message)) Debug.LogWarning(message, this);
         }
 
-        private bool CanPlay(StoryData story) => story && HasDialogue(story.prologue) &&
+        private bool CanPlay(StoryData story) => story && story.HasPlayableContent(catalog.deckCatalog) &&
             (story.tutorial || debugTutorialCompleted || TutorialProgress.Completed || library.IsStoryCompleted(catalog.Tutorial));
 
         private void Update(){
@@ -227,6 +227,9 @@ namespace VocaloidTCG
 
         private void BeginStory(){
             if(!selected) return;
+            if(!library.EnsureStoryDeck(selected, out var starterId, out var starterError)){ Report(starterError); return; }
+            if(!library.Decks.Any(d => d.id == selectedDeckId && d.classes.Contains(selected.Class) &&
+                DeckRules.Validate(d, library.Catalog, library.Owned, out _))) selectedDeckId = starterId;
             if(library.HasViewedStoryDialogue(selected, false) || !HasDialogue(selected.prologue)) { ShowMap(); return; }
             PlayDialogue(selected.prologue, false, () => {
                 ShowMap();
