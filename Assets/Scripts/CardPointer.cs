@@ -14,7 +14,7 @@ namespace VocaloidTCG.BoardUI
         public TMP_Text cardName, influence, cost;
         public GameObject detailsRoot;
         public RectTransform visual;
-        public float hoverLift = 24f;
+        public float hoverLift = 24f;    
         private CanvasGroup group;
         private Vector2 rest;
         private BoardUIController board;
@@ -112,14 +112,21 @@ namespace VocaloidTCG.BoardUI
 
         }
 
-        public void OnPointerEnter(PointerEventData e){
-            if(!inHand || card == null || dragging || !visual || !board || !board.CanHoverHand) return;
+        public void OnPointerEnter(PointerEventData e)
+        {
+            if (!inHand || card == null || dragging || !visual || !board || !board.CanHoverHand)
+                return;
             board.ClearHandHover();
             visual.anchoredPosition = rest + Vector2.up * hoverLift;
-            board.sfx.PlayHoverSound();
-            if(handCanvas){
+
+            if (board.sfx) board.sfx.PlayHoverSound();
+
+            if (handCanvas)
+            {
                 var parentCanvas = transform.GetComponentInParent<Canvas>();
-                if(parentCanvas){
+
+                if (parentCanvas)
+                {
                     handCanvas.overrideSorting = true;
                     handCanvas.sortingLayerID = parentCanvas.sortingLayerID;
                     handCanvas.sortingOrder = parentCanvas.sortingOrder + 1;

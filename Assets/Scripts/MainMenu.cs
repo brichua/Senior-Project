@@ -25,6 +25,7 @@ namespace VocaloidTCG
         public string puzzleScene = "Puzzles";
         public string settingsScene = "Settings";
         public TMP_Text status;
+        public SFXManager sfx;
 
         [Header("Tutorial access")]
         public bool tutorialCompleted;
@@ -47,7 +48,7 @@ namespace VocaloidTCG
         {
             if (!multiplayerButton)
                 multiplayerButton = FindButton("Multiplayer Button");
-            if(storyButton) storyButton.onClick.AddListener(OpenStory);
+            if (storyButton) storyButton.onClick.AddListener(OpenStory);
             if(multiplayerButton) multiplayerButton.onClick.AddListener(OpenMultiplayer);
             if(decksButton) decksButton.onClick.AddListener(OpenDeckEditor);
             if(puzzlesButton) puzzlesButton.onClick.AddListener(OpenPuzzles);
