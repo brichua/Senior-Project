@@ -216,7 +216,10 @@ namespace VocaloidTCG
         private void PageBacks(int direction){
             if(draft == null) return;
             int count = catalog.Backs(draft.classes).Count;
-            backOffset = ((backOffset + direction) % count + count) % count; RenderBacks();
+            backOffset = ((backOffset + direction) % count + count) % count;
+            if (count != 3)
+                if (sfx) sfx.PlayButtonClick1();
+            RenderBacks();
         }
         
         private void ChooseBack(int slot){

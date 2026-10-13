@@ -10,7 +10,7 @@ namespace VocaloidTCG.BoardUI
         public Image tile, soloPopup, duoPopup;
         public GameObject solo, duo;
         public CardPointer soloCard, playerCard, enemyCard, playerAssist, enemyAssist;
-        public TMP_Text soloInfluence, duoInfluence;
+        public TMP_Text soloInfluence, duoInfluence;   
         private BoardUIController board;
         private Sprite normalSprite;
         private int column, row;
@@ -88,9 +88,8 @@ namespace VocaloidTCG.BoardUI
             CardInfoView.Put(soloInfluence, normalSoloInfluence);
             int localTotal, enemyTotal;
 
-            if(legalHover)
-                if (board.sfx) board.sfx.PlayTileHoverSound();
-
+            if(legalHover) {if (board.sfx) board.sfx.PlayTileHoverSound(); }
+                
             if(enemyOnly && legalHover && board.TryGetContestPreview(column, row, out localTotal, out enemyTotal))
             {
                 BoardUIController.SetImage(soloPopup, localTotal > enemyTotal ? theme.player.performerPopup : enemyTotal > localTotal ? theme.enemy.performerPopup : theme.tiedPopup);

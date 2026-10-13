@@ -27,9 +27,6 @@ MonoBehaviour:
   characterImage: {fileID: 0}
   iconImage: {fileID: -8556479337486993879, guid: 4305d7df4c5d1ac498bc6eda3d065041, type: 3}
   popupImage: {fileID: 0}
-<<<<<<< Updated upstream
-  playSfx: {fileID: 0}
-=======
   playSfx: {fileID: 8300000, guid: d148e8aac54fc2842b5fa2f8b7bd523c, type: 3}
   effect: 37
   scoreThreshold: 0
@@ -40,4 +37,3 @@ MonoBehaviour:
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
->>>>>>> Stashed changes

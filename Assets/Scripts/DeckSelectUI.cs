@@ -53,12 +53,12 @@ namespace VocaloidTCG
             }catch(Exception ex){
                 StatusTextFade.Show(status, ex.Message); Debug.LogError(ex.Message, this); return;
             }
-            if(allDecks) allDecks.onClick.AddListener(() => { favoritesOnly = false; Refresh(); });
-            if(favorites) favorites.onClick.AddListener(() => { favoritesOnly = true; Refresh(); });
-            if(newDeck) newDeck.onClick.AddListener(() => { if(editor) editor.OpenNew(); });
-            if(editDeck) editDeck.onClick.AddListener(() => { if(editor && library.Selected != null) editor.Open(library.Selected); });
+            if(allDecks) allDecks.onClick.AddListener(() => { favoritesOnly = false; Refresh(); if(sfx) sfx.PlayButtonClick1(); });
+            if(favorites) favorites.onClick.AddListener(() => { favoritesOnly = true; Refresh(); if (sfx) sfx.PlayButtonClick1(); });
+            if(newDeck) newDeck.onClick.AddListener(() => { if(editor) editor.OpenNew(); if (sfx) sfx.PlayButtonClick1(); });
+            if(editDeck) editDeck.onClick.AddListener(() => { if(editor && library.Selected != null) editor.Open(library.Selected); if (sfx) sfx.PlayButtonClick1(); });
             if(deleteDeck) deleteDeck.onClick.AddListener(Delete);
-            if(back) back.onClick.AddListener(() => { if(!MultiplayerSession.ReturnFromDeckEditor() && !StorySession.ReturnFromEditor()) SceneManager.LoadScene(mainMenuScene); });
+            if(back) back.onClick.AddListener(() => { if(!MultiplayerSession.ReturnFromDeckEditor() && !StorySession.ReturnFromEditor()) SceneManager.LoadScene(mainMenuScene); if (sfx) sfx.PlayButtonClick1(); });
         }
 
         private void Start()

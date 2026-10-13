@@ -182,7 +182,7 @@ namespace VocaloidTCG.BoardUI
                 localPlayerId = Mathf.Clamp(localPlayerId, 0, 1), roundStarterId = starter,
                 winScore = Mathf.Max(1, winningScore)
             };
-            for(int i = 0; i < 25; i++) state.tiles[i] = new TileState();
+            for (int i = 0; i < 25; i++) state.tiles[i] = new TileState();
             Log("Match started. Player " + starter + " goes first.");
             BuildDeck(player0Cards, 0); BuildDeck(player1Cards, 1);
             AddOpeningCard(player0OpeningCard, 0); AddOpeningCard(player1OpeningCard, 1);

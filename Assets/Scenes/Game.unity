@@ -338,7 +338,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2009179169}
   m_HandleRect: {fileID: 2009179168}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -2135,6 +2135,7 @@ MonoBehaviour:
   mirrorColumnsForSide1: 1
   ghostSize: {x: 120, y: 160}
   sfx: {fileID: 1288955613}
+  voicelines: {fileID: 1700076332}
   drawAnimator: {fileID: 8100000024}
   phaseAnimator: {fileID: 8100000023}
   endRoundAnnouncementColor: {r: 0.8117647, g: 0.827451, b: 1, a: 1}
@@ -5478,6 +5479,9 @@ MonoBehaviour:
   adjust_card_num_3: {fileID: 0}
   typing: {fileID: 0}
   class_select: {fileID: 0}
+  enter_game: {fileID: 8300000, guid: a169265f980b6f4488583108cd8c4372, type: 3}
+  hoverSoundCooldown: 0.05
+  tileHoverSoundCooldown: 0.05
 --- !u!82 &1288955614
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7577,6 +7581,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1700076330}
   - component: {fileID: 1700076331}
+  - component: {fileID: 1700076332}
   m_Layer: 0
   m_Name: voicelines
   m_TagString: Untagged
@@ -7611,7 +7616,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -7696,6 +7701,74 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1700076332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1700076329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b3f86c128ada1f4fb796b65fd92badc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VoicelinesManager
+  start:
+  - {fileID: 8300000, guid: 7e27af136f7f86e4188e41b82a40cc86, type: 3}
+  - {fileID: 8300000, guid: 925394c12e1d820409ea5266390f3948, type: 3}
+  - {fileID: 8300000, guid: 6007724d50811304dae09890fd3cf2ce, type: 3}
+  - {fileID: 8300000, guid: e661a634a677e3f4aa453f3f9753623a, type: 3}
+  - {fileID: 8300000, guid: 6868eb4c478fd514aa38e153e99d4eac, type: 3}
+  - {fileID: 8300000, guid: 891385a78f59bfb418d4ef0d663b0724, type: 3}
+  victory:
+  - {fileID: 8300000, guid: 5b5b85eb6abd91a40bccaedc0e1e638d, type: 3}
+  - {fileID: 8300000, guid: d50847c3e29502a46bbfa56a3e118cd7, type: 3}
+  - {fileID: 8300000, guid: a4bb8e8e103663f4082cf94abff1c9a3, type: 3}
+  - {fileID: 8300000, guid: 6fe80a37505dde043ac7aa69a8752147, type: 3}
+  - {fileID: 8300000, guid: 7b40232ff6d8dad449bc64e55bd7460e, type: 3}
+  - {fileID: 8300000, guid: a2048f830caf0424b894b68bfefb96a2, type: 3}
+  defeat:
+  - {fileID: 8300000, guid: f2e8315c24c78cb4fb3e87159fe1dc11, type: 3}
+  - {fileID: 8300000, guid: b9fab24bb935d6848be5177fdfe0ae9f, type: 3}
+  - {fileID: 8300000, guid: eb110a468ad187045a96b110eb1098b6, type: 3}
+  - {fileID: 8300000, guid: 521fde1548eb6db4b91752ddfa873053, type: 3}
+  - {fileID: 8300000, guid: 9c288ec4cad502644a948c55f0fc0896, type: 3}
+  - {fileID: 8300000, guid: 1bc9f44978538da4bbc4d26819f0996e, type: 3}
+  concerned:
+  - {fileID: 8300000, guid: 47fb9cfaba3eb214f8112478e8f2d81e, type: 3}
+  - {fileID: 8300000, guid: 10cd307c26b17b44a9fdfb93fa289a0f, type: 3}
+  - {fileID: 8300000, guid: b9c69350465d5014eba5bedef5555870, type: 3}
+  - {fileID: 8300000, guid: 3693c4b4a4ad2b74a809fa0559320b83, type: 3}
+  - {fileID: 8300000, guid: 81beb14184d5ae0459aec1e610ac269c, type: 3}
+  - {fileID: 8300000, guid: f397dcb211789f340ae48d113d3ed87c, type: 3}
+  excited:
+  - {fileID: 8300000, guid: 4faa01b6846ea3f4c8ad3c6cd2bb8456, type: 3}
+  - {fileID: 8300000, guid: f59308f04c385614bb04cd445f366120, type: 3}
+  - {fileID: 8300000, guid: b620641707175d74bb9860d9d7d67d46, type: 3}
+  - {fileID: 8300000, guid: 5a0f5bc9938ed0d4faf937d0c917096f, type: 3}
+  - {fileID: 8300000, guid: 7cb7756fb36d98e4584468b0432f0441, type: 3}
+  - {fileID: 8300000, guid: 1b847fb167cfd83448778471b7337c6b, type: 3}
+  win_tile:
+  - {fileID: 8300000, guid: c2d336396bb9cb64e8352113d192af51, type: 3}
+  - {fileID: 8300000, guid: 1908b6c7267e47e4a8d07c57419a1719, type: 3}
+  - {fileID: 8300000, guid: 0543a4e55b832dd4f93c22ba75676576, type: 3}
+  - {fileID: 8300000, guid: 8e37cf8fb113ec54680c920a1e8c5589, type: 3}
+  - {fileID: 8300000, guid: 7d73dfe6a7e7598468299ab2e6834953, type: 3}
+  - {fileID: 8300000, guid: 6f664419250e8574bb88cb4a062615bf, type: 3}
+  lose_tile:
+  - {fileID: 8300000, guid: e51b46dccb6982d4ea8cfe894ea81f50, type: 3}
+  - {fileID: 8300000, guid: 0800ed6a3975b444e9712dee958f657b, type: 3}
+  - {fileID: 8300000, guid: 9822a46a20f0cd449a3548536e22ed55, type: 3}
+  - {fileID: 8300000, guid: f2baf693606d0cf408b2d8b35b3e23c0, type: 3}
+  - {fileID: 8300000, guid: 08418d4e896d8934c8dcd6cea684ac65, type: 3}
+  - {fileID: 8300000, guid: 72ef8e54fdc6d8f45af9c21694432a43, type: 3}
+  idle:
+  - {fileID: 8300000, guid: 68c7b893414bdb44d9339b53f31ba69d, type: 3}
+  - {fileID: 8300000, guid: 86a43a7e0d638924caa41d51130c82c8, type: 3}
+  - {fileID: 8300000, guid: f97c4c4f3f9059843b2b0e0e76996353, type: 3}
+  - {fileID: 8300000, guid: 6a781d5a6cef65b4b8d74cddaa51c5ed, type: 3}
+  - {fileID: 8300000, guid: c103d856496a2134a9fc17da6c0c8072, type: 3}
+  - {fileID: 8300000, guid: 0771560bb671a8e4197205ece7c398d7, type: 3}
 --- !u!1 &1723403023
 GameObject:
   m_ObjectHideFlags: 0
@@ -10347,7 +10420,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7000000021}
   m_HandleRect: {fileID: 7000000019}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

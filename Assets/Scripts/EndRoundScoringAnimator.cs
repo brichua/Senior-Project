@@ -137,6 +137,9 @@ namespace VocaloidTCG.BoardUI
             var anchor = local ? board.playerScorePopupAnchor : board.enemyScorePopupAnchor;
             var hud = local ? board.playerHUD : board.enemyHUD;
             if(!anchor && hud && hud.score) anchor = hud.score.rectTransform;
+            //temp
+            if (local) { if (board.voicelines) board.voicelines.PlayVoiceline(board.setup.playerClass.identity, VoicelineEvent.Win_Tile); }
+            else { if (board.voicelines) board.voicelines.PlayVoiceline(board.setup.enemyClass.identity, VoicelineEvent.Win_Tile); }
             return anchor ? InLayer(anchor.TransformPoint(anchor.rect.center), anchor) : focusPosition;
         }
 
