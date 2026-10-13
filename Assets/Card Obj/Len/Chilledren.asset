@@ -16,7 +16,7 @@ MonoBehaviour:
   id: b39416e7f5c7d5b4da097ce24c1d461b
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: If this is the only minion in middle zone gets +3 inf
+  info: "Soloist 3."
   performer: 1
   stageEffect: 0
   cost: 4
@@ -28,3 +28,12 @@ MonoBehaviour:
   iconImage: {fileID: 8992371609442261355, guid: f2dff76a89863514ba29321c562fc7b9, type: 3}
   popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 76a82b07d3c2a0649a24d2f11a68ab59, type: 3}
+  effect: 0
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 3
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

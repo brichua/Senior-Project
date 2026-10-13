@@ -16,8 +16,7 @@ MonoBehaviour:
   id: 369154a20cb01ba4598168ba42708da5
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: 'Give all ally minions in the middle zone get +1 inf. If you have x or more
-    score give +2 instead '
+  info: "All allied performers in Center Stage permanently gain +1 influence, or +2 instead if you have at least 2 fan score."
   performer: 0
   stageEffect: 1
   cost: 1
@@ -28,4 +27,21 @@ MonoBehaviour:
   characterImage: {fileID: 0}
   iconImage: {fileID: -4009065390512574393, guid: 31a4d4544aebc5346b216fe91c145b2c, type: 3}
   popupImage: {fileID: 0}
+<<<<<<< Updated upstream
   playSfx: {fileID: 0}
+=======
+<<<<<<< Updated upstream
+  playSfx: {fileID: 8300000, guid: 1ae219f089bd8424ca0ee68b3dde7501, type: 3}
+=======
+  playSfx: {fileID: 0}
+  effect: 50
+  scoreThreshold: 2
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes

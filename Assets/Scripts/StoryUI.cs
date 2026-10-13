@@ -191,7 +191,7 @@ namespace VocaloidTCG
 
             foreach(var other in story.auditions){
                 var view = Spawn(rivalPrefab, rivalRoot, rivalViews);
-                if(view) view.SetClass(library.Catalog.Class(other.opponent));
+                if(view) view.SetClass(library.Catalog.Class(other.opponent), rival: true);
             }
 
             ShowClasses();
@@ -206,7 +206,7 @@ namespace VocaloidTCG
             foreach(var other in selected.auditions){
                 var view = Spawn(mapPrefab, mapRoot, mapViews);
                 if(!view) continue;
-                view.Bind(() => SelectAudition(other.opponent)); view.SetClass(library.Catalog.Class(other.opponent));
+                view.Bind(() => SelectAudition(other.opponent)); view.SetClass(library.Catalog.Class(other.opponent), rival: true);
                 view.SetProgress(library.IsAuditionCompleted(selected, other.opponent) ? 1 : 0, 1);
             }
 

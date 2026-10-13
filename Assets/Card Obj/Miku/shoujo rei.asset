@@ -16,8 +16,7 @@ MonoBehaviour:
   id: 005a073a5c1c2aa438f70c21cfb96e6a
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: Apply influence onto a tile equal to the highest influence ally minion for
-    a round. If you won that tile during the performance phase, draw 1 card (quick)
+  info: "Cheer Effect. Choose an occupied tile. Add influence equal to your highest-influence allied performer to your side of that tile this round. If you win that tile during Performance, draw 1 card."
   performer: 0
   stageEffect: 1
   cost: 4
@@ -28,4 +27,17 @@ MonoBehaviour:
   characterImage: {fileID: 0}
   iconImage: {fileID: -3119941652788567980, guid: 2eef8e0ace1e8834c82c55f45bc8b3ab, type: 3}
   popupImage: {fileID: 0}
+<<<<<<< Updated upstream
   playSfx: {fileID: 0}
+=======
+  playSfx: {fileID: 8300000, guid: 001ff1edee81bae468a48ae7907b09f9, type: 3}
+  effect: 20
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 1
+  venueEffect: 0
+>>>>>>> Stashed changes

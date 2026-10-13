@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 6e4d70bdfb9763b429d8c8eeff366575
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: Encore, if next to ally minion gets additional +2 inf
+  info: "Encore. While adjacent to an allied performer, this has +2 influence."
   performer: 1
   stageEffect: 0
   cost: 2
@@ -28,3 +28,12 @@ MonoBehaviour:
   iconImage: {fileID: -4646370909434067829, guid: 92e01436676ac6d4b99649f7c09c1c76, type: 3}
   popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 3d7b27d2ffe5bb1418e1101a29997e50, type: 3}
+  effect: 5
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 1
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

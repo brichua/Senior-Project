@@ -16,8 +16,7 @@ MonoBehaviour:
   id: 544fb0387c4e27e469bd33c9a3cbf2fc
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: "All enemy minions in middle zone get -3 inf. For each minion reduced to
-    zero, reduce opponent\u2019s score by 1"
+  info: "All opposing performers in Center Stage lose 3 influence. For each performer reduced from above 0 to 0 influence by this effect, your opponent loses 1 fan score."
   performer: 0
   stageEffect: 1
   cost: 6
@@ -28,4 +27,17 @@ MonoBehaviour:
   characterImage: {fileID: 0}
   iconImage: {fileID: -8556479337486993879, guid: 4305d7df4c5d1ac498bc6eda3d065041, type: 3}
   popupImage: {fileID: 0}
+<<<<<<< Updated upstream
   playSfx: {fileID: 0}
+=======
+  playSfx: {fileID: 8300000, guid: d148e8aac54fc2842b5fa2f8b7bd523c, type: 3}
+  effect: 37
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
+>>>>>>> Stashed changes

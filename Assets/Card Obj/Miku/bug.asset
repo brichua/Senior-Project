@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 856278b3ccaa51e42925bc9e967cad0f
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: 'Surrounding allies get +1 inf on contested tiles '
+  info: "While on the field, adjacent allied performers on contested tiles have +1 influence."
   performer: 1
   stageEffect: 0
   cost: 2
@@ -28,3 +28,12 @@ MonoBehaviour:
   iconImage: {fileID: 1049178153790319149, guid: d7dd0e807af83cd41a530aa00b5cdfe3, type: 3}
   popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 47fc50b4c584529468fa5a43000ba510, type: 3}
+  effect: 6
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

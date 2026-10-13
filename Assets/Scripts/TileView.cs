@@ -18,6 +18,7 @@ namespace VocaloidTCG.BoardUI
         private Sprite normalSoloPopup;
         private string normalSoloInfluence;
         private bool enemyOnly;
+        private CardPointer soloAssist;
 
         public void Bind(BoardUIController owner, int x, int y, TileState state){
             board = owner; column = x; row = y;
@@ -35,26 +36,44 @@ namespace VocaloidTCG.BoardUI
             
             if(solo) solo.SetActive(!contested && (p != null || e != null));
             if(duo) duo.SetActive(contested);
+            if(soloAssist) soloAssist.gameObject.SetActive(false);
 
             if(contested){
                 BindCard(playerCard, p, true, null); BindCard(enemyCard, e, false, null);
-                BindCard(playerAssist, pa, false, theme.player.assistance);
-                BindCard(enemyAssist, ea, false, theme.enemy.assistance);
+                BindCard(playerAssist, pa, false, theme.player.assistance, true);
+                BindCard(enemyAssist, ea, false, theme.enemy.assistance, true);
                 BoardUIController.SetImage(duoPopup, pt > et ? theme.player.performerPopup : et > pt ? theme.enemy.performerPopup : theme.tiedPopup);
                 CardInfoView.Put(duoInfluence, Mathf.Abs(pt - et).ToString());
             }
             else{
                 BindCard(soloCard, p ?? e, p != null, null);
+                var partner = p != null ? pa : e != null ? ea : null;
+                if(partner != null){
+                    EnsureSoloAssist();
+                    BindCard(soloAssist, partner, false, p != null ? theme.player.assistance : theme.enemy.assistance, true);
+                }
                 BoardUIController.SetImage(soloPopup, p != null ? theme.player.performerPopup : theme.enemy.performerPopup);
                 CardInfoView.Put(soloInfluence, (p != null ? pt : et).ToString());
             }
             RefreshHover();
         }
 
-        private void BindCard(CardPointer view, CardState card, bool movable, Sprite fallback){
+        private void EnsureSoloAssist(){
+            if(soloAssist || !solo) return;
+            var template = playerAssist ? playerAssist : enemyAssist;
+            if(!template) return;
+            // Reuse the small partner slot, centered below the solo performer.
+            soloAssist = Instantiate(template, solo.transform, false);
+            soloAssist.name = "Solo stage-share partner";
+            var rect = (RectTransform)soloAssist.transform;
+            rect.anchoredPosition = new Vector2(0, rect.anchoredPosition.y);
+        }
+
+        private void BindCard(CardPointer view, CardState card, bool movable, Sprite fallback, bool useIcon = false){
             if(!view) return;
             if(card == null){ view.gameObject.SetActive(false); return; }
-            Sprite sprite = card.data && card.data.characterImage ? card.data.characterImage : fallback;
+            Sprite sprite = card.data ? (useIcon ? card.data.iconImage : card.data.characterImage) : null;
+            if(!sprite) sprite = fallback;
             view.Bind(board, card, sprite, false, movable, column, row);
         }
 

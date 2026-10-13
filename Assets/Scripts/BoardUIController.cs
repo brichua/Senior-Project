@@ -36,6 +36,7 @@ namespace VocaloidTCG.BoardUI
         public EndRoundScoringAnimator scoringAnimator;
         public MatchOpeningAnimator openingAnimator;
         public MatchResultAnimator resultAnimator;
+        private CardEffectTargetingUI effectTargeting;
 
         [ContextMenu("Set Up Animation Components")]
         public void SetUpAnimationComponents(){
@@ -66,6 +67,11 @@ namespace VocaloidTCG.BoardUI
 
         public TileView GetMiddleTileView(int row){
             return row >= 0 && row < 5 && tiles.Count >= 25 ? tiles[row * 5 + 2] : null;
+        }
+        public TileView GetEffectTileView(int index){
+            if(index<0 || index>=25 || tiles.Count<25 || State==null) return null;
+            int x=mirrorColumnsForSide1 && State.localPlayerId==1 ? 4-index%5 : index%5;
+            return tiles[index/5*5+x];
         }
 
         public BoardSnapshot State { get { return game ? game.Snapshot : null; } }
@@ -168,6 +174,7 @@ namespace VocaloidTCG.BoardUI
             if(!resultAnimator) resultAnimator = GetComponent<MatchResultAnimator>();
             if(!resultAnimator) resultAnimator = gameObject.AddComponent<MatchResultAnimator>();
             resultAnimator.Initialize(this);
+            effectTargeting=gameObject.AddComponent<CardEffectTargetingUI>(); effectTargeting.Initialize(this);
             ready = true;
             game.Changed += Refresh;
             Refresh();
@@ -182,6 +189,7 @@ namespace VocaloidTCG.BoardUI
             }
         }
         private void OnDisable(){
+            if(effectTargeting) effectTargeting.Clear();
             if(resultAnimator) resultAnimator.Cancel();
             if(openingAnimator) openingAnimator.Cancel();
             if(scoringAnimator) scoringAnimator.Cancel();
@@ -263,6 +271,7 @@ namespace VocaloidTCG.BoardUI
             RenderSelection(playerInfo, selectedPlayer, setup.player);
             RenderSelection(enemyInfo, selectedEnemy, setup.enemy);
             UpdateTurnDisplay();
+            if(effectTargeting) effectTargeting.Refresh();
         }
 
         private void Update()
@@ -318,6 +327,7 @@ namespace VocaloidTCG.BoardUI
             if (local) selectedPlayer = card.instanceId; else selectedEnemy = card.instanceId;
             var view = local ? playerInfo : enemyInfo;
             if (view) view.Show(card, local ? setup.player : setup.enemy, setup);
+            if(effectTargeting) effectTargeting.Select(card);
         }
 
         private void RenderSelection(CardInfoView view, string id, SideArt side)

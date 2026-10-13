@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 87d2026cf21132d47ae26b0afacc5fab
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: If this tile becomes contested gets -1 inf
+  info: "While this tile is contested, this performer has -1 influence."
   performer: 1
   stageEffect: 0
   cost: 1
@@ -27,4 +27,21 @@ MonoBehaviour:
   characterImage: {fileID: 1482504767357339586, guid: e05fdce06c7d0ea41aefa101d84b2aff, type: 3}
   iconImage: {fileID: 8194920755609518513, guid: cc540089033b0584ea12590304954bd9, type: 3}
   popupImage: {fileID: 0}
+<<<<<<< Updated upstream
   playSfx: {fileID: 0}
+=======
+<<<<<<< Updated upstream
+  playSfx: {fileID: 8300000, guid: 96dc6c200639e2f41ba619d6b7e854b6, type: 3}
+=======
+  playSfx: {fileID: 0}
+  effect: 39
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes

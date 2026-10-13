@@ -416,7 +416,7 @@ namespace VocaloidTCG.BoardUI
             if(classes.Count == 0 && cls) classes.Add(cls);
             classes = classes.Where(c => c).Distinct().ToList();
             for(int i = 0; i < classes.Count; i++){
-                var icon = classes[i].gameIcon ? classes[i].gameIcon : classes[i].classIcon;
+                var icon = classes[i].classIcon;
                 Vector2 center = new Vector2(x, -398 - i * Mathf.Min(60, 105f / Mathf.Max(1, classes.Count - 1)));
                 var badge = Image(introduction, "Class badge backing", center, new Vector2(64, 64), null, new Color(0.015f, 0.035f, 0.055f, 0.94f));
                 badge.rectTransform.localRotation = Quaternion.Euler(0, 0, 45);

@@ -16,6 +16,8 @@ namespace VocaloidTCG.BoardUI
         private ScrollRect descriptionScroll;
         private string shownCardId;
         private bool resetDescriptionScroll;
+        private bool descriptionTinted;
+        private Color descriptionColor;
 
         private void OnEnable(){ resetDescriptionScroll = true; }
 
@@ -30,6 +32,7 @@ namespace VocaloidTCG.BoardUI
             }
 
             gameObject.SetActive(true);
+            if(descriptionTinted && description){ description.color=descriptionColor; descriptionTinted=false; }
             Put(cardName, Escape(card.data.cardName));
             Put(influence, card.hasInfluence ? card.currentInfluence.ToString() : "");
             Put(cost, card.currentCost.ToString());
@@ -38,7 +41,7 @@ namespace VocaloidTCG.BoardUI
             BoardUIController.SetImage(art, card.data.iconImage);
             bool statlessStageEffect = card.data.stageEffect && !card.hasInfluence;
             BoardUIController.SetImage(icon, statlessStageEffect ? side.stageEffectInfoIcon : side.infoIcon);
-            var body = new StringBuilder(Format(card.data.info, setup));
+            var body = new StringBuilder(card.token ? "Token. No effects or keywords. Costs 0 energy." : Format(card.data.info, setup));
 
             if(card.activeEffects != null && card.activeEffects.Count > 0){
                 body.Append("\n\n<b>Active effects</b>");
@@ -69,6 +72,15 @@ namespace VocaloidTCG.BoardUI
             descriptionScroll.verticalNormalizedPosition = 1;
         }
 
+        public void ShowEffect(CardState card, SideArt side, BoardSetup setup, string instruction){
+            Show(card,side,setup);
+            if(!description) return;
+            descriptionColor=description.color; descriptionTinted=true;
+            description.color=card.data.cardClass ? card.data.cardClass.color : side.textColor;
+            description.text="<b>"+Escape(instruction)+"</b>\n\n"+description.text;
+            resetDescriptionScroll=true;
+        }
+
         public static void Put(TMP_Text label, string value){
             if(label) label.text = value;
         }
@@ -79,7 +91,7 @@ namespace VocaloidTCG.BoardUI
         
         private static string Format(string text, BoardSetup setup){
             var literal = Escape(text);
-            var definitions = setup.keywordDescriptions ?? new KeywordDefinition[0];
+            var definitions = CardKeywords.Descriptions(setup.keywordDescriptions);
             var words = (setup.boldKeywords ?? new string[0])
                 .Concat(definitions.Where(d => d != null).Select(d => d.keyword))
                 .Where(k => !string.IsNullOrWhiteSpace(k)).Distinct()

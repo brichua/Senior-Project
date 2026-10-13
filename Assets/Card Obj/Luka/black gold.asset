@@ -16,8 +16,7 @@ MonoBehaviour:
   id: 1876c2ab772e21f4f8ab396092831036
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: Return an ally minion from the enemy side to the middle zone and give it
-    +2 inf this round
+  info: "Choose an allied performer on the opponent's side. Move it to a Center Stage tile without an allied performer. It gains +2 influence this round."
   performer: 0
   stageEffect: 1
   cost: 1
@@ -28,4 +27,21 @@ MonoBehaviour:
   characterImage: {fileID: 0}
   iconImage: {fileID: 7832665692305116407, guid: a41fb636c550deb458ea8bf1337a4bd2, type: 3}
   popupImage: {fileID: 0}
+<<<<<<< Updated upstream
   playSfx: {fileID: 0}
+=======
+<<<<<<< Updated upstream
+  playSfx: {fileID: 8300000, guid: 7646626336b0f834298ca75c9bf23de9, type: 3}
+=======
+  playSfx: {fileID: 0}
+  effect: 49
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes

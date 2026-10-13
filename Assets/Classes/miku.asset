@@ -15,8 +15,12 @@ MonoBehaviour:
   identity: 0
   displayName: Hatsune Miku
   color: {r: 0.82745105, g: 1, b: 0.9568628, a: 1}
+  playerArt: {fileID: -1871200315198456374, guid: 79948c455dea4144ebb6a1610d360863, type: 3}
+  fullPlayerImage: {fileID: -1774316171219646959, guid: a499c94f11aa1974ab4c00ccfe36081d, type: 3}
   classIcon: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-  puzzleArt: {fileID: 8376220829089352778, guid: ab5f8a4c24ab8174fa7d0423f85c1906, type: 3}
+  puzzleArt: {fileID: -8826586841383417899, guid: b838e01a383d1224093b97573026eccd, type: 3}
+  storyArt: {fileID: -8826586841383417899, guid: b838e01a383d1224093b97573026eccd, type: 3}
+  rivalArt: {fileID: 7481814567373656046, guid: ec3b89fec0fabf9438fb852a8e402a9c, type: 3}
   playerDeckIcon: {fileID: -7774026537370076429, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   enemyDeckIcon: {fileID: 7160492205017776766, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
@@ -55,7 +59,7 @@ MonoBehaviour:
   tile: {fileID: 1807125615787039003, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
   stageEffectInfoIcon: {fileID: 392097720186651936, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
   infoIcon: {fileID: -4097042886051959093, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
-  avatar: {fileID: 0}
+  avatar: {fileID: 6031204906340752703, guid: bc47f8865a22be34baf753a55c86de95, type: 3}
   avatarBackground: {fileID: 3028295558620724323, guid: 919ae275686f5f9449142058c99d9a77, type: 3}
   infoBackground: {fileID: -7877689742819290246, guid: 919ae275686f5f9449142058c99d9a77, type: 3}
   barBackground: {fileID: 6973280408294809845, guid: 2d6147d1675670246a90bd321eae57cd, type: 3}

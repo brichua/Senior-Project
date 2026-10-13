@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 0fb44630f3ed1334ea410bd7d9fcbb64
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: 'All enemy minions in middle zone get -1 inf  '
+  info: "While on the field, all opposing performers in Center Stage have -1 influence."
   performer: 1
   stageEffect: 0
   cost: 4
@@ -28,3 +28,12 @@ MonoBehaviour:
   iconImage: {fileID: -7477557621683284119, guid: 6bff2adaa7d5a6342bf8488c98366a66, type: 3}
   popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: face3fea969a1ca45a22cc238b6b50c0, type: 3}
+  effect: 28
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
