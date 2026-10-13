@@ -17,7 +17,12 @@ namespace VocaloidTCG.BoardUI
         public CardInfoView playerInfo, enemyInfo;
         public PausePanel pausePanel;
         [SerializeField, HideInInspector] private TMP_Text phaseText;
-        public bool subtitleTimerOnlyDuringCountdown;
+        [Header("CD countdown")]
+        [Tooltip("Scene labels ordered 10 through 1. Their positions are edited in the scene.")]
+        public TMP_Text[] cdCountdownNumbers = new TMP_Text[10];
+        [Range(0f, 1f)] public float cdDarkBrightness = 0.35f;
+        private Color cdOriginalColor;
+        private bool cdColorCaptured;
         public TileView tilePrefab;
         public Transform gridRoot;
         public CardPointer handPrefab;
@@ -204,6 +209,7 @@ namespace VocaloidTCG.BoardUI
             if (enemyHUD && setup) enemyHUD.Countdown(false, setup.countdownParameter);
             if (playerHUD) playerHUD.ClearSubtitle();
             if (enemyHUD) enemyHUD.ClearSubtitle();
+            ResetCDCountdown();
         }
         private void OnDestroy()
         {
@@ -279,7 +285,7 @@ namespace VocaloidTCG.BoardUI
         {
             if (!ready) return;
             if (State != null) UpdateTurnDisplay();
-            else if (enemyHUD) enemyHUD.SetTimerSubtitle("");
+            else ResetCDCountdown();
         }
         private void UpdateTurnDisplay()
         {
@@ -292,21 +298,47 @@ namespace VocaloidTCG.BoardUI
                 endTurn.interactable = CanInteract();
             }
             SetImage(cd, localTurn ? setup.player.cd : setup.enemy.cd);
-            bool showTimer = playing && game.RemainingSeconds > 0 &&
-                (!subtitleTimerOnlyDuringCountdown || game.RemainingSeconds <= 10);
-            if (enemyHUD) enemyHUD.SetTimerSubtitle(showTimer ?
-                "Time left: " + Mathf.CeilToInt(game.RemainingSeconds) + "s" : "");
+            if (playerHUD) playerHUD.SetTimerSubtitle("");
+            if (enemyHUD) enemyHUD.SetTimerSubtitle("");
             if(playerHUD) playerHUD.RenderPhase(s.phase, playing && localTurn);
             if(enemyHUD) enemyHUD.RenderPhase(s.phase, playing && s.activePlayerId == 1 - s.localPlayerId);
             if(phaseText && (!playerHUD || phaseText != playerHUD.phaseText) &&
                 (!enemyHUD || phaseText != enemyHUD.phaseText))
                 CardInfoView.Put(phaseText, "");
-            bool countdown = playing && game.RemainingSeconds > 0 && game.RemainingSeconds <= 10 &&
-                !(pausePanel && pausePanel.IsOpen && !s.multiplayer);
-            if (playerHUD) playerHUD.Countdown(countdown && !localTurn, setup.countdownParameter);
-            if (enemyHUD) enemyHUD.Countdown(countdown && localTurn, setup.countdownParameter);
+            bool countdown = playing && game.RemainingSeconds > 0 && game.RemainingSeconds <= 20 &&
+                !(pausePanel && pausePanel.IsOpen && !s.multiplayer) &&
+                (!phaseAnimator || !phaseAnimator.IsPlaying) &&
+                (!drawAnimator || !drawAnimator.IsPlaying) && s.pendingEffect == null;
+            UpdateCDCountdown(countdown, game.RemainingSeconds,
+                localTurn ? setup.player.textColor : setup.enemy.textColor);
             if (dragged != null && !CanInteract()) CancelDrag();
         }
+
+        private void UpdateCDCountdown(bool active, float remaining, Color textColor){
+            if(!cdColorCaptured && cd){ cdOriginalColor = cd.color; cdColorCaptured = true; }
+            float remainingSteps = remaining / 2f;
+            int number = Mathf.Clamp(Mathf.CeilToInt(remainingSteps), 1, 10);
+            float progress = number - remainingSteps;
+            float pulse = active ? Mathf.Pow(Mathf.Sin(Mathf.Clamp01(progress) * Mathf.PI), 2) : 0;
+            if(cd && cdColorCaptured){
+                float brightness = Mathf.Lerp(1, cdDarkBrightness, pulse);
+                cd.color = new Color(cdOriginalColor.r * brightness, cdOriginalColor.g * brightness,
+                    cdOriginalColor.b * brightness, cdOriginalColor.a);
+            }
+            if(cdCountdownNumbers == null) return;
+            for(int i = 0; i < cdCountdownNumbers.Length; i++){
+                var label = cdCountdownNumbers[i];
+                if(!label) continue;
+                bool visible = active && i == 10 - number && pulse > 0.01f;
+                label.gameObject.SetActive(visible);
+                if(visible){
+                    label.text = number.ToString();
+                    label.color = new Color(textColor.r, textColor.g, textColor.b, (150f / 255f) * pulse);
+                }
+            }
+        }
+
+        private void ResetCDCountdown(){ UpdateCDCountdown(false, 0, Color.white); }
 
         private void Pass()
         {

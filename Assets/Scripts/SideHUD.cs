@@ -8,6 +8,7 @@ namespace VocaloidTCG.BoardUI
     {
         public Image skill, barBackground, barFill, deckIcon, deck, infoBackground;
         public Image secondDeckIcon;
+        public Image border;
         [Header("Score bar particles")]
         public bool showBarParticles = true;
         [Range(0, 40)] public int barParticleCount = 18;
@@ -71,6 +72,7 @@ namespace VocaloidTCG.BoardUI
 
         public void Apply(SideArt art){
             RenderName(art);
+            BoardUIController.SetImage(border, art.border);
             BoardUIController.SetImage(skill, art.skill);
             BoardUIController.SetImage(barBackground, art.barBackground);
             BoardUIController.SetImage(barFill, art.barFill);

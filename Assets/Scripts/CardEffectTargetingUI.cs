@@ -46,9 +46,6 @@ namespace VocaloidTCG.BoardUI
                 infoCanvas.overrideSorting=true; infoCanvas.sortingOrder=82;
             }
             
-            var prompt=StoryUIElements.Text(root,"Effect prompt",p.prompt,new Vector2(0,440),new Vector2(950,95));
-            prompt.fontSize=27; if(board.phaseAnimator && board.phaseAnimator.font) prompt.font=board.phaseAnimator.font;
-            
             if(!mine) return;
             Canvas.ForceUpdateCanvases();
             

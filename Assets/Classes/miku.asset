@@ -17,6 +17,9 @@ MonoBehaviour:
   color: {r: 0.82745105, g: 1, b: 0.9568628, a: 1}
   playerArt: {fileID: -1871200315198456374, guid: 79948c455dea4144ebb6a1610d360863, type: 3}
   fullPlayerImage: {fileID: -1774316171219646959, guid: a499c94f11aa1974ab4c00ccfe36081d, type: 3}
+  victoryImage: {fileID: 4405153688020661835, guid: 9a34088eeb7fb2a489622c89d30395cd, type: 3}
+  defeatImage: {fileID: -8860396625741865699, guid: e9c0b6a34bf6c794b87019e002abfad5, type: 3}
+  borderImage: {fileID: 6662686327198249886, guid: 2a2f2b40cfd9e8a4492986cdd45e6fa5, type: 3}
   classIcon: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
   puzzleArt: {fileID: -8826586841383417899, guid: b838e01a383d1224093b97573026eccd, type: 3}
   storyArt: {fileID: -8826586841383417899, guid: b838e01a383d1224093b97573026eccd, type: 3}

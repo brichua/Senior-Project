@@ -15,6 +15,10 @@ namespace VocaloidTCG
         public Sprite playerArt;
         [Tooltip("Transparent full character artwork for the centered match result screen.")]
         public Sprite fullPlayerImage;
+        [Tooltip("Character artwork for victory and defeat. Falls back to Full Player Image when unassigned.")]
+        public Sprite victoryImage, defeatImage;
+        [Tooltip("Border artwork for this class on either side of the game HUD.")]
+        public Sprite borderImage;
         [Header("Deck and card artwork")]
         public Sprite classIcon;
         public Sprite puzzleArt;
@@ -54,6 +58,7 @@ namespace VocaloidTCG
             
             side.skill = enemySide && enemySkillImage ? enemySkillImage : playerSkillImage;
             side.cd = cdImage;
+            side.border = borderImage;
             side.hoverTile = hoverTile;
             side.tile = tile;
             side.stageEffectInfoIcon = stageEffectInfoIcon;
