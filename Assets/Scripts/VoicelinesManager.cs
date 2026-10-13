@@ -1,8 +1,9 @@
 using UnityEngine;
+using VocaloidTCG;
 
 public enum VoicelineEvent
 {
-    Intro,
+    Start,
     Victory,
     Defeat,
     Excited,
@@ -14,7 +15,7 @@ public enum VoicelineEvent
 
 public class VoicelinesManager : MonoBehaviour
 {
-    public AudioClip[] intro;
+    public AudioClip[] start;
     public AudioClip[] victory;
     public AudioClip[] defeat;
     public AudioClip[] concerned;
@@ -22,9 +23,23 @@ public class VoicelinesManager : MonoBehaviour
     public AudioClip[] win_tile;
     public AudioClip[] lose_tile;
     public AudioClip[] idle;
-    public AudioSource audioSource;
+    private AudioSource audioSource;
 
-    public void PlayVoiceline( int character_index, VoicelineEvent voiceline_event) {
+    private void Awake()
+    {
+
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource)
+        {
+            var channel = GetComponent<VocaloidTCG.AudioCategorySource>();
+            if (!channel) channel = gameObject.AddComponent<VocaloidTCG.AudioCategorySource>();
+            channel.SetCategory(VocaloidTCG.AudioCategory.Effects);
+        }
+    }
+
+    public void PlayVoiceline( CharacterClass character, VoicelineEvent voiceline_event) {
+
+        int character_index = GetCharacterIndex(character);
         
         if (!audioSource || character_index < 0 || character_index >= 6)
             return;
@@ -48,8 +63,8 @@ public class VoicelinesManager : MonoBehaviour
     {
         switch (voiceline_event)
         {
-            case VoicelineEvent.Intro:
-                return intro;
+            case VoicelineEvent.Start:
+                return start;
 
             case VoicelineEvent.Victory:
                 return victory;
@@ -74,6 +89,42 @@ public class VoicelinesManager : MonoBehaviour
 
             default:
                 return null;
+        }
+    }
+
+    // characters in alpha order by first name
+    // 0 = kaito
+    // 1 = len
+    // 2 = luka
+    // 3 = meiko
+    // 4 = miku
+    // 5 = rin
+
+    private int GetCharacterIndex(
+            CharacterClass character)
+    {
+        switch (character)
+        {
+            case CharacterClass.KAITO:
+                return 0;
+
+            case CharacterClass.KagamineLen:
+                return 1;
+
+            case CharacterClass.MegurineLuka:
+                return 2;
+
+            case CharacterClass.MEIKO:
+                return 3;
+
+            case CharacterClass.HatsuneMiku:
+                return 4;
+
+            case CharacterClass.KagamineRin:
+                return 5;
+
+            default:
+                return -1;
         }
     }
 }

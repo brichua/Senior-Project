@@ -26,6 +26,7 @@ namespace VocaloidTCG.BoardUI
         public bool mirrorColumnsForSide1 = true;
         public Vector2 ghostSize = new Vector2(120, 160);
         public SFXManager sfx;
+        public VoicelinesManager voicelines;
         public CardDrawAnimator drawAnimator;
         public PhaseAnnouncementAnimator phaseAnimator;
         [Tooltip("Particle and accent color for the End of Round announcement. Preparation and Performance use the round starter's board class color.")]

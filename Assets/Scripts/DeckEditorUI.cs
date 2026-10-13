@@ -217,7 +217,7 @@ namespace VocaloidTCG
             if(draft == null) return;
             int count = catalog.Backs(draft.classes).Count;
             backOffset = ((backOffset + direction) % count + count) % count;
-            if (backOffset > 0)
+            if (count != 3)
                 if (sfx) sfx.PlayButtonClick1();
             RenderBacks();
         }

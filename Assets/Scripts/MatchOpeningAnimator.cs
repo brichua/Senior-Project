@@ -65,6 +65,7 @@ namespace VocaloidTCG.BoardUI
                     defaultHoverBackgroundColor = hoverBackground.color;
                 }
             }
+            if (board.sfx) board.sfx.PlayHoverSound();
             hoveredCard = card;
             hoverInfo.Show(hand[card.index], board.setup.player, board.setup);
             var cardClass = hand[card.index].data.cardClass;
@@ -272,6 +273,8 @@ namespace VocaloidTCG.BoardUI
             
             foreach(var card in allCards) card.gameObject.SetActive(false);
             yield return Animate(0.45f, t => group.alpha = 1 - Smooth(t));
+            //player char start for now, change later to layer player and opponent
+            if (board.voicelines) board.voicelines.PlayVoiceline(board.setup.playerClass.identity, VoicelineEvent.Start);
             bridge.CompleteOpening();
             if(bridge.IsOnline){
                 group.alpha = 1;
