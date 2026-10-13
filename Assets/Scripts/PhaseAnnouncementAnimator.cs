@@ -81,7 +81,7 @@ namespace VocaloidTCG.BoardUI
 
         private void Update(){
             if(!IsPlaying || !board) return;
-            if((bridge && (bridge.IsPaused || bridge.DrawAnimationPlaying)) ||
+            if((bridge && bridge.IsPaused) ||
                 (board.pausePanel && board.pausePanel.IsOpen && (!bridge || !bridge.IsOnline))) { group.alpha = 0; return; }
             
             elapsed += Time.unscaledDeltaTime;

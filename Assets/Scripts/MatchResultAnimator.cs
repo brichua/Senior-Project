@@ -117,6 +117,8 @@ namespace VocaloidTCG.BoardUI
             ConcertBackdrop.Create(root, board);
             var cls = board.setup.PlayerClass;
             Sprite art = cls ? (cls.fullPlayerImage ? cls.fullPlayerImage : cls.playerArt ? cls.playerArt : cls.classIcon) : board.setup.player.avatar;
+            Sprite resultArt = cls ? (won ? cls.victoryImage : lost ? cls.defeatImage : null) : null;
+            if(resultArt) art = resultArt;
             portrait = Image(root, "Full player art", new Vector2(0, 20), new Vector2(1250, 970), art, art ? Color.white : Color.clear).rectTransform;
             portrait.GetComponent<Image>().preserveAspect = true;
             var particles = ConcertEffects.Create(root, board, classColor, accent,

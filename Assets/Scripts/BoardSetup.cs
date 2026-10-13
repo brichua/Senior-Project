@@ -14,6 +14,7 @@ namespace VocaloidTCG.BoardUI
         public Sprite hoverTile, tile;
         public Sprite performerPopup;
         public Sprite assistance, cd;
+        public Sprite border;
         public Sprite[] energy = new Sprite[9];
         public RuntimeAnimatorController avatarAnimator;
         [FormerlySerializedAs("deckTextColor")]
