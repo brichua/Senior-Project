@@ -26,6 +26,7 @@ namespace VocaloidTCG.BoardUI
         private readonly List<Quaternion> stickRotations = new List<Quaternion>();
         private readonly Image[] sparks = new Image[12];
         private int currentRow = -1, stage, winner, points;
+        private int scoreBefore0, scoreBefore1;
         private bool contested;
         private float elapsed;
         private Color accent;
@@ -74,7 +75,8 @@ namespace VocaloidTCG.BoardUI
                 if(t >= 1 && (bridge.IsOnline && !bridge.OnlineAuthority ? bridge.ScoringRow > currentRow : bridge.ResolveNextScoringTile())){
                     RestoreTileArtwork(); SetSpotlight(false);
                     stage = 1; elapsed = 0;
-                    score.text = points > 0 ? "+" + points : contested ? "Tie" : "+0";
+                    if(winner>=0) points=Mathf.Max(0,snapshot.Side(winner).score-(winner==0 ? scoreBefore0 : scoreBefore1));
+                    score.text = points > 0 ? "+" + points : contested && winner<0 ? "Tie" : "+0";
                     score.color = accent;
                     scorePosition = points > 0 ? AwardPosition(winner) : focusPosition;
                     score.gameObject.SetActive(true);
@@ -95,6 +97,7 @@ namespace VocaloidTCG.BoardUI
 
         private void BeginTile(TileState tile){
             currentRow = bridge.ScoringRow; stage = 0; elapsed = 0;
+            scoreBefore0=snapshot.side0.score; scoreBefore1=snapshot.side1.score;
             contested = tile.side0 != null && tile.side1 != null;
             int difference = tile.total0 - tile.total1;
             winner = difference > 0 ? 0 : difference < 0 ? 1 : -1;
@@ -118,7 +121,7 @@ namespace VocaloidTCG.BoardUI
             var corners = new Vector3[4]; sourceRect.GetWorldCorners(corners);
             Vector2 bottom = InLayer(corners[0], sourceRect), top = InLayer(corners[2], sourceRect);
             focusPosition = (top + bottom) * 0.5f;
-            popup = (contested ? focus.duoPopup : focus.soloPopup)?.rectTransform;
+            popup = (focus.duo && focus.duo.activeSelf ? focus.duoPopup : focus.soloPopup)?.rectTransform;
             if(popup) popupScale = popup.localScale;
             if(contested) foreach(var image in focus.GetComponentsInChildren<Image>(true)){
                 if(!image.name.ToLowerInvariant().Contains("lightstick")) continue;

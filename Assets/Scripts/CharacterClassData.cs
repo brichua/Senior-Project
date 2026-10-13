@@ -15,12 +15,12 @@ namespace VocaloidTCG
         public Sprite playerArt;
         [Tooltip("Transparent full character artwork for the centered match result screen.")]
         public Sprite fullPlayerImage;
-        [Tooltip("Optional class icon for match introductions. Falls back to Class Icon.")]
-        public Sprite gameIcon;
         [Header("Deck and card artwork")]
         public Sprite classIcon;
         public Sprite puzzleArt;
         public Sprite storyArt;
+        [Tooltip("Character artwork used by rival cards and map icons in Story mode.")]
+        public Sprite rivalArt;
         [FormerlySerializedAs("deckIcon")] public Sprite playerDeckIcon;
         public Sprite enemyDeckIcon;
         public Sprite popupImage, costImage, performerBorder, stageEffectBorder, vipImage;

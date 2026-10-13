@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 840a8011cb920614193627793316de04
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: 'If you have 6+ energy this round get +2 inf  '
+  info: "While you have at least 6 energy remaining, this performer has +2 influence."
   performer: 1
   stageEffect: 0
   cost: 2
@@ -28,3 +28,12 @@ MonoBehaviour:
   iconImage: {fileID: 949429570715648884, guid: 865f7f8a95d05444e87a1d1d1c38edfa, type: 3}
   popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 26e15dfbb5c51ac4d9aca0e824d13cff, type: 3}
+  effect: 26
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

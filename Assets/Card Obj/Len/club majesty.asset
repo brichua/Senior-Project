@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 66de2156b281c4b44bc6c9f875e51fe3
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: Remove a minion with 2 or less inf
+  info: "Choose an opposing performer with 2 or less influence. Remove it from the field."
   performer: 0
   stageEffect: 1
   cost: 2
@@ -28,3 +28,12 @@ MonoBehaviour:
   iconImage: {fileID: 5417947783784487629, guid: 5a17f2ce13dc37141b67cb4bea290bf8, type: 3}
   popupImage: {fileID: 0}
   playSfx: {fileID: 0}
+  effect: 34
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

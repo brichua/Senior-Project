@@ -16,7 +16,7 @@ MonoBehaviour:
   id: b16c8463a9efe6c41b9672374436e37f
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: Return a minion to hand, then apply its inf to any tile this round (quick)
+  info: "Cheer Effect. Return an allied performer to your hand, then choose an occupied tile. Add influence equal to the returned performer's influence to your side of that tile this round."
   performer: 0
   stageEffect: 1
   cost: 3
@@ -28,3 +28,12 @@ MonoBehaviour:
   iconImage: {fileID: 1479289002742990156, guid: 67e576e75c05a3c44965149a47522215, type: 3}
   popupImage: {fileID: 0}
   playSfx: {fileID: 8300000, guid: a14d78eef965c9e46a724498f7d8410a, type: 3}
+  effect: 18
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 1
+  venueEffect: 0

@@ -16,7 +16,7 @@ MonoBehaviour:
   id: c2d359daf5d832149bf76863e64cb26d
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: Target an ally to get +1 inf
+  info: "On play, choose an allied performer. It permanently gains +1 influence."
   performer: 1
   stageEffect: 0
   cost: 2
@@ -28,3 +28,12 @@ MonoBehaviour:
   iconImage: {fileID: -4939752768659673990, guid: cf156d5bcc0f9414cb68cf5470d88ccc, type: 3}
   popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: f8d27aa94a0b99f429a2a23bafa5f3b3, type: 3}
+  effect: 4
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

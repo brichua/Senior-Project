@@ -15,8 +15,12 @@ MonoBehaviour:
   identity: 5
   displayName: Megurine Luka
   color: {r: 1, g: 0.8941177, b: 0.9921569, a: 1}
+  playerArt: {fileID: -6373368050044527996, guid: 3ecbd80bfbcaefd40b22be62ccc1acc7, type: 3}
+  fullPlayerImage: {fileID: -8681832547787531840, guid: 5e7064ffc127ffb45957fe849f342bfa, type: 3}
   classIcon: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-  puzzleArt: {fileID: 0}
+  puzzleArt: {fileID: 6901659064022617829, guid: 67b99224778e9bb4b84389511250fc1d, type: 3}
+  storyArt: {fileID: 6901659064022617829, guid: 67b99224778e9bb4b84389511250fc1d, type: 3}
+  rivalArt: {fileID: -695435057043259678, guid: c8a45be294bce574099f6cb215182dd8, type: 3}
   playerDeckIcon: {fileID: 2508097094207013592, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   enemyDeckIcon: {fileID: -6754969496120312333, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   popupImage: {fileID: -3350101939418175136, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}

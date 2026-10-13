@@ -16,7 +16,7 @@ MonoBehaviour:
   id: fadb42c46f555084d87a9da9085aa8e7
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: If this wins a contested tile gain 1 score
+  info: "When this performer wins a contested tile, gain 1 additional fan score."
   performer: 1
   stageEffect: 0
   cost: 2
@@ -28,3 +28,13 @@ MonoBehaviour:
   iconImage: {fileID: -6577906381603206856, guid: b23abd69d6124b34887d8ef529fe0e51, type: 3}
   popupImage: {fileID: 0}
   playSfx: {fileID: 8300000, guid: 06d9fcc75ebed1440be2681efd3d09fb, type: 3}
+  playSfx: {fileID: 0}
+  effect: 41
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

@@ -42,7 +42,7 @@ namespace VocaloidTCG.BoardUI
             playerCardBack = selectedPlayerBack ? selectedPlayerBack.image : null;
             enemyCardBack = selectedEnemyBack ? selectedEnemyBack.image : null;
             ConfigurationVersion++;
-            if(clock) { clock.Stop(); clock.Paused = false; }
+            if(clock) { clock.Stop(); clock.Paused = false; clock.EffectInputPending=false; }
             drawPresentations.Clear(); SetDrawAnimationPlaying(false);
             placedTurns.Clear(); serial = turnNumber = 0; deckExhausted = false;
             puzzlePlayerTurns = puzzleRounds = puzzleAction = 0;

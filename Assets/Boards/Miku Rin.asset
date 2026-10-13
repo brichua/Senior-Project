@@ -93,9 +93,19 @@ MonoBehaviour:
   - assist
   - solo
   keywordDescriptions:
-  - keyword: harmonize
-    description: n/a
   - keyword: stage share
-    description: n/a
+    description: "This performer may share a tile with one allied performer. Only one stage-share partner per performer."
+  - keyword: encore
+    description: "If this performer wins its Center Stage tile, gain 1 additional fan score."
+  - keyword: soloist
+    description: "Soloist X: while this is your only allied performer in Center Stage, it has +X influence."
+  - keyword: harmonize
+    description: "Harmonize X: while at least 2 allied performers occupy the 8 surrounding tiles, this performer has +X influence."
+  - keyword: nimble
+    description: "This performer may move once during Preparation without using the turn's normal performer movement."
+  - keyword: cheer effect
+    description: "This stage effect can also be played during Performance."
+  - keyword: venue effect
+    description: "This stage effect stays active for the rest of the game after it is played."
   keywordTooltipBackground: {fileID: 0}
   countdownParameter: Countdown

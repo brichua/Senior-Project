@@ -57,10 +57,7 @@ namespace VocaloidTCG.BoardUI
         public SideArt enemy = new SideArt { name = "Enemy" };
         public string[] boldKeywords = { "harmonize", "stage share" };
         [Header("Keyword tooltips")]
-        public KeywordDefinition[] keywordDescriptions = {
-            new KeywordDefinition { keyword = "harmonize" },
-            new KeywordDefinition { keyword = "stage share" }
-        };
+        public KeywordDefinition[] keywordDescriptions = CardKeywords.Descriptions(null);
         public Sprite keywordTooltipBackground;
         public string countdownParameter = "Countdown";
 
@@ -80,6 +77,7 @@ namespace VocaloidTCG.BoardUI
         public BoardSetup CreateRuntimeSetup(CardBackData playerBackOverride = null, CardBackData enemyBackOverride = null)
         {
             var result = Instantiate(this);
+            result.keywordDescriptions = CardKeywords.Descriptions(keywordDescriptions);
             if(result.player == null) result.player = new SideArt();
             if(result.enemy == null) result.enemy = new SideArt();
             if(PlayerClass) {

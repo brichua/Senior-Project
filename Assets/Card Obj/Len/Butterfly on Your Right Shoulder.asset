@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 727dd3ac0ef89354593ec27b315a4767
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: Minions in front of this performer get -1
+  info: "While on the field, opposing performers on the next tile directly toward the opponent's side have -1 influence."
   performer: 1
   stageEffect: 0
   cost: 2
@@ -28,3 +28,12 @@ MonoBehaviour:
   iconImage: {fileID: -8480397360688244163, guid: 0b53395ee2aa4c14e9e6d8c9d4ce5319, type: 3}
   popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 1329c629c5f8ef941808fb63952526bf, type: 3}
+  effect: 24
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

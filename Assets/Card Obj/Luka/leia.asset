@@ -16,7 +16,7 @@ MonoBehaviour:
   id: b8ffd2082dbffe34e8446ef50597ec7d
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: Stage share. Discard 1 to play
+  info: "Stage Share. To play this performer, discard another card from your hand."
   performer: 1
   stageEffect: 0
   cost: 1
@@ -28,3 +28,13 @@ MonoBehaviour:
   iconImage: {fileID: -1610959686036378563, guid: 7b191f3c7c210444095a58e8fd76b9d5, type: 3}
   popupImage: {fileID: 0}
   playSfx: {fileID: 8300000, guid: 10e6e5f18440a96408e2b089acf008f7, type: 3}
+  playSfx: {fileID: 0}
+  effect: 40
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 1
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
