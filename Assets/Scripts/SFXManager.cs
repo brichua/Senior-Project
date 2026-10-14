@@ -30,12 +30,18 @@ public class SFXManager : MonoBehaviour
 
 
     private AudioSource audioSource;
+    private AudioSource cardAudioSource;
 
     private void Awake() {
 
         audioSource = GetComponent<AudioSource>();
         if (audioSource)
         {
+            cardAudioSource = gameObject.AddComponent<AudioSource>();
+            cardAudioSource.playOnAwake = false;
+            cardAudioSource.outputAudioMixerGroup = audioSource.outputAudioMixerGroup;
+            cardAudioSource.spatialBlend = audioSource.spatialBlend;
+            cardAudioSource.priority = audioSource.priority;
             var channel = GetComponent<VocaloidTCG.AudioCategorySource>();
             if (!channel) channel = gameObject.AddComponent<VocaloidTCG.AudioCategorySource>();
             channel.SetCategory(VocaloidTCG.AudioCategory.Effects);
@@ -94,8 +100,21 @@ public class SFXManager : MonoBehaviour
 
     public void PlayCardSound(AudioClip clip)
     {
-        if (audioSource && clip)
-            audioSource.PlayOneShot(clip);
+        if (!cardAudioSource) return;
+        cardAudioSource.Stop();
+        cardAudioSource.clip = clip;
+        SyncCardAudioSettings();
+        if (clip) cardAudioSource.Play();
+    }
+
+    private void LateUpdate() { SyncCardAudioSettings(); }
+
+    private void SyncCardAudioSettings()
+    {
+        if (!audioSource || !cardAudioSource) return;
+        cardAudioSource.volume = audioSource.volume;
+        cardAudioSource.mute = audioSource.mute;
+        cardAudioSource.pitch = audioSource.pitch;
     }
 
     public void PlayCardDrawSound()

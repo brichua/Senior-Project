@@ -54,7 +54,11 @@ namespace VocaloidTCG.BoardUI
             if(puzzleIntro && string.IsNullOrWhiteSpace(title.text)) title.text = "Puzzle " + bridge.puzzle.number;
             title.enableAutoSizing = puzzleIntro; title.fontSizeMin = 26; title.fontSizeMax = 62;
             title.fontSize = 62; title.richText = !puzzleIntro;
-            subtitle.text = puzzleIntro ? "PUZZLE " + bridge.puzzle.number + "  /  BEGIN" : "round " + round;
+            subtitle.text = puzzleIntro ? bridge.puzzle.shortDescription : "round " + round;
+            subtitle.enableAutoSizing = puzzleIntro; subtitle.fontSizeMin = 18; subtitle.fontSizeMax = 30;
+            subtitle.fontSize = 30; subtitle.richText = !puzzleIntro;
+            subtitle.rectTransform.sizeDelta = new Vector2(840, puzzleIntro ? 100 : 50);
+            subtitle.rectTransform.anchoredPosition = new Vector2(0, puzzleIntro ? -74 : -49);
             subtitle.color = accent; line.color = accent;
             if(puzzleIntro){
                 puzzleParticles = ConcertEffects.Create(group.transform, board, accent, Color.white, ConcertEffectStyle.Victory, puzzleEffects);

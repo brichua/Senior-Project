@@ -116,12 +116,12 @@ TextureImporter:
       name: luka char11_0
       rect:
         serializedVersion: 2
-        x: 21
-        y: 9
-        width: 66
-        height: 102
+        x: 0
+        y: 0
+        width: 107
+        height: 150
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 0c51c7eb565aa824ea821d238fc4b1c7
     internalID: 0
     vertices: []
     indices: 
