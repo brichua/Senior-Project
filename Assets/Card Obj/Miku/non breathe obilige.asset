@@ -22,7 +22,7 @@ MonoBehaviour:
   cost: 2
   influence: 0
   flags: []
-  stageInfluenceChange: 1
+  stageInfluenceChange: 2
   cardImage: {fileID: 1693532569333739529, guid: 57cde71cffe959d40adefdcc2a1f0f61, type: 3}
   characterImage: {fileID: 0}
   iconImage: {fileID: -7440991144942745900, guid: d085af7f22d0a2547a588426d9611386, type: 3}

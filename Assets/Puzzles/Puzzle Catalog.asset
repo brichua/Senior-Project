@@ -15,3 +15,4 @@ MonoBehaviour:
   deckCatalog: {fileID: 11400000, guid: 6da9310bbc7fa804099e153453b00a12, type: 2}
   puzzles:
   - {fileID: 11400000, guid: bb1ef1898fff0084083d3dff8ee6f2ad, type: 2}
+  - {fileID: 11400000, guid: cff3c8df647351349a9163c38f5e4ff7, type: 2}
