@@ -16,7 +16,7 @@ MonoBehaviour:
   id: edb40c36ed214e84bb6cfa3922067025
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: 'If 2+ adjacent performers +5 inf instead '
+  info: "Harmonize 3."
   performer: 1
   stageEffect: 0
   cost: 3
@@ -28,3 +28,12 @@ MonoBehaviour:
   iconImage: {fileID: 993584947748831834, guid: dc4b57d71d2bb0f4988531b432048b7b, type: 3}
   popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 156cc63364e316f42a2d763a179b16a8, type: 3}
+  effect: 0
+  scoreThreshold: 0
+  harmonize: 3
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

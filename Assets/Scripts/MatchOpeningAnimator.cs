@@ -14,6 +14,9 @@ namespace VocaloidTCG.BoardUI
         [Min(0.1f)] public float cardTravelSeconds = 0.4f;
         [Tooltip("Optional presentation font. Use a serif TMP font for the reference artwork's lettering.")]
         public TMP_FontAsset font;
+        [Header("Redraw hover info")]
+        [Tooltip("Editable hover layout. Keep the Card Info View text/icon references assigned; artwork is optional.")]
+        public CardInfoView redrawInfoPrefab;
         [Header("Screen effects")]
         public ConcertEffectSettings openingEffects = new ConcertEffectSettings();
         public ConcertEffectSettings redrawEffects = new ConcertEffectSettings { particleCount = 36, intensity = 0.8f };
@@ -39,13 +42,122 @@ namespace VocaloidTCG.BoardUI
         private readonly Vector3[] portraitScales = new Vector3[2];
         public RectTransform RedrawZone { get; private set; }
         public bool CanSelect => selecting && !submitted && bridge && bridge.OpeningPending && !bridge.IsPaused;
+        private CardInfoView hoverInfo;
+        private RectTransform hoverPanel;
+        private Vector2 hoverDesignSize;
+        private Image hoverBackground;
+        private Sprite defaultHoverBackground;
+        private Color defaultHoverBackgroundColor;
+        private Color defaultHoverNameColor;
+        private OpeningHandCard hoveredCard, draggingCard;
+
+        public void ShowCardInfo(OpeningHandCard card){
+            if(!CanSelect || draggingCard || !card || card.opponent || !root) return;
+            var hand = bridge.OpeningCards(snapshot.localPlayerId);
+            if(card.index < 0 || card.index >= hand.Count || hand[card.index] == null || !hand[card.index].data) return;
+            if(!hoverPanel){
+                BuildCardInfo();
+                hoverDesignSize = hoverPanel.rect.size;
+                if(hoverInfo.cardName) defaultHoverNameColor = hoverInfo.cardName.color;
+                hoverBackground = hoverPanel.GetComponent<Image>();
+                if(hoverBackground){
+                    defaultHoverBackground = hoverBackground.sprite;
+                    defaultHoverBackgroundColor = hoverBackground.color;
+                }
+            }
+            if (board.sfx) board.sfx.PlayHoverSound();
+            hoveredCard = card;
+            hoverInfo.Show(hand[card.index], board.setup.player, board.setup);
+            var cardClass = hand[card.index].data.cardClass;
+            if(hoverInfo.cardName) hoverInfo.cardName.color = cardClass ? cardClass.color : defaultHoverNameColor;
+            if(hoverBackground){
+                var background = cardClass ? cardClass.avatarBackground : null;
+                hoverBackground.sprite = background ? background : defaultHoverBackground;
+                hoverBackground.color = background ? Color.white : defaultHoverBackgroundColor;
+            }
+            float width = Mathf.Min(hoverDesignSize.x, root.rect.width - 32);
+            hoverPanel.sizeDelta = new Vector2(width, hoverDesignSize.y);
+            hoverPanel.ForceUpdateRectTransforms();
+            float height = hoverDesignSize.y;
+            if(hoverInfo.description){
+                var bodyRect = hoverInfo.description.rectTransform;
+                float bodyHeight = hoverInfo.description.GetPreferredValues(hoverInfo.description.text, Mathf.Max(1, bodyRect.rect.width), Mathf.Infinity).y;
+                height = Mathf.Max(height, bodyHeight + hoverDesignSize.y - bodyRect.rect.height);
+            }
+            height = Mathf.Min(height, root.rect.height - 32);
+            hoverPanel.sizeDelta = new Vector2(width, height);
+            hoverPanel.SetAsLastSibling();
+            var corners = new Vector3[4]; card.Rect.GetWorldCorners(corners);
+            Vector3 left = root.InverseTransformPoint(corners[0]), right = root.InverseTransformPoint(corners[2]);
+            float x = right.x + 18 + width * 0.5f;
+            if(x + width * 0.5f > root.rect.xMax - 16) x = left.x - 18 - width * 0.5f;
+            KeywordTooltipPanel.Place(hoverPanel, root, new Vector2(x, (left.y + right.y) * 0.5f));
+        }
+
+        public void HideCardInfo(OpeningHandCard card = null){
+            if(card && hoveredCard != card) return;
+            hoveredCard = null;
+            if(hoverInfo) hoverInfo.Clear();
+        }
+        public void BeginCardDrag(OpeningHandCard card){ draggingCard = card; HideCardInfo(); }
+        public void EndCardDrag(OpeningHandCard card){ if(draggingCard == card) draggingCard = null; }
+        private void LateUpdate(){ if(hoveredCard && (!CanSelect || draggingCard)) HideCardInfo(); }
+
+        private void BuildCardInfo(){
+            if(redrawInfoPrefab){
+                hoverInfo = Instantiate(redrawInfoPrefab, root);
+                hoverPanel = (RectTransform)hoverInfo.transform;
+                hoverPanel.anchorMin = hoverPanel.anchorMax = hoverPanel.pivot = Vector2.one * 0.5f;
+                var input = hoverPanel.GetComponent<CanvasGroup>();
+                if(!input) input = hoverPanel.gameObject.AddComponent<CanvasGroup>();
+                input.interactable = false; input.blocksRaycasts = false;
+                return;
+            }
+            hoverPanel = Rect(root, "Redraw card info", Vector2.zero, new Vector2(380, 300));
+            var background = hoverPanel.gameObject.AddComponent<Image>();
+            background.color = new Color(0.035f, 0.045f, 0.085f, 0.98f); background.raycastTarget = false;
+            var border = hoverPanel.gameObject.AddComponent<Outline>();
+            border.effectColor = board.setup.player.textColor; border.effectDistance = new Vector2(2, -2);
+            var hoverGroup = hoverPanel.gameObject.AddComponent<CanvasGroup>();
+            hoverGroup.interactable = false; hoverGroup.blocksRaycasts = false;
+            hoverInfo = hoverPanel.gameObject.AddComponent<CardInfoView>();
+            hoverInfo.cardName = Text(hoverPanel, "", Vector2.zero, Vector2.zero, 27, Color.white);
+            TopBounds(hoverInfo.cardName.rectTransform, 18, 18, 14, 54);
+            hoverInfo.cardName.enableAutoSizing = true; hoverInfo.cardName.fontSizeMin = 16; hoverInfo.cardName.fontSizeMax = 27;
+            hoverInfo.cardName.alignment = TextAlignmentOptions.TopLeft;
+            hoverInfo.icon = Image(hoverPanel, "Info icon", Vector2.zero, new Vector2(72, 54), null, Color.white);
+            TopBounds(hoverInfo.icon.rectTransform, 18, 290, 73, 54);
+            var costLabel = Text(hoverPanel, "COST", Vector2.zero, Vector2.zero, 15, board.setup.player.textColor);
+            TopBounds(costLabel.rectTransform, 110, 180, 74, 22);
+            hoverInfo.cost = Text(hoverPanel, "", Vector2.zero, Vector2.zero, 25, Color.white);
+            TopBounds(hoverInfo.cost.rectTransform, 110, 180, 97, 30);
+            var influenceRoot = Rect(hoverPanel, "Influence", Vector2.zero, Vector2.zero);
+            influenceRoot.anchorMin = Vector2.zero; influenceRoot.anchorMax = Vector2.one;
+            influenceRoot.offsetMin = influenceRoot.offsetMax = Vector2.zero;
+            hoverInfo.influenceRoot = influenceRoot.gameObject;
+            var influenceLabel = Text(influenceRoot, "INFLUENCE", Vector2.zero, Vector2.zero, 15, board.setup.player.textColor);
+            TopBounds(influenceLabel.rectTransform, 225, 18, 74, 22);
+            hoverInfo.influence = Text(influenceRoot, "", Vector2.zero, Vector2.zero, 25, Color.white);
+            TopBounds(hoverInfo.influence.rectTransform, 225, 18, 97, 30);
+            hoverInfo.description = Text(hoverPanel, "", Vector2.zero, Vector2.zero, 21, Color.white);
+            var body = hoverInfo.description.rectTransform;
+            body.anchorMin = Vector2.zero; body.anchorMax = Vector2.one;
+            body.offsetMin = new Vector2(18, 18); body.offsetMax = new Vector2(-18, -140);
+            hoverInfo.description.alignment = TextAlignmentOptions.TopLeft;
+            hoverInfo.description.enableAutoSizing = true; hoverInfo.description.fontSizeMin = 12; hoverInfo.description.fontSizeMax = 21;
+        }
+
+        private static void TopBounds(RectTransform rect, float left, float right, float top, float height){
+            rect.anchorMin = new Vector2(0, 1); rect.anchorMax = Vector2.one; rect.pivot = new Vector2(0.5f, 1);
+            rect.offsetMin = new Vector2(left, -top - height); rect.offsetMax = new Vector2(-right, -top);
+        }
 
         public void Initialize(BoardUIController owner){
             board = owner; bridge = board.game as GameplayBoardBridge;
         }
 
         public void Observe(BoardSnapshot state){
-            if(!isActiveAndEnabled || state == null || !bridge || !bridge.OpeningPending){ Cancel(); snapshot = state; return; }
+            if(!isActiveAndEnabled || state == null || !bridge || bridge.IsPuzzle || !bridge.OpeningPending){ Cancel(); snapshot = state; return; }
             if(snapshot == state && root) return;
             Cancel(); snapshot = state;
             Build();
@@ -72,8 +184,10 @@ namespace VocaloidTCG.BoardUI
             
             backdrop.Speed = Mathf.Max(1, board.setup.selectedBackgroundSpeed);
             openingParticles.EmitBurst(portraitHomes[starter], colors[starter]);
-            if(board.sfx) board.sfx.PlayClickSound();
             
+            //filler sound
+            if (board.sfx) board.sfx.PlayEndTurnSound();
+
             yield return Animate(winnerSeconds, t => {
                 AimSpotlight(targetX);
                 float pop = 1 + 0.16f * Smooth(Mathf.Clamp01(t * 4)) + Mathf.Sin(Mathf.Clamp01(t * 3) * Mathf.PI) * 0.07f;
@@ -85,6 +199,7 @@ namespace VocaloidTCG.BoardUI
             backdrop.ShowRedraw();
             for(int i = 0; i < Math.Max(cards[0].Count, cards[1].Count); i++){
                 int slot = i;
+                if (board.sfx) board.sfx.PlayCardDrawSound();
                 yield return Animate(cardTravelSeconds, t => {
                     for(int side = 0; side < 2; side++) if(slot < cards[side].Count){
                         var card = cards[side][slot]; card.gameObject.SetActive(true);
@@ -92,7 +207,6 @@ namespace VocaloidTCG.BoardUI
                         card.Rect.localScale = Vector3.one * Mathf.Lerp(0.5f, 1, Smooth(t));
                     }
                 });
-                if(board.sfx) board.sfx.PlayCardDrawSound();
             }
             
             selecting = true; submit.gameObject.SetActive(true); RefreshSelection();
@@ -115,13 +229,15 @@ namespace VocaloidTCG.BoardUI
                 card.selected = true;
                 redrawParticles.EmitBurst(HandPosition(1, card.index, true), colors[1]);
                 Vector2 from = card.Rect.anchoredPosition;
+                if (board.sfx) board.sfx.PlayCardDrawSound();
                 yield return Animate(0.25f, t => card.Rect.anchoredPosition = Vector2.Lerp(from, HandPosition(1, card.index, true), Smooth(t)));
             }
             
             var selectedCards = cards.SelectMany(c => c).Where(c => c.selected).ToList();
             var positions = selectedCards.Select(c => c.Rect.anchoredPosition).ToArray();
+            if (selectedCards.Count > 0) { if (board.sfx) board.sfx.PlayCardDrawSound(); }
             yield return Animate(cardTravelSeconds, t => {
-                for(int i = 0; i < selectedCards.Count; i++){
+                for (int i = 0; i < selectedCards.Count; i++){ 
                     var card = selectedCards[i];
                     card.Rect.anchoredPosition = Vector2.Lerp(positions[i], DeckPosition(card.opponent ? 1 : 0), Smooth(t));
                     card.Rect.localScale = Vector3.one * (1 - t);
@@ -134,8 +250,9 @@ namespace VocaloidTCG.BoardUI
             }
             
             foreach(var card in selectedCards) BindCard(card);
+            if (selectedCards.Count > 0) { if (board.sfx) board.sfx.PlayCardDrawSound(); }
             yield return Animate(cardTravelSeconds, t => {
-                foreach(var card in selectedCards){
+                foreach (var card in selectedCards) {
                     int side = card.opponent ? 1 : 0;
                     card.Rect.anchoredPosition = Vector2.Lerp(DeckPosition(side), HandPosition(side, card.index, false), Smooth(t));
                     card.Rect.localScale = Vector3.one * t;
@@ -145,8 +262,9 @@ namespace VocaloidTCG.BoardUI
             yield return Animate(0.8f, t => {});
             var allCards = cards.SelectMany(c => c).ToList();
             var starts = allCards.Select(c => c.Rect.anchoredPosition).ToArray();
+            if (board.sfx) board.sfx.PlayCardDrawSound();
             yield return Animate(0.65f, t => {
-                for(int i = 0; i < allCards.Count; i++){
+                for (int i = 0; i < allCards.Count; i++){
                     var card = allCards[i];
                     card.Rect.anchoredPosition = Vector2.Lerp(starts[i], BoardDeckPosition(card.opponent ? 1 : 0), Smooth(t));
                     card.Rect.localScale = Vector3.one * Mathf.Lerp(1, 0.22f, t);
@@ -155,6 +273,8 @@ namespace VocaloidTCG.BoardUI
             
             foreach(var card in allCards) card.gameObject.SetActive(false);
             yield return Animate(0.45f, t => group.alpha = 1 - Smooth(t));
+            //player char start for now, change later to layer player and opponent
+            if (board.voicelines) board.voicelines.PlayVoiceline(board.setup.playerClass.identity, VoicelineEvent.Start);
             bridge.CompleteOpening();
             if(bridge.IsOnline){
                 group.alpha = 1;
@@ -169,7 +289,13 @@ namespace VocaloidTCG.BoardUI
             bool changed = card.selected != selected;
             card.selected = selected;
             card.Rect.anchoredPosition = HandPosition(0, card.index, selected);
-            if(changed && redrawParticles) redrawParticles.EmitBurst(card.Rect.anchoredPosition, colors[0]);
+            if (changed)
+            {
+                if (board.sfx) board.sfx.PlayClickSound();
+
+                if (redrawParticles)
+                    redrawParticles.EmitBurst(card.Rect.anchoredPosition, colors[0]);
+            }
             RefreshSelection();
         }
 
@@ -305,7 +431,7 @@ namespace VocaloidTCG.BoardUI
             if(classes.Count == 0 && cls) classes.Add(cls);
             classes = classes.Where(c => c).Distinct().ToList();
             for(int i = 0; i < classes.Count; i++){
-                var icon = classes[i].gameIcon ? classes[i].gameIcon : classes[i].classIcon;
+                var icon = classes[i].classIcon;
                 Vector2 center = new Vector2(x, -398 - i * Mathf.Min(60, 105f / Mathf.Max(1, classes.Count - 1)));
                 var badge = Image(introduction, "Class badge backing", center, new Vector2(64, 64), null, new Color(0.015f, 0.035f, 0.055f, 0.94f));
                 badge.rectTransform.localRotation = Quaternion.Euler(0, 0, 45);
@@ -322,7 +448,7 @@ namespace VocaloidTCG.BoardUI
             SpawnCards(side);
         }
 
-        private void SubmitHand(){ if(CanSelect) submitted = true; }
+        private void SubmitHand(){ if(CanSelect){ submitted = true; HideCardInfo(); if (board.sfx) board.sfx.PlayEnterGameSound(); } }
 
         private void Diamond(Transform parent, Vector2 center, float radius, Color tint){
             for(int i = 0; i < 4; i++){
@@ -368,6 +494,8 @@ namespace VocaloidTCG.BoardUI
         }
 
         public void Cancel(){
+            HideCardInfo(); hoverInfo = null; hoverPanel = null; hoveredCard = draggingCard = null;
+            hoverBackground = null; defaultHoverBackground = null;
             StopAllCoroutines(); selecting = submitted = false;
             if(root){ root.gameObject.SetActive(false); Destroy(root.gameObject); }
             root = null; RedrawZone = null; backdrop = null; cards[0].Clear(); cards[1].Clear();

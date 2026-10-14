@@ -17,12 +17,16 @@ namespace VocaloidTCG.BoardUI
         private Image shade, glow;
         private TMP_Text score;
         private TileView focus;
+        private Canvas focusCanvas;
+        private bool addedFocusCanvas, originalCanvasEnabled, originalOverrideSorting;
+        private int originalSortingOrder, originalSortingLayer;
         private RectTransform popup;
         private Vector3 popupScale;
         private readonly List<RectTransform> sticks = new List<RectTransform>();
         private readonly List<Quaternion> stickRotations = new List<Quaternion>();
         private readonly Image[] sparks = new Image[12];
         private int currentRow = -1, stage, winner, points;
+        private int scoreBefore0, scoreBefore1;
         private bool contested;
         private float elapsed;
         private Color accent;
@@ -43,7 +47,7 @@ namespace VocaloidTCG.BoardUI
             if(snapshot != board.State){ Cancel(); snapshot = board.State; }
             if(!bridge.RoundResolutionPending){ Cancel(); return; }
             if(bridge.IsPaused || bridge.PhaseAnimationPlaying || bridge.DrawAnimationPlaying){
-                group.alpha = 0; return;
+                group.alpha = 0; SetSpotlight(false); return;
             }
             
             if(currentRow < 0){
@@ -54,6 +58,7 @@ namespace VocaloidTCG.BoardUI
             }
             
             group.gameObject.SetActive(true); group.alpha = 1;
+            SetSpotlight(stage == 0);
             elapsed += Time.unscaledDeltaTime;
             if(stage == 0){
                 float duration = Mathf.Max(0.1f, contested ? contestSeconds : soloSeconds);
@@ -68,8 +73,10 @@ namespace VocaloidTCG.BoardUI
                         (i % 2 == 0 ? -1 : 1) * Mathf.Sin(t * Mathf.PI * 3) * 22 * swell);
                 Burst(t);
                 if(t >= 1 && (bridge.IsOnline && !bridge.OnlineAuthority ? bridge.ScoringRow > currentRow : bridge.ResolveNextScoringTile())){
+                    RestoreTileArtwork(); SetSpotlight(false);
                     stage = 1; elapsed = 0;
-                    score.text = points > 0 ? "+" + points : contested ? "Tie" : "+0";
+                    if(winner>=0) points=Mathf.Max(0,snapshot.Side(winner).score-(winner==0 ? scoreBefore0 : scoreBefore1));
+                    score.text = points > 0 ? "+" + points : contested && winner<0 ? "Tie" : "+0";
                     score.color = accent;
                     scorePosition = points > 0 ? AwardPosition(winner) : focusPosition;
                     score.gameObject.SetActive(true);
@@ -79,7 +86,6 @@ namespace VocaloidTCG.BoardUI
                 float t = Mathf.Clamp01(elapsed / Mathf.Max(0.1f, scoreSeconds));
                 float fade = 1 - Mathf.SmoothStep(0.45f, 1, t);
                 shade.color = new Color(0.015f, 0.02f, 0.04f, (contested ? contestedDim : 0.12f) * (1 - t));
-                if(focus) focus.GetComponent<CanvasGroup>().alpha = 1 - Mathf.Clamp01(t * 3);
                 glow.color = new Color(accent.r, accent.g, accent.b, (1 - t) * 0.4f);
                 foreach(var spark in sparks) spark.color = Color.clear;
                 score.rectTransform.anchoredPosition = scorePosition + Vector2.up * (t * 60);
@@ -91,6 +97,7 @@ namespace VocaloidTCG.BoardUI
 
         private void BeginTile(TileState tile){
             currentRow = bridge.ScoringRow; stage = 0; elapsed = 0;
+            scoreBefore0=snapshot.side0.score; scoreBefore1=snapshot.side1.score;
             contested = tile.side0 != null && tile.side1 != null;
             int difference = tile.total0 - tile.total1;
             winner = difference > 0 ? 0 : difference < 0 ? 1 : -1;
@@ -101,27 +108,20 @@ namespace VocaloidTCG.BoardUI
             var source = board.GetMiddleTileView(currentRow);
             
             if(!source) return;
-            focus = Instantiate(source, layer);
-            focus.name = "Scoring tile spotlight";
-            focus.enabled = false;
-            
-            foreach(var graphic in focus.GetComponentsInChildren<Graphic>(true)) graphic.raycastTarget = false;
-            var canvasGroup = focus.GetComponent<CanvasGroup>();
-            if(!canvasGroup) canvasGroup = focus.gameObject.AddComponent<CanvasGroup>();
-            canvasGroup.interactable = false; canvasGroup.blocksRaycasts = false;
-            var rect = (RectTransform)focus.transform;
+            focus = source;
+            focusCanvas = focus.GetComponent<Canvas>();
+            addedFocusCanvas = !focusCanvas;
+            if(addedFocusCanvas) focusCanvas = focus.gameObject.AddComponent<Canvas>();
+            originalCanvasEnabled = focusCanvas.enabled;
+            originalOverrideSorting = focusCanvas.overrideSorting;
+            originalSortingOrder = focusCanvas.sortingOrder;
+            originalSortingLayer = focusCanvas.sortingLayerID;
+            SetSpotlight(true);
             var sourceRect = (RectTransform)source.transform;
             var corners = new Vector3[4]; sourceRect.GetWorldCorners(corners);
             Vector2 bottom = InLayer(corners[0], sourceRect), top = InLayer(corners[2], sourceRect);
-            rect.anchorMin = rect.anchorMax = rect.pivot = Vector2.one * 0.5f;
-            rect.sizeDelta = sourceRect.rect.size;
-            rect.localScale = new Vector3((top.x - bottom.x) / Mathf.Max(1, sourceRect.rect.width),
-                (top.y - bottom.y) / Mathf.Max(1, sourceRect.rect.height), 1);
-            rect.anchoredPosition = focusPosition = (top + bottom) * 0.5f;
-            var layout = focus.GetComponent<LayoutElement>();
-            
-            if(layout) layout.ignoreLayout = true;
-            popup = (contested ? focus.duoPopup : focus.soloPopup)?.rectTransform;
+            focusPosition = (top + bottom) * 0.5f;
+            popup = (focus.duo && focus.duo.activeSelf ? focus.duoPopup : focus.soloPopup)?.rectTransform;
             if(popup) popupScale = popup.localScale;
             if(contested) foreach(var image in focus.GetComponentsInChildren<Image>(true)){
                 if(!image.name.ToLowerInvariant().Contains("lightstick")) continue;
@@ -137,11 +137,15 @@ namespace VocaloidTCG.BoardUI
             var anchor = local ? board.playerScorePopupAnchor : board.enemyScorePopupAnchor;
             var hud = local ? board.playerHUD : board.enemyHUD;
             if(!anchor && hud && hud.score) anchor = hud.score.rectTransform;
+            //temp
+            if (local) { if (board.voicelines) board.voicelines.PlayVoiceline(board.setup.playerClass.identity, VoicelineEvent.Win_Tile); }
+            else { if (board.voicelines) board.voicelines.PlayVoiceline(board.setup.enemyClass.identity, VoicelineEvent.Win_Tile); }
             return anchor ? InLayer(anchor.TransformPoint(anchor.rect.center), anchor) : focusPosition;
         }
 
         private Vector2 InLayer(Vector3 world, RectTransform source){
             var canvas = source.GetComponentInParent<Canvas>();
+            if(canvas) canvas = canvas.rootCanvas;
             Camera camera = canvas && canvas.renderMode != RenderMode.ScreenSpaceOverlay ? canvas.worldCamera : null;
             Vector2 result;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(layer,
@@ -197,10 +201,27 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void ClearTile(){
-            if(focus){ focus.gameObject.SetActive(false); Destroy(focus.gameObject); }
+            RestoreTileArtwork(); SetSpotlight(false);
+            if(addedFocusCanvas && focusCanvas) Destroy(focusCanvas);
+            focusCanvas = null; addedFocusCanvas = false;
             focus = null; popup = null; sticks.Clear(); stickRotations.Clear(); currentRow = -1;
             if(score) score.gameObject.SetActive(false);
             if(group) group.gameObject.SetActive(false);
+        }
+
+        private void RestoreTileArtwork(){
+            if(popup) popup.localScale = popupScale;
+            for(int i = 0; i < sticks.Count; i++)
+                if(sticks[i]) sticks[i].localRotation = stickRotations[i];
+        }
+
+        private void SetSpotlight(bool visible){
+            if(!focusCanvas) return;
+            var overlayCanvas = layer.GetComponent<Canvas>();
+            focusCanvas.overrideSorting = visible || originalOverrideSorting;
+            focusCanvas.sortingLayerID = visible ? overlayCanvas.sortingLayerID : originalSortingLayer;
+            focusCanvas.sortingOrder = visible ? overlayCanvas.sortingOrder + 1 : originalSortingOrder;
+            focusCanvas.enabled = visible || addedFocusCanvas || originalCanvasEnabled;
         }
 
         public void Cancel(){

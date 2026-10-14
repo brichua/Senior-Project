@@ -16,7 +16,7 @@ MonoBehaviour:
   id: eef2c099c8d40a446a5a93090ff2c29b
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: An ally on a contested tile gets +3 this round
+  info: "Choose an allied performer on a contested tile. It gains +3 influence this round."
   performer: 0
   stageEffect: 1
   cost: 1
@@ -27,4 +27,14 @@ MonoBehaviour:
   characterImage: {fileID: 0}
   iconImage: {fileID: 7182879251152026069, guid: a1f562f90eef7de4798f0fc53b6d3978, type: 3}
   popupImage: {fileID: 0}
+  playSfx: {fileID: 8300000, guid: 29340bfe7ca1a50479f82442be7fa55e, type: 3}
   playSfx: {fileID: 0}
+  effect: 51
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

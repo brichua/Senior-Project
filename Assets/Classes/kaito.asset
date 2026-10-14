@@ -15,8 +15,15 @@ MonoBehaviour:
   identity: 3
   displayName: KAITO
   color: {r: 0.6666667, g: 0.8313726, b: 1, a: 1}
+  playerArt: {fileID: -7207184615333005300, guid: a3f31955109dd7940be4e0974d1ddc81, type: 3}
+  fullPlayerImage: {fileID: 8146879698685573302, guid: 6768176e777bf1c40b1ccde162549f94, type: 3}
+  victoryImage: {fileID: 2994050991975962166, guid: 273b74d7894cdc744b5e53ae2efcc511, type: 3}
+  defeatImage: {fileID: -3154658289063242332, guid: 549dabc5b71cd204985e26b068bb213b, type: 3}
+  borderImage: {fileID: 7438915703496295310, guid: 53a33f4eee329834f87cce0622c4ada7, type: 3}
   classIcon: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-  puzzleArt: {fileID: 0}
+  puzzleArt: {fileID: -8062740330238219287, guid: a310fbca99ed16643a970cd0d49ead95, type: 3}
+  storyArt: {fileID: -8062740330238219287, guid: a310fbca99ed16643a970cd0d49ead95, type: 3}
+  rivalArt: {fileID: -541928420661573304, guid: f12652859fe5e7c4f94209623306a9a0, type: 3}
   playerDeckIcon: {fileID: -8413651515308622559, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   enemyDeckIcon: {fileID: 45705842623540115, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   popupImage: {fileID: -2014337633463164255, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}

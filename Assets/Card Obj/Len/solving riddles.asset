@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 09a2b575f38f22040b55b723d5bf4eee
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: All minions in middle zone get -1
+  info: "All allied and opposing performers in Center Stage lose 1 influence."
   performer: 0
   stageEffect: 1
   cost: 2
@@ -28,3 +28,12 @@ MonoBehaviour:
   iconImage: {fileID: -7629167929317980702, guid: 4a29162d81cb10e4394828c651d6c387, type: 3}
   popupImage: {fileID: 0}
   playSfx: {fileID: 0}
+  effect: 33
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

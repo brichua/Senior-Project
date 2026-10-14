@@ -20,7 +20,14 @@ public class SFXManager : MonoBehaviour
     public AudioClip adjust_card_num_3;
     public AudioClip typing;
     public AudioClip class_select;
+    public AudioClip enter_game;
     
+    [Header("Hover SFX Cooldown")]
+    [Min(0f)] public float hoverSoundCooldown = 0.05f;
+    private static float nextHoverSoundTime = 0f;
+    [Min(0f)] public float tileHoverSoundCooldown = 0.05f;
+    private static float nextTileHoverSoundTime = 0f;
+
 
     private AudioSource audioSource;
 
@@ -35,12 +42,16 @@ public class SFXManager : MonoBehaviour
         }
     }
 
-    public void PlayHoverSound() {
+    public void PlayHoverSound()
+    {
+        if (Time.unscaledTime < nextHoverSoundTime)
+            return;
+
+        nextHoverSoundTime = Time.unscaledTime + hoverSoundCooldown;
 
         if (audioSource && card_hover)
             audioSource.PlayOneShot(card_hover);
     }
-
     public void PlayClickSound() {
 
         if (audioSource && card_click)
@@ -65,7 +76,12 @@ public class SFXManager : MonoBehaviour
             audioSource.PlayOneShot(end_turn_click);
     }
 
-    public void PlayTileHoverSound() {
+    public void PlayTileHoverSound()
+    {
+        if (Time.unscaledTime < nextTileHoverSoundTime)
+            return;
+
+        nextTileHoverSoundTime = Time.unscaledTime + tileHoverSoundCooldown;
 
         if (audioSource && tile_hover)
             audioSource.PlayOneShot(tile_hover);
@@ -147,5 +163,10 @@ public class SFXManager : MonoBehaviour
     {
         if (audioSource && class_select)
             audioSource.PlayOneShot(class_select);
+    }
+    public void PlayEnterGameSound()
+    {
+        if (audioSource && enter_game)
+            audioSource.PlayOneShot(enter_game);
     }
 }

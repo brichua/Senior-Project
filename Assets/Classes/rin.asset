@@ -15,8 +15,15 @@ MonoBehaviour:
   identity: 2
   displayName: Kagamine Rin
   color: {r: 1, g: 0.89019614, b: 0.77647066, a: 1}
+  playerArt: {fileID: -8241364598567933092, guid: 70e300cb60e70664aad529741037ba1a, type: 3}
+  fullPlayerImage: {fileID: -663639097201757336, guid: 2da94b3a5c784214b8622248ebabd001, type: 3}
+  victoryImage: {fileID: 9192705254109663566, guid: b3469ff14b772054fa6b2ead3fd884a8, type: 3}
+  defeatImage: {fileID: -823494728928515524, guid: b0d1a656dc976ad4caaf0d0b14796cc2, type: 3}
+  borderImage: {fileID: -4182326094512355041, guid: ab1191a0fcca50149b5eff6d5b59d99e, type: 3}
   classIcon: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-  puzzleArt: {fileID: 0}
+  puzzleArt: {fileID: 7039422525122033124, guid: 8a50e0329f9101443833ad8cc5fa338d, type: 3}
+  storyArt: {fileID: 7039422525122033124, guid: 8a50e0329f9101443833ad8cc5fa338d, type: 3}
+  rivalArt: {fileID: 5199044998959515962, guid: 4e6fcb1813054994ca50806e744d7d8a, type: 3}
   playerDeckIcon: {fileID: 1363283377247377253, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   enemyDeckIcon: {fileID: -4285498806430741326, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   popupImage: {fileID: -8004225029083858605, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}

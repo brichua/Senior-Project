@@ -5,7 +5,20 @@ using UnityEngine;
 namespace VocaloidTCG.BoardUI
 {
     public enum RoundPhase { Mulligan, Preparation, Performance, Finished, EndRound }
-    public enum BoardActionKind { PlayCard, MovePerformer }
+    public enum BoardActionKind { PlayCard, MovePerformer, ChooseEffect, FinishEffect, ActivateEffect }
+
+    public enum EffectChoice { None, Ally, Enemy, AdjacentAlly, TokenTile, MoveAlly, MoveTile, OccupiedTile, HandDiscard, HandPerformer, DeckPerformer, DiscardPerformer }
+
+    [Serializable] public sealed class PendingCardEffect {
+        public int actor, sourceTile, amount, remaining, stage;
+        public CardState source;
+        public CardEffect effect;
+        public EffectChoice choice;
+        public string selectedId, prompt;
+        public bool optional;
+        public List<int> tiles = new List<int>();
+        public List<CardState> cards = new List<CardState>();
+    }
 
     [Serializable]
     public sealed class CardState{
@@ -17,6 +30,11 @@ namespace VocaloidTCG.BoardUI
         public bool hasInfluence = true;
         public bool isClassCard;
         public List<string> activeEffects = new List<string>();
+        public bool token, silenced, grantedEncore;
+        public int tokenInfluence, auraInfluence, roundInfluence, enteredRound, activatedTurn = -1, nimbleRound = -1;
+        public int rootedRound = -1, protectedTurn = -1, noScoreRound = -1, inheritedHarmonize, inheritedSoloist;
+        public bool inheritedStageShare, inheritedEncore, inheritedNimble;
+        public string sharedTargetId;
     }
 
     [Serializable]
@@ -30,6 +48,9 @@ namespace VocaloidTCG.BoardUI
         public int energy, score, deckCount;
         public List<CardState> hand = new List<CardState>();
         public int hiddenHandCount;
+        public List<CardState> discard = new List<CardState>();
+        public int nextSpellDiscount, nextSpellTax, performersPlayed, nextRoundEnergyBonus;
+        public bool harmonizeVenue;
     }
 
     [Serializable]
@@ -44,6 +65,9 @@ namespace VocaloidTCG.BoardUI
         public RoundPhase phase = RoundPhase.Preparation;
         public SideState side0 = new SideState(), side1 = new SideState();
         public TileState[] tiles = new TileState[25];
+        public PendingCardEffect pendingEffect;
+        public int[] roundTileBonus0 = new int[25], roundTileBonus1 = new int[25];
+        public bool[] tileDraw0 = new bool[25], tileDraw1 = new bool[25];
         public SideState Side(int id) { return id == 0 ? side0 : side1; }
     }
 

@@ -8,6 +8,14 @@ namespace VocaloidTCG.BoardUI
     {
         public Image skill, barBackground, barFill, deckIcon, deck, infoBackground;
         public Image secondDeckIcon;
+        public Image border;
+        [Header("Score bar particles")]
+        public bool showBarParticles = true;
+        [Range(0, 40)] public int barParticleCount = 18;
+        [Min(0)] public float barParticleSpeed = 18;
+        [Range(0, 1)] public float barParticleOpacity = 0.65f;
+        [Min(1)] public float barParticleSize = 5;
+        private ScoreBarParticles barParticles;
 
         public void ApplyClasses(System.Collections.Generic.List<CharacterClassData> classes, bool enemySide = false)
         {
@@ -64,6 +72,7 @@ namespace VocaloidTCG.BoardUI
 
         public void Apply(SideArt art){
             RenderName(art);
+            BoardUIController.SetImage(border, art.border);
             BoardUIController.SetImage(skill, art.skill);
             BoardUIController.SetImage(barBackground, art.barBackground);
             BoardUIController.SetImage(barFill, art.barFill);
@@ -79,6 +88,8 @@ namespace VocaloidTCG.BoardUI
                 barFill.type = Image.Type.Filled;
                 barFill.fillMethod = Image.FillMethod.Vertical;
                 barFill.fillOrigin = (int)Image.OriginVertical.Bottom;
+                if(!barParticles) barParticles = ScoreBarParticles.Create(barFill, this);
+                barParticles.accent = art.textColor;
             }
         }
 

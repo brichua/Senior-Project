@@ -15,8 +15,15 @@ MonoBehaviour:
   identity: 4
   displayName: MEIKO
   color: {r: 1, g: 0.8235295, b: 0.8196079, a: 1}
+  playerArt: {fileID: -5878631545122164805, guid: 10d8151c4939b174bb74ba91de56d04d, type: 3}
+  fullPlayerImage: {fileID: 2336067794741168167, guid: 16d2a33ac6e200a4887a965425cab2e4, type: 3}
+  victoryImage: {fileID: 8566964031729907216, guid: 2a663cd18ba78494c96398d46dc6feee, type: 3}
+  defeatImage: {fileID: -5147144178834247173, guid: a5c02dd76ab8a42439f7d27e9bef169d, type: 3}
+  borderImage: {fileID: -7233513838343083276, guid: 9e18a8dad65bc764fa4b154ceec12a4c, type: 3}
   classIcon: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-  puzzleArt: {fileID: 0}
+  puzzleArt: {fileID: -5002034524800808432, guid: c2a7b66a0049d634f9eeb6b9725f13b4, type: 3}
+  storyArt: {fileID: -5002034524800808432, guid: c2a7b66a0049d634f9eeb6b9725f13b4, type: 3}
+  rivalArt: {fileID: 3352123684906289681, guid: 26eda40b37c068148a10b76ad31cd454, type: 3}
   playerDeckIcon: {fileID: 8128594830842719023, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   enemyDeckIcon: {fileID: -3831577885175149228, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   popupImage: {fileID: -469258639255709176, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}

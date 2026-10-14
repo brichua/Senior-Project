@@ -15,6 +15,8 @@ namespace VocaloidTCG.BoardUI
         public List<CharacterClassData> playerClasses = new List<CharacterClassData>();
         public List<CharacterClassData> enemyClasses = new List<CharacterClassData>();
         public List<BoardSetup> boardSetups = new List<BoardSetup>();
+        [Tooltip("Class matchup boards for multiplayer. This catalog can be stored anywhere in Assets.")]
+        public BoardSetupCatalog multiplayerBoards;
         public Sprite playerCardBack, enemyCardBack;
         public string MatchSetupError { get; private set; }
         public int ConfigurationVersion { get; private set; }
@@ -163,7 +165,7 @@ namespace VocaloidTCG.BoardUI
             if(puzzle) { StartPuzzle(); return; }
             if(firstPlayerId < -1 || firstPlayerId > 1){ Log("Match start rejected: invalid starting player."); return; }
             if(!ConfigureDecks()) { Debug.LogError(MatchSetupError, this); Publish(); return; }
-            if(clock){ clock.Stop(); clock.Paused = false; }
+            if(clock){ clock.Stop(); clock.Paused = false; clock.EffectInputPending=false; }
             drawPresentations.Clear();
             SetDrawAnimationPlaying(false);
             serial = turnNumber = 0;
@@ -180,7 +182,7 @@ namespace VocaloidTCG.BoardUI
                 localPlayerId = Mathf.Clamp(localPlayerId, 0, 1), roundStarterId = starter,
                 winScore = Mathf.Max(1, winningScore)
             };
-            for(int i = 0; i < 25; i++) state.tiles[i] = new TileState();
+            for (int i = 0; i < 25; i++) state.tiles[i] = new TileState();
             Log("Match started. Player " + starter + " goes first.");
             BuildDeck(player0Cards, 0); BuildDeck(player1Cards, 1);
             AddOpeningCard(player0OpeningCard, 0); AddOpeningCard(player1OpeningCard, 1);
@@ -214,6 +216,7 @@ namespace VocaloidTCG.BoardUI
             return new CardState {
                 instanceId = "match-" + (++serial), ownerId = actor, data = asset,
                 currentCost = Mathf.Max(0, asset.cost), currentInfluence = Mathf.Max(0, asset.influence),
+                enteredRound = state != null ? state.roundNumber : 1,
                 hasInfluence = asset.performer
             };
         }
@@ -237,6 +240,7 @@ namespace VocaloidTCG.BoardUI
                 if (side.hand.Count >= MaxHandSize)
                 {
                     discarded++;
+                    Discard(card);
                     Log("Player " + actor + " discarded newly drawn card " + card.data.cardName + " because their hand is full (" + MaxHandSize + ").");
                 }
                 else side.hand.Add(card);
@@ -291,8 +295,17 @@ namespace VocaloidTCG.BoardUI
         }
 
         public bool CanSubmitFor(int actor, BoardAction action, out string reason){
+            if(action.kind==BoardActionKind.ChooseEffect || action.kind==BoardActionKind.FinishEffect){
+                reason="Choose one of the highlighted effect targets."; return CanChooseEffect(actor,action);
+            }
             reason = "Wait for your turn in an active phase.";
             if(!CanAct(actor)) return false;
+            reason="Finish choosing targets for the current effect.";
+            if(state.pendingEffect!=null) return false;
+            if(action.kind==BoardActionKind.ActivateEffect){
+                reason="This ability is not available.";
+                return CanActivateEffect(FieldCards(actor).FirstOrDefault(c=>c.instanceId==action.cardInstanceId));
+            }
             reason = "Invalid board action or destination.";
             if(!InBounds(action.toColumn, action.toRow) ||
                 (action.kind != BoardActionKind.PlayCard && action.kind != BoardActionKind.MovePerformer)) return false;
@@ -302,26 +315,31 @@ namespace VocaloidTCG.BoardUI
             var target = state.tiles[action.toRow * 5 + action.toColumn];
             if(action.kind == BoardActionKind.PlayCard){
                 reason = "Not enough energy.";
-                if(card.currentCost < 0 || card.currentCost > state.Side(actor).energy) return false;
+                if(CardCost(card) > state.Side(actor).energy) return false;
                 if(card.data.stageEffect){
-                    reason = "Stage effects target a friendly performer.";
-                    if(Performer(target, actor) == null) return false;
+                    reason="Only Cheer Effects can be played during Performance.";
+                    if(state.phase==RoundPhase.Performance && !card.data.cheerEffect) return false;
+                    reason = "Choose a legal target for this stage effect.";
+                    if(!SpellTarget(card,action.toRow*5+action.toColumn)) return false;
                     reason = ""; return true;
                 }
+                reason="Discard another card from your hand to play this performer.";
+                if(HasEffect(card,CardEffect.DiscardToPlay) && state.Side(actor).hand.Count<2) return false;
             }
             reason = "Performers can only be placed or moved during preparation.";
             if(!card.data.performer || state.phase != RoundPhase.Preparation) return false;
             reason = "You already have a performer on that tile.";
-            if(Performer(target, actor) != null) return false;
+            if(Performer(target, actor) != null && !(action.kind==BoardActionKind.PlayCard && StageShare(card) && Assistant(target,actor)==null)) return false;
             if(action.kind == BoardActionKind.MovePerformer){
                 int placed;
                 if(!placedTurns.TryGetValue(card.instanceId, out placed)) placed = -1;
                 reason = "Move one performer one square horizontally per turn, after its placement turn.";
+                if(card.rootedRound==state.roundNumber) { reason="This performer cannot move this round."; return false; }
                 if(action.fromRow != action.toRow || Mathf.Abs(action.fromColumn - action.toColumn) != 1 ||
-                    placed >= turnNumber || lastMoveTurn[actor] >= turnNumber) return false;
+                    placed >= turnNumber || (lastMoveTurn[actor] >= turnNumber && !(Nimble(card) && card.nimbleRound!=state.roundNumber))) return false;
             }else{
                 reason = "Place in your leftmost three columns or adjacent to a friendly performer.";
-                if(!CanPlace(actor, action.toColumn, action.toRow)) return false;
+                if(Performer(target,actor)==null && !CanPlace(actor, action.toColumn, action.toRow)) return false;
             }
             reason = ""; return true;
         }
@@ -343,6 +361,8 @@ namespace VocaloidTCG.BoardUI
 
         public bool TrySubmitFor(int actor, BoardAction action){
             if(IsOnline && !OnlineAuthority) return false;
+            if(action.kind==BoardActionKind.ChooseEffect || action.kind==BoardActionKind.FinishEffect) return ResolveChoice(actor,action);
+            if(action.kind==BoardActionKind.ActivateEffect) return ActivateEffect(actor,action);
             string reason;
             if(!CanSubmitFor(actor, action, out reason)){
                 Log("Player " + actor + " action rejected: " + reason); return false;
@@ -352,20 +372,21 @@ namespace VocaloidTCG.BoardUI
             if(action.kind == BoardActionKind.PlayCard){
                 var side = state.Side(actor);
                 side.hand.Remove(card); side.hiddenHandCount = side.hand.Count;
-                side.energy -= card.currentCost;
+                int paid=CardCost(card); side.energy -= paid;
                 if(card.data.stageEffect){
-                    var performer = Performer(target, actor);
-                    performer.currentInfluence = Mathf.Max(0, performer.currentInfluence + card.data.stageInfluenceChange);
-                    Log("Player " + actor + " used stage effect " + card.data.cardName + " at (" + action.toColumn + ", " + action.toRow +
-                        "). Performer influence: " + performer.currentInfluence + ".");
+                    side.nextSpellDiscount=side.nextSpellTax=0;
+                    PlayStageEffect(card,action.toRow*5+action.toColumn);
                 }else{
-                    SetPerformer(target, actor, card); placedTurns[card.instanceId] = turnNumber;
+                    if(Performer(target,actor)!=null) SetAssistant(target,actor,card); else SetPerformer(target, actor, card);
+                    placedTurns[card.instanceId] = turnNumber;
+                    PerformerPlayed(card,action.toRow*5+action.toColumn);
                     Log("Player " + actor + " placed " + card.data.cardName + " at (" + action.toColumn + ", " + action.toRow + ").");
                 }
                 Log("Player " + actor + " spent " + card.currentCost + " energy; remaining: " + side.energy + ". Hand: " + side.hand.Count + ".");
             }else{
-                SetPerformer(state.tiles[action.fromRow * 5 + action.fromColumn], actor, null);
-                SetPerformer(target, actor, card); lastMoveTurn[actor] = turnNumber;
+                MoveWithPartner(action.fromRow*5+action.fromColumn,action.toRow*5+action.toColumn,actor);
+                if(Nimble(card) && card.nimbleRound!=state.roundNumber) card.nimbleRound=state.roundNumber;
+                else lastMoveTurn[actor] = turnNumber;
                 Log("Player " + actor + " moved " + card.data.cardName + " from (" + action.fromColumn + ", " + action.fromRow +
                     ") to (" + action.toColumn + ", " + action.toRow + ").");
             }
@@ -378,7 +399,7 @@ namespace VocaloidTCG.BoardUI
                 sfx.PlayDropSound();
                 sfx.PlayCardSound(card.data.playSfx);
             }
-            if(IsPuzzle) CheckPuzzle(false, false);
+            if(IsPuzzle && state.pendingEffect==null) CheckPuzzle(false, false);
             Publish();
             return true;
         }
@@ -390,7 +411,7 @@ namespace VocaloidTCG.BoardUI
 
         public bool TryPassFor(int actor){
             if(IsOnline && !OnlineAuthority) return false;
-            if(!CanAct(actor)){ Log("Player " + actor + " pass rejected: not an active, unpaused turn."); return false; }
+            if(!CanAct(actor) || state.pendingEffect!=null){ Log("Player " + actor + " pass rejected: finish the current action first."); return false; }
             if(IsPuzzle && actor == state.localPlayerId) puzzlePlayerTurns++;
             state.consecutivePasses = turnHadAction ? 0 : state.consecutivePasses + 1;
             Log("Player " + actor + " ended their turn. Consecutive empty turns: " + state.consecutivePasses + ".");
@@ -418,15 +439,18 @@ namespace VocaloidTCG.BoardUI
             if(IsPuzzle) GivePuzzleTurnCards(actor);
             else if(lastDrawRound[actor] < state.roundNumber){
                 lastDrawRound[actor] = state.roundNumber;
-                DrawCards(actor, 1);
+                DrawCards(actor, 1 + FieldCards(actor).Count(c=>HasEffect(c,CardEffect.DrawAndRevive)));
             }
             Log("Player " + actor + " turn begins. Remaining energy: " + state.Side(actor).energy + ".");
+            Recompute();
             StartClock();
         }
 
         private void RefillRoundEnergy(){
             int energy = Mathf.Clamp(state.roundNumber, 1, 8);
-            state.side0.energy = state.side1.energy = energy;
+            state.side0.energy = Mathf.Min(8,energy+state.side0.nextRoundEnergyBonus);
+            state.side1.energy = Mathf.Min(8,energy+state.side1.nextRoundEnergyBonus);
+            state.side0.nextRoundEnergyBonus=state.side1.nextRoundEnergyBonus=0;
             Log("Round energy refilled to " + energy + " for both players.");
         }
 
@@ -438,16 +462,19 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void Recompute(){
-            foreach(var tile in state.tiles){
-                tile.total0 = tile.side0 == null ? 0 : Mathf.Max(0, tile.side0.currentInfluence);
-                tile.total1 = tile.side1 == null ? 0 : Mathf.Max(0, tile.side1.currentInfluence);
+            RecomputeEffects();
+            for(int i=0;i<state.tiles.Length;i++){
+                var tile=state.tiles[i];
+                tile.total0 = (tile.side0?.currentInfluence ?? 0) + (tile.assist0?.currentInfluence ?? 0) + state.roundTileBonus0[i];
+                tile.total1 = (tile.side1?.currentInfluence ?? 0) + (tile.assist1?.currentInfluence ?? 0) + state.roundTileBonus1[i];
             }
         }
 
         private void RemovePerformer(TileState tile, int actor){
             if (sfx) sfx.PlayDestroySound();
             var card = Performer(tile, actor);
-            if(card != null) placedTurns.Remove(card.instanceId);
+            if(card != null) { placedTurns.Remove(card.instanceId); Discard(card); }
+            var assist=Assistant(tile,actor); if(assist!=null){ placedTurns.Remove(assist.instanceId); Discard(assist); SetAssistant(tile,actor,null); }
             SetPerformer(tile, actor, null);
         }
 
@@ -457,19 +484,27 @@ namespace VocaloidTCG.BoardUI
             if(clock) clock.Stop();
             Recompute();
             Log("Resolving round.");
+            roundScore0 = roundScore1 = 0;
             for(int i = 0; i < state.tiles.Length; i++)
-                if(i % 5 != 2) ResolveContest(i);
+                if(i % 5 != 2){ ResolveContest(i); Recompute(); }
             Recompute();
-            ScoringRow = 0; roundScore0 = roundScore1 = 0;
+            ScoringRow = 0;
             RoundResolutionPending = true;
         }
 
         private void ResolveContest(int index){
             var tile = state.tiles[index];
-            if(tile.side0 == null || tile.side1 == null) return;
+            if((tile.side0==null && tile.total0<=0) || (tile.side1==null && tile.total1<=0)) return;
             int difference = tile.total0 - tile.total1;
-            if(difference > 0){ tile.side0.currentInfluence = difference; RemovePerformer(tile, 1); }
-            else if(difference < 0){ tile.side1.currentInfluence = -difference; RemovePerformer(tile, 0); }
+            if(index%5!=2 && difference!=0){
+                int actor=difference>0 ? 0 : 1;
+                int extra=new[] {Performer(tile,actor),Assistant(tile,actor)}.Count(c=>c!=null && c.noScoreRound!=state.roundNumber && HasEffect(c,CardEffect.ContestedWinScore));
+                state.Side(actor).score+=extra;
+                if(actor==0) roundScore0+=extra; else roundScore1+=extra;
+                if((actor==0 ? state.tileDraw0 : state.tileDraw1)[index]) DrawCards(actor,1);
+            }
+            if(difference > 0){ ContestDamage(index,0,tile.total1); RemovePerformer(tile, 1); }
+            else if(difference < 0){ ContestDamage(index,1,tile.total0); RemovePerformer(tile, 0); }
             else { RemovePerformer(tile, 0); RemovePerformer(tile, 1); }
         }
 
@@ -482,11 +517,18 @@ namespace VocaloidTCG.BoardUI
             if(IsOnline && !OnlineAuthority) return false;
             if(!RoundResolutionPending || ScoringRow >= 5 || IsPaused || PhaseAnimationPlaying) return false;
             int index = ScoringRow * 5 + 2;
+            bool contested=Contested(index);
+            int winningActor=state.tiles[index].total0>state.tiles[index].total1 ? 0 : state.tiles[index].total1>state.tiles[index].total0 ? 1 : -1;
+            var scoringCards=winningActor<0 ? new CardState[0] : new[] { Performer(state.tiles[index],winningActor), Assistant(state.tiles[index],winningActor) }.Where(c=>c!=null).ToArray();
+            int bonus=scoringCards.Count(c=>c.noScoreRound!=state.roundNumber && Encore(c));
+            if(contested) bonus+=scoringCards.Count(c=>c.noScoreRound!=state.roundNumber && HasEffect(c,CardEffect.ContestedWinScore));
             ResolveContest(index);
             Recompute();
             var tile = state.tiles[index];
-            roundScore0 += tile.total0; roundScore1 += tile.total1;
-            state.side0.score += tile.total0; state.side1.score += tile.total1;
+            int score0=ScoreTile(index,0)+(winningActor==0 ? bonus : 0), score1=ScoreTile(index,1)+(winningActor==1 ? bonus : 0);
+            roundScore0 += score0; roundScore1 += score1;
+            state.side0.score += score0; state.side1.score += score1;
+            if(winningActor>=0 && (winningActor==0 ? state.tileDraw0 : state.tileDraw1)[index]) DrawCards(winningActor,1);
             ScoringRow++;
             Publish();
             return true;
@@ -496,6 +538,9 @@ namespace VocaloidTCG.BoardUI
             if(IsOnline && !OnlineAuthority) return;
             if(!RoundResolutionPending || ScoringRow < 5 || IsPaused || PhaseAnimationPlaying) return;
             RoundResolutionPending = false;
+            int roundWinner=roundScore0>roundScore1 ? 0 : roundScore1>roundScore0 ? 1 : -1;
+            if(roundWinner>=0) state.Side(roundWinner).score=Mathf.Max(0,state.Side(roundWinner).score-2*FieldCards(1-roundWinner).Count(c=>HasEffect(c,CardEffect.ReduceOpponentScore)));
+            EndRoundEffects();
             state.roundSummary = "Third column: Player +" + (state.localPlayerId == 0 ? roundScore0 : roundScore1) +
                 " / Opponent +" + (state.localPlayerId == 0 ? roundScore1 : roundScore0) + ".";
             if(deckExhausted) state.roundSummary += " A deck is empty; this is the final round.";
@@ -505,6 +550,15 @@ namespace VocaloidTCG.BoardUI
         }
         private void Update(){
             if(IsOnline && !OnlineAuthority) return;
+            if(state?.pendingEffect!=null){
+                var p=state.pendingEffect;
+                if(!IsOnline && p.actor!=state.localPlayerId && !IsPaused && !DrawAnimationPlaying && !PhaseAnimationPlaying){
+                    if(p.cards.Count>0) ResolveChoice(p.actor,new BoardAction(BoardActionKind.ChooseEffect,p.cards[0].instanceId,-1,-1,-1,-1));
+                    else if(p.tiles.Count>0) ResolveChoice(p.actor,new BoardAction(BoardActionKind.ChooseEffect,null,-1,-1,p.tiles[0]%5,p.tiles[0]/5));
+                    else if(p.optional) ResolveChoice(p.actor,new BoardAction(BoardActionKind.FinishEffect,null,-1,-1,-1,-1));
+                }
+                return;
+            }
             UpdatePuzzleEnemy();
             if(state == null || state.phase != RoundPhase.EndRound || IsPaused || PhaseAnimationPlaying) return;
             if(RoundResolutionPending){
