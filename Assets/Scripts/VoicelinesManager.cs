@@ -33,7 +33,7 @@ public class VoicelinesManager : MonoBehaviour
         {
             var channel = GetComponent<VocaloidTCG.AudioCategorySource>();
             if (!channel) channel = gameObject.AddComponent<VocaloidTCG.AudioCategorySource>();
-            channel.SetCategory(VocaloidTCG.AudioCategory.Effects);
+            channel.SetCategory(VocaloidTCG.AudioCategory.Voices);
         }
     }
 
@@ -56,6 +56,12 @@ public class VoicelinesManager : MonoBehaviour
             audioSource.PlayOneShot(voiceline);
         }
 
+    }
+
+    public AudioClip GetVoiceline(CharacterClass character, VoicelineEvent reaction){
+        int index = GetCharacterIndex(character);
+        var clips = GetVoicelines(reaction);
+        return clips != null && index >= 0 && index < clips.Length ? clips[index] : null;
     }
 
     private AudioClip[] GetVoicelines(

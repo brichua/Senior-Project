@@ -21,8 +21,12 @@ namespace VocaloidTCG
         public StoryChoiceView[] difficultyButtons = new StoryChoiceView[3];
         public GameObject difficultyGroup, difficultyLocked, afterLocked, afterUnlocked, auditionPassed;
         public Button begin, classBack, mapBack, auditionBack, prologue, epilogue, before, after, editDeck, start;
-        public Image selectedClassImage, auditionClassImage, rewardArt, deckClass, deckSecondClass, cardBack, epilogueImage;
-        public Sprite epilogueLockedSprite, epilogueUnlockedSprite;
+        public Image selectedClassImage, auditionClassImage, rewardArt, deckClass, deckSecondClass, cardBack;
+        [Tooltip("Avatar artwork on the story class selection panel.")]
+        public Image selectedClassArt;
+        [Tooltip("Shown while the selected story's epilogue is locked; hidden once completed.")]
+        public GameObject epilogueLocked;
+        private Sprite defaultPrologueImage, defaultEpilogueImage;
         public TMP_Text className, storyHeader, storyCount, overallCount, mapCount, auditionClassName, deckDescription,
             location, auditionText, rewardName, selectedDeckName, deckCount, firstClear, status;
         public Slider storySlider, overallSlider, mapSlider;
@@ -43,6 +47,8 @@ namespace VocaloidTCG
         private readonly List<StoryChoiceView> deckViews = new List<StoryChoiceView>();
 
         private void Awake(){
+            defaultPrologueImage = prologue && prologue.image ? prologue.image.sprite : null;
+            defaultEpilogueImage = epilogue && epilogue.image ? epilogue.image.sprite : null;
             Active(storyInfo, false);
             if(rivalRoot) Active(rivalRoot.gameObject, false);
         }
@@ -186,6 +192,10 @@ namespace VocaloidTCG
             var data = library.Catalog.Class(story.Class);
             DeckUI.Text(className, story.tutorial ? "Tutorial" : data.DisplayName); if(className) className.color = data.color;
             DeckUI.Text(storyHeader, story.header); DeckUI.Image(selectedClassImage, data.selectedButtonImage);
+            DeckUI.Image(selectedClassArt, data.avatar);
+            if(prologue && prologue.image) prologue.image.sprite = data.prologueButtonImage ? data.prologueButtonImage : defaultPrologueImage;
+            if(epilogue && epilogue.image) epilogue.image.sprite = data.epilogueButtonImage ? data.epilogueButtonImage : defaultEpilogueImage;
+            RefreshEpilogue();
             Progress(storyCount, storySlider, library.StoryClearCount(story));
             Clear(rivalViews);
 
@@ -211,9 +221,13 @@ namespace VocaloidTCG
             }
 
             Progress(mapCount, mapSlider, library.StoryClearCount(selected));
-            bool completed = library.IsStoryCompleted(selected);
+            RefreshEpilogue();
+        }
+
+        private void RefreshEpilogue(){
+            bool completed = selected && library != null && library.IsStoryCompleted(selected);
             if(epilogue) epilogue.interactable = completed;
-            if(epilogueImage) epilogueImage.sprite = completed ? epilogueUnlockedSprite : epilogueLockedSprite;
+            Active(epilogueLocked, !completed);
         }
 
         public void SelectAudition(CharacterClass opponent){

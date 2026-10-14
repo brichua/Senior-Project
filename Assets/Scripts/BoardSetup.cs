@@ -52,9 +52,9 @@ namespace VocaloidTCG.BoardUI
         public Sprite concertButtonImage;
         public Sprite defaultTile, contestedTile, movingTile, hoverTile, playerTile, enemyTile;
         public Sprite endTurn;
-        [Tooltip("Class and card-back artwork is supplied by the assets above. Keep animator and assistance artwork here.")]
+        [Tooltip("Class artwork and avatar controllers are supplied by the class assets above. Keep assistance artwork here.")]
         public SideArt player = new SideArt { name = "Player" };
-        [Tooltip("Class and card-back artwork is supplied by the assets above. Keep animator and assistance artwork here.")]
+        [Tooltip("Class artwork and avatar controllers are supplied by the class assets above. Keep assistance artwork here.")]
         public SideArt enemy = new SideArt { name = "Enemy" };
         public string[] boldKeywords = { "harmonize", "stage share" };
         [Header("Keyword tooltips")]

@@ -14,6 +14,9 @@ namespace VocaloidTCG.BoardUI
         [Min(0.1f)] public float cardTravelSeconds = 0.4f;
         [Tooltip("Optional presentation font. Use a serif TMP font for the reference artwork's lettering.")]
         public TMP_FontAsset font;
+        [Header("Editable redraw prefabs")]
+        public ConcertPanelView redrawControlsPrefab;
+        public Image redrawBoxPrefab;
         [Header("Redraw hover info")]
         [Tooltip("Editable hover layout. Keep the Card Info View text/icon references assigned; artwork is optional.")]
         public CardInfoView redrawInfoPrefab;
@@ -273,7 +276,6 @@ namespace VocaloidTCG.BoardUI
             
             foreach(var card in allCards) card.gameObject.SetActive(false);
             yield return Animate(0.45f, t => group.alpha = 1 - Smooth(t));
-            //player char start for now, change later to layer player and opponent
             if (board.voicelines) board.voicelines.PlayVoiceline(board.setup.playerClass.identity, VoicelineEvent.Start);
             bridge.CompleteOpening();
             if(bridge.IsOnline){
@@ -389,14 +391,16 @@ namespace VocaloidTCG.BoardUI
             slash.rectTransform.localRotation = Quaternion.Euler(0, 0, -32);
             if(board.setup.gameIcon) Image(introduction, "Game icon", new Vector2(0, 415), new Vector2(220, 130), board.setup.gameIcon, Color.white);
             redrawParticles = ConcertEffects.Create(redraw, board, colors[0], colors[1], ConcertEffectStyle.Redraw, redrawEffects);
+            var controlsPrefab = redrawControlsPrefab ? redrawControlsPrefab : Resources.Load<ConcertPanelView>("Redraw controls");
+            if(controlsPrefab){
+                var controls = Instantiate(controlsPrefab, redraw);
+                instruction = controls.message; submit = controls.primary; submitLabel = controls.primaryLabel;
+                submit.onClick.AddListener(SubmitHand);
+            } else {
             Text(redraw, "Redraw", new Vector2(0, 65), new Vector2(320, 105), 64, RedrawAccent);
             instruction = Text(redraw, "", new Vector2(0, -360), new Vector2(1720, 65), 26, Color.white);
             submit = StoryUIElements.Button(redraw, "KEEP", new Vector2(0, -403), SubmitHand);
             submit.GetComponent<RectTransform>().sizeDelta = new Vector2(180, 195);
-            submit.image.color = Color.clear;
-            redrawButtonEffects = ConcertEffects.Create(submit.transform, board, RedrawAccent, RedrawAccent,
-                ConcertEffectStyle.RedrawButton, new ConcertEffectSettings());
-            submit.targetGraphic = redrawButtonEffects;
             submitLabel = submit.GetComponentInChildren<TMP_Text>();
             submitLabel.rectTransform.anchorMin = submitLabel.rectTransform.anchorMax = Vector2.one * 0.5f;
             submitLabel.rectTransform.sizeDelta = new Vector2(240, 45);
@@ -405,6 +409,12 @@ namespace VocaloidTCG.BoardUI
             submitLabel.transform.SetAsLastSibling();
             if(font) submitLabel.font = font;
             else if(board.phaseAnimator && board.phaseAnimator.font) submitLabel.font = board.phaseAnimator.font;
+            }
+            redrawButtonEffects = ConcertEffects.Create(submit.transform, board, RedrawAccent, RedrawAccent,
+                ConcertEffectStyle.RedrawButton, new ConcertEffectSettings());
+            redrawButtonEffects.rectTransform.sizeDelta = new Vector2(180, 195);
+            submit.targetGraphic = redrawButtonEffects;
+            submitLabel.transform.SetAsLastSibling();
             submit.gameObject.SetActive(false); redraw.gameObject.SetActive(false);
         }
 
@@ -440,10 +450,17 @@ namespace VocaloidTCG.BoardUI
                 if(icon) Image(introduction, "Deck class icon", center, new Vector2(42, 42), icon, Color.white);
             }
             
-            var zone = Image(redraw, "Redraw area", new Vector2(redrawX, -220), new Vector2(720, 270), board.setup.redrawBoxImage,
+            var boxPrefab = redrawBoxPrefab ? redrawBoxPrefab : Resources.Load<Image>("Redraw box");
+            Image zone;
+            if(boxPrefab){
+                zone = Instantiate(boxPrefab, redraw);
+                zone.rectTransform.anchoredPosition += new Vector2(redrawX, 0);
+            } else {
+            zone = Image(redraw, "Redraw area", new Vector2(redrawX, -220), new Vector2(720, 270), board.setup.redrawBoxImage,
                 board.setup.redrawBoxImage ? colors[side] : new Color(0.02f, 0.04f, 0.08f, 0.85f));
             zone.preserveAspect = false;
             var outline = zone.gameObject.AddComponent<Outline>(); outline.effectColor = colors[side]; outline.effectDistance = new Vector2(2, -2);
+            }
             if(!enemy) RedrawZone = zone.rectTransform;
             SpawnCards(side);
         }

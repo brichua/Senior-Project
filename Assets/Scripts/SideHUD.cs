@@ -33,16 +33,48 @@ namespace VocaloidTCG.BoardUI
         public TMP_Text subtitle;
         public GameObject subtitleRoot;
         private string subtitleMessage = "", timerMessage = "";
+        private float reactionRemaining, subtitleRemaining;
+
+        public void PlayVoiceline(CharacterClassData character, VoicelineEvent reaction, VoicelinesManager voices){
+            if(!character) return;
+            var clip = voices ? voices.GetVoiceline(character.identity, reaction) : null;
+            if(voices) voices.PlayVoiceline(character.identity, reaction);
+            ShowSubtitle(character.VoicelineText(reaction));
+            reactionRemaining = clip ? clip.length : 3f;
+            subtitleRemaining = reactionRemaining + 1f;
+            SetReaction((int)reaction);
+        }
+
+        private void Update(){
+            if(reactionRemaining > 0){
+                reactionRemaining -= Time.deltaTime;
+                if(reactionRemaining <= 0) SetReaction(0);
+            }
+            if(subtitleRemaining > 0){
+                subtitleRemaining -= Time.deltaTime;
+                if(subtitleRemaining <= 0) HideSubtitle();
+            }
+        }
+
+        private void SetReaction(int value){
+            if(!avatarAnimator || !avatarAnimator.runtimeAnimatorController) return;
+            foreach(var parameter in avatarAnimator.parameters)
+                if(parameter.name == "Reaction" && parameter.type == AnimatorControllerParameterType.Int){
+                    avatarAnimator.SetInteger("Reaction", value); break;
+                }
+        }
 
         private void Awake(){
             RenderSubtitle();
         }
 
         public void ShowSubtitle(string message){
+            subtitleRemaining = 0;
             subtitleMessage = message ?? ""; RenderSubtitle();
         }
 
         public void HideSubtitle(){
+            subtitleRemaining = 0;
             subtitleMessage = ""; RenderSubtitle();
         }
 
@@ -53,6 +85,8 @@ namespace VocaloidTCG.BoardUI
         }
 
         public void ClearSubtitle(){
+            reactionRemaining = subtitleRemaining = 0;
+            SetReaction(0);
             subtitleMessage = timerMessage = ""; RenderSubtitle();
         }
         
@@ -83,6 +117,11 @@ namespace VocaloidTCG.BoardUI
             BoardUIController.SetImage(avatarBackground, art.avatarBackground);
             BoardUIController.SetImage(infoIcon, art.infoIcon);
 
+            ClearSubtitle();
+            if(avatar && (!avatarAnimator || avatarAnimator.gameObject != avatar.gameObject))
+                avatarAnimator = avatar.GetComponent<Animator>();
+            if(avatar && !avatarAnimator && art.avatarAnimator)
+                avatarAnimator = avatar.gameObject.AddComponent<Animator>();
             if(avatarAnimator) avatarAnimator.runtimeAnimatorController = art.avatarAnimator;
             if(barFill){
                 barFill.type = Image.Type.Filled;

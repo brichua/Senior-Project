@@ -11,6 +11,8 @@ namespace VocaloidTCG.BoardUI
         [Min(0.1f)] public float entranceSeconds = 0.9f;
         public bool showRestartOnDefeat = true;
         public TMP_FontAsset font;
+        [Tooltip("Optional override for Prefabs/Resources/Match result panel. Edit that prefab to style the result text and buttons.")]
+        public ConcertPanelView resultPanelPrefab;
         [Header("Screen effects")]
         public ConcertEffectSettings resultEffects = new ConcertEffectSettings { particleCount = 85 };
         public Color victoryColor = new Color(207f / 255f, 211f / 255f, 1f);
@@ -127,6 +129,16 @@ namespace VocaloidTCG.BoardUI
                 particles.EmitBurst(new Vector2(-440, 80), classColor);
                 particles.EmitBurst(new Vector2(440, 80), accent);
             }
+            var panelPrefab = resultPanelPrefab ? resultPanelPrefab : Resources.Load<ConcertPanelView>("Match result panel");
+            if(panelPrefab){
+                var panel = Instantiate(panelPrefab, root);
+                content = (RectTransform)panel.transform;
+                contentGroup = panel.group ? panel.group : panel.gameObject.AddComponent<CanvasGroup>();
+                contentGroup.alpha = 0; contentGroup.interactable = false;
+                panel.title.text = won ? "VICTORY" : lost ? "DEFEAT" : "TIE";
+                back = panel.primary; retry = panel.secondary; save = panel.retrySave; status = panel.message;
+                back.onClick.AddListener(Return); retry.onClick.AddListener(Restart); save.onClick.AddListener(RetrySave);
+            } else {
             content = Rect(root, "Result and actions", Vector2.zero, new Vector2(1400, 1000));
             contentGroup = content.gameObject.AddComponent<CanvasGroup>(); contentGroup.alpha = 0; contentGroup.interactable = false;
             string title = won ? "VICTORY" : lost ? "DEFEAT" : "TIE";
@@ -138,6 +150,7 @@ namespace VocaloidTCG.BoardUI
             retry = Button(content, bridge.IsPuzzle ? "RETRY" : "RESTART", new Vector2(0, -425), Restart);
             save = Button(content, "RETRY SAVE", new Vector2(0, -425), RetrySave);
             status = Text(content, "", new Vector2(0, 425), new Vector2(1200, 130), 23, Color.white);
+            }
             var clip = won ? victoryStinger : defeatStinger;
             if(clip){
                 var audio = obj.AddComponent<AudioSource>(); audio.playOnAwake = false; audio.spatialBlend = 0;
