@@ -78,6 +78,7 @@ namespace VocaloidTCG.BoardUI
                     if(winner>=0) points=Mathf.Max(0,snapshot.Side(winner).score-(winner==0 ? scoreBefore0 : scoreBefore1));
                     score.text = points > 0 ? "+" + points : contested && winner<0 ? "Tie" : "+0";
                     score.color = accent;
+                    if(points > 0) PlayTileReactions(winner);
                     scorePosition = points > 0 ? AwardPosition(winner) : focusPosition;
                     score.gameObject.SetActive(true);
                 }
@@ -137,10 +138,25 @@ namespace VocaloidTCG.BoardUI
             var anchor = local ? board.playerScorePopupAnchor : board.enemyScorePopupAnchor;
             var hud = local ? board.playerHUD : board.enemyHUD;
             if(!anchor && hud && hud.score) anchor = hud.score.rectTransform;
-            //temp
-            if (local) { if (board.voicelines) board.voicelines.PlayVoiceline(board.setup.playerClass.identity, VoicelineEvent.Win_Tile); }
-            else { if (board.voicelines) board.voicelines.PlayVoiceline(board.setup.enemyClass.identity, VoicelineEvent.Win_Tile); }
             return anchor ? InLayer(anchor.TransformPoint(anchor.rect.center), anchor) : focusPosition;
+        }
+
+        private void PlayTileReactions(int actor){
+            if(!board.setup) return;
+            if(!contested){
+                if(Random.value < 0.25f) PlayTileReaction(actor, VoicelineEvent.Win_Tile);
+                return;
+            }
+            bool winnerSpeaks = Random.value < 0.5f;
+            PlayTileReaction(winnerSpeaks ? actor : 1 - actor,
+                winnerSpeaks ? VoicelineEvent.Win_Tile : VoicelineEvent.Lose_Tile);
+        }
+
+        private void PlayTileReaction(int speaker, VoicelineEvent reaction){
+            bool local = speaker == snapshot.localPlayerId;
+            var hud = local ? board.playerHUD : board.enemyHUD;
+            var character = local ? board.setup.PlayerClass : board.setup.EnemyClass;
+            if(hud) hud.PlayVoiceline(character, reaction, board.voicelines);
         }
 
         private Vector2 InLayer(Vector3 world, RectTransform source){

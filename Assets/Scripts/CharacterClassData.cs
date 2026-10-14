@@ -29,6 +29,8 @@ namespace VocaloidTCG
         public Sprite enemyDeckIcon;
         public Sprite popupImage, costImage, performerBorder, stageEffectBorder, vipImage;
         public Sprite buttonImage, selectedButtonImage;
+        [Header("Story chapter buttons")]
+        public Sprite prologueButtonImage, epilogueButtonImage;
         public CardBackData specialCardBack;
         [Tooltip("Energy icons indexed by energy amount, from 0 through 8.")]
         [FormerlySerializedAs("energyIcons")] public Sprite[] playerEnergyIcons = new Sprite[9];
@@ -41,6 +43,23 @@ namespace VocaloidTCG
         public Sprite hoverTile, tile;
         public Sprite stageEffectInfoIcon, infoIcon, avatar, avatarBackground, infoBackground;
         public Sprite barBackground, barFill;
+        [Header("Avatar animation and voiceline subtitles")]
+        public RuntimeAnimatorController avatarAnimator;
+        [TextArea] public string victoryVoiceline, defeatVoiceline, winTileVoiceline, loseTileVoiceline;
+        [TextArea] public string excitedVoiceline, concernedVoiceline, idleVoiceline;
+
+        public string VoicelineText(VoicelineEvent reaction){
+            switch(reaction){
+                case VoicelineEvent.Victory: return victoryVoiceline;
+                case VoicelineEvent.Defeat: return defeatVoiceline;
+                case VoicelineEvent.Win_Tile: return winTileVoiceline;
+                case VoicelineEvent.Lose_Tile: return loseTileVoiceline;
+                case VoicelineEvent.Excited: return excitedVoiceline;
+                case VoicelineEvent.Concerned: return concernedVoiceline;
+                case VoicelineEvent.Idle: return idleVoiceline;
+                default: return "";
+            }
+        }
         public Sprite deckIcon => playerDeckIcon;
         public Sprite DeckIcon(bool enemySide) => enemySide && enemyDeckIcon ? enemyDeckIcon : playerDeckIcon;
 
@@ -64,6 +83,7 @@ namespace VocaloidTCG
             side.stageEffectInfoIcon = stageEffectInfoIcon;
             side.infoIcon = infoIcon;
             side.avatar = avatar;
+            side.avatarAnimator = avatarAnimator;
             side.avatarBackground = avatarBackground;
             side.infoBackground = infoBackground;
             side.barBackground = barBackground;

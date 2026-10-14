@@ -338,7 +338,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2009179169}
   m_HandleRect: {fileID: 2009179168}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -1377,7 +1377,7 @@ MonoBehaviour:
   nameText: {fileID: 121588215}
   phaseText: {fileID: 171503176}
   inactivePhaseOpacity: 0.4
-  avatarAnimator: {fileID: 0}
+  avatarAnimator: {fileID: 2097294931}
   subtitle: {fileID: 1553712304}
   subtitleRoot: {fileID: 1556064988}
 --- !u!1 &233910980
@@ -3539,7 +3539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.0000038146973}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &868356211
@@ -4864,6 +4864,7 @@ GameObject:
   - component: {fileID: 1172739600}
   - component: {fileID: 1172739603}
   - component: {fileID: 1172739602}
+  - component: {fileID: 1172739604}
   m_Layer: 5
   m_Name: avatar player
   m_TagString: Untagged
@@ -4928,6 +4929,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1172739599}
   m_CullTransparentMesh: 1
+--- !u!95 &1172739604
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1172739599}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1174677831
 GameObject:
   m_ObjectHideFlags: 0
@@ -9356,9 +9379,7 @@ MonoBehaviour:
   enemyCardBack: {fileID: 0}
   localPlayerId: 0
   player0Cards: []
-  player1Cards:
-  - {fileID: 11400000, guid: a14f576bedc8115418e22b378f480190, type: 2}
-  - {fileID: 11400000, guid: a14f576bedc8115418e22b378f480190, type: 2}
+  player1Cards: []
   player0OpeningCard: {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
   player1OpeningCard: {fileID: 11400000, guid: aa559fd870eb1b348b0976cb1a3afde1, type: 2}
   clock: {fileID: 545268542}
@@ -9670,6 +9691,7 @@ GameObject:
   - component: {fileID: 2097294928}
   - component: {fileID: 2097294930}
   - component: {fileID: 2097294929}
+  - component: {fileID: 2097294931}
   m_Layer: 5
   m_Name: avatar enemy
   m_TagString: Untagged
@@ -9734,6 +9756,28 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2097294927}
   m_CullTransparentMesh: 1
+--- !u!95 &2097294931
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097294927}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2097574947
 GameObject:
   m_ObjectHideFlags: 0
@@ -9819,7 +9863,7 @@ MonoBehaviour:
   nameText: {fileID: 1353424820}
   phaseText: {fileID: 2120487428}
   inactivePhaseOpacity: 0.4
-  avatarAnimator: {fileID: 0}
+  avatarAnimator: {fileID: 1172739604}
   subtitle: {fileID: 1091811853}
   subtitleRoot: {fileID: 1017000765}
 --- !u!1 &2117458596
@@ -9857,7 +9901,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0.0000038146973}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &2117458598
@@ -10443,7 +10487,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7000000021}
   m_HandleRect: {fileID: 7000000019}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -11698,7 +11742,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 60}
+  m_AnchoredPosition: {x: -72.27, y: 60}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &8100000010
@@ -11733,7 +11777,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 60}
+  m_AnchoredPosition: {x: 72.27, y: 60}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &8100000020
@@ -11769,6 +11813,7 @@ MonoBehaviour:
   entranceSeconds: 0.9
   showRestartOnDefeat: 1
   font: {fileID: 11400000, guid: 6d8253d2727958e4d90dd4d6ec02c483, type: 2}
+  resultPanelPrefab: {fileID: 1003, guid: 2b86d9ed7596317498e85233b9f0b5dd, type: 3}
   resultEffects:
     enabled: 1
     intensity: 1
@@ -11800,6 +11845,8 @@ MonoBehaviour:
   winnerSeconds: 1.3
   cardTravelSeconds: 0.4
   font: {fileID: 11400000, guid: 6d8253d2727958e4d90dd4d6ec02c483, type: 2}
+  redrawControlsPrefab: {fileID: 1003, guid: fead26a6e46430e41a8a5ee9c355a7fa, type: 3}
+  redrawBoxPrefab: {fileID: 1003, guid: accd02599c103bd448e8794747a9fcfb, type: 3}
   redrawInfoPrefab: {fileID: 1004, guid: 76de45c6c32947e1bd9b98aaf3432870, type: 3}
   openingEffects:
     enabled: 1

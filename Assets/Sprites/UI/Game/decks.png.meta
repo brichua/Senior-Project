@@ -20,6 +20,12 @@ TextureImporter:
   - first:
       213: 309184514471618766
     second: decks_5
+  - first:
+      213: 6503363742915096210
+    second: decks_6
+  - first:
+      213: 2792258552142672358
+    second: decks_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -259,6 +265,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: decks_6
+      rect:
+        serializedVersion: 2
+        x: 431
+        y: 156
+        width: 115
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 29eeb9d2ed6904a50800000000000000
+      internalID: 6503363742915096210
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: decks_7
+      rect:
+        serializedVersion: 2
+        x: 575
+        y: 155
+        width: 115
+        height: 172
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6e1b281fb5810c620800000000000000
+      internalID: 2792258552142672358
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -279,6 +329,8 @@ TextureImporter:
       decks_3: -1161245751803813995
       decks_4: -4798467003071613678
       decks_5: 309184514471618766
+      decks_6: 6503363742915096210
+      decks_7: 2792258552142672358
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
