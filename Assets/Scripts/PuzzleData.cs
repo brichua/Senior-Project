@@ -68,8 +68,6 @@ namespace VocaloidTCG
         public List<PuzzlePlacement> placements = new List<PuzzlePlacement>();
         public List<PuzzleEnemyTurn> enemyTurns = new List<PuzzleEnemyTurn>();
         public bool enemyStarts;
-        [Tooltip("0 disables the timer so puzzle attempts are not affected by time pressure.")]
-        [Min(0)] public float turnSeconds;
         public RoundPhase startingPhase = RoundPhase.Preparation;
         [Min(1)] public int startingRound = 1;
         public PuzzleObjectiveKind objective;
@@ -94,7 +92,6 @@ namespace VocaloidTCG
             if(targetScore < 1) issues.Add("Target Score: must be at least 1.");
             if(roundLimit < 0) issues.Add("Round Limit: must be 0 (unlimited) or higher.");
             if(playerTurnLimit < 0) issues.Add("Player Turn Limit: must be 0 (unlimited) or higher.");
-            if(turnSeconds < 0) issues.Add("Turn Seconds: must be 0 (no timer) or higher.");
             if(!Enum.IsDefined(typeof(PuzzleObjectiveKind), objective)) issues.Add("Objective: choose a supported objective.");
             
             if(boardSetup) {

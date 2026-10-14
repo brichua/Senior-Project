@@ -425,6 +425,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void OnTurnExpired(){
+            if(IsPuzzle) return;
             if(IsOnline && !OnlineAuthority) return;
             if(state != null){
                 Log("Player " + state.activePlayerId + " timer expired; passing turn.");
@@ -456,7 +457,7 @@ namespace VocaloidTCG.BoardUI
 
         private void StartClock(){
             if(!clock) return;
-            float seconds = IsPuzzle ? puzzle.turnSeconds : turnSeconds;
+            float seconds = IsPuzzle ? 0 : turnSeconds;
             clock.BeginTurn(Mathf.Max(0, seconds));
             if(seconds <= 0) clock.Stop();
         }
