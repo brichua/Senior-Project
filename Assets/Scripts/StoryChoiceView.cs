@@ -36,12 +36,12 @@ namespace VocaloidTCG
             RefreshHighlight();
         }
 
-        public void SetClass(CharacterClassData data){
+        public void SetClass(CharacterClassData data, bool rival = false){
             if(!data) return;
             DeckUI.Text(title, data.DisplayName);
             if(title) title.color = data.color;
             DeckUI.Image(classIcon, data.classIcon);
-            DeckUI.Image(art, data.storyArt ? data.storyArt : data.puzzleArt);
+            DeckUI.Image(art, rival ? data.rivalArt : data.storyArt ? data.storyArt : data.puzzleArt);
             if(border) border.color = data.color;
         }
 

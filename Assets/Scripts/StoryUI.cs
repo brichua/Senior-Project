@@ -21,8 +21,12 @@ namespace VocaloidTCG
         public StoryChoiceView[] difficultyButtons = new StoryChoiceView[3];
         public GameObject difficultyGroup, difficultyLocked, afterLocked, afterUnlocked, auditionPassed;
         public Button begin, classBack, mapBack, auditionBack, prologue, epilogue, before, after, editDeck, start;
-        public Image selectedClassImage, auditionClassImage, rewardArt, deckClass, deckSecondClass, cardBack, epilogueImage;
-        public Sprite epilogueLockedSprite, epilogueUnlockedSprite;
+        public Image selectedClassImage, auditionClassImage, rewardArt, deckClass, deckSecondClass, cardBack;
+        [Tooltip("Avatar artwork on the story class selection panel.")]
+        public Image selectedClassArt;
+        [Tooltip("Shown while the selected story's epilogue is locked; hidden once completed.")]
+        public GameObject epilogueLocked;
+        private Sprite defaultPrologueImage, defaultEpilogueImage;
         public TMP_Text className, storyHeader, storyCount, overallCount, mapCount, auditionClassName, deckDescription,
             location, auditionText, rewardName, selectedDeckName, deckCount, firstClear, status;
         public Slider storySlider, overallSlider, mapSlider;
@@ -44,6 +48,8 @@ namespace VocaloidTCG
 
         private void Awake(){
             if(!status) status = StoryUIElements.Text(transform, "Story status", "", new Vector2(0, -485), new Vector2(1500, 60));
+            defaultPrologueImage = prologue && prologue.image ? prologue.image.sprite : null;
+            defaultEpilogueImage = epilogue && epilogue.image ? epilogue.image.sprite : null;
             Active(storyInfo, false);
             if(rivalRoot) Active(rivalRoot.gameObject, false);
         }
@@ -195,12 +201,16 @@ namespace VocaloidTCG
             var data = library.Catalog.Class(story.Class);
             DeckUI.Text(className, story.tutorial ? "Tutorial" : data.DisplayName); if(className) className.color = data.color;
             DeckUI.Text(storyHeader, story.header); DeckUI.Image(selectedClassImage, data.selectedButtonImage);
+            DeckUI.Image(selectedClassArt, data.avatar);
+            if(prologue && prologue.image) prologue.image.sprite = data.prologueButtonImage ? data.prologueButtonImage : defaultPrologueImage;
+            if(epilogue && epilogue.image) epilogue.image.sprite = data.epilogueButtonImage ? data.epilogueButtonImage : defaultEpilogueImage;
+            RefreshEpilogue();
             Progress(storyCount, storySlider, library.StoryClearCount(story));
             Clear(rivalViews);
 
             foreach(var other in story.auditions){
                 var view = Spawn(rivalPrefab, rivalRoot, rivalViews);
-                if(view) view.SetClass(library.Catalog.Class(other.opponent));
+                if(view) view.SetClass(library.Catalog.Class(other.opponent), rival: true);
             }
 
             ShowClasses();
@@ -215,14 +225,18 @@ namespace VocaloidTCG
             foreach(var other in selected.auditions){
                 var view = Spawn(mapPrefab, mapRoot, mapViews);
                 if(!view) continue;
-                view.Bind(() => SelectAudition(other.opponent)); view.SetClass(library.Catalog.Class(other.opponent));
+                view.Bind(() => SelectAudition(other.opponent)); view.SetClass(library.Catalog.Class(other.opponent), rival: true);
                 view.SetProgress(library.IsAuditionCompleted(selected, other.opponent) ? 1 : 0, 1);
             }
 
             Progress(mapCount, mapSlider, library.StoryClearCount(selected));
-            bool completed = library.IsStoryCompleted(selected);
+            RefreshEpilogue();
+        }
+
+        private void RefreshEpilogue(){
+            bool completed = selected && library != null && library.IsStoryCompleted(selected);
             if(epilogue) epilogue.interactable = completed;
-            if(epilogueImage) epilogueImage.sprite = completed ? epilogueUnlockedSprite : epilogueLockedSprite;
+            Active(epilogueLocked, !completed);
         }
 
         private void BeginStory(){

@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 8b3db4a3382c3c043acde3018085077c
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: The next spell you play cost 1 less
+  info: "On play, your next stage effect costs 1 less energy (minimum 0)."
   performer: 1
   stageEffect: 0
   cost: 2
@@ -28,3 +28,12 @@ MonoBehaviour:
   iconImage: {fileID: 5507046747607084061, guid: 95d21512df2eabf4d86a49c98c944f62, type: 3}
   popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 081b04c59e4747342a282ee32e8db291, type: 3}
+  effect: 25
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

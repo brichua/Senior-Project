@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 3084d19a045bb404ebfd96362265a847
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: Draw 2 minions, gain their keywords
+  info: "On play, draw 2 performers from your deck. This performer gains their keywords."
   performer: 1
   stageEffect: 0
   cost: 6
@@ -28,3 +28,12 @@ MonoBehaviour:
   iconImage: {fileID: -1424239937163212761, guid: 1cf4fa0964e9cbb4ebbd4fd461e9d6da, type: 3}
   popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 00b9fe55d3ebe4e4eadebf975897eadf, type: 3}
+  effect: 31
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

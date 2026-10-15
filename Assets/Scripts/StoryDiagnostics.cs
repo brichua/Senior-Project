@@ -68,7 +68,7 @@ namespace VocaloidTCG
                 (nameof(ui.prologue), ui.prologue), (nameof(ui.epilogue), ui.epilogue), (nameof(ui.before), ui.before), (nameof(ui.after), ui.after), (nameof(ui.editDeck), ui.editDeck), (nameof(ui.start), ui.start),
                 (nameof(ui.selectedClassImage), ui.selectedClassImage), (nameof(ui.auditionClassImage), ui.auditionClassImage), (nameof(ui.rewardArt), ui.rewardArt),
                 (nameof(ui.deckClass), ui.deckClass), (nameof(ui.deckSecondClass), ui.deckSecondClass), (nameof(ui.cardBack), ui.cardBack),
-                (nameof(ui.epilogueImage), ui.epilogueImage), (nameof(ui.epilogueLockedSprite), ui.epilogueLockedSprite), (nameof(ui.epilogueUnlockedSprite), ui.epilogueUnlockedSprite),
+                (nameof(ui.epilogueLocked), ui.epilogueLocked),
                 (nameof(ui.className), ui.className), (nameof(ui.storyHeader), ui.storyHeader), (nameof(ui.storyCount), ui.storyCount), (nameof(ui.overallCount), ui.overallCount),
                 (nameof(ui.mapCount), ui.mapCount), (nameof(ui.auditionClassName), ui.auditionClassName), (nameof(ui.deckDescription), ui.deckDescription),
                 (nameof(ui.location), ui.location), (nameof(ui.auditionText), ui.auditionText), (nameof(ui.rewardName), ui.rewardName),

@@ -15,9 +15,15 @@ MonoBehaviour:
   identity: 3
   displayName: KAITO
   color: {r: 0.6666667, g: 0.8313726, b: 1, a: 1}
+  playerArt: {fileID: -7207184615333005300, guid: a3f31955109dd7940be4e0974d1ddc81, type: 3}
+  fullPlayerImage: {fileID: 8146879698685573302, guid: 6768176e777bf1c40b1ccde162549f94, type: 3}
+  victoryImage: {fileID: 2994050991975962166, guid: 273b74d7894cdc744b5e53ae2efcc511, type: 3}
+  defeatImage: {fileID: -3154658289063242332, guid: 549dabc5b71cd204985e26b068bb213b, type: 3}
+  borderImage: {fileID: 7438915703496295310, guid: 53a33f4eee329834f87cce0622c4ada7, type: 3}
   classIcon: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-  storyArt: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-  puzzleArt: {fileID: 0}
+  puzzleArt: {fileID: -8062740330238219287, guid: a310fbca99ed16643a970cd0d49ead95, type: 3}
+  storyArt: {fileID: -8062740330238219287, guid: a310fbca99ed16643a970cd0d49ead95, type: 3}
+  rivalArt: {fileID: -541928420661573304, guid: f12652859fe5e7c4f94209623306a9a0, type: 3}
   playerDeckIcon: {fileID: -8413651515308622559, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   enemyDeckIcon: {fileID: 45705842623540115, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   popupImage: {fileID: -2014337633463164255, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
@@ -27,6 +33,8 @@ MonoBehaviour:
   vipImage: {fileID: 3480949123741850686, guid: 2550388b7ac4e5642a754b82c3438f60, type: 3}
   buttonImage: {fileID: 5248126553463304602, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
   selectedButtonImage: {fileID: 1557385946300253847, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+  prologueButtonImage: {fileID: 4670860260961453573, guid: f6bf40ccf5d7c46459c40b52626ed4aa, type: 3}
+  epilogueButtonImage: {fileID: -1830010462404933156, guid: 56fdc04f280108940bb466e4394fd4b5, type: 3}
   specialCardBack: {fileID: 11400000, guid: ad07cb418dc6ffe4997fb442cad69cf9, type: 2}
   playerEnergyIcons:
   - {fileID: -2908127333880795696, guid: d04a98cf94983ab479073947426db3da, type: 3}
@@ -56,8 +64,16 @@ MonoBehaviour:
   tile: {fileID: -7708644975649761358, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
   stageEffectInfoIcon: {fileID: -2774434106059315162, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
   infoIcon: {fileID: -7724924303093997559, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
-  avatar: {fileID: 0}
+  avatar: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
   avatarBackground: {fileID: 7306952320694336915, guid: 7d3afa4b7a342284387a79ee8953887f, type: 3}
   infoBackground: {fileID: 6264394838482478058, guid: 7d3afa4b7a342284387a79ee8953887f, type: 3}
   barBackground: {fileID: 4192355886241320053, guid: 2d6147d1675670246a90bd321eae57cd, type: 3}
   barFill: {fileID: -2163626567969100453, guid: 223dfd1e8eecc3546b8dc9dcbfd87640, type: 3}
+  avatarAnimator: {fileID: 9100000, guid: 2e7be2407c534327b26f7b689a4f714d, type: 2}
+  victoryVoiceline: Yeah!
+  defeatVoiceline: Oh no...
+  winTileVoiceline: Yes!
+  loseTileVoiceline: No...
+  excitedVoiceline: Ha!
+  concernedVoiceline: Argh!
+  idleVoiceline: Ah...

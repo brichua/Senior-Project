@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 92247ec2d6d602e45b2fb4ad0491dbab
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: Encore, harmonize 1
+  info: "Encore. Harmonize 1."
   performer: 1
   stageEffect: 0
   cost: 1
@@ -27,4 +27,13 @@ MonoBehaviour:
   characterImage: {fileID: 7171651607054373481, guid: fa488b6c532ab654283feede471c436e, type: 3}
   iconImage: {fileID: -1613532758727149675, guid: 0e53ef3ce812cbc40abe80ca19edff74, type: 3}
   popupImage: {fileID: 0}
-  playSfx: {fileID: 0}
+  playSfx: {fileID: 8300000, guid: b80050d08561ce6469b63d41ecd34c62, type: 3}
+  effect: 0
+  scoreThreshold: 0
+  harmonize: 1
+  soloist: 0
+  stageShare: 0
+  encore: 1
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

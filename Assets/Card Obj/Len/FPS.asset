@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 8287bf7f839a1274abe989f816e17202
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: When played, opposing minions in this tile get -2 inf
+  info: "On play, the opposing performer on this tile loses 2 influence."
   performer: 1
   stageEffect: 0
   cost: 1
@@ -29,3 +29,12 @@ MonoBehaviour:
   iconImage: {fileID: 2726957020727081604, guid: 959357c41e6b2d54088086d4d63efaf0, type: 3}
   popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 064b7ddc806e6a845a3d6434d5e7a265, type: 3}
+  effect: 23
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

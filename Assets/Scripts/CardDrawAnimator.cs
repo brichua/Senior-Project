@@ -70,6 +70,8 @@ namespace VocaloidTCG.BoardUI
             yield return null;
             try{
                 while(draws[actor].Count > 0){
+                    while((board.phaseAnimator && board.phaseAnimator.IsPlaying) || bridge.IsPaused)
+                        yield return null;
                     var draw = draws[actor].Dequeue();
                     if (board.sfx) board.sfx.PlayCardDrawSound();
                     yield return AnimateCard(draw);

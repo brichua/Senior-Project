@@ -16,15 +16,24 @@ MonoBehaviour:
   id: b29b801172e82654f843958ca3e3c387
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: Select a contested tile, remove 2 opponent inf
+  info: "Choose a contested tile. The opposing performer there loses 2 influence."
   performer: 0
   stageEffect: 1
   cost: 2
   influence: 0
   flags: []
-  stageInfluenceChange: 1
+  stageInfluenceChange: 2
   cardImage: {fileID: 1693532569333739529, guid: 57cde71cffe959d40adefdcc2a1f0f61, type: 3}
   characterImage: {fileID: 0}
   iconImage: {fileID: -7440991144942745900, guid: d085af7f22d0a2547a588426d9611386, type: 3}
   popupImage: {fileID: 0}
-  playSfx: {fileID: 0}
+  playSfx: {fileID: 8300000, guid: cdb4a822fa9d0e64fa012016b7312bbf, type: 3}
+  effect: 14
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

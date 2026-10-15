@@ -16,8 +16,7 @@ MonoBehaviour:
   id: 5a4ca13c112bad64190b371a46fc13d9
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: Play a 2 cost or lower minion from hand (ignoring cost), then add a 3 cost
-    or higher minion to your hand
+  info: "Choose a performer in your hand costing 2 or less and play it on a legal tile without paying its cost. Then choose a performer costing 3 or more from your deck and add it to your hand."
   performer: 0
   stageEffect: 1
   cost: 4
@@ -28,4 +27,13 @@ MonoBehaviour:
   characterImage: {fileID: 0}
   iconImage: {fileID: 5944057338082246566, guid: 128b32b23c2df104dbb4e14be87e40c3, type: 3}
   popupImage: {fileID: 0}
-  playSfx: {fileID: 0}
+  playSfx: {fileID: 8300000, guid: a4ecce192fcb8214281808b35bbec0fc, type: 3}
+  effect: 19
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

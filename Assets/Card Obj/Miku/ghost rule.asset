@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 11d685df179a4324ea4c1c28fc65d77d
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: Create minion with 0 inf on an adjacent tile
+  info: "On play, choose an adjacent tile with no allied performer. Create a 0-influence token there. The token uses this card's art, costs 0, and has no effects or keywords."
   performer: 1
   stageEffect: 0
   cost: 1
@@ -29,3 +29,12 @@ MonoBehaviour:
   iconImage: {fileID: -1331112895632428632, guid: 51bd8a68e7fedbf43a66d81e99dfb95e, type: 3}
   popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: d1fa5d12c96008b4fbf9b9ecb45307fc, type: 3}
+  effect: 3
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

@@ -14,6 +14,7 @@ namespace VocaloidTCG.BoardUI
         public Sprite hoverTile, tile;
         public Sprite performerPopup;
         public Sprite assistance, cd;
+        public Sprite border;
         public Sprite[] energy = new Sprite[9];
         public RuntimeAnimatorController avatarAnimator;
         [FormerlySerializedAs("deckTextColor")]
@@ -51,16 +52,13 @@ namespace VocaloidTCG.BoardUI
         public Sprite concertButtonImage;
         public Sprite defaultTile, contestedTile, movingTile, hoverTile, playerTile, enemyTile;
         public Sprite endTurn;
-        [Tooltip("Class and card-back artwork is supplied by the assets above. Keep animator and assistance artwork here.")]
+        [Tooltip("Class artwork and avatar controllers are supplied by the class assets above. Keep assistance artwork here.")]
         public SideArt player = new SideArt { name = "Player" };
-        [Tooltip("Class and card-back artwork is supplied by the assets above. Keep animator and assistance artwork here.")]
+        [Tooltip("Class artwork and avatar controllers are supplied by the class assets above. Keep assistance artwork here.")]
         public SideArt enemy = new SideArt { name = "Enemy" };
         public string[] boldKeywords = { "harmonize", "stage share" };
         [Header("Keyword tooltips")]
-        public KeywordDefinition[] keywordDescriptions = {
-            new KeywordDefinition { keyword = "harmonize" },
-            new KeywordDefinition { keyword = "stage share" }
-        };
+        public KeywordDefinition[] keywordDescriptions = CardKeywords.Descriptions(null);
         public Sprite keywordTooltipBackground;
         public string countdownParameter = "Countdown";
 
@@ -80,6 +78,7 @@ namespace VocaloidTCG.BoardUI
         public BoardSetup CreateRuntimeSetup(CardBackData playerBackOverride = null, CardBackData enemyBackOverride = null)
         {
             var result = Instantiate(this);
+            result.keywordDescriptions = CardKeywords.Descriptions(keywordDescriptions);
             if(result.player == null) result.player = new SideArt();
             if(result.enemy == null) result.enemy = new SideArt();
             if(PlayerClass) {

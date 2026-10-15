@@ -16,7 +16,7 @@ MonoBehaviour:
   id: d0ccc814f2d9cde44a7ddfe1facf531a
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: Give a minion +1 inf permanently, draw 1
+  info: "Choose an allied performer. It permanently gains +1 influence. Draw 1 card."
   performer: 0
   stageEffect: 1
   cost: 2
@@ -27,4 +27,13 @@ MonoBehaviour:
   characterImage: {fileID: 0}
   iconImage: {fileID: -5067179397600858276, guid: bae4358cb6c7c33419ba51f6b50d8d03, type: 3}
   popupImage: {fileID: 0}
-  playSfx: {fileID: 0}
+  playSfx: {fileID: 8300000, guid: 4785ef17be94a574bb12413f9c0792f0, type: 3}
+  effect: 15
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

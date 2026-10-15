@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d75c0d85338724ca61f930e6603d18, type: 3}
+  m_Name: Puzzle Sample
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
+  id: cff3c8df647351349a9163c38f5e4ff7
+  number: 1
+  puzzleName: Puzzle Sample
+  shortDescription: puzzle sample
+  longDescription: puzzle sample for visualizing puzzles
+  puzzleClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  againstClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
+  rewardCard: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  boardSetup: {fileID: 11400000, guid: 083aeda2e3b583146866fa867183e3ab, type: 2}
+  player:
+    energy: 4
+    score: 0
+    startingHand:
+    - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
+    - {fileID: 11400000, guid: 8320e54cccaaf8a4c808f0ae69ef95af, type: 2}
+    - {fileID: 11400000, guid: b29b801172e82654f843958ca3e3c387, type: 2}
+    - {fileID: 11400000, guid: 0b21cc092eb618240ab6629d284db2da, type: 2}
+    cardsOnTurns: []
+  enemy:
+    energy: 3
+    score: 0
+    startingHand:
+    - {fileID: 11400000, guid: 840a8011cb920614193627793316de04, type: 2}
+    cardsOnTurns: []
+  placements:
+  - card: {fileID: 11400000, guid: aa9a761ca1a246347abef6daa6ef5d45, type: 2}
+    enemy: 0
+    column: 1
+    row: 1
+    influence: 1
+  enemyTurns:
+  - actions:
+    - kind: 0
+      card: {fileID: 11400000, guid: 840a8011cb920614193627793316de04, type: 2}
+      fromColumn: 0
+      fromRow: 0
+      toColumn: 2
+      toRow: 1
+  enemyStarts: 1
+  turnSeconds: 0
+  startingPhase: 1
+  startingRound: 1
+  objective: 1
+  targetScore: 2
+  roundLimit: 1
+  playerTurnLimit: 0

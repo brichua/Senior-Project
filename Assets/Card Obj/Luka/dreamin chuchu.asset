@@ -16,15 +16,25 @@ MonoBehaviour:
   id: 16e13ed84fa284f40933ec46c8c08b1f
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: If this is in the middle zone, restore 1 inf after performance phase
+  info: "After each Performance phase, if this performer is in Center Stage, restore 1 influence, up to its original influence."
   performer: 1
   stageEffect: 0
-  cost: 4
-  influence: 3
+  cost: 3
+  influence: 4
   flags: []
   stageInfluenceChange: 1
   cardImage: {fileID: 848607554796465451, guid: b886ae9395e75b84e9d2c9e42f60bec8, type: 3}
   characterImage: {fileID: -7507373443239499118, guid: 880a2fc18b538a04c988b9e18a5d8ac3, type: 3}
   iconImage: {fileID: 8132635324721384545, guid: 177264ebd4716464a820101c61003a8e, type: 3}
   popupImage: {fileID: 0}
+  playSfx: {fileID: 8300000, guid: de8aa0f2b09b5fc448b93079b22214ae, type: 3}
   playSfx: {fileID: 0}
+  effect: 45
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

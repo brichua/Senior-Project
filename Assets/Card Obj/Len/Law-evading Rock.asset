@@ -16,7 +16,7 @@ MonoBehaviour:
   id: d687edf23c2cddc478edab69407244bd
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: Gain 1 energy after 2 rounds
+  info: "After this performer survives 2 round resolutions, gain 1 extra energy at the start of the next round (maximum 8)."
   performer: 1
   stageEffect: 0
   cost: 1
@@ -29,3 +29,12 @@ MonoBehaviour:
   iconImage: {fileID: -134032404276471645, guid: 0d5d104d3fa7c2c4486d0dddb0c494d6, type: 3}
   popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: cbd413df72644544aad3b327d6c84bbd, type: 3}
+  effect: 21
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

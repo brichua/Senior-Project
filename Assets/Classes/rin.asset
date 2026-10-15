@@ -15,9 +15,15 @@ MonoBehaviour:
   identity: 2
   displayName: Kagamine Rin
   color: {r: 1, g: 0.89019614, b: 0.77647066, a: 1}
+  playerArt: {fileID: -8241364598567933092, guid: 70e300cb60e70664aad529741037ba1a, type: 3}
+  fullPlayerImage: {fileID: -663639097201757336, guid: 2da94b3a5c784214b8622248ebabd001, type: 3}
+  victoryImage: {fileID: 9192705254109663566, guid: b3469ff14b772054fa6b2ead3fd884a8, type: 3}
+  defeatImage: {fileID: -823494728928515524, guid: b0d1a656dc976ad4caaf0d0b14796cc2, type: 3}
+  borderImage: {fileID: -4182326094512355041, guid: ab1191a0fcca50149b5eff6d5b59d99e, type: 3}
   classIcon: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-  storyArt: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-  puzzleArt: {fileID: 0}
+  puzzleArt: {fileID: 7039422525122033124, guid: 8a50e0329f9101443833ad8cc5fa338d, type: 3}
+  storyArt: {fileID: 7039422525122033124, guid: 8a50e0329f9101443833ad8cc5fa338d, type: 3}
+  rivalArt: {fileID: 5199044998959515962, guid: 4e6fcb1813054994ca50806e744d7d8a, type: 3}
   playerDeckIcon: {fileID: 1363283377247377253, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   enemyDeckIcon: {fileID: -4285498806430741326, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}
   popupImage: {fileID: -8004225029083858605, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
@@ -27,6 +33,8 @@ MonoBehaviour:
   vipImage: {fileID: -1182226319691094553, guid: 2550388b7ac4e5642a754b82c3438f60, type: 3}
   buttonImage: {fileID: -7527750230799149382, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
   selectedButtonImage: {fileID: -7734485123957443193, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+  prologueButtonImage: {fileID: -72691959743157410, guid: 45dfe5ec54bb0b141a64b24d0a7388cc, type: 3}
+  epilogueButtonImage: {fileID: 8140364355065139219, guid: 45dfe5ec54bb0b141a64b24d0a7388cc, type: 3}
   specialCardBack: {fileID: 11400000, guid: d9ba12aad6731974ea5d731c7d0afc97, type: 2}
   playerEnergyIcons:
   - {fileID: 1904957743826459537, guid: d04a98cf94983ab479073947426db3da, type: 3}
@@ -56,8 +64,16 @@ MonoBehaviour:
   tile: {fileID: -1530080802165054831, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
   stageEffectInfoIcon: {fileID: -994693644016785934, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
   infoIcon: {fileID: 3564376639946065616, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
-  avatar: {fileID: 0}
+  avatar: {fileID: -6669168746909621162, guid: 0e83925bdc271a642a541badaf0fbd37, type: 3}
   avatarBackground: {fileID: 6308847496899898642, guid: 7324c21ff860e6849b4462f8fc6c5fb0, type: 3}
   infoBackground: {fileID: -1365507705589576809, guid: 7324c21ff860e6849b4462f8fc6c5fb0, type: 3}
   barBackground: {fileID: 8946162703707547869, guid: 2d6147d1675670246a90bd321eae57cd, type: 3}
   barFill: {fileID: -32143523594085893, guid: 223dfd1e8eecc3546b8dc9dcbfd87640, type: 3}
+  avatarAnimator: {fileID: 9100000, guid: 30d040963a6943bca578922c80f7bc96, type: 2}
+  victoryVoiceline: Nice!
+  defeatVoiceline: Eek!
+  winTileVoiceline: Mine!
+  loseTileVoiceline: Oops!
+  excitedVoiceline: Whoa!
+  concernedVoiceline: Wait!
+  idleVoiceline: Ehehe...

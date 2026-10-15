@@ -24,6 +24,12 @@ namespace VocaloidTCG
         public List<string> flags = new List<string>();
         [Tooltip("Basic stage effect: permanently change a friendly performer's influence by this amount.")]
         public int stageInfluenceChange = 1;
+        [Header("Special effects")]
+        public CardEffect effect;
+        [Tooltip("Fan score needed for this card's score-dependent effect. 0 disables the threshold until it is configured.")]
+        [Min(0)] public int scoreThreshold;
+        [Min(0)] public int harmonize, soloist;
+        public bool stageShare, encore, nimble, cheerEffect, venueEffect;
 
         [Header("Art and Audio")]
         public Sprite cardImage;

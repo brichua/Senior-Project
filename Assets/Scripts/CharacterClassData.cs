@@ -15,16 +15,22 @@ namespace VocaloidTCG
         public Sprite playerArt;
         [Tooltip("Transparent full character artwork for the centered match result screen.")]
         public Sprite fullPlayerImage;
-        [Tooltip("Optional class icon for match introductions. Falls back to Class Icon.")]
-        public Sprite gameIcon;
+        [Tooltip("Character artwork for victory and defeat. Falls back to Full Player Image when unassigned.")]
+        public Sprite victoryImage, defeatImage;
+        [Tooltip("Border artwork for this class on either side of the game HUD.")]
+        public Sprite borderImage;
         [Header("Deck and card artwork")]
         public Sprite classIcon;
         public Sprite puzzleArt;
         public Sprite storyArt;
+        [Tooltip("Character artwork used by rival cards and map icons in Story mode.")]
+        public Sprite rivalArt;
         [FormerlySerializedAs("deckIcon")] public Sprite playerDeckIcon;
         public Sprite enemyDeckIcon;
         public Sprite popupImage, costImage, performerBorder, stageEffectBorder, vipImage;
         public Sprite buttonImage, selectedButtonImage;
+        [Header("Story chapter buttons")]
+        public Sprite prologueButtonImage, epilogueButtonImage;
         public CardBackData specialCardBack;
         [Tooltip("Energy icons indexed by energy amount, from 0 through 8.")]
         [FormerlySerializedAs("energyIcons")] public Sprite[] playerEnergyIcons = new Sprite[9];
@@ -37,6 +43,23 @@ namespace VocaloidTCG
         public Sprite hoverTile, tile;
         public Sprite stageEffectInfoIcon, infoIcon, avatar, avatarBackground, infoBackground;
         public Sprite barBackground, barFill;
+        [Header("Avatar animation and voiceline subtitles")]
+        public RuntimeAnimatorController avatarAnimator;
+        [TextArea] public string victoryVoiceline, defeatVoiceline, winTileVoiceline, loseTileVoiceline;
+        [TextArea] public string excitedVoiceline, concernedVoiceline, idleVoiceline;
+
+        public string VoicelineText(VoicelineEvent reaction){
+            switch(reaction){
+                case VoicelineEvent.Victory: return victoryVoiceline;
+                case VoicelineEvent.Defeat: return defeatVoiceline;
+                case VoicelineEvent.Win_Tile: return winTileVoiceline;
+                case VoicelineEvent.Lose_Tile: return loseTileVoiceline;
+                case VoicelineEvent.Excited: return excitedVoiceline;
+                case VoicelineEvent.Concerned: return concernedVoiceline;
+                case VoicelineEvent.Idle: return idleVoiceline;
+                default: return "";
+            }
+        }
         public Sprite deckIcon => playerDeckIcon;
         public Sprite DeckIcon(bool enemySide) => enemySide && enemyDeckIcon ? enemyDeckIcon : playerDeckIcon;
 
@@ -54,11 +77,13 @@ namespace VocaloidTCG
             
             side.skill = enemySide && enemySkillImage ? enemySkillImage : playerSkillImage;
             side.cd = cdImage;
+            side.border = borderImage;
             side.hoverTile = hoverTile;
             side.tile = tile;
             side.stageEffectInfoIcon = stageEffectInfoIcon;
             side.infoIcon = infoIcon;
             side.avatar = avatar;
+            side.avatarAnimator = avatarAnimator;
             side.avatarBackground = avatarBackground;
             side.infoBackground = infoBackground;
             side.barBackground = barBackground;

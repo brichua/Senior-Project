@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 6be636323e8b2fe4b9d07bf7d000bdde
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: 'When opponent wins performance phase reduce VP by 2 '
+  info: "While on the field, if your opponent gains more fan score than you during a Performance phase, they lose 2 fan score after that phase."
   performer: 1
   stageEffect: 0
   cost: 6
@@ -29,3 +29,12 @@ MonoBehaviour:
   iconImage: {fileID: 1847276110145919348, guid: cfbe15d154314694487f7d90a131d22f, type: 3}
   popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 71ae677657048bf4593b496ce67c8f32, type: 3}
+  effect: 30
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

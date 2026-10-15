@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 8320e54cccaaf8a4c808f0ae69ef95af
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: All adjacent minions get +1 inf, harmonize 1
+  info: "Harmonize 1. While on the field, allied performers on the 8 surrounding tiles have +1 influence."
   performer: 1
   stageEffect: 0
   cost: 1
@@ -29,3 +29,12 @@ MonoBehaviour:
   iconImage: {fileID: -2593745517465982352, guid: 7d19453a49381ff44b05ac3ac4119903, type: 3}
   popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: bae0e388d38158946a72d634bbd1b246, type: 3}
+  effect: 2
+  scoreThreshold: 0
+  harmonize: 1
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

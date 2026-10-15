@@ -16,7 +16,7 @@ MonoBehaviour:
   id: 2c9bee9d08e838f4b8bac5071656c12a
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: Reduce 1 adjacent performer influence to half
+  info: "On play, choose an adjacent allied performer. While both remain adjacent and this is on the field, that ally gains half this performer's influence, rounded down (excluding shared influence)."
   performer: 1
   stageEffect: 0
   cost: 2
@@ -29,3 +29,12 @@ MonoBehaviour:
   iconImage: {fileID: 3507695491513951802, guid: 5b18d86707bbfcc48b241f0b40732d72, type: 3}
   popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 829d03893c344674fb82dabbe64cbf4d, type: 3}
+  effect: 7
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0

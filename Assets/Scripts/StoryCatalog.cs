@@ -61,7 +61,8 @@ namespace VocaloidTCG
 
                         var issues = new List<string>();
                         StoryDiagnostics.Require(issues, (nameof(data.classIcon), data.classIcon), (nameof(data.selectedButtonImage), data.selectedButtonImage));
-                        if(!data.storyArt && !data.puzzleArt) issues.Add("storyArt/puzzleArt: assign at least one artwork sprite for rivals and map icons.");
+                        if(!data.storyArt && !data.puzzleArt) issues.Add("storyArt/puzzleArt: assign at least one artwork sprite for story class selection.");
+                        StoryDiagnostics.Require(issues, (nameof(data.rivalArt) + " (rival cards and map icons)", data.rivalArt));
                         StoryDiagnostics.Report(data, issues);
                     }
                 }

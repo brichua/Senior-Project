@@ -10,6 +10,7 @@ namespace VocaloidTCG.BoardUI
     {
         private TMP_Text source, label;
         private BoardSetup setup;
+        private KeywordDefinition[] definitions;
         private RectTransform panel, bounds;
         private Image background;
         private readonly List<RaycastResult> hits = new List<RaycastResult>();
@@ -19,6 +20,7 @@ namespace VocaloidTCG.BoardUI
         public void Configure(TMP_Text text, BoardSetup theme){
             source = text;
             setup = theme;
+            definitions = CardKeywords.Descriptions(theme.keywordDescriptions);
             source.raycastTarget = true;
             Hide();
         }
@@ -42,8 +44,8 @@ namespace VocaloidTCG.BoardUI
             if(link < 0){ Hide(); return; }
             string id = source.textInfo.linkInfo[link].GetLinkID();
             if(!id.StartsWith("keyword-") || !int.TryParse(id.Substring(8), out int index) ||
-                setup.keywordDescriptions == null || index < 0 || index >= setup.keywordDescriptions.Length){ Hide(); return; }
-            var definition = setup.keywordDescriptions[index];
+                definitions == null || index < 0 || index >= definitions.Length){ Hide(); return; }
+            var definition = definitions[index];
             if(definition == null){ Hide(); return; }
             Show(definition, position);
         }

@@ -25,6 +25,7 @@ namespace VocaloidTCG
         public Color lockedTextColor = new Color32(0x59, 0x5D, 0x8A, 0xFF);
         public GameObject lockedSubText;
         public GameObject lockedIcon;
+        public SFXManager sfx;
 
         private Button button;
         private Vector2 originalPosition;
@@ -74,7 +75,8 @@ namespace VocaloidTCG
             RefreshVisuals();
         }
 
-        public void OnPointerEnter(PointerEventData eventData) { hovered = !locked; RefreshVisuals(); }
+        public void OnPointerEnter(PointerEventData eventData) {hovered = !locked; if (sfx) sfx.PlayHoverSound(); RefreshVisuals(); }
+
         public void OnPointerExit(PointerEventData eventData) { hovered = false; RefreshVisuals(); }
         private void OnDisable()
         {

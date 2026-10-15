@@ -16,7 +16,7 @@ MonoBehaviour:
   id: e6588ac7bdd72e743b794f6a720ed2e0
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: 'Move a minion to any tile on your side (including middle) (quick) '
+  info: "Cheer Effect. Choose an allied performer, then move it to a tile on your side or in Center Stage without an allied performer."
   performer: 0
   stageEffect: 1
   cost: 1
@@ -27,4 +27,13 @@ MonoBehaviour:
   characterImage: {fileID: 0}
   iconImage: {fileID: 228201058075415409, guid: c27cbf56452bca04d8c85c9f1dc2f204, type: 3}
   popupImage: {fileID: 0}
-  playSfx: {fileID: 0}
+  playSfx: {fileID: 8300000, guid: 861d535fad6f6184e9708aab39169eac, type: 3}
+  effect: 12
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 1
+  venueEffect: 0

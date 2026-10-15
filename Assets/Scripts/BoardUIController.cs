@@ -17,7 +17,12 @@ namespace VocaloidTCG.BoardUI
         public CardInfoView playerInfo, enemyInfo;
         public PausePanel pausePanel;
         [SerializeField, HideInInspector] private TMP_Text phaseText;
-        public bool subtitleTimerOnlyDuringCountdown;
+        [Header("CD countdown")]
+        [Tooltip("Scene labels ordered 10 through 1. Their positions are edited in the scene.")]
+        public TMP_Text[] cdCountdownNumbers = new TMP_Text[10];
+        [Range(0f, 1f)] public float cdDarkBrightness = 0.35f;
+        private Color cdOriginalColor;
+        private bool cdColorCaptured;
         public TileView tilePrefab;
         public Transform gridRoot;
         public CardPointer handPrefab;
@@ -26,6 +31,7 @@ namespace VocaloidTCG.BoardUI
         public bool mirrorColumnsForSide1 = true;
         public Vector2 ghostSize = new Vector2(120, 160);
         public SFXManager sfx;
+        public VoicelinesManager voicelines;
         public CardDrawAnimator drawAnimator;
         public PhaseAnnouncementAnimator phaseAnimator;
         [Tooltip("Particle and accent color for the End of Round announcement. Preparation and Performance use the round starter's board class color.")]
@@ -36,6 +42,7 @@ namespace VocaloidTCG.BoardUI
         public EndRoundScoringAnimator scoringAnimator;
         public MatchOpeningAnimator openingAnimator;
         public MatchResultAnimator resultAnimator;
+        private CardEffectTargetingUI effectTargeting;
 
         [ContextMenu("Set Up Animation Components")]
         public void SetUpAnimationComponents(){
@@ -66,6 +73,11 @@ namespace VocaloidTCG.BoardUI
 
         public TileView GetMiddleTileView(int row){
             return row >= 0 && row < 5 && tiles.Count >= 25 ? tiles[row * 5 + 2] : null;
+        }
+        public TileView GetEffectTileView(int index){
+            if(index<0 || index>=25 || tiles.Count<25 || State==null) return null;
+            int x=mirrorColumnsForSide1 && State.localPlayerId==1 ? 4-index%5 : index%5;
+            return tiles[index/5*5+x];
         }
 
         public BoardSnapshot State { get { return game ? game.Snapshot : null; } }
@@ -168,6 +180,7 @@ namespace VocaloidTCG.BoardUI
             if(!resultAnimator) resultAnimator = GetComponent<MatchResultAnimator>();
             if(!resultAnimator) resultAnimator = gameObject.AddComponent<MatchResultAnimator>();
             resultAnimator.Initialize(this);
+            effectTargeting=gameObject.AddComponent<CardEffectTargetingUI>(); effectTargeting.Initialize(this);
             ready = true;
             game.Changed += Refresh;
             Refresh();
@@ -182,6 +195,7 @@ namespace VocaloidTCG.BoardUI
             }
         }
         private void OnDisable(){
+            if(effectTargeting) effectTargeting.Clear();
             if(resultAnimator) resultAnimator.Cancel();
             if(openingAnimator) openingAnimator.Cancel();
             if(scoringAnimator) scoringAnimator.Cancel();
@@ -195,6 +209,7 @@ namespace VocaloidTCG.BoardUI
             if (enemyHUD && setup) enemyHUD.Countdown(false, setup.countdownParameter);
             if (playerHUD) playerHUD.ClearSubtitle();
             if (enemyHUD) enemyHUD.ClearSubtitle();
+            ResetCDCountdown();
         }
         private void OnDestroy()
         {
@@ -264,22 +279,14 @@ namespace VocaloidTCG.BoardUI
             RenderSelection(playerInfo, selectedPlayer, setup.player);
             RenderSelection(enemyInfo, selectedEnemy, setup.enemy);
             UpdateTurnDisplay();
+            if(effectTargeting) effectTargeting.Refresh();
         }
 
-        // A scene reload or an early bridge notification can reach Refresh before
-        // the visual grid has been rebuilt. Keep the model's fixed 5x5 board and
-        // the UI list in sync before indexing it.
-        private void EnsureTiles(){
-            if(tiles.Count == 25) return;
-            foreach(var tile in tiles) if(tile) Destroy(tile.gameObject);
-            tiles.Clear();
-            for(int i = 0; i < 25; i++) tiles.Add(Instantiate(tilePrefab, gridRoot));
-        }
-
-        private void Update(){
-            if(!ready) return;
-            if(State != null) UpdateTurnDisplay();
-            else if(enemyHUD) enemyHUD.SetTimerSubtitle("");
+        private void Update()
+        {
+            if (!ready) return;
+            if (State != null) UpdateTurnDisplay();
+            else ResetCDCountdown();
         }
         private void UpdateTurnDisplay()
         {
@@ -292,10 +299,8 @@ namespace VocaloidTCG.BoardUI
                 endTurn.interactable = CanInteract();
             }
             SetImage(cd, localTurn ? setup.player.cd : setup.enemy.cd);
-            bool showTimer = playing && game.RemainingSeconds > 0 &&
-                (!subtitleTimerOnlyDuringCountdown || game.RemainingSeconds <= 10);
-            if (enemyHUD) enemyHUD.SetTimerSubtitle(showTimer ?
-                "Time left: " + Mathf.CeilToInt(game.RemainingSeconds) + "s" : "");
+            if (playerHUD) playerHUD.SetTimerSubtitle("");
+            if (enemyHUD) enemyHUD.SetTimerSubtitle("");
             if(playerHUD) playerHUD.RenderPhase(s.phase, playing && localTurn);
             if(enemyHUD) enemyHUD.RenderPhase(s.phase, playing && s.activePlayerId == 1 - s.localPlayerId);
             string phaseLabel = "Round " + s.roundNumber + " — " + s.phase;
@@ -330,13 +335,41 @@ namespace VocaloidTCG.BoardUI
             // can still use its standalone text for turn and transition guidance.
             if(phaseText && (!playerHUD || phaseText != playerHUD.phaseText) &&
                 (!enemyHUD || phaseText != enemyHUD.phaseText))
-                CardInfoView.Put(phaseText, phaseLabel);
-            bool countdown = playing && game.RemainingSeconds > 0 && game.RemainingSeconds <= 10 &&
-                !(pausePanel && pausePanel.IsOpen && !s.multiplayer);
-            if (playerHUD) playerHUD.Countdown(countdown && !localTurn, setup.countdownParameter);
-            if (enemyHUD) enemyHUD.Countdown(countdown && localTurn, setup.countdownParameter);
+                CardInfoView.Put(phaseText, "");
+            bool countdown = playing && game.RemainingSeconds > 0 && game.RemainingSeconds <= 20 &&
+                !(pausePanel && pausePanel.IsOpen && !s.multiplayer) &&
+                (!phaseAnimator || !phaseAnimator.IsPlaying) &&
+                (!drawAnimator || !drawAnimator.IsPlaying) && s.pendingEffect == null;
+            UpdateCDCountdown(countdown, game.RemainingSeconds,
+                localTurn ? setup.player.textColor : setup.enemy.textColor);
             if (dragged != null && !CanInteract()) CancelDrag();
         }
+
+        private void UpdateCDCountdown(bool active, float remaining, Color textColor){
+            if(!cdColorCaptured && cd){ cdOriginalColor = cd.color; cdColorCaptured = true; }
+            float remainingSteps = remaining / 2f;
+            int number = Mathf.Clamp(Mathf.CeilToInt(remainingSteps), 1, 10);
+            float progress = number - remainingSteps;
+            float pulse = active ? Mathf.Pow(Mathf.Sin(Mathf.Clamp01(progress) * Mathf.PI), 2) : 0;
+            if(cd && cdColorCaptured){
+                float brightness = Mathf.Lerp(1, cdDarkBrightness, pulse);
+                cd.color = new Color(cdOriginalColor.r * brightness, cdOriginalColor.g * brightness,
+                    cdOriginalColor.b * brightness, cdOriginalColor.a);
+            }
+            if(cdCountdownNumbers == null) return;
+            for(int i = 0; i < cdCountdownNumbers.Length; i++){
+                var label = cdCountdownNumbers[i];
+                if(!label) continue;
+                bool visible = active && i == 10 - number && pulse > 0.01f;
+                label.gameObject.SetActive(visible);
+                if(visible){
+                    label.text = number.ToString();
+                    label.color = new Color(textColor.r, textColor.g, textColor.b, (150f / 255f) * pulse);
+                }
+            }
+        }
+
+        private void ResetCDCountdown(){ UpdateCDCountdown(false, 0, Color.white); }
 
         private void Pass()
         {
@@ -358,6 +391,7 @@ namespace VocaloidTCG.BoardUI
             if (local) selectedPlayer = card.instanceId; else selectedEnemy = card.instanceId;
             var view = local ? playerInfo : enemyInfo;
             if (view) view.Show(card, local ? setup.player : setup.enemy, setup);
+            if(effectTargeting) effectTargeting.Select(card);
         }
 
         private void RenderSelection(CardInfoView view, string id, SideArt side)

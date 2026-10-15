@@ -25,6 +25,15 @@ namespace VocaloidTCG
         public string puzzleScene = "Puzzles";
         public string settingsScene = "Settings";
         public TMP_Text status;
+        public SFXManager sfx;
+        [Header("Animated concert background")]
+        public Image concertBackground;
+        public bool animateBackground = true;
+        [Range(0, 1)] public float atmosphereIntensity = 0.65f;
+        [Min(1)] public float backgroundCycleSeconds = 18f;
+        [Min(4)] public float centerBurstInterval = 12f;
+        [Range(0, 2)] public float centerBurstIntensity = 1f;
+        private MainMenuAtmosphere atmosphere;
 
         [Header("Tutorial access")]
         public bool tutorialCompleted;
@@ -45,9 +54,16 @@ namespace VocaloidTCG
         
         private void Awake()
         {
+            if(animateBackground && concertBackground){
+                atmosphere = MainMenuAtmosphere.Create(concertBackground);
+                atmosphere.intensity = atmosphereIntensity;
+                atmosphere.cycleSeconds = backgroundCycleSeconds;
+                atmosphere.centerBurstInterval = centerBurstInterval;
+                atmosphere.centerBurstIntensity = centerBurstIntensity;
+            }
             if (!multiplayerButton)
                 multiplayerButton = FindButton("Multiplayer Button");
-            if(storyButton) storyButton.onClick.AddListener(OpenStory);
+            if (storyButton) storyButton.onClick.AddListener(OpenStory);
             if(multiplayerButton) multiplayerButton.onClick.AddListener(OpenMultiplayer);
             if(decksButton) decksButton.onClick.AddListener(OpenDeckEditor);
             if(puzzlesButton) puzzlesButton.onClick.AddListener(OpenPuzzles);
@@ -78,6 +94,13 @@ namespace VocaloidTCG
 
         private void Update()
         {
+            if(atmosphere){
+                atmosphere.gameObject.SetActive(animateBackground);
+                atmosphere.intensity = atmosphereIntensity;
+                atmosphere.cycleSeconds = backgroundCycleSeconds;
+                atmosphere.centerBurstInterval = centerBurstInterval;
+                atmosphere.centerBurstIntensity = centerBurstIntensity;
+            }
             if (previousAccess != CanAccessModes || previousTutorialCompletion != HasCompletedTutorial) RefreshAccess();
             UpdateMusicProgress();
         }

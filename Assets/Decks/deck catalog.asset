@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: deck catalog
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.DeckCatalog
   cards:
+  - {fileID: 11400000, guid: 68b517ded5524c95a4f5e85f31eb5dba, type: 2}
   - {fileID: 11400000, guid: 856278b3ccaa51e42925bc9e967cad0f, type: 2}
   - {fileID: 11400000, guid: 3084d19a045bb404ebfd96362265a847, type: 2}
   - {fileID: 11400000, guid: 727dd3ac0ef89354593ec27b315a4767, type: 2}
@@ -81,6 +82,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3d159ae028483bd4d8d9034e725abbe0, type: 2}
   - {fileID: 11400000, guid: 564ad9005b7dba840a394a51684db0b1, type: 2}
   startingCollection:
+  - {fileID: 11400000, guid: 68b517ded5524c95a4f5e85f31eb5dba, type: 2}
   - {fileID: 11400000, guid: 856278b3ccaa51e42925bc9e967cad0f, type: 2}
   - {fileID: 11400000, guid: 3084d19a045bb404ebfd96362265a847, type: 2}
   - {fileID: 11400000, guid: 727dd3ac0ef89354593ec27b315a4767, type: 2}

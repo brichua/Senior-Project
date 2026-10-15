@@ -22,6 +22,14 @@ MonoBehaviour:
   topBar: {fileID: 6694337038897011162, guid: 08d3f4ccdaa65ca4ab9c42722a3eaa7b, type: 3}
   pause: {fileID: -6643546833652701967, guid: 0ddfc38fe67f8724a9f98ff2026bbf66, type: 3}
   tiedPopup: {fileID: -2701375301171583563, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  gameIcon: {fileID: 0}
+  concertBackground: {fileID: 6232762879555552561, guid: bf2ad2768a0069141b5559fc8a170b4b, type: 3}
+  concertBackgroundFrames: []
+  backgroundFramesPerSecond: 2
+  selectedBackgroundSpeed: 3
+  redrawBackground: {fileID: 0}
+  redrawBoxImage: {fileID: 0}
+  concertButtonImage: {fileID: 0}
   defaultTile: {fileID: -6614373457484812694, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
   contestedTile: {fileID: -7995846982363831464, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
   movingTile: {fileID: 5560954434011818755, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
@@ -47,6 +55,7 @@ MonoBehaviour:
     performerPopup: {fileID: 0}
     assistance: {fileID: 0}
     cd: {fileID: 0}
+    border: {fileID: 0}
     energy:
     - {fileID: 0}
     - {fileID: 0}
@@ -77,6 +86,7 @@ MonoBehaviour:
     performerPopup: {fileID: 0}
     assistance: {fileID: 0}
     cd: {fileID: 0}
+    border: {fileID: 0}
     energy:
     - {fileID: 0}
     - {fileID: 0}
@@ -93,9 +103,25 @@ MonoBehaviour:
   - harmonize
   - stage share
   keywordDescriptions:
-  - keyword: harmonize
-    description: n/a
   - keyword: stage share
-    description: n/a
+    description: This performer may share a tile with one allied performer. Only
+      one stage-share partner per performer.
+  - keyword: encore
+    description: If this performer wins its Center Stage tile, gain 1 additional
+      fan score.
+  - keyword: soloist
+    description: 'Soloist X: while this is your only allied performer in Center Stage,
+      it has +X influence.'
+  - keyword: harmonize
+    description: 'Harmonize X: while at least 2 allied performers occupy the 8 surrounding
+      tiles, this performer has +X influence.'
+  - keyword: nimble
+    description: This performer may move once during Preparation without using the
+      turn's normal performer movement.
+  - keyword: cheer effect
+    description: This stage effect can also be played during Performance.
+  - keyword: venue effect
+    description: This stage effect stays active for the rest of the game after it
+      is played.
   keywordTooltipBackground: {fileID: 0}
   countdownParameter: Countdown
