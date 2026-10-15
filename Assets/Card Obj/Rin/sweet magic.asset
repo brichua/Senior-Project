@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: sweet magic
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Sweet Magic
+  id: 061e434e4a34cc940b42ffecd9858ebb
+  cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
+  vip: 0
+  info: If this card is sent to the discard pile, the next minion you play gets +2
+    inf
+  performer: 1
+  stageEffect: 0
+  cost: 3
+  influence: 3
+  flags: []
+  stageInfluenceChange: 1
+  effect: 0
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
+  regen: 0
+  shielded: 0
+  cardImage: {fileID: 0}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: 0}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

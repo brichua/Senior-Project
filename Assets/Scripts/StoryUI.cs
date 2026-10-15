@@ -24,6 +24,8 @@ namespace VocaloidTCG
         public Image selectedClassImage, auditionClassImage, rewardArt, deckClass, deckSecondClass, cardBack;
         [Tooltip("Avatar artwork on the story class selection panel.")]
         public Image selectedClassArt;
+        [Tooltip("Audition selection portraits: opponent avatar and story-class avatar.")]
+        public Image auditionRivalArt, auditionPlayerArt;
         [Tooltip("Shown while the selected story's epilogue is locked; hidden once completed.")]
         public GameObject epilogueLocked;
         private Sprite defaultPrologueImage, defaultEpilogueImage;
@@ -271,6 +273,9 @@ namespace VocaloidTCG
 
             Panels(auditionPanel);
             var data = library.Catalog.Class(opponent);
+            var storyClass = library.Catalog.Class(selected.Class);
+            DeckUI.Image(auditionRivalArt, data ? data.avatar : null);
+            DeckUI.Image(auditionPlayerArt, storyClass ? storyClass.avatar : null);
             DeckUI.Image(auditionClassImage, data.selectedButtonImage);
             DeckUI.Text(auditionClassName, data.DisplayName); if(auditionClassName) auditionClassName.color = data.color;
             DeckUI.Text(deckDescription, audition.deckDescription); DeckUI.Text(location, audition.location);

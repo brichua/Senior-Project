@@ -120,7 +120,9 @@ namespace VocaloidTCG.BoardUI
         }
         
         private CardState Make(CardData asset, int owner){
-            return new CardState {instanceId = "preview-" + (++serial), data = asset, ownerId = owner, currentCost = asset.cost, currentInfluence = asset.influence, hasInfluence = asset.performer};
+            var card = new CardState {instanceId = "preview-" + (++serial), data = asset, ownerId = owner, currentCost = asset.cost, currentInfluence = asset.influence, hasInfluence = asset.performer};
+            CardInfluence.Reset(card);
+            return card;
         }
 
         private List<CardState> Hand(int actor){
@@ -247,12 +249,24 @@ namespace VocaloidTCG.BoardUI
             clock.Stop();
             Recompute();
 
-            foreach (var tile in state.tiles){
+            var canScore0 = new bool[25];
+            var canScore1 = new bool[25];
+            for(int index = 0; index < state.tiles.Length; index++){
+                var tile = state.tiles[index];
+                canScore0[index] = canScore1[index] = true;
                 if(tile.side0 != null && tile.side1 != null){
                     int difference = tile.total0 - tile.total1;
-                    if(difference > 0){ tile.side0.currentInfluence = difference; tile.side1 = null; }
-                    else if(difference < 0){ tile.side1.currentInfluence = -difference; tile.side0 = null; }
-                    else { tile.side0 = null; tile.side1 = null; }
+                    canScore0[index] = difference > 0; canScore1[index] = difference < 0;
+                    if(difference > 0){
+                        CardInfluence.Change(tile.side0, -tile.total1);
+                        if(!CardInfluence.BreakShield(tile.side1)) tile.side1 = null;
+                    }else if(difference < 0){
+                        CardInfluence.Change(tile.side1, -tile.total0);
+                        if(!CardInfluence.BreakShield(tile.side0)) tile.side0 = null;
+                    }else{
+                        if(!CardInfluence.BreakShield(tile.side0)) tile.side0 = null;
+                        if(!CardInfluence.BreakShield(tile.side1)) tile.side1 = null;
+                    }
                 }
                 tile.assist0 = tile.assist1 = null;
             }
@@ -261,12 +275,14 @@ namespace VocaloidTCG.BoardUI
             int total0 = 0, total1 = 0;
 
             for(int row = 0; row < 5; row++){
-                total0 += state.tiles[row * 5 + 2].total0;
-                total1 += state.tiles[row * 5 + 2].total1;
+                if(canScore0[row * 5 + 2]) total0 += state.tiles[row * 5 + 2].total0;
+                if(canScore1[row * 5 + 2]) total1 += state.tiles[row * 5 + 2].total1;
             }
 
             state.side0.score += total0;
             state.side1.score += total1;
+            foreach(var tile in state.tiles){ CardInfluence.Regenerate(tile.side0); CardInfluence.Regenerate(tile.side1); }
+            Recompute();
             playerStats.score = state.Side(state.localPlayerId).score;
             enemyStats.score = state.Side(1 - state.localPlayerId).score;
             int localTotal = state.localPlayerId == 0 ? total0 : total1;

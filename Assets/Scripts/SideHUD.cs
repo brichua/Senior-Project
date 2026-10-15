@@ -32,6 +32,10 @@ namespace VocaloidTCG.BoardUI
         public Animator avatarAnimator;
         public TMP_Text subtitle;
         public GameObject subtitleRoot;
+        [Header("Venue effect")]
+        [Tooltip("Automatically finds the child image named venue effect when unassigned.")]
+        public Image venueEffect;
+        private KeywordTooltip venueTooltip;
         private string subtitleMessage = "", timerMessage = "";
         private float reactionRemaining, subtitleRemaining;
 
@@ -40,8 +44,8 @@ namespace VocaloidTCG.BoardUI
             var clip = voices ? voices.GetVoiceline(character.identity, reaction) : null;
             if(voices) voices.PlayVoiceline(character.identity, reaction);
             ShowSubtitle(character.VoicelineText(reaction));
-            reactionRemaining = clip ? clip.length : 3f;
-            subtitleRemaining = reactionRemaining + 1f;
+            reactionRemaining = (clip ? clip.length : 3f) + 1f;
+            subtitleRemaining = reactionRemaining;
             SetReaction((int)reaction);
         }
 
@@ -65,7 +69,37 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void Awake(){
+            FindVenueImage();
+            if(venueEffect) venueEffect.gameObject.SetActive(false);
             RenderSubtitle();
+        }
+
+        private void FindVenueImage(){
+            if(venueEffect) return;
+            foreach(var image in GetComponentsInChildren<Image>(true))
+                if(string.Equals(image.name, "venue effect", System.StringComparison.OrdinalIgnoreCase)){
+                    venueEffect = image; break;
+                }
+        }
+
+        private void RenderVenue(SideState state, BoardSetup theme){
+            FindVenueImage();
+            if(!venueEffect) return;
+            var descriptions = new System.Collections.Generic.List<string>();
+            if(state.venueEffects != null) foreach(var effect in state.venueEffects){
+                var card = effect?.data;
+                if(!card) continue;
+                descriptions.Add(card.cardName + "\n" + (string.IsNullOrWhiteSpace(card.info) ?
+                    "This venue effect stays active for the rest of the game." : card.info));
+            }
+            bool active = descriptions.Count > 0;
+            if(active && theme){
+                if(!venueTooltip) venueTooltip = venueEffect.GetComponent<KeywordTooltip>();
+                if(!venueTooltip) venueTooltip = venueEffect.gameObject.AddComponent<KeywordTooltip>();
+                venueTooltip.Configure(venueEffect, theme, subtitle ? subtitle.font : nameText ? nameText.font : null,
+                    descriptions.Count == 1 ? "Venue effect" : "Venue effects", string.Join("\n\n", descriptions));
+            }
+            venueEffect.gameObject.SetActive(active);
         }
 
         public void ShowSubtitle(string message){
@@ -132,7 +166,8 @@ namespace VocaloidTCG.BoardUI
             }
         }
 
-        public void Render(SideState state, int winScore, SideArt art){
+        public void Render(SideState state, int winScore, SideArt art, BoardSetup theme = null){
+            RenderVenue(state, theme);
             RenderName(art);
             CardInfoView.Put(score, state.score.ToString());
             CardInfoView.Put(deckCount, state.deckCount.ToString());

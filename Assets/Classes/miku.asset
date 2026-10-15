@@ -22,6 +22,7 @@ MonoBehaviour:
   borderImage: {fileID: 6662686327198249886, guid: 2a2f2b40cfd9e8a4492986cdd45e6fa5, type: 3}
   classIcon: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
   puzzleArt: {fileID: -8826586841383417899, guid: b838e01a383d1224093b97573026eccd, type: 3}
+  rewardCardBackground: {fileID: 6044380404893744267, guid: 96d1b969c8e5003498be6c6de3bc79d8, type: 3}
   storyArt: {fileID: -8826586841383417899, guid: b838e01a383d1224093b97573026eccd, type: 3}
   rivalArt: {fileID: 7481814567373656046, guid: ec3b89fec0fabf9438fb852a8e402a9c, type: 3}
   playerDeckIcon: {fileID: -7774026537370076429, guid: 3e14a759e90a03f4e8e4312e3c310549, type: 3}

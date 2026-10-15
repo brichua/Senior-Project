@@ -27,6 +27,7 @@ namespace VocaloidTCG.BoardUI
         [NonSerialized] public CardData data;
         public string definitionId;
         public int currentInfluence, currentCost;
+        public bool shieldActive;
         public bool hasInfluence = true;
         public bool isClassCard;
         public List<string> activeEffects = new List<string>();
@@ -51,6 +52,7 @@ namespace VocaloidTCG.BoardUI
         public List<CardState> discard = new List<CardState>();
         public int nextSpellDiscount, nextSpellTax, performersPlayed, nextRoundEnergyBonus;
         public bool harmonizeVenue;
+        public List<CardState> venueEffects = new List<CardState>();
     }
 
     [Serializable]

@@ -12,6 +12,8 @@ namespace VocaloidTCG.BoardUI
         public BoardSetup setup;
         public BoardGameBridge game;
         public Image background, topBar, cd;
+        [Tooltip("Covers the board during scene startup; hidden after the opening presentation and first board refresh are ready.")]
+        public GameObject startupCover;
         public Button endTurn, pause;
         public SideHUD playerHUD, enemyHUD;
         public CardInfoView playerInfo, enemyInfo;
@@ -131,6 +133,14 @@ namespace VocaloidTCG.BoardUI
                 Debug.LogError("BoardUI: assign setup, bridge, prefabs, grid/hand roots and drag layer.", this);
                 enabled = false; return;
             }
+            // Refresh and the scoring/targeting presenters expect a complete row-major 5x5 grid.
+            for(int row = 0; row < 5; row++)
+                for(int column = 0; column < 5; column++){
+                    var tile = Instantiate(tilePrefab, gridRoot);
+                    tile.name = "Tile " + column + ", " + row;
+                    tile.gameObject.SetActive(true);
+                    tiles.Add(tile);
+                }
             SetImage(background, setup.background); SetImage(topBar, setup.topBar);
 
             if (endTurn)
@@ -149,7 +159,6 @@ namespace VocaloidTCG.BoardUI
                 if(enemyHUD) enemyHUD.ApplyClasses(gameplay.enemyClasses, true);
             }
 
-            EnsureTiles();
             ghost = Instantiate(handPrefab, dragLayer);
             ghost.name = "Drag card";
             ghostRect = ghost.GetComponent<RectTransform>();
@@ -241,12 +250,11 @@ namespace VocaloidTCG.BoardUI
             ClearHandHover();
             CancelDrag();
             var s = State;
-            EnsureTiles();
-            if(playerHUD) playerHUD.Render(s.Side(s.localPlayerId), s.winScore, setup.player);
-            if(enemyHUD) enemyHUD.Render(s.Side(1 - s.localPlayerId), s.winScore, setup.enemy);
-            
-            for(int visualRow = 0; visualRow < 5; visualRow++)
-                for(int visualColumn = 0; visualColumn < 5; visualColumn++)
+            if (playerHUD) playerHUD.Render(s.Side(s.localPlayerId), s.winScore, setup.player, setup);
+            if (enemyHUD) enemyHUD.Render(s.Side(1 - s.localPlayerId), s.winScore, setup.enemy, setup);
+
+            for (int visualRow = 0; visualRow < 5; visualRow++)
+                for (int visualColumn = 0; visualColumn < 5; visualColumn++)
                 {
                     int x = mirrorColumnsForSide1 && s.localPlayerId == 1 ? 4 - visualColumn : visualColumn;
                     int index = visualRow * 5 + x;
@@ -280,6 +288,7 @@ namespace VocaloidTCG.BoardUI
             RenderSelection(enemyInfo, selectedEnemy, setup.enemy);
             UpdateTurnDisplay();
             if(effectTargeting) effectTargeting.Refresh();
+            if(startupCover) startupCover.SetActive(false);
         }
 
         private void Update()
@@ -303,38 +312,9 @@ namespace VocaloidTCG.BoardUI
             if (enemyHUD) enemyHUD.SetTimerSubtitle("");
             if(playerHUD) playerHUD.RenderPhase(s.phase, playing && localTurn);
             if(enemyHUD) enemyHUD.RenderPhase(s.phase, playing && s.activePlayerId == 1 - s.localPlayerId);
-            string phaseLabel = "Round " + s.roundNumber + " — " + s.phase;
-            if(s.phase == RoundPhase.EndRound)
-            {
-                // EndRound deliberately locks input for a short score display. Tell
-                // the player this is a transition rather than a broken button.
-                phaseLabel += "\nScoring the center column… next round starts shortly.\n" + s.roundSummary;
-            }
-            else if(s.phase == RoundPhase.Finished)
-            {
-                phaseLabel += "\n" + s.roundSummary;
-            }
-            else if(pausePanel && pausePanel.IsOpen)
-            {
-                phaseLabel += "\nPaused — close the pause menu to continue.";
-            }
-            else if(!localTurn)
-            {
-                phaseLabel += "\nEnemy turn — please wait.";
-            }
-            else
-            {
-                int energy = s.Side(s.localPlayerId).energy;
-                phaseLabel += "\nYour turn — " + energy + " energy. Play a card or press Pass.";
-                if(energy == 0)
-                    phaseLabel += " No energy left, so press Pass.";
-                else if(s.phase == RoundPhase.Performance)
-                    phaseLabel += " Performance cards or legal moves only.";
-            }
-            // Preserve the team's separate HUD phase labels. The AI test scene
-            // can still use its standalone text for turn and transition guidance.
-            if(phaseText && (!playerHUD || phaseText != playerHUD.phaseText) &&
-                (!enemyHUD || phaseText != enemyHUD.phaseText))
+            // Older scenes reuse this legacy field for the player's voiceline subtitle.
+            if(phaseText && (!playerHUD || (phaseText != playerHUD.phaseText && phaseText != playerHUD.subtitle)) &&
+                (!enemyHUD || (phaseText != enemyHUD.phaseText && phaseText != enemyHUD.subtitle)))
                 CardInfoView.Put(phaseText, "");
             bool countdown = playing && game.RemainingSeconds > 0 && game.RemainingSeconds <= 20 &&
                 !(pausePanel && pausePanel.IsOpen && !s.multiplayer) &&

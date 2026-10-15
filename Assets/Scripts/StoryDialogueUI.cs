@@ -20,6 +20,7 @@ namespace VocaloidTCG
         public TMP_Text speaker, line;
         [Tooltip("Dialogue backgrounds with and without the speaker nameplate.")]
         public GameObject characterBackground, narrationBackground;
+        [Tooltip("Scene UI Images for slots 0–5. A story line's sprite is displayed in the matching slot; assigning a sprite in StoryData does not assign these Images.")]
         public Image[] avatars = new Image[6];
         public Button skip, auto, log, closeLog;
         
@@ -135,7 +136,7 @@ namespace VocaloidTCG
             foreach(var avatar in entry.avatars ?? new List<StoryAvatar>())
                 if(avatar != null && avatar.slot >= 0 && avatar.slot <= 5){
                     if(avatars == null || avatar.slot >= avatars.Length || !avatars[avatar.slot])
-                        StoryDiagnostics.Report(this, new[] { "avatars[" + avatar.slot + "]: missing Image required by dialogue line [" + index + "] (" + entry.speaker + ")." });
+                        StoryDiagnostics.Report(this, new[] { "avatars[" + avatar.slot + "]: assign the scene UI Image to this slot on StoryDialogueUI. The story's sprite is separate from this reference. Required by dialogue line [" + index + "] (" + entry.speaker + ")." });
                     else{
                         DeckUI.Image(avatars[avatar.slot], avatar.sprite);
                         avatars[avatar.slot].gameObject.SetActive(avatar.sprite);

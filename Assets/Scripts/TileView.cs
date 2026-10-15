@@ -11,6 +11,9 @@ namespace VocaloidTCG.BoardUI
         public GameObject solo, duo;
         public CardPointer soloCard, playerCard, enemyCard, playerAssist, enemyAssist;
         public TMP_Text soloInfluence, duoInfluence;   
+        [Header("Shielded original influence")]
+        public Image soloShieldPopup, playerShieldPopup, enemyShieldPopup;
+        public TMP_Text soloShieldInfluence, playerShieldInfluence, enemyShieldInfluence;
         private BoardUIController board;
         private Sprite normalSprite;
         private int column, row;
@@ -19,6 +22,36 @@ namespace VocaloidTCG.BoardUI
         private string normalSoloInfluence;
         private bool enemyOnly;
         private CardPointer soloAssist;
+
+        private void Awake(){
+            // Use the existing named prefab children, including those initially hidden.
+            foreach(var image in GetComponentsInChildren<Image>(true)){
+                if(image.name == "shield popup" && !soloShieldPopup) soloShieldPopup = image;
+                if(image.name == "shield popup 1" && !playerShieldPopup) playerShieldPopup = image;
+                if(image.name == "shield popup 2" && !enemyShieldPopup) enemyShieldPopup = image;
+            }
+            foreach(var text in GetComponentsInChildren<TMP_Text>(true)){
+                if(text.name == "shield influence" && !soloShieldInfluence) soloShieldInfluence = text;
+                if(text.name == "shield influence 1" && !playerShieldInfluence) playerShieldInfluence = text;
+                if(text.name == "shield influence 2" && !enemyShieldInfluence) enemyShieldInfluence = text;
+            }
+        }
+
+        private static void ShieldPopup(Image popup, TMP_Text label, CardState card, CardState partner, Sprite fallback){
+            bool active = (card != null && card.shieldActive) || (partner != null && partner.shieldActive);
+            var shielded = card != null && card.shieldActive ? card : partner;
+            if(popup){
+                var cls = shielded?.data ? shielded.data.cardClass : null;
+                BoardUIController.SetImage(popup, cls && cls.popupImage ? cls.popupImage : fallback);
+                popup.gameObject.SetActive(active);
+            }
+            if(label){
+                int original = (card != null && card.shieldActive && card.data ? card.data.influence : 0) +
+                    (partner != null && partner.shieldActive && partner.data ? partner.data.influence : 0);
+                label.text = active ? original.ToString() : "";
+                label.gameObject.SetActive(active);
+            }
+        }
 
         public void Bind(BoardUIController owner, int x, int y, TileState state){
             board = owner; column = x; row = y;
@@ -37,6 +70,10 @@ namespace VocaloidTCG.BoardUI
             if(solo) solo.SetActive(!contested && (p != null || e != null));
             if(duo) duo.SetActive(contested);
             if(soloAssist) soloAssist.gameObject.SetActive(false);
+            ShieldPopup(soloShieldPopup, soloShieldInfluence, contested ? null : p ?? e,
+                contested ? null : p != null ? pa : ea, normalSoloPopup);
+            ShieldPopup(playerShieldPopup, playerShieldInfluence, contested ? p : null, contested ? pa : null, theme.player.performerPopup);
+            ShieldPopup(enemyShieldPopup, enemyShieldInfluence, contested ? e : null, contested ? ea : null, theme.enemy.performerPopup);
 
             if(contested){
                 BindCard(playerCard, p, true, null); BindCard(enemyCard, e, false, null);

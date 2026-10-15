@@ -29,10 +29,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void ChangeInfluence(CardState c, int amount, bool round = false){
-            if(c == null) return;
-            int actual = Math.Max(-c.currentInfluence, amount);
-            c.currentInfluence += actual;
-            if(round) c.roundInfluence += actual;
+            CardInfluence.Change(c, amount, round);
         }
 
         private bool SpellTarget(CardState card, int tile){
@@ -160,7 +157,7 @@ namespace VocaloidTCG.BoardUI
                     RemoveFromDeck(actor,chosen); GiveCard(actor,chosen); EndChoice(); break;
                 case EffectChoice.TokenTile:
                     var token=MakeCard(p.source.data,actor); token.token=true; token.tokenInfluence=p.amount;
-                    token.currentInfluence=p.amount; token.currentCost=0; token.enteredRound=state.roundNumber;
+                    token.currentInfluence=p.amount; token.shieldActive=false; token.currentCost=0; token.enteredRound=state.roundNumber;
                     SetPerformer(state.tiles[tile],actor,token); placedTurns[token.instanceId]=turnNumber;
                     if(--p.remaining<=0) EndChoice(); else RefreshChoice(); break;
                 case EffectChoice.MoveAlly: p.selectedId=ally.instanceId; p.choice=EffectChoice.MoveTile; RefreshChoice(); break;
@@ -229,7 +226,7 @@ namespace VocaloidTCG.BoardUI
         }
         
         private void ResetReturnedCard(CardState c){
-            c.currentInfluence=c.token ? c.tokenInfluence : c.data.influence; c.currentCost=c.token ? 0 : c.data.cost;
+            CardInfluence.Reset(c); c.currentCost=c.token ? 0 : c.data.cost;
             c.auraInfluence=c.roundInfluence=0; c.silenced=c.grantedEncore=false; c.sharedTargetId=null;
             c.rootedRound=c.protectedTurn=c.noScoreRound=c.activatedTurn=c.nimbleRound=-1;
             c.inheritedEncore=c.inheritedNimble=c.inheritedStageShare=false; c.inheritedHarmonize=c.inheritedSoloist=0;

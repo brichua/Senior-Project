@@ -145,6 +145,12 @@ MonoBehaviour:
   settingsScene: Settings
   status: {fileID: 0}
   sfx: {fileID: 375502107}
+  concertBackground: {fileID: 1003552508}
+  animateBackground: 1
+  atmosphereIntensity: 0.65
+  backgroundCycleSeconds: 18
+  centerBurstInterval: 12
+  centerBurstIntensity: 1
   tutorialCompleted: 0
   debugUnlockButtons: 1
   backgroundMusic: {fileID: 338501023}
@@ -152,10 +158,6 @@ MonoBehaviour:
   musicTitleText: {fileID: 13974714}
   musicProgress: {fileID: 188905592}
   loopMusic: 1
-  concertBackground: {fileID: 1003552508}
-  animateBackground: 1
-  atmosphereIntensity: 0.65
-  backgroundCycleSeconds: 18
 --- !u!1 &13974713
 GameObject:
   m_ObjectHideFlags: 0
