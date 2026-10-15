@@ -22,6 +22,8 @@ namespace VocaloidTCG
         [Header("Deck and card artwork")]
         public Sprite classIcon;
         public Sprite puzzleArt;
+        [Tooltip("Background for the first-clear reward card notification.")]
+        public Sprite rewardCardBackground;
         public Sprite storyArt;
         [Tooltip("Character artwork used by rival cards and map icons in Story mode.")]
         public Sprite rivalArt;

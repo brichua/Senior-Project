@@ -135,7 +135,10 @@ namespace VocaloidTCG.BoardUI
             if(!IsPuzzle || !PuzzleSucceeded) return false;
             string error;
             try {
-                if(DeckLibrary.Get(deckCatalog).CompletePuzzle(puzzle, out error)) {
+                var library = DeckLibrary.Get(deckCatalog);
+                bool firstClear = !library.IsPuzzleCompleted(puzzle);
+                if(library.CompletePuzzle(puzzle, out error)) {
+                    if(firstClear) FirstClearReward = puzzle.rewardCard;
                     PuzzleSaveError = "";
                     state.roundSummary = "Puzzle completed! Reward unlocked: " + puzzle.rewardCard.cardName;
                     Publish(); return true;

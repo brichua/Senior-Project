@@ -122,7 +122,7 @@ namespace VocaloidTCG
         private string ContentVersion(){
             string content = "tcg-net-3-effects|" + Application.version + "|" + string.Join("|", Catalog.cards.OrderBy(c => c.id).Select(c =>
                 c.id + ":" + c.cost + ":" + c.influence + ":" + c.stageInfluenceChange + ":" + c.performer + ":" + c.stageEffect + ":" + c.vip + ":" + c.cardClass.identity +
-                ":" + c.effect + ":" + c.scoreThreshold + ":" + c.harmonize + ":" + c.soloist + ":" + c.stageShare + ":" + c.encore + ":" + c.nimble + ":" + c.cheerEffect + ":" + c.venueEffect));
+                ":" + c.effect + ":" + c.scoreThreshold + ":" + c.harmonize + ":" + c.soloist + ":" + c.stageShare + ":" + c.encore + ":" + c.nimble + ":" + c.cheerEffect + ":" + c.venueEffect + ":" + c.regen + ":" + c.shielded));
             using(var hash = System.Security.Cryptography.SHA256.Create())
                 return Convert.ToBase64String(hash.ComputeHash(Encoding.UTF8.GetBytes(content)));
         }

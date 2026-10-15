@@ -1,0 +1,41 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: rosary pale
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Rosary Pale
+  id: f7730372b7240ad448d2b675b6f86211
+  cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
+  vip: 0
+  info: 'stage share, the next minion you play in a column above gets +1 inf '
+  performer: 1
+  stageEffect: 0
+  cost: 1
+  influence: 1
+  flags: []
+  stageInfluenceChange: 1
+  effect: 0
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
+  regen: 0
+  shielded: 0
+  cardImage: {fileID: -2566321668903677826, guid: d28610d4d714b8f4bb7332ade60844a9, type: 3}
+  characterImage: {fileID: 7316340532325103920, guid: 6fcd4b4689f261a449aa7a904ee25a4a, type: 3}
+  iconImage: {fileID: 8992371609442261355, guid: f2dff76a89863514ba29321c562fc7b9, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 0}

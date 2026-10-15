@@ -165,6 +165,7 @@ namespace VocaloidTCG.BoardUI
             if(!string.IsNullOrEmpty(storyLaunchError)) { MatchSetupError = storyLaunchError; Publish(); return; }
             if(IsStory && !string.IsNullOrEmpty(StorySaveError)) return;
             StorySaveError = "";
+            FirstClearReward = null;
             RoundResolutionPending = false;
             if(puzzle) { StartPuzzle(); return; }
             if(firstPlayerId < -1 || firstPlayerId > 1){ Log("Match start rejected: invalid starting player."); return; }
@@ -217,12 +218,14 @@ namespace VocaloidTCG.BoardUI
         }
 
         private CardState MakeCard(CardData asset, int actor){
-            return new CardState {
+            var card = new CardState {
                 instanceId = "match-" + (++serial), ownerId = actor, data = asset,
                 currentCost = Mathf.Max(0, asset.cost), currentInfluence = Mathf.Max(0, asset.influence),
                 enteredRound = state != null ? state.roundNumber : 1,
                 hasInfluence = asset.performer
             };
+            CardInfluence.Reset(card);
+            return card;
         }
 
         private void AddOpeningCard(CardData asset, int actor){
@@ -398,6 +401,10 @@ namespace VocaloidTCG.BoardUI
             state.consecutivePasses = 0;
             Recompute();
             if(IsOnline && action.kind == BoardActionKind.PlayCard){ onlinePlayedCard = card.data.id; onlinePlayEvent++; }
+            if(action.kind == BoardActionKind.PlayCard && (card.data.venueEffect || card.data.effect == CardEffect.HarmonizeVenue)){
+                var venues = state.Side(actor).venueEffects;
+                if(!venues.Exists(c => c.data == card.data)) venues.Add(card);
+            }
             if (action.kind == BoardActionKind.PlayCard && sfx)
             {
                 sfx.PlayDropSound();
@@ -508,9 +515,20 @@ namespace VocaloidTCG.BoardUI
                 if(actor==0) roundScore0+=extra; else roundScore1+=extra;
                 if((actor==0 ? state.tileDraw0 : state.tileDraw1)[index]) DrawCards(actor,1);
             }
-            if(difference > 0){ ContestDamage(index,0,tile.total1); RemovePerformer(tile, 1); }
-            else if(difference < 0){ ContestDamage(index,1,tile.total0); RemovePerformer(tile, 0); }
-            else { RemovePerformer(tile, 0); RemovePerformer(tile, 1); }
+            if(difference > 0){ ContestDamage(index,0,tile.total1); DefeatContestSide(tile, 1); }
+            else if(difference < 0){ ContestDamage(index,1,tile.total0); DefeatContestSide(tile, 0); }
+            else { DefeatContestSide(tile, 0); DefeatContestSide(tile, 1); }
+        }
+
+        private void DefeatContestSide(TileState tile, int actor){
+            var survivors = new List<CardState>();
+            foreach(var card in new[] { Performer(tile, actor), Assistant(tile, actor) }){
+                if(card == null) continue;
+                if(CardInfluence.BreakShield(card)) survivors.Add(card);
+                else { placedTurns.Remove(card.instanceId); Discard(card); if(sfx) sfx.PlayDestroySound(); }
+            }
+            SetPerformer(tile, actor, survivors.Count > 0 ? survivors[0] : null);
+            SetAssistant(tile, actor, survivors.Count > 1 ? survivors[1] : null);
         }
 
         public EndRoundScoringAnimator scoringPresenter;
@@ -530,7 +548,8 @@ namespace VocaloidTCG.BoardUI
             ResolveContest(index);
             Recompute();
             var tile = state.tiles[index];
-            int score0=ScoreTile(index,0)+(winningActor==0 ? bonus : 0), score1=ScoreTile(index,1)+(winningActor==1 ? bonus : 0);
+            int score0=contested && winningActor!=0 ? 0 : ScoreTile(index,0)+(winningActor==0 ? bonus : 0);
+            int score1=contested && winningActor!=1 ? 0 : ScoreTile(index,1)+(winningActor==1 ? bonus : 0);
             roundScore0 += score0; roundScore1 += score1;
             state.side0.score += score0; state.side1.score += score1;
             if(winningActor>=0 && (winningActor==0 ? state.tileDraw0 : state.tileDraw1)[index]) DrawCards(winningActor,1);

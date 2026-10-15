@@ -190,6 +190,15 @@ namespace VocaloidTCG
             if(!IsPuzzleCompleted(puzzle)) { error = ""; return true; }
             return Commit(next => next.completedPuzzles.RemoveAll(id => id == puzzle.id), out error);
         }
+
+        public bool SetAuditionClearedForDebugging(StoryData story, CharacterClass opponent, bool cleared, out string error){
+            error = "Story needs a permanent save key and a matching audition.";
+            if(!story || string.IsNullOrWhiteSpace(story.id) || story.Audition(opponent) == null) return false;
+            if(cleared) return CompleteAudition(story, opponent, out error);
+            if(!IsAuditionCompleted(story, opponent)) { error = ""; return true; }
+            return Commit(next => next.storyClears.RemoveAll(record =>
+                record != null && record.storyId == story.id && record.opponent == opponent), out error);
+        }
 #endif
 
         [Serializable]

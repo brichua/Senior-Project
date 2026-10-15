@@ -108,6 +108,7 @@ namespace VocaloidTCG.BoardUI
         private IEnumerable<CardState> AllCards(BoardSnapshot snapshot)
         {
             return snapshot.side0.hand.Concat(snapshot.side1.hand).Concat(snapshot.side0.discard).Concat(snapshot.side1.discard)
+                .Concat(snapshot.side0.venueEffects ?? new List<CardState>()).Concat(snapshot.side1.venueEffects ?? new List<CardState>())
                 .Concat(snapshot.pendingEffect?.cards ?? new List<CardState>())
                 .Concat(new[] { snapshot.pendingEffect?.source }).Concat(snapshot.tiles.Where(t => t != null)
                 .SelectMany(t => new[] { t.side0, t.side1, t.assist0, t.assist1 })).Where(c => c != null);

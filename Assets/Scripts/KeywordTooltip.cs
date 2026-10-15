@@ -9,6 +9,9 @@ namespace VocaloidTCG.BoardUI
     public sealed class KeywordTooltip : MonoBehaviour
     {
         private TMP_Text source, label;
+        private Image icon;
+        private TMP_FontAsset iconFont;
+        private KeywordDefinition iconDefinition;
         private BoardSetup setup;
         private KeywordDefinition[] definitions;
         private RectTransform panel, bounds;
@@ -18,6 +21,7 @@ namespace VocaloidTCG.BoardUI
         private EventSystem pointerSystem;
 
         public void Configure(TMP_Text text, BoardSetup theme){
+            icon = null; iconDefinition = null;
             source = text;
             setup = theme;
             definitions = CardKeywords.Descriptions(theme.keywordDescriptions);
@@ -25,9 +29,16 @@ namespace VocaloidTCG.BoardUI
             Hide();
         }
 
+        public void Configure(Image image, BoardSetup theme, TMP_FontAsset font, string title, string description){
+            source = null; icon = image; setup = theme; iconFont = font;
+            iconDefinition = new KeywordDefinition { keyword = title, description = description };
+            icon.raycastTarget = true;
+        }
+
         private void LateUpdate(){
-            if(!source || !setup || !EventSystem.current ||
-                !KeywordTooltipPanel.Pointer(out Vector2 position) || !source.isActiveAndEnabled){ Hide(); return; }
+            Graphic target = icon ? (Graphic)icon : source;
+            if(!target || !setup || !EventSystem.current ||
+                !KeywordTooltipPanel.Pointer(out Vector2 position) || !target.isActiveAndEnabled){ Hide(); return; }
             if(pointer == null || pointerSystem != EventSystem.current){
                 pointerSystem = EventSystem.current;
                 pointer = new PointerEventData(EventSystem.current);
@@ -36,7 +47,8 @@ namespace VocaloidTCG.BoardUI
             pointer.position = position;
             hits.Clear();
             EventSystem.current.RaycastAll(pointer, hits);
-            if(hits.Count == 0 || hits[0].gameObject != source.gameObject){ Hide(); return; }
+            if(hits.Count == 0 || hits[0].gameObject != target.gameObject){ Hide(); return; }
+            if(icon){ Show(iconDefinition, position); return; }
             var canvas = source.canvas;
             var camera = canvas && canvas.rootCanvas.renderMode != RenderMode.ScreenSpaceOverlay
                 ? canvas.rootCanvas.worldCamera : null;
@@ -65,7 +77,8 @@ namespace VocaloidTCG.BoardUI
                 label.rectTransform.anchorMax = Vector2.one;
                 label.rectTransform.offsetMin = new Vector2(14, 12);
                 label.rectTransform.offsetMax = new Vector2(-14, -12);
-                label.font = source.font;
+                if(source) label.font = source.font;
+                else if(iconFont) label.font = iconFont;
                 label.fontSize = 22;
                 label.color = Color.white;
                 label.richText = false;

@@ -13,6 +13,14 @@ namespace VocaloidTCG.BoardUI
         public TMP_FontAsset font;
         [Tooltip("Optional override for Prefabs/Resources/Match result panel. Edit that prefab to style the result text and buttons.")]
         public ConcertPanelView resultPanelPrefab;
+        [Header("First-clear reward")]
+        [Tooltip("Defaults to Resources/reward card. Uses its art and card name children and root background Image.")]
+        public GameObject rewardCardPrefab;
+        public Vector2 rewardCornerOffset = new Vector2(48, 110);
+        [Min(0)] public float rewardDelay = 0.65f;
+        [Min(0.1f)] public float rewardEntranceSeconds = 0.7f;
+        [Min(0)] public float rewardHoldSeconds = 1f;
+        [Min(0.1f)] public float rewardExitSeconds = 0.55f;
         [Header("Screen effects")]
         public ConcertEffectSettings resultEffects = new ConcertEffectSettings { particleCount = 85 };
         public Color victoryColor = new Color(207f / 255f, 211f / 255f, 1f);
@@ -20,6 +28,8 @@ namespace VocaloidTCG.BoardUI
         [Tooltip("Optional one-shot result audio, using the Effects volume setting.")]
         public AudioClip victoryStinger, defeatStinger;
         [Header("Compact puzzle results")]
+        [Tooltip("Editable puzzle text and buttons. Defaults to Prefabs/Resources/Puzzle result panel.")]
+        public ConcertPanelView puzzleResultPanelPrefab;
         public ConcertEffectSettings puzzleEffects = new ConcertEffectSettings { particleCount = 45, intensity = 0.7f };
         private BoardUIController board;
         private GameplayBoardBridge bridge;
@@ -33,6 +43,10 @@ namespace VocaloidTCG.BoardUI
         private float time;
         private Color accent, classColor;
         private string navigationError;
+        private RectTransform reward;
+        private CanvasGroup rewardGroup;
+        private Vector2 rewardHome;
+        private float rewardTime;
 
         public bool IsAvailable => isActiveAndEnabled && board && board.isActiveAndEnabled;
         public void Initialize(BoardUIController owner){
@@ -70,6 +84,21 @@ namespace VocaloidTCG.BoardUI
             content.anchoredPosition = new Vector2(0, Mathf.Lerp(-35, 0, ease));
             contentGroup.alpha = Mathf.SmoothStep(0.1f, 1, t);
             contentGroup.interactable = t >= 1;
+            if(reward && reward.gameObject.activeSelf){
+                rewardTime += Time.unscaledDeltaTime;
+                float enter = Mathf.Max(0.1f, rewardEntranceSeconds);
+                float exit = Mathf.Max(0.1f, rewardExitSeconds);
+                float elapsed = rewardTime - Mathf.Max(0, rewardDelay);
+                float exitStart = enter + Mathf.Max(0, rewardHoldSeconds);
+                float rt = Mathf.Clamp01(elapsed / enter);
+                float slide = 1 - Mathf.Pow(1 - rt, 3);
+                float outT = Mathf.Clamp01((elapsed - exitStart) / exit);
+                float slideOut = outT * outT * (3 - 2 * outT);
+                reward.anchoredPosition = rewardHome + new Vector2((1 - slide + slideOut) * (reward.rect.width + 100), 0);
+                reward.localScale = Vector3.one * (Mathf.Lerp(0.94f, 1, slide) + Mathf.Sin(rt * Mathf.PI) * 0.035f);
+                rewardGroup.alpha = Mathf.SmoothStep(0, 1, rt) * (1 - slideOut);
+                if(outT >= 1) reward.gameObject.SetActive(false);
+            }
         }
 
         private string SaveError => bridge.IsPuzzle ? bridge.PuzzleSaveError : bridge.StorySaveError;
@@ -79,6 +108,48 @@ namespace VocaloidTCG.BoardUI
             retry.gameObject.SetActive(!bridge.IsOnline && lost && (bridge.IsPuzzle || showRestartOnDefeat) && !unsaved);
             save.gameObject.SetActive(unsaved);
             status.text = unsaved ? "Your reward could not be saved.\n" + SaveError : navigationError ?? (bridge.IsOnline ? bridge.Snapshot.roundSummary : "");
+            if(won && !unsaved && bridge.FirstClearReward && !reward) BuildReward();
+        }
+
+        private void BuildReward(){
+            var prefab = rewardCardPrefab ? rewardCardPrefab : Resources.Load<GameObject>("reward card");
+            if(!prefab) return;
+            var instance = Instantiate(prefab, root);
+            reward = instance.GetComponent<RectTransform>();
+            if(!reward){ Destroy(instance); return; }
+            var card = bridge.FirstClearReward;
+            var cls = card.cardClass;
+            var background = instance.GetComponent<Image>();
+            if(background && cls && cls.rewardCardBackground){
+                background.sprite = cls.rewardCardBackground;
+                background.color = Color.white;
+            }
+            foreach(var image in instance.GetComponentsInChildren<Image>(true)){
+                image.raycastTarget = false;
+                if(image.name == "art"){
+                    image.sprite = card.cardImage;
+                    image.color = card.cardImage ? Color.white : Color.clear;
+                    image.preserveAspect = true;
+                }
+            }
+            foreach(var label in instance.GetComponentsInChildren<TMP_Text>(true)){
+                label.raycastTarget = false;
+                if(label.name != "card name") continue;
+                label.text = card.cardName; label.richText = false;
+                label.color = cls ? cls.color : Color.white;
+                label.enableVertexGradient = false;
+                label.enableAutoSizing = true; label.fontSizeMin = 12; label.fontSizeMax = label.fontSize;
+            }
+            reward.anchorMin = reward.anchorMax = Vector2.one;
+            reward.pivot = new Vector2(1, 0.5f);
+            rewardHome = new Vector2(-rewardCornerOffset.x, -rewardCornerOffset.y);
+            reward.anchoredPosition = rewardHome + new Vector2(reward.rect.width + 100, 0);
+            reward.localRotation = Quaternion.identity;
+            rewardGroup = instance.GetComponent<CanvasGroup>();
+            if(!rewardGroup) rewardGroup = instance.AddComponent<CanvasGroup>();
+            rewardGroup.alpha = 0; rewardGroup.interactable = false; rewardGroup.blocksRaycasts = false;
+            rewardTime = 0;
+            instance.SetActive(true);
         }
 
         private void Restart(){
@@ -171,12 +242,18 @@ namespace VocaloidTCG.BoardUI
             content = Rect(root, "Puzzle result and actions", Vector2.zero, new Vector2(1000, 500));
             contentGroup = content.gameObject.AddComponent<CanvasGroup>(); contentGroup.alpha = 0; contentGroup.interactable = false;
             accent = won ? classColor : new Color(1f, 0.56f, 0.64f);
-            var particles = ConcertEffects.Create(content, board, accent, Color.white,
-                won ? ConcertEffectStyle.Victory : ConcertEffectStyle.Finish, puzzleEffects);
-            particles.rectTransform.localScale = Vector3.one * 0.65f;
-            particles.rectTransform.anchoredPosition = new Vector2(0, 90);
-            particles.EmitBurst(new Vector2(-440, 80), accent);
-            particles.EmitBurst(new Vector2(440, 80), accent);
+            var prefab = puzzleResultPanelPrefab ? puzzleResultPanelPrefab : Resources.Load<ConcertPanelView>("Puzzle result panel");
+            if(prefab){
+                var panel = Instantiate(prefab, content);
+                panel.title.text = won ? panel.passText : panel.failText;
+                if(panel.puzzleNumber) panel.puzzleNumber.text = "PUZZLE " + bridge.puzzle.number;
+                if(panel.puzzleName){
+                    panel.puzzleName.text = string.IsNullOrWhiteSpace(bridge.puzzle.puzzleName) ? "Puzzle " + bridge.puzzle.number : bridge.puzzle.puzzleName;
+                    panel.puzzleName.richText = false;
+                }
+                back = panel.primary; retry = panel.secondary; save = panel.retrySave; status = panel.message;
+                back.onClick.AddListener(Return); retry.onClick.AddListener(Restart); save.onClick.AddListener(RetrySave);
+            }else{
             var eyebrow = Text(content, "PUZZLE " + bridge.puzzle.number, new Vector2(0, 150), new Vector2(800, 40), 24, Color.white);
             eyebrow.characterSpacing = 6;
             var title = Text(content, won ? "PASS" : "FAIL", new Vector2(0, 70), new Vector2(800, 125), 92, Color.white);
@@ -194,6 +271,14 @@ namespace VocaloidTCG.BoardUI
             save = Button(content, "RETRY SAVE", new Vector2(0, -220), RetrySave);
             foreach(var button in new[] { back, retry, save }) button.GetComponent<RectTransform>().sizeDelta = new Vector2(300, 60);
             status = Text(content, "", new Vector2(0, -310), new Vector2(1000, 110), 23, Color.white);
+            }
+            var particles = ConcertEffects.Create(content, board, accent, Color.white,
+                won ? ConcertEffectStyle.Victory : ConcertEffectStyle.Finish, puzzleEffects);
+            particles.transform.SetAsFirstSibling();
+            particles.rectTransform.localScale = Vector3.one * 0.65f;
+            particles.rectTransform.anchoredPosition = new Vector2(0, 90);
+            particles.EmitBurst(new Vector2(-440, 80), accent);
+            particles.EmitBurst(new Vector2(440, 80), accent);
             var clip = won ? victoryStinger : defeatStinger;
             if(clip){
                 var audio = obj.AddComponent<AudioSource>(); audio.playOnAwake = false; audio.spatialBlend = 0;
@@ -227,6 +312,7 @@ namespace VocaloidTCG.BoardUI
         public void Cancel(){
             if(root){ root.gameObject.SetActive(false); Destroy(root.gameObject); }
             root = null; portrait = null; puzzleShade = null; shown = null; time = 0; navigationError = null;
+            reward = null; rewardGroup = null; rewardTime = 0;
         }
         private void OnDisable(){ Cancel(); }
     }

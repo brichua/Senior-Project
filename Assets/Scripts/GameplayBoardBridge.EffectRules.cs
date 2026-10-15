@@ -171,7 +171,9 @@ namespace VocaloidTCG.BoardUI
             
             foreach(var c in all){
                 c.auraInfluence=Math.Max(-c.currentInfluence,c.auraInfluence); c.currentInfluence+=c.auraInfluence;
+                if(c.currentInfluence <= 0) CardInfluence.BreakShield(c);
                 c.activeEffects.Clear();
+                if(c.shieldActive) c.activeEffects.Add("Shielded: " + c.currentInfluence + " shield influence; " + c.data.influence + " original influence underneath.");
                 if(c.token) c.activeEffects.Add("Token: 0 cost; no effects or keywords.");
                 if(c.silenced) c.activeEffects.Add("Silenced: no effects or keywords.");
                 if(EffectsEnabled(c)){
@@ -195,6 +197,8 @@ namespace VocaloidTCG.BoardUI
                 bool restore=HasEffect(c,CardEffect.RestoreCenter) && TileOf(c)%5==2 || state.Side(c.ownerId).harmonizeVenue && c.currentInfluence>=3;
                 c.currentInfluence=Math.Max(0,c.currentInfluence-c.auraInfluence-c.roundInfluence); c.auraInfluence=c.roundInfluence=0;
                 if(restore && c.currentInfluence<c.data.influence) c.currentInfluence++;
+                if(c.shieldActive && c.currentInfluence <= 0) CardInfluence.BreakShield(c);
+                CardInfluence.Regenerate(c);
                 int age=state.roundNumber-c.enteredRound+1;
                 if(HasEffect(c,CardEffect.DelayedEnergy) && age==2) state.Side(c.ownerId).nextRoundEnergyBonus++;
                 if(HasEffect(c,CardEffect.DelayedSpell) && age==1) DrawFiltered(c.ownerId,1,false);

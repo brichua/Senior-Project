@@ -234,6 +234,50 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: audition design_5
+      rect:
+        serializedVersion: 2
+        x: 28
+        y: 66
+        width: 774
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 73c7c71f95dd6344bba8bf527158e9ff
+      internalID: -1204059254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: audition design_6
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 52
+        width: 809
+        height: 2
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 761a535ebb5894b44a1c6ff393070b4e
+      internalID: 1761579629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     customData: 
     physicsShape: []
@@ -253,6 +297,8 @@ TextureImporter:
       audition design_2: 6214308669321843473
       audition design_3: -7215658479148125994
       audition design_4: -3483435741449203201
+      audition design_5: -1204059254
+      audition design_6: 1761579629
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

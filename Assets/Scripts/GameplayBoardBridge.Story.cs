@@ -13,6 +13,7 @@ namespace VocaloidTCG.BoardUI
         private string storyLaunchError;
         public bool IsStory => story;
         public string StorySaveError { get; private set; }
+        public CardData FirstClearReward { get; private set; }
 
         private void ConsumeStoryLaunch(){
             if(!StorySession.PendingBattle) return;
@@ -45,7 +46,9 @@ namespace VocaloidTCG.BoardUI
             if(!IsStory || state == null || state.phase != RoundPhase.Finished || state.winnerId != state.localPlayerId) return;
             try{
                 var library = DeckLibrary.Get(deckCatalog);
-                library.CompleteAudition(story, storyOpponent, out var error);
+                bool firstClear = !library.IsAuditionCompleted(story, storyOpponent);
+                if(library.CompleteAudition(story, storyOpponent, out var error) && firstClear)
+                    FirstClearReward = story.Audition(storyOpponent).firstClearReward;
                 StorySaveError = error;
             }
             catch(Exception ex){
