@@ -115,7 +115,7 @@ namespace VocaloidTCG
             if(ui.tutorialPrefab && ui.tutorialPrefab != ui.classPrefab) CheckChoice(ui.tutorialPrefab, "Class");
             CheckChoice(ui.rivalPrefab, "Rival"); CheckChoice(ui.mapPrefab, "Map"); CheckChoice(ui.deckPrefab, "Deck");
             if(ui.dialogue) ui.dialogue.ValidateSetup();
-            if(ui.catalog) ui.catalog.ValidateSetup();
+            if(ui.catalog) ui.catalog.ValidateSetup(false);
         }
 
         private static void CheckChoice(StoryChoiceView view, string role){

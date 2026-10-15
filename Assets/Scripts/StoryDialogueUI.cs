@@ -18,6 +18,8 @@ namespace VocaloidTCG
         [Tooltip("Optional glow or selected indicator shown while automatic dialogue advancement is enabled. Leave empty if unused.")]
         public GameObject autoHighlight;
         public TMP_Text speaker, line;
+        [Tooltip("Dialogue backgrounds with and without the speaker nameplate.")]
+        public GameObject characterBackground, narrationBackground;
         public Image[] avatars = new Image[6];
         public Button skip, auto, log, closeLog;
         
@@ -123,6 +125,11 @@ namespace VocaloidTCG
             lineShownFrame = Time.frameCount;
             var entry = lines[index] ?? new StoryLine();
             DeckUI.Text(speaker, entry.speaker); DeckUI.Text(line, entry.text);
+            bool narrated = string.IsNullOrWhiteSpace(entry.speaker) ||
+                string.Equals(entry.speaker.Trim(), "Narrator", StringComparison.OrdinalIgnoreCase);
+            if(speaker) speaker.gameObject.SetActive(!narrated);
+            if(characterBackground) characterBackground.SetActive(!narrated);
+            if(narrationBackground) narrationBackground.SetActive(narrated);
 
             foreach(var avatar in avatars ?? new Image[0]) if(avatar) avatar.gameObject.SetActive(false);
             foreach(var avatar in entry.avatars ?? new List<StoryAvatar>())

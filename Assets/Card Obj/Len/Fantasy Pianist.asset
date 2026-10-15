@@ -21,7 +21,8 @@ MonoBehaviour:
   stageEffect: 0
   cost: 1
   influence: 1
-  flags: []
+  flags:
+  - support
   stageInfluenceChange: 1
   cardImage: {fileID: 712305886029339999, guid: 5cb576d726beed5449637676d418888c, type: 3}
   characterImage: {fileID: 1173979227225263158, guid: 5a97a7807dd5daf478221022cc777d05, type: 3}

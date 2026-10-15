@@ -20,6 +20,7 @@ namespace VocaloidTCG
         [Header("Gameplay")]
         [Min(0)] public int cost;
         [Min(0)] public int influence;
+        [Tooltip("Enemy AI hints, e.g. near_allies, ally_cluster, front_pressure, support. See Tools/QA/EnemyPlacementFlags.md.")]
         public List<string> flags = new List<string>();
         [Tooltip("Basic stage effect: permanently change a friendly performer's influence by this amount.")]
         public int stageInfluenceChange = 1;

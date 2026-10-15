@@ -11,7 +11,7 @@ namespace VocaloidTCG.BoardUI
         public bool useSelectedDeck = true;
         public DeckCatalog deckCatalog;
         public DeckData enemyDeck;
-        public BasicEnemyAITest enemyAI;
+        public EnemyAIController enemyAI;
         public List<CharacterClassData> playerClasses = new List<CharacterClassData>();
         public List<CharacterClassData> enemyClasses = new List<CharacterClassData>();
         public List<BoardSetup> boardSetups = new List<BoardSetup>();
@@ -42,6 +42,7 @@ namespace VocaloidTCG.BoardUI
                         if(localPlayerId == 0) { player0Cards = cards; player0OpeningCard = catalog.Card(selected.vipCardId); }
                         else { player1Cards = cards; player1OpeningCard = catalog.Card(selected.vipCardId); }
                         playerClasses = DeckPresentation.Classes(selected, catalog);
+                        if(IsStory) playerClasses = playerClasses.OrderByDescending(c => c.identity == story.Class).ToList();
                         selectedPlayerBack = catalog.BackData(selected);
                         playerCardBack = selectedPlayerBack ? selectedPlayerBack.image : null;
                     } catch(System.Exception ex) { MatchSetupError = ex.Message; return false; }
@@ -52,6 +53,8 @@ namespace VocaloidTCG.BoardUI
                 if(localPlayerId == 0) { player1Cards = cards; player1OpeningCard = enemyDeck.vipCard; }
                 else { player0Cards = cards; player0OpeningCard = enemyDeck.vipCard; }
                 enemyClasses = enemyDeck.classes.Where(c => c).OrderByDescending(c => enemyDeck.cards.Count(card => card && card.cardClass == c) + (enemyDeck.vipCard && enemyDeck.vipCard.cardClass == c ? 1 : 0)).ToList();
+                // Keep the named rival on stage when a story deck includes a support class.
+                if(IsStory) enemyClasses = enemyClasses.OrderByDescending(c => c.identity == storyOpponent).ToList();
                 selectedEnemyBack = enemyDeck.cardBack;
                 enemyCardBack = selectedEnemyBack ? selectedEnemyBack.image : null;
             } else if(enemyAI) enemyClasses = new List<CharacterClassData>(enemyAI.classes);
@@ -86,6 +89,7 @@ namespace VocaloidTCG.BoardUI
         [Min(1)] public int winningScore = 50;
         [Min(0)] public float turnSeconds = 60;
         [Min(0)] public float endRoundDisplaySeconds = 2;
+        [Min(1)] public int minimumRoundEnergy = 1;
         public bool startAutomatically = true;
         public bool enableOpeningSequence = true;
         [HideInInspector] public MatchResultAnimator resultPresenter;

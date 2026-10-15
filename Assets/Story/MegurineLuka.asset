@@ -15,69 +15,628 @@ MonoBehaviour:
   id: story-megurineluka
   tutorial: 0
   storyClass: 5
-  header: MegurineLuka
+  header: "World Tour Auditions — Luka"
+  playerStarterDeck: {fileID: 11400000, guid: b8d0097162bd46bb90ca7085233ff788, type: 2}
   prologue:
-    lines: []
+    lines:
+    - speaker: "Narrator"
+      portrait: {fileID: 0}
+      text: "Luka has three copies of the same tune spread across the train seat beside her. Her audition map is open on her lap."
+      avatars:
+      - slot: 0
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Luka"
+      portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "\"Come home\"... \"Keep going\"... and \"Wait for me.\""
+      avatars:
+      - slot: 0
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Narrator"
+      portrait: {fileID: 0}
+      text: "She hums the melody. It's the one she heard someone singing backstage years ago."
+      avatars:
+      - slot: 0
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Luka"
+      portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "I still remember it. I wish I'd asked who was singing."
+      avatars:
+      - slot: 0
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Narrator"
+      portrait: {fileID: 0}
+      text: "She checks the pages again. None of them names a writer."
+      avatars:
+      - slot: 0
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Luka"
+      portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "Maybe someone at the auditions will recognize it."
+      avatars:
+      - slot: 0
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
   epilogue:
-    lines: []
+    lines:
+    - speaker: "Narrator"
+      portrait: {fileID: 0}
+      text: "Luka's name tops the tour poster. Backstage, an envelope on a lighting case is signed 'Aya — touring electrician.'"
+      avatars:
+      - slot: 0
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Luka"
+      portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "So it was you."
+      avatars:
+      - slot: 0
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Narrator"
+      portrait: {fileID: 0}
+      text: "Aya writes that she made up the melody to keep her crew awake on long drives. The crews who came after her added their own verses."
+      avatars:
+      - slot: 0
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Luka"
+      portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "I heard one of them singing it years ago."
+      avatars:
+      - slot: 0
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Narrator"
+      portrait: {fileID: 0}
+      text: "Below her signature, Aya adds: 'Please tell me they cut the verse about my driving.'"
+      avatars:
+      - slot: 0
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Luka"
+      portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      text: "Sorry, Aya. I think that one's staying."
+      avatars:
+      - slot: 0
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+    - speaker: "Narrator"
+      portrait: {fileID: 0}
+      text: "Onstage, Luka credits Aya and the touring crews before singing. She leaves the last line for whoever picks it up next."
+      avatars:
+      - slot: 0
+        sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
   auditions:
   - opponent: 0
-    deckDescription: 
-    location: 
-    auditionText: 
-    firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 0}
-    mediumDeck: {fileID: 0}
-    hardDeck: {fileID: 0}
+    deckDescription: "An unfinished song, ready for an audience."
+    location: "The Lantern Courtyard"
+    auditionText: "An audition against Miku."
+    firstClearReward: {fileID: 11400000, guid: edb40c36ed214e84bb6cfa3922067025, type: 2}
+    easyDeck: {fileID: 11400000, guid: 1fb6640ce062beb46bf698583498f40d, type: 2}
+    mediumDeck: {fileID: 11400000, guid: 1fb6640ce062beb46bf698583498f40d, type: 2}
+    hardDeck: {fileID: 11400000, guid: 1fb6640ce062beb46bf698583498f40d, type: 2}
     before:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "Luka hears Miku humming the familiar melody while she sets up her microphone."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Miku. Where did you hear that?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Hm? Oh! Someone sang it here last week. It's been stuck in my head."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "What came after the chorus?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Uh... I made up that part."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Of course you did."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
     after:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "A stagehand hands Miku a folded note while the crowd is leaving."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Hey, Luka! I think this one's for you."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "\"For whoever sings it next.\" That's all?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Wait, there's a drawing on the back. Is that... a ladder?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "A lighting rig, I think."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+      - speaker: "Miku"
+        portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Oh! So maybe ask the crew instead of the singers?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
   - opponent: 1
-    deckDescription: 
-    location: 
-    auditionText: 
-    firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 0}
-    mediumDeck: {fileID: 0}
-    hardDeck: {fileID: 0}
+    deckDescription: "An original melody and a familiar rival."
+    location: "The Rooftop Theatre"
+    auditionText: "An audition against Len."
+    firstClearReward: {fileID: 11400000, guid: 2c9bee9d08e838f4b8bac5071656c12a, type: 2}
+    easyDeck: {fileID: 11400000, guid: d1c376575e622ba4ea509d93cd2ae101, type: 2}
+    mediumDeck: {fileID: 11400000, guid: d1c376575e622ba4ea509d93cd2ae101, type: 2}
+    hardDeck: {fileID: 11400000, guid: d1c376575e622ba4ea509d93cd2ae101, type: 2}
     before:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "Len flips through souvenirs from his first KAITO concert. A few notes are scribbled on the back of a program."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Wait. I know that melody. Did you write those notes?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Len"
+        portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Yeah. I heard someone humming while I waited for the doors to open."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Someone from the audience?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Len"
+        portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "No, it came from inside. One of the crew, I think."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Could I take a closer look?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
     after:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "After Luka's win, Len turns the program over. A pencil note reads: LIGHT CHECK."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Len"
+        portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Oh, right. They were testing the lights before the show."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "So it wasn't part of KAITO's set."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Len"
+        portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Nope. I could hear it while I waited outside."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Mind if I take a picture of this?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+      - speaker: "Len"
+        portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Sure. I'm keeping the original, though!"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
   - opponent: 2
-    deckDescription: 
-    location: 
-    auditionText: 
-    firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 0}
-    mediumDeck: {fileID: 0}
-    hardDeck: {fileID: 0}
+    deckDescription: "A lively challenge from Rin."
+    location: "The Tram Depot"
+    auditionText: "An audition against Rin."
+    firstClearReward: {fileID: 11400000, guid: 5a4ca13c112bad64190b371a46fc13d9, type: 2}
+    easyDeck: {fileID: 11400000, guid: 05c75a68ffcd49039f41d5c0a3b6d766, type: 2}
+    mediumDeck: {fileID: 11400000, guid: 05c75a68ffcd49039f41d5c0a3b6d766, type: 2}
+    hardDeck: {fileID: 11400000, guid: 05c75a68ffcd49039f41d5c0a3b6d766, type: 2}
     before:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "Two workers are tapping a rhythm against a tram. Rin has joined in—loudly."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "That rhythm. Do you know the song that goes with it?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Rin"
+        portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "There's a song? They taught me the beat five minutes ago."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "The version I heard was rather slow."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Rin"
+        portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Then your version needs help. C'mon, listen to this!"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "Rin speeds up. One of the workers almost drops his wrench."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
     after:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "A depot worker passes Rin a creased lyric sheet."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Rin"
+        portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Here! Apparently the old touring crew used to sing it on night shifts."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "This verse is about terrible coffee."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Rin"
+        portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Best verse so far, if you ask me."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "I suppose someone had to write it."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Rin"
+        portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "And now I'm going to sing it. You can complain after!"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
   - opponent: 3
-    deckDescription: 
-    location: 
-    auditionText: 
-    firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 0}
-    mediumDeck: {fileID: 0}
-    hardDeck: {fileID: 0}
+    deckDescription: "A full song beyond a famous chorus."
+    location: "The Harbor Stage"
+    auditionText: "An audition against KAITO."
+    firstClearReward: {fileID: 11400000, guid: 6583a1897eee0d744add7bc99a893801, type: 2}
+    easyDeck: {fileID: 11400000, guid: 67abe06bb10144adb820be6c188de4b8, type: 2}
+    mediumDeck: {fileID: 11400000, guid: 67abe06bb10144adb820be6c188de4b8, type: 2}
+    hardDeck: {fileID: 11400000, guid: 67abe06bb10144adb820be6c188de4b8, type: 2}
     before:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "KAITO is warming up for a broadcast rehearsal. Luka stops when he sings a familiar line."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "KAITO, where did you learn that verse?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "KAITO"
+        portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "A technician was singing it during a sound check."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Do you remember who?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "KAITO"
+        portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "I remember thanking her. Not asking her name."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "That's a shame."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
     after:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "The broadcast camera is still on after Luka's win. KAITO points to it."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "KAITO"
+        portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Want to ask about the song while we're live?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "If you know who first wrote this melody, please leave a message with the tour crew."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "KAITO"
+        portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "I'll make sure the clip stays up afterward."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Thanks, KAITO."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "KAITO"
+        portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "And I'll check the credits this time."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
   - opponent: 4
-    deckDescription: 
-    location: 
-    auditionText: 
-    firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 0}
-    mediumDeck: {fileID: 0}
-    hardDeck: {fileID: 0}
+    deckDescription: "A complete live performance."
+    location: "The Converted Cinema"
+    auditionText: "An audition against MEIKO."
+    firstClearReward: {fileID: 11400000, guid: 0b21cc092eb618240ab6629d284db2da, type: 2}
+    easyDeck: {fileID: 11400000, guid: 30f2d81003ba4753b31fc0ffff3d5e57, type: 2}
+    mediumDeck: {fileID: 11400000, guid: 30f2d81003ba4753b31fc0ffff3d5e57, type: 2}
+    hardDeck: {fileID: 11400000, guid: 30f2d81003ba4753b31fc0ffff3d5e57, type: 2}
     before:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "Luka hums the melody for MEIKO, who pulls an old rehearsal book from the cabinet behind the screen."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "MEIKO"
+        portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Is this the tune you've been looking for?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "That's it. You know it?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "MEIKO"
+        portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "The crews sang it while packing up. Every city had a new verse."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Do you know who started it?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "MEIKO"
+        portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "No. But look at all these different handwritings."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
     after:
-      lines: []
+      lines:
+      - speaker: "Narrator"
+        portrait: {fileID: 0}
+        text: "MEIKO opens the book to a page covered in several hands."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "Someone crossed out the second verse."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "MEIKO"
+        portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "The next crew wrote a new one under it."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "And that empty line at the end?"
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "MEIKO"
+        portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "They always left it for the next person."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      - speaker: "Luka"
+        portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        text: "So it was meant to keep changing."
+        avatars:
+        - slot: 0
+          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 5
+          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}

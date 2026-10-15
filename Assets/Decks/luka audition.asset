@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0868907308d47e08c6fdd7899237687, type: 3}
+  m_Name: luka audition
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.DeckData
+  deckName: Luka Audition
+  cardBack: {fileID: 11400000, guid: 3d159ae028483bd4d8d9034e725abbe0, type: 2}
+  cards:
+  - {fileID: 11400000, guid: 9c4fbec4ad49cd849a5ee0274d91d301, type: 2}
+  - {fileID: 11400000, guid: 9c4fbec4ad49cd849a5ee0274d91d301, type: 2}
+  - {fileID: 11400000, guid: 9c4fbec4ad49cd849a5ee0274d91d301, type: 2}
+  - {fileID: 11400000, guid: 16e13ed84fa284f40933ec46c8c08b1f, type: 2}
+  - {fileID: 11400000, guid: 16e13ed84fa284f40933ec46c8c08b1f, type: 2}
+  - {fileID: 11400000, guid: 16e13ed84fa284f40933ec46c8c08b1f, type: 2}
+  - {fileID: 11400000, guid: 34de31542b30f76479e98467831850cf, type: 2}
+  - {fileID: 11400000, guid: 34de31542b30f76479e98467831850cf, type: 2}
+  - {fileID: 11400000, guid: 34de31542b30f76479e98467831850cf, type: 2}
+  - {fileID: 11400000, guid: fadb42c46f555084d87a9da9085aa8e7, type: 2}
+  - {fileID: 11400000, guid: fadb42c46f555084d87a9da9085aa8e7, type: 2}
+  - {fileID: 11400000, guid: fadb42c46f555084d87a9da9085aa8e7, type: 2}
+  - {fileID: 11400000, guid: 046f178192c48654b921248b4e257dcb, type: 2}
+  - {fileID: 11400000, guid: 046f178192c48654b921248b4e257dcb, type: 2}
+  - {fileID: 11400000, guid: 046f178192c48654b921248b4e257dcb, type: 2}
+  - {fileID: 11400000, guid: b8ffd2082dbffe34e8446ef50597ec7d, type: 2}
+  - {fileID: 11400000, guid: b8ffd2082dbffe34e8446ef50597ec7d, type: 2}
+  - {fileID: 11400000, guid: b8ffd2082dbffe34e8446ef50597ec7d, type: 2}
+  - {fileID: 11400000, guid: e1c3ea33750b1ad4ab5759bb2a999649, type: 2}
+  - {fileID: 11400000, guid: e1c3ea33750b1ad4ab5759bb2a999649, type: 2}
+  - {fileID: 11400000, guid: e1c3ea33750b1ad4ab5759bb2a999649, type: 2}
+  - {fileID: 11400000, guid: 3f3f4bdb23f460a4786b7bf98ae09cd9, type: 2}
+  - {fileID: 11400000, guid: 3f3f4bdb23f460a4786b7bf98ae09cd9, type: 2}
+  - {fileID: 11400000, guid: 3f3f4bdb23f460a4786b7bf98ae09cd9, type: 2}
+  - {fileID: 11400000, guid: 92247ec2d6d602e45b2fb4ad0491dbab, type: 2}
+  - {fileID: 11400000, guid: 92247ec2d6d602e45b2fb4ad0491dbab, type: 2}
+  - {fileID: 11400000, guid: 92247ec2d6d602e45b2fb4ad0491dbab, type: 2}
+  vipCard: {fileID: 0}
+  classes:
+  - {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}

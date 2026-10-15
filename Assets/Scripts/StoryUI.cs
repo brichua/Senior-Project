@@ -47,6 +47,7 @@ namespace VocaloidTCG
         private readonly List<StoryChoiceView> deckViews = new List<StoryChoiceView>();
 
         private void Awake(){
+            if(!status) status = StoryUIElements.Text(transform, "Story status", "", new Vector2(0, -485), new Vector2(1500, 60));
             defaultPrologueImage = prologue && prologue.image ? prologue.image.sprite : null;
             defaultEpilogueImage = epilogue && epilogue.image ? epilogue.image.sprite : null;
             Active(storyInfo, false);
@@ -61,9 +62,9 @@ namespace VocaloidTCG
                 library = DeckLibrary.Get(catalog.deckCatalog);
                 if(library.IsStoryCompleted(catalog.Tutorial)) TutorialProgress.SetCompleted();
 
-                Hook(begin, ShowMap); Hook(classBack, BackToMain); Hook(mapBack, ShowClasses); Hook(auditionBack, ShowMap);
+                Hook(begin, BeginStory); Hook(classBack, BackToMain); Hook(mapBack, ShowClasses); Hook(auditionBack, ShowMap);
                 Hook(prologue, () => PlayDialogue(selected?.prologue, false));
-                Hook(epilogue, () => { if(library.IsStoryCompleted(selected)) PlayDialogue(selected.epilogue, false); });
+                Hook(epilogue, PlayEnding);
                 Hook(before, () => PlayDialogue(audition?.before, true));
                 Hook(after, () => { if(audition != null && library.IsAuditionCompleted(selected, audition.opponent)) PlayDialogue(audition.after, true); });
                 Hook(editDeck, EditDeck); Hook(start, StartAudition);
@@ -86,6 +87,13 @@ namespace VocaloidTCG
                     selectedDeckId = StorySession.DeckId; chosenDifficulty = StorySession.Difficulty;
                     SelectStory(StorySession.Story);
                     SelectAudition(StorySession.Opponent);
+                    bool playAfter = StorySession.PlayAfterBattle;
+                    StorySession.PlayAfterBattle = false;
+                    if(playAfter && audition != null && library.IsAuditionCompleted(selected, audition.opponent))
+                        PlayDialogue(audition.after, true, () => {
+                            if(library.IsStoryCompleted(selected) && !library.HasViewedStoryDialogue(selected, true)) PlayEnding();
+                            else SelectAudition(audition.opponent);
+                        });
                 }
                 else ShowClasses();
             }
@@ -114,7 +122,8 @@ namespace VocaloidTCG
             if(!string.IsNullOrEmpty(message)) Debug.LogWarning(message, this);
         }
 
-        private bool CanPlay(StoryData story) => story && (story.tutorial || debugTutorialCompleted || TutorialProgress.Completed || library.IsStoryCompleted(catalog.Tutorial));
+        private bool CanPlay(StoryData story) => story && story.HasPlayableContent(catalog.deckCatalog) &&
+            (story.tutorial || debugTutorialCompleted || TutorialProgress.Completed || library.IsStoryCompleted(catalog.Tutorial));
 
         private void Update(){
             if(library == null || !catalog || lastDebugTutorialCompleted == debugTutorialCompleted) return;
@@ -230,6 +239,29 @@ namespace VocaloidTCG
             Active(epilogueLocked, !completed);
         }
 
+        private void BeginStory(){
+            if(!selected) return;
+            if(!library.EnsureStoryDeck(selected, out var starterId, out var starterError)){ Report(starterError); return; }
+            if(!library.Decks.Any(d => d.id == selectedDeckId && d.classes.Contains(selected.Class) &&
+                DeckRules.Validate(d, library.Catalog, library.Owned, out _))) selectedDeckId = starterId;
+            if(library.HasViewedStoryDialogue(selected, false) || !HasDialogue(selected.prologue)) { ShowMap(); return; }
+            PlayDialogue(selected.prologue, false, () => {
+                ShowMap();
+                if(!library.MarkStoryDialogueViewed(selected, false, out var error)) Report(error);
+            });
+        }
+
+        private void PlayEnding(){
+            if(!library.IsStoryCompleted(selected)) return;
+            PlayDialogue(selected.epilogue, false, () => {
+                ShowMap();
+                if(!library.MarkStoryDialogueViewed(selected, true, out var error)) Report(error);
+            });
+        }
+
+        private static bool HasDialogue(StoryDialogue script) => script?.lines != null &&
+            script.lines.Any(entry => entry != null && !string.IsNullOrWhiteSpace(entry.text));
+
         public void SelectAudition(CharacterClass opponent){
             if(!selected || !CanPlay(selected)) return;
             audition = selected.Audition(opponent); if(audition == null){
@@ -308,7 +340,7 @@ namespace VocaloidTCG
             StorySession.ReturnScene = gameObject.scene.name;
         }
 
-        private void PlayDialogue(StoryDialogue script, bool returnToAudition){
+        private void PlayDialogue(StoryDialogue script, bool returnToAudition, Action onFinished = null){
             if(!selected) return;
             if(!dialogue){
                 Debug.LogError("[Story Setup] StoryUI.dialogue: assign StoryDialogueUI before opening a dialogue.", this);
@@ -316,7 +348,11 @@ namespace VocaloidTCG
             }
 
             Panels(null);
-            dialogue.Play(script, () => { if(returnToAudition && audition != null) SelectAudition(audition.opponent); else ShowMap(); });
+            dialogue.Play(script, () => {
+                if(onFinished != null) onFinished();
+                else if(returnToAudition && audition != null) SelectAudition(audition.opponent);
+                else ShowMap();
+            });
         }
 
         private bool SceneAvailable(string scene){
@@ -365,9 +401,13 @@ namespace VocaloidTCG
             }
 
             if(!SceneAvailable(gameScene)) return;
-            Remember(); PuzzleLaunch.Clear(); StorySession.PlayerDeck = deck.Copy(); StorySession.EnemyDeck = enemy;
-            StorySession.Catalog = library.Catalog; StorySession.PendingBattle = true;
-            SceneManager.LoadScene(gameScene);
+            Action launch = () => {
+                Remember(); PuzzleLaunch.Clear(); StorySession.PlayerDeck = deck.Copy(); StorySession.EnemyDeck = enemy;
+                StorySession.Catalog = library.Catalog; StorySession.PendingBattle = true; StorySession.PlayAfterBattle = false;
+                SceneManager.LoadScene(gameScene);
+            };
+            if(HasDialogue(audition.before)) PlayDialogue(audition.before, true, launch);
+            else launch();
         }
 
         public void BackToMain(){
