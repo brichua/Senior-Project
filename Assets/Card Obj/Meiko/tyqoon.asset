@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
   m_Name: tyqoon
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
-  cardName: 
-  id: 8d2fb1d227c944d4b89b90b3cb52137b
+  cardName: TYQOON
+  id: 68c4c237686b9bd4b8ea554c5ced55eb
   cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
   vip: 0
-  info: 
+  info: discard a minion, then create a random minion of the same cost in your hand,
+    then create a 3 inf token on an available tile with the keywords of both
   performer: 0
   stageEffect: 1
-  cost: 0
+  cost: 4
   influence: 0
   flags: []
   stageInfluenceChange: 1

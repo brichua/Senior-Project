@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
   m_Name: my love is hellfire
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
-  cardName: 
-  id: 8d2fb1d227c944d4b89b90b3cb52137b
+  cardName: My Love is Hellfire
+  id: 049bd7f54705e1343a82fd4212a25d36
   cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
   vip: 0
-  info: 
+  info: move an ally to an adjacent tile, then create a random card of its class.
+    if moved onto a contested tile, the created card costs 1 less
   performer: 0
   stageEffect: 1
-  cost: 0
+  cost: 1
   influence: 0
   flags: []
   stageInfluenceChange: 1

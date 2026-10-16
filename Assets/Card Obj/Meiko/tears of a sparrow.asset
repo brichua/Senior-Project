@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
   m_Name: tears of a sparrow
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
-  cardName: 
-  id: 8d2fb1d227c944d4b89b90b3cb52137b
+  cardName: Tears of a Sparrow
+  id: 965ce64d67e184d489ea5f3ae6fba3c9
   cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
   vip: 0
-  info: 
+  info: if 2 allies are adjacent, give both +1 inf and share their keywords
   performer: 0
   stageEffect: 1
-  cost: 0
+  cost: 1
   influence: 0
   flags: []
   stageInfluenceChange: 1
