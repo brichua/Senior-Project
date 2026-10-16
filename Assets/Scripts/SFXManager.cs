@@ -21,7 +21,10 @@ public class SFXManager : MonoBehaviour
     public AudioClip typing;
     public AudioClip class_select;
     public AudioClip enter_game;
-    
+    public AudioClip crowd_noise;
+    public AudioClip tile_score;
+    public AudioClip clock_tick;
+
     [Header("Hover SFX Cooldown")]
     [Min(0f)] public float hoverSoundCooldown = 0.05f;
     private static float nextHoverSoundTime = 0f;
@@ -187,5 +190,23 @@ public class SFXManager : MonoBehaviour
     {
         if (audioSource && enter_game)
             audioSource.PlayOneShot(enter_game);
+    }
+
+    public void PlayCrowdSound()
+    {
+        if (audioSource && crowd_noise)
+            audioSource.PlayOneShot(crowd_noise);
+    }
+
+    public void PlayTileScore()
+    {
+        if (audioSource && tile_score)
+            audioSource.PlayOneShot(tile_score);
+    }
+
+    public void PlayClockTick()
+    {
+        if (audioSource && clock_tick)
+            audioSource.PlayOneShot(clock_tick);
     }
 }

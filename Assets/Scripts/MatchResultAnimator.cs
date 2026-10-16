@@ -151,8 +151,12 @@ namespace VocaloidTCG.BoardUI
             save = Button(content, "RETRY SAVE", new Vector2(0, -425), RetrySave);
             status = Text(content, "", new Vector2(0, 425), new Vector2(1200, 130), 23, Color.white);
             }
+            if (won)
+                board.voicelines.PlayVoiceline(board.setup.PlayerClass.identity, VoicelineEvent.Victory);
+            else
+                board.voicelines.PlayVoiceline(board.setup.PlayerClass.identity, VoicelineEvent.Defeat);
             var clip = won ? victoryStinger : defeatStinger;
-            if(clip){
+            if (clip){
                 var audio = obj.AddComponent<AudioSource>(); audio.playOnAwake = false; audio.spatialBlend = 0;
                 obj.AddComponent<AudioCategorySource>().SetCategory(AudioCategory.Effects);
                 audio.PlayOneShot(clip);

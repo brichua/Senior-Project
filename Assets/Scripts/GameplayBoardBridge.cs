@@ -7,6 +7,7 @@ namespace VocaloidTCG.BoardUI
     public sealed partial class GameplayBoardBridge : BoardGameBridge
     {
         public SFXManager sfx;
+        public VoicelinesManager voicelines;
         [Header("Saved deck and class-based boards")]
         public bool useSelectedDeck = true;
         public DeckCatalog deckCatalog;
@@ -445,6 +446,7 @@ namespace VocaloidTCG.BoardUI
             Log("Player " + actor + " turn begins. Remaining energy: " + state.Side(actor).energy + ".");
             Recompute();
             StartClock();
+            if (actor == state.roundStarterId) PlayApproachingEndVoiceline();
         }
 
         private void RefillRoundEnergy(){
@@ -544,7 +546,7 @@ namespace VocaloidTCG.BoardUI
             EndRoundEffects();
             state.roundSummary = "Third column: Player +" + (state.localPlayerId == 0 ? roundScore0 : roundScore1) +
                 " / Opponent +" + (state.localPlayerId == 0 ? roundScore1 : roundScore0) + ".";
-            if(deckExhausted) state.roundSummary += " A deck is empty; this is the final round.";
+            if (deckExhausted) state.roundSummary += " A deck is empty; this is the final round.";
             roundWait = Mathf.Max(0, endRoundDisplaySeconds);
             if(IsPuzzle) { puzzleRounds++; CheckPuzzle(true, false); }
             Publish();
@@ -598,5 +600,20 @@ namespace VocaloidTCG.BoardUI
                 clock.Paused = paused; Log(paused ? "Match paused." : "Match resumed."); Publish();
             }
         }
+
+        //private bool ApproachingEndVoicelinePlayed;
+        private void PlayApproachingEndVoiceline()
+        {
+            if (state == null) return;
+
+            int playerScore = state.Side(state.localPlayerId).score;
+            int enemyScore = state.Side(1 - state.localPlayerId).score;
+
+            if ((state.winScore - playerScore <= 5 || deckExhausted) && playerScore > enemyScore && voicelines) voicelines.PlayVoiceline(playerClasses[0].identity, VoicelineEvent.Excited);
+            else if ((state.winScore - enemyScore <= 5 || deckExhausted) && playerScore < enemyScore && voicelines) voicelines.PlayVoiceline(playerClasses[0].identity, VoicelineEvent.Concerned);
+            else return;
+
+        }
+
     }
 }

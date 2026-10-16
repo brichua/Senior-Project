@@ -276,7 +276,7 @@ namespace VocaloidTCG.BoardUI
             
             foreach(var card in allCards) card.gameObject.SetActive(false);
             yield return Animate(0.45f, t => group.alpha = 1 - Smooth(t));
-            if (board.voicelines) board.voicelines.PlayVoiceline(board.setup.playerClass.identity, VoicelineEvent.Start);
+            if (board.voicelines) board.voicelines.PlayStartVoicelines(board.setup.playerClass.identity, board.setup.enemyClass.identity);
             bridge.CompleteOpening();
             if(bridge.IsOnline){
                 group.alpha = 1;

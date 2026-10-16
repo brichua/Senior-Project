@@ -137,6 +137,7 @@ namespace VocaloidTCG.BoardUI
             bool local = actor == snapshot.localPlayerId;
             var anchor = local ? board.playerScorePopupAnchor : board.enemyScorePopupAnchor;
             var hud = local ? board.playerHUD : board.enemyHUD;
+            if (board.sfx) board.sfx.PlayTileScore();
             if(!anchor && hud && hud.score) anchor = hud.score.rectTransform;
             return anchor ? InLayer(anchor.TransformPoint(anchor.rect.center), anchor) : focusPosition;
         }
