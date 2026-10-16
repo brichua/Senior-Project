@@ -33,6 +33,7 @@ namespace VocaloidTCG.BoardUI
         private Vector2 focusPosition, scorePosition;
         private Texture2D glowTexture;
         private Sprite glowSprite;
+        private bool tileScoreSoundPlayed;
 
         public bool IsAvailable => isActiveAndEnabled && board && board.isActiveAndEnabled;
 
@@ -78,7 +79,7 @@ namespace VocaloidTCG.BoardUI
                     if(winner>=0) points=Mathf.Max(0,snapshot.Side(winner).score-(winner==0 ? scoreBefore0 : scoreBefore1));
                     score.text = points > 0 ? "+" + points : contested && winner<0 ? "Tie" : "+0";
                     score.color = accent;
-                    if(points > 0) PlayTileReactions(winner);
+                    if (points > 0) PlayTileReactions(winner);
                     scorePosition = points > 0 ? AwardPosition(winner) : focusPosition;
                     score.gameObject.SetActive(true);
                 }
@@ -107,6 +108,7 @@ namespace VocaloidTCG.BoardUI
             var cls = local ? board.setup.PlayerClass : board.setup.EnemyClass;
             accent = winner < 0 ? board.endRoundAnnouncementColor : cls ? cls.color : Color.white;
             var source = board.GetMiddleTileView(currentRow);
+            tileScoreSoundPlayed = false;
             
             if(!source) return;
             focus = source;
@@ -137,7 +139,7 @@ namespace VocaloidTCG.BoardUI
             bool local = actor == snapshot.localPlayerId;
             var anchor = local ? board.playerScorePopupAnchor : board.enemyScorePopupAnchor;
             var hud = local ? board.playerHUD : board.enemyHUD;
-            if (board.sfx) board.sfx.PlayTileScore();
+            if (board.sfx) board.sfx.PlayHUDScore();
             if(!anchor && hud && hud.score) anchor = hud.score.rectTransform;
             return anchor ? InLayer(anchor.TransformPoint(anchor.rect.center), anchor) : focusPosition;
         }
@@ -171,7 +173,8 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void Burst(float t){
-            for(int i = 0; i < sparks.Length; i++){
+            if (points > 0 && board.sfx && !tileScoreSoundPlayed) { board.sfx.PlayTileScore(); tileScoreSoundPlayed = true; }
+            for (int i = 0; i < sparks.Length; i++){
                 float angle = i * Mathf.PI * 2 / sparks.Length;
                 float radius = Mathf.Lerp(25, 100, 1 - Mathf.Pow(1 - t, 3));
                 sparks[i].rectTransform.anchoredPosition = focusPosition + new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * radius;

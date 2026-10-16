@@ -22,8 +22,12 @@ public class SFXManager : MonoBehaviour
     public AudioClip class_select;
     public AudioClip enter_game;
     public AudioClip crowd_noise;
-    public AudioClip tile_score;
+    public AudioClip hud_score;
     public AudioClip clock_tick;
+    public AudioClip shimmer;
+    public AudioClip tile_score;
+    public AudioClip player_highlight;
+    public AudioClip spotlight;
 
     [Header("Hover SFX Cooldown")]
     [Min(0f)] public float hoverSoundCooldown = 0.05f;
@@ -198,15 +202,39 @@ public class SFXManager : MonoBehaviour
             audioSource.PlayOneShot(crowd_noise);
     }
 
-    public void PlayTileScore()
+    public void PlayHUDScore()
     {
-        if (audioSource && tile_score)
-            audioSource.PlayOneShot(tile_score);
+        if (audioSource && hud_score)
+            audioSource.PlayOneShot(hud_score);
     }
 
     public void PlayClockTick()
     {
         if (audioSource && clock_tick)
             audioSource.PlayOneShot(clock_tick);
+    }
+
+    public void PlayShimmerSound()
+    {
+        if (audioSource && shimmer)
+            audioSource.PlayOneShot(shimmer);
+    }
+
+    public void PlayTileScore()
+    {
+        if (audioSource && tile_score)
+            audioSource.PlayOneShot(tile_score);
+    }
+
+    public void PlayPlayerHighlight()
+    {
+        if (audioSource && player_highlight)
+            audioSource.PlayOneShot(player_highlight);
+    }
+
+    public void PlaySpotlightSound()
+    {
+        if (audioSource && spotlight)
+            audioSource.PlayOneShot(spotlight);
     }
 }

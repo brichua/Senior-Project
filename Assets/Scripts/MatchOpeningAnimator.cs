@@ -169,6 +169,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         private IEnumerator Sequence(){
+            if (board.sfx) board.sfx.PlaySpotlightSound();
             yield return Animate(introductionSeconds, t => {
                 for(int side = 0; side < 2; side++){
                     float sign = side == 0 ? -1 : 1;
@@ -188,8 +189,7 @@ namespace VocaloidTCG.BoardUI
             backdrop.Speed = Mathf.Max(1, board.setup.selectedBackgroundSpeed);
             openingParticles.EmitBurst(portraitHomes[starter], colors[starter]);
             
-            //filler sound
-            if (board.sfx) board.sfx.PlayEndTurnSound();
+            if (board.sfx) { board.sfx.PlayPlayerHighlight(); board.sfx.PlayCrowdSound(); }
 
             yield return Animate(winnerSeconds, t => {
                 AimSpotlight(targetX);
