@@ -35,7 +35,7 @@ MonoBehaviour:
   venueEffect: 0
   regen: 0
   shielded: 0
-  cardImage: {fileID: 0}
+  cardImage: {fileID: -1031441428833651656, guid: c0166e081bf7ebc47aafefbc50e5696c, type: 3}
   characterImage: {fileID: 0}
   iconImage: {fileID: 0}
   popupImage: {fileID: 0}
