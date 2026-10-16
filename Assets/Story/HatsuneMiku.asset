@@ -206,7 +206,7 @@ MonoBehaviour:
         avatars:
         - slot: 1
           sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
-        - slot: 5
+        - slot: 4
           sprite: {fileID: 1275116586176032080, guid: 715a83d076871134280f70cb8c7d6033, type: 3}
       - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
@@ -214,7 +214,7 @@ MonoBehaviour:
         avatars:
         - slot: 1
           sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
-        - slot: 5
+        - slot: 4
           sprite: {fileID: 1275116586176032080, guid: 715a83d076871134280f70cb8c7d6033, type: 3}
       - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
@@ -222,7 +222,7 @@ MonoBehaviour:
         avatars:
         - slot: 1
           sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
-        - slot: 5
+        - slot: 4
           sprite: {fileID: -2751635966877528251, guid: a2cfee1425dd86647be4673307bc7f1b, type: 3}
       - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
@@ -230,7 +230,7 @@ MonoBehaviour:
         avatars:
         - slot: 1
           sprite: {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
-        - slot: 5
+        - slot: 4
           sprite: {fileID: 1275116586176032080, guid: 715a83d076871134280f70cb8c7d6033, type: 3}
       - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
@@ -238,7 +238,7 @@ MonoBehaviour:
         avatars:
         - slot: 1
           sprite: {fileID: 1414087313690171253, guid: bd2e8b9a35e8b5740a210eeda43ff22c, type: 3}
-        - slot: 5
+        - slot: 4
           sprite: {fileID: -956189301214819756, guid: 50d2a575c6258d946bf3eab369844e1a, type: 3}
       - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
@@ -246,7 +246,7 @@ MonoBehaviour:
         avatars:
         - slot: 1
           sprite: {fileID: 1414087313690171253, guid: bd2e8b9a35e8b5740a210eeda43ff22c, type: 3}
-        - slot: 5
+        - slot: 4
           sprite: {fileID: -956189301214819756, guid: 50d2a575c6258d946bf3eab369844e1a, type: 3}
     after:
       lines:
