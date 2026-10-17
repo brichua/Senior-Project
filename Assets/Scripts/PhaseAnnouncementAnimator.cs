@@ -47,6 +47,9 @@ namespace VocaloidTCG.BoardUI
             
             observed = state; phase = state.phase; round = state.roundNumber;
             if(phase != RoundPhase.Preparation && phase != RoundPhase.Performance && phase != RoundPhase.EndRound) return;
+            //replace with new performance round sfx
+            if ((phase == RoundPhase.Preparation || phase == RoundPhase.Performance || phase == RoundPhase.EndRound) && board.sfx) board.sfx.PlayShimmerSound();
+            if (phase == RoundPhase.EndRound && board.sfx) board.sfx.PlayCrowdSound();
             puzzleIntro = newPuzzle;
             accent = phase == RoundPhase.EndRound ? board.endRoundAnnouncementColor : StarterColor(state);
             if(puzzleIntro && bridge.puzzle.puzzleClass) accent = bridge.puzzle.puzzleClass.color;

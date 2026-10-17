@@ -21,7 +21,16 @@ public class SFXManager : MonoBehaviour
     public AudioClip typing;
     public AudioClip class_select;
     public AudioClip enter_game;
-    
+    public AudioClip crowd_noise;
+    public AudioClip hud_score;
+    public AudioClip clock_tick;
+    public AudioClip shimmer;
+    public AudioClip tile_score;
+    public AudioClip player_highlight;
+    public AudioClip spotlight;
+    public AudioClip tile_score_0;
+    public AudioClip card_effect;
+
     [Header("Hover SFX Cooldown")]
     [Min(0f)] public float hoverSoundCooldown = 0.05f;
     private static float nextHoverSoundTime = 0f;
@@ -31,6 +40,7 @@ public class SFXManager : MonoBehaviour
 
     private AudioSource audioSource;
     private AudioSource cardAudioSource;
+    public bool cardAudioSourceIsPlaying;
 
     private void Awake() {
 
@@ -104,7 +114,8 @@ public class SFXManager : MonoBehaviour
         cardAudioSource.Stop();
         cardAudioSource.clip = clip;
         SyncCardAudioSettings();
-        if (clip) cardAudioSource.Play();
+        if (clip) { cardAudioSourceIsPlaying = true;  cardAudioSource.Play(); }
+        cardAudioSourceIsPlaying = false;
     }
 
     private void LateUpdate() { SyncCardAudioSettings(); }
@@ -187,5 +198,59 @@ public class SFXManager : MonoBehaviour
     {
         if (audioSource && enter_game)
             audioSource.PlayOneShot(enter_game);
+    }
+
+    public void PlayCrowdSound()
+    {
+        if (audioSource && crowd_noise)
+            audioSource.PlayOneShot(crowd_noise);
+    }
+
+    public void PlayHUDScore()
+    {
+        if (audioSource && hud_score)
+            audioSource.PlayOneShot(hud_score);
+    }
+
+    public void PlayClockTick()
+    {
+        if (audioSource && clock_tick)
+            audioSource.PlayOneShot(clock_tick);
+    }
+
+    public void PlayShimmerSound()
+    {
+        if (audioSource && shimmer)
+            audioSource.PlayOneShot(shimmer);
+    }
+
+    public void PlayTileScore()
+    {
+        if (audioSource && tile_score)
+            audioSource.PlayOneShot(tile_score);
+    }
+
+    public void PlayTileScore0()
+    {
+        if (audioSource && tile_score_0)
+            audioSource.PlayOneShot(tile_score_0);
+    }
+
+    public void PlayPlayerHighlight()
+    {
+        if (audioSource && player_highlight)
+            audioSource.PlayOneShot(player_highlight);
+    }
+
+    public void PlaySpotlightSound()
+    {
+        if (audioSource && spotlight)
+            audioSource.PlayOneShot(spotlight);
+    }
+
+    public void PlayCardEffect()
+    {
+        if (audioSource && card_effect)
+            audioSource.PlayOneShot(card_effect);
     }
 }

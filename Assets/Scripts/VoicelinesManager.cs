@@ -15,7 +15,7 @@ public enum VoicelineEvent
 
 public class VoicelinesManager : MonoBehaviour
 {
-    public AudioClip[] start;
+    //public AudioClip[] start;
     public AudioClip[] victory;
     public AudioClip[] defeat;
     public AudioClip[] concerned;
@@ -23,7 +23,19 @@ public class VoicelinesManager : MonoBehaviour
     public AudioClip[] win_tile;
     public AudioClip[] lose_tile;
     public AudioClip[] idle;
+    public AudioClip[] start;
     private AudioSource audioSource;
+
+    private static readonly int[,] startClipTable =
+    {
+    // kaito, len, luka, meiko, miku, rin
+    {  0,  1,  2,  3,  4,  5 }, // kaito
+    {  1,  6,  7,  8,  9, 10 }, // len
+    {  2,  7, 11, 12, 13, 14 }, // luka
+    {  3,  8, 12, 15, 16, 17 }, // meiko
+    {  4,  9, 13, 16, 18, 19 }, // miku
+    {  5, 10, 14, 17, 19, 20 }  // rin
+    };
 
     private void Awake()
     {
@@ -58,10 +70,46 @@ public class VoicelinesManager : MonoBehaviour
 
     }
 
-    public AudioClip GetVoiceline(CharacterClass character, VoicelineEvent reaction){
+    public AudioClip GetVoiceline(CharacterClass character, VoicelineEvent reaction)
+    {
         int index = GetCharacterIndex(character);
         var clips = GetVoicelines(reaction);
         return clips != null && index >= 0 && index < clips.Length ? clips[index] : null;
+    }
+
+    public void PlayStartVoicelines(CharacterClass player, CharacterClass opponent)
+    {
+        int playerIndex = GetStartCharacterIndex(player);
+        int opponentIndex = GetStartCharacterIndex(opponent);
+
+        if (playerIndex < 0 || opponentIndex < 0)
+            return;
+
+        int clipIndex = startClipTable[playerIndex, opponentIndex];
+
+        if (clipIndex < 0)
+            return;
+
+        audioSource.PlayOneShot(start[clipIndex]);
+    }
+
+    public bool IsVoicelinePlaying()
+    {
+        return audioSource.isPlaying;
+    }
+
+    private int GetStartCharacterIndex(CharacterClass character)
+    {
+        switch (character)
+        {
+            case CharacterClass.KAITO: return 0;
+            case CharacterClass.KagamineLen: return 1;
+            case CharacterClass.MegurineLuka: return 2;
+            case CharacterClass.MEIKO: return 3;
+            case CharacterClass.HatsuneMiku: return 4;
+            case CharacterClass.KagamineRin: return 5;
+            default: return -1;
+        }
     }
 
     private AudioClip[] GetVoicelines(

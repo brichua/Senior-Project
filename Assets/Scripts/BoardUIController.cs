@@ -45,6 +45,7 @@ namespace VocaloidTCG.BoardUI
         public MatchOpeningAnimator openingAnimator;
         public MatchResultAnimator resultAnimator;
         private CardEffectTargetingUI effectTargeting;
+        private int lastTickNumber = -1;
 
         [ContextMenu("Set Up Animation Components")]
         public void SetUpAnimationComponents(){
@@ -336,10 +337,16 @@ namespace VocaloidTCG.BoardUI
                 cd.color = new Color(cdOriginalColor.r * brightness, cdOriginalColor.g * brightness,
                     cdOriginalColor.b * brightness, cdOriginalColor.a);
             }
-            if(cdCountdownNumbers == null) return;
+            if (active && number != lastTickNumber)
+            {
+                if (sfx) sfx.PlayClockTick();
+                lastTickNumber = number;
+            }
+            if (!active) lastTickNumber = -1;
+            if (cdCountdownNumbers == null) return;
             for(int i = 0; i < cdCountdownNumbers.Length; i++){
                 var label = cdCountdownNumbers[i];
-                if(!label) continue;
+                if (!label) continue;
                 bool visible = active && i == 10 - number && pulse > 0.01f;
                 label.gameObject.SetActive(visible);
                 if(visible){

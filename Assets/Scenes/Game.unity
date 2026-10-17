@@ -2081,6 +2081,7 @@ GameObject:
   - component: {fileID: 8100000023}
   - component: {fileID: 8100000022}
   - component: {fileID: 8100000021}
+  - component: {fileID: 8100000025}
   m_Layer: 0
   m_Name: BoardUI Manager
   m_TagString: Untagged
@@ -5660,7 +5661,7 @@ MonoBehaviour:
   card_destroy: {fileID: 8300000, guid: 837da4b06e1359242990a00d4501f873, type: 3}
   fav_deck: {fileID: 0}
   unfav_deck: {fileID: 0}
-  button_click_1: {fileID: 0}
+  button_click_1: {fileID: 8300000, guid: 2d41ed3fe2451894bb89993ab313cc15, type: 3}
   button_click_2: {fileID: 0}
   adjust_card_num_0: {fileID: 0}
   adjust_card_num_1: {fileID: 0}
@@ -5669,8 +5670,18 @@ MonoBehaviour:
   typing: {fileID: 0}
   class_select: {fileID: 0}
   enter_game: {fileID: 8300000, guid: a169265f980b6f4488583108cd8c4372, type: 3}
+  crowd_noise: {fileID: 8300000, guid: 1a07c2061a74d1e458acf4b765d7ca82, type: 3}
+  hud_score: {fileID: 8300000, guid: 2d6bd38049d6c374aa85eba12e1fbd86, type: 3}
+  clock_tick: {fileID: 8300000, guid: f017256ac4252cf43ace0454112adc25, type: 3}
+  shimmer: {fileID: 8300000, guid: 02bb1f95f7d9d0149acb448ae4783074, type: 3}
+  tile_score: {fileID: 8300000, guid: e7ab817419d03aa438d6969fc42b7404, type: 3}
+  player_highlight: {fileID: 8300000, guid: c122408bd96c3c34795e5142f2b2f61f, type: 3}
+  spotlight: {fileID: 8300000, guid: b61dd33f2961f4445a3a77907777ed61, type: 3}
+  tile_score_0: {fileID: 8300000, guid: 9d9da32756ad97b479a53a7adcf82e40, type: 3}
+  card_effect: {fileID: 8300000, guid: 51066d9593bc4e943bf10d6e70526132, type: 3}
   hoverSoundCooldown: 0.05
   tileHoverSoundCooldown: 0.05
+  cardAudioSourceIsPlaying: 0
 --- !u!82 &1288955614
 AudioSource:
   m_ObjectHideFlags: 0
@@ -7977,13 +7988,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3f86c128ada1f4fb796b65fd92badc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VoicelinesManager
-  start:
-  - {fileID: 8300000, guid: 7e27af136f7f86e4188e41b82a40cc86, type: 3}
-  - {fileID: 8300000, guid: 925394c12e1d820409ea5266390f3948, type: 3}
-  - {fileID: 8300000, guid: 6007724d50811304dae09890fd3cf2ce, type: 3}
-  - {fileID: 8300000, guid: e661a634a677e3f4aa453f3f9753623a, type: 3}
-  - {fileID: 8300000, guid: 6868eb4c478fd514aa38e153e99d4eac, type: 3}
-  - {fileID: 8300000, guid: 891385a78f59bfb418d4ef0d663b0724, type: 3}
   victory:
   - {fileID: 8300000, guid: 5b5b85eb6abd91a40bccaedc0e1e638d, type: 3}
   - {fileID: 8300000, guid: d50847c3e29502a46bbfa56a3e118cd7, type: 3}
@@ -8033,6 +8037,28 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 6a781d5a6cef65b4b8d74cddaa51c5ed, type: 3}
   - {fileID: 8300000, guid: c103d856496a2134a9fc17da6c0c8072, type: 3}
   - {fileID: 8300000, guid: 0771560bb671a8e4197205ece7c398d7, type: 3}
+  start:
+  - {fileID: 8300000, guid: 63e89b735ecdccb4190198a72b8b0334, type: 3}
+  - {fileID: 8300000, guid: 751ab1b047878194aad15101983c25f5, type: 3}
+  - {fileID: 8300000, guid: bad8f728943c5d944a2c23fd37c64cad, type: 3}
+  - {fileID: 8300000, guid: f889cd57253d1484e8132abb72997442, type: 3}
+  - {fileID: 8300000, guid: 6fff47851b93b454e87db4d0576476d7, type: 3}
+  - {fileID: 8300000, guid: 9ccc5715d47bb16469002daa18998ec9, type: 3}
+  - {fileID: 8300000, guid: 5c1f03959d99bba47b05321057b923a6, type: 3}
+  - {fileID: 8300000, guid: cf826eef6c9ce5041863904d62cb1530, type: 3}
+  - {fileID: 8300000, guid: 64e7c943bb080254ca317809298afe68, type: 3}
+  - {fileID: 8300000, guid: 0f6d6cf5765aa1842880fab216185d66, type: 3}
+  - {fileID: 8300000, guid: 39000513eaed895468c1465fe8cca2d4, type: 3}
+  - {fileID: 8300000, guid: 73276d0157d00bf439f03044b9a42057, type: 3}
+  - {fileID: 8300000, guid: 259628ff0a006794b9ec1a19239f536c, type: 3}
+  - {fileID: 8300000, guid: 4ec45b5d42ca6b048a82790e267553fb, type: 3}
+  - {fileID: 8300000, guid: 986df6cc330d76948b7898fdb8c361ea, type: 3}
+  - {fileID: 8300000, guid: 0a84570e5809fa0419a66b0d9a9eef79, type: 3}
+  - {fileID: 8300000, guid: af7fd9005e2cb8245a0f6999c5acd5ba, type: 3}
+  - {fileID: 8300000, guid: 91ad093f71b703f48a56c375cd372f68, type: 3}
+  - {fileID: 8300000, guid: 0a292375b60406e4bb7af967df02f419, type: 3}
+  - {fileID: 8300000, guid: 8e4cda7aec95200449de77bbf01378d5, type: 3}
+  - {fileID: 8300000, guid: 5fbc971dd8e2ac54d9a677dd2fe54bce, type: 3}
 --- !u!1 &1723403023
 GameObject:
   m_ObjectHideFlags: 0
@@ -9594,6 +9620,7 @@ MonoBehaviour:
   puzzle: {fileID: 0}
   puzzleEnemyActionDelay: 0.5
   sfx: {fileID: 1288955613}
+  voicelines: {fileID: 1700076332}
   useSelectedDeck: 1
   deckCatalog: {fileID: 11400000, guid: 6da9310bbc7fa804099e153453b00a12, type: 2}
   enemyDeck: {fileID: 11400000, guid: d1c376575e622ba4ea509d93cd2ae101, type: 2}
@@ -12144,6 +12171,20 @@ MonoBehaviour:
   belowScreenPadding: 40
   overflowRevealSeconds: 1.5
   overflowDisappearSeconds: 0.45
+--- !u!114 &8100000025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371228577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5829aead73001ce47a116397ed6de79f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.IdleVoicelinePlayer
+  minInterval: 12
+  maxInterval: 25
 --- !u!1 &8200000000
 GameObject:
   m_ObjectHideFlags: 0
