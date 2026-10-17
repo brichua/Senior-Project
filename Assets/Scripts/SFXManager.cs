@@ -28,6 +28,8 @@ public class SFXManager : MonoBehaviour
     public AudioClip tile_score;
     public AudioClip player_highlight;
     public AudioClip spotlight;
+    public AudioClip tile_score_0;
+    public AudioClip card_effect;
 
     [Header("Hover SFX Cooldown")]
     [Min(0f)] public float hoverSoundCooldown = 0.05f;
@@ -38,6 +40,7 @@ public class SFXManager : MonoBehaviour
 
     private AudioSource audioSource;
     private AudioSource cardAudioSource;
+    public bool cardAudioSourceIsPlaying;
 
     private void Awake() {
 
@@ -111,7 +114,8 @@ public class SFXManager : MonoBehaviour
         cardAudioSource.Stop();
         cardAudioSource.clip = clip;
         SyncCardAudioSettings();
-        if (clip) cardAudioSource.Play();
+        if (clip) { cardAudioSourceIsPlaying = true;  cardAudioSource.Play(); }
+        cardAudioSourceIsPlaying = false;
     }
 
     private void LateUpdate() { SyncCardAudioSettings(); }
@@ -226,6 +230,12 @@ public class SFXManager : MonoBehaviour
             audioSource.PlayOneShot(tile_score);
     }
 
+    public void PlayTileScore0()
+    {
+        if (audioSource && tile_score_0)
+            audioSource.PlayOneShot(tile_score_0);
+    }
+
     public void PlayPlayerHighlight()
     {
         if (audioSource && player_highlight)
@@ -236,5 +246,11 @@ public class SFXManager : MonoBehaviour
     {
         if (audioSource && spotlight)
             audioSource.PlayOneShot(spotlight);
+    }
+
+    public void PlayCardEffect()
+    {
+        if (audioSource && card_effect)
+            audioSource.PlayOneShot(card_effect);
     }
 }

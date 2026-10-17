@@ -446,7 +446,7 @@ namespace VocaloidTCG.BoardUI
             Log("Player " + actor + " turn begins. Remaining energy: " + state.Side(actor).energy + ".");
             Recompute();
             StartClock();
-            if (actor == state.roundStarterId) PlayApproachingEndVoiceline();
+            if (actor == state.localPlayerId && state.phase == RoundPhase.Preparation) PlayApproachingEndVoiceline();
         }
 
         private void RefillRoundEnergy(){
@@ -601,7 +601,6 @@ namespace VocaloidTCG.BoardUI
             }
         }
 
-        //private bool ApproachingEndVoicelinePlayed;
         private void PlayApproachingEndVoiceline()
         {
             if (state == null) return;

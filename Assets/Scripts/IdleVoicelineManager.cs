@@ -6,7 +6,6 @@ namespace VocaloidTCG.BoardUI
     {
         private BoardUIController board;
         private GameplayBoardBridge bridge;
-        //private VoicelinesManager voicelines;
 
         [Header("Idle Timing")]
         [Min(1f)] public float minInterval = 12f;
@@ -17,7 +16,7 @@ namespace VocaloidTCG.BoardUI
         private void Awake()
         {
             board = GetComponent<BoardUIController>();
-            //bridge = board.game as GameplayBoardBridge;
+            bridge = board.game as GameplayBoardBridge;
             ResetTimer();
         }
 
@@ -31,8 +30,7 @@ namespace VocaloidTCG.BoardUI
                 return;
             }
 
-            //if (bridge.IsPaused || bridge.PhaseAnimationPlaying || bridge.DrawAnimationPlaying) return;
-            //if (voicelines.IsVoicelinePlaying()) return;
+            if (bridge.IsPaused || bridge.PhaseAnimationPlaying || bridge.DrawAnimationPlaying ||  board.sfx.cardAudioSourceIsPlaying) return;
 
             idleTimer -= Time.unscaledDeltaTime;
 

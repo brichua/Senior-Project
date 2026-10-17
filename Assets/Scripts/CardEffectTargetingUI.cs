@@ -1,5 +1,6 @@
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace VocaloidTCG.BoardUI
@@ -74,6 +75,8 @@ namespace VocaloidTCG.BoardUI
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(root,RectTransformUtility.WorldToScreenPoint(camera,corners[0]),null,out var bottom);
                 RectTransformUtility.ScreenPointToLocalPointInRectangle(root,RectTransformUtility.WorldToScreenPoint(camera,corners[2]),null,out var top);
                 var hit=StoryUIElements.Button(root,"",(top+bottom)*0.5f,()=>Choose(null,targetIndex));
+                var soundHandler = hit.gameObject.AddComponent<TileHoverHandler>();
+                soundHandler.sfx = board.sfx;
                 ((RectTransform)hit.transform).sizeDelta=top-bottom;
                 hit.image.color=Color.clear;
                 hit.targetGraphic=copy.tile;
@@ -152,6 +155,26 @@ namespace VocaloidTCG.BoardUI
 
         private void OnDisable(){
             Clear();
+        }
+    }
+    public sealed class TileHoverHandler : MonoBehaviour,
+    UnityEngine.EventSystems.IPointerEnterHandler,
+    UnityEngine.EventSystems.IPointerClickHandler
+    {
+        public SFXManager sfx;
+
+        public void OnPointerEnter(
+            UnityEngine.EventSystems.PointerEventData eventData)
+        {
+            if (sfx)
+                sfx.PlayTileHoverSound();
+        }
+
+        public void OnPointerClick(
+            UnityEngine.EventSystems.PointerEventData eventData)
+        {
+            if (sfx)
+                sfx.PlayDropSound();
         }
     }
 }

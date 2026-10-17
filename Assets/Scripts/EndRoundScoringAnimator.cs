@@ -174,6 +174,7 @@ namespace VocaloidTCG.BoardUI
 
         private void Burst(float t){
             if (points > 0 && board.sfx && !tileScoreSoundPlayed) { board.sfx.PlayTileScore(); tileScoreSoundPlayed = true; }
+            else if (points == 0 && board.sfx && !tileScoreSoundPlayed) { board.sfx.PlayTileScore0(); tileScoreSoundPlayed = true; }
             for (int i = 0; i < sparks.Length; i++){
                 float angle = i * Mathf.PI * 2 / sparks.Length;
                 float radius = Mathf.Lerp(25, 100, 1 - Mathf.Pow(1 - t, 3));
