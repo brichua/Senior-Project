@@ -29,6 +29,7 @@ namespace VocaloidTCG.BoardUI
             if(IsOnline) return ConfigureOnlineDecks();
             MatchSetupError = "";
             selectedPlayerBack = selectedEnemyBack = null;
+            if (!enemyAI) enemyAI = GetComponent<EnemyAIController>();
             if(useSelectedDeck) {
                 var catalog = deckCatalog ? deckCatalog : Resources.Load<DeckCatalog>("DeckCatalog");
                 if(catalog) {
@@ -393,6 +394,7 @@ namespace VocaloidTCG.BoardUI
                 Log("Player " + actor + " spent " + card.currentCost + " energy; remaining: " + side.energy + ". Hand: " + side.hand.Count + ".");
             }else{
                 MoveWithPartner(action.fromRow*5+action.fromColumn,action.toRow*5+action.toColumn,actor);
+                if (enemyAI) enemyAI.ObserveAcceptedMove(action);
                 if(Nimble(card) && card.nimbleRound!=state.roundNumber) card.nimbleRound=state.roundNumber;
                 else lastMoveTurn[actor] = turnNumber;
                 Log("Player " + actor + " moved " + card.data.cardName + " from (" + action.fromColumn + ", " + action.fromRow +
@@ -578,7 +580,10 @@ namespace VocaloidTCG.BoardUI
             if(IsOnline && !OnlineAuthority) return;
             if(state?.pendingEffect!=null){
                 var p=state.pendingEffect;
-                if(!IsOnline && p.actor!=state.localPlayerId && !IsPaused && !DrawAnimationPlaying && !PhaseAnimationPlaying){
+                // A configured AI owns its choices and delay. Keep the original
+                // fallback for puzzles/boards that deliberately have no active AI.
+                if(!IsOnline && p.actor!=state.localPlayerId && !IsPaused && !DrawAnimationPlaying && !PhaseAnimationPlaying &&
+                    (IsPuzzle || !enemyAI || !enemyAI.isActiveAndEnabled || enemyAI.game!=this)){
                     if(p.cards.Count>0) ResolveChoice(p.actor,new BoardAction(BoardActionKind.ChooseEffect,p.cards[0].instanceId,-1,-1,-1,-1));
                     else if(p.tiles.Count>0) ResolveChoice(p.actor,new BoardAction(BoardActionKind.ChooseEffect,null,-1,-1,p.tiles[0]%5,p.tiles[0]/5));
                     else if(p.optional) ResolveChoice(p.actor,new BoardAction(BoardActionKind.FinishEffect,null,-1,-1,-1,-1));

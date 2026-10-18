@@ -14,8 +14,10 @@ and run a small reproducible test.
      for that singer exists. Choose a rival and deck to start an audition.
    - `Game Bri.unity` is the current team gameplay scene.
    - `Game Bri - Enemy AI Test.unity` is an isolated manual test scene for the
-     Enemy AI. It uses a minimum of 3 energy so the supplied cost-3 cards can
-     be played in round 1.
+     Enemy AI. It uses the latest gameplay UI, a Miku local deck and Len enemy
+     coverage deck, normal opening/redraw, and 1 initial round energy. It does
+     not load or change personal saved decks. The Editor's `Tools > Enemy AI`
+     menu also prepares Miku and Luka enemy tests.
 3. Enter Play Mode. On the player's turn, drag a card to a legal tile or press
    **Pass**. Wait for the enemy action, then continue.
 
@@ -35,6 +37,10 @@ Run the Enemy AI scorer checks from the repository root with:
 ```powershell
 powershell -NoProfile -ExecutionPolicy Bypass -File Tools/QA/Run-EnemyActionScorerChecks.ps1
 ```
+
+Current effect-chain/full-match checks are in Unity under
+`Tools > Enemy AI > Run Deck Effect Checks`; see [Enemy AI](Docs/EnemyAI.md)
+for the exact coverage and current verification limits.
 
 ## Collaboration convention
 
