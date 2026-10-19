@@ -16,18 +16,14 @@ MonoBehaviour:
   id: 68b517ded5524c95a4f5e85f31eb5dba
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: "If this is the first allied performer you play this round, it gains +1 influence this round."
+  info: If this is the first allied performer you play this round, it gains +1 influence
+    this round.
   performer: 1
   stageEffect: 0
   cost: 1
   influence: 2
   flags: []
   stageInfluenceChange: 1
-  cardImage: {fileID: 0}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: 0}
-  popupImage: {fileID: 0}
-  playSfx: {fileID: 0}
   effect: 38
   scoreThreshold: 0
   harmonize: 0
@@ -37,3 +33,10 @@ MonoBehaviour:
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: 0}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: 0}
+  popupImage: {fileID: -3350101939418175136, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 0}

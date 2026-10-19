@@ -16,19 +16,14 @@ MonoBehaviour:
   id: 369154a20cb01ba4598168ba42708da5
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: "All allied performers in Center Stage permanently gain +1 influence, or +2 instead if you have at least 2 fan score."
+  info: All allied performers in Center Stage permanently gain +1 influence, or +2
+    instead if you have at least 2 fan score.
   performer: 0
   stageEffect: 1
   cost: 1
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  cardImage: {fileID: -4552845619255519712, guid: c20785787b0cc0c4d93efe4f048b122d, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: -4009065390512574393, guid: 31a4d4544aebc5346b216fe91c145b2c, type: 3}
-  popupImage: {fileID: 0}
-  playSfx: {fileID: 8300000, guid: 1ae219f089bd8424ca0ee68b3dde7501, type: 3}
-  playSfx: {fileID: 0}
   effect: 50
   scoreThreshold: 2
   harmonize: 0
@@ -38,3 +33,10 @@ MonoBehaviour:
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: -4552845619255519712, guid: c20785787b0cc0c4d93efe4f048b122d, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: -4009065390512574393, guid: 31a4d4544aebc5346b216fe91c145b2c, type: 3}
+  popupImage: {fileID: -3350101939418175136, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 8300000, guid: 1ae219f089bd8424ca0ee68b3dde7501, type: 3}

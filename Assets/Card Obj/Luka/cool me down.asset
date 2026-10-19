@@ -16,19 +16,13 @@ MonoBehaviour:
   id: 9c4fbec4ad49cd849a5ee0274d91d301
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: "This performer costs 0 energy while you have at least 2 fan score."
+  info: This performer costs 0 energy while you have at least 2 fan score.
   performer: 1
   stageEffect: 0
   cost: 2
   influence: 3
   flags: []
   stageInfluenceChange: 1
-  cardImage: {fileID: 6025122263036835777, guid: ab1629a51492c6c46878139d08dcf200, type: 3}
-  characterImage: {fileID: 4215792470811505543, guid: 8fe782fd5a653624696b560f4cc89939, type: 3}
-  iconImage: {fileID: -1938906339396790950, guid: 2408ca25019c5bf4cb04540d11c2aa6c, type: 3}
-  popupImage: {fileID: 0}
-  playSfx: {fileID: 8300000, guid: 38fbd9166a1ba4a4c8b6fbbaa394506b, type: 3}
-  playSfx: {fileID: 0}
   effect: 42
   scoreThreshold: 2
   harmonize: 0
@@ -38,3 +32,10 @@ MonoBehaviour:
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: 6025122263036835777, guid: ab1629a51492c6c46878139d08dcf200, type: 3}
+  characterImage: {fileID: 4215792470811505543, guid: 8fe782fd5a653624696b560f4cc89939, type: 3}
+  iconImage: {fileID: -1938906339396790950, guid: 2408ca25019c5bf4cb04540d11c2aa6c, type: 3}
+  popupImage: {fileID: -3350101939418175136, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 8300000, guid: 38fbd9166a1ba4a4c8b6fbbaa394506b, type: 3}

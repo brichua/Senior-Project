@@ -33,8 +33,10 @@ MonoBehaviour:
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
   cardImage: {fileID: 6493367834622939472, guid: 82df13e5efe7edf47866d7a4290cf6d9, type: 3}
   characterImage: {fileID: 0}
   iconImage: {fileID: 689517359605341249, guid: cb343c4f7afd58044b531994895dfc86, type: 3}
-  popupImage: {fileID: 0}
+  popupImage: {fileID: -3350101939418175136, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: e7aa39078b8405a4d893846bee9b3a0c, type: 3}
