@@ -16,15 +16,14 @@ MonoBehaviour:
   id: 049bd7f54705e1343a82fd4212a25d36
   cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
   vip: 0
-  info: move an ally to an adjacent tile, then create a random card of its class.
-    if moved onto a contested tile, the created card costs 1 less
+  info: "Move an allied performer to an available adjacent tile. Create a random card of its class in your hand. If the destination is contested, the created card costs 1 less (minimum 0)."
   performer: 0
   stageEffect: 1
   cost: 1
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 83
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
@@ -34,7 +33,7 @@ MonoBehaviour:
   cheerEffect: 0
   venueEffect: 0
   regen: 0
-  shielded: 0
+  protectedInfluence: 0
   cardImage: {fileID: 6025122263036835777, guid: ab1629a51492c6c46878139d08dcf200, type: 3}
   characterImage: {fileID: 0}
   iconImage: {fileID: 0}

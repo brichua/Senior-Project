@@ -18,6 +18,10 @@ namespace VocaloidTCG.BoardUI
         private bool resetDescriptionScroll;
         private bool descriptionTinted;
         private Color descriptionColor;
+        private RectTransform descriptionArea;
+        private float descriptionTop;
+        private string layoutName;
+        private Vector2 layoutSize;
 
         private void OnEnable(){ resetDescriptionScroll = true; }
 
@@ -41,13 +45,15 @@ namespace VocaloidTCG.BoardUI
             BoardUIController.SetImage(art, card.data.iconImage);
             bool statlessStageEffect = card.data.stageEffect && !card.hasInfluence;
             BoardUIController.SetImage(icon, statlessStageEffect ? side.stageEffectInfoIcon : side.infoIcon);
-            var body = new StringBuilder(card.token ? "Token. No effects or keywords. Costs 0 energy." : Format(card.data.info, setup));
+            var body = new StringBuilder(card.token ? Format("Token. Costs " + card.currentCost + " energy. No card abilities." +
+                (PerformerKeywords.Of(card).Count>0 ? "\n"+PerformerKeywords.Of(card)+"." : " No keywords."),setup) : Format(card.data.info, setup));
 
             if(card.activeEffects != null && card.activeEffects.Count > 0){
                 body.Append("\n\n<b>Active effects</b>");
                 foreach (var effect in card.activeEffects)
                     body.Append("\n• ").Append(Format(effect, setup));
             }
+            if(!card.token && !string.IsNullOrEmpty(card.effectProgress)) body.Append("\n\n").Append(card.effectProgress);
             string bodyText = body.ToString();
             bool descriptionChanged = description && description.text != bodyText;
             resetDescriptionScroll |= shownCardId != card.instanceId || descriptionChanged;
@@ -62,6 +68,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void LateUpdate(){
+            UpdateNameSpacing();
             if(!resetDescriptionScroll || !description) return;
             if(!descriptionScroll) descriptionScroll = description.GetComponentInParent<ScrollRect>();
             resetDescriptionScroll = false;
@@ -70,6 +77,32 @@ namespace VocaloidTCG.BoardUI
             LayoutRebuilder.ForceRebuildLayoutImmediate(descriptionScroll.content);
             descriptionScroll.StopMovement();
             descriptionScroll.verticalNormalizedPosition = 1;
+        }
+
+        public void UpdateNameSpacing(){
+            if(!cardName || !description) return;
+            if(!descriptionArea){
+                descriptionScroll = description.GetComponentInParent<ScrollRect>();
+                descriptionArea = descriptionScroll ? (RectTransform)descriptionScroll.transform : description.rectTransform;
+                descriptionTop = descriptionArea.offsetMax.y;
+            }
+            var size = ((RectTransform)transform).rect.size;
+            if(layoutName == cardName.text && layoutSize == size && !cardName.havePropertiesChanged) return;
+            layoutName = cardName.text;
+            layoutSize = size;
+            var top = descriptionArea.offsetMax;
+            top.y = descriptionTop;
+            descriptionArea.offsetMax = top;
+            cardName.ForceMeshUpdate();
+            if(cardName.textInfo.characterCount == 0) return;
+            var parent = descriptionArea.parent;
+            var titleBottom = parent.InverseTransformPoint(cardName.transform.TransformPoint(
+                new Vector3(0, cardName.textBounds.min.y, 0))).y;
+            var bodyTop = parent.InverseTransformPoint(descriptionArea.TransformPoint(
+                new Vector3(0, descriptionArea.rect.yMax, 0))).y;
+            top.y -= Mathf.Max(0, bodyTop - titleBottom + 8);
+            descriptionArea.offsetMax = top;
+            resetDescriptionScroll = true;
         }
 
         public void ShowEffect(CardState card, SideArt side, BoardSetup setup, string instruction){

@@ -16,15 +16,14 @@ MonoBehaviour:
   id: f8ae1407bc46b5c40a21ba86b76b36cc
   cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   vip: 0
-  info: when played or moved onto a tile, if there is an adjacent minion(s) in a
-    different column, give both +1 inf
+  info: "When played or moved, for each adjacent performer in a different column, give that performer and this performer +1 influence."
   performer: 1
   stageEffect: 0
   cost: 3
   influence: 3
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 94
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
@@ -34,7 +33,7 @@ MonoBehaviour:
   cheerEffect: 0
   venueEffect: 0
   regen: 0
-  shielded: 0
+  protectedInfluence: 0
   cardImage: {fileID: -2566321668903677826, guid: d28610d4d714b8f4bb7332ade60844a9, type: 3}
   characterImage: {fileID: 7316340532325103920, guid: 6fcd4b4689f261a449aa7a904ee25a4a, type: 3}
   iconImage: {fileID: 8992371609442261355, guid: f2dff76a89863514ba29321c562fc7b9, type: 3}

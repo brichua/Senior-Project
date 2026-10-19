@@ -24,6 +24,8 @@ namespace VocaloidTCG
         public Image selectedClassImage, auditionClassImage, rewardArt, deckClass, deckSecondClass, cardBack;
         [Tooltip("Avatar artwork on the story class selection panel.")]
         public Image selectedClassArt;
+        [Tooltip("Cover card artwork for the selected audition deck, matching its deck-list preview.")]
+        public Image selectedDeckArt;
         [Tooltip("Audition selection portraits: opponent avatar and story-class avatar.")]
         public Image auditionRivalArt, auditionPlayerArt;
         [Tooltip("Shown while the selected story's epilogue is locked; hidden once completed.")]
@@ -337,14 +339,12 @@ namespace VocaloidTCG
                     Remember();
                 });
                 DeckUI.Text(view.title, deck.deckName);
-                var cover = library.Catalog.Card(deck.vipCardId);
-                Sprite art = cover ? cover.cardImage : null;
-                if(!art) art = deck.cardIds.Select(library.Catalog.Card).Where(c => c).Select(c => c.cardImage).FirstOrDefault(s => s);
-                DeckUI.Image(view.art, art); view.SetSelected(deck.id == selectedDeckId);
+                DeckUI.Image(view.art, DeckArtwork(deck)); view.SetSelected(deck.id == selectedDeckId);
             }
 
             var chosen = decks.Find(d => d.id == selectedDeckId);
             Active(selectedDeckPanel, chosen != null);
+            DeckUI.Image(selectedDeckArt, DeckArtwork(chosen));
             if(start) start.interactable = chosen != null;
             DeckUI.Text(selectedDeckName, chosen?.deckName ?? ""); DeckUI.Text(deckCount, chosen != null ? chosen.Count + "/30" : "");
             if(chosen != null){
@@ -358,6 +358,14 @@ namespace VocaloidTCG
             }
 
             Report(decks.Count == 0 ? "Create a deck containing " + library.Catalog.Class(selected.Class).DisplayName + " to begin." : "");
+        }
+
+        private Sprite DeckArtwork(DeckRecord deck){
+            if(deck == null) return null;
+            var cover = library.Catalog.Card(deck.vipCardId);
+            if(cover && cover.cardImage) return cover.cardImage;
+            return deck.cardIds.Select(library.Catalog.Card).Where(c => c)
+                .Select(c => c.cardImage).FirstOrDefault(s => s);
         }
 
         private void Remember(){

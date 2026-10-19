@@ -30,10 +30,11 @@ namespace VocaloidTCG
         [Min(0)] public int scoreThreshold;
         [Min(0)] public int harmonize, soloist;
         public bool stageShare, encore, nimble, cheerEffect, venueEffect;
-        [Tooltip("Restore 1 influence at the end of each round, up to original influence.")]
+        [Tooltip("Restore 1 influence at the end of your turn, up to original influence.")]
         public bool regen;
-        [Tooltip("Shielded X: separate starting shield influence. 0 means no shield.")]
-        [Min(0)] public int shielded;
+        [Tooltip("Protected X: separate starting shield influence. 0 means no shield.")]
+        [UnityEngine.Serialization.FormerlySerializedAs("shielded")]
+        [Min(0)] public int protectedInfluence;
 
         [Header("Art and Audio")]
         public Sprite cardImage;

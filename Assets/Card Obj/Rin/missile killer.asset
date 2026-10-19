@@ -16,15 +16,14 @@ MonoBehaviour:
   id: f94c06f916fa2a44283aefa3f6a3651d
   cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   vip: 0
-  info: An enemy gets -2 inf this round. if an ally was removed last round, it gets
-    -3 instead
+  info: 'Give an enemy performer -2 influence this round. If at least 1 allied performer left the stage last round, give it -3 influence instead.'
   performer: 0
   stageEffect: 1
   cost: 1
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 66
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
@@ -34,7 +33,7 @@ MonoBehaviour:
   cheerEffect: 0
   venueEffect: 0
   regen: 0
-  shielded: 0
+  protectedInfluence: 0
   cardImage: {fileID: -1031441428833651656, guid: c0166e081bf7ebc47aafefbc50e5696c, type: 3}
   characterImage: {fileID: 0}
   iconImage: {fileID: 0}

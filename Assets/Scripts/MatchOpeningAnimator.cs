@@ -81,6 +81,7 @@ namespace VocaloidTCG.BoardUI
             float width = Mathf.Min(hoverDesignSize.x, root.rect.width - 32);
             hoverPanel.sizeDelta = new Vector2(width, hoverDesignSize.y);
             hoverPanel.ForceUpdateRectTransforms();
+            hoverInfo.UpdateNameSpacing();
             float height = hoverDesignSize.y;
             if(hoverInfo.description){
                 var bodyRect = hoverInfo.description.rectTransform;

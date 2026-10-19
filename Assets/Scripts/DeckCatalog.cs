@@ -11,6 +11,10 @@ namespace VocaloidTCG
         public List<CharacterClassData> classes = new List<CharacterClassData>();
         public List<CardBackData> defaultCardBacks = new List<CardBackData>();
         public List<CardData> startingCollection = new List<CardData>();
+        [Header("Decks")]
+        [Tooltip("Deck templates added to the player's Edit Deck collection when the library loads. Existing customized decks are preserved; deleted imports stay deleted. Keep asset names unique and stable after release.")]
+        public List<DeckData> decks = new List<DeckData>();
+        [Tooltip("Default deck given to a new player. Class-specific story starters are assigned on each Story asset.")]
         public DeckData starterDeck;
         public CardData Card(string id) => cards.Find(c => c && c.id == id);
         public CharacterClassData Class(CharacterClass id) => classes.Find(c => c && c.identity == id);

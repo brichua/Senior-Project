@@ -109,6 +109,8 @@ namespace VocaloidTCG.BoardUI
         {
             return snapshot.side0.hand.Concat(snapshot.side1.hand).Concat(snapshot.side0.discard).Concat(snapshot.side1.discard)
                 .Concat(snapshot.side0.venueEffects ?? new List<CardState>()).Concat(snapshot.side1.venueEffects ?? new List<CardState>())
+                .Concat(snapshot.revealedCards ?? new List<CardState>())
+                .Concat(new[] {snapshot.pendingEffect?.selected,snapshot.pendingEffect?.created})
                 .Concat(snapshot.pendingEffect?.cards ?? new List<CardState>())
                 .Concat(new[] { snapshot.pendingEffect?.source }).Concat(snapshot.tiles.Where(t => t != null)
                 .SelectMany(t => new[] { t.side0, t.side1, t.assist0, t.assist1 })).Where(c => c != null);
@@ -117,6 +119,8 @@ namespace VocaloidTCG.BoardUI
         {
             foreach(var card in AllCards(state)) if(card.data) card.definitionId = card.data.id;
             var copy = JsonUtility.FromJson<BoardSnapshot>(JsonUtility.ToJson(state));
+            // Future trigger choices are resolved by the authority, not exposed to clients.
+            copy.queuedEffects.Clear(); copy.delayedTokens.Clear();
             copy.localPlayerId = recipient;
             if(copy.pendingEffect!=null && copy.pendingEffect.actor!=recipient){
                 copy.pendingEffect.cards.Clear(); copy.pendingEffect.tiles.Clear();
@@ -185,6 +189,8 @@ namespace VocaloidTCG.BoardUI
             to.winnerId = from.winnerId; to.roundSummary = from.roundSummary;
             to.multiplayer = from.multiplayer; to.inputAllowed = from.inputAllowed; to.phase = from.phase;
             to.pendingEffect=from.pendingEffect; to.roundTileBonus0=from.roundTileBonus0; to.roundTileBonus1=from.roundTileBonus1;
+            to.queuedEffects=from.queuedEffects; to.delayedTokens=from.delayedTokens;
+            to.revealedCards=from.revealedCards; to.revealMessage=from.revealMessage;
             to.tileDraw0=from.tileDraw0; to.tileDraw1=from.tileDraw1;
             to.side0 = from.side0; to.side1 = from.side1; to.tiles = from.tiles;
         }

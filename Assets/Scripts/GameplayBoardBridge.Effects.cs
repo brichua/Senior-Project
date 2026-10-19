@@ -14,17 +14,16 @@ namespace VocaloidTCG.BoardUI
         private bool Adjacent(int a, int b) => a >= 0 && b >= 0 && a != b && Math.Abs(a % 5 - b % 5) <= 1 && Math.Abs(a / 5 - b / 5) <= 1;
         private static bool EffectsEnabled(CardState c) => c != null && c.data && !c.token && !c.silenced;
         private static bool HasEffect(CardState c, CardEffect effect) => EffectsEnabled(c) && c.data.effect == effect;
-        private static bool StageShare(CardState c) => EffectsEnabled(c) && (c.data.stageShare || c.inheritedStageShare || c.data.flags.Contains("stage share"));
-        private static bool Encore(CardState c) => EffectsEnabled(c) && (c.data.encore || c.inheritedEncore || c.grantedEncore || c.data.flags.Contains("encore"));
-        private static bool Nimble(CardState c) => EffectsEnabled(c) && (c.data.nimble || c.inheritedNimble || c.data.flags.Contains("nimble"));
+        private static bool StageShare(CardState c) => PerformerKeywords.Of(c).stageShare;
+        private static bool Encore(CardState c) => PerformerKeywords.Of(c).encore;
+        private static bool Nimble(CardState c) => PerformerKeywords.Of(c).nimble;
         private bool Contested(int index) => state.tiles[index].side0 != null && state.tiles[index].side1 != null;
         private bool Protected(CardState c, int actor) => c != null && c.ownerId != actor && c.protectedTurn == turnNumber;
         
         private int CardCost(CardState c){
-            if(c.token) return 0;
             if(HasEffect(c, CardEffect.ScoreDiscount) && c.data.scoreThreshold > 0 && state.Side(c.ownerId).score >= c.data.scoreThreshold) return 0;
-            int cost = c.data.cost;
-            if(c.data.stageEffect) cost += state.Side(c.ownerId).nextSpellTax - state.Side(c.ownerId).nextSpellDiscount;
+            int cost = (c.token ? c.tokenCost : c.data.cost) - c.createdDiscount;
+            if(c.data.stageEffect && !c.token) cost += state.Side(c.ownerId).nextSpellTax - state.Side(c.ownerId).nextSpellDiscount;
             return Mathf.Max(0, cost);
         }
 
@@ -34,6 +33,8 @@ namespace VocaloidTCG.BoardUI
 
         private bool SpellTarget(CardState card, int tile){
             int actor = card.ownerId;
+            if(IsExtendedEffect(card.data.effect)) return ExtendedSpellTarget(card,tile);
+            if(TryRinSpellTarget(card, tile, out var rinLegal)) return rinLegal;
             var ally = Performer(state.tiles[tile], actor); var enemy = Performer(state.tiles[tile], 1 - actor);
             if(UsesPerformerTarget(card.data.effect)) return DirectSpellTargets(card,tile).Any();
             if(ally!=null && ally.rootedRound==state.roundNumber && (card.data.effect==CardEffect.MoveHome || card.data.effect==CardEffect.MoveToEnemy || card.data.effect==CardEffect.ReturnToCenter)) return false;
@@ -57,8 +58,10 @@ namespace VocaloidTCG.BoardUI
         private IEnumerable<int> EmptyCenter(int actor) => Enumerable.Range(0,5).Select(y=>y*5+2).Where(i=>Performer(state.tiles[i],actor)==null);
 
         private void StartChoice(CardState source, int tile, EffectChoice choice, int amount = 0, int remaining = 1){
-            state.pendingEffect = new PendingCardEffect { actor = source.ownerId, source = source, effect = source.data.effect,
+            var pending = new PendingCardEffect { actor = source.ownerId, source = source, effect = source.data.effect,
                 sourceTile = tile, choice = choice, amount = amount, remaining = remaining };
+            if(state.pendingEffect != null){ state.queuedEffects.Add(pending); return; }
+            state.pendingEffect = pending;
             RefreshChoice();
         }
         
@@ -66,9 +69,25 @@ namespace VocaloidTCG.BoardUI
             var p = state.pendingEffect; if(p == null) return;
             p.tiles.Clear(); p.cards.Clear();
             var side = state.Side(p.actor);
+            if(p.choice == EffectChoice.Extended){
+                RefreshExtendedChoice(p);
+                if(p.tiles.Count==0 && p.cards.Count==0) EndChoice();
+                if(clock) clock.EffectInputPending=state.pendingEffect!=null;
+                return;
+            }
             switch(p.choice){
                 case EffectChoice.HandDiscard:
-                    p.prompt = "Choose a card from your hand to discard."; p.cards.AddRange(side.hand); break;
+                    p.prompt = p.effect == CardEffect.DrawTwoDiscardDrawn ? "Discard one of the cards you just drew." : "Choose a card from your hand to discard.";
+                    p.cards.AddRange(side.hand.Where(c => p.effect != CardEffect.DrawTwoDiscardDrawn || p.eligibleIds.Contains(c.instanceId))); break;
+                case EffectChoice.SacrificeAlly:
+                    p.prompt = "Choose an allied performer to remove from the stage.";
+                    p.cards.AddRange(FieldCards(p.actor).Where(c => c != p.source)); break;
+                case EffectChoice.RinEnemy:
+                    p.prompt = p.effect == CardEffect.SacrificeRemoveEnemy ? "Choose an enemy performer to remove from the stage." : "You may give an enemy performer -3 influence.";
+                    p.cards.AddRange(FieldCards(1-p.actor).Where(c => !Protected(c,p.actor))); break;
+                case EffectChoice.StrongDeckPerformer:
+                    p.prompt = "Choose a performer with at least 5 printed influence from your deck.";
+                    p.cards.AddRange(decks[p.actor].Where(c => c.data.performer && c.data.influence >= 5)); break;
                 case EffectChoice.HandPerformer:
                     p.prompt = "Choose a performer costing 2 or less to play for free.";
                     p.cards.AddRange(side.hand.Where(c=>c.data.performer && CardCost(c)<=2 && (!HasEffect(c,CardEffect.DiscardToPlay) || side.hand.Count>=2))); break;
@@ -91,7 +110,7 @@ namespace VocaloidTCG.BoardUI
                             case EffectChoice.Enemy: legal=enemy!=null; break;
                             case EffectChoice.AdjacentAlly: legal=ally!=null && Adjacent(p.sourceTile,i); break;
                             case EffectChoice.OccupiedTile: legal=ally!=null || enemy!=null; break;
-                            case EffectChoice.TokenTile: legal=ally==null && (p.effect==CardEffect.CreateAdjacentToken ? Adjacent(p.sourceTile,i) : CanPlace(p.actor,i%5,i/5)); break;
+                            case EffectChoice.TokenTile: legal=ally==null && TokenTileAllowed(p,i); break;
                             case EffectChoice.MoveAlly: legal=ally!=null && ally.rootedRound!=state.roundNumber && i%5!=2 && EmptyCenter(p.actor).Any(); break;
                             case EffectChoice.MoveTile:
                                 var placing=side.hand.Concat(side.discard).FirstOrDefault(c=>c.instanceId==p.selectedId);
@@ -106,7 +125,8 @@ namespace VocaloidTCG.BoardUI
                     }
                     break;
             }
-            p.optional = p.effect == CardEffect.MoveAllToCenter && p.choice == EffectChoice.MoveAlly;
+            p.optional = p.effect == CardEffect.MoveAllToCenter && p.choice == EffectChoice.MoveAlly ||
+                p.effect == CardEffect.SacrificeDrawWeaken && p.choice == EffectChoice.RinEnemy;
             if(p.tiles.Count==0 && p.cards.Count==0) EndChoice();
             if(clock) clock.EffectInputPending = state.pendingEffect != null;
         }
@@ -139,6 +159,11 @@ namespace VocaloidTCG.BoardUI
             var p=state.pendingEffect;
             if(action.kind==BoardActionKind.FinishEffect){ EndChoice(); Recompute(); Publish(); return true; }
             var chosen=p.cards.Find(c=>c.instanceId==action.cardInstanceId);
+            if(p.choice==EffectChoice.Extended){
+                ResolveExtendedChoice(p,chosen,action.toRow*5+action.toColumn);
+                state.Side(actor).hiddenHandCount=state.Side(actor).hand.Count;
+                Recompute(); if(IsPuzzle && state.pendingEffect==null) CheckPuzzle(false,false); Publish(); return true;
+            }
             if(p.stage==2){
                 if(chosen==null) return false;
                 state.pendingEffect=null;
@@ -150,15 +175,23 @@ namespace VocaloidTCG.BoardUI
             int tile=action.toRow*5+action.toColumn;
             var ally=InBounds(action.toColumn,action.toRow) ? Performer(state.tiles[tile],actor) : null;
             switch(p.choice){
-                case EffectChoice.HandDiscard: state.Side(actor).hand.Remove(chosen); Discard(chosen); EndChoice(); break;
+                case EffectChoice.HandDiscard:
+                    state.Side(actor).hand.Remove(chosen); DiscardFromHand(chosen);
+                    if(p.effect == CardEffect.DiscardThenDraw) DrawCards(actor,1);
+                    EndChoice(); break;
+                case EffectChoice.SacrificeAlly: ResolveRinSacrifice(p,chosen); break;
+                case EffectChoice.RinEnemy:
+                    if(p.effect == CardEffect.SacrificeRemoveEnemy) RemoveSingle(chosen);
+                    else ChangeInfluence(chosen,-3);
+                    EndChoice(); break;
+                case EffectChoice.StrongDeckPerformer:
+                    RemoveFromDeck(actor,chosen); GiveCard(actor,chosen); EndChoice(); break;
                 case EffectChoice.HandPerformer: case EffectChoice.DiscardPerformer:
                     p.selectedId=chosen.instanceId; p.choice=EffectChoice.MoveTile; p.stage=1; RefreshChoice(); break;
                 case EffectChoice.DeckPerformer:
                     RemoveFromDeck(actor,chosen); GiveCard(actor,chosen); EndChoice(); break;
                 case EffectChoice.TokenTile:
-                    var token=MakeCard(p.source.data,actor); token.token=true; token.tokenInfluence=p.amount;
-                    token.currentInfluence=p.amount; token.shieldActive=false; token.currentCost=0; token.enteredRound=state.roundNumber;
-                    SetPerformer(state.tiles[tile],actor,token); placedTurns[token.instanceId]=turnNumber;
+                    CreateStageToken(p.source,tile,p.amount);
                     if(--p.remaining<=0) EndChoice(); else RefreshChoice(); break;
                 case EffectChoice.MoveAlly: p.selectedId=ally.instanceId; p.choice=EffectChoice.MoveTile; RefreshChoice(); break;
                 case EffectChoice.MoveTile:
@@ -195,17 +228,20 @@ namespace VocaloidTCG.BoardUI
         private void MoveWithPartner(int from,int to,int actor){
             SetPerformer(state.tiles[to],actor,Performer(state.tiles[from],actor)); SetPerformer(state.tiles[from],actor,null);
             SetAssistant(state.tiles[to],actor,Assistant(state.tiles[from],actor)); SetAssistant(state.tiles[from],actor,null);
+            foreach(var c in new[] {Performer(state.tiles[to],actor),Assistant(state.tiles[to],actor)})
+                if(c!=null) PerformerEntered(c,to);
         }
         
         private static bool UsesPerformerTarget(CardEffect effect){
             return effect==CardEffect.None || effect==CardEffect.BuffRound || effect==CardEffect.BuffContested || effect==CardEffect.BuffAndDraw ||
                 effect==CardEffect.ProtectTurn || effect==CardEffect.DoubleInfluence || effect==CardEffect.WeakenContested ||
-                effect==CardEffect.RemoveSmall || effect==CardEffect.Remove || effect==CardEffect.Silence;
+                effect==CardEffect.RemoveSmall || effect==CardEffect.Remove || effect==CardEffect.Silence ||
+                effect==CardEffect.WeakenAfterAllyLeft || effect==CardEffect.SacrificeWeakenAdjacent || effect==CardEffect.SacrificeDrawWeaken;
         }
         
         private IEnumerable<CardState> DirectSpellTargets(CardState spell,int tile){
             var effect=spell.data.effect;
-            bool enemy=effect==CardEffect.WeakenContested || effect==CardEffect.RemoveSmall || effect==CardEffect.Remove || effect==CardEffect.Silence;
+            bool enemy=effect==CardEffect.WeakenContested || effect==CardEffect.RemoveSmall || effect==CardEffect.Remove || effect==CardEffect.Silence || effect==CardEffect.WeakenAfterAllyLeft;
             if((effect==CardEffect.BuffContested || effect==CardEffect.WeakenContested) && !Contested(tile)) return Enumerable.Empty<CardState>();
             int side=enemy ? 1-spell.ownerId : spell.ownerId;
             return new[] {Performer(state.tiles[tile],side),Assistant(state.tiles[tile],side)}
@@ -217,8 +253,14 @@ namespace VocaloidTCG.BoardUI
             if(Assistant(state.tiles[tile],card.ownerId)==card){
                 SetAssistant(state.tiles[tile],card.ownerId,null);
                 placedTurns.Remove(card.instanceId);
-                Discard(card);
-            }else RemovePerformer(state.tiles[tile],card.ownerId);
+                StageDeparture(card,tile);
+            }else{
+                // Removing one performer preserves its Stage Share partner.
+                SetPerformer(state.tiles[tile],card.ownerId,Assistant(state.tiles[tile],card.ownerId));
+                SetAssistant(state.tiles[tile],card.ownerId,null);
+                placedTurns.Remove(card.instanceId);
+                StageDeparture(card,tile);
+            }
         }
         
         private void Discard(CardState c){
@@ -226,10 +268,12 @@ namespace VocaloidTCG.BoardUI
         }
         
         private void ResetReturnedCard(CardState c){
-            CardInfluence.Reset(c); c.currentCost=c.token ? 0 : c.data.cost;
+            CardInfluence.Reset(c); c.currentCost=CardCost(c);
             c.auraInfluence=c.roundInfluence=0; c.silenced=c.grantedEncore=false; c.sharedTargetId=null;
             c.rootedRound=c.protectedTurn=c.noScoreRound=c.activatedTurn=c.nimbleRound=-1;
             c.inheritedEncore=c.inheritedNimble=c.inheritedStageShare=false; c.inheritedHarmonize=c.inheritedSoloist=0;
+            c.gainedKeywords=c.sharedKeywords=default; c.sharedProtectionLevel=0; c.soloProtectionCondition=false;
+            c.protectedUntilRound=-1;
             c.activeEffects.Clear();
         }
         

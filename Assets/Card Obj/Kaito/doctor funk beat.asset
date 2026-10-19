@@ -16,15 +16,14 @@ MonoBehaviour:
   id: 309feebc5328a0841808c1f275aa275a
   cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   vip: 0
-  info: 'select a row: give all allies in that row +2 OR give all enemies in that
-    row -2'
+  info: "Choose a row, then choose one:\nGive all allied performers in that row +2 influence.\nGive all enemy performers in that row -2 influence."
   performer: 0
   stageEffect: 1
   cost: 2
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 99
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
@@ -34,7 +33,7 @@ MonoBehaviour:
   cheerEffect: 0
   venueEffect: 0
   regen: 0
-  shielded: 0
+  protectedInfluence: 0
   cardImage: {fileID: -2566321668903677826, guid: d28610d4d714b8f4bb7332ade60844a9, type: 3}
   characterImage: {fileID: 0}
   iconImage: {fileID: 0}

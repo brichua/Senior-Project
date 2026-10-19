@@ -16,14 +16,14 @@ MonoBehaviour:
   id: f3bed958e3522394d9ab2473ad450e55
   cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
   vip: 0
-  info: when you play another minion with a keyword, this gets +1
+  info: "Whenever you play another performer with at least 1 keyword, this performer gains +1 influence."
   performer: 1
   stageEffect: 0
   cost: 3
   influence: 3
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 78
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
@@ -33,7 +33,7 @@ MonoBehaviour:
   cheerEffect: 0
   venueEffect: 0
   regen: 0
-  shielded: 0
+  protectedInfluence: 0
   cardImage: {fileID: 6025122263036835777, guid: ab1629a51492c6c46878139d08dcf200, type: 3}
   characterImage: {fileID: 4215792470811505543, guid: 8fe782fd5a653624696b560f4cc89939, type: 3}
   iconImage: {fileID: 0}

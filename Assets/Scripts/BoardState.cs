@@ -7,7 +7,7 @@ namespace VocaloidTCG.BoardUI
     public enum RoundPhase { Mulligan, Preparation, Performance, Finished, EndRound }
     public enum BoardActionKind { PlayCard, MovePerformer, ChooseEffect, FinishEffect, ActivateEffect }
 
-    public enum EffectChoice { None, Ally, Enemy, AdjacentAlly, TokenTile, MoveAlly, MoveTile, OccupiedTile, HandDiscard, HandPerformer, DeckPerformer, DiscardPerformer }
+    public enum EffectChoice { None, Ally, Enemy, AdjacentAlly, TokenTile, MoveAlly, MoveTile, OccupiedTile, HandDiscard, HandPerformer, DeckPerformer, DiscardPerformer, SacrificeAlly, RinEnemy, StrongDeckPerformer, Extended }
 
     [Serializable] public sealed class PendingCardEffect {
         public int actor, sourceTile, amount, remaining, stage;
@@ -16,8 +16,15 @@ namespace VocaloidTCG.BoardUI
         public EffectChoice choice;
         public string selectedId, prompt;
         public bool optional;
+        public CardState selected, created;
         public List<int> tiles = new List<int>();
         public List<CardState> cards = new List<CardState>();
+        public List<string> eligibleIds = new List<string>();
+    }
+
+    [Serializable] public sealed class DelayedStageToken {
+        public CardState source;
+        public int tile, round;
     }
 
     [Serializable]
@@ -32,10 +39,14 @@ namespace VocaloidTCG.BoardUI
         public bool isClassCard;
         public List<string> activeEffects = new List<string>();
         public bool token, silenced, grantedEncore;
+        public int tokenCost, createdDiscount, protectedUntilRound = -1, sharedProtectionLevel, protectionValue;
+        public bool createdCard, soloProtectionCondition;
+        public PerformerKeywords tokenKeywords, gainedKeywords, sharedKeywords;
         public int tokenInfluence, auraInfluence, roundInfluence, enteredRound, activatedTurn = -1, nimbleRound = -1;
         public int rootedRound = -1, protectedTurn = -1, noScoreRound = -1, inheritedHarmonize, inheritedSoloist;
         public bool inheritedStageShare, inheritedEncore, inheritedNimble;
         public string sharedTargetId;
+        public string effectProgress;
     }
 
     [Serializable]
@@ -52,6 +63,10 @@ namespace VocaloidTCG.BoardUI
         public List<CardState> discard = new List<CardState>();
         public int nextSpellDiscount, nextSpellTax, performersPlayed, nextRoundEnergyBonus;
         public bool harmonizeVenue;
+        public bool positionKeywordVenue;
+        public List<int> nextPerformerColumns = new List<int>();
+        public int alliesLeftThisRound, alliesLeftLastRound, nextPerformerInfluence;
+        public bool leaveDiscardScoreVenue;
         public List<CardState> venueEffects = new List<CardState>();
     }
 
@@ -68,6 +83,10 @@ namespace VocaloidTCG.BoardUI
         public SideState side0 = new SideState(), side1 = new SideState();
         public TileState[] tiles = new TileState[25];
         public PendingCardEffect pendingEffect;
+        public List<PendingCardEffect> queuedEffects = new List<PendingCardEffect>();
+        public List<DelayedStageToken> delayedTokens = new List<DelayedStageToken>();
+        public List<CardState> revealedCards = new List<CardState>();
+        public string revealMessage;
         public int[] roundTileBonus0 = new int[25], roundTileBonus1 = new int[25];
         public bool[] tileDraw0 = new bool[25], tileDraw1 = new bool[25];
         public SideState Side(int id) { return id == 0 ? side0 : side1; }

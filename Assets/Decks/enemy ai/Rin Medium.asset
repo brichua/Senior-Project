@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0868907308d47e08c6fdd7899237687, type: 3}
+  m_Name: Rin Medium
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.DeckData
+  deckName: Rin Medium
+  cardBack: {fileID: 11400000, guid: d9ba12aad6731974ea5d731c7d0afc97, type: 2}
+  cards:
+  - {fileID: 11400000, guid: 57debe442cbf3b6438795cb2f9438120, type: 2}
+  - {fileID: 11400000, guid: 57debe442cbf3b6438795cb2f9438120, type: 2}
+  - {fileID: 11400000, guid: f5cebb9cd0758a445a44ce890e90f3d5, type: 2}
+  - {fileID: 11400000, guid: f5cebb9cd0758a445a44ce890e90f3d5, type: 2}
+  - {fileID: 11400000, guid: 041eea764b4ca584db9c6a1596694db7, type: 2}
+  - {fileID: 11400000, guid: 041eea764b4ca584db9c6a1596694db7, type: 2}
+  - {fileID: 11400000, guid: e09448c161d0dc745b8914244032a7da, type: 2}
+  - {fileID: 11400000, guid: e09448c161d0dc745b8914244032a7da, type: 2}
+  - {fileID: 11400000, guid: a3496e519ca02644d980e5c133a95805, type: 2}
+  - {fileID: 11400000, guid: a3496e519ca02644d980e5c133a95805, type: 2}
+  - {fileID: 11400000, guid: 061e434e4a34cc940b42ffecd9858ebb, type: 2}
+  - {fileID: 11400000, guid: 061e434e4a34cc940b42ffecd9858ebb, type: 2}
+  - {fileID: 11400000, guid: b26e231547c078a4995fc9f25623a874, type: 2}
+  - {fileID: 11400000, guid: b26e231547c078a4995fc9f25623a874, type: 2}
+  - {fileID: 11400000, guid: 5640faad0d6fd0c4fbfa7f9676641eea, type: 2}
+  - {fileID: 11400000, guid: 5640faad0d6fd0c4fbfa7f9676641eea, type: 2}
+  - {fileID: 11400000, guid: acfed3c79a8347241a91c5c0ef1b6508, type: 2}
+  - {fileID: 11400000, guid: acfed3c79a8347241a91c5c0ef1b6508, type: 2}
+  - {fileID: 11400000, guid: 6f5ba62b12defdc43a3459d9305a4e47, type: 2}
+  - {fileID: 11400000, guid: 6f5ba62b12defdc43a3459d9305a4e47, type: 2}
+  - {fileID: 11400000, guid: f94c06f916fa2a44283aefa3f6a3651d, type: 2}
+  - {fileID: 11400000, guid: f94c06f916fa2a44283aefa3f6a3651d, type: 2}
+  - {fileID: 11400000, guid: 8a54e1ae4e59f3f49a05e87b95e8601c, type: 2}
+  - {fileID: 11400000, guid: 8a54e1ae4e59f3f49a05e87b95e8601c, type: 2}
+  - {fileID: 11400000, guid: 4eb7f73c3d7a6624ebc061fa10a04900, type: 2}
+  - {fileID: 11400000, guid: 4eb7f73c3d7a6624ebc061fa10a04900, type: 2}
+  - {fileID: 11400000, guid: f97ef4974841eb649a6d782b8fbc5a93, type: 2}
+  - {fileID: 11400000, guid: f97ef4974841eb649a6d782b8fbc5a93, type: 2}
+  - {fileID: 11400000, guid: a2edbd3eb56c2c245baf0560cc1cbad7, type: 2}
+  - {fileID: 11400000, guid: a2edbd3eb56c2c245baf0560cc1cbad7, type: 2}
+  vipCard: {fileID: 0}
+  classes:
+  - {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}

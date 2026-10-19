@@ -1,4 +1,5 @@
 using TMPro;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,6 +15,7 @@ namespace VocaloidTCG.BoardUI
         private int previousOrder;
         private CardState selected;
         private Button ability;
+        private bool revealExpanded;
         
         public void Initialize(BoardUIController owner){
             board=owner; bridge=owner.game as GameplayBoardBridge;
@@ -28,8 +30,19 @@ namespace VocaloidTCG.BoardUI
             if(!bridge || board.State==null) return;
             var p=board.State.pendingEffect;
             if(p==null){
-                if(selected!=null && selected.ownerId==board.State.localPlayerId && bridge.CanActivateEffect(selected)){
+                if(board.State.revealedCards.Count>0){
                     BuildRoot(false);
+                    StoryUIElements.Button(root,"REVEALED CARDS",new Vector2(0,460),()=>{ revealExpanded=!revealExpanded; Refresh(); });
+                    if(revealExpanded){
+                        var panel=StoryUIElements.Panel(root,"Last reveal",new Vector2(900,380));
+                        var details=board.State.revealMessage+"\n\n"+string.Join("\n\n",board.State.revealedCards.Select(c=>
+                            c.data ? c.data.cardName+" | Cost "+c.currentCost+" | INF "+c.currentInfluence+"\n"+c.data.info : ""));
+                        var label=StoryUIElements.Text(panel.transform,"Revealed cards",details,Vector2.zero,new Vector2(860,340));
+                        label.fontSize=20; label.richText=false;
+                    }
+                }
+                if(selected!=null && selected.ownerId==board.State.localPlayerId && bridge.CanActivateEffect(selected)){
+                    if(!root) BuildRoot(false);
                     ability=StoryUIElements.Button(root,"USE ABILITY",new Vector2(0,-410),()=>bridge.TrySubmit(new BoardAction(BoardActionKind.ActivateEffect,selected.instanceId,-1,-1,-1,-1)));
                 }
                 return;

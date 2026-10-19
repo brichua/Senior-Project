@@ -13,6 +13,18 @@ namespace VocaloidTCG
         FirstPerformerBonus, ContestedPenalty, DiscardToPlay, ContestedWinScore,
         ScoreDiscount, TaxSpell, ContestedAlliesAura, RestoreCenter, ReviveAbility,
         DrawWithCenterAllies, GlobalEncore, ReturnToCenter, BuffCenter, BuffContested,
-        HarmonizeVenue, MoveToEnemy, BuffAllAndScore, MoveAllToCenter
+        HarmonizeVenue, MoveToEnemy, BuffAllAndScore, MoveAllToCenter,
+        LeaveSearchPerformer, BackColumnTokens, LeaveDelayedToken, AdjacentLeaveBonus,
+        DiscardThenDraw, LeaveNextPerformerBonus, ContestedWinToken, PreviousRoundLeaveBonus,
+        SacrificeDrawDiscard, SacrificeRemoveEnemy, WeakenAfterAllyLeft, DrawTwoDiscardDrawn,
+        SacrificeWeakenAdjacent, OutsideCenterTokens, LeaveDiscardScoreVenue, SacrificeDrawWeaken,
+        RevealDeckKeywords, CreatedCardDiscount, CreateFirstClasses, CreateKeywordToken,
+        RevealHandKeywords, CreateLastClasses, KeywordPlayBonus, KeywordInfluence,
+        WanderAndToken, ShareAllKeywords, ShareAdjacentKeywords, MoveAndCreate,
+        GrantProtected, PositionKeywordVenue, ReturnAndCopy, DiscardAndCombine,
+        NextColumnBonus, OtherColumnToken, LoneCenterProtected, OpponentSideBonus,
+        ThreeColumnsDraw, DisplaceContested, CrossColumnGreeting, AllyGreeting,
+        PerformanceColumnsAura, ColumnMoveAbility, MoveAndAdjust, RowInfluence,
+        SwapAllies, FormationBonus, StrongestColumns
     }
 }

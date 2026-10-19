@@ -425,7 +425,7 @@ namespace VocaloidTCG.BoardUI
         public bool TryGetContestPreview(int x, int y, out int localInfluence, out int enemyInfluence)
         {
             localInfluence = enemyInfluence = 0;
-            if (!CanDrop(x, y) || !dragged.data || !dragged.data.performer) return false;
+            if (!CanDrop(x, y) || !dragged.data || (!dragged.token && !dragged.data.performer)) return false;
             return game.TryPreviewContest(ActionAt(x, y), dragged, out localInfluence, out enemyInfluence);
         }
         public void MoveGhost(PointerEventData e)
