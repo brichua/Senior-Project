@@ -16,19 +16,14 @@ MonoBehaviour:
   id: 046f178192c48654b921248b4e257dcb
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: "On play, if you have at least 3 allied performers in Center Stage, draw 1 card."
+  info: On play, if you have at least 3 allied performers in Center Stage, draw 1
+    card.
   performer: 1
   stageEffect: 0
   cost: 4
   influence: 4
   flags: []
   stageInfluenceChange: 1
-  cardImage: {fileID: -875298624287937212, guid: 7fc73f0ad9bb52b419146f27fe262673, type: 3}
-  characterImage: {fileID: -118816054172994528, guid: 476f52ec2d6d74e4a8ad6a77eaccfd56, type: 3}
-  iconImage: {fileID: 7908820760310793228, guid: 2d6ca914a5632824eb1c0c3e5be53c7d, type: 3}
-  popupImage: {fileID: 0}
-  playSfx: {fileID: 8300000, guid: 226b5a5a65d8f114d8287148c5866f6b, type: 3}
-  playSfx: {fileID: 0}
   effect: 47
   scoreThreshold: 0
   harmonize: 0
@@ -38,3 +33,10 @@ MonoBehaviour:
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: -875298624287937212, guid: 7fc73f0ad9bb52b419146f27fe262673, type: 3}
+  characterImage: {fileID: -118816054172994528, guid: 476f52ec2d6d74e4a8ad6a77eaccfd56, type: 3}
+  iconImage: {fileID: 7908820760310793228, guid: 2d6ca914a5632824eb1c0c3e5be53c7d, type: 3}
+  popupImage: {fileID: -3350101939418175136, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 8300000, guid: 226b5a5a65d8f114d8287148c5866f6b, type: 3}

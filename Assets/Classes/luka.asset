@@ -64,7 +64,7 @@ MonoBehaviour:
   hoverTile: {fileID: -4672163745296329812, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
   tile: {fileID: 2157240733274199957, guid: 8bcaa36d7f002d04cad371f2af50f64d, type: 3}
   stageEffectInfoIcon: {fileID: 2657779482387495465, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
-  infoIcon: {fileID: 2657779482387495465, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
+  infoIcon: {fileID: 5726822437706720215, guid: 73274fe781baf4f4495bf63081210d16, type: 3}
   avatar: {fileID: 5296954397734636559, guid: 88015ca618f77154aaacf58d9c875728, type: 3}
   avatarBackground: {fileID: -570113712981489795, guid: 743597fbc1fec8348975ee2f4dd23834, type: 3}
   infoBackground: {fileID: -8675756568269393829, guid: 743597fbc1fec8348975ee2f4dd23834, type: 3}

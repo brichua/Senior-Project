@@ -16,19 +16,13 @@ MonoBehaviour:
   id: fadb42c46f555084d87a9da9085aa8e7
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: "When this performer wins a contested tile, gain 1 additional fan score."
+  info: When this performer wins a contested tile, gain 1 additional fan score.
   performer: 1
   stageEffect: 0
   cost: 2
   influence: 3
   flags: []
   stageInfluenceChange: 1
-  cardImage: {fileID: 2414112997071267308, guid: e0486d17977622943aa5e5f264ee9bba, type: 3}
-  characterImage: {fileID: 6829131375076626328, guid: 95f9982af9334834a9ad4d61312a5655, type: 3}
-  iconImage: {fileID: -6577906381603206856, guid: b23abd69d6124b34887d8ef529fe0e51, type: 3}
-  popupImage: {fileID: 0}
-  playSfx: {fileID: 8300000, guid: 06d9fcc75ebed1440be2681efd3d09fb, type: 3}
-  playSfx: {fileID: 0}
   effect: 41
   scoreThreshold: 0
   harmonize: 0
@@ -38,3 +32,10 @@ MonoBehaviour:
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: 2414112997071267308, guid: e0486d17977622943aa5e5f264ee9bba, type: 3}
+  characterImage: {fileID: 6829131375076626328, guid: 95f9982af9334834a9ad4d61312a5655, type: 3}
+  iconImage: {fileID: -6577906381603206856, guid: b23abd69d6124b34887d8ef529fe0e51, type: 3}
+  popupImage: {fileID: -3350101939418175136, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 8300000, guid: 06d9fcc75ebed1440be2681efd3d09fb, type: 3}

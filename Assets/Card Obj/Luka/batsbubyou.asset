@@ -16,19 +16,14 @@ MonoBehaviour:
   id: eef2c099c8d40a446a5a93090ff2c29b
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: "Choose an allied performer on a contested tile. It gains +3 influence this round."
+  info: Choose an allied performer on a contested tile. It gains +3 influence this
+    round.
   performer: 0
   stageEffect: 1
   cost: 1
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  cardImage: {fileID: 6117298332840646152, guid: 3de123c342b27f44ca6dcb82a7762e38, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: 7182879251152026069, guid: a1f562f90eef7de4798f0fc53b6d3978, type: 3}
-  popupImage: {fileID: 0}
-  playSfx: {fileID: 8300000, guid: 29340bfe7ca1a50479f82442be7fa55e, type: 3}
-  playSfx: {fileID: 0}
   effect: 51
   scoreThreshold: 0
   harmonize: 0
@@ -38,3 +33,10 @@ MonoBehaviour:
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: 6117298332840646152, guid: 3de123c342b27f44ca6dcb82a7762e38, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: 7182879251152026069, guid: a1f562f90eef7de4798f0fc53b6d3978, type: 3}
+  popupImage: {fileID: -3350101939418175136, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 8300000, guid: 29340bfe7ca1a50479f82442be7fa55e, type: 3}

@@ -16,18 +16,14 @@ MonoBehaviour:
   id: 1876c2ab772e21f4f8ab396092831036
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: "Choose an allied performer on the opponent's side. Move it to a Center Stage tile without an allied performer. It gains +2 influence this round."
+  info: Choose an allied performer on the opponent's side. Move it to a Center Stage
+    tile without an allied performer. It gains +2 influence this round.
   performer: 0
   stageEffect: 1
   cost: 1
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  cardImage: {fileID: 4080819495476567119, guid: cdb262ac75e776a4d90fc611543d7cfd, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: 7832665692305116407, guid: a41fb636c550deb458ea8bf1337a4bd2, type: 3}
-  popupImage: {fileID: 0}
-  playSfx: {fileID: 8300000, guid: 7646626336b0f834298ca75c9bf23de9, type: 3}
   effect: 49
   scoreThreshold: 0
   harmonize: 0
@@ -37,3 +33,10 @@ MonoBehaviour:
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: 4080819495476567119, guid: cdb262ac75e776a4d90fc611543d7cfd, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: 7832665692305116407, guid: a41fb636c550deb458ea8bf1337a4bd2, type: 3}
+  popupImage: {fileID: -3350101939418175136, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 8300000, guid: 7646626336b0f834298ca75c9bf23de9, type: 3}

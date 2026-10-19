@@ -16,19 +16,13 @@ MonoBehaviour:
   id: b8ffd2082dbffe34e8446ef50597ec7d
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: "Stage Share. To play this performer, discard another card from your hand."
+  info: Stage Share. To play this performer, discard another card from your hand.
   performer: 1
   stageEffect: 0
   cost: 1
   influence: 3
   flags: []
   stageInfluenceChange: 1
-  cardImage: {fileID: 1595316701722030894, guid: e36f6e9da165ed24cb98d3123e756d38, type: 3}
-  characterImage: {fileID: -2013489194625329698, guid: 3d6e36685e3a6484387157758ed0c161, type: 3}
-  iconImage: {fileID: -1610959686036378563, guid: 7b191f3c7c210444095a58e8fd76b9d5, type: 3}
-  popupImage: {fileID: 0}
-  playSfx: {fileID: 8300000, guid: 10e6e5f18440a96408e2b089acf008f7, type: 3}
-  playSfx: {fileID: 0}
   effect: 40
   scoreThreshold: 0
   harmonize: 0
@@ -38,3 +32,10 @@ MonoBehaviour:
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: 1595316701722030894, guid: e36f6e9da165ed24cb98d3123e756d38, type: 3}
+  characterImage: {fileID: -2013489194625329698, guid: 3d6e36685e3a6484387157758ed0c161, type: 3}
+  iconImage: {fileID: -1610959686036378563, guid: 7b191f3c7c210444095a58e8fd76b9d5, type: 3}
+  popupImage: {fileID: -3350101939418175136, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 8300000, guid: 10e6e5f18440a96408e2b089acf008f7, type: 3}
