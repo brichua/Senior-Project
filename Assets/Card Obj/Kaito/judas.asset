@@ -16,15 +16,14 @@ MonoBehaviour:
   id: a2c328a63f5443b4e89a776c03b4fd19
   cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   vip: 0
-  info: move an ally minion to an adjacent tile and give it +1 inf OR move an enemy
-    minion to an adjacent tile and give it -1 inf
+  info: "Choose a performer and move it to an available adjacent tile.\nAlly: give it +1 influence.\nEnemy: give it -1 influence."
   performer: 0
   stageEffect: 1
   cost: 1
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 98
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
@@ -34,8 +33,8 @@ MonoBehaviour:
   cheerEffect: 0
   venueEffect: 0
   regen: 0
-  shielded: 0
-  cardImage: {fileID: 0}
+  protectedInfluence: 0
+  cardImage: {fileID: -2566321668903677826, guid: d28610d4d714b8f4bb7332ade60844a9, type: 3}
   characterImage: {fileID: 0}
   iconImage: {fileID: 0}
   popupImage: {fileID: 0}

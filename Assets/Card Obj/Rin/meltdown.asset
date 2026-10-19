@@ -16,15 +16,14 @@ MonoBehaviour:
   id: f5cebb9cd0758a445a44ce890e90f3d5
   cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   vip: 0
-  info: If this card is sent to discard pile, create a 1 inf token on its tile at
-    next round start
+  info: 'When this performer leaves the stage, create a 1-influence token on its former tile at the start of the next round, if that tile has no allied performer.'
   performer: 1
   stageEffect: 0
   cost: 1
   influence: 1
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 58
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
@@ -34,9 +33,9 @@ MonoBehaviour:
   cheerEffect: 0
   venueEffect: 0
   regen: 0
-  shielded: 0
-  cardImage: {fileID: 0}
-  characterImage: {fileID: 0}
+  protectedInfluence: 0
+  cardImage: {fileID: -1031441428833651656, guid: c0166e081bf7ebc47aafefbc50e5696c, type: 3}
+  characterImage: {fileID: -634410968344741977, guid: 7fd0d22426221564da38130b508aa5d2, type: 3}
   iconImage: {fileID: 0}
   popupImage: {fileID: 0}
   playSfx: {fileID: 0}

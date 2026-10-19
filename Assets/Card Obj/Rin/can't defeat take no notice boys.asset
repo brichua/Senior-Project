@@ -16,25 +16,25 @@ MonoBehaviour:
   id: f97ef4974841eb649a6d782b8fbc5a93
   cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   vip: 0
-  info: (quick) remove an ally to give all adjacent enemies -2 inf
+  info: 'Cheer Effect. Remove an allied performer from the stage. Give each enemy performer on a tile adjacent to its former tile -2 influence.'
   performer: 0
   stageEffect: 1
   cost: 2
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 68
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
   stageShare: 0
   encore: 0
   nimble: 0
-  cheerEffect: 0
+  cheerEffect: 1
   venueEffect: 0
   regen: 0
-  shielded: 0
-  cardImage: {fileID: 0}
+  protectedInfluence: 0
+  cardImage: {fileID: -1031441428833651656, guid: c0166e081bf7ebc47aafefbc50e5696c, type: 3}
   characterImage: {fileID: 0}
   iconImage: {fileID: 0}
   popupImage: {fileID: 0}

@@ -71,7 +71,7 @@ namespace VocaloidTCG.BoardUI
 
         private void RenderDetails(CardState state){
             bool revealed = state != null && state.data;
-            bool performer = revealed && state.data.performer;
+            bool performer = revealed && (state.token || state.data.performer);
             if (detailsRoot)
             {
                 bool containsArt = art && art.transform.IsChildOf(detailsRoot.transform);

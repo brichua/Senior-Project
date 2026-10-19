@@ -17,6 +17,7 @@ namespace VocaloidTCG
             public List<string> completedPuzzles = new List<string>();
             public List<StoryClearRecord> storyClears = new List<StoryClearRecord>();
             public List<string> viewedStoryDialogues = new List<string>();
+            public List<string> importedCatalogDecks = new List<string>();
         }
         private static DeckLibrary instance;
         private SaveData data;
@@ -83,6 +84,7 @@ namespace VocaloidTCG
                 data.decks.Add(starter); data.selectedId = starter.id;
                 saveNeedsUpdate = true;
             }
+            saveNeedsUpdate |= DeckCatalogImporter.Import(catalog, data.decks, data.owned, data.importedCatalogDecks);
             if(saveNeedsUpdate) Write(data);
         }
 
@@ -98,6 +100,7 @@ namespace VocaloidTCG
             if(loaded.completedPuzzles == null) loaded.completedPuzzles = new List<string>();
             if(loaded.storyClears == null) loaded.storyClears = new List<StoryClearRecord>();
             if(loaded.viewedStoryDialogues == null) loaded.viewedStoryDialogues = new List<string>();
+            if(loaded.importedCatalogDecks == null) loaded.importedCatalogDecks = new List<string>();
             return loaded;
         }
 
@@ -144,7 +147,6 @@ namespace VocaloidTCG
             if(!starter.classes.Contains(story.Class)) return false;
             if(!DeckRules.Validate(starter, Catalog, data.owned, out error)) return false;
             starter.id = story.id + "/starter";
-            // A previously edited starter with this ID may still exist. Never replace a player's deck.
             if(data.decks.Any(d => d.id == starter.id)) starter.id = Guid.NewGuid().ToString("N");
             if(!Commit(next => next.decks.Add(starter.Copy()), out error)) return false;
             deckId = starter.id;

@@ -11,7 +11,7 @@ namespace VocaloidTCG.BoardUI
         public GameObject solo, duo;
         public CardPointer soloCard, playerCard, enemyCard, playerAssist, enemyAssist;
         public TMP_Text soloInfluence, duoInfluence;   
-        [Header("Shielded original influence")]
+        [Header("Protected original influence")]
         public Image soloShieldPopup, playerShieldPopup, enemyShieldPopup;
         public TMP_Text soloShieldInfluence, playerShieldInfluence, enemyShieldInfluence;
         private BoardUIController board;
@@ -46,8 +46,8 @@ namespace VocaloidTCG.BoardUI
                 popup.gameObject.SetActive(active);
             }
             if(label){
-                int original = (card != null && card.shieldActive && card.data ? card.data.influence : 0) +
-                    (partner != null && partner.shieldActive && partner.data ? partner.data.influence : 0);
+                int original = (card != null && card.shieldActive && card.data ? (card.token ? card.tokenInfluence : card.data.influence) : 0) +
+                    (partner != null && partner.shieldActive && partner.data ? (partner.token ? partner.tokenInfluence : partner.data.influence) : 0);
                 label.text = active ? original.ToString() : "";
                 label.gameObject.SetActive(active);
             }

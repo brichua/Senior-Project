@@ -47,7 +47,7 @@ namespace VocaloidTCG.BoardUI
             if(!IsAvailable || !bridge) return;
             if(snapshot != board.State){ Cancel(); snapshot = board.State; }
             if(!bridge.RoundResolutionPending){ Cancel(); return; }
-            if(bridge.IsPaused || bridge.PhaseAnimationPlaying || bridge.DrawAnimationPlaying){
+            if(bridge.IsPaused || bridge.PhaseAnimationPlaying || bridge.DrawAnimationPlaying || snapshot.pendingEffect!=null){
                 group.alpha = 0; SetSpotlight(false); return;
             }
             

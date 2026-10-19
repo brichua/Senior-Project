@@ -24,6 +24,8 @@ namespace VocaloidTCG
         public Image selectedClassImage, auditionClassImage, rewardArt, deckClass, deckSecondClass, cardBack;
         [Tooltip("Avatar artwork on the story class selection panel.")]
         public Image selectedClassArt;
+        [Tooltip("Cover card artwork for the selected audition deck, matching its deck-list preview.")]
+        public Image selectedDeckArt;
         [Tooltip("Audition selection portraits: opponent avatar and story-class avatar.")]
         public Image auditionRivalArt, auditionPlayerArt;
         [Tooltip("Shown while the selected story's epilogue is locked; hidden once completed.")]
@@ -33,7 +35,7 @@ namespace VocaloidTCG
             location, auditionText, rewardName, selectedDeckName, deckCount, firstClear, status;
         public Slider storySlider, overallSlider, mapSlider;
         public StoryDialogueUI dialogue;
-        [Range(0f, 1f)] public float lockedClassOpacity = 0.4f;
+        [Range(0.1f, 1f)] public float lockedClassOpacity = 0.4f;
         [Tooltip("Bypass the tutorial requirement for story selection without changing saved tutorial progress.")]
         public bool debugTutorialCompleted;
         private DeckLibrary library;
@@ -42,6 +44,7 @@ namespace VocaloidTCG
         private string selectedDeckId;
         private StoryDifficulty? chosenDifficulty;
         private bool lastDebugTutorialCompleted;
+        private bool resetClassScroll;
 
         private readonly List<StoryChoiceView> classViews = new List<StoryChoiceView>();
         private readonly List<StoryChoiceView> rivalViews = new List<StoryChoiceView>();
@@ -136,6 +139,18 @@ namespace VocaloidTCG
             }
         }
 
+        private void LateUpdate(){
+            if(!resetClassScroll || !classRoot || !classRoot.gameObject.activeInHierarchy) return;
+            resetClassScroll = false;
+            var scroll = classRoot.GetComponentInParent<ScrollRect>();
+            if(!scroll || scroll.content != classRoot) return;
+
+            Canvas.ForceUpdateCanvases();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(scroll.content);
+            scroll.StopMovement();
+            scroll.verticalNormalizedPosition = 1f;
+        }
+
         private static void Clear(List<StoryChoiceView> views){
             foreach(var view in views) if(view){
                 view.gameObject.SetActive(false);
@@ -161,12 +176,19 @@ namespace VocaloidTCG
                 view.Bind(() => SelectStory(story), unlocked);
                 var group = view.GetComponent<CanvasGroup>();
                 if(!group) group = view.gameObject.AddComponent<CanvasGroup>();
-                group.alpha = unlocked ? 1f : lockedClassOpacity;
-                if(!story.tutorial) view.SetClass(library.Catalog.Class(story.Class));
+                float lockedOpacity = lockedClassOpacity > 0f ? Mathf.Clamp(lockedClassOpacity, 0.1f, 1f) : 0.4f;
+                group.alpha = story.tutorial || unlocked ? 1f : lockedOpacity;
+                if(!story.tutorial || !tutorialPrefab || tutorialPrefab == classPrefab)
+                    view.SetClass(library.Catalog.Class(story.Class));
+                if(story.tutorial){
+                    DeckUI.Text(view.title, "Tutorial");
+                    if(view.title) view.title.color = new Color32(0xD5, 0xD7, 0xFF, 0xFF);
+                }
                 view.SetProgress(library.StoryClearCount(story));
             }
 
             Progress(overallCount, overallSlider, catalog.stories.Sum(library.StoryClearCount), 35);
+            resetClassScroll = true;
         }
 
         private static void Progress(TMP_Text text, Slider slider, int count, int total = 5){
@@ -187,6 +209,7 @@ namespace VocaloidTCG
         }
 
         public void ShowClasses(){
+            if(classPanel && !classPanel.activeSelf) resetClassScroll = true;
             Panels(classPanel);
             Active(storyInfo, selected);
             if(rivalRoot) Active(rivalRoot.gameObject, selected);
@@ -316,14 +339,12 @@ namespace VocaloidTCG
                     Remember();
                 });
                 DeckUI.Text(view.title, deck.deckName);
-                var cover = library.Catalog.Card(deck.vipCardId);
-                Sprite art = cover ? cover.cardImage : null;
-                if(!art) art = deck.cardIds.Select(library.Catalog.Card).Where(c => c).Select(c => c.cardImage).FirstOrDefault(s => s);
-                DeckUI.Image(view.art, art); view.SetSelected(deck.id == selectedDeckId);
+                DeckUI.Image(view.art, DeckArtwork(deck)); view.SetSelected(deck.id == selectedDeckId);
             }
 
             var chosen = decks.Find(d => d.id == selectedDeckId);
             Active(selectedDeckPanel, chosen != null);
+            DeckUI.Image(selectedDeckArt, DeckArtwork(chosen));
             if(start) start.interactable = chosen != null;
             DeckUI.Text(selectedDeckName, chosen?.deckName ?? ""); DeckUI.Text(deckCount, chosen != null ? chosen.Count + "/30" : "");
             if(chosen != null){
@@ -337,6 +358,14 @@ namespace VocaloidTCG
             }
 
             Report(decks.Count == 0 ? "Create a deck containing " + library.Catalog.Class(selected.Class).DisplayName + " to begin." : "");
+        }
+
+        private Sprite DeckArtwork(DeckRecord deck){
+            if(deck == null) return null;
+            var cover = library.Catalog.Card(deck.vipCardId);
+            if(cover && cover.cardImage) return cover.cardImage;
+            return deck.cardIds.Select(library.Catalog.Card).Where(c => c)
+                .Select(c => c.cardImage).FirstOrDefault(s => s);
         }
 
         private void Remember(){

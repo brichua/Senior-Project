@@ -16,15 +16,14 @@ MonoBehaviour:
   id: 57debe442cbf3b6438795cb2f9438120
   cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   vip: 0
-  info: If this card is sent to discard pile while there are 3 or more other minions
-    there, add a performer with 5 or more influence to your hand
+  info: 'When this performer leaves the stage, if at least 3 other performers are in your discard pile, choose a performer with at least 5 printed influence from your deck and add it to your hand.'
   performer: 1
   stageEffect: 0
   cost: 1
   influence: 2
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 56
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
@@ -34,9 +33,9 @@ MonoBehaviour:
   cheerEffect: 0
   venueEffect: 0
   regen: 0
-  shielded: 0
-  cardImage: {fileID: 0}
-  characterImage: {fileID: 0}
+  protectedInfluence: 0
+  cardImage: {fileID: -1031441428833651656, guid: c0166e081bf7ebc47aafefbc50e5696c, type: 3}
+  characterImage: {fileID: -634410968344741977, guid: 7fd0d22426221564da38130b508aa5d2, type: 3}
   iconImage: {fileID: 0}
   popupImage: {fileID: 0}
   playSfx: {fileID: 0}

@@ -16,661 +16,661 @@ MonoBehaviour:
   tutorial: 0
   storyClass: 2
   header: "World Tour Auditions — Rin"
-  playerStarterDeck: {fileID: 11400000, guid: 42bb700bf3b24acca4d9923f78bac820, type: 2}
+  playerStarterDeck: {fileID: 11400000, guid: 40db7158dd643a7100cd9f32249cb47f, type: 2}
   prologue:
     lines:
     - speaker: "Narrator"
       portrait: {fileID: 0}
       text: "Rin pins the audition invitation to an amp and starts circling names."
       avatars:
-      - slot: 0
-        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - slot: 1
-        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        sprite: {fileID: 1008211201124965473, guid: 430621e623a778b47bc4f779618698db, type: 3}
+      - slot: 4
+        sprite: {fileID: 7674018612228396797, guid: 87a8d465a23a180429198277114a8403, type: 3}
     - speaker: "Len"
       portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       text: "You circled my name twice."
       avatars:
-      - slot: 0
-        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - slot: 1
-        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        sprite: {fileID: -6669168746909621162, guid: 0e83925bdc271a642a541badaf0fbd37, type: 3}
+      - slot: 4
+        sprite: {fileID: 2109474199129327443, guid: 3464634288aedf349aea48de0f10dcdc, type: 3}
     - speaker: "Rin"
       portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       text: "Making sure you don't chicken out."
       avatars:
-      - slot: 0
-        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - slot: 1
-        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        sprite: {fileID: -5737405312357465230, guid: 25b3083561c08624e8c1142bcd67678c, type: 3}
+      - slot: 4
+        sprite: {fileID: 7674018612228396797, guid: 87a8d465a23a180429198277114a8403, type: 3}
     - speaker: "Len"
       portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       text: "I'm entering. And I'm going to beat you."
       avatars:
-      - slot: 0
-        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - slot: 1
-        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        sprite: {fileID: 1008211201124965473, guid: 430621e623a778b47bc4f779618698db, type: 3}
+      - slot: 4
+        sprite: {fileID: 8693415673057005869, guid: 9ef075f479c895643b7036e2307c9a93, type: 3}
     - speaker: "Rin"
       portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       text: "You've been saying that all week."
       avatars:
-      - slot: 0
-        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - slot: 1
-        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        sprite: {fileID: -5737405312357465230, guid: 25b3083561c08624e8c1142bcd67678c, type: 3}
+      - slot: 4
+        sprite: {fileID: -956189301214819756, guid: 50d2a575c6258d946bf3eab369844e1a, type: 3}
     - speaker: "Len"
       portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       text: "Just giving you time to prepare!"
       avatars:
-      - slot: 0
-        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - slot: 1
-        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        sprite: {fileID: 1008211201124965473, guid: 430621e623a778b47bc4f779618698db, type: 3}
+      - slot: 4
+        sprite: {fileID: 7223590954562643371, guid: 443d92ae47d239f4fbd9198ba873d265, type: 3}
   epilogue:
     lines:
     - speaker: "Narrator"
       portrait: {fileID: 0}
       text: "The final results name Rin as headliner. She folds her marked-up audition invitation."
       avatars:
-      - slot: 0
-        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - slot: 1
-        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        sprite: {fileID: 1008211201124965473, guid: 430621e623a778b47bc4f779618698db, type: 3}
+      - slot: 4
+        sprite: {fileID: -2011553376209782307, guid: 1e7167ecc61eeb54d9c9e5259c17aed7, type: 3}
     - speaker: "Len"
       portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       text: "You won. Can you stop looking so smug now?"
       avatars:
-      - slot: 0
-        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - slot: 1
-        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        sprite: {fileID: -6669168746909621162, guid: 0e83925bdc271a642a541badaf0fbd37, type: 3}
+      - slot: 4
+        sprite: {fileID: -6684565600080182894, guid: 81787a12260dd21419b00634fb644544, type: 3}
     - speaker: "Rin"
       portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       text: "Nope."
       avatars:
-      - slot: 0
-        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - slot: 1
-        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        sprite: {fileID: -5737405312357465230, guid: 25b3083561c08624e8c1142bcd67678c, type: 3}
+      - slot: 4
+        sprite: {fileID: -2011553376209782307, guid: 1e7167ecc61eeb54d9c9e5259c17aed7, type: 3}
     - speaker: "Len"
       portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       text: "So what are you doing with the headline spot?"
       avatars:
-      - slot: 0
-        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - slot: 1
-        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        sprite: {fileID: 1008211201124965473, guid: 430621e623a778b47bc4f779618698db, type: 3}
+      - slot: 4
+        sprite: {fileID: 3078092795626919404, guid: ab92f6b78dac17343bb3f0a9c6589283, type: 3}
     - speaker: "Rin"
       portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       text: "Putting everyone on the opening-night set list."
       avatars:
-      - slot: 0
-        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - slot: 1
-        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        sprite: {fileID: -8036308041886742708, guid: 9c688388a046dd24dbbc30ee2987acc9, type: 3}
+      - slot: 4
+        sprite: {fileID: 1275116586176032080, guid: 715a83d076871134280f70cb8c7d6033, type: 3}
     - speaker: "Len"
       portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       text: "Even me?"
       avatars:
-      - slot: 0
-        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - slot: 1
-        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        sprite: {fileID: 7315369456398821115, guid: caa699f698d4b75498d9700e26408b49, type: 3}
+      - slot: 4
+        sprite: {fileID: -8751352758729138934, guid: d741e82c80bfba94dab9c3062b8c8110, type: 3}
     - speaker: "Rin"
       portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       text: "Especially you. I still want that rematch."
       avatars:
-      - slot: 0
-        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - slot: 1
-        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        sprite: {fileID: -5737405312357465230, guid: 25b3083561c08624e8c1142bcd67678c, type: 3}
+      - slot: 4
+        sprite: {fileID: -8936150323484664188, guid: 606b73881be89c5458cf32485a5a036b, type: 3}
     - speaker: "Narrator"
       portrait: {fileID: 0}
       text: "Len writes REMATCH on the back of her invitation. Rin grins."
       avatars:
-      - slot: 0
-        sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
       - slot: 1
-        sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        sprite: {fileID: -6891413683278241132, guid: 0561decc7a86c4d42b17bcc8fbdc96f7, type: 3}
+      - slot: 4
+        sprite: {fileID: -956189301214819756, guid: 50d2a575c6258d946bf3eab369844e1a, type: 3}
   auditions:
   - opponent: 0
-    deckDescription: "An unfinished song, ready for an audience."
+    deckDescription: "Miku strengthens nearby allies and shares influence to build a powerful group of performers."
     location: "The Lantern Courtyard"
     auditionText: "An audition against Miku."
     firstClearReward: {fileID: 11400000, guid: edb40c36ed214e84bb6cfa3922067025, type: 2}
-    easyDeck: {fileID: 11400000, guid: 1fb6640ce062beb46bf698583498f40d, type: 2}
-    mediumDeck: {fileID: 11400000, guid: 1fb6640ce062beb46bf698583498f40d, type: 2}
-    hardDeck: {fileID: 11400000, guid: 1fb6640ce062beb46bf698583498f40d, type: 2}
+    easyDeck: {fileID: 11400000, guid: 2c3ebb934c6964f3099f5bca55ebf727, type: 2}
+    mediumDeck: {fileID: 11400000, guid: e25a40858a935d10bde6f93df11bc4d9, type: 2}
+    hardDeck: {fileID: 11400000, guid: 1e660b9fdcb991ade24445970dfdd6ed, type: 2}
     before:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
         text: "People waiting for food are singing along as Miku checks her microphone."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 1
+          sprite: {fileID: -6669168746909621162, guid: 0e83925bdc271a642a541badaf0fbd37, type: 3}
+        - slot: 4
+          sprite: {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Did you start without me?!"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 1
+          sprite: {fileID: -6891710502897521986, guid: c688d2633af154e4b9f2194e663a7494, type: 3}
+        - slot: 4
+          sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "It's just a sound check!"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 1
+          sprite: {fileID: -6498270370585485129, guid: 6a005da741980b346901fdcc3c26ab52, type: 3}
+        - slot: 4
+          sprite: {fileID: 5531041605552728420, guid: 8a62fd28134ed2841aa676a65b561ae9, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Tell that to your fan club over there."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 1
+          sprite: {fileID: -5737405312357465230, guid: 25b3083561c08624e8c1142bcd67678c, type: 3}
+        - slot: 4
+          sprite: {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "They know the chorus. Want to give them a new one?"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 1
+          sprite: {fileID: 1008211201124965473, guid: 430621e623a778b47bc4f779618698db, type: 3}
+        - slot: 4
+          sprite: {fileID: 5531041605552728420, guid: 8a62fd28134ed2841aa676a65b561ae9, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Gladly. Hope you can keep up!"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 1
+          sprite: {fileID: -5737405312357465230, guid: 25b3083561c08624e8c1142bcd67678c, type: 3}
+        - slot: 4
+          sprite: {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
     after:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
         text: "Rin wins, but the crowd keeps singing the chorus with the wrong words."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 1
+          sprite: {fileID: -6498270370585485129, guid: 6a005da741980b346901fdcc3c26ab52, type: 3}
+        - slot: 4
+          sprite: {fileID: -434653091246056264, guid: ad033b83d33c6dc45a9d86abcdcc004c, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "That's not even close to the lyrics!"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 1
+          sprite: {fileID: 6138499018571659458, guid: 9890fb00517102f4589d9d41eb6c2ce2, type: 3}
+        - slot: 4
+          sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "I think they're singing about noodles."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 1
+          sprite: {fileID: 8466827584194706362, guid: 91240b5a94dd0f54e905a9904b43083c, type: 3}
+        - slot: 4
+          sprite: {fileID: -5784461528446217249, guid: 0d1a9c5c749493e4db30ed7310bc43ef, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "...Okay, that does fit the rhythm."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 1
+          sprite: {fileID: 7355067111040609753, guid: e47f0b211c7a9ca4f9fa87c85034581c, type: 3}
+        - slot: 4
+          sprite: {fileID: -434653091246056264, guid: ad033b83d33c6dc45a9d86abcdcc004c, type: 3}
       - speaker: "Miku"
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "See? It's catchy!"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 1
+          sprite: {fileID: 4151303731112465946, guid: cf77a782e36c6924199896506136f4f3, type: 3}
+        - slot: 4
+          sprite: {fileID: -5784461528446217249, guid: 0d1a9c5c749493e4db30ed7310bc43ef, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Don't encourage them. I'm gonna start singing it too."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+        - slot: 1
+          sprite: {fileID: 6138499018571659458, guid: 9890fb00517102f4589d9d41eb6c2ce2, type: 3}
+        - slot: 4
+          sprite: {fileID: -434653091246056264, guid: ad033b83d33c6dc45a9d86abcdcc004c, type: 3}
   - opponent: 1
-    deckDescription: "An original melody and a familiar rival."
+    deckDescription: "Len weakens and removes opposing performers to control Center Stage."
     location: "The Rooftop Theatre"
     auditionText: "An audition against Len."
     firstClearReward: {fileID: 11400000, guid: 2c9bee9d08e838f4b8bac5071656c12a, type: 2}
-    easyDeck: {fileID: 11400000, guid: d1c376575e622ba4ea509d93cd2ae101, type: 2}
-    mediumDeck: {fileID: 11400000, guid: d1c376575e622ba4ea509d93cd2ae101, type: 2}
-    hardDeck: {fileID: 11400000, guid: d1c376575e622ba4ea509d93cd2ae101, type: 2}
+    easyDeck: {fileID: 11400000, guid: 2d8ba78264a734a6f9b87166143f8fff, type: 2}
+    mediumDeck: {fileID: 11400000, guid: b4189a5eb614f2b7b3b516155fa0906e, type: 2}
+    hardDeck: {fileID: 11400000, guid: 037327c14cbdf792dec514f0cc1dd2b3, type: 2}
     before:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
         text: "Len is rehearsing an ending Rin hasn't heard before."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        - slot: 1
+          sprite: {fileID: -6669168746909621162, guid: 0e83925bdc271a642a541badaf0fbd37, type: 3}
+        - slot: 4
+          sprite: {fileID: 1275116586176032080, guid: 715a83d076871134280f70cb8c7d6033, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Hold on. Since when do you sing it like that?"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        - slot: 1
+          sprite: {fileID: -6891710502897521986, guid: c688d2633af154e4b9f2194e663a7494, type: 3}
+        - slot: 4
+          sprite: {fileID: 1275116586176032080, guid: 715a83d076871134280f70cb8c7d6033, type: 3}
       - speaker: "Len"
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Since yesterday."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        - slot: 1
+          sprite: {fileID: -6498270370585485129, guid: 6a005da741980b346901fdcc3c26ab52, type: 3}
+        - slot: 4
+          sprite: {fileID: 8693415673057005869, guid: 9ef075f479c895643b7036e2307c9a93, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Yesterday?! We practiced this all week!"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        - slot: 1
+          sprite: {fileID: -6891710502897521986, guid: c688d2633af154e4b9f2194e663a7494, type: 3}
+        - slot: 4
+          sprite: {fileID: -956189301214819756, guid: 50d2a575c6258d946bf3eab369844e1a, type: 3}
       - speaker: "Len"
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Worried?"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        - slot: 1
+          sprite: {fileID: -6498270370585485129, guid: 6a005da741980b346901fdcc3c26ab52, type: 3}
+        - slot: 4
+          sprite: {fileID: 8693415673057005869, guid: 9ef075f479c895643b7036e2307c9a93, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "About you? Never. About your timing? Constantly."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        - slot: 1
+          sprite: {fileID: 7355067111040609753, guid: e47f0b211c7a9ca4f9fa87c85034581c, type: 3}
+        - slot: 4
+          sprite: {fileID: -956189301214819756, guid: 50d2a575c6258d946bf3eab369844e1a, type: 3}
     after:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
         text: "Rin wins, but Len is still humming the new ending he tried in the final round."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        - slot: 1
+          sprite: {fileID: -6669168746909621162, guid: 0e83925bdc271a642a541badaf0fbd37, type: 3}
+        - slot: 4
+          sprite: {fileID: 1275116586176032080, guid: 715a83d076871134280f70cb8c7d6033, type: 3}
       - speaker: "Len"
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "I almost had you with that last bit."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        - slot: 1
+          sprite: {fileID: -6669168746909621162, guid: 0e83925bdc271a642a541badaf0fbd37, type: 3}
+        - slot: 4
+          sprite: {fileID: 8693415673057005869, guid: 9ef075f479c895643b7036e2307c9a93, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Almost. I heard you coming a mile away."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        - slot: 1
+          sprite: {fileID: -5737405312357465230, guid: 25b3083561c08624e8c1142bcd67678c, type: 3}
+        - slot: 4
+          sprite: {fileID: -956189301214819756, guid: 50d2a575c6258d946bf3eab369844e1a, type: 3}
       - speaker: "Len"
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Then I'll change it again."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        - slot: 1
+          sprite: {fileID: 1008211201124965473, guid: 430621e623a778b47bc4f779618698db, type: 3}
+        - slot: 4
+          sprite: {fileID: 8693415673057005869, guid: 9ef075f479c895643b7036e2307c9a93, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Go ahead. I'll come up with something new, too."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        - slot: 1
+          sprite: {fileID: -5737405312357465230, guid: 25b3083561c08624e8c1142bcd67678c, type: 3}
+        - slot: 4
+          sprite: {fileID: -956189301214819756, guid: 50d2a575c6258d946bf3eab369844e1a, type: 3}
       - speaker: "Len"
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "You never let me have anything, do you?"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 1105883623488579341, guid: a7e3ec9e288c6bf43a914750d9febc6e, type: 3}
+        - slot: 1
+          sprite: {fileID: 1008211201124965473, guid: 430621e623a778b47bc4f779618698db, type: 3}
+        - slot: 4
+          sprite: {fileID: -6684565600080182894, guid: 81787a12260dd21419b00634fb644544, type: 3}
   - opponent: 3
-    deckDescription: "A full song beyond a famous chorus."
+    deckDescription: "Kaito moves performers around the stage and rewards allies for spreading across columns."
     location: "The Harbor Stage"
     auditionText: "An audition against KAITO."
     firstClearReward: {fileID: 11400000, guid: 6583a1897eee0d744add7bc99a893801, type: 2}
-    easyDeck: {fileID: 11400000, guid: 67abe06bb10144adb820be6c188de4b8, type: 2}
-    mediumDeck: {fileID: 11400000, guid: 67abe06bb10144adb820be6c188de4b8, type: 2}
-    hardDeck: {fileID: 11400000, guid: 67abe06bb10144adb820be6c188de4b8, type: 2}
+    easyDeck: {fileID: 11400000, guid: e3b30fb588f79c49aed6fc243283b8b7, type: 2}
+    mediumDeck: {fileID: 11400000, guid: ed6cee514bf29a43372c939ab3da0f18, type: 2}
+    hardDeck: {fileID: 11400000, guid: f63d3f6c9481491c655759b698f5b58a, type: 2}
     before:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
         text: "KAITO adjusts a microphone while the harbor broadcast camera gets into position."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: -6669168746909621162, guid: 0e83925bdc271a642a541badaf0fbd37, type: 3}
+        - slot: 4
+          sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "KAITO! Bet I get the louder cheer!"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: -8036308041886742708, guid: 9c688388a046dd24dbbc30ee2987acc9, type: 3}
+        - slot: 4
+          sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
       - speaker: "KAITO"
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "You might want to test your microphone first."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: 7315369456398821115, guid: caa699f698d4b75498d9700e26408b49, type: 3}
+        - slot: 4
+          sprite: {fileID: 6506257976614099797, guid: e953fd9f6a3a3334884fede5ea8b3148, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Already did!"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: -5737405312357465230, guid: 25b3083561c08624e8c1142bcd67678c, type: 3}
+        - slot: 4
+          sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
       - speaker: "KAITO"
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "It's switched off."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: 1008211201124965473, guid: 430621e623a778b47bc4f779618698db, type: 3}
+        - slot: 4
+          sprite: {fileID: 6149762242164147661, guid: c3005a6e00678e3419d81925b5c2da6a, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "...That was a practice cheer."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: 7355067111040609753, guid: e47f0b211c7a9ca4f9fa87c85034581c, type: 3}
+        - slot: 4
+          sprite: {fileID: -6317423667150299997, guid: 93cb99591fd4be445b3887ccb01be9a0, type: 3}
     after:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
         text: "Rin strikes a victory pose at the camera just as its red light clicks off."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: 1008211201124965473, guid: 430621e623a778b47bc4f779618698db, type: 3}
+        - slot: 4
+          sprite: {fileID: 3342472002854934847, guid: bb9fbdd48b2c8d14886a01142a8417df, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Hey! I wasn't finished!"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: 6138499018571659458, guid: 9890fb00517102f4589d9d41eb6c2ce2, type: 3}
+        - slot: 4
+          sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
       - speaker: "KAITO"
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "The broadcast was."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: 8466827584194706362, guid: 91240b5a94dd0f54e905a9904b43083c, type: 3}
+        - slot: 4
+          sprite: {fileID: 6506257976614099797, guid: e953fd9f6a3a3334884fede5ea8b3148, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Did anybody see that?"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: -6891710502897521986, guid: c688d2633af154e4b9f2194e663a7494, type: 3}
+        - slot: 4
+          sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
       - speaker: "KAITO"
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "That gentleman by the fence did."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: -6498270370585485129, guid: 6a005da741980b346901fdcc3c26ab52, type: 3}
+        - slot: 4
+          sprite: {fileID: 6506257976614099797, guid: e953fd9f6a3a3334884fede5ea8b3148, type: 3}
       - speaker: "Narrator"
         portrait: {fileID: 0}
         text: "A dockworker copies her pose. Rin bursts out laughing."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: -6891413683278241132, guid: 0561decc7a86c4d42b17bcc8fbdc96f7, type: 3}
+        - slot: 4
+          sprite: {fileID: -6317423667150299997, guid: 93cb99591fd4be445b3887ccb01be9a0, type: 3}
   - opponent: 4
-    deckDescription: "A complete live performance."
+    deckDescription: "Meiko creates new cards and shares keywords to strengthen her performers."
     location: "The Converted Cinema"
     auditionText: "An audition against MEIKO."
     firstClearReward: {fileID: 11400000, guid: 0b21cc092eb618240ab6629d284db2da, type: 2}
-    easyDeck: {fileID: 11400000, guid: 30f2d81003ba4753b31fc0ffff3d5e57, type: 2}
-    mediumDeck: {fileID: 11400000, guid: 30f2d81003ba4753b31fc0ffff3d5e57, type: 2}
-    hardDeck: {fileID: 11400000, guid: 30f2d81003ba4753b31fc0ffff3d5e57, type: 2}
+    easyDeck: {fileID: 11400000, guid: 066951dfb2fabf738bf0d86706f3ce72, type: 2}
+    mediumDeck: {fileID: 11400000, guid: 667cedfedc6bc5f803e6556c38c79a7f, type: 2}
+    hardDeck: {fileID: 11400000, guid: 25f74ba3e4be98bdaac0713570db66b4, type: 2}
     before:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
         text: "Rin is drumming on a seat back while MEIKO checks the set list."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: 4151303731112465946, guid: cf77a782e36c6924199896506136f4f3, type: 3}
+        - slot: 4
+          sprite: {fileID: 1025957635999731651, guid: e299bec22c3e3b04ca06e0001ac7ca64, type: 3}
       - speaker: "MEIKO"
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Could you give that poor seat a break?"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: -6669168746909621162, guid: 0e83925bdc271a642a541badaf0fbd37, type: 3}
+        - slot: 4
+          sprite: {fileID: -5909369726638379594, guid: 15b288373541ce745b2a4fc354c46beb, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "There's nobody here! It's too quiet."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: 6138499018571659458, guid: 9890fb00517102f4589d9d41eb6c2ce2, type: 3}
+        - slot: 4
+          sprite: {fileID: 1025957635999731651, guid: e299bec22c3e3b04ca06e0001ac7ca64, type: 3}
       - speaker: "MEIKO"
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "The doors don't open for another ten minutes."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: 8466827584194706362, guid: 91240b5a94dd0f54e905a9904b43083c, type: 3}
+        - slot: 4
+          sprite: {fileID: 659807028895115265, guid: d5deaaf6772957344b6b32b1640b27d3, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "...Right. Well, they'll hear me when they get here."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: -5737405312357465230, guid: 25b3083561c08624e8c1142bcd67678c, type: 3}
+        - slot: 4
+          sprite: {fileID: -5024050331173424593, guid: 958fcfd1579699b4f92d3293e00f0594, type: 3}
       - speaker: "MEIKO"
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "I'm counting on it."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: 1008211201124965473, guid: 430621e623a778b47bc4f779618698db, type: 3}
+        - slot: 4
+          sprite: {fileID: 1521368860836332526, guid: 18538c62a586e8e40880ac3a43b0ccca, type: 3}
     after:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
         text: "Rin wins with a slower song than usual and drops into a seat beside MEIKO."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: 4151303731112465946, guid: cf77a782e36c6924199896506136f4f3, type: 3}
+        - slot: 4
+          sprite: {fileID: 8756508170796686454, guid: d93bc75ba5d83d14f859334df5b225e0, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "I thought I was going to speed up in that last verse."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: 7355067111040609753, guid: e47f0b211c7a9ca4f9fa87c85034581c, type: 3}
+        - slot: 4
+          sprite: {fileID: -5024050331173424593, guid: 958fcfd1579699b4f92d3293e00f0594, type: 3}
       - speaker: "MEIKO"
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Your foot definitely wanted to."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: 4151303731112465946, guid: cf77a782e36c6924199896506136f4f3, type: 3}
+        - slot: 4
+          sprite: {fileID: 1521368860836332526, guid: 18538c62a586e8e40880ac3a43b0ccca, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "But I didn't!"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: -5737405312357465230, guid: 25b3083561c08624e8c1142bcd67678c, type: 3}
+        - slot: 4
+          sprite: {fileID: 8756508170796686454, guid: d93bc75ba5d83d14f859334df5b225e0, type: 3}
       - speaker: "MEIKO"
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Nope. You kept it steady."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: 1008211201124965473, guid: 430621e623a778b47bc4f779618698db, type: 3}
+        - slot: 4
+          sprite: {fileID: 1521368860836332526, guid: 18538c62a586e8e40880ac3a43b0ccca, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Don't sound so surprised!"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        - slot: 1
+          sprite: {fileID: 6138499018571659458, guid: 9890fb00517102f4589d9d41eb6c2ce2, type: 3}
+        - slot: 4
+          sprite: {fileID: 8756508170796686454, guid: d93bc75ba5d83d14f859334df5b225e0, type: 3}
   - opponent: 5
-    deckDescription: "Different words for an unsigned melody."
+    deckDescription: "Luka contests Center Stage and builds audience score to unlock discounts and stronger buffs."
     location: "The Planetarium"
     auditionText: "An audition against Luka."
     firstClearReward: {fileID: 11400000, guid: 2a55cd481cf55c344bbc28b64e00e025, type: 2}
-    easyDeck: {fileID: 11400000, guid: 672111fe4515472988b5c2aebc23cacc, type: 2}
-    mediumDeck: {fileID: 11400000, guid: 672111fe4515472988b5c2aebc23cacc, type: 2}
-    hardDeck: {fileID: 11400000, guid: 672111fe4515472988b5c2aebc23cacc, type: 2}
+    easyDeck: {fileID: 11400000, guid: ceb93133aa9561c6a872dab0cfa2c39e, type: 2}
+    mediumDeck: {fileID: 11400000, guid: f4b2837e43d5e0cbd469618d517077ef, type: 2}
+    hardDeck: {fileID: 11400000, guid: f1256f254a989b509dcc07792658e523, type: 2}
     before:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
         text: "Luka has three versions of the same song spread across a bench."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 1
+          sprite: {fileID: -6669168746909621162, guid: 0e83925bdc271a642a541badaf0fbd37, type: 3}
+        - slot: 4
+          sprite: {fileID: 5076353916888053700, guid: 76bcca590ddfebc49b7f79afec057bfc, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Is that homework? You look like you're grading papers."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 1
+          sprite: {fileID: 7355067111040609753, guid: e47f0b211c7a9ca4f9fa87c85034581c, type: 3}
+        - slot: 4
+          sprite: {fileID: 5296954397734636559, guid: 88015ca618f77154aaacf58d9c875728, type: 3}
       - speaker: "Luka"
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "I'm trying to decide which verse to sing."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 1
+          sprite: {fileID: 4151303731112465946, guid: cf77a782e36c6924199896506136f4f3, type: 3}
+        - slot: 4
+          sprite: {fileID: 2541232186797710645, guid: 8c2198f91143d7040ab0170e51459e2c, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Pick the one you like best."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 1
+          sprite: {fileID: 4240592442303869473, guid: 0e21096ae5539de42a941bbc73c11697, type: 3}
+        - slot: 4
+          sprite: {fileID: 5076353916888053700, guid: 76bcca590ddfebc49b7f79afec057bfc, type: 3}
       - speaker: "Luka"
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "And if I change my mind halfway through?"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 1
+          sprite: {fileID: -6669168746909621162, guid: 0e83925bdc271a642a541badaf0fbd37, type: 3}
+        - slot: 4
+          sprite: {fileID: 3175777529518125329, guid: ade7196ac7a481444a7b0a658a4c788f, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Then change the verse. You can do that!"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 1
+          sprite: {fileID: -8036308041886742708, guid: 9c688388a046dd24dbbc30ee2987acc9, type: 3}
+        - slot: 4
+          sprite: {fileID: 1598156113020585522, guid: 4c2564655f98e7642a0ee005376de98c, type: 3}
     after:
       lines:
       - speaker: "Narrator"
         portrait: {fileID: 0}
         text: "Rin forgets a lyric, makes up another one, and still wins."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 1
+          sprite: {fileID: 1008211201124965473, guid: 430621e623a778b47bc4f779618698db, type: 3}
+        - slot: 4
+          sprite: {fileID: 1598156113020585522, guid: 4c2564655f98e7642a0ee005376de98c, type: 3}
       - speaker: "Luka"
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Since when did that song mention the last tram?"
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 1
+          sprite: {fileID: -6669168746909621162, guid: 0e83925bdc271a642a541badaf0fbd37, type: 3}
+        - slot: 4
+          sprite: {fileID: 3175777529518125329, guid: ade7196ac7a481444a7b0a658a4c788f, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Since I forgot what came next."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 1
+          sprite: {fileID: 7355067111040609753, guid: e47f0b211c7a9ca4f9fa87c85034581c, type: 3}
+        - slot: 4
+          sprite: {fileID: 1598156113020585522, guid: 4c2564655f98e7642a0ee005376de98c, type: 3}
       - speaker: "Luka"
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "It actually suited the melody."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 1
+          sprite: {fileID: 4151303731112465946, guid: cf77a782e36c6924199896506136f4f3, type: 3}
+        - slot: 4
+          sprite: {fileID: 3056756451418170359, guid: 624cf8f3ecbd433438e399a5ac16bc87, type: 3}
       - speaker: "Rin"
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Great! Then I meant to do it."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 1
+          sprite: {fileID: -5737405312357465230, guid: 25b3083561c08624e8c1142bcd67678c, type: 3}
+        - slot: 4
+          sprite: {fileID: -7160719286429738108, guid: 041fa33cda16c7044aeada8e9029e9e9, type: 3}
       - speaker: "Luka"
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
         text: "Of course you did."
         avatars:
-        - slot: 0
-          sprite: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        - slot: 5
-          sprite: {fileID: 4524798547330926687, guid: 40cd35695bff9344abfe246d209e2605, type: 3}
+        - slot: 1
+          sprite: {fileID: 1008211201124965473, guid: 430621e623a778b47bc4f779618698db, type: 3}
+        - slot: 4
+          sprite: {fileID: 2541232186797710645, guid: 8c2198f91143d7040ab0170e51459e2c, type: 3}

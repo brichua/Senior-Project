@@ -16,67 +16,68 @@ MonoBehaviour:
   tutorial: 1
   storyClass: 0
   header: Tutorial
+  playerStarterDeck: {fileID: 11400000, guid: e18f2953280683638d63d0909bf206da, type: 2}
   prologue:
     lines: []
   epilogue:
     lines: []
   auditions:
   - opponent: 1
-    deckDescription: 
+    deckDescription: "Len weakens and removes opposing performers to control Center Stage."
     location: 
     auditionText: 
     firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 0}
-    mediumDeck: {fileID: 0}
-    hardDeck: {fileID: 0}
+    easyDeck: {fileID: 11400000, guid: 2d8ba78264a734a6f9b87166143f8fff, type: 2}
+    mediumDeck: {fileID: 11400000, guid: b4189a5eb614f2b7b3b516155fa0906e, type: 2}
+    hardDeck: {fileID: 11400000, guid: 037327c14cbdf792dec514f0cc1dd2b3, type: 2}
     before:
       lines: []
     after:
       lines: []
   - opponent: 2
-    deckDescription: 
+    deckDescription: "Rin creates tokens and turns discards and performers leaving the stage into bonuses."
     location: 
     auditionText: 
     firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 0}
-    mediumDeck: {fileID: 0}
-    hardDeck: {fileID: 0}
+    easyDeck: {fileID: 11400000, guid: 0aa8f72f3a952f6ff9caeb6930ca41e8, type: 2}
+    mediumDeck: {fileID: 11400000, guid: bad97a986d7fb1382273766afced01f8, type: 2}
+    hardDeck: {fileID: 11400000, guid: a10f728ff1af456731f0eb0cfb8904fa, type: 2}
     before:
       lines: []
     after:
       lines: []
   - opponent: 3
-    deckDescription: 
+    deckDescription: "Kaito moves performers around the stage and rewards allies for spreading across columns."
     location: 
     auditionText: 
     firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 0}
-    mediumDeck: {fileID: 0}
-    hardDeck: {fileID: 0}
+    easyDeck: {fileID: 11400000, guid: e3b30fb588f79c49aed6fc243283b8b7, type: 2}
+    mediumDeck: {fileID: 11400000, guid: ed6cee514bf29a43372c939ab3da0f18, type: 2}
+    hardDeck: {fileID: 11400000, guid: f63d3f6c9481491c655759b698f5b58a, type: 2}
     before:
       lines: []
     after:
       lines: []
   - opponent: 4
-    deckDescription: 
+    deckDescription: "Meiko creates new cards and shares keywords to strengthen her performers."
     location: 
     auditionText: 
     firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 0}
-    mediumDeck: {fileID: 0}
-    hardDeck: {fileID: 0}
+    easyDeck: {fileID: 11400000, guid: 066951dfb2fabf738bf0d86706f3ce72, type: 2}
+    mediumDeck: {fileID: 11400000, guid: 667cedfedc6bc5f803e6556c38c79a7f, type: 2}
+    hardDeck: {fileID: 11400000, guid: 25f74ba3e4be98bdaac0713570db66b4, type: 2}
     before:
       lines: []
     after:
       lines: []
   - opponent: 5
-    deckDescription: 
+    deckDescription: "Luka contests Center Stage and builds audience score to unlock discounts and stronger buffs."
     location: 
     auditionText: 
     firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 0}
-    mediumDeck: {fileID: 0}
-    hardDeck: {fileID: 0}
+    easyDeck: {fileID: 11400000, guid: ceb93133aa9561c6a872dab0cfa2c39e, type: 2}
+    mediumDeck: {fileID: 11400000, guid: f4b2837e43d5e0cbd469618d517077ef, type: 2}
+    hardDeck: {fileID: 11400000, guid: f1256f254a989b509dcc07792658e523, type: 2}
     before:
       lines: []
     after:

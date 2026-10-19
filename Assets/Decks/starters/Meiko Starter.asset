@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0868907308d47e08c6fdd7899237687, type: 3}
+  m_Name: Meiko Starter
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.DeckData
+  deckName: Meiko Starter
+  cardBack: {fileID: 11400000, guid: d4213812defe31c4b8e760328f8ac52b, type: 2}
+  cards:
+  - {fileID: 11400000, guid: a7bac0b7ec5c30343af190b1ac7fa064, type: 2}
+  - {fileID: 11400000, guid: a7bac0b7ec5c30343af190b1ac7fa064, type: 2}
+  - {fileID: 11400000, guid: a7bac0b7ec5c30343af190b1ac7fa064, type: 2}
+  - {fileID: 11400000, guid: 83e8cea1e8608bb45b9f387e080efd37, type: 2}
+  - {fileID: 11400000, guid: 83e8cea1e8608bb45b9f387e080efd37, type: 2}
+  - {fileID: 11400000, guid: 83e8cea1e8608bb45b9f387e080efd37, type: 2}
+  - {fileID: 11400000, guid: 494ce9c0501e737449516fe952648bf9, type: 2}
+  - {fileID: 11400000, guid: 494ce9c0501e737449516fe952648bf9, type: 2}
+  - {fileID: 11400000, guid: 494ce9c0501e737449516fe952648bf9, type: 2}
+  - {fileID: 11400000, guid: 71d75419ec26bff4790a99dab3aa2ba2, type: 2}
+  - {fileID: 11400000, guid: 71d75419ec26bff4790a99dab3aa2ba2, type: 2}
+  - {fileID: 11400000, guid: 71d75419ec26bff4790a99dab3aa2ba2, type: 2}
+  - {fileID: 11400000, guid: 62660fe607952504fbd5b80eb896c264, type: 2}
+  - {fileID: 11400000, guid: 62660fe607952504fbd5b80eb896c264, type: 2}
+  - {fileID: 11400000, guid: 62660fe607952504fbd5b80eb896c264, type: 2}
+  - {fileID: 11400000, guid: 4e56e120fe666f141a76cbaecf90ebdc, type: 2}
+  - {fileID: 11400000, guid: 4e56e120fe666f141a76cbaecf90ebdc, type: 2}
+  - {fileID: 11400000, guid: 4e56e120fe666f141a76cbaecf90ebdc, type: 2}
+  - {fileID: 11400000, guid: 8e452bce61a71f1458d96fd66f75ca17, type: 2}
+  - {fileID: 11400000, guid: 8e452bce61a71f1458d96fd66f75ca17, type: 2}
+  - {fileID: 11400000, guid: f3bed958e3522394d9ab2473ad450e55, type: 2}
+  - {fileID: 11400000, guid: f3bed958e3522394d9ab2473ad450e55, type: 2}
+  - {fileID: 11400000, guid: 93983e0769183d442a80ac6e7534f088, type: 2}
+  - {fileID: 11400000, guid: 93983e0769183d442a80ac6e7534f088, type: 2}
+  - {fileID: 11400000, guid: 965ce64d67e184d489ea5f3ae6fba3c9, type: 2}
+  - {fileID: 11400000, guid: 965ce64d67e184d489ea5f3ae6fba3c9, type: 2}
+  - {fileID: 11400000, guid: 065d87b36c9247e4bbe83678380b1129, type: 2}
+  - {fileID: 11400000, guid: 065d87b36c9247e4bbe83678380b1129, type: 2}
+  - {fileID: 11400000, guid: 8d2fb1d227c944d4b89b90b3cb52137b, type: 2}
+  - {fileID: 11400000, guid: 8d2fb1d227c944d4b89b90b3cb52137b, type: 2}
+  vipCard: {fileID: 0}
+  classes:
+  - {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}

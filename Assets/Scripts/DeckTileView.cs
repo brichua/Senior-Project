@@ -21,12 +21,26 @@ namespace VocaloidTCG
             DeckUI.Classes(firstClass, secondClass, deck, catalog);
             DeckUI.Image(cover, catalog.Cover(deck)?.cardImage); DeckUI.Image(cardBack, catalog.Back(deck));
             
-            if(selectedIcon) selectedIcon.SetActive(selected);
+            bool buttonIsIndicator = selectButton && selectedIcon &&
+                selectButton.transform.IsChildOf(selectedIcon.transform);
+            if(selectedIcon && !buttonIsIndicator) selectedIcon.SetActive(selected);
             SetFavorite(false);
             
             if(selectButton){
+                selectButton.gameObject.SetActive(true);
+                selectButton.interactable = true;
+                if(buttonIsIndicator){
+                    var label = selectButton.GetComponentInChildren<TMP_Text>(true);
+                    DeckUI.Text(label, selected ? "selected" : "select");
+                }
                 selectButton.onClick.RemoveAllListeners(); selectButton.onClick.AddListener(() => choose());
             }
+
+            var preview = GetComponent<Button>();
+            if(!preview) preview = gameObject.AddComponent<Button>();
+            preview.targetGraphic = GetComponent<Graphic>();
+            preview.transition = Selectable.Transition.None;
+            preview.onClick.RemoveAllListeners(); preview.onClick.AddListener(() => choose());
 
             if(favoriteButton){
                 favoriteButton.onClick.RemoveAllListeners(); favoriteButton.onClick.AddListener(() => toggleFavorite());

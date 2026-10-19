@@ -16,25 +16,24 @@ MonoBehaviour:
   id: 466390a12c108c147ab173806fdee4b7
   cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   vip: 0
-  info: stage share, once per turn, you can move an ally onto any available tile
-    in its column
+  info: "Stage Share.\nOnce per turn: move an allied performer to any available tile in its column."
   performer: 1
   stageEffect: 0
   cost: 5
   influence: 6
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 97
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
-  stageShare: 0
+  stageShare: 1
   encore: 0
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
   regen: 0
-  shielded: 0
+  protectedInfluence: 0
   cardImage: {fileID: -2566321668903677826, guid: d28610d4d714b8f4bb7332ade60844a9, type: 3}
   characterImage: {fileID: 7316340532325103920, guid: 6fcd4b4689f261a449aa7a904ee25a4a, type: 3}
   iconImage: {fileID: 8992371609442261355, guid: f2dff76a89863514ba29321c562fc7b9, type: 3}
