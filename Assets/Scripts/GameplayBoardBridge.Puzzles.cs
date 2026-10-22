@@ -17,7 +17,6 @@ namespace VocaloidTCG.BoardUI
         private int puzzlePlayerTurns, puzzleRounds, puzzleEnemyTurn, puzzleAction, puzzleObservedTurn;
         private int puzzlePreviousScore, puzzleRoundScore;
         private float puzzleEnemyWait;
-        private readonly int[] puzzleSideTurns = new int[2];
 
         private void StartPuzzle(){
             MatchSetupError = "";
@@ -60,7 +59,6 @@ namespace VocaloidTCG.BoardUI
                 decks[actor].Clear();
                 foreach(var card in setup.startingHand) side.hand.Add(MakeCard(card, actor));
                 side.deckCount = 0; side.hiddenHandCount = side.hand.Count;
-                puzzleSideTurns[actor] = 0;
                 lastMoveTurn[actor] = -1; lastDrawRound[actor] = state.roundNumber;
             }
             foreach(var placement in puzzle.placements) {
@@ -83,18 +81,18 @@ namespace VocaloidTCG.BoardUI
             Debug.LogError("Puzzle setup: " + error, this); Publish();
         }
 
-        private void GivePuzzleTurnCards(int actor){
-            int currentTurn = ++puzzleSideTurns[actor];
+        private void GivePuzzleRoundCards(int actor){
+            int currentRound = state.roundNumber - puzzle.startingRound + 1;
             var setup = actor == localPlayerId ? puzzle.player : puzzle.enemy;
             var side = state.Side(actor);
-            foreach(var grant in setup.cardsOnTurns) {
-                if(grant.turn != currentTurn) continue;
+            foreach(var grant in setup.cardsOnRounds) {
+                if(grant.round != currentRound) continue;
                 foreach(var asset in grant.cards) {
                     var card = MakeCard(asset, actor);
                     bool discarded = side.hand.Count >= MaxHandSize;
                     drawPresentations.Enqueue(new DrawPresentation { card = card, discarded = discarded });
                     if(!discarded) side.hand.Add(card);
-                    Log("Player " + actor + (discarded ? " discarded scheduled card " : " received scheduled card ") + asset.cardName + " on their turn " + currentTurn + ".");
+                    Log("Player " + actor + (discarded ? " discarded scheduled card " : " received scheduled card ") + asset.cardName + " on puzzle round " + currentRound + ".");
                 }
             }
             side.hiddenHandCount = side.hand.Count;

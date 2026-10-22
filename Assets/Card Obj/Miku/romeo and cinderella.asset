@@ -15,19 +15,14 @@ MonoBehaviour:
   cardName: Romeo and Cinderella
   id: 77cf392e8b795b0408c55d3c59d6d1b5
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
-  vip: 1
-  info: "Stage Share."
+  vip: 0
+  info: Stage Share.
   performer: 1
   stageEffect: 0
   cost: 1
   influence: 2
   flags: []
   stageInfluenceChange: 1
-  cardImage: {fileID: 8376220829089352778, guid: ab5f8a4c24ab8174fa7d0423f85c1906, type: 3}
-  characterImage: {fileID: 800711898269296950, guid: 0c40ea9699660ae44b993b3a7d1cdde0, type: 3}
-  iconImage: {fileID: 3509312292521935542, guid: 206cf9d0d4a9f6d47b3c69d85d8d2edc, type: 3}
-  popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
-  playSfx: {fileID: 8300000, guid: 31de30f287269264e8abbae560f1fa09, type: 3}
   effect: 0
   scoreThreshold: 0
   harmonize: 0
@@ -37,3 +32,10 @@ MonoBehaviour:
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: 8376220829089352778, guid: ab5f8a4c24ab8174fa7d0423f85c1906, type: 3}
+  characterImage: {fileID: 800711898269296950, guid: 0c40ea9699660ae44b993b3a7d1cdde0, type: 3}
+  iconImage: {fileID: 3509312292521935542, guid: 206cf9d0d4a9f6d47b3c69d85d8d2edc, type: 3}
+  popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 8300000, guid: 31de30f287269264e8abbae560f1fa09, type: 3}

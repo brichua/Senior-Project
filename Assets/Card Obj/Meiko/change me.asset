@@ -16,7 +16,9 @@ MonoBehaviour:
   id: a7bac0b7ec5c30343af190b1ac7fa064
   cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
   vip: 0
-  info: "On play, reveal the top 3 cards of your deck. Gain the keywords of every performer revealed. Leave the revealed cards on top of your deck in the same order."
+  info: On play, reveal the top 3 cards of your deck. Gain the keywords of every
+    performer revealed. Leave the revealed cards on top of your deck in the same
+    order.
   performer: 1
   stageEffect: 0
   cost: 1
@@ -37,5 +39,5 @@ MonoBehaviour:
   cardImage: {fileID: 6025122263036835777, guid: ab1629a51492c6c46878139d08dcf200, type: 3}
   characterImage: {fileID: 4215792470811505543, guid: 8fe782fd5a653624696b560f4cc89939, type: 3}
   iconImage: {fileID: 0}
-  popupImage: {fileID: 0}
+  popupImage: {fileID: -469258639255709176, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: ego renegade boy
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Ego Renegade Boy
+  id: 32502794a71d0644ab05b88f345753e1
+  cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
+  vip: 1
+  info: soloist 2, once per round, give an enemy performer -2 inf this round. If
+    that performer reaches 0 inf, gain 1 energy
+  performer: 1
+  stageEffect: 0
+  cost: 5
+  influence: 6
+  flags: []
+  stageInfluenceChange: 1
+  effect: 31
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: 4313619834544927660, guid: c60c021a049ec6b4fb0522bfd05b80e8, type: 3}
+  characterImage: {fileID: -3957841865465902459, guid: a41346343fcb5904eac5e97b6911c62f, type: 3}
+  iconImage: {fileID: -3286498978567129100, guid: 2f8951f5e477ad8478dd5d7c004c85b8, type: 3}
+  popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 8300000, guid: 00b9fe55d3ebe4e4eadebf975897eadf, type: 3}

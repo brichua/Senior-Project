@@ -16,7 +16,8 @@ MonoBehaviour:
   id: e09448c161d0dc745b8914244032a7da
   cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   vip: 0
-  info: 'Whenever another performer on an adjacent tile leaves the stage, this performer gains +1 influence.'
+  info: Whenever another performer on an adjacent tile leaves the stage, this performer
+    gains +1 influence.
   performer: 1
   stageEffect: 0
   cost: 2
@@ -37,5 +38,5 @@ MonoBehaviour:
   cardImage: {fileID: -1031441428833651656, guid: c0166e081bf7ebc47aafefbc50e5696c, type: 3}
   characterImage: {fileID: -634410968344741977, guid: 7fd0d22426221564da38130b508aa5d2, type: 3}
   iconImage: {fileID: 0}
-  popupImage: {fileID: 0}
+  popupImage: {fileID: -8004225029083858605, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

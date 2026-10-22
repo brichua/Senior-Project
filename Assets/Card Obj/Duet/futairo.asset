@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: futairo
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Futairo
+  id: f5d3de7b8040ad442b84bec378aa622d
+  cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  vip: 0
+  info: give an ally in the middle zone a random keyword this round. If it wins a
+    contested tile this round, draw 1 card
+  performer: 0
+  stageEffect: 1
+  cost: 2
+  influence: 0
+  flags: []
+  stageInfluenceChange: 1
+  effect: 0
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: 4298139381675247651, guid: 413a18389b62cf341ab5573f9871f09b, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: -3235767534110547844, guid: c5ec64307a53dbc478046aa30a3a8569, type: 3}
+  popupImage: {fileID: -3350101939418175136, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 0}

@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: magnet
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Magnet
+  id: c3880512ec40acc4b9da9e683272ca01
+  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  vip: 0
+  info: cheer effect, give an ally +2 inf this round. Give each adjacent ally +1
+    inf this round. If the selected performer is in the middle zone, gain 1 fan score
+    if its tile is won this round
+  performer: 0
+  stageEffect: 1
+  cost: 3
+  influence: 0
+  flags: []
+  stageInfluenceChange: 1
+  effect: 0
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: -6395042137496267648, guid: 4e69de19f048fed43b7d51eee79f02f5, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: -3647385321470557309, guid: 9da04220ee429c74ca5d697a68efc6cf, type: 3}
+  popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 0}

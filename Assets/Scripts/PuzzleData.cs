@@ -15,15 +15,17 @@ namespace VocaloidTCG
         [Min(0)] public int score;
         [FormerlySerializedAs("hand")]
         public List<CardData> startingHand = new List<CardData>();
-        [Tooltip("Cards received at the start of this side's later turns. No cards are drawn automatically.")]
-        public List<PuzzleTurnCards> cardsOnTurns = new List<PuzzleTurnCards>();
+        [FormerlySerializedAs("cardsOnTurns")]
+        [Tooltip("Cards received on this side's first turn of the specified puzzle round. No cards are drawn automatically.")]
+        public List<PuzzleRoundCards> cardsOnRounds = new List<PuzzleRoundCards>();
     }
 
     [Serializable]
-    public sealed class PuzzleTurnCards
+    public sealed class PuzzleRoundCards
     {
-        [Tooltip("This side's own turn number: 2 means its second turn, across Preparation and Performance. Use Starting Hand for initial cards.")]
-        [Min(2)] public int turn = 2;
+        [FormerlySerializedAs("turn")]
+        [Tooltip("Round counted from the puzzle's starting situation: 2 means the next round, regardless of Starting Round. Use Starting Hand for initial cards.")]
+        [Min(2)] public int round = 2;
         public List<CardData> cards = new List<CardData>();
     }
 
@@ -176,17 +178,17 @@ namespace VocaloidTCG
                 for(int i = 0; i < side.startingHand.Count; i++) CheckCard(side.startingHand[i], path + " > Starting Hand[" + i + "]", issues);
             }
 
-            if(side.cardsOnTurns == null){
-                issues.Add(path + " > Cards On Turns: list is missing.");
+            if(side.cardsOnRounds == null){
+                issues.Add(path + " > Cards On Rounds: list is missing.");
                 return;
             }
 
-            for(int i = 0; i < side.cardsOnTurns.Count; i++){
-                var grant = side.cardsOnTurns[i];
-                string grantPath = path + " > Cards On Turns[" + i + "]";
+            for(int i = 0; i < side.cardsOnRounds.Count; i++){
+                var grant = side.cardsOnRounds[i];
+                string grantPath = path + " > Cards On Rounds[" + i + "]";
                 
                 if(grant == null) { issues.Add(grantPath + ": entry is missing."); continue; }
-                if(grant.turn < 2) issues.Add(grantPath + " > Turn: must be at least 2; put initial cards in Starting Hand.");
+                if(grant.round < 2) issues.Add(grantPath + " > Round: must be at least 2; put initial cards in Starting Hand.");
                 if(grant.cards == null) { issues.Add(grantPath + " > Cards: list is missing."); continue; }
                 
                 for(int j = 0; j < grant.cards.Count; j++) CheckCard(grant.cards[j], grantPath + " > Cards[" + j + "]", issues);

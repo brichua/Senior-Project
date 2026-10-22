@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: colorful x melody 1
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Colorful x Melody
+  id: e4786ab1bc63aaa48b5380f6e22a03aa
+  cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
+  vip: 0
+  info: remove an ally, apply its influence to an adjacent occupied tile this round,
+    then draw 1 card
+  performer: 0
+  stageEffect: 1
+  cost: 2
+  influence: 0
+  flags: []
+  stageInfluenceChange: 1
+  effect: 0
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 1
+  venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: 3479131466928242213, guid: 5bb2d37d8bd4af146a79466b1c0d52b8, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: -1546264209555328045, guid: 925d9690411099844ae226e495a4c281, type: 3}
+  popupImage: {fileID: -8004225029083858605, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 0}

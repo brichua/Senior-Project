@@ -450,10 +450,10 @@ namespace VocaloidTCG.BoardUI
             if(IsPuzzle && actor == state.localPlayerId && CheckPuzzle(false, true)) return;
             state.activePlayerId = actor; turnNumber++;
             turnHadAction = false;
-            if(IsPuzzle) GivePuzzleTurnCards(actor);
-            else if(lastDrawRound[actor] < state.roundNumber){
+            if(lastDrawRound[actor] < state.roundNumber){
                 lastDrawRound[actor] = state.roundNumber;
-                DrawCards(actor, 1 + FieldCards(actor).Count(c=>HasEffect(c,CardEffect.DrawAndRevive)));
+                if(IsPuzzle) GivePuzzleRoundCards(actor);
+                else DrawCards(actor, 1 + FieldCards(actor).Count(c=>HasEffect(c,CardEffect.DrawAndRevive)));
             }
             Log("Player " + actor + " turn begins. Remaining energy: " + state.Side(actor).energy + ".");
             Recompute();

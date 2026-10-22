@@ -16,7 +16,8 @@ MonoBehaviour:
   id: 62660fe607952504fbd5b80eb896c264
   cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
   vip: 0
-  info: "On play, create a 2-cost, 2-influence token in your hand with a random performer keyword. The token uses this card's art and has no card abilities."
+  info: On play, create a 2-cost, 2-influence token in your hand with a random performer
+    keyword. The token uses this card's art and has no card abilities.
   performer: 1
   stageEffect: 0
   cost: 2
@@ -37,5 +38,5 @@ MonoBehaviour:
   cardImage: {fileID: 6025122263036835777, guid: ab1629a51492c6c46878139d08dcf200, type: 3}
   characterImage: {fileID: 4215792470811505543, guid: 8fe782fd5a653624696b560f4cc89939, type: 3}
   iconImage: {fileID: 0}
-  popupImage: {fileID: 0}
+  popupImage: {fileID: -469258639255709176, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

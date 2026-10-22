@@ -16,7 +16,7 @@ MonoBehaviour:
   id: a2edbd3eb56c2c245baf0560cc1cbad7
   cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   vip: 0
-  info: 'Draw 2 cards, then discard 1 of those cards from your hand.'
+  info: Draw 2 cards, then discard 1 of those cards from your hand.
   performer: 0
   stageEffect: 1
   cost: 2
@@ -34,8 +34,8 @@ MonoBehaviour:
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: -1031441428833651656, guid: c0166e081bf7ebc47aafefbc50e5696c, type: 3}
+  cardImage: {fileID: 8919441287718606450, guid: 0149634a078ad0f40910f2d035ef1328, type: 3}
   characterImage: {fileID: 0}
-  iconImage: {fileID: 0}
-  popupImage: {fileID: 0}
+  iconImage: {fileID: -2390253885554371393, guid: b3444360b760c9f4688068ccef9b35ff, type: 3}
+  popupImage: {fileID: -8004225029083858605, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

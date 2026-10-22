@@ -29,13 +29,16 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 8320e54cccaaf8a4c808f0ae69ef95af, type: 2}
     - {fileID: 11400000, guid: b29b801172e82654f843958ca3e3c387, type: 2}
     - {fileID: 11400000, guid: 0b21cc092eb618240ab6629d284db2da, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds:
+    - round: 3
+      cards:
+      - {fileID: 11400000, guid: 86cde7878bbc13f44bc5eb3d2c2c81e0, type: 2}
   enemy:
     energy: 3
     score: 0
     startingHand:
     - {fileID: 11400000, guid: 840a8011cb920614193627793316de04, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds: []
   placements:
   - card: {fileID: 11400000, guid: aa9a761ca1a246347abef6daa6ef5d45, type: 2}
     enemy: 0
@@ -51,10 +54,9 @@ MonoBehaviour:
       toColumn: 2
       toRow: 1
   enemyStarts: 1
-  turnSeconds: 0
   startingPhase: 1
   startingRound: 1
-  objective: 1
-  targetScore: 2
-  roundLimit: 1
+  objective: 0
+  targetScore: 10
+  roundLimit: 5
   playerTurnLimit: 0

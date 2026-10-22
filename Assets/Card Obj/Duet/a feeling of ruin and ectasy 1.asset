@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: a feeling of ruin and ectasy 1
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: A Feeling of Ruin and Ectasy
+  id: ae843449459f31b43b550d1b6e052426
+  cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
+  vip: 0
+  info: encore, when this leaves the stage while on a contested tile, create a 1
+    inf token on its tile
+  performer: 1
+  stageEffect: 0
+  cost: 3
+  influence: 3
+  flags: []
+  stageInfluenceChange: 1
+  effect: 0
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: 3338954485453571720, guid: e5977cf034fd8244fae56853a3f41b0c, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: -882547721380952038, guid: 3f34f124c9b63e540ab5f57dd5eab1ab, type: 3}
+  popupImage: {fileID: -8004225029083858605, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 0}

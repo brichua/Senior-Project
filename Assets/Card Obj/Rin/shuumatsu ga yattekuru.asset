@@ -16,7 +16,8 @@ MonoBehaviour:
   id: 3b616d8aa8524784aa87ec3fb59e572b
   cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   vip: 0
-  info: 'Remove an allied performer from the stage to draw 2 cards. Then, if at least 5 performers are in your discard pile, you may give an enemy performer -3 influence.'
+  info: Remove an allied performer from the stage to draw 2 cards. Then, if at least
+    5 performers are in your discard pile, you may give an enemy performer -3 influence.
   performer: 0
   stageEffect: 1
   cost: 4
@@ -34,8 +35,8 @@ MonoBehaviour:
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: -1031441428833651656, guid: c0166e081bf7ebc47aafefbc50e5696c, type: 3}
+  cardImage: {fileID: 7236007959242945599, guid: 7318042613bf5c344ae520836fae40b0, type: 3}
   characterImage: {fileID: 0}
-  iconImage: {fileID: 0}
-  popupImage: {fileID: 0}
+  iconImage: {fileID: -1376720219992753631, guid: d580e041feb916c4bbce684f8d3712de, type: 3}
+  popupImage: {fileID: -8004225029083858605, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

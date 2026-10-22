@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: young you out
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Young You Out!
+  id: d6201b59725ed9445b7d1c32c6610037
+  cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
+  vip: 1
+  info: "protected 1, regen, once per round when you play or create a performer with
+    a keyword, this gains one of the performer\u2019s keywords. Other allies with
+    2 or more keywords get +1 inf"
+  performer: 1
+  stageEffect: 0
+  cost: 5
+  influence: 6
+  flags: []
+  stageInfluenceChange: 1
+  effect: 0
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 1
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
+  regen: 0
+  protectedInfluence: 1
+  cardImage: {fileID: -5765524530018351925, guid: c349ec9d61c92cf42990a88f6a4b0ba6, type: 3}
+  characterImage: {fileID: 1254040762369812751, guid: ffa1fa9e6f8c20e42bcab0900622a4e3, type: 3}
+  iconImage: {fileID: 6431280556360935281, guid: 4f3020800a1fc394ab2b1e67933d6443, type: 3}
+  popupImage: {fileID: -469258639255709176, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 0}

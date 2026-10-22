@@ -16,7 +16,8 @@ MonoBehaviour:
   id: e68cdae503ae1da47940660afb1bbd91
   cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   vip: 0
-  info: "On play, create a 0-cost, 1-influence token with Nimble in another column on your side of the field. The token uses this card's art and has no card abilities."
+  info: On play, create a 0-cost, 1-influence token with Nimble in another column
+    on your side of the field. The token uses this card's art and has no card abilities.
   performer: 1
   stageEffect: 0
   cost: 1
@@ -37,5 +38,5 @@ MonoBehaviour:
   cardImage: {fileID: -2566321668903677826, guid: d28610d4d714b8f4bb7332ade60844a9, type: 3}
   characterImage: {fileID: 7316340532325103920, guid: 6fcd4b4689f261a449aa7a904ee25a4a, type: 3}
   iconImage: {fileID: 8992371609442261355, guid: f2dff76a89863514ba29321c562fc7b9, type: 3}
-  popupImage: {fileID: 0}
+  popupImage: {fileID: -2014337633463164255, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

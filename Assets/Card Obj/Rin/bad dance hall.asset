@@ -16,7 +16,8 @@ MonoBehaviour:
   id: 8a54e1ae4e59f3f49a05e87b95e8601c
   cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   vip: 0
-  info: 'Create two 1-influence tokens on tiles outside the middle column that have no allied performer.'
+  info: Create two 1-influence tokens on tiles outside the middle column that have
+    no allied performer.
   performer: 0
   stageEffect: 1
   cost: 2
@@ -34,8 +35,8 @@ MonoBehaviour:
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: -1031441428833651656, guid: c0166e081bf7ebc47aafefbc50e5696c, type: 3}
+  cardImage: {fileID: -303662549863463552, guid: 21feae401060c4946a4d8ddf42485eb1, type: 3}
   characterImage: {fileID: 0}
-  iconImage: {fileID: 0}
-  popupImage: {fileID: 0}
+  iconImage: {fileID: 3812014176671957150, guid: 6c011117bef081046947cd6d55c16e7a, type: 3}
+  popupImage: {fileID: -8004225029083858605, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

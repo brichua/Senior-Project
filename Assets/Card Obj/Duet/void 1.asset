@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: void 1
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: "\u0394-VoID"
+  id: b5505428e426eec4f8c562af1fb8880b
+  cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
+  vip: 0
+  info: nimble, when this performer moves, you may move a 1 inf token you control
+    into its previous tile. When this leaves the stage, give that token +1 inf
+  performer: 1
+  stageEffect: 0
+  cost: 2
+  influence: 2
+  flags: []
+  stageInfluenceChange: 1
+  effect: 0
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: 3797069580137803858, guid: 003d41f91ed19a0458edf36168ce3d4b, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: -1330443146153028195, guid: dcf79095997e7bf4aada373d3e1870e9, type: 3}
+  popupImage: {fileID: -2014337633463164255, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 0}
