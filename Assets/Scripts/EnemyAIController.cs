@@ -1,3 +1,5 @@
+using System.Linq;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace VocaloidTCG.BoardUI
@@ -5,13 +7,13 @@ namespace VocaloidTCG.BoardUI
     public enum EnemyAIScoringAxis { Row, Column }
 
     /// <summary>
-    /// The first official enemy AI. It examines legal actions, scores them with
-    /// EnemyActionScorer, performs the best positive action, or passes.
+    /// Chooses legal plays, moves and card effects using simple score values.
+    /// Passes when no useful action remains.
     /// </summary>
     public class EnemyAIController : MonoBehaviour
     {
         public GameplayBoardBridge game;
-        public System.Collections.Generic.List<CharacterClassData> classes = new System.Collections.Generic.List<CharacterClassData>();
+        public List<CharacterClassData> classes = new List<CharacterClassData>();
         [Min(0.1f)] public float actionDelay = 0.75f;
         [Tooltip("Use the same axis that GameplayBoardBridge uses for end-of-round scoring.")]
         public EnemyAIScoringAxis scoringAxis = EnemyAIScoringAxis.Column;
@@ -19,6 +21,31 @@ namespace VocaloidTCG.BoardUI
 
         private int observedTurn = -1;
         private float wait;
+        private BoardSnapshot movementSnapshot;
+        private int movementRound = -1;
+        private readonly Dictionary<string, HashSet<int>> visitedTiles = new Dictionary<string, HashSet<int>>();
+
+        private void RefreshMovementMemory()
+        {
+            if (movementSnapshot == game.Snapshot && movementRound == game.Snapshot.roundNumber) return;
+            movementSnapshot = game.Snapshot; movementRound = movementSnapshot.roundNumber;
+            visitedTiles.Clear();
+        }
+
+        // Called by the rules engine only after a move succeeds. This is an AI
+        // preference, not a gameplay restriction on human movement. It prevents
+        // endless back-and-forth across turns from positive local contest scores.
+        public void ObserveAcceptedMove(BoardAction action)
+        {
+            RefreshMovementMemory();
+            if (!visitedTiles.TryGetValue(action.cardInstanceId, out var visited))
+            {
+                visited = new HashSet<int>();
+                visitedTiles[action.cardInstanceId] = visited;
+            }
+            visited.Add(action.fromRow * 5 + action.fromColumn);
+            visited.Add(action.toRow * 5 + action.toColumn);
+        }
 
         protected virtual void Update()
         {
@@ -40,7 +67,7 @@ namespace VocaloidTCG.BoardUI
             int actor = state.activePlayerId;
             BoardAction action;
             EnemyActionEvaluation evaluation;
-            if (ChooseAction(actor, out action, out evaluation))
+            if (TryChooseAction(actor, out action, out evaluation))
             {
                 LogDecision(actor, action, evaluation);
                 game.TrySubmitFor(actor, action);
@@ -52,11 +79,18 @@ namespace VocaloidTCG.BoardUI
             }
         }
 
-        private bool ChooseAction(int actor, out BoardAction best, out EnemyActionEvaluation bestEvaluation)
+        // Also used by deterministic integration checks. This only reads state;
+        // GameplayBoardBridge remains the authority for every legal action.
+        public bool TryChooseAction(int actor, out BoardAction best, out EnemyActionEvaluation bestEvaluation)
         {
             best = default(BoardAction);
             bestEvaluation = new EnemyActionEvaluation(int.MinValue, "no legal action");
+            if (!game) return false;
             var state = game.Snapshot;
+            if (state == null || actor < 0 || actor > 1) return false;
+            RefreshMovementMemory();
+            if (state.pendingEffect != null)
+                return ChooseEffect(actor, out best, out bestEvaluation);
             var placementBoard = PlacementBoard(state, actor);
             bool found = false;
 
@@ -71,17 +105,25 @@ namespace VocaloidTCG.BoardUI
                     var tile = state.tiles[y * 5 + x];
                     var friendly = actor == 0 ? tile.side0 : tile.side1;
                     var opponent = actor == 0 ? tile.side1 : tile.side0;
-                    int resultingInfluence = card.data.stageEffect && friendly != null
-                        ? Mathf.Max(0, friendly.currentInfluence + card.data.stageInfluenceChange)
-                        : card.currentInfluence;
+                    if (card.data.stageEffect)
+                    {
+                        int benefit = EnemyCardPolicy.SpellBenefit(state, actor, card, y * 5 + x);
+                        var spell = new EnemyActionEvaluation(benefit - 2 * card.currentCost - 2,
+                            card.data.effect + " estimated effect value " + benefit + "; cost " + card.currentCost);
+                        Consider(candidate, spell, ref found, ref best, ref bestEvaluation);
+                        continue;
+                    }
+                    int resultingInfluence = card.currentInfluence + EnemyCardPolicy.EntryInfluence(state, actor, card, y * 5 + x);
+                    int friendlyInfluence = friendly == null ? 0 : (actor == 0 ? tile.total0 : tile.total1);
                     int opponentInfluence = opponent == null ? 0 : (actor == 0 ? tile.total1 : tile.total0);
-                    int influenceGain = card.data.stageEffect && friendly != null
-                        ? resultingInfluence - friendly.currentInfluence : resultingInfluence;
+                    int influenceGain = resultingInfluence;
                     var evaluation = EnemyActionScorer.Evaluate(
-                        Lane(x, y), -1, resultingInfluence, opponentInfluence, card.currentCost, false, Mathf.Max(0, influenceGain));
-                    if (card.data.performer)
-                        evaluation = EnemyPlacementScorer.Evaluate(evaluation, card.data.flags, placementBoard,
-                            x, y, -1, -1, false, resultingInfluence < opponentInfluence);
+                        Lane(x, y), -1, resultingInfluence + friendlyInfluence, opponentInfluence, card.currentCost, false, Mathf.Max(0, influenceGain));
+                    evaluation = EnemyPlacementScorer.Evaluate(evaluation, card.data.flags, placementBoard,
+                        x, y, -1, -1, false, resultingInfluence + friendlyInfluence < opponentInfluence);
+                    int effectValue = EnemyCardPolicy.PerformerBenefit(state, actor, card, y * 5 + x);
+                    evaluation.score += effectValue;
+                    evaluation.reason += "; " + card.data.effect + " effect/keyword value " + effectValue;
                     Consider(candidate, evaluation, ref found, ref best, ref bestEvaluation);
                 }
             }
@@ -92,6 +134,15 @@ namespace VocaloidTCG.BoardUI
                 var card = actor == 0 ? source.side0 : source.side1;
                 if (card == null) continue;
 
+                foreach (var unit in new[] { card, actor == 0 ? source.assist0 : source.assist1 }.Where(c => c != null))
+                {
+                    var ability = new BoardAction(BoardActionKind.ActivateEffect, unit.instanceId, x, y, x, y);
+                    string reason;
+                    if (game.CanSubmitFor(actor, ability, out reason))
+                        Consider(ability, new EnemyActionEvaluation(EnemyCardPolicy.AbilityBenefit(state, actor, unit),
+                            unit.data.effect + " activated ability"), ref found, ref best, ref bestEvaluation);
+                }
+
                 ConsiderMove(actor, card, x, y, x - 1, state, placementBoard, ref found, ref best, ref bestEvaluation);
                 ConsiderMove(actor, card, x, y, x + 1, state, placementBoard, ref found, ref best, ref bestEvaluation);
             }
@@ -100,9 +151,32 @@ namespace VocaloidTCG.BoardUI
             return found && bestEvaluation.score > 0;
         }
 
+        private bool ChooseEffect(int actor, out BoardAction best, out EnemyActionEvaluation evaluation)
+        {
+            best = default(BoardAction);
+            evaluation = new EnemyActionEvaluation(int.MinValue, "no legal effect target");
+            var pending = game.Snapshot.pendingEffect;
+            if (pending.actor != actor) return false;
+            bool found = false;
+            var candidates = pending.cards.Select(c => new BoardAction(BoardActionKind.ChooseEffect, c.instanceId, -1, -1, -1, -1))
+                .Concat(pending.tiles.Select(i => new BoardAction(BoardActionKind.ChooseEffect, null, -1, -1, i % 5, i / 5))).ToList();
+            if (pending.optional) candidates.Insert(0, new BoardAction(BoardActionKind.FinishEffect, null, -1, -1, -1, -1));
+            foreach (var candidate in candidates)
+            {
+                string reason;
+                if (!game.CanSubmitFor(actor, candidate, out reason)) continue;
+                int score = EnemyCardPolicy.ChoiceValue(game.Snapshot, pending, candidate);
+                Consider(candidate, new EnemyActionEvaluation(score, pending.effect + " / " + pending.choice + " target value " + score),
+                    ref found, ref best, ref evaluation);
+            }
+            // Mandatory effects must finish even when every option is unfavorable.
+            return found;
+        }
+
         private void ConsiderMove(int actor, CardState card, int fromX, int fromY, int toX,
             BoardSnapshot state, EnemyPlacementBoard placementBoard, ref bool found, ref BoardAction best, ref EnemyActionEvaluation bestEvaluation)
         {
+            if (visitedTiles.TryGetValue(card.instanceId, out var visited) && visited.Contains(fromY * 5 + toX)) return;
             var candidate = new BoardAction(BoardActionKind.MovePerformer, card.instanceId, fromX, fromY, toX, fromY);
             string rejectedReason;
             if (!game.CanSubmitFor(actor, candidate, out rejectedReason)) return;
@@ -110,10 +184,13 @@ namespace VocaloidTCG.BoardUI
             var target = state.tiles[fromY * 5 + toX];
             var opponent = actor == 0 ? target.side1 : target.side0;
             int opponentInfluence = opponent == null ? 0 : (actor == 0 ? target.total1 : target.total0);
+            var source = state.tiles[fromY * 5 + fromX];
+            var assistant = actor == 0 ? source.assist0 : source.assist1;
+            int influence = card.currentInfluence + (assistant == null ? 0 : assistant.currentInfluence);
             var evaluation = EnemyActionScorer.Evaluate(
-                Lane(toX, fromY), Lane(fromX, fromY), card.currentInfluence, opponentInfluence, 0, true);
+                Lane(toX, fromY), Lane(fromX, fromY), influence, opponentInfluence, 0, true);
             evaluation = EnemyPlacementScorer.Evaluate(evaluation, card.data.flags, placementBoard,
-                toX, fromY, fromX, fromY, true, card.currentInfluence < opponentInfluence);
+                toX, fromY, fromX, fromY, true, influence < opponentInfluence);
             Consider(candidate, evaluation, ref found, ref best, ref bestEvaluation);
         }
 
@@ -150,12 +227,11 @@ namespace VocaloidTCG.BoardUI
         {
             if (!enableDecisionLogs) return;
             var state = game.Snapshot;
-            CardState card = action.kind == BoardActionKind.PlayCard
-                ? state.Side(actor).hand.Find(c => c.instanceId == action.cardInstanceId)
-                : (actor == 0 ? state.tiles[action.fromRow * 5 + action.fromColumn].side0 :
-                    state.tiles[action.fromRow * 5 + action.fromColumn].side1);
+            CardState card = state.Side(actor).hand.Concat(state.Side(actor).discard)
+                .Concat(state.tiles.SelectMany(t => actor == 0 ? new[] { t.side0, t.assist0 } : new[] { t.side1, t.assist1 }))
+                .FirstOrDefault(c => c != null && c.instanceId == action.cardInstanceId);
             string cardName = card != null && card.data ? card.data.cardName : action.cardInstanceId;
-            string actionName = action.kind == BoardActionKind.PlayCard ? "play" : "move";
+            string actionName = action.kind.ToString();
             Debug.Log("[Enemy AI] Player " + actor + " chose " + actionName + " " + cardName +
                 " to (" + action.toColumn + ", " + action.toRow + ") — score " + evaluation.score +
                 ". Reason: " + evaluation.reason, this);

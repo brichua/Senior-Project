@@ -35,6 +35,7 @@ namespace VocaloidTCG.BoardUI
             storyPlayerDeck = StorySession.PlayerDeck?.Copy(); storyReturnScene = StorySession.ReturnScene;
             enemyDeck = StorySession.EnemyDeck; deckCatalog = StorySession.Catalog;
             useSelectedDeck = true; puzzle = null; StorySession.PendingBattle = false;
+            if(!enemyAI) enemyAI = GetComponent<EnemyAIController>();
             if(!enemyAI) enemyAI = gameObject.AddComponent<BasicEnemyAITest>();
             enemyAI.game = this; enemyAI.enabled = true;
             var ui = GetComponent<StoryBattleUI>();

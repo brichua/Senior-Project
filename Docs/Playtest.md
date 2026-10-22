@@ -8,6 +8,17 @@ steps produced the listed result; it does not prove the full game is finished.
 | Date | Scene / build | Steps | Result | Follow-up |
 |---|---|---|---|---|
 
+## 2026-10-18 — Card effect AI and coverage presets
+
+| Check | Actual result | Remaining work |
+|---|---|---|
+| Compile all runtime and Editor sources using Unity 6000.5.4f1 compiler/project references | PASS, no errors or warnings in final compile | This is compiler validation outside the running Editor, not a native playtest. |
+| Temporary external compilation/policy check, archived under `Logs/EnemyAI-LocalQA` | PASS: 150 assertions against actual compiled policy, including both actors, harmful shield breaks, own/enemy area effects, strong-target buffs, discard/search/revival choices and read-only evaluation of every enum effect | This fallback was used during the initial Editor reload issue. Normal project verification now uses the native Unity checks below; no additional compiler tooling is needed by teammates. |
+| Existing action/placement scorers | PASS: 10 + 671 checks | Does not establish new effect execution or balance. |
+| Three preset assets | PASS: 30 cards each, registered card references, one class each, max three copies and correct VIP slots | Teammate commit/data audit confirms Miku/Len/Luka are the three implemented effect pools; no numbered deck assets exist. |
+| `Tools > Enemy AI > Run Deck Effect Checks` | PASS: 3,406 assertions; 59 real definitions as both actors; 892 submitted actions, 257 effect choices, 104 ability activations; 18 seeded full matches completed in 6–18 rounds. | No scores/winners injected. Native Play Mode timing and human review are separate. Initial movement oscillation/root-target loops were fixed before the passing run. |
+| Updated AI scene / real Play Mode | PASS: three native AI turns, one per preset, each placing a guaranteed legal performer, completing its choices and passing to player. Pause prevented AI action. Runtime used 8 test energy; no scores or winners injected. `Logs/enemy-deck-turn-smoke.txt`. | Smoke covers the real Update loop/animation gates, not full human UI input or balance. Original opening/redraw interaction remains for manual review. |
+
 ## 2026-09-18 — Enemy AI first integration
 
 | Date | Scene / build | Steps | Result | Follow-up |
