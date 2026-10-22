@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: fairy taled
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Fairy-taled
+  id: 24c6329c3a351524ebf74ffa888f74cb
+  cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
+  vip: 1
+  info: choose an ally. Create a copy of it in your hands that costs 1 less. The
+    copy loses its effects and gains two random keywords
+  performer: 0
+  stageEffect: 1
+  cost: 4
+  influence: 0
+  flags: []
+  stageInfluenceChange: 1
+  effect: 0
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 1
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
+  regen: 0
+  protectedInfluence: 1
+  cardImage: {fileID: -8685527897393802960, guid: 3da857e2a53cc6a43b6e46d57be5d571, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: -1471301707031261474, guid: c86cc11590f1d8340b28c947ce3f38a1, type: 3}
+  popupImage: {fileID: -469258639255709176, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 0}

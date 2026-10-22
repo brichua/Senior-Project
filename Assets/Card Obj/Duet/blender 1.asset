@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: blender 1
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Blender
+  id: c68903d76a11b194687059cd7042cd00
+  cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
+  vip: 0
+  info: choose two adjacent allies. Give each +1 inf and have them share their keywords
+    this round
+  performer: 0
+  stageEffect: 1
+  cost: 2
+  influence: 0
+  flags: []
+  stageInfluenceChange: 1
+  effect: 0
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: -3160001000290653033, guid: 1463c4b0d1034de40b7544de5ed66b8d, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: -6347067740257967448, guid: 979ad093996e0fa47993d8ebfb81b511, type: 3}
+  popupImage: {fileID: -469258639255709176, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 0}

@@ -16,7 +16,9 @@ MonoBehaviour:
   id: 6413cfe47c8236f49a8b93551fb293ad
   cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   vip: 0
-  info: "Cheer Effect.\nSwap the positions of 2 allied performers."
+  info: 'Cheer Effect.
+
+    Swap the positions of 2 allied performers.'
   performer: 0
   stageEffect: 1
   cost: 2
@@ -34,8 +36,8 @@ MonoBehaviour:
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: -2566321668903677826, guid: d28610d4d714b8f4bb7332ade60844a9, type: 3}
+  cardImage: {fileID: -5917251373023699572, guid: 9f6a9ef33c73c024a9e052c2bc8448cf, type: 3}
   characterImage: {fileID: 0}
-  iconImage: {fileID: 0}
-  popupImage: {fileID: 0}
+  iconImage: {fileID: -3587662793662275724, guid: c24fc4352e1e1b241933634ded374b3f, type: 3}
+  popupImage: {fileID: -2014337633463164255, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

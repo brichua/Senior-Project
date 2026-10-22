@@ -16,7 +16,8 @@ MonoBehaviour:
   id: 965ce64d67e184d489ea5f3ae6fba3c9
   cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
   vip: 0
-  info: "Choose 2 adjacent allied performers. Give both +1 influence. Each gains the other's keywords."
+  info: Choose 2 adjacent allied performers. Give both +1 influence. Each gains the
+    other's keywords.
   performer: 0
   stageEffect: 1
   cost: 1
@@ -34,8 +35,8 @@ MonoBehaviour:
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: 6025122263036835777, guid: ab1629a51492c6c46878139d08dcf200, type: 3}
+  cardImage: {fileID: 1727920422703398827, guid: a99c576e4110205438af698b0aa2779c, type: 3}
   characterImage: {fileID: 0}
-  iconImage: {fileID: 0}
-  popupImage: {fileID: 0}
+  iconImage: {fileID: -2372648905267810705, guid: 09a66e8567e29c94bb8b25ea64d76d71, type: 3}
+  popupImage: {fileID: -469258639255709176, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}
