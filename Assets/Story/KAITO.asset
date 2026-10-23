@@ -15,53 +15,53 @@ MonoBehaviour:
   id: story-kaito
   tutorial: 0
   storyClass: 3
-  header: "World Tour Auditions — KAITO"
+  header: "World Tour Auditions \u2014 KAITO"
   playerStarterDeck: {fileID: 11400000, guid: b4dbb0110f192af77177c31f2ded46d3, type: 2}
   prologue:
     lines:
-    - speaker: "Narrator"
+    - speaker: Narrator
       portrait: {fileID: 0}
-      text: "KAITO's phone plays the same chorus again. Miku looks over from her seat."
+      text: KAITO's phone plays the same chorus again. Miku looks over from her seat.
       avatars:
       - slot: 1
         sprite: {fileID: 5903908461516492951, guid: 8c8bebc2cb7e56f4c971ca55f27f8852, type: 3}
       - slot: 4
         sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
-    - speaker: "Miku"
+    - speaker: Miku
       portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "Still watching that clip?"
+      text: Still watching that clip?
       avatars:
       - slot: 1
         sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
       - slot: 4
         sprite: {fileID: -6467469513183496125, guid: 64258669bcda46446a650c15765c381a, type: 3}
-    - speaker: "KAITO"
+    - speaker: KAITO
       portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "It's past a hundred thousand views!"
+      text: It's past a hundred thousand views!
       avatars:
       - slot: 1
         sprite: {fileID: 6526448974759205420, guid: 34e291faf589f6348b04fb7f63ff288c, type: 3}
       - slot: 4
         sprite: {fileID: 4311828083851245686, guid: 0ed4ac1d21af8974a8e3b903b5a7c0c3, type: 3}
-    - speaker: "Miku"
+    - speaker: Miku
       portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "That's great! Does anyone know the next verse?"
+      text: That's great! Does anyone know the next verse?
       avatars:
       - slot: 1
         sprite: {fileID: 5903908461516492951, guid: 8c8bebc2cb7e56f4c971ca55f27f8852, type: 3}
       - slot: 4
         sprite: {fileID: 5531041605552728420, guid: 8a62fd28134ed2841aa676a65b561ae9, type: 3}
-    - speaker: "KAITO"
+    - speaker: KAITO
       portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "Not yet. I'm entering the auditions to fix that."
+      text: Not yet. I'm entering the auditions to fix that.
       avatars:
       - slot: 1
         sprite: {fileID: -8564549143955694275, guid: 431c2f7904cbc9340908c7fb55bd67b1, type: 3}
       - slot: 4
         sprite: {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
-    - speaker: "Miku"
+    - speaker: Miku
       portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "Then you'd better get rehearsing!"
+      text: Then you'd better get rehearsing!
       avatars:
       - slot: 1
         sprite: {fileID: 3726713837962234875, guid: 1e5c86882b65c85449ca8dfa842f3d59, type: 3}
@@ -69,57 +69,59 @@ MonoBehaviour:
         sprite: {fileID: 5531041605552728420, guid: 8a62fd28134ed2841aa676a65b561ae9, type: 3}
   epilogue:
     lines:
-    - speaker: "Narrator"
+    - speaker: Narrator
       portrait: {fileID: 0}
-      text: "KAITO has won the headline spot. Backstage, he's trying to squeeze the words NEXT SHOW onto a small sign."
+      text: KAITO has won the headline spot. Backstage, he's trying to squeeze the
+        words NEXT SHOW onto a small sign.
       avatars:
       - slot: 1
         sprite: {fileID: 5903908461516492951, guid: 8c8bebc2cb7e56f4c971ca55f27f8852, type: 3}
       - slot: 4
         sprite: {fileID: 7674018612228396797, guid: 87a8d465a23a180429198277114a8403, type: 3}
-    - speaker: "Len"
+    - speaker: Len
       portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "You're still making that sign?"
+      text: You're still making that sign?
       avatars:
       - slot: 1
         sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
       - slot: 4
         sprite: {fileID: 2109474199129327443, guid: 3464634288aedf349aea48de0f10dcdc, type: 3}
-    - speaker: "KAITO"
+    - speaker: KAITO
       portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "Of course! People keep asking where they can hear the full song."
+      text: Of course! People keep asking where they can hear the full song.
       avatars:
       - slot: 1
         sprite: {fileID: 6526448974759205420, guid: 34e291faf589f6348b04fb7f63ff288c, type: 3}
       - slot: 4
         sprite: {fileID: 7674018612228396797, guid: 87a8d465a23a180429198277114a8403, type: 3}
-    - speaker: "Len"
+    - speaker: Len
       portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "Aren't they about to hear it right now?"
+      text: Aren't they about to hear it right now?
       avatars:
       - slot: 1
         sprite: {fileID: 5903908461516492951, guid: 8c8bebc2cb7e56f4c971ca55f27f8852, type: 3}
       - slot: 4
         sprite: {fileID: 2109474199129327443, guid: 3464634288aedf349aea48de0f10dcdc, type: 3}
-    - speaker: "KAITO"
+    - speaker: KAITO
       portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "That's tonight. I'm thinking about the next concert!"
+      text: That's tonight. I'm thinking about the next concert!
       avatars:
       - slot: 1
         sprite: {fileID: 6526448974759205420, guid: 34e291faf589f6348b04fb7f63ff288c, type: 3}
       - slot: 4
         sprite: {fileID: 7674018612228396797, guid: 87a8d465a23a180429198277114a8403, type: 3}
-    - speaker: "Len"
+    - speaker: Len
       portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      text: "Haha! One show at a time, KAITO."
+      text: Haha! One show at a time, KAITO.
       avatars:
       - slot: 1
         sprite: {fileID: 5903908461516492951, guid: 8c8bebc2cb7e56f4c971ca55f27f8852, type: 3}
       - slot: 4
         sprite: {fileID: -6252771093854531909, guid: d8ae485ba1dc9cd47832f3126448021c, type: 3}
-    - speaker: "Narrator"
+    - speaker: Narrator
       portrait: {fileID: 0}
-      text: "KAITO laughs, sets the sign by the entrance, and hurries onstage as the audience calls his name."
+      text: KAITO laughs, sets the sign by the entrance, and hurries onstage as the
+        audience calls his name.
       avatars:
       - slot: 1
         sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
@@ -127,58 +129,60 @@ MonoBehaviour:
         sprite: {fileID: 1275116586176032080, guid: 715a83d076871134280f70cb8c7d6033, type: 3}
   auditions:
   - opponent: 0
-    deckDescription: "Miku strengthens nearby allies and shares influence to build a powerful group of performers."
-    location: "The Lantern Courtyard"
-    auditionText: "An audition against Miku."
-    firstClearReward: {fileID: 11400000, guid: edb40c36ed214e84bb6cfa3922067025, type: 2}
+    deckDescription: Miku strengthens nearby allies and shares influence to build
+      a powerful group of performers.
+    location: The Lantern Courtyard
+    auditionText: An audition against Miku.
+    firstClearReward: {fileID: 11400000, guid: 49b34a7a26ce25b4eb71319e94a4d12c, type: 2}
     easyDeck: {fileID: 11400000, guid: 2c3ebb934c6964f3099f5bca55ebf727, type: 2}
     mediumDeck: {fileID: 11400000, guid: e25a40858a935d10bde6f93df11bc4d9, type: 2}
     hardDeck: {fileID: 11400000, guid: 1e660b9fdcb991ade24445970dfdd6ed, type: 2}
     before:
       lines:
-      - speaker: "Narrator"
+      - speaker: Narrator
         portrait: {fileID: 0}
-        text: "Someone in the food queue is singing KAITO's famous chorus. Unfortunately, they've got the lyrics wrong."
+        text: Someone in the food queue is singing KAITO's famous chorus. Unfortunately,
+          they've got the lyrics wrong.
         avatars:
         - slot: 1
           sprite: {fileID: 3342472002854934847, guid: bb9fbdd48b2c8d14886a01142a8417df, type: 3}
         - slot: 4
           sprite: {fileID: -434653091246056264, guid: ad033b83d33c6dc45a9d86abcdcc004c, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "That's not quite how it goes..."
+        text: That's not quite how it goes...
         avatars:
         - slot: 1
           sprite: {fileID: 6149762242164147661, guid: c3005a6e00678e3419d81925b5c2da6a, type: 3}
         - slot: 4
           sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
-      - speaker: "Miku"
+      - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "They're having fun!"
+        text: They're having fun!
         avatars:
         - slot: 1
           sprite: {fileID: 3342472002854934847, guid: bb9fbdd48b2c8d14886a01142a8417df, type: 3}
         - slot: 4
           sprite: {fileID: -5784461528446217249, guid: 0d1a9c5c749493e4db30ed7310bc43ef, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "I know, I know. It's just—there's a whole second verse!"
+        text: "I know, I know. It's just\u2014there's a whole second verse!"
         avatars:
         - slot: 1
           sprite: {fileID: -7700675349355249711, guid: 222d137e6ff11a04283439eac4703c03, type: 3}
         - slot: 4
           sprite: {fileID: -434653091246056264, guid: ad033b83d33c6dc45a9d86abcdcc004c, type: 3}
-      - speaker: "Miku"
+      - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Then sing it! I'm curious too."
+        text: Then sing it! I'm curious too.
         avatars:
         - slot: 1
           sprite: {fileID: 3596205292311179843, guid: 7900352c976a7424a83c4fd2fc3f494f, type: 3}
         - slot: 4
           sprite: {fileID: 5531041605552728420, guid: 8a62fd28134ed2841aa676a65b561ae9, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "You haven't heard it either?!"
+        text: You haven't heard it either?!
         avatars:
         - slot: 1
           sprite: {fileID: -1971943863084206274, guid: 0bca34c626aa4694aaf31971b87bd402, type: 3}
@@ -186,107 +190,109 @@ MonoBehaviour:
           sprite: {fileID: 4311828083851245686, guid: 0ed4ac1d21af8974a8e3b903b5a7c0c3, type: 3}
     after:
       lines:
-      - speaker: "Narrator"
+      - speaker: Narrator
         portrait: {fileID: 0}
-        text: "KAITO wins. A few people near the stalls call for the second verse again."
+        text: KAITO wins. A few people near the stalls call for the second verse
+          again.
         avatars:
         - slot: 1
           sprite: {fileID: 5903908461516492951, guid: 8c8bebc2cb7e56f4c971ca55f27f8852, type: 3}
         - slot: 4
           sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Wait, you want that part?"
+        text: Wait, you want that part?
         avatars:
         - slot: 1
           sprite: {fileID: -1971943863084206274, guid: 0bca34c626aa4694aaf31971b87bd402, type: 3}
         - slot: 4
           sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
-      - speaker: "Miku"
+      - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "They were singing along by the end!"
+        text: They were singing along by the end!
         avatars:
         - slot: 1
           sprite: {fileID: -7753276395421877545, guid: 710cc76e5bee0ef47a514d68f1f7b013, type: 3}
         - slot: 4
           sprite: {fileID: 5531041605552728420, guid: 8a62fd28134ed2841aa676a65b561ae9, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "I spent ages writing those lyrics, you know."
+        text: I spent ages writing those lyrics, you know.
         avatars:
         - slot: 1
           sprite: {fileID: -8564549143955694275, guid: 431c2f7904cbc9340908c7fb55bd67b1, type: 3}
         - slot: 4
           sprite: {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
-      - speaker: "Miku"
+      - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "And now you've got backup singers. Very enthusiastic ones."
+        text: And now you've got backup singers. Very enthusiastic ones.
         avatars:
         - slot: 1
           sprite: {fileID: 3726713837962234875, guid: 1e5c86882b65c85449ca8dfa842f3d59, type: 3}
         - slot: 4
           sprite: {fileID: -5784461528446217249, guid: 0d1a9c5c749493e4db30ed7310bc43ef, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Haha! All right, one more time!"
+        text: Haha! All right, one more time!
         avatars:
         - slot: 1
           sprite: {fileID: 4067148055806570340, guid: 63bc681a22b302b4697f4c06ebb49c41, type: 3}
         - slot: 4
           sprite: {fileID: -434653091246056264, guid: ad033b83d33c6dc45a9d86abcdcc004c, type: 3}
   - opponent: 1
-    deckDescription: "Len weakens and removes opposing performers to control Center Stage."
-    location: "The Rooftop Theatre"
-    auditionText: "An audition against Len."
-    firstClearReward: {fileID: 11400000, guid: 2c9bee9d08e838f4b8bac5071656c12a, type: 2}
+    deckDescription: Len weakens and removes opposing performers to control Center
+      Stage.
+    location: The Rooftop Theatre
+    auditionText: An audition against Len.
+    firstClearReward: {fileID: 11400000, guid: a01de200ad86aeb468ba23823340d021, type: 2}
     easyDeck: {fileID: 11400000, guid: 2d8ba78264a734a6f9b87166143f8fff, type: 2}
     mediumDeck: {fileID: 11400000, guid: b4189a5eb614f2b7b3b516155fa0906e, type: 2}
     hardDeck: {fileID: 11400000, guid: 037327c14cbdf792dec514f0cc1dd2b3, type: 2}
     before:
       lines:
-      - speaker: "Narrator"
+      - speaker: Narrator
         portrait: {fileID: 0}
-        text: "Len pulls a worn concert ticket from his notebook as KAITO walks up."
+        text: Len pulls a worn concert ticket from his notebook as KAITO walks up.
         avatars:
         - slot: 1
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
         - slot: 4
           sprite: {fileID: -7316959908947235806, guid: cdbe4e0629394454fb7d1830a6b440d8, type: 3}
-      - speaker: "Len"
+      - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "KAITO! Could you sign this?"
+        text: KAITO! Could you sign this?
         avatars:
         - slot: 1
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
         - slot: 4
           sprite: {fileID: 7223590954562643371, guid: 443d92ae47d239f4fbd9198ba873d265, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Of course! Oh, that show—the wind took my set list."
+        text: "Of course! Oh, that show\u2014the wind took my set list."
         avatars:
         - slot: 1
           sprite: {fileID: 4067148055806570340, guid: 63bc681a22b302b4697f4c06ebb49c41, type: 3}
         - slot: 4
           sprite: {fileID: -7316959908947235806, guid: cdbe4e0629394454fb7d1830a6b440d8, type: 3}
-      - speaker: "Len"
+      - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "So that long pause wasn't planned?"
+        text: So that long pause wasn't planned?
         avatars:
         - slot: 1
           sprite: {fileID: -6317423667150299997, guid: 93cb99591fd4be445b3887ccb01be9a0, type: 3}
         - slot: 4
           sprite: {fileID: -8751352758729138934, guid: d741e82c80bfba94dab9c3062b8c8110, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "I was waiting for someone to bring it back."
+        text: I was waiting for someone to bring it back.
         avatars:
         - slot: 1
           sprite: {fileID: 6506257976614099797, guid: e953fd9f6a3a3334884fede5ea8b3148, type: 3}
         - slot: 4
           sprite: {fileID: -8936150323484664188, guid: 606b73881be89c5458cf32485a5a036b, type: 3}
-      - speaker: "Len"
+      - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "I thought it was dramatic!"
+        text: I thought it was dramatic!
         avatars:
         - slot: 1
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
@@ -294,107 +300,108 @@ MonoBehaviour:
           sprite: {fileID: -8751352758729138934, guid: d741e82c80bfba94dab9c3062b8c8110, type: 3}
     after:
       lines:
-      - speaker: "Narrator"
+      - speaker: Narrator
         portrait: {fileID: 0}
-        text: "After KAITO's win, Len hands him a demo with a handwritten track list."
+        text: After KAITO's win, Len hands him a demo with a handwritten track list.
         avatars:
         - slot: 1
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
         - slot: 4
           sprite: {fileID: 7674018612228396797, guid: 87a8d465a23a180429198277114a8403, type: 3}
-      - speaker: "Len"
+      - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "I made you a recording. It's a bit rough."
+        text: I made you a recording. It's a bit rough.
         avatars:
         - slot: 1
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
         - slot: 4
           sprite: {fileID: 2109474199129327443, guid: 3464634288aedf349aea48de0f10dcdc, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "A song of your own? I'd love to hear it."
+        text: A song of your own? I'd love to hear it.
         avatars:
         - slot: 1
           sprite: {fileID: 6526448974759205420, guid: 34e291faf589f6348b04fb7f63ff288c, type: 3}
         - slot: 4
           sprite: {fileID: 7674018612228396797, guid: 87a8d465a23a180429198277114a8403, type: 3}
-      - speaker: "Len"
+      - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Just ignore the second verse. I'm fixing it."
+        text: Just ignore the second verse. I'm fixing it.
         avatars:
         - slot: 1
           sprite: {fileID: 5903908461516492951, guid: 8c8bebc2cb7e56f4c971ca55f27f8852, type: 3}
         - slot: 4
           sprite: {fileID: 2109474199129327443, guid: 3464634288aedf349aea48de0f10dcdc, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Now I'm curious about the second verse."
+        text: Now I'm curious about the second verse.
         avatars:
         - slot: 1
           sprite: {fileID: -8564549143955694275, guid: 431c2f7904cbc9340908c7fb55bd67b1, type: 3}
         - slot: 4
           sprite: {fileID: 7674018612228396797, guid: 87a8d465a23a180429198277114a8403, type: 3}
-      - speaker: "Len"
+      - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "KAITO!"
+        text: KAITO!
         avatars:
         - slot: 1
           sprite: {fileID: 3726713837962234875, guid: 1e5c86882b65c85449ca8dfa842f3d59, type: 3}
         - slot: 4
           sprite: {fileID: -6684565600080182894, guid: 81787a12260dd21419b00634fb644544, type: 3}
   - opponent: 2
-    deckDescription: "Rin creates tokens and turns discards and performers leaving the stage into bonuses."
-    location: "The Tram Depot"
-    auditionText: "An audition against Rin."
-    firstClearReward: {fileID: 11400000, guid: 5a4ca13c112bad64190b371a46fc13d9, type: 2}
+    deckDescription: Rin creates tokens and turns discards and performers leaving
+      the stage into bonuses.
+    location: The Tram Depot
+    auditionText: An audition against Rin.
+    firstClearReward: {fileID: 11400000, guid: b5505428e426eec4f8c562af1fb8880b, type: 2}
     easyDeck: {fileID: 11400000, guid: 0aa8f72f3a952f6ff9caeb6930ca41e8, type: 2}
     mediumDeck: {fileID: 11400000, guid: bad97a986d7fb1382273766afced01f8, type: 2}
     hardDeck: {fileID: 11400000, guid: a10f728ff1af456731f0eb0cfb8904fa, type: 2}
     before:
       lines:
-      - speaker: "Narrator"
+      - speaker: Narrator
         portrait: {fileID: 0}
-        text: "Rin leans over KAITO's shoulder while he reads comments on his phone."
+        text: Rin leans over KAITO's shoulder while he reads comments on his phone.
         avatars:
         - slot: 1
           sprite: {fileID: 3342472002854934847, guid: bb9fbdd48b2c8d14886a01142a8417df, type: 3}
         - slot: 4
           sprite: {fileID: 4151303731112465946, guid: cf77a782e36c6924199896506136f4f3, type: 3}
-      - speaker: "Rin"
+      - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Still checking those numbers?"
+        text: Still checking those numbers?
         avatars:
         - slot: 1
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
         - slot: 4
           sprite: {fileID: 7355067111040609753, guid: e47f0b211c7a9ca4f9fa87c85034581c, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Just seeing what people think."
+        text: Just seeing what people think.
         avatars:
         - slot: 1
           sprite: {fileID: 6506257976614099797, guid: e953fd9f6a3a3334884fede5ea8b3148, type: 3}
         - slot: 4
           sprite: {fileID: 4151303731112465946, guid: cf77a782e36c6924199896506136f4f3, type: 3}
-      - speaker: "Rin"
+      - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Then here's my review: you're taking forever to start."
+        text: 'Then here''s my review: you''re taking forever to start.'
         avatars:
         - slot: 1
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
         - slot: 4
           sprite: {fileID: 7355067111040609753, guid: e47f0b211c7a9ca4f9fa87c85034581c, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "That's a little harsh, don't you think?"
+        text: That's a little harsh, don't you think?
         avatars:
         - slot: 1
           sprite: {fileID: -1971943863084206274, guid: 0bca34c626aa4694aaf31971b87bd402, type: 3}
         - slot: 4
           sprite: {fileID: 4151303731112465946, guid: cf77a782e36c6924199896506136f4f3, type: 3}
-      - speaker: "Rin"
+      - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Want a better review? Beat me first!"
+        text: Want a better review? Beat me first!
         avatars:
         - slot: 1
           sprite: {fileID: -7753276395421877545, guid: 710cc76e5bee0ef47a514d68f1f7b013, type: 3}
@@ -402,107 +409,109 @@ MonoBehaviour:
           sprite: {fileID: -5737405312357465230, guid: 25b3083561c08624e8c1142bcd67678c, type: 3}
     after:
       lines:
-      - speaker: "Narrator"
+      - speaker: Narrator
         portrait: {fileID: 0}
-        text: "KAITO wins, but the crowd immediately starts chanting for another song."
+        text: KAITO wins, but the crowd immediately starts chanting for another song.
         avatars:
         - slot: 1
           sprite: {fileID: -7753276395421877545, guid: 710cc76e5bee0ef47a514d68f1f7b013, type: 3}
         - slot: 4
           sprite: {fileID: -6891413683278241132, guid: 0561decc7a86c4d42b17bcc8fbdc96f7, type: 3}
-      - speaker: "Rin"
+      - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Hah! Looks like you're not getting off that easily."
+        text: Hah! Looks like you're not getting off that easily.
         avatars:
         - slot: 1
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
         - slot: 4
           sprite: {fileID: -5737405312357465230, guid: 25b3083561c08624e8c1142bcd67678c, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "I hadn't planned an encore."
+        text: I hadn't planned an encore.
         avatars:
         - slot: 1
           sprite: {fileID: -1971943863084206274, guid: 0bca34c626aa4694aaf31971b87bd402, type: 3}
         - slot: 4
           sprite: {fileID: 1008211201124965473, guid: 430621e623a778b47bc4f779618698db, type: 3}
-      - speaker: "Rin"
+      - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Seriously? You've got all these people right here!"
+        text: Seriously? You've got all these people right here!
         avatars:
         - slot: 1
           sprite: {fileID: -7753276395421877545, guid: 710cc76e5bee0ef47a514d68f1f7b013, type: 3}
         - slot: 4
           sprite: {fileID: -6891710502897521986, guid: c688d2633af154e4b9f2194e663a7494, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Well, do you know the harmony?"
+        text: Well, do you know the harmony?
         avatars:
         - slot: 1
           sprite: {fileID: 6506257976614099797, guid: e953fd9f6a3a3334884fede5ea8b3148, type: 3}
         - slot: 4
           sprite: {fileID: -6498270370585485129, guid: 6a005da741980b346901fdcc3c26ab52, type: 3}
-      - speaker: "Rin"
+      - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Obviously. Move over!"
+        text: Obviously. Move over!
         avatars:
         - slot: 1
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
         - slot: 4
           sprite: {fileID: -8036308041886742708, guid: 9c688388a046dd24dbbc30ee2987acc9, type: 3}
   - opponent: 4
-    deckDescription: "Meiko creates new cards and shares keywords to strengthen her performers."
-    location: "The Converted Cinema"
-    auditionText: "An audition against MEIKO."
-    firstClearReward: {fileID: 11400000, guid: 0b21cc092eb618240ab6629d284db2da, type: 2}
+    deckDescription: Meiko creates new cards and shares keywords to strengthen her
+      performers.
+    location: The Converted Cinema
+    auditionText: An audition against MEIKO.
+    firstClearReward: {fileID: 11400000, guid: e8e9644dad15eb64b94ca2f5ba1969b4, type: 2}
     easyDeck: {fileID: 11400000, guid: 066951dfb2fabf738bf0d86706f3ce72, type: 2}
     mediumDeck: {fileID: 11400000, guid: 667cedfedc6bc5f803e6556c38c79a7f, type: 2}
     hardDeck: {fileID: 11400000, guid: 25f74ba3e4be98bdaac0713570db66b4, type: 2}
     before:
       lines:
-      - speaker: "Narrator"
+      - speaker: Narrator
         portrait: {fileID: 0}
-        text: "KAITO studies a promotional message on his phone. MEIKO glances at his expression."
+        text: KAITO studies a promotional message on his phone. MEIKO glances at
+          his expression.
         avatars:
         - slot: 1
           sprite: {fileID: 3342472002854934847, guid: bb9fbdd48b2c8d14886a01142a8417df, type: 3}
         - slot: 4
           sprite: {fileID: 5979520765731624643, guid: 97abf828f29ca514ca6d72471346fdc0, type: 3}
-      - speaker: "MEIKO"
+      - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Bad news?"
+        text: Bad news?
         avatars:
         - slot: 1
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
         - slot: 4
           sprite: {fileID: 1120887921928544082, guid: c84a1dbbe04dc854eb3a3c88bb4bdc39, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "They want another fifteen-second clip. The exact same chorus."
+        text: They want another fifteen-second clip. The exact same chorus.
         avatars:
         - slot: 1
           sprite: {fileID: 6149762242164147661, guid: c3005a6e00678e3419d81925b5c2da6a, type: 3}
         - slot: 4
           sprite: {fileID: 5979520765731624643, guid: 97abf828f29ca514ca6d72471346fdc0, type: 3}
-      - speaker: "MEIKO"
+      - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Well, are you going to give them one?"
+        text: Well, are you going to give them one?
         avatars:
         - slot: 1
           sprite: {fileID: 3342472002854934847, guid: bb9fbdd48b2c8d14886a01142a8417df, type: 3}
         - slot: 4
           sprite: {fileID: 659807028895115265, guid: d5deaaf6772957344b6b32b1640b27d3, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "I was hoping to sing the whole thing for once."
+        text: I was hoping to sing the whole thing for once.
         avatars:
         - slot: 1
           sprite: {fileID: 6149762242164147661, guid: c3005a6e00678e3419d81925b5c2da6a, type: 3}
         - slot: 4
           sprite: {fileID: -5024050331173424593, guid: 958fcfd1579699b4f92d3293e00f0594, type: 3}
-      - speaker: "MEIKO"
+      - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Then put the phone down. You've got a stage right there."
+        text: Then put the phone down. You've got a stage right there.
         avatars:
         - slot: 1
           sprite: {fileID: 3342472002854934847, guid: bb9fbdd48b2c8d14886a01142a8417df, type: 3}
@@ -510,107 +519,108 @@ MonoBehaviour:
           sprite: {fileID: -3391162939266002076, guid: a185e68c9523bca4491339ca00ed0447, type: 3}
     after:
       lines:
-      - speaker: "Narrator"
+      - speaker: Narrator
         portrait: {fileID: 0}
-        text: "KAITO comes backstage after singing the whole song, still out of breath."
+        text: KAITO comes backstage after singing the whole song, still out of breath.
         avatars:
         - slot: 1
           sprite: {fileID: 5903908461516492951, guid: 8c8bebc2cb7e56f4c971ca55f27f8852, type: 3}
         - slot: 4
           sprite: {fileID: 8756508170796686454, guid: d93bc75ba5d83d14f859334df5b225e0, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "They stayed! Even for the quiet verse."
+        text: They stayed! Even for the quiet verse.
         avatars:
         - slot: 1
           sprite: {fileID: 6526448974759205420, guid: 34e291faf589f6348b04fb7f63ff288c, type: 3}
         - slot: 4
           sprite: {fileID: -5024050331173424593, guid: 958fcfd1579699b4f92d3293e00f0594, type: 3}
-      - speaker: "MEIKO"
+      - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Good. You looked pretty happy up there."
+        text: Good. You looked pretty happy up there.
         avatars:
         - slot: 1
           sprite: {fileID: 5903908461516492951, guid: 8c8bebc2cb7e56f4c971ca55f27f8852, type: 3}
         - slot: 4
           sprite: {fileID: 1521368860836332526, guid: 18538c62a586e8e40880ac3a43b0ccca, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "I was! Do you think they'd want an encore?"
+        text: I was! Do you think they'd want an encore?
         avatars:
         - slot: 1
           sprite: {fileID: 6526448974759205420, guid: 34e291faf589f6348b04fb7f63ff288c, type: 3}
         - slot: 4
           sprite: {fileID: 8756508170796686454, guid: d93bc75ba5d83d14f859334df5b225e0, type: 3}
-      - speaker: "MEIKO"
+      - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Probably. But have some water first."
+        text: Probably. But have some water first.
         avatars:
         - slot: 1
           sprite: {fileID: 5903908461516492951, guid: 8c8bebc2cb7e56f4c971ca55f27f8852, type: 3}
         - slot: 4
           sprite: {fileID: 659807028895115265, guid: d5deaaf6772957344b6b32b1640b27d3, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Okay. Then an encore!"
+        text: Okay. Then an encore!
         avatars:
         - slot: 1
           sprite: {fileID: 6526448974759205420, guid: 34e291faf589f6348b04fb7f63ff288c, type: 3}
         - slot: 4
           sprite: {fileID: -5024050331173424593, guid: 958fcfd1579699b4f92d3293e00f0594, type: 3}
   - opponent: 5
-    deckDescription: "Luka contests Center Stage and builds audience score to unlock discounts and stronger buffs."
-    location: "The Planetarium"
-    auditionText: "An audition against Luka."
-    firstClearReward: {fileID: 11400000, guid: 2a55cd481cf55c344bbc28b64e00e025, type: 2}
+    deckDescription: Luka contests Center Stage and builds audience score to unlock
+      discounts and stronger buffs.
+    location: The Planetarium
+    auditionText: An audition against Luka.
+    firstClearReward: {fileID: 11400000, guid: 4f75cdfcf5c08904fb24c724f2f5746d, type: 2}
     easyDeck: {fileID: 11400000, guid: ceb93133aa9561c6a872dab0cfa2c39e, type: 2}
     mediumDeck: {fileID: 11400000, guid: f4b2837e43d5e0cbd469618d517077ef, type: 2}
     hardDeck: {fileID: 11400000, guid: f1256f254a989b509dcc07792658e523, type: 2}
     before:
       lines:
-      - speaker: "Narrator"
+      - speaker: Narrator
         portrait: {fileID: 0}
-        text: "KAITO has his phone out, ready to share a clip of Luka rehearsing."
+        text: KAITO has his phone out, ready to share a clip of Luka rehearsing.
         avatars:
         - slot: 1
           sprite: {fileID: 5903908461516492951, guid: 8c8bebc2cb7e56f4c971ca55f27f8852, type: 3}
         - slot: 4
           sprite: {fileID: 5296954397734636559, guid: 88015ca618f77154aaacf58d9c875728, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "That sounded lovely. Mind if I post it?"
+        text: That sounded lovely. Mind if I post it?
         avatars:
         - slot: 1
           sprite: {fileID: 4067148055806570340, guid: 63bc681a22b302b4697f4c06ebb49c41, type: 3}
         - slot: 4
           sprite: {fileID: 5296954397734636559, guid: 88015ca618f77154aaacf58d9c875728, type: 3}
-      - speaker: "Luka"
+      - speaker: Luka
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Not yet. I still don't know who wrote the song."
+        text: Not yet. I still don't know who wrote the song.
         avatars:
         - slot: 1
           sprite: {fileID: -6317423667150299997, guid: 93cb99591fd4be445b3887ccb01be9a0, type: 3}
         - slot: 4
           sprite: {fileID: 2541232186797710645, guid: 8c2198f91143d7040ab0170e51459e2c, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Oh. I was about to credit you."
+        text: Oh. I was about to credit you.
         avatars:
         - slot: 1
           sprite: {fileID: -1971943863084206274, guid: 0bca34c626aa4694aaf31971b87bd402, type: 3}
         - slot: 4
           sprite: {fileID: 5076353916888053700, guid: 76bcca590ddfebc49b7f79afec057bfc, type: 3}
-      - speaker: "Luka"
+      - speaker: Luka
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Which would make things rather awkward if the writer saw it."
+        text: Which would make things rather awkward if the writer saw it.
         avatars:
         - slot: 1
           sprite: {fileID: -7753276395421877545, guid: 710cc76e5bee0ef47a514d68f1f7b013, type: 3}
         - slot: 4
           sprite: {fileID: 2541232186797710645, guid: 8c2198f91143d7040ab0170e51459e2c, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Right. Good thing I asked first!"
+        text: Right. Good thing I asked first!
         avatars:
         - slot: 1
           sprite: {fileID: 4067148055806570340, guid: 63bc681a22b302b4697f4c06ebb49c41, type: 3}
@@ -618,49 +628,49 @@ MonoBehaviour:
           sprite: {fileID: 5076353916888053700, guid: 76bcca590ddfebc49b7f79afec057bfc, type: 3}
     after:
       lines:
-      - speaker: "Narrator"
+      - speaker: Narrator
         portrait: {fileID: 0}
-        text: "KAITO shows Luka a draft post asking who wrote her unsigned melody."
+        text: KAITO shows Luka a draft post asking who wrote her unsigned melody.
         avatars:
         - slot: 1
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
         - slot: 4
           sprite: {fileID: 5076353916888053700, guid: 76bcca590ddfebc49b7f79afec057bfc, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "I included the opening notes. What do you think?"
+        text: I included the opening notes. What do you think?
         avatars:
         - slot: 1
           sprite: {fileID: 6506257976614099797, guid: e953fd9f6a3a3334884fede5ea8b3148, type: 3}
         - slot: 4
           sprite: {fileID: 5296954397734636559, guid: 88015ca618f77154aaacf58d9c875728, type: 3}
-      - speaker: "Luka"
+      - speaker: Luka
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "Much better. But please change that photo."
+        text: Much better. But please change that photo.
         avatars:
         - slot: 1
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
         - slot: 4
           sprite: {fileID: 2541232186797710645, guid: 8c2198f91143d7040ab0170e51459e2c, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "You look very thoughtful."
+        text: You look very thoughtful.
         avatars:
         - slot: 1
           sprite: {fileID: 6149762242164147661, guid: c3005a6e00678e3419d81925b5c2da6a, type: 3}
         - slot: 4
           sprite: {fileID: 5076353916888053700, guid: 76bcca590ddfebc49b7f79afec057bfc, type: 3}
-      - speaker: "Luka"
+      - speaker: Luka
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "KAITO. My eyes are closed."
+        text: KAITO. My eyes are closed.
         avatars:
         - slot: 1
           sprite: {fileID: 3342472002854934847, guid: bb9fbdd48b2c8d14886a01142a8417df, type: 3}
         - slot: 4
           sprite: {fileID: -5160738886049205843, guid: 2083c9a0add72a44ea80fe0b715f4776, type: 3}
-      - speaker: "KAITO"
+      - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        text: "...I'll change it."
+        text: ...I'll change it.
         avatars:
         - slot: 1
           sprite: {fileID: 6149762242164147661, guid: c3005a6e00678e3419d81925b5c2da6a, type: 3}

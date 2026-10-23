@@ -12,7 +12,7 @@ namespace VocaloidTCG
         public List<CardBackData> defaultCardBacks = new List<CardBackData>();
         public List<CardData> startingCollection = new List<CardData>();
         [Header("Decks")]
-        [Tooltip("Deck templates added to the player's Edit Deck collection when the library loads. Existing customized decks are preserved; deleted imports stay deleted. Keep asset names unique and stable after release.")]
+        [Tooltip("Linked decks synchronized with Edit Deck and Story mode. In the main Unity Editor, saving a deck updates its source asset; new decks create catalog assets. Conflicting old edits are preserved as personal copies. Keep asset names unique and stable after release.")]
         public List<DeckData> decks = new List<DeckData>();
         [Tooltip("Default deck given to a new player. Class-specific story starters are assigned on each Story asset.")]
         public DeckData starterDeck;

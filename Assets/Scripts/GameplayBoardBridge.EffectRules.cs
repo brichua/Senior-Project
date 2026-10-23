@@ -133,7 +133,8 @@ namespace VocaloidTCG.BoardUI
         }
 
         public bool CanActivateEffect(CardState c){
-            return c!=null && CanAct(c.ownerId) && state.pendingEffect==null && TileOf(c)>=0 && c.activatedTurn!=turnNumber &&
+            return c!=null && CanAct(c.ownerId) && state.pendingEffect==null && TileOf(c)>=0 &&
+                (HasEffect(c,CardEffect.WeakenAndRoot) ? c.activatedRound!=state.roundNumber : c.activatedTurn!=turnNumber) &&
                 (HasEffect(c,CardEffect.ColumnMoveAbility) && FieldCards(c.ownerId).Any(a=>Enumerable.Range(0,25).Any(i=>i%5==TileOf(a)%5 && CanRelocate(a,i))) ||
                 HasEffect(c,CardEffect.WeakenAndRoot) && FieldCards(1-c.ownerId).Any() ||
                 HasEffect(c,CardEffect.ReviveAbility) && state.phase==RoundPhase.Preparation && state.Side(c.ownerId).discard.Any(d=>d.data.performer && RevivalCost(c,d)<=state.Side(c.ownerId).energy) && Enumerable.Range(0,25).Any(i=>Performer(state.tiles[i],c.ownerId)==null && CanPlace(c.ownerId,i%5,i/5)));
@@ -142,6 +143,7 @@ namespace VocaloidTCG.BoardUI
             var c=FieldCards(actor).FirstOrDefault(x=>x.instanceId==action.cardInstanceId);
             if(!CanActivateEffect(c)) return false;
             c.activatedTurn=turnNumber; turnHadAction=true; state.consecutivePasses=0;
+            if(HasEffect(c,CardEffect.WeakenAndRoot)) c.activatedRound=state.roundNumber;
             StartChoice(c,TileOf(c),HasEffect(c,CardEffect.ColumnMoveAbility) ? EffectChoice.Extended : HasEffect(c,CardEffect.WeakenAndRoot) ? EffectChoice.Enemy : EffectChoice.DiscardPerformer);
             Publish(); return true;
         }

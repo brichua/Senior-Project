@@ -1,8 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.IO.Compression;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Unity.Collections;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
@@ -38,14 +43,67 @@ namespace VocaloidTCG
         public event Action Changed;
         public event Action Sparkle;
         private NetworkManager network;
+        private Task networkShutdown = Task.CompletedTask;
         private GameplayBoardBridge board;
         private DeckRecord selected;
-        private float nextPoll, nextHeartbeat, nextClock, startDeadline;
-        private bool polling, suppressDisconnect, remoteLoaded, localLoaded;
-        private string consumedTicket = "", matchId = "";
-        private int outgoingSequence, incomingSequence;
+        private float nextPoll, nextHeartbeat, nextClock, nextBoardSend, startDeadline;
+        private float nextClientRetry, clientAttemptDeadline, reconnectDeadline, opponentDeadline, nextHandshake;
+        private int rateLimitedPolls, clientAttempts;
+        private bool polling, suppressDisconnect, remoteLoaded, localLoaded, clientConnecting, clientRole, reconnecting, awaitingOpponent, clientHandshakeReceived, boardDirty;
+        private string consumedTicket = "", matchId = "", opponentId = "", relayCode = "";
+        private int outgoingSequence, incomingSequence, startGeneration;
         private readonly HashSet<ulong> authenticated = new HashSet<ulong>();
-        private const string Channel = "VocaloidTCG.Match.v1";
+        private const string Channel = "VocaloidTCG.Match.v3";
+        private const int MaxMessageBytes = 131072;
+        private const int MaxJsonBytes = 1024 * 1024;
+        // Match Unity's public-field data model, while preserving null references.
+        // JsonUtility expands null inline classes (including unused board payloads).
+        private sealed class NetworkFieldsResolver : DefaultContractResolver
+        {
+            protected override List<MemberInfo> GetSerializableMembers(Type type) => type
+                .GetFields(BindingFlags.Instance | BindingFlags.Public)
+                .Where(field => !field.IsNotSerialized).Cast<MemberInfo>().ToList();
+        }
+        private static readonly JsonSerializerSettings NetworkJson = new JsonSerializerSettings {
+            ContractResolver = new NetworkFieldsResolver(), NullValueHandling = NullValueHandling.Ignore,
+            TypeNameHandling = TypeNameHandling.None, MaxDepth = 64
+        };
+
+        internal static T CopyNetworkData<T>(T value) =>
+            JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(value, NetworkJson), NetworkJson);
+
+        internal static byte[] EncodeNetworkMessage(Message message){
+            byte[] json = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message, NetworkJson));
+            if(json.Length > MaxJsonBytes)
+                throw new InvalidOperationException("Multiplayer " + message.kind + " snapshot exceeds the 1 MB data limit.");
+            using(var output = new MemoryStream()){
+                using(var gzip = new GZipStream(output, System.IO.Compression.CompressionLevel.Fastest, true))
+                    gzip.Write(json, 0, json.Length);
+                byte[] payload = output.ToArray();
+                if(payload.Length + sizeof(int) > MaxMessageBytes)
+                    throw new InvalidOperationException("Compressed multiplayer " + message.kind + " message exceeds the 128 KB packet limit.");
+                return payload;
+            }
+        }
+
+        internal static Message DecodeNetworkMessage(byte[] payload){
+            if(payload == null || payload.Length == 0 || payload.Length + sizeof(int) > MaxMessageBytes)
+                throw new InvalidDataException("Invalid multiplayer packet size.");
+            using(var input = new MemoryStream(payload))
+            using(var gzip = new GZipStream(input, CompressionMode.Decompress))
+            using(var output = new MemoryStream()){
+                var buffer = new byte[8192];
+                int count;
+                while((count = gzip.Read(buffer, 0, buffer.Length)) > 0){
+                    if(output.Length + count > MaxJsonBytes)
+                        throw new InvalidDataException("Multiplayer packet expands beyond the 1 MB data limit.");
+                    output.Write(buffer, 0, count);
+                }
+                return JsonConvert.DeserializeObject<Message>(Encoding.UTF8.GetString(output.ToArray()), NetworkJson);
+            }
+        }
+        private const int MaxClientAttempts = 4;
+        private const float ReconnectSeconds = 45f;
 
         [Serializable] public sealed class DeckSummary
         {
@@ -180,17 +238,20 @@ namespace VocaloidTCG
 
         public async void LeaveLobby(){ await Run(async () => {
             if(InMatch || Starting) return;
-            if(Lobby == null){ ShowMenu = false; Notify(); return; }
-            var latest = await LobbyService.Instance.GetLobbyAsync(Lobby.Id);
-            if(latest.Players.Count == 1) await LobbyService.Instance.DeleteLobbyAsync(latest.Id);
-            else {
-                if(latest.HostId == PlayerId) await LobbyService.Instance.UpdateLobbyAsync(latest.Id, new UpdateLobbyOptions {
-                    HostId = latest.Players.First(p => p.Id != PlayerId).Id, IsLocked = false,
-                    Data = new Dictionary<string, DataObject> { { "ticket", null }, { "relay", null } }
-                });
-                await LobbyService.Instance.RemovePlayerAsync(latest.Id, PlayerId);
+            try{
+                if(Lobby == null){ ShowMenu = false; Notify(); return; }
+                var latest = await LobbyService.Instance.GetLobbyAsync(Lobby.Id);
+                if(latest.Players.Count == 1) await LobbyService.Instance.DeleteLobbyAsync(latest.Id);
+                else {
+                    if(latest.HostId == PlayerId) await LobbyService.Instance.UpdateLobbyAsync(latest.Id, new UpdateLobbyOptions {
+                        HostId = latest.Players.First(p => p.Id != PlayerId).Id, IsLocked = false,
+                        Data = new Dictionary<string, DataObject> { { "ticket", null }, { "relay", null } }
+                    });
+                    await LobbyService.Instance.RemovePlayerAsync(latest.Id, PlayerId);
+                }
+            }finally{
+                StopNetwork(); Lobby = null; consumedTicket = ""; SetStatus("");
             }
-            StopNetwork(); Lobby = null; consumedTicket = ""; SetStatus("");
         }); }
 
         public void BackToMain(){
@@ -221,7 +282,9 @@ namespace VocaloidTCG
                 await operation();
             }catch(Exception ex){
                 SetStatus(FriendlyError(ex));
-                Debug.LogException(ex);
+                // Service and validation failures are handled by the lobby UI. Logging them as
+                // errors makes Unity's Error Pause interrupt an otherwise playable match.
+                Debug.LogWarning("Multiplayer request failed: " + FriendlyError(ex));
             }
             finally{
                 Busy = false;
@@ -230,6 +293,8 @@ namespace VocaloidTCG
         }
 
         private static string FriendlyError(Exception ex){
+            if(IsRateLimited(ex))
+                return "The multiplayer service is busy. Please try again shortly.";
             if(ex is LobbyServiceException lobby){
                 if(lobby.Reason == LobbyExceptionReason.LobbyFull) return "This lobby is full.";
                 if(lobby.Reason == LobbyExceptionReason.LobbyNotFound || lobby.Reason == LobbyExceptionReason.InvalidJoinCode) return "That lobby does not exist. Check the code.";
@@ -237,23 +302,64 @@ namespace VocaloidTCG
             }
             return ex.Message;
         }
+
+        private static bool IsRateLimited(Exception ex){
+            if(ex is LobbyServiceException lobby && lobby.Reason == LobbyExceptionReason.RateLimited) return true;
+            if(ex is RelayServiceException relay && relay.Reason == RelayExceptionReason.RateLimited) return true;
+            if(ex is RequestFailedException request &&
+               (request.ErrorCode == CommonErrorCodes.TooManyRequests || request.ErrorCode == 429)) return true;
+            return ex.Message.IndexOf("Too Many Requests", StringComparison.OrdinalIgnoreCase) >= 0 ||
+                   ex.Message.StartsWith("HTTP 429", StringComparison.OrdinalIgnoreCase);
+        }
         
         private string Ticket() => Lobby?.Data != null && Lobby.Data.TryGetValue("ticket", out var value) ? value.Value : "";
         
         private async void Update(){
+            // Board changes can fire many times in one frame. Send the latest snapshot
+            // at most five times per second so fragmented packets do not fill UTP's queue.
+            if(boardDirty && Authority && board && board.Snapshot != null &&
+               network.ConnectedClientsIds.Count > 1 && Time.unscaledTime >= nextBoardSend){
+                boardDirty = false;
+                nextBoardSend = Time.unscaledTime + 0.2f;
+                Send(new Message { kind = "state", board = board.ExportOnlinePacket(1) });
+            }
             if(InMatch && board && Authority && Time.unscaledTime >= nextClock){
                 nextClock = Time.unscaledTime + 0.5f;
                 Send(new Message { kind = "clock", text = board.RemainingSeconds.ToString(System.Globalization.CultureInfo.InvariantCulture) });
             }
 
-            if(Starting && Time.unscaledTime > startDeadline){ await AbortStart("The other player did not connect. Please try again."); }
+            if(Starting && Time.unscaledTime > startDeadline){ await AbortStart("The other player did not connect. Please try again."); return; }
+            if(reconnecting && Time.unscaledTime > reconnectDeadline){ FinishLostConnection(); return; }
+            if(awaitingOpponent && Time.unscaledTime > opponentDeadline){ FinishLostConnection(); return; }
+            if((Starting || reconnecting) && clientRole && !clientConnecting){
+                if(network && network.IsConnectedClient){
+                    if(Time.unscaledTime >= clientAttemptDeadline){
+                        Debug.LogWarning("Multiplayer handshake timed out; retrying connection.");
+                        if(Starting && !InMatch){ clientHandshakeReceived = false; startGeneration++; }
+                        if(InMatch && !reconnecting){
+                            reconnecting = true; reconnectDeadline = Time.unscaledTime + ReconnectSeconds;
+                            if(board) board.SetOnlineConnectionPaused(true);
+                        }
+                        StopNetwork(); nextClientRetry = Time.unscaledTime + 2f;
+                    }else if(Time.unscaledTime >= nextHandshake && (!clientHandshakeReceived || reconnecting || (Starting && InMatch))){
+                        Send(new Message { kind = InMatch ? "loaded" : "hello", deck = selected, text = ContentVersion() });
+                        nextHandshake = Time.unscaledTime + 3f;
+                    }
+                }else{
+                    if(network && Time.unscaledTime >= clientAttemptDeadline){
+                        StopNetwork(); nextClientRetry = Time.unscaledTime + 2f;
+                    }
+                    if(!network && Time.unscaledTime >= nextClientRetry) await ConnectClient();
+                }
+            }
             if(Lobby == null || polling || Busy || Time.unscaledTime < nextPoll) return;
-            polling = true; nextPoll = Time.unscaledTime + 2;
+            polling = true; nextPoll = Time.unscaledTime + (InMatch ? 10f : 3f);
             string id = Lobby.Id;
             
             try{
                 var fresh = await LobbyService.Instance.GetLobbyAsync(id);
                 if(Lobby == null || Lobby.Id != id || Busy) return;
+                rateLimitedPolls = 0;
                 Lobby = fresh;
                 if(!Lobby.Players.Any(p => p.Id == PlayerId)){ Lobby = null; SetStatus("You are no longer in this lobby."); return; }
                 if(IsHost && Time.unscaledTime >= nextHeartbeat){
@@ -266,19 +372,37 @@ namespace VocaloidTCG
                 }
             }
             catch(Exception ex){
-                if(ex is LobbyServiceException missing && (missing.Reason == LobbyExceptionReason.LobbyNotFound || missing.Reason == LobbyExceptionReason.PlayerNotFound)) Lobby = null;
-                SetStatus(FriendlyError(ex));
-                if(Starting) await AbortStart(Status);
+                if(IsRateLimited(ex) ||
+                   (ex is LobbyServiceException limited && limited.Reason == LobbyExceptionReason.NetworkError)){
+                    // Keep the last known lobby and match state. A 429 is temporary and must
+                    // never replace the match status or cancel an in-progress connection.
+                    rateLimitedPolls = Math.Min(rateLimitedPolls + 1, 4);
+                    nextPoll = Time.unscaledTime + Mathf.Min(30f, 3f * (1 << rateLimitedPolls));
+                    return;
+                }
+                bool lobbyGone = ex is LobbyServiceException missing &&
+                    (missing.Reason == LobbyExceptionReason.LobbyNotFound || missing.Reason == LobbyExceptionReason.PlayerNotFound);
+                if(lobbyGone) Lobby = null;
+                if(Starting && lobbyGone) await AbortStart(FriendlyError(ex));
+                else if(lobbyGone && !InMatch) SetStatus(FriendlyError(ex));
+                else Debug.LogWarning("Multiplayer lobby refresh failed: " + ex.Message);
             }
             finally{
                 polling = false;
             }
         }
 
-        private void CreateNetwork(){
-            StopNetwork(); suppressDisconnect = false; authenticated.Clear();
+        private async Task CreateNetwork(){
+            StopNetwork();
+            // Shutdown is processed by Netcode's update loop. Keep its transport alive
+            // until it finishes, and let the old singleton be destroyed before replacing it.
+            await networkShutdown;
+            if(!this || !Application.isPlaying || (!Starting && !reconnecting))
+                throw new OperationCanceledException("The multiplayer connection was cancelled.");
+            suppressDisconnect = false; authenticated.Clear();
             var obj = new GameObject("Match network"); DontDestroyOnLoad(obj);
             var transport = obj.AddComponent<UnityTransport>();
+            transport.MaxPacketQueueSize = 512;
             
             network = obj.AddComponent<NetworkManager>();
             network.NetworkConfig = new NetworkConfig { NetworkTransport = transport, EnableSceneManagement = false,
@@ -286,7 +410,7 @@ namespace VocaloidTCG
             network.ConnectionApprovalCallback = (request, response) => {
                 string token = Encoding.UTF8.GetString(request.Payload);
                 bool local = request.ClientNetworkId == NetworkManager.ServerClientId;
-                bool allowed = local || (network.ConnectedClientsIds.Count < 2 && Lobby.Players.Any(p => p.Id != PlayerId && token == p.Id + "|" + matchId));
+                bool allowed = local || (network.ConnectedClientsIds.Count < 2 && token == opponentId + "|" + matchId);
                 response.Approved = allowed; response.CreatePlayerObject = false;
                 response.Reason = allowed ? "" : "Lobby membership does not match.";
                 if(allowed && !local) authenticated.Add(request.ClientNetworkId);
@@ -294,15 +418,18 @@ namespace VocaloidTCG
             
             network.OnClientConnectedCallback += Connected;
             network.OnClientDisconnectCallback += Disconnected;
-            remoteLoaded = localLoaded = false; outgoingSequence = incomingSequence = 0;
+            network.OnTransportFailure += TransportFailed;
         }
         private async Task StartHost(){
-            Starting = true; startDeadline = Time.unscaledTime + 45; Notify();
+            Starting = true; startDeadline = Time.unscaledTime + 60f; Notify();
+            clientRole = false; reconnecting = awaitingOpponent = false;
+            remoteLoaded = localLoaded = boardDirty = false; outgoingSequence = incomingSequence = 0;
+            opponentId = Lobby.Players.First(p => p.Id != PlayerId).Id;
             matchId = Guid.NewGuid().ToString("N"); consumedTicket = matchId;
             try{
                 var allocation = await RelayService.Instance.CreateAllocationAsync(1);
                 var relay = await RelayService.Instance.GetJoinCodeAsync(allocation.AllocationId);
-                CreateNetwork(); network.GetComponent<UnityTransport>().SetRelayServerData(allocation.ToRelayServerData("dtls"));
+                await CreateNetwork(); network.GetComponent<UnityTransport>().SetRelayServerData(allocation.ToRelayServerData("dtls"));
                 if(!network.StartHost()) throw new InvalidOperationException("Could not start the host.");
                 network.CustomMessagingManager.RegisterNamedMessageHandler(Channel, Receive);
                 Lobby = await LobbyService.Instance.UpdateLobbyAsync(Lobby.Id, new UpdateLobbyOptions { IsLocked = true,
@@ -318,43 +445,123 @@ namespace VocaloidTCG
         }
         
         private async Task StartClient(){
-            Starting = true; startDeadline = Time.unscaledTime + 45; Notify();
+            Starting = true; startDeadline = Time.unscaledTime + 60f; Notify();
+            clientRole = true; reconnecting = false; clientHandshakeReceived = false;
+            outgoingSequence = incomingSequence = clientAttempts = 0;
+            opponentId = Lobby.HostId;
             matchId = Ticket(); consumedTicket = matchId;
+            relayCode = Lobby.Data["relay"].Value;
+            nextClientRetry = Time.unscaledTime;
+            await ConnectClient();
+        }
+
+        private async Task ConnectClient(){
+            if(clientConnecting || !clientRole || (!Starting && !reconnecting)) return;
+            if(clientAttempts >= MaxClientAttempts){
+                if(Starting) await AbortStart("Could not connect to the opponent. Please try again.");
+                else FinishLostConnection();
+                return;
+            }
+            clientConnecting = true; clientAttempts++;
+            SetStatus((reconnecting ? "Reconnecting" : "Connecting") + "… (attempt " + clientAttempts + "/" + MaxClientAttempts + ")");
             try{
-                var allocation = await RelayService.Instance.JoinAllocationAsync(Lobby.Data["relay"].Value);
-                CreateNetwork(); network.GetComponent<UnityTransport>().SetRelayServerData(allocation.ToRelayServerData("dtls"));
+                var allocation = await RelayService.Instance.JoinAllocationAsync(relayCode);
+                if(!clientRole || (!Starting && !reconnecting)) return;
+                await CreateNetwork(); network.GetComponent<UnityTransport>().SetRelayServerData(allocation.ToRelayServerData("dtls"));
                 if(!network.StartClient()) throw new InvalidOperationException("Could not connect to the host.");
                 network.CustomMessagingManager.RegisterNamedMessageHandler(Channel, Receive);
-                SetStatus("Connecting…");
+                clientAttemptDeadline = Time.unscaledTime + 10f;
             }catch(Exception ex){
-                await AbortStart(FriendlyError(ex));
+                StopNetwork();
+                nextClientRetry = Time.unscaledTime + Mathf.Min(8f, 2f * clientAttempts);
+                Debug.LogWarning("Multiplayer connection attempt failed: " + ex.Message);
+            }finally{
+                clientConnecting = false;
             }
         }
 
         private void Connected(ulong id){
-            if(!Authority && id == network.LocalClientId) Send(new Message { kind = "hello", deck = selected, text = ContentVersion() });
+            Debug.Log("Multiplayer peer connected: " + id + (Authority ? " (host)." : " (client). Sending match handshake."));
+            if(Authority) return;
+            if(id == network.LocalClientId){
+                Send(new Message { kind = "hello", deck = selected, text = ContentVersion() });
+                nextHandshake = Time.unscaledTime + 3f;
+                clientAttemptDeadline = Time.unscaledTime + 10f;
+            }
         }
 
         private void Disconnected(ulong id){
             if(suppressDisconnect) return;
-            if(InMatch && board && board.Snapshot != null && board.Snapshot.phase != RoundPhase.Finished)
-                board.OnlineForfeit(1 - board.localPlayerId, "Opponent disconnected.");
-            if(Starting) _ = AbortStart("The opponent disconnected before the match started.");
+            Debug.LogWarning("Multiplayer peer disconnected: " + id + ". Reason: " +
+                (string.IsNullOrEmpty(network.DisconnectReason) ? "No reason supplied by Netcode." : network.DisconnectReason));
+            if(Authority){
+                authenticated.Remove(id);
+                if(InMatch && board && board.Snapshot != null && board.Snapshot.phase != RoundPhase.Finished){
+                    awaitingOpponent = true; opponentDeadline = Time.unscaledTime + ReconnectSeconds;
+                    board.SetOnlineConnectionPaused(true);
+                    Debug.LogWarning("Opponent disconnected; waiting for reconnection.");
+                }else if(Starting) remoteLoaded = false;
+                return;
+            }
+            if(!Starting && (!InMatch || (board && board.Snapshot != null && board.Snapshot.phase == RoundPhase.Finished))) return;
+            if(Starting && !InMatch){ clientHandshakeReceived = false; startGeneration++; }
+            if(InMatch && !reconnecting){
+                reconnecting = true; reconnectDeadline = Time.unscaledTime + ReconnectSeconds;
+                clientAttempts = 0;
+                if(board) board.SetOnlineConnectionPaused(true);
+            }
+            clientAttemptDeadline = Time.unscaledTime;
+            nextClientRetry = Time.unscaledTime + 2f;
+            SetStatus("Reconnecting…");
+        }
+
+        private void FinishLostConnection(){
+            reconnecting = awaitingOpponent = false;
+            if(Starting){ _ = AbortStart("Could not reconnect to the opponent."); return; }
+            if(board) board.SetOnlineConnectionPaused(false);
+            if(board && board.Snapshot != null && board.Snapshot.phase != RoundPhase.Finished)
+                board.OnlineForfeit(1, "Connection to the opponent was lost.");
+            if(clientRole) StopNetwork();
+            SetStatus("Could not reconnect to the opponent.");
         }
 
         private void StopNetwork(){
             suppressDisconnect = true;
             if(!network) return;
-            network.OnClientConnectedCallback -= Connected; network.OnClientDisconnectCallback -= Disconnected;
-            network.Shutdown(); Destroy(network.gameObject); network = null;
+            var stopped = network;
+            network = null;
+            stopped.OnClientConnectedCallback -= Connected; stopped.OnClientDisconnectCallback -= Disconnected;
+            stopped.OnTransportFailure -= TransportFailed;
+            stopped.CustomMessagingManager?.UnregisterNamedMessageHandler(Channel);
+            stopped.Shutdown();
+            networkShutdown = DestroyStoppedNetwork(stopped);
+        }
+
+        private static async Task DestroyStoppedNetwork(NetworkManager stopped){
+            while(stopped && Application.isPlaying && (stopped.ShutdownInProgress || stopped.IsListening))
+                await Task.Yield();
+            // At play-mode exit Netcode and Unity own object teardown.
+            if(!stopped || !Application.isPlaying) return;
+            Destroy(stopped.gameObject);
+            // Destroy is deferred until the end of the frame, including Singleton cleanup.
+            while(stopped && Application.isPlaying) await Task.Yield();
+        }
+
+        private void TransportFailed(){
+            Debug.LogWarning("Multiplayer transport failed. Check the preceding UnityTransport/Relay error. " +
+                "In Multiplayer Play Mode, keep both players running and check whether Error Pause stopped either player.");
         }
         
         public void Send(Message message){
             if(!network || !network.IsListening || (!Authority && !network.IsConnectedClient)) return;
             message.match = matchId;
-            string json = JsonUtility.ToJson(message);
-            using(var writer = new FastBufferWriter(Encoding.UTF8.GetByteCount(json) * 2 + 16, Allocator.Temp)){
-                writer.WriteValueSafe(json);
+            byte[] payload = EncodeNetworkMessage(message);
+            int messageBytes = sizeof(int) + payload.Length;
+            if(message.kind == "hello" || message.kind == "start" || message.kind == "loaded")
+                Debug.Log("Multiplayer sending " + message.kind + ": " + messageBytes + " bytes.");
+            using(var writer = new FastBufferWriter(messageBytes, Allocator.Temp)){
+                writer.WriteValueSafe(payload.Length);
+                writer.WriteBytesSafe(payload);
                 if(Authority){
                     foreach(var id in network.ConnectedClientsIds.Where(id => id != NetworkManager.ServerClientId).ToArray())
                         network.CustomMessagingManager.SendNamedMessage(Channel, id, writer, NetworkDelivery.ReliableFragmentedSequenced);
@@ -362,34 +569,63 @@ namespace VocaloidTCG
             }
         }
 
-        private async void Receive(ulong sender, FastBufferReader reader){
+        private void Receive(ulong sender, FastBufferReader reader){
             try{
-                if(reader.Length > 131072) return;
-                reader.ReadValueSafe(out string json);
-                var message = JsonUtility.FromJson<Message>(json);
-                
-                if(message == null || message.match != matchId) return;
-                if(Authority && !authenticated.Contains(sender)) return;
+                if(reader.Length > MaxMessageBytes){
+                    Debug.LogWarning("Multiplayer rejected oversized message from " + sender + ": " + reader.Length + " bytes.");
+                    return;
+                }
+                reader.ReadValueSafe(out int payloadLength);
+                if(payloadLength <= 0 || payloadLength != reader.Length - reader.Position)
+                    throw new InvalidDataException("Invalid multiplayer packet length.");
+                var payload = new byte[payloadLength];
+                reader.ReadBytesSafe(ref payload, payloadLength);
+                var message = DecodeNetworkMessage(payload);
+                _ = ProcessMessage(sender, message);
+            }catch(Exception ex){
+                Debug.LogWarning("Multiplayer message could not be read: " + ex.Message);
+            }
+        }
+
+        private async Task ProcessMessage(ulong sender, Message message){
+            string messageKind = message?.kind;
+            try{
+                if(message == null) return;
+                if(message.match != matchId){ Debug.LogWarning("Multiplayer ignored " + message.kind + ": match ticket does not match."); return; }
+                if(Authority && !authenticated.Contains(sender)){ Debug.LogWarning("Multiplayer ignored " + message.kind + ": peer " + sender + " is not approved."); return; }
                 if(!Authority && sender != NetworkManager.ServerClientId) return;
+                if(message.kind == "hello" || message.kind == "start" || message.kind == "loaded")
+                    Debug.Log("Multiplayer received " + message.kind + " from " + sender + ".");
                 if(Authority && message.kind == "hello" && Starting && MatchDecks == null){
                     if(message.text != ContentVersion()) throw new InvalidOperationException("Both players need the same game version and card catalog.");
                     if(message.deck == null || !DeckRules.Validate(message.deck, Catalog, Catalog.cards.Select(c => c.id).ToList(), out var error))
                         throw new InvalidOperationException("Opponent has an invalid deck.");
                     MatchDecks = new[] { selected.Copy(), message.deck };
-                    var publicHost = selected.Copy();
-                    publicHost.classes = DeckPresentation.Classes(selected, Catalog).Select(c => c.identity).ToList();
-                    publicHost.cardIds.Clear();
-                    publicHost.vipCardId = "";
-                    Send(new Message { kind = "start", decks = new[] { publicHost, message.deck } });
+                    SendStart();
                     await EnterMatch();
+                }else if(Authority && message.kind == "hello" && Starting && MatchDecks != null){
+                    SendStart();
+                }else if(Authority && message.kind == "hello" && InMatch && board){
+                    PublishBoard();
                 }else if(!Authority && message.kind == "start" && Starting){
+                    if(clientHandshakeReceived) return;
+                    clientHandshakeReceived = true;
+                    clientAttemptDeadline = Time.unscaledTime + 15f;
                     MatchDecks = message.decks;
                     if(MatchDecks == null || MatchDecks.Length != 2) throw new InvalidOperationException("Invalid match configuration.");
-                    await EnterMatch();
-                }else if(Authority && message.kind == "loaded") { remoteLoaded = true; TryStartBoard(); }
+                    if(InMatch) Send(new Message { kind = "loaded" });
+                    else await EnterMatch();
+                }else if(Authority && message.kind == "loaded") {
+                    remoteLoaded = true;
+                    if(Starting) TryStartBoard(); else PublishBoard();
+                }else if(Authority && message.kind == "resumed"){
+                    awaitingOpponent = false;
+                    if(board) board.SetOnlineConnectionPaused(false);
+                }
                 else if(!Authority && message.kind == "state" && board) board.ApplyOnlinePacket(message.board);
                 else if(!Authority && message.kind == "clock" && board && float.TryParse(message.text, System.Globalization.NumberStyles.Float, System.Globalization.CultureInfo.InvariantCulture, out var seconds)) board.SetOnlineClock(seconds);
                 else if(Authority && message.kind == "command" && board){
+                    if(awaitingOpponent) return;
                     if(message.sequence <= incomingSequence) return;
                     incomingSequence = message.sequence;
                     board.ExecuteOnline(1, message.text, message.action, message.cards, message.turn);
@@ -397,40 +633,60 @@ namespace VocaloidTCG
                 } else if(message.kind == "forfeit" && board) board.OnlineForfeit(Authority ? 1 : 0, "Opponent left the match.");
                 else if(message.kind == "abort" && Starting) await AbortStart(message.text);
             }catch(Exception ex){
-                Debug.LogException(ex);
-                if(Starting) await AbortStart(FriendlyError(ex)); else SetStatus("Network message rejected: " + ex.Message);
+                if(InMatch && messageKind == "state") Debug.LogException(ex);
+                else Debug.LogWarning("Multiplayer message rejected: " + ex.Message);
+                if(Starting) await AbortStart(FriendlyError(ex));
+                else if(!InMatch) SetStatus("Network message rejected: " + ex.Message);
             }
+        }
+
+        private void SendStart(){
+            var publicHost = MatchDecks[0].Copy();
+            publicHost.classes = DeckPresentation.Classes(MatchDecks[0], Catalog).Select(c => c.identity).ToList();
+            publicHost.cardIds.Clear(); publicHost.vipCardId = "";
+            Send(new Message { kind = "start", decks = new[] { publicHost, MatchDecks[1] } });
         }
         
         private async Task EnterMatch(){
+            int generation = startGeneration;
             Sparkle?.Invoke(); SetStatus("Both players ready!");
-            await ResetReady();
+            _ = ResetReadyBestEffort();
             await Task.Delay(1800);
-            if(!Starting || !network || !network.IsListening) return;
+            if(!Starting || generation != startGeneration || !network || !network.IsListening) return;
             if(!Application.CanStreamedLevelBeLoaded(GameScene)) throw new InvalidOperationException("Add " + GameScene + " to the build scene list.");
             InMatch = true; ShowMenu = false;
             PuzzleLaunch.Clear(); StorySession.Clear();
+            Debug.Log("Multiplayer loading game scene: " + GameScene);
             SceneManager.LoadScene(GameScene);
+        }
+
+        private async Task ResetReadyBestEffort(){
+            try{ await ResetReady(); }
+            catch(Exception ex){
+                // The ready flag is only needed for the next lobby round. Losing this
+                // request must not cancel a match whose peer connection is established.
+                Debug.LogWarning("Could not reset lobby ready state: " + ex.Message);
+            }
         }
         
         public void AttachBoard(GameplayBoardBridge game){
             board = game; board.InitializeOnline(this, Authority ? 0 : 1);
             localLoaded = true;
             if(Authority){ board.Changed += PublishBoard; TryStartBoard(); }
-            else Send(new Message { kind = "loaded" });
+            else { clientAttemptDeadline = Time.unscaledTime + 15f; Send(new Message { kind = "loaded" }); }
         }
         
         private void TryStartBoard(){
-            if(!Authority || !localLoaded || !remoteLoaded || !board) return;
+            if(!Starting || !Authority || !localLoaded || !remoteLoaded || !board) return;
             Starting = false; board.StartMatch(); PublishBoard();
         }
         
         private void PublishBoard(){
-            if(Authority && board && board.Snapshot != null) Send(new Message { kind = "state", board = board.ExportOnlinePacket(1) });
+            if(Authority && board && board.Snapshot != null) boardDirty = true;
         }
         
         public bool Command(string command, BoardAction action, string[] cards = null){
-            if(!board || board.Snapshot == null) return false;
+            if(!board || board.Snapshot == null || reconnecting || awaitingOpponent) return false;
             if(Authority) return board.ExecuteOnline(0, command, action, cards, board.TurnNumber);
             Send(new Message { kind = "command", text = command, action = action, cards = cards,
                 sequence = ++outgoingSequence, turn = board.TurnNumber });
@@ -439,6 +695,12 @@ namespace VocaloidTCG
         
         public void BoardReceived(){
             Starting = false;
+            if(reconnecting){
+                reconnecting = false; clientAttempts = 0;
+                if(board) board.SetOnlineConnectionPaused(false);
+                Send(new Message { kind = "resumed" });
+                SetStatus("");
+            }
         }
         
         public async void ReturnToLobby(){
@@ -451,7 +713,7 @@ namespace VocaloidTCG
                 }
                 
                 if(board) board.Changed -= PublishBoard;
-                board = null; StopNetwork(); InMatch = Starting = false; MatchDecks = null;
+                board = null; boardDirty = false; StopNetwork(); InMatch = Starting = reconnecting = awaitingOpponent = clientRole = false; MatchDecks = null;
                 
                 if(Lobby != null){
                     try {
@@ -478,9 +740,9 @@ namespace VocaloidTCG
         
         private async Task AbortStart(string reason){
             if(!Starting) return;
-            Starting = false;
+            Starting = reconnecting = awaitingOpponent = clientRole = false;
             Send(new Message { kind = "abort", text = reason });
-            StopNetwork(); MatchDecks = null;
+            StopNetwork(); MatchDecks = null; boardDirty = false;
             
             try{
                 await ResetReady();

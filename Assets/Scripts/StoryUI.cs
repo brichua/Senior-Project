@@ -65,6 +65,7 @@ namespace VocaloidTCG
                 if(!catalog) throw new InvalidOperationException("Assign a Story Catalog on StoryUI.");
                 if(!catalog.Validate(out var error)) throw new InvalidOperationException(error);
                 library = DeckLibrary.Get(catalog.deckCatalog);
+                library.Changed += LibraryChanged;
                 if(library.IsStoryCompleted(catalog.Tutorial)) TutorialProgress.SetCompleted();
 
                 Hook(begin, BeginStory); Hook(classBack, BackToMain); Hook(mapBack, ShowClasses); Hook(auditionBack, ShowMap);
@@ -116,6 +117,15 @@ namespace VocaloidTCG
 
         private static void Hook(Button button, UnityEngine.Events.UnityAction action){
             if(button) button.onClick.AddListener(action);
+        }
+
+        private void LibraryChanged(){
+            if(classPanel && classPanel.activeInHierarchy) BuildClasses();
+            if(audition != null && auditionPanel && auditionPanel.activeInHierarchy) BuildDecks();
+        }
+
+        private void OnDestroy(){
+            if(library != null) library.Changed -= LibraryChanged;
         }
 
         private static void Active(GameObject obj, bool value){

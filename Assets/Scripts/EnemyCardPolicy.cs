@@ -21,7 +21,7 @@ namespace VocaloidTCG.BoardUI
             Math.Abs(first % 5 - second % 5) <= 1 && Math.Abs(first / 5 - second / 5) <= 1;
         private static int HandValue(CardState c) => c.currentInfluence * 4 +
             (c.data.stageEffect ? 8 : 4) + (c.data.effect != CardEffect.None ? 4 : 0) - c.currentCost;
-        private static int RevivalValue(CardState c) => Math.Max(c.data.influence, c.data.shielded) * 4 + 4 +
+        private static int RevivalValue(CardState c) => Math.Max(c.data.influence, c.data.protectedInfluence) * 4 + 4 +
             (c.data.effect != CardEffect.None ? 4 : 0);
         private static int Gain(BoardSnapshot state, CardState c, int n) => c == null ? 0 : n * Weight(Tile(state, c));
         private static int Damage(BoardSnapshot state, CardState c, int n)

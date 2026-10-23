@@ -44,6 +44,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8320e54cccaaf8a4c808f0ae69ef95af, type: 2}
   - {fileID: 11400000, guid: 856278b3ccaa51e42925bc9e967cad0f, type: 2}
   - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
-  vipCard: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  vipCard: {fileID: 11400000, guid: 6040d3c39da30154b8b34b1ed660ed5b, type: 2}
   classes:
   - {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}

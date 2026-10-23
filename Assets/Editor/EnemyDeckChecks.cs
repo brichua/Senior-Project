@@ -83,8 +83,8 @@ public static class EnemyDeckChecks
 
     private static CardState Card(CardData data, int actor, string id = null) => new CardState {
         data = data, definitionId = data.id, ownerId = actor, instanceId = id ?? Guid.NewGuid().ToString("N"),
-        currentCost = data.cost, currentInfluence = data.shielded > 0 ? data.shielded : data.influence,
-        shieldActive = data.shielded > 0
+        currentCost = data.cost, currentInfluence = data.protectedInfluence > 0 ? data.protectedInfluence : data.influence,
+        shieldActive = data.protectedInfluence > 0
     };
 
     private static CardData Basic(DeckCatalog catalog) => catalog.cards.First(c => c.performer && c.effect == CardEffect.None && c.influence >= 2);

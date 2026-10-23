@@ -29,7 +29,7 @@ namespace VocaloidTCG.BoardUI
         private float onlineSeconds, onlineClockAt;
         private int onlinePlayEvent, receivedPlayEvent;
         private string onlinePlayedCard;
-        private bool onlineForfeited;
+        private bool onlineForfeited, connectionPaused;
         private readonly bool[] redrawAccepted = new bool[2], openingComplete = new bool[2];
         private readonly HashSet<string>[] pendingRedraw = new HashSet<string>[2];
         private readonly int[][] redrawSlots = { Array.Empty<int>(), Array.Empty<int>() };
@@ -38,7 +38,7 @@ namespace VocaloidTCG.BoardUI
         public bool IsOnline => online != null;
         public bool OnlineAuthority => online && online.Authority;
         private float OnlineRemaining => state != null && (state.phase == RoundPhase.Preparation || state.phase == RoundPhase.Performance)
-            ? (state.pendingEffect!=null ? onlineSeconds : Mathf.Max(0, onlineSeconds - (Time.unscaledTime - onlineClockAt))) : onlineSeconds;
+            ? (state.pendingEffect!=null || connectionPaused ? onlineSeconds : Mathf.Max(0, onlineSeconds - (Time.unscaledTime - onlineClockAt))) : onlineSeconds;
 
         public void InitializeOnline(MultiplayerSession session, int actor)
         {
@@ -118,8 +118,7 @@ namespace VocaloidTCG.BoardUI
         public OnlineBoardPacket ExportOnlinePacket(int recipient)
         {
             foreach(var card in AllCards(state)) if(card.data) card.definitionId = card.data.id;
-            var copy = JsonUtility.FromJson<BoardSnapshot>(JsonUtility.ToJson(state));
-            // Future trigger choices are resolved by the authority, not exposed to clients.
+            var copy = MultiplayerSession.CopyNetworkData(state);
             copy.queuedEffects.Clear(); copy.delayedTokens.Clear();
             copy.localPlayerId = recipient;
             if(copy.pendingEffect!=null && copy.pendingEffect.actor!=recipient){
@@ -143,6 +142,13 @@ namespace VocaloidTCG.BoardUI
                 resolving = RoundResolutionPending, scoringRow = ScoringRow, playEvent = onlinePlayEvent, playedCard = onlinePlayedCard };
         }
         public void SetOnlineClock(float seconds){ onlineSeconds = Mathf.Max(0, seconds); onlineClockAt = Time.unscaledTime; }
+        public void SetOnlineConnectionPaused(bool paused){
+            if(connectionPaused == paused) return;
+            if(paused && !OnlineAuthority) onlineSeconds = OnlineRemaining;
+            connectionPaused = paused;
+            if(OnlineAuthority && clock) clock.Paused = paused;
+            onlineClockAt = Time.unscaledTime;
+        }
         public void ApplyOnlinePacket(OnlineBoardPacket packet)
         {
             if(OnlineAuthority || packet == null || packet.snapshot == null || packet.revision <= receivedRevision) return;

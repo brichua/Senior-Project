@@ -11,6 +11,7 @@ namespace VocaloidTCG.BoardUI
     {
         public Image art;
         public Image influencePopup;
+        public Image vipStageEffect, vipPerformer;
         public TMP_Text cardName, influence, cost;
         public GameObject detailsRoot;
         public RectTransform visual;
@@ -72,6 +73,10 @@ namespace VocaloidTCG.BoardUI
         private void RenderDetails(CardState state){
             bool revealed = state != null && state.data;
             bool performer = revealed && (state.token || state.data.performer);
+            bool vip = revealed && state.data.vip;
+            var vipSprite = vip && state.data.cardClass ? state.data.cardClass.vipImage : null;
+            SetVipImage(vipStageEffect, vip && state.data.stageEffect, vipSprite);
+            SetVipImage(vipPerformer, vip && state.data.performer, vipSprite);
             if (detailsRoot)
             {
                 bool containsArt = art && art.transform.IsChildOf(detailsRoot.transform);
@@ -85,6 +90,12 @@ namespace VocaloidTCG.BoardUI
                 influencePopup.sprite = state != null && state.data ? state.data.popupImage : null;
             }
             PutDetail(influence, performer ? state.currentInfluence.ToString() : "", performer);
+        }
+
+        private static void SetVipImage(Image image, bool visible, Sprite sprite){
+            if(!image) return;
+            DeckUI.Image(image, visible ? sprite : null);
+            image.gameObject.SetActive(visible);
         }
 
         private static void PutDetail(TMP_Text label, string text, bool visible)

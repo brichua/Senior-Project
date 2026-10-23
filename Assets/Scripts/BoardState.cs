@@ -43,6 +43,7 @@ namespace VocaloidTCG.BoardUI
         public bool createdCard, soloProtectionCondition;
         public PerformerKeywords tokenKeywords, gainedKeywords, sharedKeywords;
         public int tokenInfluence, auraInfluence, roundInfluence, enteredRound, activatedTurn = -1, nimbleRound = -1;
+        public int activatedRound = -1;
         public int rootedRound = -1, protectedTurn = -1, noScoreRound = -1, inheritedHarmonize, inheritedSoloist;
         public bool inheritedStageShare, inheritedEncore, inheritedNimble;
         public string sharedTargetId;

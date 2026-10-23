@@ -116,12 +116,12 @@ TextureImporter:
       name: duet stage effects15_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 107
-        height: 150
+        x: 18
+        y: 66
+        width: 71
+        height: 25
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -138,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: f30be57db4d64d64cad1d71a4daa7c25
     internalID: 0
     vertices: []
     indices: 
