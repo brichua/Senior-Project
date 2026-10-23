@@ -30,6 +30,7 @@ public class SFXManager : MonoBehaviour
     public AudioClip spotlight;
     public AudioClip tile_score_0;
     public AudioClip card_effect;
+    public AudioClip story_start;
 
     [Header("Hover SFX Cooldown")]
     [Min(0f)] public float hoverSoundCooldown = 0.05f;
@@ -252,5 +253,11 @@ public class SFXManager : MonoBehaviour
     {
         if (audioSource && card_effect)
             audioSource.PlayOneShot(card_effect);
+    }
+
+    public void PlayStoryStart()
+    {
+        if (audioSource && story_start)
+            audioSource.PlayOneShot(story_start);
     }
 }

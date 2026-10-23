@@ -16,18 +16,13 @@ MonoBehaviour:
   id: c38cdbf289ef8d54e940b8865fa4343d
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: "Choose an opposing performer. Remove it from the field."
+  info: Choose an opposing performer. Remove it from the field.
   performer: 0
   stageEffect: 1
   cost: 5
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  cardImage: {fileID: -7400554072848222433, guid: bbc96c76526916f47bf76e803f2ce6ca, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: 6915602492387155839, guid: d9e8292efad48e04ba36a93e7dafb874, type: 3}
-  popupImage: {fileID: 0}
-  playSfx: {fileID: 0}
   effect: 36
   scoreThreshold: 0
   harmonize: 0
@@ -37,3 +32,10 @@ MonoBehaviour:
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
+  regen: 0
+  shielded: 0
+  cardImage: {fileID: -7400554072848222433, guid: bbc96c76526916f47bf76e803f2ce6ca, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: 6915602492387155839, guid: d9e8292efad48e04ba36a93e7dafb874, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 8300000, guid: 62f575cdc07fa0c4e8f9359f91790d8b, type: 3}

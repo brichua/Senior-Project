@@ -47,6 +47,7 @@ namespace VocaloidTCG
         public TMP_Text status, lobbyCode;
         public TMP_Text playerHeading, opponentHeading;
         public DeckDisplay selectedDeck, playerDeck, opponentDeck;
+        public SFXManager sfx;
         private MultiplayerSession session;
         [SerializeField] private ConcertEffects sparkles;
         private bool sparkling;
@@ -64,28 +65,32 @@ namespace VocaloidTCG
             if(!root){ Debug.LogError("Save the multiplayer layout into the scene using Tools > Vocaloid TCG > Save Multiplayer UI to Scene.", this); enabled = false; return; }
             if(joinPanel) joinPanel.SetActive(true);
             if(codeInput) codeInput.gameObject.SetActive(true);
-            if(readyImage) readyImage.SetActive(false);
-            if(create) create.onClick.AddListener(session.CreateLobby);
-            if(join) join.onClick.AddListener(Join);
-            if(submitCode && submitCode != join) submitCode.onClick.AddListener(Join);
-            if(back) back.onClick.AddListener(session.BackToMain);
-            if(editDeck) editDeck.onClick.AddListener(session.EditDeck);
+            if (codeInput) codeInput.onValueChanged.AddListener(OnCodeChanged);
+            if (readyImage) readyImage.SetActive(false);
+            if(create) create.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick1(); session.CreateLobby(); });
+            if (join) join.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick1(); Join(); });
+            if (submitCode && submitCode != join) submitCode.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick1(); Join(); });
+            if (back) back.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick2(); session.BackToMain(); });
+            if (editDeck) editDeck.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick1(); session.EditDeck(); });
             if(leave) leave.onClick.AddListener(session.LeaveLobby);
             if(copy) copy.onClick.AddListener(Copy);
             if(pasteCode) pasteCode.onClick.AddListener(PasteCode);
             if(clearCode) clearCode.onClick.AddListener(ClearCode);
-            if(play) play.onClick.AddListener(session.Play);
+            if(play) play.onClick.AddListener(() => { if (sfx) sfx.PlayEnterGameSound(); session.Play(); });
 
             session.Changed += Refresh; session.Sparkle += Sparkle;
             Refresh();
         }
-
+        private void OnCodeChanged(string value){
+            if (sfx)sfx.PlayTypingSound();
+        }
         private void Join(){
             session.JoinLobby(codeInput ? codeInput.text : "");
         }
         
         private void Copy(){
             if(session.Lobby != null){
+                if (sfx) sfx.PlayButtonClick2();
                 GUIUtility.systemCopyBuffer = session.Lobby.LobbyCode;
                 session.SetStatus("Lobby code copied.");
             }

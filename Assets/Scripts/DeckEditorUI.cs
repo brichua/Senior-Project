@@ -64,8 +64,7 @@ namespace VocaloidTCG
             }
 
             if(nameInput) nameInput.characterLimit = 15;
-            if (nameInput)
-                nameInput.onValueChanged.AddListener(OnNameChanged);
+            if (nameInput) nameInput.onValueChanged.AddListener(OnNameChanged);
             Hook(saveName, SaveName); Hook(back, Back); Hook(saveDeck, Save); Hook(clearDeck, Clear);
             Hook(minus, () => Adjust(-1)); Hook(plus, () => Adjust(1)); Hook(addToDeck, ApplyCopies);
             Hook(previousBack, () => PageBacks(-3)); Hook(nextBack, () => PageBacks(3));
@@ -86,10 +85,8 @@ namespace VocaloidTCG
             return true;
         }
         private static void Hook(Button button, UnityEngine.Events.UnityAction action) { if(button) button.onClick.AddListener(action); }
-        private void OnNameChanged(string value)
-        {
-            if (sfx)
-                sfx.PlayTypingSound();
+        private void OnNameChanged(string value){
+            if (sfx) sfx.PlayTypingSound();
         }
         public void OpenNew(){
             Open(null);

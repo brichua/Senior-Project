@@ -23,6 +23,7 @@ namespace VocaloidTCG
         public Button startPuzzle;
         public Button backButton;
         public string mainScene = "Main";
+        public SFXManager sfx;
         [Header("Total puzzle progress")]
         public TMP_Text totalPuzzleCount;
         public Slider totalPuzzleSlider;
@@ -132,6 +133,7 @@ namespace VocaloidTCG
         }
 
         public void Select(PuzzleData puzzle){
+            if (sfx) sfx.PlayClickSound();
             selected = puzzle;
             RenderInformation();
         }
@@ -167,8 +169,8 @@ namespace VocaloidTCG
         public void StartPuzzle(){
             if(!selected) return;
             string error;
-            
-            if(!selected.Validate(out error)) { ReportError(error, selected); return; }
+            if (sfx) sfx.PlayEnterGameSound();
+            if (!selected.Validate(out error)) { ReportError(error, selected); return; }
             if(!Application.CanStreamedLevelBeLoaded(gameScene)) { ReportError("Game Scene: add \"" + gameScene + "\" to the build's scene list.", this); return; }
             PuzzleLaunch.Prepare(selected, catalog.deckCatalog, SceneManager.GetActiveScene().name);
             
