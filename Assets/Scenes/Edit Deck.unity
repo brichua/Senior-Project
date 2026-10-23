@@ -1746,8 +1746,8 @@ MonoBehaviour:
   m_fontSize: 26
   m_fontSizeBase: 26
   m_fontWeight: 400
-  m_enableAutoSizing: 0
-  m_fontSizeMin: 18
+  m_enableAutoSizing: 1
+  m_fontSizeMin: 20
   m_fontSizeMax: 72
   m_fontStyle: 0
   m_HorizontalAlignment: 1
@@ -11104,8 +11104,18 @@ MonoBehaviour:
   typing: {fileID: 8300000, guid: 14ff7fcb12dbf7549972ca12c631a4a4, type: 3}
   class_select: {fileID: 8300000, guid: f74b5c9552f927b4d90138a4f2295532, type: 3}
   enter_game: {fileID: 0}
+  crowd_noise: {fileID: 0}
+  hud_score: {fileID: 0}
+  clock_tick: {fileID: 0}
+  shimmer: {fileID: 0}
+  tile_score: {fileID: 0}
+  player_highlight: {fileID: 0}
+  spotlight: {fileID: 0}
+  tile_score_0: {fileID: 0}
+  card_effect: {fileID: 0}
   hoverSoundCooldown: 0.05
   tileHoverSoundCooldown: 0.05
+  cardAudioSourceIsPlaying: 0
 --- !u!82 &1351455318
 AudioSource:
   m_ObjectHideFlags: 0

@@ -22,6 +22,10 @@ namespace VocaloidTCG.BoardUI
         private float descriptionTop;
         private string layoutName;
         private Vector2 layoutSize;
+        private RectTransform infoBackground;
+        private readonly Vector3[] layoutCorners = new Vector3[4];
+        private bool textSizingConfigured;
+        private Rect layoutBackgroundBounds;
 
         private void OnEnable(){ resetDescriptionScroll = true; }
 
@@ -38,6 +42,7 @@ namespace VocaloidTCG.BoardUI
             gameObject.SetActive(true);
             if(descriptionTinted && description){ description.color=descriptionColor; descriptionTinted=false; }
             Put(cardName, Escape(card.data.cardName));
+            if(cardName) cardName.color = card.data.cardClass ? card.data.cardClass.color : side.textColor;
             Put(influence, card.hasInfluence ? card.currentInfluence.ToString() : "");
             Put(cost, card.currentCost.ToString());
 
@@ -81,10 +86,21 @@ namespace VocaloidTCG.BoardUI
 
         public void UpdateNameSpacing(){
             if(!cardName || !description) return;
+            if(!textSizingConfigured){
+                ConfigureTextSizing(cardName);
+                EnsureDescriptionScroll();
+                var hud = GetComponentInParent<SideHUD>();
+                if(hud && hud.infoBackground) infoBackground = hud.infoBackground.rectTransform;
+                textSizingConfigured = true;
+            }
             if(!descriptionArea){
                 descriptionScroll = description.GetComponentInParent<ScrollRect>();
                 descriptionArea = descriptionScroll ? (RectTransform)descriptionScroll.transform : description.rectTransform;
                 descriptionTop = descriptionArea.offsetMax.y;
+            }
+            if(infoBackground){
+                UpdateBackgroundLayout();
+                return;
             }
             var size = ((RectTransform)transform).rect.size;
             if(layoutName == cardName.text && layoutSize == size && !cardName.havePropertiesChanged) return;
@@ -102,6 +118,108 @@ namespace VocaloidTCG.BoardUI
                 new Vector3(0, descriptionArea.rect.yMax, 0))).y;
             top.y -= Mathf.Max(0, bodyTop - titleBottom + 8);
             descriptionArea.offsetMax = top;
+            resetDescriptionScroll = true;
+        }
+
+        private static void ConfigureTextSizing(TMP_Text text){
+            if(!text.enableAutoSizing){
+                text.fontSizeMax = text.fontSize;
+                text.fontSizeMin = Mathf.Min(text.fontSizeMin, text.fontSize * 0.6f);
+                text.enableAutoSizing = true;
+            }
+            text.alignment = TextAlignmentOptions.TopLeft;
+        }
+
+        private void EnsureDescriptionScroll(){
+            descriptionScroll = description.GetComponentInParent<ScrollRect>();
+            if(!descriptionScroll){
+                var textRect = description.rectTransform;
+                var viewportObject = new GameObject("Description scroll", typeof(RectTransform),
+                    typeof(Image), typeof(RectMask2D), typeof(ScrollRect));
+                viewportObject.layer = description.gameObject.layer;
+                var viewport = (RectTransform)viewportObject.transform;
+                viewport.SetParent(textRect.parent, false);
+                viewport.SetSiblingIndex(textRect.GetSiblingIndex());
+                viewport.anchorMin = textRect.anchorMin;
+                viewport.anchorMax = textRect.anchorMax;
+                viewport.pivot = textRect.pivot;
+                viewport.sizeDelta = textRect.sizeDelta;
+                viewport.anchoredPosition = textRect.anchoredPosition;
+                viewport.localRotation = textRect.localRotation;
+                viewport.localScale = textRect.localScale;
+                viewportObject.GetComponent<Image>().color = Color.clear;
+                textRect.SetParent(viewport, false);
+                textRect.localScale = Vector3.one;
+                textRect.localRotation = Quaternion.identity;
+                textRect.anchorMin = new Vector2(0, 1);
+                textRect.anchorMax = Vector2.one;
+                textRect.pivot = new Vector2(0.5f, 1);
+                textRect.anchoredPosition = Vector2.zero;
+                textRect.sizeDelta = Vector2.zero;
+                descriptionScroll = viewportObject.GetComponent<ScrollRect>();
+                descriptionScroll.viewport = viewport;
+                descriptionScroll.content = textRect;
+            }
+            descriptionScroll.horizontal = false;
+            descriptionScroll.vertical = true;
+            descriptionScroll.movementType = ScrollRect.MovementType.Clamped;
+            descriptionScroll.scrollSensitivity = 24;
+            description.enableAutoSizing = false;
+            description.alignment = TextAlignmentOptions.TopLeft;
+            description.overflowMode = TextOverflowModes.Overflow;
+            description.raycastTarget = true;
+            if(descriptionScroll.content == description.rectTransform){
+                var fitter = description.GetComponent<ContentSizeFitter>();
+                if(!fitter) fitter = description.gameObject.AddComponent<ContentSizeFitter>();
+                fitter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
+                fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
+            }
+        }
+
+        private Rect BoundsIn(RectTransform rect, Transform parent){
+            rect.GetWorldCorners(layoutCorners);
+            var min = (Vector2)parent.InverseTransformPoint(layoutCorners[0]);
+            var max = min;
+            for(int i = 1; i < layoutCorners.Length; i++){
+                var point = (Vector2)parent.InverseTransformPoint(layoutCorners[i]);
+                min = Vector2.Min(min, point);
+                max = Vector2.Max(max, point);
+            }
+            return Rect.MinMaxRect(min.x, min.y, max.x, max.y);
+        }
+
+        private void SetTextBounds(RectTransform rect, Rect bounds){
+            var parent = (RectTransform)rect.parent;
+            var min = (Vector2)parent.InverseTransformPoint(transform.TransformPoint(bounds.min));
+            var max = (Vector2)parent.InverseTransformPoint(transform.TransformPoint(bounds.max));
+            rect.localScale = Vector3.one;
+            rect.anchorMin = rect.anchorMax = Vector2.zero;
+            rect.offsetMin = min - parent.rect.min;
+            rect.offsetMax = max - parent.rect.min;
+        }
+
+        private void UpdateBackgroundLayout(){
+            var bounds = BoundsIn(infoBackground, transform);
+            float padding = Mathf.Min(16, bounds.width * 0.05f);
+            float top = bounds.yMax - padding;
+            if(art && art.gameObject.activeInHierarchy)
+                top = Mathf.Min(top, BoundsIn(art.rectTransform, transform).yMin - 8);
+            if(icon && icon.gameObject.activeInHierarchy)
+                top = Mathf.Min(top, BoundsIn(icon.rectTransform, transform).yMin - 8);
+            var available = Rect.MinMaxRect(bounds.xMin + padding, bounds.yMin + padding,
+                bounds.xMax - padding, top);
+            if(available.width <= 0 || available.height <= 16) return;
+            if(layoutName == cardName.text && layoutBackgroundBounds == available &&
+                !cardName.havePropertiesChanged) return;
+            layoutName = cardName.text;
+            layoutBackgroundBounds = available;
+            float titleHeight = Mathf.Min(cardName.fontSizeMax * 2.4f, (available.height - 8) * 0.4f);
+            SetTextBounds(cardName.rectTransform, Rect.MinMaxRect(available.xMin,
+                available.yMax - titleHeight, available.xMax, available.yMax));
+            cardName.ForceMeshUpdate();
+            float usedHeight = Mathf.Min(titleHeight, cardName.preferredHeight);
+            SetTextBounds(descriptionArea, Rect.MinMaxRect(available.xMin, available.yMin,
+                available.xMax, available.yMax - usedHeight - 8));
             resetDescriptionScroll = true;
         }
 

@@ -36,7 +36,7 @@ MonoBehaviour:
   regen: 0
   protectedInfluence: 0
   cardImage: {fileID: 8200246906327157222, guid: 9546175da4f84914e946975d8aecbbdf, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: 0}
+  characterImage: {fileID: 8155061295789701474, guid: 509b43c13bf896b49a13efd445f18d2e, type: 3}
+  iconImage: {fileID: 4141171174297209248, guid: 5a5b71438842cb94ea0a42b1d2e5bb6c, type: 3}
   popupImage: {fileID: -3350101939418175136, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

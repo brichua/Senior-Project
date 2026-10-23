@@ -190,10 +190,11 @@ MonoBehaviour:
         sprite: {fileID: -7160719286429738108, guid: 041fa33cda16c7044aeada8e9029e9e9, type: 3}
   auditions:
   - opponent: 1
-    deckDescription: "Len weakens and removes opposing performers to control Center Stage."
+    deckDescription: Len weakens and removes opposing performers to control Center
+      Stage.
     location: The Rooftop Theatre
     auditionText: An audition against Len.
-    firstClearReward: {fileID: 11400000, guid: 2c9bee9d08e838f4b8bac5071656c12a, type: 2}
+    firstClearReward: {fileID: 11400000, guid: f8d69254569899342b3016e713eac2ac, type: 2}
     easyDeck: {fileID: 11400000, guid: 2d8ba78264a734a6f9b87166143f8fff, type: 2}
     mediumDeck: {fileID: 11400000, guid: b4189a5eb614f2b7b3b516155fa0906e, type: 2}
     hardDeck: {fileID: 11400000, guid: 037327c14cbdf792dec514f0cc1dd2b3, type: 2}
@@ -299,10 +300,11 @@ MonoBehaviour:
         - slot: 4
           sprite: {fileID: 1275116586176032080, guid: 715a83d076871134280f70cb8c7d6033, type: 3}
   - opponent: 2
-    deckDescription: "Rin creates tokens and turns discards and performers leaving the stage into bonuses."
+    deckDescription: Rin creates tokens and turns discards and performers leaving
+      the stage into bonuses.
     location: The Tram Depot
     auditionText: An audition against Rin.
-    firstClearReward: {fileID: 11400000, guid: 5a4ca13c112bad64190b371a46fc13d9, type: 2}
+    firstClearReward: {fileID: 11400000, guid: 6631ca9c73572a94cb689374408e2cba, type: 2}
     easyDeck: {fileID: 11400000, guid: 0aa8f72f3a952f6ff9caeb6930ca41e8, type: 2}
     mediumDeck: {fileID: 11400000, guid: bad97a986d7fb1382273766afced01f8, type: 2}
     hardDeck: {fileID: 11400000, guid: a10f728ff1af456731f0eb0cfb8904fa, type: 2}
@@ -409,10 +411,11 @@ MonoBehaviour:
         - slot: 4
           sprite: {fileID: 1008211201124965473, guid: 430621e623a778b47bc4f779618698db, type: 3}
   - opponent: 3
-    deckDescription: "Kaito moves performers around the stage and rewards allies for spreading across columns."
+    deckDescription: Kaito moves performers around the stage and rewards allies for
+      spreading across columns.
     location: The Harbor Stage
     auditionText: An audition against KAITO.
-    firstClearReward: {fileID: 11400000, guid: 6583a1897eee0d744add7bc99a893801, type: 2}
+    firstClearReward: {fileID: 11400000, guid: 092135c832b21ae4db09f80496e9eecb, type: 2}
     easyDeck: {fileID: 11400000, guid: e3b30fb588f79c49aed6fc243283b8b7, type: 2}
     mediumDeck: {fileID: 11400000, guid: ed6cee514bf29a43372c939ab3da0f18, type: 2}
     hardDeck: {fileID: 11400000, guid: f63d3f6c9481491c655759b698f5b58a, type: 2}
@@ -519,10 +522,11 @@ MonoBehaviour:
         - slot: 4
           sprite: {fileID: 4067148055806570340, guid: 63bc681a22b302b4697f4c06ebb49c41, type: 3}
   - opponent: 4
-    deckDescription: "Meiko creates new cards and shares keywords to strengthen her performers."
+    deckDescription: Meiko creates new cards and shares keywords to strengthen her
+      performers.
     location: The Converted Cinema
     auditionText: An audition against MEIKO.
-    firstClearReward: {fileID: 11400000, guid: 0b21cc092eb618240ab6629d284db2da, type: 2}
+    firstClearReward: {fileID: 11400000, guid: 4dcfa479a1bb07c4c93f10a503340161, type: 2}
     easyDeck: {fileID: 11400000, guid: 066951dfb2fabf738bf0d86706f3ce72, type: 2}
     mediumDeck: {fileID: 11400000, guid: 667cedfedc6bc5f803e6556c38c79a7f, type: 2}
     hardDeck: {fileID: 11400000, guid: 25f74ba3e4be98bdaac0713570db66b4, type: 2}
@@ -628,10 +632,11 @@ MonoBehaviour:
         - slot: 4
           sprite: {fileID: 8756508170796686454, guid: d93bc75ba5d83d14f859334df5b225e0, type: 3}
   - opponent: 5
-    deckDescription: "Luka contests Center Stage and builds audience score to unlock discounts and stronger buffs."
+    deckDescription: Luka contests Center Stage and builds audience score to unlock
+      discounts and stronger buffs.
     location: The Planetarium
     auditionText: An audition against Luka.
-    firstClearReward: {fileID: 11400000, guid: 2a55cd481cf55c344bbc28b64e00e025, type: 2}
+    firstClearReward: {fileID: 11400000, guid: 38a9db64453d91f43bb1644e0ca1d69b, type: 2}
     easyDeck: {fileID: 11400000, guid: ceb93133aa9561c6a872dab0cfa2c39e, type: 2}
     mediumDeck: {fileID: 11400000, guid: f4b2837e43d5e0cbd469618d517077ef, type: 2}
     hardDeck: {fileID: 11400000, guid: f1256f254a989b509dcc07792658e523, type: 2}

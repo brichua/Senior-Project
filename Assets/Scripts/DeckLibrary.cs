@@ -18,10 +18,13 @@ namespace VocaloidTCG
             public List<StoryClearRecord> storyClears = new List<StoryClearRecord>();
             public List<string> viewedStoryDialogues = new List<string>();
             public List<string> importedCatalogDecks = new List<string>();
+            public List<DeckRecord> catalogDeckBaselines = new List<DeckRecord>();
         }
         private static DeckLibrary instance;
         private SaveData data;
         private readonly string path;
+        private string catalogSignature;
+        private bool refreshingCatalog;
         public DeckCatalog Catalog { get; private set; }
         public event Action Changed;
         public IReadOnlyList<DeckRecord> Decks => data.decks.Select(d => d.Copy()).ToList();
@@ -33,7 +36,7 @@ namespace VocaloidTCG
 
         public static DeckLibrary Get(DeckCatalog catalog = null)
         {
-            if(instance != null) return instance;
+            if(instance != null){ instance.RefreshCatalog(); return instance; }
             if(!catalog) catalog = Resources.Load<DeckCatalog>("DeckCatalog");
             if(!catalog) throw new InvalidOperationException("Assign a DeckCatalog or create Resources/DeckCatalog.asset.");
             instance = new DeckLibrary(catalog, Path.Combine(Application.persistentDataPath, "decks-v1.json")); return instance;
@@ -74,6 +77,8 @@ namespace VocaloidTCG
 
             if(data.decks.Count == 0) {
                 var starter = catalog.starterDeck.CreateRecord();
+                if(catalog.decks.Contains(catalog.starterDeck))
+                    starter.id = starter.catalogKey = DeckCatalogImporter.Key(catalog.starterDeck);
                 if(string.IsNullOrEmpty(starter.cardBackId)) starter.cardBackId = catalog.defaultCardBacks.First(b => b).id;
                 data.owned = data.owned
                     .Concat(starter.cardIds).Concat(new[] { starter.vipCardId }).Where(id => !string.IsNullOrEmpty(id)).Distinct().ToList();
@@ -84,8 +89,9 @@ namespace VocaloidTCG
                 data.decks.Add(starter); data.selectedId = starter.id;
                 saveNeedsUpdate = true;
             }
-            saveNeedsUpdate |= DeckCatalogImporter.Import(catalog, data.decks, data.owned, data.importedCatalogDecks);
+            saveNeedsUpdate |= DeckCatalogImporter.Import(catalog, data.decks, data.owned, data.importedCatalogDecks, data.catalogDeckBaselines);
             if(saveNeedsUpdate) Write(data);
+            catalogSignature = CatalogSignature();
         }
 
         private static SaveData Read(string file){
@@ -101,8 +107,99 @@ namespace VocaloidTCG
             if(loaded.storyClears == null) loaded.storyClears = new List<StoryClearRecord>();
             if(loaded.viewedStoryDialogues == null) loaded.viewedStoryDialogues = new List<string>();
             if(loaded.importedCatalogDecks == null) loaded.importedCatalogDecks = new List<string>();
+            if(loaded.catalogDeckBaselines == null) loaded.catalogDeckBaselines = new List<DeckRecord>();
             return loaded;
         }
+
+        private string CatalogSignature(){
+            var parts = new List<string>();
+            foreach(var asset in Catalog.decks ?? new List<DeckData>()){
+                if(!asset) continue;
+                var deck = asset.CreateRecord();
+                deck.id = deck.catalogKey = DeckCatalogImporter.Key(asset);
+                parts.Add(JsonUtility.ToJson(deck));
+            }
+            parts.Add(string.Join("|", Catalog.startingCollection.Where(c => c).Select(c => c.id)));
+            return string.Join("\n", parts);
+        }
+
+        public void RefreshCatalog(){
+            if(refreshingCatalog) return;
+            string signature = CatalogSignature();
+            if(signature == catalogSignature) return;
+            refreshingCatalog = true;
+            try{
+                var next = JsonUtility.FromJson<SaveData>(JsonUtility.ToJson(data));
+                bool changed = false;
+                foreach(var card in Catalog.startingCollection.Where(c => c))
+                    if(!next.owned.Contains(card.id)){ next.owned.Add(card.id); changed = true; }
+                changed |= DeckCatalogImporter.Import(Catalog, next.decks, next.owned,
+                    next.importedCatalogDecks, next.catalogDeckBaselines);
+                if(changed){ Write(next); data = next; }
+                catalogSignature = signature;
+                if(changed) Changed?.Invoke();
+            }
+            finally{ refreshingCatalog = false; }
+        }
+
+#if UNITY_EDITOR
+        private static double nextCatalogCheck;
+        [UnityEditor.InitializeOnLoadMethod]
+        private static void WatchCatalog(){
+            UnityEditor.EditorApplication.update -= PollCatalog;
+            UnityEditor.EditorApplication.update += PollCatalog;
+        }
+        private static void PollCatalog(){
+            if(!Application.isPlaying || instance == null || UnityEditor.EditorApplication.timeSinceStartup < nextCatalogCheck) return;
+            nextCatalogCheck = UnityEditor.EditorApplication.timeSinceStartup + 0.5;
+            try{ instance.RefreshCatalog(); }
+            catch(Exception ex){ Debug.LogWarning("Could not synchronize deck catalog: " + ex.Message); }
+        }
+
+        private bool CanWriteCatalog => !Application.dataPath.Replace('\\', '/').Contains("/Library/VP/") &&
+            !string.IsNullOrEmpty(UnityEditor.AssetDatabase.GetAssetPath(Catalog));
+
+        private bool SaveCatalogAsset(DeckRecord deck, out string error){
+            error = "";
+            if(!CanWriteCatalog) return true;
+            var asset = Catalog.decks.FirstOrDefault(d => d && DeckCatalogImporter.Key(d) == deck.catalogKey);
+            bool created = !asset;
+            DeckRecord previous = asset ? asset.CreateRecord() : null;
+            try{
+                if(created){
+                    string parent = Path.GetDirectoryName(UnityEditor.AssetDatabase.GetAssetPath(Catalog)).Replace('\\', '/');
+                    string folder = parent + "/Player Decks";
+                    if(!UnityEditor.AssetDatabase.IsValidFolder(folder)) UnityEditor.AssetDatabase.CreateFolder(parent, "Player Decks");
+                    asset = ScriptableObject.CreateInstance<DeckData>();
+                    UnityEditor.AssetDatabase.CreateAsset(asset, UnityEditor.AssetDatabase.GenerateUniqueAssetPath(folder + "/Deck-" + Guid.NewGuid().ToString("N") + ".asset"));
+                    Catalog.decks.Add(asset);
+                }
+                ApplyToAsset(asset, deck);
+                UnityEditor.EditorUtility.SetDirty(asset);
+                UnityEditor.AssetDatabase.SaveAssetIfDirty(asset);
+                if(created){ UnityEditor.EditorUtility.SetDirty(Catalog); UnityEditor.AssetDatabase.SaveAssetIfDirty(Catalog); }
+                deck.catalogKey = DeckCatalogImporter.Key(asset);
+                return true;
+            }
+            catch(Exception ex){
+                if(created && asset){
+                    Catalog.decks.Remove(asset);
+                    UnityEditor.AssetDatabase.DeleteAsset(UnityEditor.AssetDatabase.GetAssetPath(asset));
+                }
+                else if(asset && previous != null) ApplyToAsset(asset, previous);
+                error = "Could not update the catalog deck asset: " + ex.Message;
+                return false;
+            }
+        }
+
+        private void ApplyToAsset(DeckData asset, DeckRecord deck){
+            asset.deckName = deck.deckName;
+            asset.cards = deck.cardIds.Select(Catalog.Card).ToList();
+            asset.vipCard = Catalog.Card(deck.vipCardId);
+            asset.classes = deck.classes.Select(Catalog.Class).ToList();
+            asset.cardBack = Catalog.BackData(deck);
+        }
+#endif
 
         private void Write(SaveData next){
             Directory.CreateDirectory(Path.GetDirectoryName(path));
@@ -125,14 +222,31 @@ namespace VocaloidTCG
         }
 
         public bool SaveDeck(DeckRecord deck, out string error){
+            RefreshCatalog();
             if(!DeckRules.Validate(deck, Catalog, data.owned, out error)) return false;
-            
+            var savedDeck = deck.Copy();
+            if(string.IsNullOrEmpty(savedDeck.id)) savedDeck.id = Guid.NewGuid().ToString("N");
+            var existing = data.decks.Find(d => d.id == savedDeck.id);
+            savedDeck.catalogKey = existing?.catalogKey ?? "";
+#if UNITY_EDITOR
+            if(!SaveCatalogAsset(savedDeck, out error)) return false;
+#endif
             return Commit(next => {
-                var copy = deck.Copy();
-                if(string.IsNullOrEmpty(copy.id)) copy.id = Guid.NewGuid().ToString("N");
+                var copy = savedDeck.Copy();
                 int index = next.decks.FindIndex(d => d.id == copy.id);
                 if(index >= 0) next.decks[index] = copy; else next.decks.Add(copy);
                 next.selectedId = copy.id;
+                if(!string.IsNullOrEmpty(copy.catalogKey)){
+                    if(!next.importedCatalogDecks.Contains(copy.catalogKey)) next.importedCatalogDecks.Add(copy.catalogKey);
+#if UNITY_EDITOR
+                    if(CanWriteCatalog){
+                        var baseline = DeckCatalogImporter.Clone(copy);
+                        baseline.id = copy.catalogKey;
+                        next.catalogDeckBaselines.RemoveAll(d => d.id == baseline.id);
+                        next.catalogDeckBaselines.Add(baseline);
+                    }
+#endif
+                }
             }, out error);
         }
 

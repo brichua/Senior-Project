@@ -270,7 +270,7 @@ namespace VocaloidTCG.BoardUI
         private void ResetReturnedCard(CardState c){
             CardInfluence.Reset(c); c.currentCost=CardCost(c);
             c.auraInfluence=c.roundInfluence=0; c.silenced=c.grantedEncore=false; c.sharedTargetId=null;
-            c.rootedRound=c.protectedTurn=c.noScoreRound=c.activatedTurn=c.nimbleRound=-1;
+            c.rootedRound=c.protectedTurn=c.noScoreRound=c.activatedTurn=c.activatedRound=c.nimbleRound=-1;
             c.inheritedEncore=c.inheritedNimble=c.inheritedStageShare=false; c.inheritedHarmonize=c.inheritedSoloist=0;
             c.gainedKeywords=c.sharedKeywords=default; c.sharedProtectionLevel=0; c.soloProtectionCondition=false;
             c.protectedUntilRound=-1;

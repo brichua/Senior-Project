@@ -40,11 +40,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8a54e1ae4e59f3f49a05e87b95e8601c, type: 2}
   - {fileID: 11400000, guid: 8a54e1ae4e59f3f49a05e87b95e8601c, type: 2}
   - {fileID: 11400000, guid: 4eb7f73c3d7a6624ebc061fa10a04900, type: 2}
-  - {fileID: 11400000, guid: 4eb7f73c3d7a6624ebc061fa10a04900, type: 2}
   - {fileID: 11400000, guid: f97ef4974841eb649a6d782b8fbc5a93, type: 2}
   - {fileID: 11400000, guid: f97ef4974841eb649a6d782b8fbc5a93, type: 2}
   - {fileID: 11400000, guid: a2edbd3eb56c2c245baf0560cc1cbad7, type: 2}
   - {fileID: 11400000, guid: a2edbd3eb56c2c245baf0560cc1cbad7, type: 2}
-  vipCard: {fileID: 0}
+  vipCard: {fileID: 11400000, guid: d88e17fa9fe1aab43baa6cf1aca83782, type: 2}
   classes:
   - {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}

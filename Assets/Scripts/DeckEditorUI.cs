@@ -34,6 +34,7 @@ namespace VocaloidTCG
         public SFXManager sfx;
         private DeckLibrary library;
         private DeckRecord draft;
+        private DeckRecord openedDeck;
         private CardData selected;
         private int pendingCopies, backOffset;
         private readonly List<CardPreviewView> collectionViews = new List<CardPreviewView>();
@@ -58,6 +59,7 @@ namespace VocaloidTCG
 
             try{
                 library = DeckLibrary.Get(catalog); catalog = library.Catalog;
+                library.Changed += LibraryChanged;
             }
             catch(Exception ex){
                 StatusTextFade.Show(status, ex.Message); Debug.LogError(ex.Message, this); return false;
@@ -98,11 +100,27 @@ namespace VocaloidTCG
         public void Open(DeckRecord deck){
             if(!Initialize()) return;
             draft = deck?.Copy() ?? new DeckRecord { cardBackId = catalog.defaultCardBacks.First(b => b).id };
+            openedDeck = deck?.Copy();
             selected = null; backOffset = 0;
             if(nameInput) nameInput.SetTextWithoutNotify(draft.deckName);
             if(editorRoot) editorRoot.SetActive(true); else gameObject.SetActive(true);
             if(selectRoot) selectRoot.SetActive(false);
             StatusTextFade.Show(status, ""); Render();
+        }
+
+        private void LibraryChanged(){
+            if(draft == null || openedDeck == null || !gameObject.activeInHierarchy) return;
+            var current = library.Decks.FirstOrDefault(d => d.id == draft.id);
+            if(current == null || DeckCatalogImporter.SameDeck(current, openedDeck)) return;
+            if(DeckCatalogImporter.SameDeck(draft, openedDeck) || DeckCatalogImporter.SameDeck(draft, current)){
+                draft = current.Copy(); openedDeck = current.Copy();
+                if(nameInput) nameInput.SetTextWithoutNotify(draft.deckName);
+                Render();
+            }else StatusTextFade.Show(status, "The catalog deck changed. Reopen it to load the update, or save to keep your edits.");
+        }
+
+        private void OnDestroy(){
+            if(library != null) library.Changed -= LibraryChanged;
         }
 
         public void SaveName(){

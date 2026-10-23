@@ -14,6 +14,7 @@ namespace VocaloidTCG
         public List<CharacterClass> classes = new List<CharacterClass>();
         public List<string> cardIds = new List<string>();
         public string vipCardId = "";
+        public string catalogKey = "";
         public bool favorite;
         public int Count => cardIds.Count + (string.IsNullOrEmpty(vipCardId) ? 0 : 1);
         public DeckRecord Copy() => JsonUtility.FromJson<DeckRecord>(JsonUtility.ToJson(this));

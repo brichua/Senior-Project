@@ -19,8 +19,8 @@ MonoBehaviour:
   info: ' once per round when another ally leaves the stage, create a 1 inf token
     on an available adjacent tile. Whenever one of your tokens leaves the stage,
     this gets +1 inf'
-  performer: 0
-  stageEffect: 1
+  performer: 1
+  stageEffect: 0
   cost: 4
   influence: 5
   flags: []

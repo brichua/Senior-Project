@@ -32,7 +32,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a3496e519ca02644d980e5c133a95805, type: 2}
   - {fileID: 11400000, guid: 061e434e4a34cc940b42ffecd9858ebb, type: 2}
   - {fileID: 11400000, guid: 061e434e4a34cc940b42ffecd9858ebb, type: 2}
-  - {fileID: 11400000, guid: 061e434e4a34cc940b42ffecd9858ebb, type: 2}
   - {fileID: 11400000, guid: b26e231547c078a4995fc9f25623a874, type: 2}
   - {fileID: 11400000, guid: b26e231547c078a4995fc9f25623a874, type: 2}
   - {fileID: 11400000, guid: 5640faad0d6fd0c4fbfa7f9676641eea, type: 2}
@@ -45,6 +44,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a2edbd3eb56c2c245baf0560cc1cbad7, type: 2}
   - {fileID: 11400000, guid: 8a54e1ae4e59f3f49a05e87b95e8601c, type: 2}
   - {fileID: 11400000, guid: 8a54e1ae4e59f3f49a05e87b95e8601c, type: 2}
-  vipCard: {fileID: 0}
+  vipCard: {fileID: 11400000, guid: 7367930b2d166014ca2cd274c03dfa3c, type: 2}
   classes:
   - {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
