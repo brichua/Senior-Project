@@ -35,6 +35,7 @@ namespace VocaloidTCG
             location, auditionText, rewardName, selectedDeckName, deckCount, firstClear, status;
         public Slider storySlider, overallSlider, mapSlider;
         public StoryDialogueUI dialogue;
+        public SFXManager sfx;
         [Range(0.1f, 1f)] public float lockedClassOpacity = 0.4f;
         [Tooltip("Bypass the tutorial requirement for story selection without changing saved tutorial progress.")]
         public bool debugTutorialCompleted;
@@ -45,6 +46,7 @@ namespace VocaloidTCG
         private StoryDifficulty? chosenDifficulty;
         private bool lastDebugTutorialCompleted;
         private bool resetClassScroll;
+        private bool auditionSelectSoundPlayed;
 
         private readonly List<StoryChoiceView> classViews = new List<StoryChoiceView>();
         private readonly List<StoryChoiceView> rivalViews = new List<StoryChoiceView>();
@@ -57,6 +59,7 @@ namespace VocaloidTCG
             defaultEpilogueImage = epilogue && epilogue.image ? epilogue.image.sprite : null;
             Active(storyInfo, false);
             if(rivalRoot) Active(rivalRoot.gameObject, false);
+            auditionSelectSoundPlayed = true;
         }
 
         private void Start(){
@@ -101,7 +104,8 @@ namespace VocaloidTCG
                             else SelectAudition(audition.opponent);
                         });
                 }
-                else ShowClasses();
+                else ShowClasses(); 
+                //if (sfx) sfx.PlayClickSound();
             }
             catch(Exception ex){
                 DeckUI.Text(status, ex.Message);
@@ -263,7 +267,7 @@ namespace VocaloidTCG
                 view.Bind(() => SelectAudition(other.opponent)); view.SetClass(library.Catalog.Class(other.opponent), rival: true);
                 view.SetProgress(library.IsAuditionCompleted(selected, other.opponent) ? 1 : 0, 1);
             }
-
+            auditionSelectSoundPlayed = false;
             Progress(mapCount, mapSlider, library.StoryClearCount(selected));
             RefreshEpilogue();
         }
@@ -276,7 +280,8 @@ namespace VocaloidTCG
 
         private void BeginStory(){
             if(!selected) return;
-            if(!library.EnsureStoryDeck(selected, out var starterId, out var starterError)){ Report(starterError); return; }
+            if (sfx) sfx.PlayButtonClick1();
+            if (!library.EnsureStoryDeck(selected, out var starterId, out var starterError)){ Report(starterError); return; }
             if(!library.Decks.Any(d => d.id == selectedDeckId && d.classes.Contains(selected.Class) &&
                 DeckRules.Validate(d, library.Catalog, library.Owned, out _))) selectedDeckId = starterId;
             if(library.HasViewedStoryDialogue(selected, false) || !HasDialogue(selected.prologue)) { ShowMap(); return; }
@@ -303,7 +308,7 @@ namespace VocaloidTCG
                 ShowMap();
                 return;
             }
-
+            if (sfx && auditionSelectSoundPlayed == false) { sfx.PlayClassSelectSound(); auditionSelectSoundPlayed = true; };
             Panels(auditionPanel);
             var data = library.Catalog.Class(opponent);
             var storyClass = library.Catalog.Class(selected.Class);
@@ -411,7 +416,7 @@ namespace VocaloidTCG
                 Report(error);
                 return;
             }
-
+            if (sfx) sfx.PlayButtonClick1();
             Remember(); StorySession.EditingDeck = true; SceneManager.LoadScene(deckScene);
         }
 
@@ -422,8 +427,8 @@ namespace VocaloidTCG
                 Report("Select a deck containing the story class.");
                 return;
             }
-
-            if(!DeckRules.Validate(deck, library.Catalog, library.Owned, out var error)){
+            if (sfx) sfx.PlayStoryStart();
+            if (!DeckRules.Validate(deck, library.Catalog, library.Owned, out var error)){
                 Report(error);
                 return;
             }

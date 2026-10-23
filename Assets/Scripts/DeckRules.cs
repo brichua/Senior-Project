@@ -31,11 +31,11 @@ namespace VocaloidTCG
                     cardErrors.Add(label + ": " + group.Count() + " copies in the deck; maximum is 3. Remove " + (group.Count() - 3) + ".");
             }
 
-            if(!string.IsNullOrEmpty(deck.vipCardId)){
-                var vip = CheckCard(deck.vipCardId, "VIP slot", deck, catalog, owned, cardErrors);
-                if(vip && !vip.vip)
-                    cardErrors.Add(CardLabel(vip) + ": placed in the VIP slot, but this card is not marked as VIP. Move it to the regular card list or choose a VIP card.");
-            }
+            //if(!string.IsNullOrEmpty(deck.vipCardId)){
+            //    var vip = CheckCard(deck.vipCardId, "VIP slot", deck, catalog, owned, cardErrors);
+            //    if(vip && !vip.vip)
+            //        cardErrors.Add(CardLabel(vip) + ": placed in the VIP slot, but this card is not marked as VIP. Move it to the regular card list or choose a VIP card.");
+            //}
 
             if(cardErrors.Count > 0){
                 error = "Deck \"" + deck.deckName + "\" has card issues:\n" + string.Join("\n", cardErrors);

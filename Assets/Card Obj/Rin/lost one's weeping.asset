@@ -39,4 +39,4 @@ MonoBehaviour:
   characterImage: {fileID: -2919768096675507028, guid: 6954983015de85e4e9ff097da3bacb21, type: 3}
   iconImage: {fileID: -3775775957614717675, guid: 1fd83fa4a916270448d34efa83af8c8b, type: 3}
   popupImage: {fileID: -8004225029083858605, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
-  playSfx: {fileID: 0}
+  playSfx: {fileID: 8300000, guid: 336ea69be0233a54581ce0995b02ddcc, type: 3}
