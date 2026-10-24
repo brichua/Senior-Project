@@ -648,14 +648,19 @@ namespace VocaloidTCG.BoardUI
 
         private void PlayApproachingEndVoiceline()
         {
-            if (state == null) return;
+            if (state == null || approachingEndVoicelinePlayed == true) return;
 
             int playerScore = state.Side(state.localPlayerId).score;
             int enemyScore = state.Side(1 - state.localPlayerId).score;
-            approachingEndVoicelinePlayed = true;
 
-            if ((state.winScore - playerScore <= 5 || deckExhausted) && playerScore > enemyScore && voicelines) voicelines.PlayVoiceline(playerClasses[0].identity, VoicelineEvent.Excited);
-            else if ((state.winScore - enemyScore <= 5 || deckExhausted) && playerScore < enemyScore && voicelines) voicelines.PlayVoiceline(playerClasses[0].identity, VoicelineEvent.Concerned);
+            if ((state.winScore - playerScore <= 5 || deckExhausted) && playerScore > enemyScore && voicelines) {
+                voicelines.PlayVoiceline(playerClasses[0].identity, VoicelineEvent.Excited);
+                approachingEndVoicelinePlayed = true;
+            }
+            else if ((state.winScore - enemyScore <= 5 || deckExhausted) && playerScore < enemyScore && voicelines) {
+                voicelines.PlayVoiceline(playerClasses[0].identity, VoicelineEvent.Concerned);
+                approachingEndVoicelinePlayed = true;
+            }
             else return;
 
         }
