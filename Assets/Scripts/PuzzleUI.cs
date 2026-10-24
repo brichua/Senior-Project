@@ -26,14 +26,15 @@ namespace VocaloidTCG
         [Header("Total puzzle progress")]
         public TMP_Text totalPuzzleCount;
         public Slider totalPuzzleSlider;
+        public SFXManager sfx;
         private DeckLibrary library;
         private CharacterClassData filter;
         private PuzzleData selected;
         private readonly List<GameObject> classViews = new List<GameObject>(), cardViews = new List<GameObject>();
 
-        private void Awake(){
-            if(startPuzzle) startPuzzle.onClick.AddListener(StartPuzzle);
-            if(backButton) backButton.onClick.AddListener(BackToMain);
+        private void Awake() {
+            if (startPuzzle) startPuzzle.onClick.AddListener(()=> { if (sfx) sfx.PlayEnterGameSound(); StartPuzzle(); });
+            if (backButton) backButton.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick2(); BackToMain(); });
         }
         
         private void OnEnable(){
@@ -132,6 +133,7 @@ namespace VocaloidTCG
         }
 
         public void Select(PuzzleData puzzle){
+            if (sfx) sfx.PlayClickSound();
             selected = puzzle;
             RenderInformation();
         }
@@ -171,8 +173,8 @@ namespace VocaloidTCG
             if(!selected.Validate(out error)) { ReportError(error, selected); return; }
             if(!Application.CanStreamedLevelBeLoaded(gameScene)) { ReportError("Game Scene: add \"" + gameScene + "\" to the build's scene list.", this); return; }
             PuzzleLaunch.Prepare(selected, catalog.deckCatalog, SceneManager.GetActiveScene().name);
-            
-            try{
+            try
+            {
                 SceneManager.LoadScene(gameScene);
             }catch(Exception ex){
                 PuzzleLaunch.Clear(); ReportError(ex.Message, selected);

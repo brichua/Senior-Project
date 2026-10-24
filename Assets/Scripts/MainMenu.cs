@@ -178,6 +178,7 @@ namespace VocaloidTCG
         }
 
         public void Play(){
+            if (sfx) sfx.PlayButtonClick1();
             OpenStory();
         }
         
@@ -188,19 +189,22 @@ namespace VocaloidTCG
                 DeckUI.Text(status, "Complete the tutorial to unlock multiplayer.");
                 return;
             }
-            try { MultiplayerSession.Open(catalog, SceneManager.GetActiveScene().name, deckScene, lobbyScene).GameScene = multiplayerGameScene; }
-            catch(Exception ex) { DeckUI.Text(status, ex.Message); }
+            try { if (sfx) sfx.PlayButtonClick1(); MultiplayerSession.Open(catalog, SceneManager.GetActiveScene().name, deckScene, lobbyScene).GameScene = multiplayerGameScene; }
+            catch (Exception ex) { DeckUI.Text(status, ex.Message); }
         }
         
         public void OpenDeckEditor(){
+            if (sfx) sfx.PlayButtonClick1();
             if (CheckAccess()) OpenScene(deckScene);
         }
         
         public void OpenPuzzles(){
+            if (sfx) sfx.PlayButtonClick1();
             if (CheckAccess()) OpenScene(puzzleScene);
         }
         
         public void OpenSettings(){
+            if (sfx) sfx.PlayButtonClick1();
             OpenScene(settingsScene);
         }
         

@@ -32,12 +32,20 @@ namespace VocaloidTCG
         public ChannelControls voicelines = new ChannelControls();
         public ChannelControls music = new ChannelControls();
         public TMP_Text status;
+        public SFXManager uiSFX;
+
+        [Header("Slider Cooldown")]
+        public float sliderSfxCooldown = 0.2f;
+        private float nextSliderSfxTime;
 
         private void Awake()
         {
             Bind(sfx, SetSfx, ToggleSfx);
             Bind(voicelines, SetVoices, ToggleVoices);
             Bind(music, SetMusic, ToggleMusic);
+            if (sfx.volume) sfx.volume.onValueChanged.AddListener(OnSliderMoved);
+            if (voicelines.volume) voicelines.volume.onValueChanged.AddListener(OnSliderMoved);
+            if (music.volume) music.volume.onValueChanged.AddListener(OnSliderMoved);
             if (backButton) backButton.onClick.AddListener(Back);
             if (resetButton) resetButton.onClick.AddListener(ResetToDefaults);
             if (saveButton) saveButton.onClick.AddListener(SaveSettings);
@@ -81,17 +89,35 @@ namespace VocaloidTCG
         public void SetSfx(float value) { GameAudioSettings.SetVolume(AudioCategory.Effects, value); }
         public void SetVoices(float value) { GameAudioSettings.SetVolume(AudioCategory.Voices, value); }
         public void SetMusic(float value) { GameAudioSettings.SetVolume(AudioCategory.Music, value); }
-        public void ToggleSfx() { GameAudioSettings.ToggleMute(AudioCategory.Effects); }
-        public void ToggleVoices() { GameAudioSettings.ToggleMute(AudioCategory.Voices); }
-        public void ToggleMusic() { GameAudioSettings.ToggleMute(AudioCategory.Music); }
+        public void ToggleSfx() { ToggleSound(AudioCategory.Effects); }
+        public void ToggleVoices() { ToggleSound(AudioCategory.Voices); }
+        public void ToggleMusic() { ToggleSound(AudioCategory.Music); }
+        private void ToggleSound(AudioCategory category)
+        {
+            if (GameAudioSettings.IsMuted(category) == true && uiSFX) uiSFX.PlayFavDeckSound();
+            if (GameAudioSettings.IsMuted(category) == false && uiSFX) uiSFX.PlayUnfavDeckSound();
+            GameAudioSettings.ToggleMute(category);
+        }
+        private void OnSliderMoved(float value)
+        {
+            PlaySliderSound();
+        }
+        private void PlaySliderSound()
+        {
+            if (!uiSFX || Time.unscaledTime < nextSliderSfxTime) return;
+            uiSFX.PlayScrollSound();
+            nextSliderSfxTime = Time.unscaledTime + sliderSfxCooldown;
+        }
         public void ResetToDefaults()
         {
             GameAudioSettings.ResetToDefaults();
+            if (uiSFX) uiSFX.PlayClockTick();
             if (status) status.text = "Defaults restored. Press Save Settings to keep them.";
         }
         public void SaveSettings()
         {
             GameAudioSettings.Save();
+            if (uiSFX) uiSFX.PlayClickSound();
             if (status) status.text = "Settings saved.";
         }
 
@@ -104,6 +130,7 @@ namespace VocaloidTCG
                 Debug.LogError(message, this);
                 return;
             }
+            if (uiSFX) uiSFX.PlayButtonClick2();
             SceneManager.LoadScene(mainScene);
         }
 
@@ -112,6 +139,9 @@ namespace VocaloidTCG
             Unbind(sfx, SetSfx, ToggleSfx);
             Unbind(voicelines, SetVoices, ToggleVoices);
             Unbind(music, SetMusic, ToggleMusic);
+            if (sfx.volume) sfx.volume.onValueChanged.RemoveListener(OnSliderMoved);
+            if (voicelines.volume) voicelines.volume.onValueChanged.RemoveListener(OnSliderMoved);
+            if (music.volume) music.volume.onValueChanged.RemoveListener(OnSliderMoved);
             if (backButton) backButton.onClick.RemoveListener(Back);
             if (resetButton) resetButton.onClick.RemoveListener(ResetToDefaults);
             if (saveButton) saveButton.onClick.RemoveListener(SaveSettings);

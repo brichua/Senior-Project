@@ -268,6 +268,8 @@ GameObject:
   - component: {fileID: 32361192}
   - component: {fileID: 32361191}
   - component: {fileID: 32361190}
+  - component: {fileID: 32361194}
+  - component: {fileID: 32361193}
   m_Layer: 5
   m_Name: Scrollbar Vertical
   m_TagString: Untagged
@@ -338,7 +340,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2009179169}
   m_HandleRect: {fileID: 2009179168}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -382,6 +384,116 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32361188}
   m_CullTransparentMesh: 1
+--- !u!82 &32361193
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32361188}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 3e8e6c21568c39148a4100cfbe724131, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &32361194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32361188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c1a225c81bdcd48a798eb723da0f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScrollbarSFX
+  soundCooldown: 0.15
 --- !u!1 &70113812
 GameObject:
   m_ObjectHideFlags: 0
@@ -2066,6 +2178,116 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 346310227}
   m_CullTransparentMesh: 1
+--- !u!82 &356907221
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7000000011}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 8300000, guid: 3e8e6c21568c39148a4100cfbe724131, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &356907222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7000000011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e1c1a225c81bdcd48a798eb723da0f87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ScrollbarSFX
+  soundCooldown: 0.15
 --- !u!1 &371228577
 GameObject:
   m_ObjectHideFlags: 0
@@ -5679,6 +5901,9 @@ MonoBehaviour:
   spotlight: {fileID: 8300000, guid: b61dd33f2961f4445a3a77907777ed61, type: 3}
   tile_score_0: {fileID: 8300000, guid: 9d9da32756ad97b479a53a7adcf82e40, type: 3}
   card_effect: {fileID: 8300000, guid: 51066d9593bc4e943bf10d6e70526132, type: 3}
+  story_start: {fileID: 0}
+  scroll: {fileID: 8300000, guid: d93db1aed2af4e9429b461d52dfaadb3, type: 3}
+  storyTextScroll: []
   hoverSoundCooldown: 0.05
   tileHoverSoundCooldown: 0.05
   cardAudioSourceIsPlaying: 0
@@ -7316,6 +7541,7 @@ MonoBehaviour:
   voicesParameter: VoiceVolume
   musicParameter: MusicVolume
   puzzleScene: Puzzles
+  sliderSfxCooldown: 0.2
 --- !u!114 &1559521388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8016,27 +8242,78 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5a0f5bc9938ed0d4faf937d0c917096f, type: 3}
   - {fileID: 8300000, guid: 7cb7756fb36d98e4584468b0432f0441, type: 3}
   - {fileID: 8300000, guid: 1b847fb167cfd83448778471b7337c6b, type: 3}
-  win_tile:
+  kaito_win_tile:
   - {fileID: 8300000, guid: c2d336396bb9cb64e8352113d192af51, type: 3}
+  - {fileID: 8300000, guid: 748229fca152a4f44a79f2d0157adced, type: 3}
+  - {fileID: 8300000, guid: 650f7dbd0a116eb4eae5a07206b38f2c, type: 3}
+  len_win_tile:
   - {fileID: 8300000, guid: 1908b6c7267e47e4a8d07c57419a1719, type: 3}
-  - {fileID: 8300000, guid: 0543a4e55b832dd4f93c22ba75676576, type: 3}
+  - {fileID: 8300000, guid: 27b3deff008aa9e49a3d9068a76ea259, type: 3}
+  - {fileID: 8300000, guid: b4112f5cb32b02b459f0279bf9ca40af, type: 3}
+  luka_win_tile:
+  - {fileID: 8300000, guid: b620641707175d74bb9860d9d7d67d46, type: 3}
+  - {fileID: 8300000, guid: 655d011970ee5d345b145038dd1f977f, type: 3}
+  - {fileID: 8300000, guid: 42370bfa4dea98e43bf31c637f1c730d, type: 3}
+  meiko_win_tile:
   - {fileID: 8300000, guid: 8e37cf8fb113ec54680c920a1e8c5589, type: 3}
+  - {fileID: 8300000, guid: 42ec23baf1bbb31429d6f70f8d032ebf, type: 3}
+  - {fileID: 8300000, guid: 29a58485671474f48a6b1c2ec0d8ff3c, type: 3}
+  miku_win_tile:
   - {fileID: 8300000, guid: 7d73dfe6a7e7598468299ab2e6834953, type: 3}
-  - {fileID: 8300000, guid: 6f664419250e8574bb88cb4a062615bf, type: 3}
-  lose_tile:
+  - {fileID: 8300000, guid: 83305ff1ba5d06247b4b56ce7c60bf80, type: 3}
+  - {fileID: 8300000, guid: a9391296ace9f2d41880d2a38ede8967, type: 3}
+  rin_win_tile:
+  - {fileID: 8300000, guid: 1b847fb167cfd83448778471b7337c6b, type: 3}
+  - {fileID: 8300000, guid: 0e55b30d8ab3cd744adc62237c3f65ce, type: 3}
+  - {fileID: 8300000, guid: 55f3890a0805e5542bd117ecb6d5c863, type: 3}
+  kaito_lose_tile:
   - {fileID: 8300000, guid: e51b46dccb6982d4ea8cfe894ea81f50, type: 3}
+  - {fileID: 8300000, guid: 31f0af8d5b85bfc46bfac233e7b178b9, type: 3}
+  - {fileID: 8300000, guid: 2c6701a018f1b0a429bb4ad9e5451294, type: 3}
+  len_lose_tile:
   - {fileID: 8300000, guid: 0800ed6a3975b444e9712dee958f657b, type: 3}
+  - {fileID: 8300000, guid: 27e06a656e2f1fe41bc989d4f2a1becb, type: 3}
+  - {fileID: 8300000, guid: e8926027f6b088449ba3f3c1f6d4944c, type: 3}
+  luka_lose_tile:
   - {fileID: 8300000, guid: 9822a46a20f0cd449a3548536e22ed55, type: 3}
+  - {fileID: 8300000, guid: 393c1678f8b04c547a1b1a53af9896f9, type: 3}
+  - {fileID: 8300000, guid: 6a82c17ab058e164cba3bf32e071e196, type: 3}
+  meiko_lose_tile:
   - {fileID: 8300000, guid: f2baf693606d0cf408b2d8b35b3e23c0, type: 3}
+  - {fileID: 8300000, guid: 979df520afcaa1b4aa061803fd33c53c, type: 3}
+  - {fileID: 8300000, guid: 1acef669acb8e694f95f4976a4e6f823, type: 3}
+  miku_lose_tile:
   - {fileID: 8300000, guid: 08418d4e896d8934c8dcd6cea684ac65, type: 3}
+  - {fileID: 8300000, guid: ba9d927b4d148204094b023f5919ad97, type: 3}
+  - {fileID: 8300000, guid: 7adb06808b984844fa3e81d9a9f1e7c4, type: 3}
+  rin_lose_tile:
   - {fileID: 8300000, guid: 72ef8e54fdc6d8f45af9c21694432a43, type: 3}
-  idle:
+  - {fileID: 8300000, guid: 81181605b1a77cb41b6a1d0bfb280ee0, type: 3}
+  - {fileID: 8300000, guid: da046eee1d715734e955c7a375ebed5c, type: 3}
+  kaito_idle:
   - {fileID: 8300000, guid: 68c7b893414bdb44d9339b53f31ba69d, type: 3}
+  - {fileID: 8300000, guid: 2865cdc8093d3bb42ac30a982e04a9bd, type: 3}
+  - {fileID: 8300000, guid: 8fc2202936ac6d24eb745b299aecb062, type: 3}
+  len_idle:
   - {fileID: 8300000, guid: 86a43a7e0d638924caa41d51130c82c8, type: 3}
+  - {fileID: 8300000, guid: 27e06a656e2f1fe41bc989d4f2a1becb, type: 3}
+  - {fileID: 8300000, guid: e8926027f6b088449ba3f3c1f6d4944c, type: 3}
+  luka_idle:
   - {fileID: 8300000, guid: f97c4c4f3f9059843b2b0e0e76996353, type: 3}
+  - {fileID: 8300000, guid: 672266309e3b51746a62a805028a9457, type: 3}
+  - {fileID: 8300000, guid: 3729b38e250f4294cbe3dc7d89a34ba2, type: 3}
+  meiko_idle:
   - {fileID: 8300000, guid: 6a781d5a6cef65b4b8d74cddaa51c5ed, type: 3}
+  - {fileID: 8300000, guid: 521fde1548eb6db4b91752ddfa873053, type: 3}
+  - {fileID: 8300000, guid: a0191155f7d23d24692ed981fef95359, type: 3}
+  miku_idle:
   - {fileID: 8300000, guid: c103d856496a2134a9fc17da6c0c8072, type: 3}
+  - {fileID: 8300000, guid: 7f86048b6ac5e5942acf63e7a0914ac0, type: 3}
+  - {fileID: 8300000, guid: bdece2fc8ba803b4c867ad555238b938, type: 3}
+  rin_idle:
   - {fileID: 8300000, guid: 0771560bb671a8e4197205ece7c398d7, type: 3}
+  - {fileID: 8300000, guid: 3c887dd156b5e0a4f97e55d0713361a7, type: 3}
+  - {fileID: 8300000, guid: 61c1a63a36ae7b8419adada6d302e2f5, type: 3}
   start:
   - {fileID: 8300000, guid: 63e89b735ecdccb4190198a72b8b0334, type: 3}
   - {fileID: 8300000, guid: 751ab1b047878194aad15101983c25f5, type: 3}
@@ -8059,6 +8336,13 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 0a292375b60406e4bb7af967df02f419, type: 3}
   - {fileID: 8300000, guid: 8e4cda7aec95200449de77bbf01378d5, type: 3}
   - {fileID: 8300000, guid: 5fbc971dd8e2ac54d9a677dd2fe54bce, type: 3}
+  multiplayer:
+  - {fileID: 8300000, guid: a59bc86f29d52704abf931ea80533273, type: 3}
+  - {fileID: 8300000, guid: be2211f2bd4a317438f300ee453dd7ba, type: 3}
+  - {fileID: 8300000, guid: 388853a5e26a9b148ac98412ed78ef2b, type: 3}
+  - {fileID: 8300000, guid: 9d355bacee203f447a4b71bac5fee8ca, type: 3}
+  - {fileID: 8300000, guid: 11baad9278ef7b84b8a2696684ce1e49, type: 3}
+  - {fileID: 8300000, guid: 006dc8e10c0b10f4fa5533a661c60719, type: 3}
 --- !u!1 &1723403023
 GameObject:
   m_ObjectHideFlags: 0
@@ -10640,6 +10924,8 @@ GameObject:
   - component: {fileID: 7000000013}
   - component: {fileID: 7000000014}
   - component: {fileID: 7000000015}
+  - component: {fileID: 356907222}
+  - component: {fileID: 356907221}
   m_Layer: 5
   m_Name: Scrollbar Vertical
   m_TagString: Untagged
@@ -10748,7 +11034,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7000000021}
   m_HandleRect: {fileID: 7000000019}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

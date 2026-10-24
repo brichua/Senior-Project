@@ -16,18 +16,13 @@ MonoBehaviour:
   id: 09a2b575f38f22040b55b723d5bf4eee
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: "All allied and opposing performers in Center Stage lose 1 influence."
+  info: All allied and opposing performers in Center Stage lose 1 influence.
   performer: 0
   stageEffect: 1
   cost: 2
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  cardImage: {fileID: 1378218661816209167, guid: cd43b49b79c124a479930cd3efe7517a, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: -7629167929317980702, guid: 4a29162d81cb10e4394828c651d6c387, type: 3}
-  popupImage: {fileID: 0}
-  playSfx: {fileID: 0}
   effect: 33
   scoreThreshold: 0
   harmonize: 0
@@ -37,3 +32,10 @@ MonoBehaviour:
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: 1378218661816209167, guid: cd43b49b79c124a479930cd3efe7517a, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: -7629167929317980702, guid: 4a29162d81cb10e4394828c651d6c387, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 8300000, guid: a76b28e6a7d4b3145b1967365ea88bac, type: 3}

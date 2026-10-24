@@ -19,6 +19,7 @@ namespace VocaloidTCG
     {
         public string speaker;
         public Sprite portrait;
+        public AudioClip voiceline;
         [TextArea(2, 8)] public string text;
         [Tooltip("The complete set of visible avatars for this line. Omitted slots are hidden.")]
         public List<StoryAvatar> avatars = new List<StoryAvatar>();
