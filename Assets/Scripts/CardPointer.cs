@@ -118,7 +118,7 @@ namespace VocaloidTCG.BoardUI
             if (e.button == PointerEventData.InputButton.Left && !dragging && card != null)
             {
                 board.Select(card);
-                board.sfx.PlayClickSound();
+                if (board.sfx) board.sfx.PlayClickSound();
             }
 
         }

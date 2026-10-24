@@ -497,5 +497,6 @@ namespace VocaloidTCG.BoardUI
                 image.sprite = sprite; image.enabled = sprite != null;
             }
         }
+
     }
 }

@@ -36,9 +36,7 @@ public class SFXManager : MonoBehaviour
 
     [Header("Hover SFX Cooldown")]
     [Min(0f)] public float hoverSoundCooldown = 0.05f;
-    private static float nextHoverSoundTime = 0f;
-    [Min(0f)] public float tileHoverSoundCooldown = 0.05f;
-    private static float nextTileHoverSoundTime = 0f;
+    private float nextHoverSoundTime = 0f;
 
 
     private AudioSource audioSource;
@@ -63,13 +61,10 @@ public class SFXManager : MonoBehaviour
 
     public void PlayHoverSound()
     {
-        if (Time.unscaledTime < nextHoverSoundTime)
-            return;
-
+        if (!audioSource || !card_hover) return;
+        if (Time.unscaledTime < nextHoverSoundTime) return;
         nextHoverSoundTime = Time.unscaledTime + hoverSoundCooldown;
-
-        if (audioSource && card_hover)
-            audioSource.PlayOneShot(card_hover);
+        audioSource.PlayOneShot(card_hover);
     }
     public void PlayClickSound() {
 
@@ -97,13 +92,10 @@ public class SFXManager : MonoBehaviour
 
     public void PlayTileHoverSound()
     {
-        if (Time.unscaledTime < nextTileHoverSoundTime)
-            return;
-
-        nextTileHoverSoundTime = Time.unscaledTime + tileHoverSoundCooldown;
-
-        if (audioSource && tile_hover)
-            audioSource.PlayOneShot(tile_hover);
+        if (!audioSource || !tile_hover) return;
+        if (Time.unscaledTime < nextHoverSoundTime) return;
+        nextHoverSoundTime = Time.unscaledTime + hoverSoundCooldown;
+        audioSource.PlayOneShot(tile_hover);
     }
 
     public float GetTicketTearSoundLength()
