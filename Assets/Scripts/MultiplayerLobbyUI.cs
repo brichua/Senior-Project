@@ -76,7 +76,7 @@ namespace VocaloidTCG
             if(copy) copy.onClick.AddListener(Copy);
             if(pasteCode) pasteCode.onClick.AddListener(PasteCode);
             if(clearCode) clearCode.onClick.AddListener(ClearCode);
-            if(play) play.onClick.AddListener(session.Play);
+            if (play) play.onClick.AddListener(() => { if (sfx) sfx.PlayEnterGameSound(); session.Play(); });
 
             session.Changed += Refresh; session.Sparkle += Sparkle;
             Refresh();

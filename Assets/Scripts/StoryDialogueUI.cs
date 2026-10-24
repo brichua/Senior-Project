@@ -29,6 +29,9 @@ namespace VocaloidTCG
         public Transform logRoot;
         public StoryLogView logPrefab;
         public ScrollRect logScroll;
+        public SFXManager sfx;
+        public VoicelinesManager voiceline;
+        [Min(0.01f)] public float textSoundInterval = 0.08f;
         [Min(1)] public float charactersPerSecond = 35;
         [Min(0)] public float autoDelay = 1;
         private readonly List<StoryLogView> rows = new List<StoryLogView>();
@@ -42,6 +45,7 @@ namespace VocaloidTCG
         private Transform raisedLogControl;
         private int logControlSiblingIndex;
         private bool setupChecked;
+        private string currentSpeaker;
 
         [ContextMenu("Validate Dialogue UI Setup")]
         public void ValidateSetup(){
@@ -67,10 +71,10 @@ namespace VocaloidTCG
 
         private void Awake(){
             if(legacyNext) legacyNext.gameObject.SetActive(false);
-            if(skip) skip.onClick.AddListener(Finish);
-            if(auto) auto.onClick.AddListener(ToggleAuto);
-            if(log) log.onClick.AddListener(ToggleLog);
-            if(closeLog) closeLog.onClick.AddListener(CloseLog);
+            if(skip) skip.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick2(); Finish(); });
+            if(auto) auto.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick1(); ToggleAuto(); });
+            if(log) log.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick1(); ToggleLog(); });
+            if (closeLog) closeLog.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick2(); CloseLog(); });
         }
 
         private void LateUpdate(){
@@ -125,6 +129,8 @@ namespace VocaloidTCG
 
             lineShownFrame = Time.frameCount;
             var entry = lines[index] ?? new StoryLine();
+            currentSpeaker = entry.speaker;
+            if (voiceline && entry.voiceline) { voiceline.PlayStoryReaction(entry.voiceline); }
             DeckUI.Text(speaker, entry.speaker); DeckUI.Text(line, entry.text);
             bool narrated = string.IsNullOrWhiteSpace(entry.speaker) ||
                 string.Equals(entry.speaker.Trim(), "Narrator", StringComparison.OrdinalIgnoreCase);
@@ -157,12 +163,16 @@ namespace VocaloidTCG
 
         private IEnumerator Reveal(){
             float visible = 0;
+            float soundTimer = 0;
             int length = line ? line.textInfo.characterCount : 0;
 
             while(typing && visible < length){
                 if(!logPanel || !logPanel.activeSelf){
                     visible += Time.unscaledDeltaTime * Mathf.Max(1, charactersPerSecond);
                     if(line) line.maxVisibleCharacters = Mathf.FloorToInt(visible);
+                    
+                    soundTimer += Time.unscaledDeltaTime;
+                    if (soundTimer >= textSoundInterval) { soundTimer = 0; if (sfx) sfx.PlayStoryTextScroll(currentSpeaker); }
                 }
 
                 yield return null;

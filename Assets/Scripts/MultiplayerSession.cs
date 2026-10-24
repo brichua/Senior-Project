@@ -519,10 +519,18 @@ namespace VocaloidTCG
             reconnecting = awaitingOpponent = false;
             if(Starting){ _ = AbortStart("Could not reconnect to the opponent."); return; }
             if(board) board.SetOnlineConnectionPaused(false);
-            if(board && board.Snapshot != null && board.Snapshot.phase != RoundPhase.Finished)
+            if(board && board.Snapshot != null && board.Snapshot.phase != RoundPhase.Finished){
+                PlayDisconnectVoiceline();
                 board.OnlineForfeit(1, "Connection to the opponent was lost.");
+            }
             if(clientRole) StopNetwork();
             SetStatus("Could not reconnect to the opponent.");
+        }
+        private void PlayDisconnectVoiceline()
+        {
+            if (!board || !board.voicelines) return;
+            CharacterClass character = board.playerClasses[0].identity;
+            board.voicelines.PlayVoiceline(character, VoicelineEvent.Multiplayer);
         }
 
         private void StopNetwork(){
@@ -630,7 +638,7 @@ namespace VocaloidTCG
                     incomingSequence = message.sequence;
                     board.ExecuteOnline(1, message.text, message.action, message.cards, message.turn);
                     PublishBoard();
-                } else if(message.kind == "forfeit" && board) board.OnlineForfeit(Authority ? 1 : 0, "Opponent left the match.");
+                } else if(message.kind == "forfeit" && board) { PlayDisconnectVoiceline();  board.OnlineForfeit(Authority ? 1 : 0, "Opponent left the match."); }
                 else if(message.kind == "abort" && Starting) await AbortStart(message.text);
             }catch(Exception ex){
                 if(InMatch && messageKind == "state") Debug.LogException(ex);

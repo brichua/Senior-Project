@@ -32,6 +32,7 @@ public class SFXManager : MonoBehaviour
     public AudioClip card_effect;
     public AudioClip story_start;
     public AudioClip scroll;
+    public AudioClip[] storyTextScroll;
 
     [Header("Hover SFX Cooldown")]
     [Min(0f)] public float hoverSoundCooldown = 0.05f;
@@ -265,5 +266,25 @@ public class SFXManager : MonoBehaviour
     {
         if (audioSource && scroll)
             audioSource.PlayOneShot(scroll);
+    }
+
+    public void PlayStoryTextScroll(string speaker)
+    {
+        AudioClip clip = null;
+
+        switch (speaker)
+        {
+            case "KAITO": clip = storyTextScroll[0]; break;
+            case "Len": clip = storyTextScroll[1]; break;
+            case "Luka": clip = storyTextScroll[2]; break;
+            case "MEIKO": clip = storyTextScroll[3]; break;
+            case "Miku": clip = storyTextScroll[4]; break;
+            case "Rin": clip = storyTextScroll[5]; break;
+            case "Narrator": clip = typing; break;
+            default: clip = typing; break;
+        }
+
+        if (audioSource && clip) audioSource.PlayOneShot(clip);
+
     }
 }

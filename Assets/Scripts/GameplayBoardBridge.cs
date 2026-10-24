@@ -102,6 +102,7 @@ namespace VocaloidTCG.BoardUI
         private bool turnHadAction;
         private float roundWait;
         private bool deckExhausted;
+        private bool approachingEndVoicelinePlayed;
         public struct DrawPresentation {
             public CardState card;
             public bool discarded;
@@ -178,6 +179,7 @@ namespace VocaloidTCG.BoardUI
             serial = turnNumber = 0;
             turnHadAction = false;
             deckExhausted = false;
+            approachingEndVoicelinePlayed = false;
             placedTurns.Clear();
             for(int i = 0; i < 2; i++){
                 lastMoveTurn[i] = -1;
@@ -650,6 +652,7 @@ namespace VocaloidTCG.BoardUI
 
             int playerScore = state.Side(state.localPlayerId).score;
             int enemyScore = state.Side(1 - state.localPlayerId).score;
+            approachingEndVoicelinePlayed = true;
 
             if ((state.winScore - playerScore <= 5 || deckExhausted) && playerScore > enemyScore && voicelines) voicelines.PlayVoiceline(playerClasses[0].identity, VoicelineEvent.Excited);
             else if ((state.winScore - enemyScore <= 5 || deckExhausted) && playerScore < enemyScore && voicelines) voicelines.PlayVoiceline(playerClasses[0].identity, VoicelineEvent.Concerned);

@@ -29,6 +29,9 @@ namespace VocaloidTCG.BoardUI
         private bool audioDirty;
         private Button restartMode, returnMode;
         public string puzzleScene = "Puzzles";
+        [Header("Slider SFX")]
+        public float sliderSfxCooldown = 0.15f;
+        private float nextSliderSfxTime;
 
         public void Initialize(BoardUIController owner, BoardGameBridge bridge){
             board = owner; game = bridge;
@@ -48,13 +51,17 @@ namespace VocaloidTCG.BoardUI
             if(puzzleButtons) puzzleButtons.SetActive(puzzle);
             restartMode = story ? storyRestart : puzzle ? puzzleRestart : null;
             returnMode = multiplayer ? multiplayerReturn : story ? storyReturn : puzzle ? puzzleReturn : null;
-            if(restartMode) restartMode.onClick.AddListener(RestartMode);
+            Hook(storyRestart);
+            Hook(storyReturn);
+            Hook(puzzleRestart);
+            Hook(puzzleReturn);
+            Hook(multiplayerReturn);
+            if (restartMode) restartMode.onClick.AddListener(RestartMode);
             if(returnMode) returnMode.onClick.AddListener(ReturnMode);
             if(!gameplay) return;
             if(gameplay.IsPuzzle && !string.IsNullOrEmpty(gameplay.PuzzleReturnScene))
                 puzzleScene = gameplay.PuzzleReturnScene;
         }
-
         private bool CanLeaveMode(){
             var gameplay = game as GameplayBoardBridge;
             return gameplay && string.IsNullOrEmpty(gameplay.IsStory ? gameplay.StorySaveError : gameplay.PuzzleSaveError);
@@ -83,6 +90,9 @@ namespace VocaloidTCG.BoardUI
             Setup(effects, SetEffects);
             Setup(voices, SetVoices);
             Setup(music, SetMusic);
+            if (effects) effects.onValueChanged.AddListener(PlaySliderSFX);
+            if (voices) voices.onValueChanged.AddListener(PlaySliderSFX);
+            if (music) music.onValueChanged.AddListener(PlaySliderSFX);
             RefreshAudio();
             if(resume) resume.onClick.AddListener(Close);
         }
@@ -105,14 +115,18 @@ namespace VocaloidTCG.BoardUI
             if(board && board.pause) board.pause.gameObject.SetActive(false);
             pausedGame = !game.Snapshot.multiplayer;
             if(pausedGame) game.SetLocalPause(true);
+            // temp
+            if (board.sfx) board.sfx.PlayCardDrawSound();
         }
 
         public void Close(){
+            bool wasOpen = IsOpen;
             IsOpen = false; if(overlay) overlay.SetActive(false);
             if(board && board.pause) board.pause.gameObject.SetActive(true);
             if(pausedGame && game) game.SetLocalPause(false);
             pausedGame = false;
             if (audioDirty) { GameAudioSettings.Save(); audioDirty = false; }
+            if (wasOpen && board && board.sfx) board.sfx.PlayCardDrawSound();
         }
 
         private void Apply(string parameter, AudioCategory category){
@@ -146,9 +160,22 @@ namespace VocaloidTCG.BoardUI
             GameAudioSettings.SetVolume(AudioCategory.Music, value);
         }
 
+        private void Hook(Button button){
+            if (!button) return;
+            button.onClick.RemoveListener(()=> { if (board.sfx && board) board.sfx.PlayButtonClick1(); });
+            button.onClick.AddListener(() => { if (board.sfx && board) board.sfx.PlayButtonClick1(); });
+        }
+
         private void OnDisable(){
             GameAudioSettings.Changed -= RefreshAudio;
             Close();
+        }
+        private void PlaySliderSFX(float value)
+        {
+            if (!board || !board.sfx) return;
+            if (Time.unscaledTime < nextSliderSfxTime) return;
+            board.sfx.PlayScrollSound();
+            nextSliderSfxTime = Time.unscaledTime + sliderSfxCooldown;
         }
 
         private void OnDestroy(){
@@ -158,6 +185,9 @@ namespace VocaloidTCG.BoardUI
             if(effects) effects.onValueChanged.RemoveListener(SetEffects);
             if(voices) voices.onValueChanged.RemoveListener(SetVoices);
             if(music) music.onValueChanged.RemoveListener(SetMusic);
+            if (effects) effects.onValueChanged.RemoveListener(PlaySliderSFX);
+            if (voices) voices.onValueChanged.RemoveListener(PlaySliderSFX);
+            if (music) music.onValueChanged.RemoveListener(PlaySliderSFX);
         }
     }
 }

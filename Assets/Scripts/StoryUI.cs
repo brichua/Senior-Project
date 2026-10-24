@@ -71,7 +71,7 @@ namespace VocaloidTCG
                 library.Changed += LibraryChanged;
                 if(library.IsStoryCompleted(catalog.Tutorial)) TutorialProgress.SetCompleted();
 
-                Hook(begin, BeginStory); Hook(classBack, BackToMain); Hook(mapBack, ShowClasses); Hook(auditionBack, ShowMap);
+                Hook(begin, BeginStory); Hook(classBack, BackToMain); ; Hook(mapBack, ShowClasses); ; Hook(auditionBack, ShowMap); ;
                 Hook(prologue, () => PlayDialogue(selected?.prologue, false));
                 Hook(epilogue, PlayEnding);
                 Hook(before, () => PlayDialogue(audition?.before, true));
@@ -105,7 +105,6 @@ namespace VocaloidTCG
                         });
                 }
                 else ShowClasses(); 
-                //if (sfx) sfx.PlayClickSound();
             }
             catch(Exception ex){
                 DeckUI.Text(status, ex.Message);
@@ -119,8 +118,35 @@ namespace VocaloidTCG
             StoryDiagnostics.CheckUI(this);
         }
 
-        private static void Hook(Button button, UnityEngine.Events.UnityAction action){
-            if(button) button.onClick.AddListener(action);
+        private void Hook(Button button, UnityEngine.Events.UnityAction action){
+            if (button) { button.onClick.AddListener(() =>
+            {
+
+                if (sfx)
+                {
+                    if (button == classBack ||
+                        button == mapBack ||
+                        button == auditionBack)
+                    {
+                        sfx.PlayButtonClick2();
+                    }
+                    else if (button == begin ||
+                             button == editDeck)
+                    {
+                        sfx.PlayButtonClick1();
+                    }
+                    else if (button == prologue ||
+                             button == epilogue ||
+                             button == before ||
+                             button == after)
+                    {
+                        //temp
+                        sfx.PlayEnterGameSound();
+                    }
+                }
+
+                action?.Invoke(); }); 
+            }
         }
 
         private void LibraryChanged(){
@@ -187,7 +213,10 @@ namespace VocaloidTCG
                 var view = Spawn(story.tutorial && tutorialPrefab ? tutorialPrefab : classPrefab, classRoot, classViews);
                 if(!view) continue;
                 bool unlocked = CanPlay(story);
-                view.Bind(() => SelectStory(story), unlocked);
+                view.Bind(() => {
+                    if (selected != story && sfx) { sfx.PlayClickSound(); }
+                    SelectStory(story);
+                }, unlocked);
                 var group = view.GetComponent<CanvasGroup>();
                 if(!group) group = view.gameObject.AddComponent<CanvasGroup>();
                 float lockedOpacity = lockedClassOpacity > 0f ? Mathf.Clamp(lockedClassOpacity, 0.1f, 1f) : 0.4f;
@@ -231,7 +260,8 @@ namespace VocaloidTCG
 
         public void SelectStory(StoryData story){
             if(!CanPlay(story)) return;
-            if(selected && selected != story){
+
+            if (selected && selected != story){
                 selectedDeckId = null;
                 chosenDifficulty = null;
             }
@@ -280,7 +310,6 @@ namespace VocaloidTCG
 
         private void BeginStory(){
             if(!selected) return;
-            if (sfx) sfx.PlayButtonClick1();
             if (!library.EnsureStoryDeck(selected, out var starterId, out var starterError)){ Report(starterError); return; }
             if(!library.Decks.Any(d => d.id == selectedDeckId && d.classes.Contains(selected.Class) &&
                 DeckRules.Validate(d, library.Catalog, library.Owned, out _))) selectedDeckId = starterId;
@@ -349,6 +378,7 @@ namespace VocaloidTCG
             foreach(var deck in decks){
                 var view = Spawn(deckPrefab, deckRoot, deckViews); if(!view) continue;
                 view.Bind(() => {
+                    if (selectedDeckId != deck.id && sfx) sfx.PlayCardDrawSound();
                     selectedDeckId = deck.id;
                     BuildDecks();
                     Remember();
@@ -461,6 +491,7 @@ namespace VocaloidTCG
 
         public void BackToMain(){
             if(SceneAvailable(mainScene)){
+                if (sfx) sfx.PlayButtonClick2();
                 StorySession.Clear();
                 SceneManager.LoadScene(mainScene);
             }

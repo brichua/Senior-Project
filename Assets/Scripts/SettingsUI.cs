@@ -104,9 +104,7 @@ namespace VocaloidTCG
         }
         private void PlaySliderSound()
         {
-            if (!uiSFX || Time.unscaledTime < nextSliderSfxTime)
-                return;
-
+            if (!uiSFX || Time.unscaledTime < nextSliderSfxTime) return;
             uiSFX.PlayScrollSound();
             nextSliderSfxTime = Time.unscaledTime + sliderSfxCooldown;
         }
