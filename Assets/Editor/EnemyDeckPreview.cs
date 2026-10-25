@@ -16,6 +16,12 @@ public static class EnemyDeckPreview
     public static void Len() => Prepare("len");
     [MenuItem("Tools/Enemy AI/Prepare Luka Test")]
     public static void Luka() => Prepare("luka");
+    [MenuItem("Tools/Enemy AI/Prepare Rin Test")]
+    public static void Rin() => Prepare("rin");
+    [MenuItem("Tools/Enemy AI/Prepare MEIKO Test")]
+    public static void Meiko() => Prepare("meiko");
+    [MenuItem("Tools/Enemy AI/Prepare KAITO Test")]
+    public static void Kaito() => Prepare("kaito");
 
     private static void Prepare(string pool)
     {

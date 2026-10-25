@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0868907308d47e08c6fdd7899237687, type: 3}
+  m_Name: kaito effects ai
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.DeckData
+  deckName: Kaito Effects
+  cardBack: {fileID: 11400000, guid: ad07cb418dc6ffe4997fb442cad69cf9, type: 2}
+  cards:
+  - {fileID: 11400000, guid: e1e611bec8c8e994ba9476bb5ebe9852, type: 2}
+  - {fileID: 11400000, guid: 6d60ba6a296c6fb498e6b65ee812cd0f, type: 2}
+  - {fileID: 11400000, guid: 029a6c834550d7648abdc67cde090f03, type: 2}
+  - {fileID: 11400000, guid: 309feebc5328a0841808c1f275aa275a, type: 2}
+  - {fileID: 11400000, guid: fd3886fe673d35c418ba6b8d1e044ce9, type: 2}
+  - {fileID: 11400000, guid: 514d24e740870194488ef3847fbcc15a, type: 2}
+  - {fileID: 11400000, guid: 6413cfe47c8236f49a8b93551fb293ad, type: 2}
+  - {fileID: 11400000, guid: a2c328a63f5443b4e89a776c03b4fd19, type: 2}
+  - {fileID: 11400000, guid: b00a9bc2411c7cb4c8445e88b2590acb, type: 2}
+  - {fileID: 11400000, guid: f8ae1407bc46b5c40a21ba86b76b36cc, type: 2}
+  - {fileID: 11400000, guid: f7730372b7240ad448d2b675b6f86211, type: 2}
+  - {fileID: 11400000, guid: bc1bdf0031cd07f4da48194f15fe6473, type: 2}
+  - {fileID: 11400000, guid: e68cdae503ae1da47940660afb1bbd91, type: 2}
+  - {fileID: 11400000, guid: 466390a12c108c147ab173806fdee4b7, type: 2}
+  - {fileID: 11400000, guid: e206c9cea9aeba24eb68b9abb4132de7, type: 2}
+  - {fileID: 11400000, guid: a2c328a63f5443b4e89a776c03b4fd19, type: 2}
+  - {fileID: 11400000, guid: f7730372b7240ad448d2b675b6f86211, type: 2}
+  - {fileID: 11400000, guid: e68cdae503ae1da47940660afb1bbd91, type: 2}
+  - {fileID: 11400000, guid: e206c9cea9aeba24eb68b9abb4132de7, type: 2}
+  - {fileID: 11400000, guid: e1e611bec8c8e994ba9476bb5ebe9852, type: 2}
+  - {fileID: 11400000, guid: 029a6c834550d7648abdc67cde090f03, type: 2}
+  - {fileID: 11400000, guid: 309feebc5328a0841808c1f275aa275a, type: 2}
+  - {fileID: 11400000, guid: 6413cfe47c8236f49a8b93551fb293ad, type: 2}
+  - {fileID: 11400000, guid: bc1bdf0031cd07f4da48194f15fe6473, type: 2}
+  - {fileID: 11400000, guid: 6d60ba6a296c6fb498e6b65ee812cd0f, type: 2}
+  - {fileID: 11400000, guid: fd3886fe673d35c418ba6b8d1e044ce9, type: 2}
+  - {fileID: 11400000, guid: b00a9bc2411c7cb4c8445e88b2590acb, type: 2}
+  - {fileID: 11400000, guid: f8ae1407bc46b5c40a21ba86b76b36cc, type: 2}
+  - {fileID: 11400000, guid: 514d24e740870194488ef3847fbcc15a, type: 2}
+  - {fileID: 11400000, guid: 466390a12c108c147ab173806fdee4b7, type: 2}
+  vipCard: {fileID: 0}
+  classes:
+  - {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
