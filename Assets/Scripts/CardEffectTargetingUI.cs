@@ -171,8 +171,7 @@ namespace VocaloidTCG.BoardUI
         }
     }
     public sealed class TileHoverHandler : MonoBehaviour,
-    UnityEngine.EventSystems.IPointerEnterHandler,
-    UnityEngine.EventSystems.IPointerClickHandler
+    UnityEngine.EventSystems.IPointerEnterHandler
     {
         public SFXManager sfx;
 
@@ -183,11 +182,5 @@ namespace VocaloidTCG.BoardUI
                 sfx.PlayTileHoverSound();
         }
 
-        public void OnPointerClick(
-            UnityEngine.EventSystems.PointerEventData eventData)
-        {
-            if (sfx)
-                sfx.PlayDropSound();
-        }
     }
 }

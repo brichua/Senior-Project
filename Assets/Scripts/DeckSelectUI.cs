@@ -1,11 +1,13 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 namespace VocaloidTCG
 {
@@ -58,7 +60,7 @@ namespace VocaloidTCG
             if(newDeck) newDeck.onClick.AddListener(() => { if(editor) editor.OpenNew(); if (sfx) sfx.PlayButtonClick1(); });
             if(editDeck) editDeck.onClick.AddListener(() => { if(editor && library.Selected != null) editor.Open(library.Selected); if (sfx) sfx.PlayButtonClick1(); });
             if(deleteDeck) deleteDeck.onClick.AddListener(Delete);
-            if(back) back.onClick.AddListener(() => { if(!MultiplayerSession.ReturnFromDeckEditor() && !StorySession.ReturnFromEditor()) SceneManager.LoadScene(mainMenuScene); if (sfx) sfx.PlayButtonClick1(); });
+            if (back) back.onClick.AddListener(BackButton);
         }
 
         private void Start()
@@ -124,6 +126,20 @@ namespace VocaloidTCG
             if(vipText) vipText.color = cls ? cls.color : defaultVIPTextColor;
         }
 
+        private void BackButton()
+        {
+            if (!MultiplayerSession.ReturnFromDeckEditor() && !StorySession.ReturnFromEditor()) StartCoroutine(BackToMainCoroutine());
+        }
+
+        private IEnumerator BackToMainCoroutine()
+        {
+            if (sfx) { 
+                sfx.PlayButtonClick2();
+                yield return new WaitForSecondsRealtime(sfx.GetButton2SoundLength());
+            }
+            SceneManager.LoadScene(mainMenuScene);
+        }
+
         public void Refresh(){
             if(library == null){
                 SetDeckActionsVisible(false); RenderVIPBorder(null); return;
@@ -163,6 +179,7 @@ namespace VocaloidTCG
             if(selected == null){
                 RenderVIPBorder(null); return;
             }
+
             
             DeckUI.Text(deckName, selected.deckName); 
             DeckUI.Count(count, selected.Count);

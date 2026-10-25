@@ -29,7 +29,8 @@ public class SFXManager : MonoBehaviour
     public AudioClip player_highlight;
     public AudioClip spotlight;
     public AudioClip tile_score_0;
-    public AudioClip card_effect;
+    public AudioClip ally_card_effect;
+    public AudioClip attack_card_effect;
     public AudioClip story_start;
     public AudioClip scroll;
     public AudioClip[] storyTextScroll;
@@ -101,6 +102,14 @@ public class SFXManager : MonoBehaviour
     public float GetTicketTearSoundLength()
     {
         return ticket_tear.length;
+    }
+    public float GetButton1SoundLength()
+    {
+        return button_click_1.length;
+    }
+    public float GetButton2SoundLength()
+    {
+        return button_click_2.length;
     }
 
     public void PlayCardSound(AudioClip clip)
@@ -195,6 +204,11 @@ public class SFXManager : MonoBehaviour
             audioSource.PlayOneShot(enter_game);
     }
 
+    public float GetEnterGameSoundLength()
+    {
+        return enter_game.length;
+    }
+
     public void PlayCrowdSound()
     {
         if (audioSource && crowd_noise)
@@ -243,10 +257,15 @@ public class SFXManager : MonoBehaviour
             audioSource.PlayOneShot(spotlight);
     }
 
-    public void PlayCardEffect()
+    public void PlayAllyCardEffect()
     {
-        if (audioSource && card_effect)
-            audioSource.PlayOneShot(card_effect);
+        if (audioSource && ally_card_effect)
+            audioSource.PlayOneShot(ally_card_effect);
+    }
+    public void PlayAttackCardEffect()
+    {
+        if (audioSource && attack_card_effect)
+            audioSource.PlayOneShot(attack_card_effect);
     }
 
     public void PlayStoryStart()

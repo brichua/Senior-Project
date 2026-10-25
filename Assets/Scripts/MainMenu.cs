@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace VocaloidTCG
 {
@@ -46,6 +47,8 @@ namespace VocaloidTCG
         public TMP_Text musicTitleText;
         public Slider musicProgress;
         public bool loopMusic = true;
+
+        private bool isChangingScene;
 
         private bool? previousAccess;
         private bool? previousTutorialCompletion;
@@ -157,13 +160,16 @@ namespace VocaloidTCG
         }
 
         public void OpenStory(){
-            try{
+            if (isChangingScene) return;
+            try
+            {
                 var library = DeckLibrary.Get(catalog); string error;
                 if(!DeckRules.Validate(library.Selected, library.Catalog, library.Owned, out error)) { DeckUI.Text(status, error); return; }
                 PuzzleLaunch.Clear();
                 StorySession.Clear();
-                SceneManager.LoadScene(storyScene);
-            }catch(Exception ex){
+                PlayButtonSFX(storyScene);
+            }
+            catch(Exception ex){
                 DeckUI.Text(status, ex.Message); Debug.LogError(ex.Message, this);
             }
         }
@@ -178,7 +184,6 @@ namespace VocaloidTCG
         }
 
         public void Play(){
-            if (sfx) sfx.PlayButtonClick1();
             OpenStory();
         }
         
@@ -194,18 +199,15 @@ namespace VocaloidTCG
         }
         
         public void OpenDeckEditor(){
-            if (sfx) sfx.PlayButtonClick1();
-            if (CheckAccess()) OpenScene(deckScene);
+            if (CheckAccess()) PlayButtonSFX(deckScene);
         }
         
         public void OpenPuzzles(){
-            if (sfx) sfx.PlayButtonClick1();
-            if (CheckAccess()) OpenScene(puzzleScene);
+            if (CheckAccess()) PlayButtonSFX(puzzleScene);
         }
         
         public void OpenSettings(){
-            if (sfx) sfx.PlayButtonClick1();
-            OpenScene(settingsScene);
+            PlayButtonSFX(settingsScene);
         }
         
         private void OpenScene(string scene){
@@ -217,7 +219,20 @@ namespace VocaloidTCG
                 Debug.LogError(ex.Message, this);
             }
         }
-        
+        private void PlayButtonSFX(string scene)
+        {
+            if (isChangingScene) return;
+            StartCoroutine(LoadSceneAfterSFX(scene));
+        }
+
+        private IEnumerator LoadSceneAfterSFX(string scene)
+        {
+            isChangingScene = true;
+            if (sfx) sfx.PlayButtonClick1();
+            yield return new WaitForSecondsRealtime(sfx.GetButton1SoundLength());
+            OpenScene(scene);
+        }
+
         private void OnDestroy(){
             if(storyButton) storyButton.onClick.RemoveListener(OpenStory);
             if(multiplayerButton) multiplayerButton.onClick.RemoveListener(OpenMultiplayer);

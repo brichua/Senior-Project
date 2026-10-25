@@ -226,7 +226,7 @@ MonoBehaviour:
           sprite: {fileID: 1275116586176032080, guid: 715a83d076871134280f70cb8c7d6033, type: 3}
       - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        voiceline: {fileID: 8300000, guid: 6d3a5bc610201eb478a2254bfd3ac559, type: 3}
+        voiceline: {fileID: 0}
         text: You've got that ticket with you again?
         avatars:
         - slot: 1
@@ -244,7 +244,7 @@ MonoBehaviour:
           sprite: {fileID: -2751635966877528251, guid: a2cfee1425dd86647be4673307bc7f1b, type: 3}
       - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-        voiceline: {fileID: 0}
+        voiceline: {fileID: 8300000, guid: 6d3a5bc610201eb478a2254bfd3ac559, type: 3}
         text: Does it work for auditions?
         avatars:
         - slot: 1

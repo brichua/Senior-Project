@@ -88,7 +88,7 @@ public class VoicelinesManager : MonoBehaviour
         if (!audioSource || character_index < 0 || character_index >= 6)
             return;
 
-        if (voiceline_event == VoicelineEvent.Win_Tile || voiceline_event == VoicelineEvent.Lose_Tile)
+        if (voiceline_event == VoicelineEvent.Win_Tile || voiceline_event == VoicelineEvent.Lose_Tile || voiceline_event == VoicelineEvent.Idle)
         {
             AudioClip[] voicelines = GetCharacterArray(character, voiceline_event);
             int random_index = UnityEngine.Random.Range(0, 3);

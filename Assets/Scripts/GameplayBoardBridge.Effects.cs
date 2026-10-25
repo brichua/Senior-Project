@@ -178,27 +178,29 @@ namespace VocaloidTCG.BoardUI
                 case EffectChoice.HandDiscard:
                     state.Side(actor).hand.Remove(chosen); DiscardFromHand(chosen);
                     if(p.effect == CardEffect.DiscardThenDraw) DrawCards(actor,1);
+                    if (sfx) sfx.PlayCardDrawSound();
                     EndChoice(); break;
-                case EffectChoice.SacrificeAlly: ResolveRinSacrifice(p,chosen); break;
+                case EffectChoice.SacrificeAlly: ResolveRinSacrifice(p,chosen); if (sfx) sfx.PlayDestroySound(); break;
                 case EffectChoice.RinEnemy:
-                    if(p.effect == CardEffect.SacrificeRemoveEnemy) RemoveSingle(chosen);
-                    else ChangeInfluence(chosen,-3);
+                    if(p.effect == CardEffect.SacrificeRemoveEnemy) { RemoveSingle(chosen); if (sfx) sfx.PlayDestroySound(); }
+                    else { ChangeInfluence(chosen, -3); PlayChangeInfulenceSound(-3); }
                     EndChoice(); break;
                 case EffectChoice.StrongDeckPerformer:
-                    RemoveFromDeck(actor,chosen); GiveCard(actor,chosen); EndChoice(); break;
+                    RemoveFromDeck(actor,chosen); GiveCard(actor,chosen); if (sfx) sfx.PlayCardDrawSound(); EndChoice(); break;
+                    //add sfx to this one
                 case EffectChoice.HandPerformer: case EffectChoice.DiscardPerformer:
                     p.selectedId=chosen.instanceId; p.choice=EffectChoice.MoveTile; p.stage=1; RefreshChoice(); break;
                 case EffectChoice.DeckPerformer:
-                    RemoveFromDeck(actor,chosen); GiveCard(actor,chosen); EndChoice(); break;
+                    RemoveFromDeck(actor,chosen); GiveCard(actor,chosen); if (sfx) sfx.PlayCardDrawSound(); EndChoice(); break;
                 case EffectChoice.TokenTile:
-                    CreateStageToken(p.source,tile,p.amount);
+                    CreateStageToken(p.source,tile,p.amount); if (sfx) sfx.PlayDropSound();
                     if(--p.remaining<=0) EndChoice(); else RefreshChoice(); break;
-                case EffectChoice.MoveAlly: p.selectedId=ally.instanceId; p.choice=EffectChoice.MoveTile; RefreshChoice(); break;
+                case EffectChoice.MoveAlly: p.selectedId=ally.instanceId; p.choice=EffectChoice.MoveTile; if (sfx) sfx.PlayDropSound(); RefreshChoice(); break;
                 case EffectChoice.MoveTile:
                     var moving=FieldCards(actor).FirstOrDefault(c=>c.instanceId==p.selectedId);
                     if(moving!=null){
-                        int from=TileOf(moving); MoveWithPartner(from,tile,actor);
-                        if(p.effect==CardEffect.ReturnToCenter) ChangeInfluence(moving,2,true);
+                        int from=TileOf(moving); MoveWithPartner(from,tile,actor); if (sfx) sfx.PlayDropSound();
+                        if (p.effect==CardEffect.ReturnToCenter) { ChangeInfluence(moving, 2, true); PlayChangeInfulenceSound(2); }
                         if(p.effect==CardEffect.MoveAllToCenter){ p.choice=EffectChoice.MoveAlly; RefreshChoice(); } else EndChoice();
                     }else{
                         var list=p.effect==CardEffect.FreePlayAndSearch ? state.Side(actor).hand : state.Side(actor).discard;
@@ -207,19 +209,20 @@ namespace VocaloidTCG.BoardUI
                         list.Remove(revived);
                         if(p.effect==CardEffect.ReviveAbility) state.Side(actor).energy-=RevivalCost(p.source,revived);
                         ResetReturnedCard(revived);
-                        if(Performer(state.tiles[tile],actor)!=null) SetAssistant(state.tiles[tile],actor,revived); else SetPerformer(state.tiles[tile],actor,revived);
+                        if(Performer(state.tiles[tile],actor)!=null) { SetAssistant(state.tiles[tile], actor, revived); if (sfx) sfx.PlayDropSound(); } 
+                        else { SetPerformer(state.tiles[tile], actor, revived); if (sfx) sfx.PlayDropSound(); }
                         placedTurns[revived.instanceId]=turnNumber; revived.enteredRound=state.roundNumber;
                         if(p.effect==CardEffect.FreePlayAndSearch){ p.choice=EffectChoice.DeckPerformer; p.selectedId=revived.instanceId; RefreshChoice(); }
                         else EndChoice();
                     }
                     break;
                 case EffectChoice.AdjacentAlly:
-                    p.source.sharedTargetId=ally.instanceId; EndChoice(); break;
-                case EffectChoice.Ally: ChangeInfluence(ally,1); EndChoice(); break;
+                    p.source.sharedTargetId=ally.instanceId; if (sfx) sfx.PlayAllyCardEffect(); EndChoice(); break;
+                case EffectChoice.Ally: ChangeInfluence(ally,1); PlayChangeInfulenceSound(1); EndChoice(); break;
                 case EffectChoice.Enemy:
-                    var enemy=Performer(state.tiles[tile],1-actor); ChangeInfluence(enemy,-2); enemy.rootedRound=state.roundNumber; EndChoice(); break;
+                    var enemy=Performer(state.tiles[tile],1-actor); ChangeInfluence(enemy,-2); PlayChangeInfulenceSound(-2); enemy.rootedRound=state.roundNumber; EndChoice(); break;
                 case EffectChoice.OccupiedTile:
-                    (actor==0 ? state.roundTileBonus0 : state.roundTileBonus1)[tile]+=p.amount; EndChoice(); break;
+                    (actor==0 ? state.roundTileBonus0 : state.roundTileBonus1)[tile]+=p.amount; if (sfx) sfx.PlayTileScore(); EndChoice(); break;
             }
             state.Side(actor).hiddenHandCount=state.Side(actor).hand.Count;
             Recompute(); if(IsPuzzle && state.pendingEffect==null) CheckPuzzle(false,false); Publish(); return true;
@@ -296,6 +299,15 @@ namespace VocaloidTCG.BoardUI
                 GiveCard(actor,c);
             }
             return drawn;
+        }
+
+        private void PlayChangeInfulenceSound(int amount)
+        {
+            if (sfx)
+            {
+                if (amount > 0) sfx.PlayAllyCardEffect();
+                else if (amount < 0) sfx.PlayAttackCardEffect();
+            }
         }
     }
 }

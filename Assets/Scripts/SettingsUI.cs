@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections;
 
 namespace VocaloidTCG
 {
@@ -130,8 +131,16 @@ namespace VocaloidTCG
                 Debug.LogError(message, this);
                 return;
             }
-            if (uiSFX) uiSFX.PlayButtonClick2();
-            SceneManager.LoadScene(mainScene);
+            StartCoroutine(BackToMainCoroutine());
+        }
+
+        private IEnumerator BackToMainCoroutine()
+        {
+            if (uiSFX) {
+                uiSFX.PlayButtonClick2();
+                yield return new WaitForSecondsRealtime(uiSFX.GetButton2SoundLength());
+            }
+            SceneManager.LoadScene(mainScene); ;
         }
 
         private void OnDestroy()

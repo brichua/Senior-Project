@@ -72,7 +72,7 @@ namespace VocaloidTCG
             if (submitCode && submitCode != join) submitCode.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick1(); Join(); });
             if (back) back.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick2(); session.BackToMain(); });
             if (editDeck) editDeck.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick1(); session.EditDeck(); });
-            if (leave) leave.onClick.AddListener(session.LeaveLobby);
+            if (leave) leave.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick2(); session.LeaveLobby(); });
             if(copy) copy.onClick.AddListener(Copy);
             if(pasteCode) pasteCode.onClick.AddListener(PasteCode);
             if(clearCode) clearCode.onClick.AddListener(ClearCode);

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -68,10 +69,22 @@ namespace VocaloidTCG
                 return;
             }
 
-            try{
+            StartCoroutine(BackToMainCoroutine());
+        }
+
+        private IEnumerator BackToMainCoroutine()
+        {
+            if (sfx)
+            {
+                sfx.PlayButtonClick2();
+                yield return new WaitForSecondsRealtime(sfx.GetButton2SoundLength());
+            }
+            try
+            {
                 SceneManager.LoadScene(mainScene);
             }
-            catch(Exception ex){
+            catch (Exception ex)
+            {
                 ReportError(ex.Message, this);
             }
         }
@@ -173,10 +186,22 @@ namespace VocaloidTCG
             if(!selected.Validate(out error)) { ReportError(error, selected); return; }
             if(!Application.CanStreamedLevelBeLoaded(gameScene)) { ReportError("Game Scene: add \"" + gameScene + "\" to the build's scene list.", this); return; }
             PuzzleLaunch.Prepare(selected, catalog.deckCatalog, SceneManager.GetActiveScene().name);
+            StartCoroutine(StartPuzzleCoroutine());
+        }
+
+        private IEnumerator StartPuzzleCoroutine()
+        {
+            if (sfx)
+            {
+                sfx.PlayEnterGameSound();
+                yield return new WaitForSecondsRealtime(sfx.GetEnterGameSoundLength());
+            }
             try
             {
                 SceneManager.LoadScene(gameScene);
-            }catch(Exception ex){
+            }
+            catch (Exception ex)
+            {
                 PuzzleLaunch.Clear(); ReportError(ex.Message, selected);
             }
         }
