@@ -340,7 +340,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2009179169}
   m_HandleRect: {fileID: 2009179168}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -8251,7 +8251,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 27b3deff008aa9e49a3d9068a76ea259, type: 3}
   - {fileID: 8300000, guid: b4112f5cb32b02b459f0279bf9ca40af, type: 3}
   luka_win_tile:
-  - {fileID: 8300000, guid: b620641707175d74bb9860d9d7d67d46, type: 3}
+  - {fileID: 8300000, guid: 0543a4e55b832dd4f93c22ba75676576, type: 3}
   - {fileID: 8300000, guid: 655d011970ee5d345b145038dd1f977f, type: 3}
   - {fileID: 8300000, guid: 42370bfa4dea98e43bf31c637f1c730d, type: 3}
   meiko_win_tile:
@@ -11034,7 +11034,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7000000021}
   m_HandleRect: {fileID: 7000000019}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:

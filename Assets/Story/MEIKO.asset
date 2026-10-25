@@ -21,6 +21,7 @@ MonoBehaviour:
     lines:
     - speaker: Narrator
       portrait: {fileID: 0}
+      voiceline: {fileID: 0}
       text: KAITO holds up the proposed tour promo. Almost every part of MEIKO's
         song is crossed out except the chorus.
       avatars:
@@ -30,6 +31,7 @@ MonoBehaviour:
         sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
     - speaker: KAITO
       portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
       text: Good news! They love your chorus.
       avatars:
       - slot: 1
@@ -38,6 +40,7 @@ MonoBehaviour:
         sprite: {fileID: 6526448974759205420, guid: 34e291faf589f6348b04fb7f63ff288c, type: 3}
     - speaker: MEIKO
       portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 8300000, guid: 979df520afcaa1b4aa061803fd33c53c, type: 3}
       text: And the rest of the song apparently offended them.
       avatars:
       - slot: 1
@@ -46,6 +49,7 @@ MonoBehaviour:
         sprite: {fileID: 3342472002854934847, guid: bb9fbdd48b2c8d14886a01142a8417df, type: 3}
     - speaker: KAITO
       portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
       text: It's a fifteen-second preview.
       avatars:
       - slot: 1
@@ -54,6 +58,7 @@ MonoBehaviour:
         sprite: {fileID: 6149762242164147661, guid: c3005a6e00678e3419d81925b5c2da6a, type: 3}
     - speaker: MEIKO
       portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 8300000, guid: 5a0f5bc9938ed0d4faf937d0c917096f, type: 3}
       text: I know. I'm not putting on a fifteen-second concert, though.
       avatars:
       - slot: 1
@@ -62,6 +67,7 @@ MonoBehaviour:
         sprite: {fileID: 3342472002854934847, guid: bb9fbdd48b2c8d14886a01142a8417df, type: 3}
     - speaker: Narrator
       portrait: {fileID: 0}
+      voiceline: {fileID: 8300000, guid: caacf738306f3f243a0a7b5c1e66e5b9, type: 3}
       text: She takes out a red pencil and circles the full set list.
       avatars:
       - slot: 1
@@ -72,6 +78,7 @@ MonoBehaviour:
     lines:
     - speaker: Narrator
       portrait: {fileID: 0}
+      voiceline: {fileID: 0}
       text: MEIKO's name tops the tour poster. She checks the full opening set list
         while KAITO holds up his phone.
       avatars:
@@ -81,6 +88,7 @@ MonoBehaviour:
         sprite: {fileID: 5903908461516492951, guid: 8c8bebc2cb7e56f4c971ca55f27f8852, type: 3}
     - speaker: KAITO
       portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 8300000, guid: a59bc86f29d52704abf931ea80533273, type: 3}
       text: The new preview's doing well. They're asking when the full version comes
         out.
       avatars:
@@ -90,6 +98,7 @@ MonoBehaviour:
         sprite: {fileID: 6526448974759205420, guid: 34e291faf589f6348b04fb7f63ff288c, type: 3}
     - speaker: MEIKO
       portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
       text: Tonight, if everyone gets onstage on time.
       avatars:
       - slot: 1
@@ -98,6 +107,7 @@ MonoBehaviour:
         sprite: {fileID: 5903908461516492951, guid: 8c8bebc2cb7e56f4c971ca55f27f8852, type: 3}
     - speaker: KAITO
       portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 8300000, guid: 8fc2202936ac6d24eb745b299aecb062, type: 3}
       text: So... should I post the whole song afterward?
       avatars:
       - slot: 1
@@ -106,6 +116,7 @@ MonoBehaviour:
         sprite: {fileID: -1971943863084206274, guid: 0bca34c626aa4694aaf31971b87bd402, type: 3}
     - speaker: MEIKO
       portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 8300000, guid: 42ec23baf1bbb31429d6f70f8d032ebf, type: 3}
       text: Sure. First, let's give them a show worth recording.
       avatars:
       - slot: 1
@@ -114,6 +125,7 @@ MonoBehaviour:
         sprite: {fileID: -7753276395421877545, guid: 710cc76e5bee0ef47a514d68f1f7b013, type: 3}
     - speaker: Narrator
       portrait: {fileID: 0}
+      voiceline: {fileID: 0}
       text: She tucks the red pencil behind her ear and heads toward the stage as
         the house lights dim.
       avatars:
@@ -135,6 +147,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 0}
         text: MEIKO rehearses an introduction. She stops halfway through and scratches
           out three lines.
         avatars:
@@ -144,6 +157,7 @@ MonoBehaviour:
           sprite: {fileID: 1414087313690171253, guid: bd2e8b9a35e8b5740a210eeda43ff22c, type: 3}
       - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Wait, I liked that part!
         avatars:
         - slot: 1
@@ -152,6 +166,7 @@ MonoBehaviour:
           sprite: {fileID: -2199009814668414564, guid: 25eb3c64c8a9d4e4dbac7f14ab53122f, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: The part where I explain the song before singing it?
         avatars:
         - slot: 1
@@ -160,6 +175,7 @@ MonoBehaviour:
           sprite: {fileID: 1414087313690171253, guid: bd2e8b9a35e8b5740a210eeda43ff22c, type: 3}
       - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: ...When you put it like that.
         avatars:
         - slot: 1
@@ -168,6 +184,7 @@ MonoBehaviour:
           sprite: {fileID: -6467469513183496125, guid: 64258669bcda46446a650c15765c381a, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: You can tell me if you miss it after the show.
         avatars:
         - slot: 1
@@ -176,6 +193,7 @@ MonoBehaviour:
           sprite: {fileID: 4311828083851245686, guid: 0ed4ac1d21af8974a8e3b903b5a7c0c3, type: 3}
       - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Deal! But I'm keeping my own introduction.
         avatars:
         - slot: 1
@@ -186,6 +204,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 0}
         text: The crowd is still cheering after MEIKO's win. Miku picks up the discarded
           introduction sheet.
         avatars:
@@ -195,6 +214,7 @@ MonoBehaviour:
           sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
       - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Okay, I didn't miss it.
         avatars:
         - slot: 1
@@ -203,6 +223,7 @@ MonoBehaviour:
           sprite: {fileID: -4019612401329902033, guid: b1a5dee113946c043af466e0851b141e, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Should I frame that sentence?
         avatars:
         - slot: 1
@@ -211,6 +232,7 @@ MonoBehaviour:
           sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
       - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Don't get too excited. I have notes about the second verse.
         avatars:
         - slot: 1
@@ -219,6 +241,7 @@ MonoBehaviour:
           sprite: {fileID: -6467469513183496125, guid: 64258669bcda46446a650c15765c381a, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Now you're talking. Let's hear them.
         avatars:
         - slot: 1
@@ -227,6 +250,7 @@ MonoBehaviour:
           sprite: {fileID: 4311828083851245686, guid: 0ed4ac1d21af8974a8e3b903b5a7c0c3, type: 3}
       - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: First, can I borrow that pencil?
         avatars:
         - slot: 1
@@ -246,6 +270,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 0}
         text: Len tries the same high note for the fourth time. MEIKO sets a bottle
           of water beside him.
         avatars:
@@ -255,6 +280,7 @@ MonoBehaviour:
           sprite: {fileID: 7674018612228396797, guid: 87a8d465a23a180429198277114a8403, type: 3}
       - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: I can hit it. I just need one more try.
         avatars:
         - slot: 1
@@ -263,6 +289,7 @@ MonoBehaviour:
           sprite: {fileID: 8693415673057005869, guid: 9ef075f479c895643b7036e2307c9a93, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: That's what you said three tries ago.
         avatars:
         - slot: 1
@@ -271,6 +298,7 @@ MonoBehaviour:
           sprite: {fileID: -956189301214819756, guid: 50d2a575c6258d946bf3eab369844e1a, type: 3}
       - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: You've never had trouble with a note?
         avatars:
         - slot: 1
@@ -279,6 +307,7 @@ MonoBehaviour:
           sprite: {fileID: -8751352758729138934, guid: d741e82c80bfba94dab9c3062b8c8110, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Ask KAITO about my first live show. Actually, don't.
         avatars:
         - slot: 1
@@ -287,6 +316,7 @@ MonoBehaviour:
           sprite: {fileID: -956189301214819756, guid: 50d2a575c6258d946bf3eab369844e1a, type: 3}
       - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Now I definitely have to ask him.
         avatars:
         - slot: 1
@@ -297,6 +327,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 0}
         text: MEIKO wins despite a brief crack on one high note. Len meets her backstage.
         avatars:
         - slot: 1
@@ -305,6 +336,7 @@ MonoBehaviour:
           sprite: {fileID: 1275116586176032080, guid: 715a83d076871134280f70cb8c7d6033, type: 3}
       - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: You missed that note.
         avatars:
         - slot: 1
@@ -313,6 +345,7 @@ MonoBehaviour:
           sprite: {fileID: 2109474199129327443, guid: 3464634288aedf349aea48de0f10dcdc, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: I noticed.
         avatars:
         - slot: 1
@@ -321,6 +354,7 @@ MonoBehaviour:
           sprite: {fileID: 7674018612228396797, guid: 87a8d465a23a180429198277114a8403, type: 3}
       - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: But you kept going.
         avatars:
         - slot: 1
@@ -329,6 +363,7 @@ MonoBehaviour:
           sprite: {fileID: 3078092795626919404, guid: ab92f6b78dac17343bb3f0a9c6589283, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: The rest of the song wasn't going to sing itself.
         avatars:
         - slot: 1
@@ -337,6 +372,7 @@ MonoBehaviour:
           sprite: {fileID: 1275116586176032080, guid: 715a83d076871134280f70cb8c7d6033, type: 3}
       - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Hah. Fair point.
         avatars:
         - slot: 1
@@ -356,6 +392,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 0}
         text: Rin claps a fast beat while MEIKO adjusts her microphone.
         avatars:
         - slot: 1
@@ -364,6 +401,7 @@ MonoBehaviour:
           sprite: {fileID: 7315369456398821115, guid: caa699f698d4b75498d9700e26408b49, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Come on! This place needs something LOUD!
         avatars:
         - slot: 1
@@ -372,6 +410,7 @@ MonoBehaviour:
           sprite: {fileID: -8036308041886742708, guid: 9c688388a046dd24dbbc30ee2987acc9, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: It was loud before you got here.
         avatars:
         - slot: 1
@@ -380,6 +419,7 @@ MonoBehaviour:
           sprite: {fileID: 7315369456398821115, guid: caa699f698d4b75498d9700e26408b49, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: That's a compliment, right?
         avatars:
         - slot: 1
@@ -388,6 +428,7 @@ MonoBehaviour:
           sprite: {fileID: -6891710502897521986, guid: c688d2633af154e4b9f2194e663a7494, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Sure. Let's see if you can make it through the slow part without speeding
           up.
         avatars:
@@ -397,6 +438,7 @@ MonoBehaviour:
           sprite: {fileID: -6498270370585485129, guid: 6a005da741980b346901fdcc3c26ab52, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Oh, it's a challenge now?
         avatars:
         - slot: 1
@@ -407,6 +449,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 0}
         text: A few people call for MEIKO's quiet opening verse again. Rin looks
           offended on principle.
         avatars:
@@ -416,6 +459,7 @@ MonoBehaviour:
           sprite: {fileID: 8466827584194706362, guid: 91240b5a94dd0f54e905a9904b43083c, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Seriously? They want the slow bit?
         avatars:
         - slot: 1
@@ -424,6 +468,7 @@ MonoBehaviour:
           sprite: {fileID: 6138499018571659458, guid: 9890fb00517102f4589d9d41eb6c2ce2, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: You could sing it with me.
         avatars:
         - slot: 1
@@ -432,6 +477,7 @@ MonoBehaviour:
           sprite: {fileID: 8466827584194706362, guid: 91240b5a94dd0f54e905a9904b43083c, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: At that speed? I'll fall asleep!
         avatars:
         - slot: 1
@@ -440,6 +486,7 @@ MonoBehaviour:
           sprite: {fileID: 6138499018571659458, guid: 9890fb00517102f4589d9d41eb6c2ce2, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Then I'll wake you when it's your turn.
         avatars:
         - slot: 1
@@ -448,6 +495,7 @@ MonoBehaviour:
           sprite: {fileID: 8466827584194706362, guid: 91240b5a94dd0f54e905a9904b43083c, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: ...Fine. But next time, we do my version too.
         avatars:
         - slot: 1
@@ -467,6 +515,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 0}
         text: KAITO plays MEIKO a proposed fifteen-second promo clip on his phone.
         avatars:
         - slot: 1
@@ -475,6 +524,7 @@ MonoBehaviour:
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
       - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: This is the version the organizers want to post.
         avatars:
         - slot: 1
@@ -483,6 +533,7 @@ MonoBehaviour:
           sprite: {fileID: 6506257976614099797, guid: e953fd9f6a3a3334884fede5ea8b3148, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: It cuts off in the middle of my sentence.
         avatars:
         - slot: 1
@@ -491,6 +542,7 @@ MonoBehaviour:
           sprite: {fileID: 3342472002854934847, guid: bb9fbdd48b2c8d14886a01142a8417df, type: 3}
       - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Technically, the middle of your verse.
         avatars:
         - slot: 1
@@ -499,6 +551,7 @@ MonoBehaviour:
           sprite: {fileID: 6149762242164147661, guid: c3005a6e00678e3419d81925b5c2da6a, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Thank you, that's much better.
         avatars:
         - slot: 1
@@ -507,6 +560,7 @@ MonoBehaviour:
           sprite: {fileID: 3342472002854934847, guid: bb9fbdd48b2c8d14886a01142a8417df, type: 3}
       - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: ...I'll take that as a no.
         avatars:
         - slot: 1
@@ -517,6 +571,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 0}
         text: KAITO shows MEIKO a recording of the audience leaning forward before
           her quiet verse.
         avatars:
@@ -526,6 +581,7 @@ MonoBehaviour:
           sprite: {fileID: 5903908461516492951, guid: 8c8bebc2cb7e56f4c971ca55f27f8852, type: 3}
       - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Look. They all leaned in right here.
         avatars:
         - slot: 1
@@ -534,6 +590,7 @@ MonoBehaviour:
           sprite: {fileID: 6526448974759205420, guid: 34e291faf589f6348b04fb7f63ff288c, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: That's where we should end the preview.
         avatars:
         - slot: 1
@@ -542,6 +599,7 @@ MonoBehaviour:
           sprite: {fileID: 5903908461516492951, guid: 8c8bebc2cb7e56f4c971ca55f27f8852, type: 3}
       - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Right before the verse? That's cruel.
         avatars:
         - slot: 1
@@ -550,6 +608,7 @@ MonoBehaviour:
           sprite: {fileID: -1971943863084206274, guid: 0bca34c626aa4694aaf31971b87bd402, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: They can hear the rest at the show.
         avatars:
         - slot: 1
@@ -558,6 +617,7 @@ MonoBehaviour:
           sprite: {fileID: -7753276395421877545, guid: 710cc76e5bee0ef47a514d68f1f7b013, type: 3}
       - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: ...I see what you're doing.
         avatars:
         - slot: 1
@@ -577,6 +637,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 0}
         text: Luka shows MEIKO two lyric sheets with the same melody and different
           words.
         avatars:
@@ -586,6 +647,7 @@ MonoBehaviour:
           sprite: {fileID: 5076353916888053700, guid: 76bcca590ddfebc49b7f79afec057bfc, type: 3}
       - speaker: Luka
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: I can't choose which verse to sing.
         avatars:
         - slot: 1
@@ -594,6 +656,7 @@ MonoBehaviour:
           sprite: {fileID: 2541232186797710645, guid: 8c2198f91143d7040ab0170e51459e2c, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Why not use both?
         avatars:
         - slot: 1
@@ -602,6 +665,7 @@ MonoBehaviour:
           sprite: {fileID: 5076353916888053700, guid: 76bcca590ddfebc49b7f79afec057bfc, type: 3}
       - speaker: Luka
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: One asks someone to stay. The other tells them to go.
         avatars:
         - slot: 1
@@ -610,6 +674,7 @@ MonoBehaviour:
           sprite: {fileID: 2541232186797710645, guid: 8c2198f91143d7040ab0170e51459e2c, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Try them in a different order. See how they sound together.
         avatars:
         - slot: 1
@@ -618,6 +683,7 @@ MonoBehaviour:
           sprite: {fileID: 5076353916888053700, guid: 76bcca590ddfebc49b7f79afec057bfc, type: 3}
       - speaker: Luka
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: I'll give it a try.
         avatars:
         - slot: 1
@@ -628,6 +694,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 0}
         text: After MEIKO's win, Luka shows her an updated arrangement backstage.
         avatars:
         - slot: 1
@@ -636,6 +703,7 @@ MonoBehaviour:
           sprite: {fileID: 5296954397734636559, guid: 88015ca618f77154aaacf58d9c875728, type: 3}
       - speaker: Luka
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: I tried both verses, like you suggested.
         avatars:
         - slot: 1
@@ -644,6 +712,7 @@ MonoBehaviour:
           sprite: {fileID: 848881099071188197, guid: 991781bd03c8bb64192e8c3d64485d96, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: How'd they sound?
         avatars:
         - slot: 1
@@ -652,6 +721,7 @@ MonoBehaviour:
           sprite: {fileID: 5296954397734636559, guid: 88015ca618f77154aaacf58d9c875728, type: 3}
       - speaker: Luka
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Better. I kept the pause before the second one.
         avatars:
         - slot: 1
@@ -660,6 +730,7 @@ MonoBehaviour:
           sprite: {fileID: 3056756451418170359, guid: 624cf8f3ecbd433438e399a5ac16bc87, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Then keep it. It's your arrangement.
         avatars:
         - slot: 1
@@ -668,6 +739,7 @@ MonoBehaviour:
           sprite: {fileID: -7160719286429738108, guid: 041fa33cda16c7044aeada8e9029e9e9, type: 3}
       - speaker: Luka
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: I think I will.
         avatars:
         - slot: 1
