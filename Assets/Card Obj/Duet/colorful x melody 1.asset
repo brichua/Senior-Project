@@ -16,22 +16,21 @@ MonoBehaviour:
   id: e4786ab1bc63aaa48b5380f6e22a03aa
   cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   vip: 0
-  info: remove an ally, apply its influence to an adjacent occupied tile this round,
-    then draw 1 card
+  info: "Choose an ally to leave the stage. Add its current influence to an adjacent occupied tile for your team this round, then draw 1 card."
   performer: 0
   stageEffect: 1
   cost: 2
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 106
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
   stageShare: 0
   encore: 0
   nimble: 0
-  cheerEffect: 1
+  cheerEffect: 0
   venueEffect: 0
   regen: 0
   protectedInfluence: 0

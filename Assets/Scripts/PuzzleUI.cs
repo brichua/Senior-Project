@@ -158,6 +158,7 @@ namespace VocaloidTCG
             
             DeckUI.Image(rewardArt, reward ? reward.cardImage : null);
             DeckUI.Text(rewardName, reward ? reward.cardName : "");
+            if(rewardName){ rewardName.color = cls ? cls.color : Color.white; rewardName.enableVertexGradient = false; }
             DeckUI.Text(rewardType, reward ? (reward.stageEffect ? "Stage Effect" : "Performer") : "");
             DeckUI.Text(rewardCost, reward ? "cost: " + reward.cost : "");
             DeckUI.Text(rewardInfluence, reward ? "inf: " + reward.influence : "");

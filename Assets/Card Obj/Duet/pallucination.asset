@@ -16,15 +16,14 @@ MonoBehaviour:
   id: 06a345d42224d3a47a8ec81a8cec8896
   cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   vip: 0
-  info: remove an ally. Then move an enemy adjacent to it to another available adjacent
-    tile and give that enemy -1 inf this round
+  info: "Choose an ally to leave the stage. Then move an enemy adjacent to its former tile to an available tile adjacent to that enemy, and give it -1 influence this round."
   performer: 0
   stageEffect: 1
   cost: 2
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 123
   scoreThreshold: 0
   harmonize: 0
   soloist: 0

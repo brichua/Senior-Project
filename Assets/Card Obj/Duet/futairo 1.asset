@@ -16,15 +16,14 @@ MonoBehaviour:
   id: 62bd2c149d2e47b4ebd797a6859630c5
   cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
   vip: 0
-  info: give an ally in the middle zone a random keyword this round. If it wins a
-    contested tile this round, draw 1 card
+  info: "Give an ally in Center Stage a random keyword this round. If that performer wins a contested tile this round, draw 1 card."
   performer: 0
   stageEffect: 1
   cost: 2
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 114
   scoreThreshold: 0
   harmonize: 0
   soloist: 0

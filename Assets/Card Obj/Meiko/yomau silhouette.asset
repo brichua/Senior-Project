@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abd45c78b7c1f84c86141c12c292696, type: 3}
+  m_Name: yomau silhouette
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
+  cardName: Yomau Silhouette
+  id: cee74bc0239f2074bbfe9e2606f8acf0
+  cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
+  vip: 0
+  info: 'Protected 1. Regen.
+
+    While this performer is on stage, all allied performers
+    share their keywords.'
+  performer: 1
+  stageEffect: 0
+  cost: 5
+  influence: 7
+  flags: []
+  stageInfluenceChange: 1
+  effect: 81
+  scoreThreshold: 0
+  harmonize: 0
+  soloist: 0
+  stageShare: 0
+  encore: 0
+  nimble: 0
+  cheerEffect: 0
+  venueEffect: 0
+  regen: 1
+  protectedInfluence: 1
+  cardImage: {fileID: -1887415330476538300, guid: c84ce1c99bf37244b83df6942aec4623, type: 3}
+  characterImage: {fileID: 1697215282081974111, guid: ec135f47aade31d47a875e7648cb6ebb, type: 3}
+  iconImage: {fileID: 6313181977780405658, guid: 314430fadc380f246a5c1d7dec1a9138, type: 3}
+  popupImage: {fileID: -469258639255709176, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 0}

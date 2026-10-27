@@ -16,15 +16,15 @@ MonoBehaviour:
   id: 54acff21c2ab5c446ab78542699ad8b9
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: When played, choose an enemy performer. Gain one of its keywords. That performer
-    gets -1 inf this round
+  info: On play, choose an enemy performer. Gain one of its keywords, if it has any.
+    That performer gets -1 influence this round.
   performer: 1
   stageEffect: 0
   cost: 3
   influence: 3
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 113
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
@@ -35,8 +35,8 @@ MonoBehaviour:
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: 4607427937742375997, guid: 072adfdeafc7e0d47b093096142f588f, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: -7129893193933484764, guid: b9ab4cc3553ea8540a3e226837febb9a, type: 3}
+  cardImage: {fileID: 1873443300407182162, guid: 9fae0144bf1a2ec45922aa0205dac174, type: 3}
+  characterImage: {fileID: 1980282129112364355, guid: 4d1865d522abd5b4a8b6d3ea8d57c963, type: 3}
+  iconImage: {fileID: 3472621514939967213, guid: 7796fbbdd5972904f898a2424d2460ad, type: 3}
   popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

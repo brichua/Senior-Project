@@ -16,26 +16,29 @@ MonoBehaviour:
   id: 6baaccdbf438f9d439af7926e7c1f820
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: encore, harmonize 1, while on a contested tile, adjacent allies get +1 inf
+  info: 'Encore. Harmonize 1.
+
+    While this is on a contested tile, adjacent allies
+    have +1 influence.'
   performer: 1
   stageEffect: 0
   cost: 2
   influence: 2
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 120
   scoreThreshold: 0
-  harmonize: 0
+  harmonize: 1
   soloist: 0
   stageShare: 0
-  encore: 0
+  encore: 1
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: 5032970566489266950, guid: 46d6d73469c70dc4b8e35390ab2c95cd, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: -3647385321470557309, guid: 9da04220ee429c74ca5d697a68efc6cf, type: 3}
+  cardImage: {fileID: -1380098221765491813, guid: 1740bc8daaea5d049849834db9e94fcb, type: 3}
+  characterImage: {fileID: -1056067543314719813, guid: 0cad665875a777d4ab53c3a14f2d847f, type: 3}
+  iconImage: {fileID: 6878476383431627652, guid: a71b163847b96ca4b8539e1eec3b6ff9, type: 3}
   popupImage: {fileID: -3350101939418175136, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

@@ -14,19 +14,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardData
   cardName: Unbalance Hero
   id: 9ec1e18bd838c0249b047995f3eff601
-  cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: harmonize 1, when played give an adjacent ally +1 inf and an enemy on this
-    tile -1 inf
+  info: 'Harmonize 1.
+
+    On play, give an adjacent ally +1 influence and an enemy
+    on this tile -1 influence.'
   performer: 1
   stageEffect: 0
   cost: 3
   influence: 3
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 129
   scoreThreshold: 0
-  harmonize: 0
+  harmonize: 1
   soloist: 0
   stageShare: 0
   encore: 0
@@ -35,8 +37,8 @@ MonoBehaviour:
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: -4382480504477763917, guid: 9a9ceb1f333e63040afd44c68e20ef18, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: -42371896761664522, guid: 4a81047e35160fb4f9126d9abe1e4a2a, type: 3}
-  popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  cardImage: {fileID: 8882645775029016461, guid: eb997661f9ed88940bb2ed069222141f, type: 3}
+  characterImage: {fileID: 6400897433262499915, guid: d58b7b2478d57bc4296112a58091d039, type: 3}
+  iconImage: {fileID: 7626776627076995024, guid: a98a0d1e55b88fa4a9cbe3e6f4de5437, type: 3}
+  popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

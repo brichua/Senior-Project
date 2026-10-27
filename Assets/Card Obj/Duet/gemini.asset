@@ -16,22 +16,25 @@ MonoBehaviour:
   id: 550dd1aa2d58b47479207044f903b235
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: "cheer effect, remove an ally. Then choose an enemy with inf equal to or
-    lower than that ally\u2019s original inf. It gets -3 inf"
+  info: 'Cheer Effect.
+
+    Choose an ally to leave the stage. Then give an enemy
+    performer with current influence no greater than that ally''s original influence
+    -3 influence.'
   performer: 0
   stageEffect: 1
   cost: 4
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 115
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
   stageShare: 0
   encore: 0
   nimble: 0
-  cheerEffect: 0
+  cheerEffect: 1
   venueEffect: 0
   regen: 0
   protectedInfluence: 0

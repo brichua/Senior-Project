@@ -16,15 +16,14 @@ MonoBehaviour:
   id: fa68a4c2d5e168e4cb459a87e38614d7
   cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   vip: 0
-  info: move an ally to an adjacent tile. It gains a random keyword this round. If
-    it moves into a different column, draw 1 card
+  info: "Move an ally to an available adjacent tile. It gains a random keyword this round. If it moved into a different column, draw 1 card."
   performer: 0
   stageEffect: 1
   cost: 2
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 122
   scoreThreshold: 0
   harmonize: 0
   soloist: 0

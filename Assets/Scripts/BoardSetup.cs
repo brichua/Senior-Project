@@ -36,6 +36,11 @@ namespace VocaloidTCG.BoardUI
         private System.Collections.Generic.List<CharacterClassData> legacyEnemyClasses;
         public CharacterClassData PlayerClass => playerClass ? playerClass : FirstClass(legacyPlayerClasses);
         public CharacterClassData EnemyClass => enemyClass ? enemyClass : FirstClass(legacyEnemyClasses);
+        [Header("Same-class readability")]
+        [Tooltip("Enemy tile and influence-popup tint when both sides use the same class. Player colors remain unchanged.")]
+        public Color sameClassEnemyTint = new Color(0.55f, 0.62f, 0.70f, 1f);
+        public Color EnemyBoardTint => PlayerClass && EnemyClass && PlayerClass.identity == EnemyClass.identity
+            ? sameClassEnemyTint : Color.white;
         [Header("Shared board artwork")]
         public Sprite background, topBar, pause, tiedPopup;
         [Header("Concert presentation artwork")]

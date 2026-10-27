@@ -23,6 +23,7 @@ namespace VocaloidTCG.BoardUI
             c.createdCard=true;
             c.createdDiscount=discount+FieldCards(c.ownerId).Count(x=>HasEffect(x,CardEffect.CreatedCardDiscount));
             c.currentCost=CardCost(c);
+            YoungKeywordTrigger(c);
         }
         private CardState NewToken(CardState source,int influence,int cost=0){
             var c=MakeCard(source.data,source.ownerId);
@@ -72,6 +73,7 @@ namespace VocaloidTCG.BoardUI
                 case CardEffect.CreateKeywordToken:
                     var token=NewToken(card,2,2); token.tokenKeywords=RandomKeyword();
                     if(token.tokenKeywords.protection>0) CardInfluence.Protect(token,token.tokenKeywords.protection);
+                    YoungKeywordTrigger(token);
                     GiveCard(actor,token); break;
                 case CardEffect.RevealHandKeywords: case CardEffect.OtherColumnToken:
                     StartChoice(card,tile,EffectChoice.Extended); break;
@@ -108,7 +110,7 @@ namespace VocaloidTCG.BoardUI
             else SetAssistant(state.tiles[tile],c.ownerId,c);
         }
         private void Relocate(CardState c,int tile){
-            Detach(c); PutPerformer(c,tile); PerformerEntered(c,tile);
+            int from=TileOf(c); Detach(c); PutPerformer(c,tile); PerformerEntered(c,tile); DuetMoved(c,from,tile);
         }
         private IEnumerable<int> AdjacentDestinations(CardState c) => Enumerable.Range(0,25).Where(i=>Adjacent(TileOf(c),i) && CanRelocate(c,i));
         private IEnumerable<CardState> AtTile(int tile) => new[] {state.tiles[tile].side0,state.tiles[tile].assist0,state.tiles[tile].side1,state.tiles[tile].assist1}.Where(c=>c!=null);
@@ -143,7 +145,7 @@ namespace VocaloidTCG.BoardUI
                 }
             });
         }
-        private void PlayExtendedSpell(CardState card,int tile){
+        private void PlayExtendedSpell(CardState card,int tile,CardState target=null){
             int actor=card.ownerId;
             switch(card.data.effect){
                 case CardEffect.PositionKeywordVenue:state.Side(actor).positionKeywordVenue=true; break;
@@ -153,7 +155,11 @@ namespace VocaloidTCG.BoardUI
                         ChangeInfluence(c,2); GainKeywords(c,RandomKeyword());
                     }
                     break;
-                default:StartChoice(card,tile,EffectChoice.Extended); break;
+                default:
+                    StartChoice(card,tile,EffectChoice.Extended);
+                    var p=state.pendingEffect;
+                    if(target!=null && p!=null && p.source==card && p.cards.Contains(target)) ResolveExtendedChoice(p,target,tile);
+                    break;
             }
             Discard(card);
         }
@@ -187,7 +193,7 @@ namespace VocaloidTCG.BoardUI
                     else p.tiles.AddRange(Enumerable.Range(0,25).Where(i=>i%5==TileOf(p.selected)%5 && CanRelocate(p.selected,i)));
                     break;
                 case CardEffect.RowInfluence:
-                    p.prompt="Choose an ally in the selected row to give allies +2, or an enemy to give enemies -2.";
+                    p.prompt="Click a highlighted performer in this row: an ally gives all allies in the row +2 influence; an enemy gives all enemies in the row -2 influence.";
                     p.cards.AddRange(FieldCards(0).Concat(FieldCards(1)).Where(c=>TileOf(c)/5==p.sourceTile/5 && !Protected(c,p.actor))); break;
                 case CardEffect.FormationBonus:
                     if(p.stage==0 && !allies.Any(c=>allies.Any(o=>o!=c && TileOf(o)/5==TileOf(c)/5))) p.stage=2;
@@ -213,6 +219,10 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void ResolveExtendedChoice(PendingCardEffect p,CardState chosen,int tile){
+            var previous=influenceSource; influenceSource=p.source;
+            try { ResolveExtendedChoiceCore(p,chosen,tile); } finally { influenceSource=previous; }
+        }
+        private void ResolveExtendedChoiceCore(PendingCardEffect p,CardState chosen,int tile){
             switch(p.effect){
                 case CardEffect.RevealHandKeywords:
                     Reveal(new[] {chosen},"Revealed from hand"); GainKeywords(p.source,PerformerKeywords.Of(chosen)); break;
@@ -224,11 +234,13 @@ namespace VocaloidTCG.BoardUI
                         if(random!=null) keywords.Include(PerformerKeywords.Of(random));
                         p.created=NewToken(p.source,3); p.created.tokenKeywords=keywords;
                         if(keywords.protection>0) CardInfluence.Protect(p.created,keywords.protection);
+                        YoungKeywordTrigger(p.created);
                         p.stage=1; RefreshChoice(); return;
                     }
                     PutPerformer(p.created,tile); placedTurns[p.created.instanceId]=turnNumber; break;
                 case CardEffect.OtherColumnToken:
                     var token=NewToken(p.source,1); token.tokenKeywords.nimble=true;
+                    YoungKeywordTrigger(token);
                     PutPerformer(token,tile); placedTurns[token.instanceId]=turnNumber; break;
                 case CardEffect.DisplaceContested: MoveWithPartner(p.sourceTile,tile,1-p.actor); break;
                 case CardEffect.RowInfluence:
@@ -254,7 +266,7 @@ namespace VocaloidTCG.BoardUI
                         ChangeInfluence(p.selected,1,true); ChangeInfluence(chosen,1,true); DrawCards(p.actor,1);
                     }else if(p.effect==CardEffect.SwapAllies){
                         int a=TileOf(p.selected),b=TileOf(chosen); Detach(p.selected); Detach(chosen);
-                        PutPerformer(p.selected,b); PutPerformer(chosen,a); PerformerEntered(p.selected,b); PerformerEntered(chosen,a);
+                        PutPerformer(p.selected,b); PutPerformer(chosen,a); PerformerEntered(p.selected,b); PerformerEntered(chosen,a); DuetMoved(p.selected,a,b); DuetMoved(chosen,b,a);
                     }else{
                         Relocate(p.selected,tile);
                         if(p.effect==CardEffect.MoveAndAdjust) ChangeInfluence(p.selected,p.selected.ownerId==p.actor ? 1 : -1);
@@ -296,6 +308,7 @@ namespace VocaloidTCG.BoardUI
                 if(destinations.Length==0) continue;
                 Relocate(c,destinations[UnityEngine.Random.Range(0,destinations.Length)]);
                 var token=NewToken(c,UnityEngine.Random.Range(0,3)); token.tokenKeywords.stageShare=true;
+                YoungKeywordTrigger(token);
                 if(Performer(state.tiles[from],c.ownerId)==null || Assistant(state.tiles[from],c.ownerId)==null){
                     PutPerformer(token,from); placedTurns[token.instanceId]=turnNumber;
                 }

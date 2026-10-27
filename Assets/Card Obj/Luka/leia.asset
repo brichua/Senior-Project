@@ -16,7 +16,10 @@ MonoBehaviour:
   id: b8ffd2082dbffe34e8446ef50597ec7d
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: Stage Share. To play this performer, discard another card from your hand.
+  info: 'Stage Share.
+
+    To play this performer, discard another card from your
+    hand.'
   performer: 1
   stageEffect: 0
   cost: 1

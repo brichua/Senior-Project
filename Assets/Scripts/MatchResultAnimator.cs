@@ -2,6 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace VocaloidTCG.BoardUI
 {
@@ -47,6 +48,58 @@ namespace VocaloidTCG.BoardUI
         private CanvasGroup rewardGroup;
         private Vector2 rewardHome;
         private float rewardTime;
+        private sealed class HiddenReactionObject {
+            public GameObject obj;
+            public bool active;
+        }
+        private readonly List<HiddenReactionObject> hiddenReactionObjects=new List<HiddenReactionObject>();
+        private bool awaitingReactions;
+        private int reactionStep;
+        private float reactionWait;
+        public bool IsWaitingForReactions => awaitingReactions;
+
+        private void BeginResultReactions(){
+            awaitingReactions=true; reactionStep=0;
+            // A disconnect line may have started immediately before Finished was published.
+            reactionWait=bridge.DepartureVoicelinePlayed && board.playerHUD ? board.playerHUD.VoicelineRemaining : 0;
+            if(reactionWait<=0) AdvanceResultReactions();
+        }
+        private void AdvanceResultReactions(){
+            while(reactionStep<2){
+                bool local=reactionStep++==0 ? won : !won;
+                var reaction=reactionStep==1 ? VoicelineEvent.Victory : VoicelineEvent.Defeat;
+                if(!board.PlayVoiceline(local,reaction)) continue;
+                var hud=local ? board.playerHUD : board.enemyHUD;
+                var character=local ? board.setup.PlayerClass : board.setup.EnemyClass;
+                var clip=board.voicelines.GetVoiceline(character.identity,reaction);
+                reactionWait=hud ? hud.VoicelineRemaining : clip ? clip.length+1 : 0;
+                if(reactionWait>0) return;
+            }
+            awaitingReactions=false;
+            HideResultReactions();
+            Build(); RefreshActions();
+        }
+        private void UpdateResultReactions(float elapsed){
+            reactionWait-=elapsed;
+            if(reactionWait<=0) AdvanceResultReactions();
+        }
+        private void HideResultReactions(){
+            foreach(var hud in new[]{board.playerHUD,board.enemyHUD}){
+                if(!hud) continue;
+                hud.ClearSubtitle();
+                HideReactionObject(hud.avatar ? hud.avatar.gameObject : null);
+                HideReactionObject(hud.subtitleRoot ? hud.subtitleRoot : hud.subtitle ? hud.subtitle.gameObject : null);
+            }
+        }
+        private void HideReactionObject(GameObject obj){
+            if(!obj || hiddenReactionObjects.Exists(saved=>saved.obj==obj)) return;
+            hiddenReactionObjects.Add(new HiddenReactionObject {obj=obj,active=obj.activeSelf});
+            obj.SetActive(false);
+        }
+        private void RestoreResultReactions(){
+            foreach(var saved in hiddenReactionObjects) if(saved.obj) saved.obj.SetActive(saved.active);
+            hiddenReactionObjects.Clear();
+        }
 
         public bool IsAvailable => isActiveAndEnabled && board && board.isActiveAndEnabled;
         public void Initialize(BoardUIController owner){
@@ -56,18 +109,20 @@ namespace VocaloidTCG.BoardUI
 
         public void Observe(BoardSnapshot state){
             if(!IsAvailable || !bridge || state == null || state.phase != RoundPhase.Finished){ Cancel(); return; }
-            if(shown == state && root){ RefreshActions(); return; }
+            if(shown == state && (root || awaitingReactions)){ if(root) RefreshActions(); return; }
             Cancel(); shown = state;
             won = bridge.IsPuzzle ? bridge.PuzzleSucceeded : state.winnerId == state.localPlayerId;
             lost = bridge.IsPuzzle ? !bridge.PuzzleSucceeded : state.winnerId >= 0 && !won;
             accent = won ? victoryColor : defeatColor;
             var cls = board.setup.PlayerClass;
             classColor = cls ? cls.color : board.setup.player.textColor;
-            if(bridge.IsPuzzle) BuildPuzzle(); else Build();
-            RefreshActions();
+            if(bridge.IsPuzzle){ BuildPuzzle(); RefreshActions(); }
+            else if(won || lost) BeginResultReactions();
+            else { HideResultReactions(); Build(); RefreshActions(); }
         }
 
         private void Update(){
+            if(awaitingReactions){ UpdateResultReactions(Time.unscaledDeltaTime); return; }
             if(!root) return;
             time += Time.unscaledDeltaTime;
             float t = Mathf.Clamp01(time / Mathf.Max(0.1f, entranceSeconds));
@@ -222,10 +277,6 @@ namespace VocaloidTCG.BoardUI
             save = Button(content, "RETRY SAVE", new Vector2(0, -425), RetrySave);
             status = Text(content, "", new Vector2(0, 425), new Vector2(1200, 130), 23, Color.white);
             }
-            if (won)
-                board.voicelines.PlayVoiceline(board.setup.PlayerClass.identity, VoicelineEvent.Victory);
-            else
-                board.voicelines.PlayVoiceline(board.setup.PlayerClass.identity, VoicelineEvent.Defeat);
             var clip = won ? victoryStinger : defeatStinger;
             if (clip){
                 var audio = obj.AddComponent<AudioSource>(); audio.playOnAwake = false; audio.spatialBlend = 0;
@@ -314,6 +365,12 @@ namespace VocaloidTCG.BoardUI
             text.text = value; text.fontSize = fontSize; text.alignment = TextAlignmentOptions.Center; text.color = color; text.raycastTarget = false; return text;
         }
         public void Cancel(){
+            awaitingReactions=false; reactionStep=0; reactionWait=0;
+            if(shown!=null && board){
+                if(board.playerHUD) board.playerHUD.ClearSubtitle();
+                if(board.enemyHUD) board.enemyHUD.ClearSubtitle();
+            }
+            RestoreResultReactions();
             if(root){ root.gameObject.SetActive(false); Destroy(root.gameObject); }
             root = null; portrait = null; puzzleShade = null; shown = null; time = 0; navigationError = null;
             reward = null; rewardGroup = null; rewardTime = 0;

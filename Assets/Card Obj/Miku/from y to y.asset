@@ -16,18 +16,16 @@ MonoBehaviour:
   id: 2a55cd481cf55c344bbc28b64e00e025
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: "Cheer Effect. Choose an allied performer. Opposing stage effects cannot affect it for the rest of this turn."
+  info: 'Cheer Effect.
+
+    Choose an allied performer. Opposing stage effects cannot
+    affect it for the rest of this turn.'
   performer: 0
   stageEffect: 1
   cost: 2
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  cardImage: {fileID: -3230347558568422141, guid: 20703b950e9e8fc40834824e86d54306, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: 3283108819880568421, guid: c6ebda54fdc4e064a9181c0029c7cc11, type: 3}
-  popupImage: {fileID: 0}
-  playSfx: {fileID: 8300000, guid: 84d92a47990875e448a8844c782efbf3, type: 3}
   effect: 16
   scoreThreshold: 0
   harmonize: 0
@@ -37,3 +35,10 @@ MonoBehaviour:
   nimble: 0
   cheerEffect: 1
   venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: -3230347558568422141, guid: 20703b950e9e8fc40834824e86d54306, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: 3283108819880568421, guid: c6ebda54fdc4e064a9181c0029c7cc11, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 8300000, guid: 84d92a47990875e448a8844c782efbf3, type: 3}

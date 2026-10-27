@@ -16,15 +16,14 @@ MonoBehaviour:
   id: 86cde7878bbc13f44bc5eb3d2c2c81e0
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: choose two adjacent allies. Give each +1 inf and have them share their keywords
-    this round
+  info: "Choose two adjacent allies. Give each +1 influence. They share their keywords until the end of the round."
   performer: 0
   stageEffect: 1
   cost: 2
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 104
   scoreThreshold: 0
   harmonize: 0
   soloist: 0

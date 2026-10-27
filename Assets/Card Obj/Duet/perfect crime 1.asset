@@ -16,22 +16,24 @@ MonoBehaviour:
   id: d9b9fe4131063934f934a847f0a95afc
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: cheer effect, select a contested tile. Enemy performers there get -2 influence
-    this round. If you win that tile this round, gain 1 fan score
+  info: 'Cheer Effect.
+
+    Choose a contested tile. Enemy performers there get -2
+    influence this round. If your team wins that tile this round, gain 1 AS.'
   performer: 0
   stageEffect: 1
   cost: 3
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 124
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
   stageShare: 0
   encore: 0
   nimble: 0
-  cheerEffect: 0
+  cheerEffect: 1
   venueEffect: 0
   regen: 0
   protectedInfluence: 0

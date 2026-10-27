@@ -20,10 +20,16 @@ namespace VocaloidTCG.BoardUI
         }
         
         private void PerformerPlayed(CardState card,int tile){
+            var previous=influenceSource; influenceSource=card;
+            try { PerformerPlayedCore(card,tile); } finally { influenceSource=previous; }
+        }
+        private void PerformerPlayedCore(CardState card,int tile){
             int actor=card.ownerId;
             bool first=state.Side(actor).performersPlayed++==0;
             card.enteredRound=state.roundNumber;
             ExtendedPerformerPlayed(card,tile);
+            card.visitedColumns.Add(tile%5);
+            DuetPerformerPlayed(card,tile);
             if(card.token) return;
             if(state.Side(actor).nextPerformerInfluence != 0){
                 ChangeInfluence(card,state.Side(actor).nextPerformerInfluence);
@@ -63,8 +69,13 @@ namespace VocaloidTCG.BoardUI
         }
 
         private void PlayStageEffect(CardState card,int tile,CardState targetOverride=null){
+            var previous=influenceSource; influenceSource=card;
+            try { PlayStageEffectCore(card,tile,targetOverride); } finally { influenceSource=previous; }
+        }
+        private void PlayStageEffectCore(CardState card,int tile,CardState targetOverride=null){
             int actor=card.ownerId;
-            if(IsExtendedEffect(card.data.effect)){ PlayExtendedSpell(card,tile); return; }
+            if(IsDuetEffect(card.data.effect)){ PlayDuetSpell(card,tile,targetOverride); return; }
+            if(IsExtendedEffect(card.data.effect)){ PlayExtendedSpell(card,tile,targetOverride); return; }
             if(UsesPerformerTarget(card.data.effect) && targetOverride==null){
                 var targets=DirectSpellTargets(card,tile).ToList();
                 if(targets.Count>1){
@@ -132,10 +143,19 @@ namespace VocaloidTCG.BoardUI
             Discard(card);
         }
 
+        public static bool HasActivatedAbility(CardState c){
+            if(c==null || c.token || !c.data || !c.data.performer) return false;
+            switch(c.data.effect){
+                case CardEffect.ColumnMoveAbility: case CardEffect.WeakenAndRoot: case CardEffect.ReviveAbility:
+                case CardEffect.EgoRenegade: case CardEffect.DyingBreath: return true;
+                default: return false;
+            }
+        }
+
         public bool CanActivateEffect(CardState c){
             return c!=null && CanAct(c.ownerId) && state.pendingEffect==null && TileOf(c)>=0 &&
                 (HasEffect(c,CardEffect.WeakenAndRoot) ? c.activatedRound!=state.roundNumber : c.activatedTurn!=turnNumber) &&
-                (HasEffect(c,CardEffect.ColumnMoveAbility) && FieldCards(c.ownerId).Any(a=>Enumerable.Range(0,25).Any(i=>i%5==TileOf(a)%5 && CanRelocate(a,i))) ||
+                (CanActivateDuet(c) || HasEffect(c,CardEffect.ColumnMoveAbility) && FieldCards(c.ownerId).Any(a=>Enumerable.Range(0,25).Any(i=>i%5==TileOf(a)%5 && CanRelocate(a,i))) ||
                 HasEffect(c,CardEffect.WeakenAndRoot) && FieldCards(1-c.ownerId).Any() ||
                 HasEffect(c,CardEffect.ReviveAbility) && state.phase==RoundPhase.Preparation && state.Side(c.ownerId).discard.Any(d=>d.data.performer && RevivalCost(c,d)<=state.Side(c.ownerId).energy) && Enumerable.Range(0,25).Any(i=>Performer(state.tiles[i],c.ownerId)==null && CanPlace(c.ownerId,i%5,i/5)));
         }
@@ -143,6 +163,9 @@ namespace VocaloidTCG.BoardUI
             var c=FieldCards(actor).FirstOrDefault(x=>x.instanceId==action.cardInstanceId);
             if(!CanActivateEffect(c)) return false;
             c.activatedTurn=turnNumber; turnHadAction=true; state.consecutivePasses=0;
+            if(CanActivateDuet(c)){
+                c.activatedRound=state.roundNumber; StartChoice(c,TileOf(c),EffectChoice.Duet); Publish(); return true;
+            }
             if(HasEffect(c,CardEffect.WeakenAndRoot)) c.activatedRound=state.roundNumber;
             StartChoice(c,TileOf(c),HasEffect(c,CardEffect.ColumnMoveAbility) ? EffectChoice.Extended : HasEffect(c,CardEffect.WeakenAndRoot) ? EffectChoice.Enemy : EffectChoice.DiscardPerformer);
             Publish(); return true;
@@ -150,10 +173,12 @@ namespace VocaloidTCG.BoardUI
 
         private void RecomputeEffects(){
             var all=FieldCards(0).Concat(FieldCards(1)).ToArray();
+            var previousKeywordSources=all.ToDictionary(c=>c,c=>c.keywordAuraSources.ToArray());
+            foreach(var c in all) c.keywordAuraSources.Clear();
             foreach(var c in all){ c.currentInfluence-=c.auraInfluence; c.auraInfluence=0; }
             RefreshPositionKeywords(all);
             foreach(var c in all){
-                int tile=TileOf(c), actor=c.ownerId, bonus=0;
+                int tile=TileOf(c), actor=c.ownerId, bonus=DuetAura(c,all,previousKeywordSources[c]);
                 int adjacent=all.Count(other=>other.ownerId==actor && Adjacent(tile,TileOf(other)));
                 int friends=all.Count(other=>other.ownerId==actor && Adjacent(tile,TileOf(other)));
                 if(!c.silenced){
@@ -175,6 +200,7 @@ namespace VocaloidTCG.BoardUI
                 foreach(var aura in all){
                     int from=TileOf(aura);
                     if(!EffectsEnabled(aura)) continue;
+                    int previousBonus=bonus;
                     switch(aura.data.effect){
                         case CardEffect.KeywordInfluence: bonus+=(aura.ownerId==actor ? 1 : -1)*PerformerKeywords.Of(c).Count; break;
                         case CardEffect.PerformanceColumnsAura:
@@ -187,6 +213,7 @@ namespace VocaloidTCG.BoardUI
                         case CardEffect.WeakenEnemyCenter: if(aura.ownerId!=actor && tile%5==2) bonus--; break;
                         case CardEffect.WeakenFront: if(aura.ownerId!=actor && tile/5==from/5 && tile%5==from%5+(aura.ownerId==0 ? 1 : -1)) bonus--; break;
                     }
+                    if(bonus>previousBonus) TrackKeywordAura(c,aura,previousKeywordSources[c]);
                 }
                 c.auraInfluence=bonus;
             }
@@ -195,7 +222,10 @@ namespace VocaloidTCG.BoardUI
                 .Select(c=>new { source=c, amount=Math.Max(0,c.currentInfluence+c.auraInfluence) / (c.data.effect==CardEffect.ShareHalfInfluence ? 2 : 1) }).ToArray();
             foreach(var link in shared){
                 var target=all.FirstOrDefault(c=>c.ownerId==link.source.ownerId && c.instanceId==link.source.sharedTargetId);
-                if(target!=null && Adjacent(TileOf(target),TileOf(link.source))) target.auraInfluence+=link.amount;
+                if(target!=null && Adjacent(TileOf(target),TileOf(link.source))){
+                    target.auraInfluence+=link.amount;
+                    if(link.amount>0) TrackKeywordAura(target,link.source,previousKeywordSources[target]);
+                }
             }
             
             foreach(var c in all){
@@ -235,6 +265,7 @@ namespace VocaloidTCG.BoardUI
                 if(HasEffect(c,CardEffect.DelayedSpell) && age==1) DrawFiltered(c.ownerId,1,false);
             }
             
+            ClearDuetRound();
             Array.Clear(state.roundTileBonus0,0,25); Array.Clear(state.roundTileBonus1,0,25);
             Array.Clear(state.tileDraw0,0,25); Array.Clear(state.tileDraw1,0,25);
             state.side0.performersPlayed=state.side1.performersPlayed=0;
