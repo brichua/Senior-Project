@@ -9,6 +9,11 @@ namespace VocaloidTCG.BoardUI
         public Image skill, barBackground, barFill, deckIcon, deck, infoBackground;
         public Image secondDeckIcon;
         public Image border;
+        [Header("Fan score bar")]
+        [Tooltip("Optional. Automatically finds the Slider containing Bar Fill in existing game scenes.")]
+        public Slider fanBar;
+        private Slider boundFanBar;
+        private Image boundBarFill;
         [Header("Score bar particles")]
         public bool showBarParticles = true;
         [Range(0, 40)] public int barParticleCount = 18;
@@ -38,30 +43,35 @@ namespace VocaloidTCG.BoardUI
         private KeywordTooltip venueTooltip;
         private string subtitleMessage = "", timerMessage = "";
         private float reactionRemaining, subtitleRemaining;
+        public float VoicelineRemaining => Mathf.Max(0,reactionRemaining,subtitleRemaining);
 
-        public void PlayVoiceline(CharacterClassData character, VoicelineEvent reaction, VoicelinesManager voices){
-            if(!character) return;
-            var clip = voices ? voices.GetVoiceline(character.identity, reaction) : null;
-            if(voices) voices.PlayVoiceline(character.identity, reaction);
-            ShowSubtitle(character.VoicelineText(reaction));
-            reactionRemaining = (clip ? clip.length : 3f) + 1f;
+        public bool PlayVoiceline(CharacterClassData character, VoicelineEvent reaction, VoicelinesManager voices){
+            if(!character || !voices) return false;
+            var clip=voices.PlayVoiceline(character.identity,reaction,out int clipIndex);
+            if(!clip) return false;
+            ShowSubtitle(character.VoicelineText(reaction,clipIndex));
+            reactionRemaining = clip.length + 1f;
             subtitleRemaining = reactionRemaining;
-            SetReaction((int)reaction);
+            SetReaction((int)AnimationReaction(reaction));
+            return true;
         }
+        public static VoicelineEvent AnimationReaction(VoicelineEvent reaction) =>
+            reaction==VoicelineEvent.Multiplayer ? VoicelineEvent.Defeat : reaction;
 
         private void Update(){
             if(reactionRemaining > 0){
-                reactionRemaining -= Time.deltaTime;
+                reactionRemaining -= Time.unscaledDeltaTime;
                 if(reactionRemaining <= 0) SetReaction(0);
             }
             if(subtitleRemaining > 0){
-                subtitleRemaining -= Time.deltaTime;
+                subtitleRemaining -= Time.unscaledDeltaTime;
                 if(subtitleRemaining <= 0) HideSubtitle();
             }
         }
 
         private void SetReaction(int value){
             if(!avatarAnimator || !avatarAnimator.runtimeAnimatorController) return;
+            avatarAnimator.updateMode=AnimatorUpdateMode.UnscaledTime;
             foreach(var parameter in avatarAnimator.parameters)
                 if(parameter.name == "Reaction" && parameter.type == AnimatorControllerParameterType.Int){
                     avatarAnimator.SetInteger("Reaction", value); break;
@@ -89,15 +99,17 @@ namespace VocaloidTCG.BoardUI
             if(state.venueEffects != null) foreach(var effect in state.venueEffects){
                 var card = effect?.data;
                 if(!card) continue;
-                descriptions.Add(card.cardName + "\n" + (string.IsNullOrWhiteSpace(card.info) ?
-                    "This venue effect stays active for the rest of the game." : card.info));
+                var effectText = System.Text.RegularExpressions.Regex.Replace(card.info ?? "", @"^\s*Venue\s+Effect\b[\s.:—-]*", "",
+                    System.Text.RegularExpressions.RegexOptions.IgnoreCase | System.Text.RegularExpressions.RegexOptions.CultureInvariant);
+                descriptions.Add(KeywordTooltip.FormatEntry(card.cardName, string.IsNullOrWhiteSpace(effectText) ?
+                    "This venue effect stays active for the rest of the game." : effectText, card.cardClass ? card.cardClass.color : Color.white));
             }
             bool active = descriptions.Count > 0;
             if(active && theme){
                 if(!venueTooltip) venueTooltip = venueEffect.GetComponent<KeywordTooltip>();
                 if(!venueTooltip) venueTooltip = venueEffect.gameObject.AddComponent<KeywordTooltip>();
                 venueTooltip.Configure(venueEffect, theme, subtitle ? subtitle.font : nameText ? nameText.font : null,
-                    descriptions.Count == 1 ? "Venue effect" : "Venue effects", string.Join("\n\n", descriptions));
+                    "", string.Join("\n\n", descriptions), true);
             }
             venueEffect.gameObject.SetActive(active);
         }
@@ -119,9 +131,13 @@ namespace VocaloidTCG.BoardUI
         }
 
         public void ClearSubtitle(){
+            ClearVoiceline();
+            timerMessage = ""; RenderSubtitle();
+        }
+        public void ClearVoiceline(){
             reactionRemaining = subtitleRemaining = 0;
             SetReaction(0);
-            subtitleMessage = timerMessage = ""; RenderSubtitle();
+            subtitleMessage = ""; RenderSubtitle();
         }
         
         private void RenderSubtitle(){
@@ -139,6 +155,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         public void Apply(SideArt art){
+            ConfigureFanBar();
             RenderName(art);
             BoardUIController.SetImage(border, art.border);
             BoardUIController.SetImage(skill, art.skill);
@@ -156,11 +173,11 @@ namespace VocaloidTCG.BoardUI
                 avatarAnimator = avatar.GetComponent<Animator>();
             if(avatar && !avatarAnimator && art.avatarAnimator)
                 avatarAnimator = avatar.gameObject.AddComponent<Animator>();
-            if(avatarAnimator) avatarAnimator.runtimeAnimatorController = art.avatarAnimator;
+            if(avatarAnimator){
+                avatarAnimator.runtimeAnimatorController = art.avatarAnimator;
+                avatarAnimator.updateMode=AnimatorUpdateMode.UnscaledTime;
+            }
             if(barFill){
-                barFill.type = Image.Type.Filled;
-                barFill.fillMethod = Image.FillMethod.Vertical;
-                barFill.fillOrigin = (int)Image.OriginVertical.Bottom;
                 if(!barParticles) barParticles = ScoreBarParticles.Create(barFill, this);
                 barParticles.accent = art.textColor;
             }
@@ -172,10 +189,45 @@ namespace VocaloidTCG.BoardUI
             CardInfoView.Put(score, state.score.ToString());
             CardInfoView.Put(deckCount, state.deckCount.ToString());
 
-            if(barFill) barFill.fillAmount = Mathf.Clamp01((float)state.score / Mathf.Max(1, winScore));
+            RenderFanBar(state.score,winScore);
 
             int index = Mathf.Clamp(state.energy, 0, 8);
             BoardUIController.SetImage(energy, art.energy != null && index < art.energy.Length ? art.energy[index] : null);
+        }
+
+        private void ConfigureFanBar(){
+            if(!barFill && fanBar && fanBar.fillRect) barFill=fanBar.fillRect.GetComponent<Image>();
+            if(!barFill) return;
+            if(!fanBar){
+                var candidate=barFill.GetComponentInParent<Slider>();
+                if(candidate && candidate.fillRect==barFill.rectTransform) fanBar=candidate;
+            }
+            barFill.type=Image.Type.Filled;
+            barFill.fillMethod=Image.FillMethod.Vertical;
+            barFill.fillOrigin=(int)Image.OriginVertical.Bottom;
+            if(!fanBar) return;
+            fanBar.transition=Selectable.Transition.None;
+            fanBar.interactable=false;
+            fanBar.navigation=new Navigation {mode=Navigation.Mode.None};
+            fanBar.SetDirection(Slider.Direction.BottomToTop,false);
+            if(boundFanBar!=fanBar || boundBarFill!=barFill){
+                // Rebind after switching the image to Filled so Slider stops shrinking its RectTransform too.
+                fanBar.fillRect=null;
+                fanBar.fillRect=barFill.rectTransform;
+                boundFanBar=fanBar; boundBarFill=barFill;
+            }
+        }
+
+        private void RenderFanBar(int currentScore,int winningScore){
+            ConfigureFanBar();
+            int maximum=Mathf.Max(1,winningScore);
+            if(fanBar){
+                fanBar.minValue=0;
+                fanBar.maxValue=maximum;
+                fanBar.wholeNumbers=true;
+                fanBar.SetValueWithoutNotify(Mathf.Clamp(currentScore,0,maximum));
+            }
+            if(barFill) barFill.fillAmount=Mathf.Clamp01((float)currentScore/maximum);
         }
 
         private void RenderName(SideArt art){

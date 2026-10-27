@@ -16,22 +16,24 @@ MonoBehaviour:
   id: 9261d0f217952614ebcfc874cabdd507
   cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   vip: 0
-  info: cheer effect, move an ally to a contested tile in an adjacent row or column.
-    Give it +2 inf this round
+  info: 'Cheer Effect.
+
+    Move an ally to an available contested tile in an adjacent
+    row or column, including diagonals. Give it +2 influence this round.'
   performer: 0
   stageEffect: 1
   cost: 2
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 108
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
   stageShare: 0
   encore: 0
   nimble: 0
-  cheerEffect: 0
+  cheerEffect: 1
   venueEffect: 0
   regen: 0
   protectedInfluence: 0

@@ -16,22 +16,24 @@ MonoBehaviour:
   id: 53ea1053089047245a6feefc6a9674aa
   cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   vip: 1
-  info: stage share, nimble, once per round, move another ally to any available tile
-    in its row or column, when an ally enters a new column for the first time each
-    round, give it +1 inf this round
+  info: 'Stage Share. Nimble.
+
+    Once per round, move another ally to any available
+    tile in its row or column. Whenever an ally enters a column it has not occupied
+    this round, give it +1 influence this round.'
   performer: 1
   stageEffect: 0
   cost: 5
   influence: 5
   flags: []
   stageInfluenceChange: 1
-  effect: 92
+  effect: 134
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
-  stageShare: 0
+  stageShare: 1
   encore: 0
-  nimble: 0
+  nimble: 1
   cheerEffect: 0
   venueEffect: 0
   regen: 0

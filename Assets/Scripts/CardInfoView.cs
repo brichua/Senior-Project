@@ -26,6 +26,8 @@ namespace VocaloidTCG.BoardUI
         private readonly Vector3[] layoutCorners = new Vector3[4];
         private bool textSizingConfigured;
         private Rect layoutBackgroundBounds;
+        private string measuredDescription;
+        private Vector2 measuredViewport;
 
         private void OnEnable(){ resetDescriptionScroll = true; }
 
@@ -47,7 +49,7 @@ namespace VocaloidTCG.BoardUI
             Put(cost, card.currentCost.ToString());
 
             if(influenceRoot) influenceRoot.SetActive(card.hasInfluence);
-            BoardUIController.SetImage(art, card.data.iconImage);
+            BoardUIController.SetImage(art, card.token && card.data.stageEffect ? side.avatar : card.data.iconImage);
             bool statlessStageEffect = card.data.stageEffect && !card.hasInfluence;
             BoardUIController.SetImage(icon, statlessStageEffect ? side.stageEffectInfoIcon : side.infoIcon);
             var body = new StringBuilder(card.token ? Format("Token. Costs " + card.currentCost + " energy. No card abilities." +
@@ -72,16 +74,35 @@ namespace VocaloidTCG.BoardUI
             }
         }
 
-        private void LateUpdate(){
+        public RectTransform DescriptionViewport => descriptionScroll ? descriptionScroll.viewport : null;
+
+        public void RefreshLayout(){
             UpdateNameSpacing();
-            if(!resetDescriptionScroll || !description) return;
-            if(!descriptionScroll) descriptionScroll = description.GetComponentInParent<ScrollRect>();
-            resetDescriptionScroll = false;
-            if(!descriptionScroll || !descriptionScroll.content) return;
+            RefreshDescriptionLayout();
+        }
+        private void LateUpdate(){ RefreshLayout(); }
+
+        private void RefreshDescriptionLayout(){
+            if(!description || !descriptionScroll || !descriptionScroll.content || !descriptionScroll.viewport) return;
+            var viewport=descriptionScroll.viewport;
+            viewport.ForceUpdateRectTransforms();
+            var size=viewport.rect.size;
+            if(!resetDescriptionScroll && measuredDescription==description.text && measuredViewport==size) return;
+            if(size.x<=0 || size.y<=0) return;
+            bool reset=resetDescriptionScroll;
+            float position=descriptionScroll.verticalNormalizedPosition;
             Canvas.ForceUpdateCanvases();
-            LayoutRebuilder.ForceRebuildLayoutImmediate(descriptionScroll.content);
-            descriptionScroll.StopMovement();
-            descriptionScroll.verticalNormalizedPosition = 1;
+            size=viewport.rect.size;
+            var textRect=description.rectTransform;
+            textRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal,size.x);
+            description.ForceMeshUpdate();
+            float preferred=description.GetPreferredValues(description.text,size.x,float.PositiveInfinity).y;
+            textRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical,Mathf.Max(size.y,preferred+8));
+            description.ForceMeshUpdate();
+            LayoutRebuilder.ForceRebuildLayoutImmediate(textRect);
+            if(reset) descriptionScroll.StopMovement();
+            descriptionScroll.verticalNormalizedPosition=reset ? 1 : position;
+            measuredDescription=description.text; measuredViewport=size; resetDescriptionScroll=false;
         }
 
         public void UpdateNameSpacing(){
@@ -103,7 +124,7 @@ namespace VocaloidTCG.BoardUI
                 return;
             }
             var size = ((RectTransform)transform).rect.size;
-            if(layoutName == cardName.text && layoutSize == size && !cardName.havePropertiesChanged) return;
+            if(layoutName == cardName.text && layoutSize == size) return;
             layoutName = cardName.text;
             layoutSize = size;
             var top = descriptionArea.offsetMax;
@@ -132,6 +153,7 @@ namespace VocaloidTCG.BoardUI
 
         private void EnsureDescriptionScroll(){
             descriptionScroll = description.GetComponentInParent<ScrollRect>();
+            if(descriptionScroll && !descriptionScroll.transform.IsChildOf(transform)) descriptionScroll=null;
             if(!descriptionScroll){
                 var textRect = description.rectTransform;
                 var viewportObject = new GameObject("Description scroll", typeof(RectTransform),
@@ -164,16 +186,27 @@ namespace VocaloidTCG.BoardUI
             descriptionScroll.vertical = true;
             descriptionScroll.movementType = ScrollRect.MovementType.Clamped;
             descriptionScroll.scrollSensitivity = 24;
+            if(!descriptionScroll.viewport) descriptionScroll.viewport=(RectTransform)descriptionScroll.transform;
+            var view=descriptionScroll.viewport;
+            if(!view.GetComponent<Mask>() && !view.GetComponent<RectMask2D>()) view.gameObject.AddComponent<RectMask2D>();
+            var hitArea=view.GetComponent<Image>();
+            if(!hitArea){ hitArea=view.gameObject.AddComponent<Image>(); hitArea.color=Color.clear; }
+            hitArea.raycastTarget=true;
+            var content=description.rectTransform;
+            if(content.parent!=view) content.SetParent(view,false);
+            content.anchorMin=new Vector2(0,1); content.anchorMax=Vector2.one; content.pivot=new Vector2(0.5f,1);
+            content.localScale=Vector3.one; content.localRotation=Quaternion.identity;
+            content.sizeDelta=Vector2.zero; content.anchoredPosition=Vector2.zero;
+            descriptionScroll.content=content;
             description.enableAutoSizing = false;
+            description.textWrappingMode=TextWrappingModes.Normal;
             description.alignment = TextAlignmentOptions.TopLeft;
             description.overflowMode = TextOverflowModes.Overflow;
             description.raycastTarget = true;
-            if(descriptionScroll.content == description.rectTransform){
-                var fitter = description.GetComponent<ContentSizeFitter>();
-                if(!fitter) fitter = description.gameObject.AddComponent<ContentSizeFitter>();
-                fitter.horizontalFit = ContentSizeFitter.FitMode.Unconstrained;
-                fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-            }
+            description.maskable=true;
+            var fitter=description.GetComponent<ContentSizeFitter>();
+            if(fitter) fitter.enabled=false;
+            resetDescriptionScroll=true;
         }
 
         private Rect BoundsIn(RectTransform rect, Transform parent){
@@ -209,8 +242,7 @@ namespace VocaloidTCG.BoardUI
             var available = Rect.MinMaxRect(bounds.xMin + padding, bounds.yMin + padding,
                 bounds.xMax - padding, top);
             if(available.width <= 0 || available.height <= 16) return;
-            if(layoutName == cardName.text && layoutBackgroundBounds == available &&
-                !cardName.havePropertiesChanged) return;
+            if(layoutName == cardName.text && layoutBackgroundBounds == available) return;
             layoutName = cardName.text;
             layoutBackgroundBounds = available;
             float titleHeight = Mathf.Min(cardName.fontSizeMax * 2.4f, (available.height - 8) * 0.4f);
@@ -240,10 +272,11 @@ namespace VocaloidTCG.BoardUI
             return (value ?? "").Replace("<", "‹").Replace(">", "›");
         }
         
+        public static string FormatDescription(string text, BoardSetup setup = null) => Format(text, setup);
         private static string Format(string text, BoardSetup setup){
             var literal = Escape(text);
-            var definitions = CardKeywords.Descriptions(setup.keywordDescriptions);
-            var words = (setup.boldKeywords ?? new string[0])
+            var definitions = CardKeywords.Descriptions(setup ? setup.keywordDescriptions : null);
+            var words = ((setup ? setup.boldKeywords : null) ?? new string[0])
                 .Concat(definitions.Where(d => d != null).Select(d => d.keyword))
                 .Where(k => !string.IsNullOrWhiteSpace(k)).Distinct()
                 .OrderByDescending(k => k.Length).Select(k => Regex.Escape(Escape(k))).ToArray();

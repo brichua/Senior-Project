@@ -16,14 +16,14 @@ MonoBehaviour:
   id: 6d60ba6a296c6fb498e6b65ee812cd0f
   cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   vip: 0
-  info: Give the strongest ally in each unique column +2 influence.
+  info: "Give the strongest ally in each occupied column +2 influence. Choose one if tied."
   performer: 0
   stageEffect: 1
   cost: 3
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 145
   scoreThreshold: 0
   harmonize: 0
   soloist: 0

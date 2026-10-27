@@ -15,7 +15,7 @@ namespace VocaloidTCG
         public Sprite favoritedSprite;
         private bool favorite;
 
-        public void Bind(DeckRecord deck, DeckCatalog catalog, bool selected, Action choose, Action toggleFavorite){
+        public void Bind(DeckRecord deck, DeckCatalog catalog, bool selected, Action choose, Action toggleFavorite, Action inspect = null){
             favorite = deck.favorite;
             DeckUI.Text(deckName, deck.deckName); DeckUI.Count(count, deck.Count);
             DeckUI.Classes(firstClass, secondClass, deck, catalog);
@@ -40,9 +40,10 @@ namespace VocaloidTCG
             if(!preview) preview = gameObject.AddComponent<Button>();
             preview.targetGraphic = GetComponent<Graphic>();
             preview.transition = Selectable.Transition.None;
-            preview.onClick.RemoveAllListeners(); preview.onClick.AddListener(() => choose());
+            preview.onClick.RemoveAllListeners(); preview.onClick.AddListener(() => (inspect ?? choose)?.Invoke());
 
             if(favoriteButton){
+                if(favoriteButton.transition == Selectable.Transition.SpriteSwap) favoriteButton.transition = Selectable.Transition.None;
                 favoriteButton.onClick.RemoveAllListeners(); favoriteButton.onClick.AddListener(() => toggleFavorite());
                 var hover = favoriteButton.GetComponent<FavoriteButtonHover>();
                 if(!hover) hover = favoriteButton.gameObject.AddComponent<FavoriteButtonHover>();
@@ -51,7 +52,8 @@ namespace VocaloidTCG
         }
 
         private void SetFavorite(bool hover){
-            DeckUI.Image(favoriteImage, hover ? highlightedFavorite : favorite && favoritedSprite ? favoritedSprite : normalFavorite);
+            var highlighted = highlightedFavorite ? highlightedFavorite : favoritedSprite ? favoritedSprite : normalFavorite;
+            DeckUI.Image(favoriteImage, favorite || hover ? highlighted : normalFavorite);
         }
     }
 }

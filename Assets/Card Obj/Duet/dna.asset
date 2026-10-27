@@ -16,15 +16,14 @@ MonoBehaviour:
   id: 53e10972d920a1e4eaa99c0c0b9ac3d2
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: remove one keyword from an enemy performer this round. Give that keyword
-    to an ally and give that ally protected 1 this round
+  info: "Choose an enemy performer and one of its keywords. Remove that keyword this round. Give it to an ally this round, and give that ally Protected 1 this round."
   performer: 0
   stageEffect: 1
   cost: 3
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 109
   scoreThreshold: 0
   harmonize: 0
   soloist: 0

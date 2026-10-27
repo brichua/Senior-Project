@@ -16,7 +16,7 @@ namespace VocaloidTCG.BoardUI
         private void Awake()
         {
             board = GetComponent<BoardUIController>();
-            bridge = board.game as GameplayBoardBridge;
+            bridge = board ? board.game as GameplayBoardBridge : null;
             ResetTimer();
         }
 
@@ -30,7 +30,9 @@ namespace VocaloidTCG.BoardUI
                 return;
             }
 
-            if (bridge.IsPaused || bridge.PhaseAnimationPlaying || bridge.DrawAnimationPlaying ||  board.sfx.cardAudioSourceIsPlaying) return;
+            if(!bridge) bridge=board.game as GameplayBoardBridge;
+            if(!bridge || !board.voicelines || bridge.IsPaused || bridge.PhaseAnimationPlaying || bridge.DrawAnimationPlaying ||
+                board.sfx && board.sfx.cardAudioSourceIsPlaying || board.voicelines.IsVoicelinePlaying()) return;
 
             idleTimer -= Time.unscaledDeltaTime;
 
@@ -45,9 +47,7 @@ namespace VocaloidTCG.BoardUI
         {
             if (!board.setup) return;
             bool playerSpeaks = Random.value < 0.5f;
-            var character = playerSpeaks ? board.setup.playerClass.identity : board.setup.enemyClass.identity;
-
-            board.voicelines.PlayVoiceline(character, VoicelineEvent.Idle);
+            board.PlayVoiceline(playerSpeaks,VoicelineEvent.Idle);
         }
 
         private void ResetTimer()

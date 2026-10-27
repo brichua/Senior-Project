@@ -44,6 +44,8 @@ namespace VocaloidTCG.BoardUI
         private readonly Vector2[] portraitHomes = new Vector2[2];
         private readonly Vector3[] portraitScales = new Vector3[2];
         public RectTransform RedrawZone { get; private set; }
+        public RectTransform PlayerDeckClassesFocus { get; private set; }
+        public bool TutorialRedrawReady => redraw && redraw.gameObject.activeInHierarchy && selecting;
         public bool CanSelect => selecting && !submitted && bridge && bridge.OpeningPending && !bridge.IsPaused;
         private CardInfoView hoverInfo;
         private RectTransform hoverPanel;
@@ -81,15 +83,18 @@ namespace VocaloidTCG.BoardUI
             float width = Mathf.Min(hoverDesignSize.x, root.rect.width - 32);
             hoverPanel.sizeDelta = new Vector2(width, hoverDesignSize.y);
             hoverPanel.ForceUpdateRectTransforms();
-            hoverInfo.UpdateNameSpacing();
+            hoverInfo.RefreshLayout();
             float height = hoverDesignSize.y;
             if(hoverInfo.description){
-                var bodyRect = hoverInfo.description.rectTransform;
-                float bodyHeight = hoverInfo.description.GetPreferredValues(hoverInfo.description.text, Mathf.Max(1, bodyRect.rect.width), Mathf.Infinity).y;
-                height = Mathf.Max(height, bodyHeight + hoverDesignSize.y - bodyRect.rect.height);
+                // Text content retains its expanded height between hovers. Size from the visible viewport instead.
+                var bodyArea = hoverInfo.DescriptionViewport ? hoverInfo.DescriptionViewport : hoverInfo.description.rectTransform;
+                float bodyHeight = hoverInfo.description.GetPreferredValues(hoverInfo.description.text, Mathf.Max(1, bodyArea.rect.width), Mathf.Infinity).y;
+                height = Mathf.Max(height, bodyHeight + hoverDesignSize.y - bodyArea.rect.height + 8);
             }
             height = Mathf.Min(height, root.rect.height - 32);
             hoverPanel.sizeDelta = new Vector2(width, height);
+            hoverPanel.ForceUpdateRectTransforms();
+            hoverInfo.RefreshLayout();
             hoverPanel.SetAsLastSibling();
             var corners = new Vector3[4]; card.Rect.GetWorldCorners(corners);
             Vector3 left = root.InverseTransformPoint(corners[0]), right = root.InverseTransformPoint(corners[2]);
@@ -198,6 +203,8 @@ namespace VocaloidTCG.BoardUI
                 portraits[starter].localScale = portraitScales[starter] * pop;
             });
             
+            // Keep the deck-class icons on screen until the tutorial explanation is dismissed.
+            while(bridge.IsTutorial && bridge.TutorialLesson == 3 && bridge.TutorialOpeningClassesPending) yield return null;
             introduction.gameObject.SetActive(false);
             redraw.gameObject.SetActive(true);
             backdrop.ShowRedraw();
@@ -287,6 +294,8 @@ namespace VocaloidTCG.BoardUI
 
         public void SelectCard(OpeningHandCard card, bool selected){
             if(!CanSelect || card.opponent) return;
+            if(bridge.IsTutorial && bridge.TutorialLesson == 3 && selected &&
+                !bridge.TutorialRedrawAllowed(new[] { bridge.OpeningCards(snapshot.localPlayerId)[card.index].instanceId })) return;
             int count = cards[0].Count(c => c.selected && c != card);
             if(selected && count >= snapshot.Side(snapshot.localPlayerId).deckCount) selected = false;
             bool changed = card.selected != selected;
@@ -445,6 +454,7 @@ namespace VocaloidTCG.BoardUI
                 var icon = classes[i].classIcon;
                 Vector2 center = new Vector2(x, -398 - i * Mathf.Min(60, 105f / Mathf.Max(1, classes.Count - 1)));
                 var badge = Image(introduction, "Class badge backing", center, new Vector2(64, 64), null, new Color(0.015f, 0.035f, 0.055f, 0.94f));
+                if(!enemy && i == 0) PlayerDeckClassesFocus = badge.rectTransform;
                 badge.rectTransform.localRotation = Quaternion.Euler(0, 0, 45);
                 Diamond(introduction, center, 48, classes[i].color);
                 Diamond(introduction, center, 41, classes[i].color * new Color(1, 1, 1, 0.5f));
@@ -466,7 +476,12 @@ namespace VocaloidTCG.BoardUI
             SpawnCards(side);
         }
 
-        private void SubmitHand(){ if(CanSelect){ submitted = true; HideCardInfo(); if (board.sfx) board.sfx.PlayEnterGameSound(); } }
+        private void SubmitHand(){
+            if(!CanSelect) return;
+            var ids = cards[0].Where(c => c.selected).Select(c => bridge.OpeningCards(snapshot.localPlayerId)[c.index].instanceId).ToArray();
+            if(!bridge.TutorialRedrawAllowed(ids)) return;
+            submitted = true; HideCardInfo(); if(board.sfx) board.sfx.PlayEnterGameSound();
+        }
 
         private void Diamond(Transform parent, Vector2 center, float radius, Color tint){
             for(int i = 0; i < 4; i++){
@@ -516,7 +531,7 @@ namespace VocaloidTCG.BoardUI
             hoverBackground = null; defaultHoverBackground = null;
             StopAllCoroutines(); selecting = submitted = false;
             if(root){ root.gameObject.SetActive(false); Destroy(root.gameObject); }
-            root = null; RedrawZone = null; backdrop = null; cards[0].Clear(); cards[1].Clear();
+            root = null; RedrawZone = null; PlayerDeckClassesFocus = null; backdrop = null; cards[0].Clear(); cards[1].Clear();
             openingParticles = redrawParticles = null;
             redrawButtonEffects = null;
             if(spotlightSprite) Destroy(spotlightSprite);

@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using VocaloidTCG.BoardUI;
 
 namespace VocaloidTCG
 {
@@ -29,6 +30,8 @@ namespace VocaloidTCG
         public TMP_Text deckCount, deckStats, status;
         public GameObject cardInformation;
         public TMP_Text cardType, cardName, cardClass, cardCost, cardInfluence, cardDescription, copiesText, addCount;
+        [Tooltip("Optional keyword tooltip styling. Standard keyword definitions and styling work without a board setup.")]
+        public BoardSetup keywordTooltipTheme;
         public Image cardArt, cardVIP, costImage, influenceImage;
         public Slider copiesSlider;
         public SFXManager sfx;
@@ -216,6 +219,13 @@ namespace VocaloidTCG
             if(cardClass) cardClass.color = cls ? cls.color : Color.white;
             DeckUI.Text(cardCost, "cost: " + selected.cost); DeckUI.Text(cardInfluence, "inf: " + selected.influence);
             DeckUI.Text(cardDescription, selected.info); DeckUI.Image(cardArt, selected.cardImage);
+            if(cardDescription){
+                cardDescription.text = CardInfoView.FormatDescription(selected.info, keywordTooltipTheme);
+                cardDescription.richText = true;
+                var tooltip = cardDescription.GetComponent<KeywordTooltip>();
+                if(!tooltip) tooltip = cardDescription.gameObject.AddComponent<KeywordTooltip>();
+                tooltip.Configure(cardDescription, keywordTooltipTheme);
+            }
             DeckUI.Image(cardVIP, selected.vip && cls ? cls.vipImage : null);
             DeckUI.Image(costImage, cls ? cls.costImage : null);
             DeckUI.Image(influenceImage, cls ? cls.popupImage : null);

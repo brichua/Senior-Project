@@ -24,6 +24,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         public List<string> ChooseOpponentRedraw(){
+            if(IsTutorial && TutorialLesson < 4) return new List<string>();
             if(IsOnline) return new List<string>();
             int enemy = 1 - state.localPlayerId;
             return openingCards[enemy].Where(c => c.currentCost > 3)
@@ -32,6 +33,7 @@ namespace VocaloidTCG.BoardUI
         }
 
         public bool SubmitOpeningRedraw(IEnumerable<string> playerIds, IEnumerable<string> enemyIds){
+            if(!TutorialRedrawAllowed(playerIds)) return false;
             if(IsOnline) return online.Command("redraw", default(BoardAction), (playerIds ?? Enumerable.Empty<string>()).ToArray());
             if(!OpeningPending || OpeningRedrawSubmitted || IsPaused) return false;
             var local = new HashSet<string>(playerIds ?? Enumerable.Empty<string>());

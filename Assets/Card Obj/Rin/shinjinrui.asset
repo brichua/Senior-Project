@@ -16,16 +16,14 @@ MonoBehaviour:
   id: 7367930b2d166014ca2cd274c03dfa3c
   cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   vip: 1
-  info: ' once per round when another ally leaves the stage, create a 1 inf token
-    on an available adjacent tile. Whenever one of your tokens leaves the stage,
-    this gets +1 inf'
+  info: "Once per round, when another ally leaves the stage, create a 1-influence token on an available adjacent legal tile. Whenever one of your tokens leaves the stage, this gains +1 influence."
   performer: 1
   stageEffect: 0
   cost: 4
   influence: 5
   flags: []
   stageInfluenceChange: 1
-  effect: 69
+  effect: 144
   scoreThreshold: 0
   harmonize: 0
   soloist: 0

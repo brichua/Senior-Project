@@ -16,27 +16,30 @@ MonoBehaviour:
   id: 6ee93e4a6498c974fac42092e9222ef2
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: nimble, encore, when this moves into the middle zone, it gets +1 inf this
-    round
+  info: 'Nimble. Encore.
+
+
+    When this moves into Center Stage, it gets +1 influence
+    this round.'
   performer: 1
   stageEffect: 0
   cost: 2
   influence: 2
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 118
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
   stageShare: 0
-  encore: 0
-  nimble: 0
+  encore: 1
+  nimble: 1
   cheerEffect: 0
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: -7806109275058750899, guid: 98f64918e5e8bbc41bdff6d93276dc80, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: 6601704596448188913, guid: 2a19d53bbb0a87b46bf9ffe093690bb4, type: 3}
+  cardImage: {fileID: -2540119289694006934, guid: 1763ca5c83522a74aa0227b7c1e62622, type: 3}
+  characterImage: {fileID: 5010775155375375417, guid: 993e82aa8fd207340a4d4cc41bcd8081, type: 3}
+  iconImage: {fileID: -108409490296877916, guid: 09cbff483fd24604fbd7f00085b70ff3, type: 3}
   popupImage: {fileID: -3350101939418175136, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

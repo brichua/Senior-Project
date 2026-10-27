@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace VocaloidTCG.BoardUI
 {
-    public sealed class TileView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDropHandler
+    public sealed class TileView : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler, IDropHandler
     {
         public Image tile, soloPopup, duoPopup;
         public GameObject solo, duo;
@@ -22,6 +22,12 @@ namespace VocaloidTCG.BoardUI
         private string normalSoloInfluence;
         private bool enemyOnly;
         private CardPointer soloAssist;
+        private readonly System.Collections.Generic.Dictionary<Image, Color> originalColors = new System.Collections.Generic.Dictionary<Image, Color>();
+        private void Tint(Image image, bool enemy){
+            if(!image) return;
+            if(!originalColors.TryGetValue(image, out var original)) originalColors.Add(image, original = image.color);
+            image.color = original * (enemy ? board.setup.EnemyBoardTint : Color.white);
+        }
 
         private void Awake(){
             // Use the existing named prefab children, including those initially hidden.
@@ -74,12 +80,16 @@ namespace VocaloidTCG.BoardUI
                 contested ? null : p != null ? pa : ea, normalSoloPopup);
             ShieldPopup(playerShieldPopup, playerShieldInfluence, contested ? p : null, contested ? pa : null, theme.player.performerPopup);
             ShieldPopup(enemyShieldPopup, enemyShieldInfluence, contested ? e : null, contested ? ea : null, theme.enemy.performerPopup);
+            Tint(soloShieldPopup, enemyOnly);
+            Tint(playerShieldPopup, false);
+            Tint(enemyShieldPopup, true);
 
             if(contested){
                 BindCard(playerCard, p, true, null); BindCard(enemyCard, e, false, null);
                 BindCard(playerAssist, pa, false, theme.player.assistance, true);
                 BindCard(enemyAssist, ea, false, theme.enemy.assistance, true);
                 BoardUIController.SetImage(duoPopup, pt > et ? theme.player.performerPopup : et > pt ? theme.enemy.performerPopup : theme.tiedPopup);
+                Tint(duoPopup, et > pt);
                 CardInfoView.Put(duoInfluence, Mathf.Abs(pt - et).ToString());
             }
             else{
@@ -110,18 +120,27 @@ namespace VocaloidTCG.BoardUI
             if(!view) return;
             if(card == null){ view.gameObject.SetActive(false); return; }
             Sprite sprite = card.data ? (useIcon ? card.data.iconImage : card.data.characterImage) : null;
+            if(card.token && card.data && card.data.stageEffect)
+                sprite=card.ownerId==board.State.localPlayerId ? board.setup.player.avatar : board.setup.enemy.avatar;
             if(!sprite) sprite = fallback;
             view.Bind(board, card, sprite, false, movable, column, row);
+            Tint(view.influencePopup, card.ownerId != board.State.localPlayerId);
         }
 
         public void RefreshHover(){
             if(!board) return;
 
             var theme = board.setup;
-            bool legalHover = hovered && board.CanDrop(column, row);
-            Sprite tileSprite = board.IsMovingFrom(column, row) ? (theme.movingTile ? theme.movingTile : normalSprite) : legalHover ? theme.hoverTile : normalSprite;
+            bool effectTarget = board.IsEffectTarget(column,row);
+            bool legalHover = hovered && (effectTarget || board.CanDrop(column, row));
+            var hover=theme.player.hoverTile ? theme.player.hoverTile : theme.hoverTile;
+            Sprite tileSprite = board.IsMovingFrom(column, row) || effectTarget && !legalHover
+                ? (theme.movingTile ? theme.movingTile : normalSprite) : legalHover ? hover : normalSprite;
             BoardUIController.SetImage(tile, tileSprite);
+            // Legal placement and effect highlights retain their normal highlight colors.
+            Tint(tile, enemyOnly && !legalHover && !effectTarget && !board.IsMovingFrom(column, row));
             BoardUIController.SetImage(soloPopup, normalSoloPopup);
+            Tint(soloPopup, enemyOnly);
             CardInfoView.Put(soloInfluence, normalSoloInfluence);
             int localTotal, enemyTotal;
 
@@ -130,6 +149,7 @@ namespace VocaloidTCG.BoardUI
             if(enemyOnly && legalHover && board.TryGetContestPreview(column, row, out localTotal, out enemyTotal))
             {
                 BoardUIController.SetImage(soloPopup, localTotal > enemyTotal ? theme.player.performerPopup : enemyTotal > localTotal ? theme.enemy.performerPopup : theme.tiedPopup);
+                Tint(soloPopup, enemyTotal > localTotal);
                 CardInfoView.Put(soloInfluence, Mathf.Abs(localTotal - enemyTotal).ToString());
             }
         }
@@ -140,6 +160,10 @@ namespace VocaloidTCG.BoardUI
         
         public void OnPointerExit(PointerEventData e){
             hovered = false; RefreshHover();
+        }
+
+        public void OnPointerClick(PointerEventData e){
+            if(board && e.button==PointerEventData.InputButton.Left) board.ChooseEffectTile(column,row);
         }
         
         public void OnDrop(PointerEventData e){

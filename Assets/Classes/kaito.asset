@@ -78,3 +78,16 @@ MonoBehaviour:
   excitedVoiceline: Ha!
   concernedVoiceline: Argh!
   idleVoiceline: Ah...
+  idleVoicelines:
+  - "Ah..."
+  - "Heh..."
+  - "Hmm..."
+  winTileVoicelines:
+  - "Yes!"
+  - "Mine!"
+  - "Okay!"
+  loseTileVoicelines:
+  - "No..."
+  - "Boo..."
+  - "What?!"
+  multiplayerVoiceline: "Heh!"

@@ -16,21 +16,23 @@ MonoBehaviour:
   id: 3be9f6c17e140464fab662a8fe2eb549
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: (cheer effect)move an ally to a tile with an enemy on it
+  info: 'Cheer Effect.
+
+    Move an ally to a tile with an enemy on it.'
   performer: 0
   stageEffect: 1
   cost: 2
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 53
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
   stageShare: 0
   encore: 0
   nimble: 0
-  cheerEffect: 0
+  cheerEffect: 1
   venueEffect: 0
   regen: 0
   protectedInfluence: 0

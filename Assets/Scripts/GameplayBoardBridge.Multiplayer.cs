@@ -60,8 +60,7 @@ namespace VocaloidTCG.BoardUI
             player1Cards = records[1].cardIds.Select(deckCatalog.Card).ToArray();
             player0OpeningCard = deckCatalog.Card(records[0].vipCardId);
             player1OpeningCard = deckCatalog.Card(records[1].vipCardId);
-            chosenBoard = boardSetups.FirstOrDefault(b => b && b.PlayerClass == playerClasses.FirstOrDefault() && b.EnemyClass == enemyClasses.FirstOrDefault())
-                ?? BoardSetupCatalog.Find(playerClasses.FirstOrDefault(), enemyClasses.FirstOrDefault(), multiplayerBoards);
+            chosenBoard = FindBoardSetup(playerClasses.FirstOrDefault(), enemyClasses.FirstOrDefault());
             ConfigurationVersion++; MatchSetupError = ""; return true;
         }
         private bool SubmitOnline(string kind, BoardAction action) => online.Command(kind, action);
@@ -112,6 +111,7 @@ namespace VocaloidTCG.BoardUI
                 .Concat(snapshot.revealedCards ?? new List<CardState>())
                 .Concat(new[] {snapshot.pendingEffect?.selected,snapshot.pendingEffect?.created})
                 .Concat(snapshot.pendingEffect?.cards ?? new List<CardState>())
+                .Concat(snapshot.pendingEffect?.options ?? new List<CardState>())
                 .Concat(new[] { snapshot.pendingEffect?.source }).Concat(snapshot.tiles.Where(t => t != null)
                 .SelectMany(t => new[] { t.side0, t.side1, t.assist0, t.assist1 })).Where(c => c != null);
         }
@@ -185,6 +185,7 @@ namespace VocaloidTCG.BoardUI
             if(state.phase != RoundPhase.Mulligan && !wasMulligan)
                 foreach(var card in state.side0.hand.Concat(state.side1.hand).Where(c => !previousHand.Contains(c.instanceId)))
                     drawPresentations.Enqueue(new DrawPresentation { card = card });
+            if(state.phase==RoundPhase.Preparation && state.activePlayerId==localPlayerId) PlayApproachingEndVoiceline();
             online.BoardReceived(); Publish();
         }
         private static void CopySnapshot(BoardSnapshot from, BoardSnapshot to)
@@ -195,6 +196,7 @@ namespace VocaloidTCG.BoardUI
             to.winnerId = from.winnerId; to.roundSummary = from.roundSummary;
             to.multiplayer = from.multiplayer; to.inputAllowed = from.inputAllowed; to.phase = from.phase;
             to.pendingEffect=from.pendingEffect; to.roundTileBonus0=from.roundTileBonus0; to.roundTileBonus1=from.roundTileBonus1;
+            to.tileWinRewards=from.tileWinRewards;
             to.queuedEffects=from.queuedEffects; to.delayedTokens=from.delayedTokens;
             to.revealedCards=from.revealedCards; to.revealMessage=from.revealMessage;
             to.tileDraw0=from.tileDraw0; to.tileDraw1=from.tileDraw1;

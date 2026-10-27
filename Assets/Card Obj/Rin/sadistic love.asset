@@ -16,8 +16,10 @@ MonoBehaviour:
   id: 4eb7f73c3d7a6624ebc061fa10a04900
   cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   vip: 0
-  info: Venue Effect. Whenever an allied performer leaves the stage or you discard
-    a performer from your hand, gain 1 audience score.
+  info: 'Venue Effect.
+
+    Whenever an allied performer leaves the stage or you
+    discard a performer from your hand, gain 1 audience score.'
   performer: 0
   stageEffect: 1
   cost: 3

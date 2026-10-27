@@ -235,7 +235,7 @@ namespace VocaloidTCG
                 var copy = savedDeck.Copy();
                 int index = next.decks.FindIndex(d => d.id == copy.id);
                 if(index >= 0) next.decks[index] = copy; else next.decks.Add(copy);
-                next.selectedId = copy.id;
+                if(!next.decks.Any(d => d.id == next.selectedId)) next.selectedId = copy.id;
                 if(!string.IsNullOrEmpty(copy.catalogKey)){
                     if(!next.importedCatalogDecks.Contains(copy.catalogKey)) next.importedCatalogDecks.Add(copy.catalogKey);
 #if UNITY_EDITOR
@@ -329,6 +329,11 @@ namespace VocaloidTCG
             data.storyClears.Find(c => c != null && c.storyId == story.id && c.opponent == opponent)?.firstClearUtc;
 
         public bool IsAuditionCompleted(StoryData story, CharacterClass opponent) => StoryFirstClear(story, opponent) != null;
+        public bool IsAuditionUnlocked(StoryData story, CharacterClass opponent){
+            if(!story || story.auditions == null) return false;
+            int index = story.auditions.FindIndex(a => a != null && a.opponent == opponent);
+            return index >= 0 && (!story.tutorial || story.auditions.Take(index).All(a => a != null && IsAuditionCompleted(story, a.opponent)));
+        }
         public int StoryClearCount(StoryData story) => !story || story.auditions == null ? 0 : story.auditions
             .Where(a => a != null).Select(a => a.opponent).Distinct().Count(c => IsAuditionCompleted(story, c));
         public bool IsStoryCompleted(StoryData story) => story && story.Validate(out _) && StoryClearCount(story) == 5;
@@ -351,11 +356,11 @@ namespace VocaloidTCG
             if(audition == null) return false;
             if(IsAuditionCompleted(story, opponent)) { error = ""; return true; }
             error = "Register the audition's first clear reward in the deck catalog.";
-            if(!audition.firstClearReward || Catalog.Card(audition.firstClearReward.id) != audition.firstClearReward) return false;
+            if((!story.tutorial || audition.firstClearReward) && (!audition.firstClearReward || Catalog.Card(audition.firstClearReward.id) != audition.firstClearReward)) return false;
             bool saved = Commit(next => {
                 next.storyClears.Add(new StoryClearRecord { storyId = story.id, opponent = opponent,
                     firstClearUtc = DateTime.UtcNow.ToString("O", System.Globalization.CultureInfo.InvariantCulture) });
-                if(!next.owned.Contains(audition.firstClearReward.id)) next.owned.Add(audition.firstClearReward.id);
+                if(audition.firstClearReward && !next.owned.Contains(audition.firstClearReward.id)) next.owned.Add(audition.firstClearReward.id);
             }, out error);
             if(saved && story.tutorial && IsStoryCompleted(story)) TutorialProgress.SetCompleted();
             return saved;

@@ -16,27 +16,29 @@ MonoBehaviour:
   id: 092135c832b21ae4db09f80496e9eecb
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: stage share, whenever this performer moves, give the performer sharings its
-    tile or an adjacent ally +1 inf this round
+  info: 'Stage Share.
+
+    Whenever this moves, give an ally sharing its destination
+    tile or adjacent to it +1 influence this round.'
   performer: 1
   stageEffect: 0
   cost: 2
   influence: 2
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 121
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
-  stageShare: 0
+  stageShare: 1
   encore: 0
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: -7611866917115929326, guid: 12e9ec8b9e3da5146997d4692e34f4fd, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: -6347067740257967448, guid: 979ad093996e0fa47993d8ebfb81b511, type: 3}
+  cardImage: {fileID: 4534274323632681116, guid: 895e2826ff96c9b41b251fa10da60ec6, type: 3}
+  characterImage: {fileID: -4786318186725242387, guid: d32fe57ee290c454d8df11803bc94b99, type: 3}
+  iconImage: {fileID: 5821741680944456080, guid: f62860b7b0029ed4697c12bb19eea455, type: 3}
   popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

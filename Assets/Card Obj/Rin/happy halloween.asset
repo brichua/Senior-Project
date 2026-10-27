@@ -16,15 +16,14 @@ MonoBehaviour:
   id: d88e17fa9fe1aab43baa6cf1aca83782
   cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   vip: 1
-  info: "remove an ally, draw 2 cards. Then if at least 4 performers are in your
-    discard pile, create a 3 inf token on the removed performer\u2019s tile"
+  info: "Choose an ally to leave the stage, then draw 2 cards. If at least 4 performer cards are in your discard pile, create a 3-influence token on the ally's former tile if available."
   performer: 0
   stageEffect: 1
   cost: 4
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 69
+  effect: 143
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
