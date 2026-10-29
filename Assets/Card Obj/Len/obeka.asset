@@ -16,7 +16,9 @@ MonoBehaviour:
   id: c38cdbf289ef8d54e940b8865fa4343d
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: Choose an opposing performer. Remove it from the field.
+  info: 'Cheer Effect.
+
+    Choose an opposing performer. Remove it from the field.'
   performer: 0
   stageEffect: 1
   cost: 5
@@ -30,7 +32,7 @@ MonoBehaviour:
   stageShare: 0
   encore: 0
   nimble: 0
-  cheerEffect: 0
+  cheerEffect: 1
   venueEffect: 0
   regen: 0
   protectedInfluence: 0

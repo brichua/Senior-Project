@@ -17,7 +17,7 @@ MonoBehaviour:
   cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
   vip: 0
   info: On play, create a 2-cost, 2-influence token in your hand with a random performer
-    keyword. The token uses this card's art and has no card abilities.
+    keyword. The token has no card abilities.
   performer: 1
   stageEffect: 0
   cost: 2

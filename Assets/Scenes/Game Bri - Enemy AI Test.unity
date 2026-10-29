@@ -1104,7 +1104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.BasicEnemyAITest
   game: {fileID: 181535722}
   classes: []
-  actionDelay: 0.75
+  actionDelay: 1.5
 --- !u!4 &181535724
 Transform:
   m_ObjectHideFlags: 0
@@ -2553,6 +2553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 482874583}
   - component: {fileID: 482874584}
+  - component: {fileID: 900000001}
   m_Layer: 0
   m_Name: bg music
   m_TagString: Untagged
@@ -4661,6 +4662,7 @@ MonoBehaviour:
   ghostSize: {x: 120, y: 160}
   sfx: {fileID: 46646703}
   drawAnimator: {fileID: 0}
+  revealedCardsPrefab: {fileID: 1323191495205493422, guid: 60441410fb5395245879999526e86621, type: 3}
 --- !u!1 &975901353
 GameObject:
   m_ObjectHideFlags: 0
@@ -5412,6 +5414,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1323292256}
   - component: {fileID: 1323292257}
+  - component: {fileID: 900000002}
   m_Layer: 0
   m_Name: voicelines
   m_TagString: Untagged
@@ -10580,3 +10583,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8200000210}
   m_CullTransparentMesh: 1
+
+--- !u!114 &900000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 482874582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79466dc316b41288d92737843bb66f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.AudioCategorySource
+  category: 2
+--- !u!114 &900000002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323292255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79466dc316b41288d92737843bb66f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.AudioCategorySource
+  category: 1

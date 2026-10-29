@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: d014d7a18e4c9394aa59cc1d15430ed7
   number: 2
-  puzzleName: Puzzle (Miku_Meiko)
-  shortDescription: miku vs meiko
-  longDescription: 
+  puzzleName: Perfect Ten
+  shortDescription: Reach 10 points in one round.
+  longDescription: Reach a total score of at least 10 points in one round. You have
+    up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   againstClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
-  rewardCard: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  rewardCard: {fileID: 11400000, guid: 4dcfa479a1bb07c4c93f10a503340161, type: 2}
   boardSetup: {fileID: 11400000, guid: 1863d102f5aa22a4ba1a26d95c1f0a2c, type: 2}
   player:
     energy: 8
@@ -30,7 +31,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 856278b3ccaa51e42925bc9e967cad0f, type: 2}
     - {fileID: 11400000, guid: 0b21cc092eb618240ab6629d284db2da, type: 2}
     - {fileID: 11400000, guid: d0ccc814f2d9cde44a7ddfe1facf531a, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds: []
   enemy:
     energy: 8
     score: 0
@@ -40,7 +41,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: bc5287a764d484e41a71533692813993, type: 2}
     - {fileID: 11400000, guid: 71d75419ec26bff4790a99dab3aa2ba2, type: 2}
     - {fileID: 11400000, guid: 965ce64d67e184d489ea5f3ae6fba3c9, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds: []
   placements: []
   enemyTurns:
   - actions:

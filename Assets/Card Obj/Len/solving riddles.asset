@@ -16,7 +16,10 @@ MonoBehaviour:
   id: 09a2b575f38f22040b55b723d5bf4eee
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: All allied and opposing performers in Center Stage lose 1 influence.
+  info: 'Cheer Effect.
+
+    All allied and opposing performers in Center Stage lose
+    1 influence.'
   performer: 0
   stageEffect: 1
   cost: 2
@@ -30,7 +33,7 @@ MonoBehaviour:
   stageShare: 0
   encore: 0
   nimble: 0
-  cheerEffect: 0
+  cheerEffect: 1
   venueEffect: 0
   regen: 0
   protectedInfluence: 0

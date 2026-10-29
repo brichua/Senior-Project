@@ -199,6 +199,7 @@ namespace VocaloidTCG.BoardUI
             to.tileWinRewards=from.tileWinRewards;
             to.queuedEffects=from.queuedEffects; to.delayedTokens=from.delayedTokens;
             to.revealedCards=from.revealedCards; to.revealMessage=from.revealMessage;
+            to.revealVersion=from.revealVersion;
             to.tileDraw0=from.tileDraw0; to.tileDraw1=from.tileDraw1;
             to.side0 = from.side0; to.side1 = from.side1; to.tiles = from.tiles;
         }

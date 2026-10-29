@@ -46,6 +46,7 @@ namespace VocaloidTCG
         private string selectedDeckId;
         private StoryDifficulty? chosenDifficulty;
         private bool lastDebugTutorialCompleted;
+        private bool lastTutorialCompleted;
         private bool resetClassScroll;
         private bool auditionSelectSoundPlayed;
 
@@ -73,7 +74,7 @@ namespace VocaloidTCG
                 if (!catalog.Validate(out var error)) throw new InvalidOperationException(error);
                 library = DeckLibrary.Get(catalog.deckCatalog);
                 library.Changed += LibraryChanged;
-                if (library.IsStoryCompleted(catalog.Tutorial)) TutorialProgress.SetCompleted();
+                TutorialProgress.ImportLegacyCompletion(library.IsStoryCompleted(catalog.Tutorial));
                 if (classBack) classBack.onClick.AddListener(BackToMain);
                 Hook(begin, BeginStory); Hook(mapBack, ShowClasses); ; Hook(auditionBack, ShowMap); ;
                 Hook(prologue, () => PlayDialogue(selected?.prologue, false));
@@ -199,11 +200,11 @@ namespace VocaloidTCG
         }
 
         private bool CanPlay(StoryData story) => story && story.HasPlayableContent(catalog.deckCatalog) &&
-            (story.tutorial || debugTutorialCompleted || TutorialProgress.Completed || library.IsStoryCompleted(catalog.Tutorial));
+            (story.tutorial || debugTutorialCompleted || TutorialProgress.Completed);
 
         private void Update()
         {
-            if (library == null || !catalog || lastDebugTutorialCompleted == debugTutorialCompleted) return;
+            if (library == null || !catalog || lastDebugTutorialCompleted == debugTutorialCompleted && lastTutorialCompleted == TutorialProgress.Completed) return;
             BuildClasses();
             if (selected && !CanPlay(selected))
             {
@@ -245,6 +246,7 @@ namespace VocaloidTCG
         private void BuildClasses()
         {
             lastDebugTutorialCompleted = debugTutorialCompleted;
+            lastTutorialCompleted = TutorialProgress.Completed;
             Clear(classViews);
 
             foreach (var story in catalog.stories.OrderByDescending(s => s.tutorial))

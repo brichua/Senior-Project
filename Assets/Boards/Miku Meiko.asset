@@ -18,8 +18,9 @@ MonoBehaviour:
   enemyCardBack: {fileID: 11400000, guid: d4213812defe31c4b8e760328f8ac52b, type: 2}
   legacyPlayerClasses: []
   legacyEnemyClasses: []
-  background: {fileID: -4364034832326165938, guid: 390983383697a374c9e9b08595560531, type: 3}
-  topBar: {fileID: 7696310992836849271, guid: 604ef45f5954915409895c2e80754e9e, type: 3}
+  sameClassEnemyTint: {r: 0.55, g: 0.62, b: 0.7, a: 1}
+  background: {fileID: 4120610067623443145, guid: a8e694d4c5bbe6d4ba5456316c944b26, type: 3}
+  topBar: {fileID: 4671870118135405798, guid: b1f8f2b073489994a8f4cc87e459bd77, type: 3}
   pause: {fileID: -6643546833652701967, guid: 0ddfc38fe67f8724a9f98ff2026bbf66, type: 3}
   tiedPopup: {fileID: -2701375301171583563, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   gameIcon: {fileID: 0}

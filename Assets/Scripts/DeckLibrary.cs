@@ -354,7 +354,10 @@ namespace VocaloidTCG
             if(!story || !story.Validate(out error)) return false;
             var audition = story.Audition(opponent);
             if(audition == null) return false;
-            if(IsAuditionCompleted(story, opponent)) { error = ""; return true; }
+            if(IsAuditionCompleted(story, opponent)) {
+                if(story.tutorial && story.auditions.Last().opponent == opponent && IsStoryCompleted(story)) TutorialProgress.SetCompleted();
+                error = ""; return true;
+            }
             error = "Register the audition's first clear reward in the deck catalog.";
             if((!story.tutorial || audition.firstClearReward) && (!audition.firstClearReward || Catalog.Card(audition.firstClearReward.id) != audition.firstClearReward)) return false;
             bool saved = Commit(next => {

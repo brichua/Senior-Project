@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: 7bf142c2b01201845be1cf348a9c6a0b
   number: 2
-  puzzleName: Puzzle (Luka_Len)
-  shortDescription: luka vs len
-  longDescription: 
+  puzzleName: Cloud Nine
+  shortDescription: Reach 9 points in one round.
+  longDescription: Reach a total score of at least 9 points in one round. You have
+    up to 6 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   againstClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
-  rewardCard: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  rewardCard: {fileID: 11400000, guid: 6c0e70e82c4c3fa41a5ce7bd28b4a1da, type: 2}
   boardSetup: {fileID: 11400000, guid: a4a2f3fbc3787fb48af0f5c0102d9d9f, type: 2}
   player:
     energy: 8
@@ -30,8 +31,8 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 369154a20cb01ba4598168ba42708da5, type: 2}
     - {fileID: 11400000, guid: 92247ec2d6d602e45b2fb4ad0491dbab, type: 2}
     - {fileID: 11400000, guid: eef2c099c8d40a446a5a93090ff2c29b, type: 2}
-    cardsOnTurns:
-    - turn: 2
+    cardsOnRounds:
+    - round: 2
       cards:
       - {fileID: 11400000, guid: 83e8cea1e8608bb45b9f387e080efd37, type: 2}
   enemy:
@@ -43,7 +44,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 0fb44630f3ed1334ea410bd7d9fcbb64, type: 2}
     - {fileID: 11400000, guid: 09a2b575f38f22040b55b723d5bf4eee, type: 2}
     - {fileID: 11400000, guid: 8b3db4a3382c3c043acde3018085077c, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds: []
   placements:
   - card: {fileID: 11400000, guid: fadb42c46f555084d87a9da9085aa8e7, type: 2}
     enemy: 0

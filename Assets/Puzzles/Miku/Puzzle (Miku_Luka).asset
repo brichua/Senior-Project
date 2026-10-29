@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: 82b11563adc89f542bd8586d15673828
   number: 2
-  puzzleName: Puzzle (Miku_Luka)
-  shortDescription: miku vs luka
-  longDescription: 
+  puzzleName: Eight Bit Beat
+  shortDescription: Reach 8 points in one round.
+  longDescription: Reach a total score of at least 8 points in one round. You have
+    up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   againstClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
-  rewardCard: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  rewardCard: {fileID: 11400000, guid: 38a9db64453d91f43bb1644e0ca1d69b, type: 2}
   boardSetup: {fileID: 11400000, guid: cf420e2cd5019854f83a874feef6d995, type: 2}
   player:
     energy: 8
@@ -31,7 +32,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 856278b3ccaa51e42925bc9e967cad0f, type: 2}
     - {fileID: 11400000, guid: d0ccc814f2d9cde44a7ddfe1facf531a, type: 2}
     - {fileID: 11400000, guid: 35a539bc5dea235469031314a7fe559a, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds: []
   enemy:
     energy: 8
     score: 0
@@ -41,7 +42,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 92247ec2d6d602e45b2fb4ad0491dbab, type: 2}
     - {fileID: 11400000, guid: 369154a20cb01ba4598168ba42708da5, type: 2}
     - {fileID: 11400000, guid: 34de31542b30f76479e98467831850cf, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds: []
   placements:
   - card: {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
     enemy: 0

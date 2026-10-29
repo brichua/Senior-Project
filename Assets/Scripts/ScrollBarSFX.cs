@@ -17,6 +17,12 @@ public class ScrollbarSFX : MonoBehaviour,
     {
         scrollbar = GetComponent<Scrollbar>();
         audioSource = GetComponent<AudioSource>();
+        if (audioSource)
+        {
+            var channel = GetComponent<VocaloidTCG.AudioCategorySource>();
+            if (!channel) channel = gameObject.AddComponent<VocaloidTCG.AudioCategorySource>();
+            channel.SetCategory(VocaloidTCG.AudioCategory.Effects);
+        }
 
         scrollbar.onValueChanged.AddListener(PlayScrollSound);
     }
@@ -42,8 +48,12 @@ public class ScrollbarSFX : MonoBehaviour,
         if (scrollbar.value > 1 || scrollbar.value < 0)
             return;
 
-        audioSource.Play();
+        if (audioSource) audioSource.Play();
         nextSoundTime = Time.time + soundCooldown;
     }
 
+    private void OnDestroy()
+    {
+        if (scrollbar) scrollbar.onValueChanged.RemoveListener(PlayScrollSound);
+    }
 }

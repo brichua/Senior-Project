@@ -16,18 +16,16 @@ MonoBehaviour:
   id: 0b21cc092eb618240ab6629d284db2da
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: "Choose an allied performer. It gains +2 influence this round."
+  info: 'Cheer Effect.
+
+    Choose an allied performer. It gains +2 influence this
+    round.'
   performer: 0
   stageEffect: 1
   cost: 1
   influence: 0
   flags: []
   stageInfluenceChange: 2
-  cardImage: {fileID: -2095641726186779527, guid: 58e895ad80445b24996e2724f103bb83, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: 5056434956960831713, guid: e4ff687628bea3c42ad36f9f97f3e34e, type: 3}
-  popupImage: {fileID: 0}
-  playSfx: {fileID: 8300000, guid: aec024515909d8b4ab9e60d38cd8cf9f, type: 3}
   effect: 13
   scoreThreshold: 0
   harmonize: 0
@@ -35,5 +33,12 @@ MonoBehaviour:
   stageShare: 0
   encore: 0
   nimble: 0
-  cheerEffect: 0
+  cheerEffect: 1
   venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: -2095641726186779527, guid: 58e895ad80445b24996e2724f103bb83, type: 3}
+  characterImage: {fileID: 0}
+  iconImage: {fileID: 5056434956960831713, guid: e4ff687628bea3c42ad36f9f97f3e34e, type: 3}
+  popupImage: {fileID: 0}
+  playSfx: {fileID: 8300000, guid: aec024515909d8b4ab9e60d38cd8cf9f, type: 3}

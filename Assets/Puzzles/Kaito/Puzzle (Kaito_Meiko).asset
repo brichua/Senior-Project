@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: 112ba2b04e98d3043a9f376a4b565220
   number: 2
-  puzzleName: Puzzle (Kaito_Meiko)
-  shortDescription: kaito vs meiko
-  longDescription: 
+  puzzleName: Icebreaker
+  shortDescription: Reach 4 points in one round.
+  longDescription: Reach a total score of at least 4 points in one round. You have
+    up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   againstClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
-  rewardCard: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  rewardCard: {fileID: 11400000, guid: e8e9644dad15eb64b94ca2f5ba1969b4, type: 2}
   boardSetup: {fileID: 11400000, guid: 28cb7fb70600be149b4e88497afb411a, type: 2}
   player:
     energy: 8
@@ -30,7 +31,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: f8ae1407bc46b5c40a21ba86b76b36cc, type: 2}
     - {fileID: 11400000, guid: a2c328a63f5443b4e89a776c03b4fd19, type: 2}
     - {fileID: 11400000, guid: e68cdae503ae1da47940660afb1bbd91, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds: []
   enemy:
     energy: 8
     score: 0
@@ -40,7 +41,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 965ce64d67e184d489ea5f3ae6fba3c9, type: 2}
     - {fileID: 11400000, guid: 83e8cea1e8608bb45b9f387e080efd37, type: 2}
     - {fileID: 11400000, guid: 8e452bce61a71f1458d96fd66f75ca17, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds: []
   placements:
   - card: {fileID: 11400000, guid: e1e611bec8c8e994ba9476bb5ebe9852, type: 2}
     enemy: 0

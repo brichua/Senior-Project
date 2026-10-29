@@ -25,6 +25,7 @@ namespace VocaloidTCG
         }
 
         public void SetCategory(AudioCategory value) { category = value; Apply(); }
+        public void SetBaseVolume(float value) { baseVolume = Mathf.Clamp01(value); Apply(); }
 
         private void Apply()
         {

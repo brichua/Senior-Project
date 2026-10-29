@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: 113b2c2ebaac3d049bfb89432ec6927d
   number: 2
-  puzzleName: Puzzle (Luka_Kaito)
-  shortDescription: luka vs kaito
-  longDescription: 
+  puzzleName: Twelve Tide
+  shortDescription: Reach 12 points in one round.
+  longDescription: Reach a total score of at least 12 points in one round. You have
+    up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   againstClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
-  rewardCard: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  rewardCard: {fileID: 11400000, guid: 6ee93e4a6498c974fac42092e9222ef2, type: 2}
   boardSetup: {fileID: 11400000, guid: a887c4a731f3ccf40bb17331ad1db4b1, type: 2}
   player:
     energy: 8
@@ -30,7 +31,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 369154a20cb01ba4598168ba42708da5, type: 2}
     - {fileID: 11400000, guid: 87d2026cf21132d47ae26b0afacc5fab, type: 2}
     - {fileID: 11400000, guid: 34de31542b30f76479e98467831850cf, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds: []
   enemy:
     energy: 8
     score: 0
@@ -40,7 +41,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: a2c328a63f5443b4e89a776c03b4fd19, type: 2}
     - {fileID: 11400000, guid: e68cdae503ae1da47940660afb1bbd91, type: 2}
     - {fileID: 11400000, guid: f7730372b7240ad448d2b675b6f86211, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds: []
   placements:
   - card: {fileID: 11400000, guid: 92247ec2d6d602e45b2fb4ad0491dbab, type: 2}
     enemy: 0

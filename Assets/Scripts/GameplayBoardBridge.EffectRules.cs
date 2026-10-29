@@ -184,7 +184,6 @@ namespace VocaloidTCG.BoardUI
                 if(!c.silenced){
                     var keywords=PerformerKeywords.Of(c);
                     int harmonize=keywords.harmonize;
-                    if(state.Side(actor).harmonizeVenue && (actor==0 ? tile%5>=2 : tile%5<=2)) harmonize=Math.Max(1,harmonize);
                     if(adjacent>=2) bonus+=harmonize;
                     if(tile%5==2 && all.Count(other=>other.ownerId==actor && TileOf(other)%5==2)==1) bonus+=keywords.soloist;
                     switch(c.token ? CardEffect.None : c.data.effect){
@@ -257,7 +256,7 @@ namespace VocaloidTCG.BoardUI
             foreach(var c in FieldCards(0).Concat(FieldCards(1)).ToArray()){
                 bool restore=HasEffect(c,CardEffect.RestoreCenter) && TileOf(c)%5==2 || state.Side(c.ownerId).harmonizeVenue && c.currentInfluence>=3;
                 c.currentInfluence=Math.Max(0,c.currentInfluence-c.auraInfluence-c.roundInfluence); c.auraInfluence=c.roundInfluence=0;
-                if(restore && c.currentInfluence<c.data.influence) c.currentInfluence++;
+                if(restore && c.currentInfluence<(c.token ? c.tokenInfluence : c.data.influence)) c.currentInfluence++;
                 if(c.shieldActive && c.currentInfluence <= 0) CardInfluence.BreakShield(c);
                 if(c.protectedUntilRound==state.roundNumber) CardInfluence.BreakShield(c);
                 int age=state.roundNumber-c.enteredRound+1;

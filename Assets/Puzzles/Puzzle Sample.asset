@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: cff3c8df647351349a9163c38f5e4ff7
   number: 1
-  puzzleName: Puzzle Sample
-  shortDescription: puzzle sample
-  longDescription: puzzle sample for visualizing puzzles
+  puzzleName: 'Sound Check'
+  shortDescription: 'Reach 10 points within 5 rounds.'
+  longDescription: 'Reach a total score of at least 10 points within 5 rounds.'
   puzzleClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   againstClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   rewardCard: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}

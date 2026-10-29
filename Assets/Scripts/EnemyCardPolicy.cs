@@ -38,7 +38,9 @@ namespace VocaloidTCG.BoardUI
             var d = card.data;
             int neighbors = Units(state, actor).Count(c => Adjacent(tile, Tile(state, c)));
             var keywords = PerformerKeywords.Of(card);
-            int bonus = neighbors >= 2 ? keywords.harmonize : 0;
+            int harmonize = keywords.harmonize;
+            if (state.Side(actor).harmonizeVenue && (actor == 0 ? tile % 5 >= 2 : tile % 5 <= 2)) harmonize = Math.Max(1, harmonize);
+            int bonus = neighbors >= 2 ? harmonize : 0;
             if (tile % 5 == 2 && !Units(state, actor).Any(c => Tile(state, c) % 5 == 2)) bonus += keywords.soloist;
             bonus += state.Side(actor).nextPerformerColumns.Count(column => column == tile % 5);
             if (card.token || card.silenced) return bonus;
@@ -55,6 +57,7 @@ namespace VocaloidTCG.BoardUI
                     if (tile % 5 == 2 && !Units(state, 0).Concat(Units(state, 1)).Any(c => Tile(state, c) % 5 == 2)) bonus += 3; break;
                 case CardEffect.ContestedPenalty: if (Enemy(state, actor, tile) != null) bonus--; break;
             }
+            bonus += DuetEntryInfluence(state, actor, card, tile);
             return bonus;
         }
 
@@ -68,6 +71,7 @@ namespace VocaloidTCG.BoardUI
             int value = (keywords.encore ? 4 : 0) + (keywords.nimble ? 3 : 0) + (keywords.regen ? 2 : 0);
             if (card.token || card.silenced) return value;
             value += ExtendedPerformerBenefit(state, actor, card, tile);
+            value += DuetPerformerBenefit(state, actor, card, tile);
             switch (d.effect)
             {
                 case CardEffect.ShareInfluence: case CardEffect.ShareHalfInfluence:
@@ -103,6 +107,7 @@ namespace VocaloidTCG.BoardUI
 
         public static int AbilityBenefit(BoardSnapshot state, int actor, CardState c)
         {
+            if (c.data.effect >= CardEffect.RuinToken) return DuetAbilityBenefit(state, actor, c);
             if (c.data.effect == CardEffect.ColumnMoveAbility)
                 return Units(state, actor).Select(unit => BestRelocation(state, actor, unit, true)).DefaultIfEmpty(0).Max();
             if (c.data.effect == CardEffect.WeakenAndRoot)
@@ -124,6 +129,8 @@ namespace VocaloidTCG.BoardUI
         public static int SpellBenefit(BoardSnapshot state, int actor, CardState spell, int tile, CardState target = null)
         {
             var d = spell.data;
+            if (d.effect >= CardEffect.RuinToken)
+                return DuetSpellBenefit(state, actor, spell, tile, target);
             if (d.effect >= CardEffect.LeaveSearchPerformer)
                 return ExtendedSpellBenefit(state, actor, spell, tile, target);
             var own = Units(state, actor).ToArray();
@@ -192,6 +199,7 @@ namespace VocaloidTCG.BoardUI
         {
             if (action.kind == BoardActionKind.FinishEffect) return 0;
             var card = p.cards.FirstOrDefault(c => c.instanceId == action.cardInstanceId);
+            if (p.choice == EffectChoice.Duet) return DuetChoiceValue(state, p, card, action);
             if (p.choice == EffectChoice.Extended) return ExtendedChoiceValue(state, p, card, action);
             if (p.stage == 2) return SpellBenefit(state, p.actor, p.source, p.sourceTile, card);
             if (card != null)

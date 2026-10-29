@@ -15,6 +15,7 @@ public enum VoicelineEvent
     Multiplayer
 }
 
+[RequireComponent(typeof(AudioSource))]
 public class VoicelinesManager : MonoBehaviour
 {
     //public AudioClip[] start;

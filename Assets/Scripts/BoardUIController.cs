@@ -58,6 +58,8 @@ namespace VocaloidTCG.BoardUI
             if(voicelineBridge) voicelineBridge.LocalVoicelineRequested+=PlayLocalVoiceline;
         }
         public CardDrawAnimator drawAnimator;
+        [Tooltip("Editable reveal presentation prefab from Assets/Prefabs.")]
+        public RevealedCardsView revealedCardsPrefab;
         public PhaseAnnouncementAnimator phaseAnimator;
         [Tooltip("Particle and accent color for the End of Round announcement. Preparation and Performance use the round starter's board class color.")]
         public Color endRoundAnnouncementColor = new Color(207f / 255f, 211f / 255f, 1f);
@@ -538,11 +540,12 @@ namespace VocaloidTCG.BoardUI
         // wait for ticket tear sound to complete before placing card
         private IEnumerator DropCoroutine(BoardAction action)
         {
-            sfx.PlayTicketTearSound();
+            // sfx.PlayTicketTearSound();
             if (dragSource)
                 dragSource.gameObject.SetActive(false);
 
-            yield return new WaitForSeconds(sfx.GetTicketTearSoundLength()+0.50f);
+            // yield return new WaitForSeconds(sfx.GetTicketTearSoundLength()+0.50f);
+            yield return new WaitForSeconds(0f);
             
             //sfx.PlayDropSound();
             CancelDrag();

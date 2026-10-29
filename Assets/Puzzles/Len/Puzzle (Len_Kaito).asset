@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: 031bedbd4a365144799033e2f66706e8
   number: 2
-  puzzleName: Puzzle (Len_Kaito)
-  shortDescription: len vs kaito
-  longDescription: 
+  puzzleName: Ten Tempo
+  shortDescription: Reach 10 points in one round.
+  longDescription: Reach a total score of at least 10 points in one round. You have
+    up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   againstClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
-  rewardCard: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  rewardCard: {fileID: 11400000, guid: a93b4abb8c7e93f48be77cf8a70f6cd6, type: 2}
   boardSetup: {fileID: 11400000, guid: 930665771d9bf97418e8a4ea3cc047ef, type: 2}
   player:
     energy: 8
@@ -30,7 +31,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 09a2b575f38f22040b55b723d5bf4eee, type: 2}
     - {fileID: 11400000, guid: 66de2156b281c4b44bc6c9f875e51fe3, type: 2}
     - {fileID: 11400000, guid: 840a8011cb920614193627793316de04, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds: []
   enemy:
     energy: 8
     score: 0
@@ -40,7 +41,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: f8ae1407bc46b5c40a21ba86b76b36cc, type: 2}
     - {fileID: 11400000, guid: a2c328a63f5443b4e89a776c03b4fd19, type: 2}
     - {fileID: 11400000, guid: e68cdae503ae1da47940660afb1bbd91, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds: []
   placements:
   - card: {fileID: 11400000, guid: d687edf23c2cddc478edab69407244bd, type: 2}
     enemy: 0
