@@ -16,25 +16,23 @@ MonoBehaviour:
   id: d6201b59725ed9445b7d1c32c6610037
   cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
   vip: 1
-  info: "protected 1, regen, once per round when you play or create a performer with
-    a keyword, this gains one of the performer\u2019s keywords. Other allies with
-    2 or more keywords get +1 inf"
+  info: "Protected 1. Regen. Once per round, when you play or create a performer with keywords, gain one of its keywords. Other allies with at least 2 keywords have +1 influence."
   performer: 1
   stageEffect: 0
   cost: 5
   influence: 6
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 140
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
   stageShare: 0
-  encore: 1
+  encore: 0
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
-  regen: 0
+  regen: 1
   protectedInfluence: 1
   cardImage: {fileID: -5765524530018351925, guid: c349ec9d61c92cf42990a88f6a4b0ba6, type: 3}
   characterImage: {fileID: 1254040762369812751, guid: ffa1fa9e6f8c20e42bcab0900622a4e3, type: 3}

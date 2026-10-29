@@ -6000,6 +6000,8 @@ MonoBehaviour:
   tile_score_0: {fileID: 0}
   card_effect: {fileID: 0}
   story_start: {fileID: 8300000, guid: 110e62c3fb2c1c3439b1b91bd6e532a8, type: 3}
+  scroll: {fileID: 0}
+  storyTextScroll: []
   hoverSoundCooldown: 0.05
   tileHoverSoundCooldown: 0.05
   cardAudioSourceIsPlaying: 0
@@ -9951,7 +9953,7 @@ MonoBehaviour:
     deckName: {fileID: 7000000053}
   playerDeck:
     avatar: {fileID: 7000000123}
-    art: {fileID: 426575000}
+    art: {fileID: 1309483165}
     firstClass: {fileID: 458635724}
     secondClass: {fileID: 2002838136}
     hostIcon: {fileID: 7000000045}

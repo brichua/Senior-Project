@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d75c0d85338724ca61f930e6603d18, type: 3}
+  m_Name: Puzzle (Rin_Miku)
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
+  id: 8604bd6cb3ed03c4f89fe9750fa6cd21
+  number: 2
+  puzzleName: Puzzle (Rin_Miku)
+  shortDescription: rin vs miku
+  longDescription: 
+  puzzleClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
+  againstClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
+  rewardCard: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  boardSetup: {fileID: 11400000, guid: 1c35f10a45c12ce46b8983c0455704fd, type: 2}
+  player:
+    energy: 8
+    score: 0
+    startingHand:
+    - {fileID: 11400000, guid: b26e231547c078a4995fc9f25623a874, type: 2}
+    - {fileID: 11400000, guid: 061e434e4a34cc940b42ffecd9858ebb, type: 2}
+    - {fileID: 11400000, guid: 4eb7f73c3d7a6624ebc061fa10a04900, type: 2}
+    - {fileID: 11400000, guid: e09448c161d0dc745b8914244032a7da, type: 2}
+    - {fileID: 11400000, guid: f94c06f916fa2a44283aefa3f6a3651d, type: 2}
+    cardsOnTurns: []
+  enemy:
+    energy: 8
+    score: 0
+    startingHand:
+    - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
+    - {fileID: 11400000, guid: 856278b3ccaa51e42925bc9e967cad0f, type: 2}
+    - {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+    - {fileID: 11400000, guid: 0b21cc092eb618240ab6629d284db2da, type: 2}
+    - {fileID: 11400000, guid: d0ccc814f2d9cde44a7ddfe1facf531a, type: 2}
+    cardsOnTurns: []
+  placements:
+  - card: {fileID: 11400000, guid: 061e434e4a34cc940b42ffecd9858ebb, type: 2}
+    enemy: 0
+    column: 2
+    row: 3
+    influence: 3
+  - card: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+    enemy: 1
+    column: 2
+    row: 1
+    influence: 2
+  enemyTurns:
+  - actions:
+    - kind: 0
+      card: {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
+      fromColumn: 0
+      fromRow: 0
+      toColumn: 2
+      toRow: 3
+  - actions:
+    - kind: 0
+      card: {fileID: 11400000, guid: 856278b3ccaa51e42925bc9e967cad0f, type: 2}
+      fromColumn: 0
+      fromRow: 0
+      toColumn: 2
+      toRow: 4
+  - actions:
+    - kind: 0
+      card: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+      fromColumn: 0
+      fromRow: 0
+      toColumn: 2
+      toRow: 2
+  enemyStarts: 1
+  startingPhase: 1
+  startingRound: 1
+  objective: 0
+  targetScore: 2
+  roundLimit: 1
+  playerTurnLimit: 5

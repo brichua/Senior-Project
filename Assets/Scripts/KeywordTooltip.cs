@@ -8,6 +8,8 @@ namespace VocaloidTCG.BoardUI
 {
     public sealed class KeywordTooltip : MonoBehaviour
     {
+        public Color keywordTitleColor = new Color32(0x8F, 0xAA, 0xFE, 0xFF);
+        private bool formattedIconContent;
         private TMP_Text source, label;
         private Image icon;
         private TMP_FontAsset iconFont;
@@ -22,22 +24,29 @@ namespace VocaloidTCG.BoardUI
 
         public void Configure(TMP_Text text, BoardSetup theme){
             icon = null; iconDefinition = null;
+            formattedIconContent = false;
             source = text;
             setup = theme;
-            definitions = CardKeywords.Descriptions(theme.keywordDescriptions);
+            definitions = CardKeywords.Descriptions(theme ? theme.keywordDescriptions : null);
             source.raycastTarget = true;
             Hide();
         }
 
-        public void Configure(Image image, BoardSetup theme, TMP_FontAsset font, string title, string description){
+        public void Configure(Image image, BoardSetup theme, TMP_FontAsset font, string title, string description, bool formatted = false){
             source = null; icon = image; setup = theme; iconFont = font;
+            formattedIconContent = formatted;
             iconDefinition = new KeywordDefinition { keyword = title, description = description };
             icon.raycastTarget = true;
+        }
+        private static string Escape(string value) => (value ?? "").Replace("<", "‹").Replace(">", "›");
+        public static string FormatEntry(string title, string description, Color color){
+            string heading = string.IsNullOrWhiteSpace(title) ? "" : "<color=#" + ColorUtility.ToHtmlStringRGB(color) + "><b>" + Escape(title) + "</b></color>\n";
+            return heading + "<size=90%>" + Escape(string.IsNullOrWhiteSpace(description) ? "n/a" : description) + "</size>";
         }
 
         private void LateUpdate(){
             Graphic target = icon ? (Graphic)icon : source;
-            if(!target || !setup || !EventSystem.current ||
+            if(!target || !EventSystem.current ||
                 !KeywordTooltipPanel.Pointer(out Vector2 position) || !target.isActiveAndEnabled){ Hide(); return; }
             if(pointer == null || pointerSystem != EventSystem.current){
                 pointerSystem = EventSystem.current;
@@ -69,31 +78,33 @@ namespace VocaloidTCG.BoardUI
                 background = panel.gameObject.AddComponent<Image>();
                 background.raycastTarget = false;
                 background.type = Image.Type.Sliced;
+                var shadow = panel.gameObject.AddComponent<Shadow>();
+                shadow.effectColor = new Color(0, 0, 0, 0.4f); shadow.effectDistance = new Vector2(3, -3);
                 var child = new GameObject("Description", typeof(RectTransform), typeof(TextMeshProUGUI));
                 child.layer = panel.gameObject.layer;
                 child.transform.SetParent(panel, false);
                 label = child.GetComponent<TextMeshProUGUI>();
                 label.rectTransform.anchorMin = Vector2.zero;
                 label.rectTransform.anchorMax = Vector2.one;
-                label.rectTransform.offsetMin = new Vector2(14, 12);
-                label.rectTransform.offsetMax = new Vector2(-14, -12);
+                label.rectTransform.offsetMin = new Vector2(18, 16);
+                label.rectTransform.offsetMax = new Vector2(-18, -16);
                 if(source) label.font = source.font;
                 else if(iconFont) label.font = iconFont;
                 label.fontSize = 22;
                 label.color = Color.white;
-                label.richText = false;
+                label.richText = true;
+                label.lineSpacing = 4;
                 label.raycastTarget = false;
                 label.enableAutoSizing = true;
                 label.fontSizeMin = 10;
                 label.fontSizeMax = 22;
             }
             panel.gameObject.SetActive(true);
-            background.sprite = setup.keywordTooltipBackground;
+            background.sprite = setup ? setup.keywordTooltipBackground : null;
             background.color = background.sprite ? Color.white : new Color(0.106f, 0.141f, 0.239f, .98f);
-            label.text = definition.keyword + "\n" +
-                (string.IsNullOrWhiteSpace(definition.description) ? "n/a" : definition.description);
-            float width = Mathf.Min(340, bounds.rect.width - 16);
-            float height = Mathf.Min(label.GetPreferredValues(label.text, Mathf.Max(1, width - 28), Mathf.Infinity).y + 24,
+            label.text = icon && formattedIconContent ? definition.description : FormatEntry(definition.keyword, definition.description, keywordTitleColor);
+            float width = Mathf.Min(360, bounds.rect.width - 16);
+            float height = Mathf.Min(label.GetPreferredValues(label.text, Mathf.Max(1, width - 36), Mathf.Infinity).y + 32,
                 bounds.rect.height - 16);
             panel.sizeDelta = new Vector2(Mathf.Max(1, width), Mathf.Max(1, height));
             if(RectTransformUtility.ScreenPointToLocalPointInRectangle(bounds, position,

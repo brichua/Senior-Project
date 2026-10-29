@@ -14,5 +14,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleCatalog
   deckCatalog: {fileID: 11400000, guid: 6da9310bbc7fa804099e153453b00a12, type: 2}
   puzzles:
-  - {fileID: 11400000, guid: bb1ef1898fff0084083d3dff8ee6f2ad, type: 2}
-  - {fileID: 11400000, guid: cff3c8df647351349a9163c38f5e4ff7, type: 2}
+  - {fileID: 11400000, guid: 82b11563adc89f542bd8586d15673828, type: 2}
+  - {fileID: 11400000, guid: 1929339c358d5704ca91b1271135b137, type: 2}
+  - {fileID: 11400000, guid: 64e6fd8af4bed98438dcee2c8cd9854b, type: 2}
+  - {fileID: 11400000, guid: 2b6d80f5840b4ec4298dabe075dfc993, type: 2}
+  - {fileID: 11400000, guid: d014d7a18e4c9394aa59cc1d15430ed7, type: 2}
+  - {fileID: 11400000, guid: f0f4ced38a9c1c64198475a5c55fc4a5, type: 2}
+  - {fileID: 11400000, guid: 7bf142c2b01201845be1cf348a9c6a0b, type: 2}
+  - {fileID: 11400000, guid: d955b1b8794f23b44b1331811e783692, type: 2}
+  - {fileID: 11400000, guid: 113b2c2ebaac3d049bfb89432ec6927d, type: 2}
+  - {fileID: 11400000, guid: bf112f558a57c084293c62b8bb48e91e, type: 2}
+  - {fileID: 11400000, guid: 9f9692cd6db43ee418c6e27ac4c2d12b, type: 2}
+  - {fileID: 11400000, guid: f2585519613d73449b465feaaa139a36, type: 2}
+  - {fileID: 11400000, guid: 3138e62c23ca47c48a67840eb719b02c, type: 2}
+  - {fileID: 11400000, guid: 031bedbd4a365144799033e2f66706e8, type: 2}
+  - {fileID: 11400000, guid: d4af38985ed88374fa0e9684fc9a736a, type: 2}
+  - {fileID: 11400000, guid: 8604bd6cb3ed03c4f89fe9750fa6cd21, type: 2}
+  - {fileID: 11400000, guid: 697d87e1222cb5b40b51a5c0aa263dc0, type: 2}
+  - {fileID: 11400000, guid: d9ef55ac8a760cc4f876b149d4da55be, type: 2}
+  - {fileID: 11400000, guid: ca63ff3022f25fe4c91c9b1cd2d4f696, type: 2}
+  - {fileID: 11400000, guid: ab4cc222aa5c57d40a5fb1642ff17dd7, type: 2}
+  - {fileID: 11400000, guid: bd44c8217fa0e1148bf026d1754dfe2b, type: 2}
+  - {fileID: 11400000, guid: 1c4971b5fb4234746ba4bd563a8d23ae, type: 2}
+  - {fileID: 11400000, guid: 10600092a92b0ac4c804b10881b1f49f, type: 2}
+  - {fileID: 11400000, guid: 52bed1ccc7f85c946bfd26629257d94a, type: 2}
+  - {fileID: 11400000, guid: 112ba2b04e98d3043a9f376a4b565220, type: 2}
+  - {fileID: 11400000, guid: 30f6fc739c49d184dbb0b1663e9bbc0e, type: 2}
+  - {fileID: 11400000, guid: 1fecc7b8868226a40a92897bc1cb7bd4, type: 2}
+  - {fileID: 11400000, guid: 274d2f079f7ea1542bcf81231f7714de, type: 2}
+  - {fileID: 11400000, guid: 5c75e6266da6c6a42b23c05980ba6ed1, type: 2}
+  - {fileID: 11400000, guid: e9f82107ff4acaa45b3ed2320766b9e6, type: 2}

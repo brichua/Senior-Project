@@ -16,22 +16,25 @@ MonoBehaviour:
   id: 2046c44540dfb0a46abcb0cd1a076cf4
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 1
-  info: cheer effect, give all allies on contested tile +2 inf this round. For the
-    first contested tiel you win this round, gain 1 additional fan score
+  info: 'Cheer Effect.
+
+    Give all allies on contested tiles +2 influence this
+    round. The first contested tile your team wins this round grants 1 additional
+    AS.'
   performer: 0
   stageEffect: 1
   cost: 4
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 51
+  effect: 137
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
   stageShare: 0
   encore: 0
   nimble: 0
-  cheerEffect: 0
+  cheerEffect: 1
   venueEffect: 0
   regen: 0
   protectedInfluence: 0

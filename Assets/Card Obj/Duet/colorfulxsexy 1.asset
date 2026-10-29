@@ -16,27 +16,29 @@ MonoBehaviour:
   id: 91dddab74da60da46b7e8e01c70d7f3a
   cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
   vip: 0
-  info: encore, when this enters the middle zone, gain a random keyword until it
-    leaves the stage. If it already has a keyword, it gets +1 inf
+  info: 'Encore.
+
+    When this enters Center Stage, gain a random keyword until
+    it leaves the stage. If it already has a keyword, also gain +1 influence.'
   performer: 1
   stageEffect: 0
   cost: 3
   influence: 3
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 107
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
   stageShare: 0
-  encore: 0
+  encore: 1
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
   cardImage: {fileID: 4298139381675247651, guid: 413a18389b62cf341ab5573f9871f09b, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: -3235767534110547844, guid: c5ec64307a53dbc478046aa30a3a8569, type: 3}
+  characterImage: {fileID: -4042703498352347212, guid: 2143816ebf3e4394c9deba305cb35eeb, type: 3}
+  iconImage: {fileID: -8393574831146339465, guid: d0d1ada2a13ab484e92b2bfb2b1a540b, type: 3}
   popupImage: {fileID: -469258639255709176, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

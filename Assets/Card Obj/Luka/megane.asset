@@ -16,7 +16,10 @@ MonoBehaviour:
   id: 3f3f4bdb23f460a4786b7bf98ae09cd9
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: Harmonize 2. On play, your opponent's next stage effect costs 1 more energy.
+  info: 'Harmonize 2.
+
+    On play, your opponent''s next stage effect costs 1 more
+    energy.'
   performer: 1
   stageEffect: 0
   cost: 2

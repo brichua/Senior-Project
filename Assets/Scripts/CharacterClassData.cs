@@ -49,18 +49,28 @@ namespace VocaloidTCG
         public RuntimeAnimatorController avatarAnimator;
         [TextArea] public string victoryVoiceline, defeatVoiceline, winTileVoiceline, loseTileVoiceline;
         [TextArea] public string excitedVoiceline, concernedVoiceline, idleVoiceline;
+        [TextArea] public string multiplayerVoiceline;
+        [Tooltip("Subtitles in exactly the same order as this character's idle audio array in VoicelinesManager. All use the Idle animation.")]
+        [TextArea] public string[] idleVoicelines = new string[0];
+        [Tooltip("Optional subtitles matching the Win Tile and Lose Tile audio array order.")]
+        [TextArea] public string[] winTileVoicelines = new string[0], loseTileVoicelines = new string[0];
 
-        public string VoicelineText(VoicelineEvent reaction){
+        public string VoicelineText(VoicelineEvent reaction, int clipIndex = 0){
             switch(reaction){
                 case VoicelineEvent.Victory: return victoryVoiceline;
                 case VoicelineEvent.Defeat: return defeatVoiceline;
-                case VoicelineEvent.Win_Tile: return winTileVoiceline;
-                case VoicelineEvent.Lose_Tile: return loseTileVoiceline;
+                case VoicelineEvent.Win_Tile: return IndexedSubtitle(winTileVoicelines,clipIndex,winTileVoiceline);
+                case VoicelineEvent.Lose_Tile: return IndexedSubtitle(loseTileVoicelines,clipIndex,loseTileVoiceline);
                 case VoicelineEvent.Excited: return excitedVoiceline;
                 case VoicelineEvent.Concerned: return concernedVoiceline;
-                case VoicelineEvent.Idle: return idleVoiceline;
+                case VoicelineEvent.Idle: return IndexedSubtitle(idleVoicelines,clipIndex,idleVoiceline);
+                case VoicelineEvent.Multiplayer: return multiplayerVoiceline;
                 default: return "";
             }
+        }
+        private static string IndexedSubtitle(string[] lines,int index,string legacy){
+            if(lines!=null && index>=0 && index<lines.Length) return lines[index] ?? "";
+            return index==0 ? legacy ?? "" : "";
         }
         public Sprite deckIcon => playerDeckIcon;
         public Sprite DeckIcon(bool enemySide) => enemySide && enemyDeckIcon ? enemyDeckIcon : playerDeckIcon;

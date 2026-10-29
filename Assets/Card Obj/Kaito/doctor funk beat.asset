@@ -16,12 +16,7 @@ MonoBehaviour:
   id: 309feebc5328a0841808c1f275aa275a
   cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   vip: 0
-  info: 'Choose a row, then choose one:
-
-    Give all allied performers in that row
-    +2 influence.
-
-    Give all enemy performers in that row -2 influence.'
+  info: 'Drop onto a performer to choose its row and team. Drop onto an ally to give all allied performers in that row +2 influence, or an enemy to give all enemy performers in that row -2 influence. If the tile has multiple valid targets, click the character you want.'
   performer: 0
   stageEffect: 1
   cost: 2

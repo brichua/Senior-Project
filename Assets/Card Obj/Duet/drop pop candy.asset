@@ -16,15 +16,14 @@ MonoBehaviour:
   id: e41f633548294644391b69194f0bfa9a
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: remove an ally on a contested tile, gain 1 fan score then create a 2 inf
-    token on that tile
+  info: "Choose an ally on a contested tile to leave the stage. Gain 1 AS, then create a 2-influence token on that tile if available."
   performer: 0
   stageEffect: 1
   cost: 3
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 111
   scoreThreshold: 0
   harmonize: 0
   soloist: 0

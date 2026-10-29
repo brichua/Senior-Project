@@ -29,7 +29,7 @@ namespace VocaloidTCG.BoardUI
                     PuzzleSetupFailure("Register the puzzle reward in the deck catalog."); return;
                 }
             } catch(Exception ex) { PuzzleSetupFailure(ex.Message); return; }
-            chosenBoard = puzzle.boardSetup ? puzzle.boardSetup : boardSetups.FirstOrDefault(b => b && b.PlayerClass == puzzle.puzzleClass && b.EnemyClass == puzzle.againstClass);
+            chosenBoard = puzzle.boardSetup ? puzzle.boardSetup : FindBoardSetup(puzzle.puzzleClass, puzzle.againstClass);
             if(!chosenBoard) { PuzzleSetupFailure("Assign a Board Setup matching the puzzle's player and opponent classes."); return; }
             if(chosenBoard.PlayerClass != puzzle.puzzleClass || chosenBoard.EnemyClass != puzzle.againstClass) {
                 PuzzleSetupFailure("Puzzle Board Setup classes do not match the puzzle classes."); return;

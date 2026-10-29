@@ -16,15 +16,15 @@ MonoBehaviour:
   id: d489ad287d3ecdf46b555c7bf83ee5d7
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: ' when played onto a contested tile, an enemy on that tile gets -1 inf. If
-    this wins that tile, gain 1 fan score'
-  performer: 0
-  stageEffect: 1
+  info: On play on a contested tile, give an enemy there -1 influence. If this performer
+    wins that tile this round, gain 1 AS.
+  performer: 1
+  stageEffect: 0
   cost: 3
   influence: 3
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 126
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
@@ -35,8 +35,8 @@ MonoBehaviour:
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: 568055351265774468, guid: 86ed8dd8fa8dbe241bb888c9382d3209, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: -5374310936417984088, guid: e038fa9c06d2d2b46994d62c63e5ac56, type: 3}
+  cardImage: {fileID: -7270994392543262850, guid: c98de94bf130ae94fb044f3afe242001, type: 3}
+  characterImage: {fileID: 6213205982400698590, guid: 13f2aa5d009ad7f4bbc167d2cd79814b, type: 3}
+  iconImage: {fileID: -6479789007931088407, guid: 1a57c5e684be4b749b70580f06578ba7, type: 3}
   popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}

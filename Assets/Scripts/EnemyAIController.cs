@@ -49,7 +49,7 @@ namespace VocaloidTCG.BoardUI
 
         protected virtual void Update()
         {
-            if (!game || game.IsPuzzle || !game.isActiveAndEnabled || game.IsPaused || game.DrawAnimationPlaying || game.PhaseAnimationPlaying) return;
+            if (!game || game.IsPuzzle || !game.TutorialFreePlay || !game.isActiveAndEnabled || game.IsPaused || game.DrawAnimationPlaying || game.PhaseAnimationPlaying) return;
             var state = game.Snapshot;
             if (state == null || state.multiplayer) return;
             // Departure effects can ask the enemy to choose during the player's
@@ -68,6 +68,11 @@ namespace VocaloidTCG.BoardUI
             if (wait > 0) return;
             wait = Mathf.Max(0.1f, actionDelay);
 
+            int actor = state.activePlayerId;
+            // The final tutorial uses a legal easy deck, but makes only one play per turn.
+            // Finish any resulting choices before ending the turn.
+            if(game.IsTutorial && game.TutorialLesson == 4 && state.pendingEffect == null &&
+                game.TutorialEnemyHasActed){ game.TryPassFor(actor); return; }
             BoardAction action;
             EnemyActionEvaluation evaluation;
             if (TryChooseAction(actor, out action, out evaluation))

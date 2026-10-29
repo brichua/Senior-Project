@@ -528,9 +528,7 @@ namespace VocaloidTCG
         }
         private void PlayDisconnectVoiceline()
         {
-            if (!board || !board.voicelines) return;
-            CharacterClass character = board.playerClasses[0].identity;
-            board.voicelines.PlayVoiceline(character, VoicelineEvent.Multiplayer);
+            if(board) board.PlayLocalVoiceline(VoicelineEvent.Multiplayer);
         }
 
         private void StopNetwork(){

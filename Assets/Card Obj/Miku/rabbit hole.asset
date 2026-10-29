@@ -16,8 +16,11 @@ MonoBehaviour:
   id: 6040d3c39da30154b8b34b1ed660ed5b
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 1
-  info: "\_stage share, harmonize 1, once per round, when you play an adjacent performer,
-    give that performer +1 inf, and this performer +1 inf this round"
+  info: 'Stage Share. Harmonize 1.
+
+    Once per round, when you play an adjacent
+    performer, give that performer +1 influence and this performer +1 influence this
+    round.'
   performer: 1
   stageEffect: 0
   cost: 4
@@ -25,12 +28,12 @@ MonoBehaviour:
   flags:
   - near_allies
   stageInfluenceChange: 1
-  effect: 5
+  effect: 142
   scoreThreshold: 0
-  harmonize: 0
+  harmonize: 1
   soloist: 0
-  stageShare: 0
-  encore: 1
+  stageShare: 1
+  encore: 0
   nimble: 0
   cheerEffect: 0
   venueEffect: 0

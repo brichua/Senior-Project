@@ -16,15 +16,15 @@ MonoBehaviour:
   id: 513ea5360b425bc4baa0018b37ba2c8d
   cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   vip: 0
-  info: when this leaves the stage, create a copy of it in your hand. The copy costs
-    1 less and has no effects
+  info: When this leaves the stage, create a copy in your hand with its original
+    influence and art. It costs 1 less and has no effects or keywords.
   performer: 1
   stageEffect: 0
   cost: 3
   influence: 3
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 116
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
@@ -35,8 +35,8 @@ MonoBehaviour:
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: 1418374867679095654, guid: 394db3b9c77497c4fb43ec93d2ea0e0d, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: 145413826101796315, guid: d850769ff39e58b43a756f9cb894f6d2, type: 3}
+  cardImage: {fileID: -2597218849239094004, guid: 264722163b3743549bc599b84a0e5275, type: 3}
+  characterImage: {fileID: -545008935565765709, guid: b1e4288491b9f9846800b08c072b2f26, type: 3}
+  iconImage: {fileID: -6430188958284309559, guid: 28dbb1e1ee1a57441bb4a3966c5832e8, type: 3}
   popupImage: {fileID: -8004225029083858605, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 0}
