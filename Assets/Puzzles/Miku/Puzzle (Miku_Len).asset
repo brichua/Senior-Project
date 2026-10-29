@@ -12,53 +12,64 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18d75c0d85338724ca61f930e6603d18, type: 3}
   m_Name: Puzzle (Miku_Len)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
-  id: bb1ef1898fff0084083d3dff8ee6f2ad
-  number: 1
+  id: 1929339c358d5704ca91b1271135b137
+  number: 2
   puzzleName: Puzzle (Miku_Len)
   shortDescription: miku vs len
-  longDescription: 'solution: Play Deep Sea Girl > C2, Bug > C3, Glow > Deep Sea
-    Girl. Bug boosts its adjacent ally on a contested tile. Deep Sea Girl wins C2,
-    while C3 ties; you gain 3 VP'
+  longDescription: 
   puzzleClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   againstClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   rewardCard: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
   boardSetup: {fileID: 11400000, guid: 083aeda2e3b583146866fa867183e3ab, type: 2}
   player:
-    energy: 5
+    energy: 8
     score: 0
     startingHand:
     - {fileID: 11400000, guid: b30e01cc53295814d8c9b889c7dec5b3, type: 2}
     - {fileID: 11400000, guid: 856278b3ccaa51e42925bc9e967cad0f, type: 2}
     - {fileID: 11400000, guid: 0b21cc092eb618240ab6629d284db2da, type: 2}
-    - {fileID: 11400000, guid: af0772d448374e247b01ef4c10cc5f24, type: 2}
+    - {fileID: 11400000, guid: d0ccc814f2d9cde44a7ddfe1facf531a, type: 2}
+    - {fileID: 11400000, guid: b29b801172e82654f843958ca3e3c387, type: 2}
     cardsOnTurns: []
   enemy:
     energy: 8
     score: 0
     startingHand:
-    - {fileID: 11400000, guid: fadb42c46f555084d87a9da9085aa8e7, type: 2}
-    - {fileID: 11400000, guid: 87d2026cf21132d47ae26b0afacc5fab, type: 2}
+    - {fileID: 11400000, guid: 8287bf7f839a1274abe989f816e17202, type: 2}
+    - {fileID: 11400000, guid: 0fb44630f3ed1334ea410bd7d9fcbb64, type: 2}
+    - {fileID: 11400000, guid: d687edf23c2cddc478edab69407244bd, type: 2}
+    - {fileID: 11400000, guid: 66de2156b281c4b44bc6c9f875e51fe3, type: 2}
+    - {fileID: 11400000, guid: 840a8011cb920614193627793316de04, type: 2}
     cardsOnTurns: []
-  placements: []
+  placements:
+  - card: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+    enemy: 0
+    column: 2
+    row: 2
+    influence: 2
+  - card: {fileID: 11400000, guid: d687edf23c2cddc478edab69407244bd, type: 2}
+    enemy: 1
+    column: 2
+    row: 1
+    influence: 2
   enemyTurns:
   - actions:
     - kind: 0
-      card: {fileID: 11400000, guid: fadb42c46f555084d87a9da9085aa8e7, type: 2}
-      fromColumn: 0
-      fromRow: 0
-      toColumn: 2
-      toRow: 1
-    - kind: 0
-      card: {fileID: 11400000, guid: 87d2026cf21132d47ae26b0afacc5fab, type: 2}
+      card: {fileID: 11400000, guid: 8287bf7f839a1274abe989f816e17202, type: 2}
       fromColumn: 0
       fromRow: 0
       toColumn: 2
       toRow: 2
+    - kind: 0
+      card: {fileID: 11400000, guid: 0fb44630f3ed1334ea410bd7d9fcbb64, type: 2}
+      fromColumn: 0
+      fromRow: 0
+      toColumn: 2
+      toRow: 3
   enemyStarts: 1
-  turnSeconds: 0
   startingPhase: 1
   startingRound: 1
-  objective: 1
+  objective: 0
   targetScore: 2
   roundLimit: 1
-  playerTurnLimit: 0
+  playerTurnLimit: 4
