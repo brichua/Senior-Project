@@ -22,7 +22,8 @@ MonoBehaviour:
   stageEffect: 0
   cost: 3
   influence: 4
-  flags: []
+  flags:
+  - contest_entry
   stageInfluenceChange: 1
   effect: 62
   scoreThreshold: 0

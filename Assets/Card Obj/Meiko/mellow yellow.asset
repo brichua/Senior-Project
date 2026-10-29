@@ -21,7 +21,8 @@ MonoBehaviour:
   stageEffect: 0
   cost: 1
   influence: 1
-  flags: []
+  flags:
+  - support
   stageInfluenceChange: 1
   effect: 73
   scoreThreshold: 0

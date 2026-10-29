@@ -110,7 +110,9 @@ namespace VocaloidTCG.BoardUI
             else SetAssistant(state.tiles[tile],c.ownerId,c);
         }
         private void Relocate(CardState c,int tile){
-            int from=TileOf(c); Detach(c); PutPerformer(c,tile); PerformerEntered(c,tile); DuetMoved(c,from,tile);
+            int from=TileOf(c);
+            Detach(c); PutPerformer(c,tile); PerformerEntered(c,tile);
+            if(enemyAI && from>=0) enemyAI.ObserveAcceptedMove(new BoardAction(BoardActionKind.MovePerformer,c.instanceId,from%5,from/5,tile%5,tile/5));
         }
         private IEnumerable<int> AdjacentDestinations(CardState c) => Enumerable.Range(0,25).Where(i=>Adjacent(TileOf(c),i) && CanRelocate(c,i));
         private IEnumerable<CardState> AtTile(int tile) => new[] {state.tiles[tile].side0,state.tiles[tile].assist0,state.tiles[tile].side1,state.tiles[tile].assist1}.Where(c=>c!=null);

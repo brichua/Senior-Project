@@ -8,7 +8,7 @@ namespace VocaloidTCG.BoardUI
     /// Scores card effects using the visible board and the AI's legal choices.
     /// Does not change match state or read the opponent's hidden cards.
     /// </summary>
-    public static class EnemyCardPolicy
+    public static partial class EnemyCardPolicy
     {
         private static CardState Ally(BoardSnapshot state, int actor, int index) => actor == 0 ? state.tiles[index].side0 : state.tiles[index].side1;
         private static CardState Enemy(BoardSnapshot state, int actor, int index) => Ally(state, 1 - actor, index);
@@ -20,7 +20,8 @@ namespace VocaloidTCG.BoardUI
         private static bool Adjacent(int first, int second) => first >= 0 && second >= 0 && first != second &&
             Math.Abs(first % 5 - second % 5) <= 1 && Math.Abs(first / 5 - second / 5) <= 1;
         private static int HandValue(CardState c) => c.currentInfluence * 4 +
-            (c.data.stageEffect ? 8 : 4) + (c.data.effect != CardEffect.None ? 4 : 0) - c.currentCost;
+            (c.data.stageEffect && !c.token ? 8 : 4) + (!c.token && c.data.effect != CardEffect.None ? 4 : 0) +
+            PerformerKeywords.Of(c).Count * KeywordValue - c.currentCost;
         private static int RevivalValue(CardState c) => Math.Max(c.data.influence, c.data.protectedInfluence) * 4 + 4 +
             (c.data.effect != CardEffect.None ? 4 : 0);
         private static int Gain(BoardSnapshot state, CardState c, int n) => c == null ? 0 : n * Weight(Tile(state, c));
@@ -36,8 +37,14 @@ namespace VocaloidTCG.BoardUI
         {
             var d = card.data;
             int neighbors = Units(state, actor).Count(c => Adjacent(tile, Tile(state, c)));
-            int bonus = neighbors >= 2 ? d.harmonize : 0;
-            if (tile % 5 == 2 && !Units(state, actor).Any(c => Tile(state, c) % 5 == 2)) bonus += d.soloist;
+            var keywords = PerformerKeywords.Of(card);
+            int bonus = neighbors >= 2 ? keywords.harmonize : 0;
+            if (tile % 5 == 2 && !Units(state, actor).Any(c => Tile(state, c) % 5 == 2)) bonus += keywords.soloist;
+            bonus += state.Side(actor).nextPerformerColumns.Count(column => column == tile % 5);
+            if (card.token || card.silenced) return bonus;
+            bonus += state.Side(actor).nextPerformerInfluence;
+            if (d.effect == CardEffect.PreviousRoundLeaveBonus && state.Side(actor).alliesLeftLastRound > 0) bonus++;
+            if (d.effect == CardEffect.OpponentSideBonus && (actor == 0 ? tile % 5 > 2 : tile % 5 < 2)) bonus += 2;
             switch (d.effect)
             {
                 case CardEffect.FirstPerformerBonus: if (state.Side(actor).performersPlayed == 0) bonus++; break;
@@ -57,7 +64,10 @@ namespace VocaloidTCG.BoardUI
             var nearby = friends.Where(c => Adjacent(tile, Tile(state, c))).ToArray();
             var enemies = Units(state, 1 - actor).ToArray();
             var d = card.data;
-            int value = (d.encore ? 4 : 0) + (d.nimble ? 3 : 0) + (d.regen ? 2 : 0);
+            var keywords = PerformerKeywords.Of(card);
+            int value = (keywords.encore ? 4 : 0) + (keywords.nimble ? 3 : 0) + (keywords.regen ? 2 : 0);
+            if (card.token || card.silenced) return value;
+            value += ExtendedPerformerBenefit(state, actor, card, tile);
             switch (d.effect)
             {
                 case CardEffect.ShareInfluence: case CardEffect.ShareHalfInfluence:
@@ -93,6 +103,8 @@ namespace VocaloidTCG.BoardUI
 
         public static int AbilityBenefit(BoardSnapshot state, int actor, CardState c)
         {
+            if (c.data.effect == CardEffect.ColumnMoveAbility)
+                return Units(state, actor).Select(unit => BestRelocation(state, actor, unit, true)).DefaultIfEmpty(0).Max();
             if (c.data.effect == CardEffect.WeakenAndRoot)
                 // This ability's legal Enemy choices include primary performers,
                 // not their assistants. Valuing an untargetable assistant could
@@ -112,6 +124,8 @@ namespace VocaloidTCG.BoardUI
         public static int SpellBenefit(BoardSnapshot state, int actor, CardState spell, int tile, CardState target = null)
         {
             var d = spell.data;
+            if (d.effect >= CardEffect.LeaveSearchPerformer)
+                return ExtendedSpellBenefit(state, actor, spell, tile, target);
             var own = Units(state, actor).ToArray();
             var foes = Units(state, 1 - actor).ToArray();
             bool hostile = d.effect == CardEffect.WeakenContested || d.effect == CardEffect.RemoveSmall ||
@@ -178,9 +192,13 @@ namespace VocaloidTCG.BoardUI
         {
             if (action.kind == BoardActionKind.FinishEffect) return 0;
             var card = p.cards.FirstOrDefault(c => c.instanceId == action.cardInstanceId);
+            if (p.choice == EffectChoice.Extended) return ExtendedChoiceValue(state, p, card, action);
             if (p.stage == 2) return SpellBenefit(state, p.actor, p.source, p.sourceTile, card);
             if (card != null)
             {
+                if (p.choice == EffectChoice.SacrificeAlly) return -SacrificeCost(state, p.actor, card);
+                if (p.choice == EffectChoice.RinEnemy)
+                    return p.effect == CardEffect.SacrificeRemoveEnemy ? RemovalValue(state, card) : Damage(state, card, 3);
                 if (p.choice == EffectChoice.HandDiscard) return -HandValue(card);
                 int cost = p.effect == CardEffect.ReviveAbility && !(p.source.data.scoreThreshold > 0 && state.Side(p.actor).score >= p.source.data.scoreThreshold) ? card.data.cost * 2 : 0;
                 return (p.choice == EffectChoice.DiscardPerformer ? RevivalValue(card) : HandValue(card)) - cost;

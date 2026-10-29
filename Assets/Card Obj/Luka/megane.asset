@@ -24,7 +24,8 @@ MonoBehaviour:
   stageEffect: 0
   cost: 2
   influence: 2
-  flags: []
+  flags:
+  - near_allies
   stageInfluenceChange: 1
   effect: 43
   scoreThreshold: 0

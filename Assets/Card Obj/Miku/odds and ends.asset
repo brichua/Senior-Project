@@ -23,6 +23,7 @@ MonoBehaviour:
   influence: 2
   flags:
   - near_enemies
+  - near_allies
   stageInfluenceChange: 1
   cardImage: {fileID: -1031441428833651656, guid: c0166e081bf7ebc47aafefbc50e5696c, type: 3}
   characterImage: {fileID: -634410968344741977, guid: 7fd0d22426221564da38130b508aa5d2, type: 3}
