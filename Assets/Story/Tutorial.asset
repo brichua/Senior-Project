@@ -23,9 +23,109 @@ MonoBehaviour:
   header: Tutorial
   playerStarterDeck: {fileID: 11400000, guid: e18f2953280683638d63d0909bf206da, type: 2}
   prologue:
-    lines: []
+    lines:
+    - speaker: Narrator
+      portrait: {fileID: 0}
+      voiceline: {fileID: 0}
+      text: Behind the curtain, the venue is still quiet. Empty stage tiles glow
+        beneath the rehearsal lights.
+      avatars:
+      - slot: 2
+        sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
+    - speaker: Miku
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
+      text: There you are! I saved you a spot for sound check.
+      avatars:
+      - slot: 2
+        sprite: {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
+    - speaker: Miku
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
+      text: Before the audience arrives, let's turn a few cards into a performance.
+      avatars:
+      - slot: 2
+        sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
+    - speaker: Miku
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
+      text: We'll practice together, one audition at a time. You don't have to know
+        every trick yet.
+      avatars:
+      - slot: 2
+        sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
+    - speaker: Miku
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
+      text: A little teamwork, a well-timed cheer... even a small stage can feel
+        huge!
+      avatars:
+      - slot: 2
+        sprite: {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
+    - speaker: Narrator
+      portrait: {fileID: 0}
+      voiceline: {fileID: 0}
+      text: Miku places a starter deck in your hands. Beyond the curtain, the first
+        beat begins.
+      avatars:
+      - slot: 2
+        sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
+    - speaker: Miku
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
+      text: Ready? Let's start with the opening act!
+      avatars:
+      - slot: 2
+        sprite: {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
   epilogue:
-    lines: []
+    lines:
+    - speaker: Narrator
+      portrait: {fileID: 0}
+      voiceline: {fileID: 0}
+      text: The final rehearsal ends on a bright chord. This time, you know exactly
+        why the crowd is cheering.
+      avatars:
+      - slot: 2
+        sprite: {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
+    - speaker: Miku
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
+      text: You did it! From your first performer to your first full match... that
+        was your show.
+      avatars:
+      - slot: 2
+        sprite: {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
+    - speaker: Miku
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
+      text: Keep an eye on your energy, support your performers, and make every round
+        count.
+      avatars:
+      - slot: 2
+        sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
+    - speaker: Miku
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
+      text: And if a plan falls apart? Take a breath. There's always another way
+        to play the stage.
+      avatars:
+      - slot: 2
+        sprite: {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
+    - speaker: Narrator
+      portrait: {fileID: 0}
+      voiceline: {fileID: 0}
+      text: The practice lights fade. Beyond the curtain, new rivals and new songs
+        are waiting.
+      avatars:
+      - slot: 2
+        sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
+    - speaker: Miku
+      portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
+      text: Your next performance is up to you. I'll see you at on the center stage!
+      avatars:
+      - slot: 2
+        sprite: {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
   auditions:
   - opponent: 3
     deckDescription: Kaito moves performers around the stage and rewards allies for

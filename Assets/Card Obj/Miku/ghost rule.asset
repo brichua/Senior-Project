@@ -16,7 +16,8 @@ MonoBehaviour:
   id: 11d685df179a4324ea4c1c28fc65d77d
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: "On play, choose an adjacent tile with no allied performer. Create a 0-influence token there. The token uses this card's art, costs 0, and has no effects or keywords."
+  info: On play, choose an adjacent tile with no allied performer. Create a 0-influence
+    token there. The token has no effects or keywords.
   performer: 1
   stageEffect: 0
   cost: 1
@@ -24,11 +25,6 @@ MonoBehaviour:
   flags:
   - spawn_space
   stageInfluenceChange: 1
-  cardImage: {fileID: 4975603077277909672, guid: 576d1a70215147244ab9e2d1a165fa6d, type: 3}
-  characterImage: {fileID: -5193898187859195741, guid: 67b8ec59e4d071145a4358b3fb600d3e, type: 3}
-  iconImage: {fileID: -1331112895632428632, guid: 51bd8a68e7fedbf43a66d81e99dfb95e, type: 3}
-  popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
-  playSfx: {fileID: 8300000, guid: d1fa5d12c96008b4fbf9b9ecb45307fc, type: 3}
   effect: 3
   scoreThreshold: 0
   harmonize: 0
@@ -38,3 +34,10 @@ MonoBehaviour:
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: 4975603077277909672, guid: 576d1a70215147244ab9e2d1a165fa6d, type: 3}
+  characterImage: {fileID: -5193898187859195741, guid: 67b8ec59e4d071145a4358b3fb600d3e, type: 3}
+  iconImage: {fileID: -1331112895632428632, guid: 51bd8a68e7fedbf43a66d81e99dfb95e, type: 3}
+  popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 8300000, guid: d1fa5d12c96008b4fbf9b9ecb45307fc, type: 3}

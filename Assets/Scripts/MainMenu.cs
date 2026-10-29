@@ -37,6 +37,7 @@ namespace VocaloidTCG
         private MainMenuAtmosphere atmosphere;
 
         [Header("Tutorial access")]
+        [Tooltip("Saved tutorial completion. Change during Play Mode to update both menus, or use Tools > Progress > Tutorial Progress outside Play Mode.")]
         public bool tutorialCompleted;
         [Tooltip("Allow all menu buttons regardless of tutorial progress. Does not save tutorial completion.")]
         public bool debugUnlockButtons;
@@ -52,11 +53,13 @@ namespace VocaloidTCG
 
         private bool? previousAccess;
         private bool? previousTutorialCompletion;
-        private bool HasCompletedTutorial => tutorialCompleted || TutorialProgress.Completed;
-        private bool CanAccessModes => tutorialCompleted || TutorialProgress.Completed || debugUnlockButtons;
+        private bool observedTutorialCompleted;
+        private bool HasCompletedTutorial => TutorialProgress.Completed;
+        private bool CanAccessModes => HasCompletedTutorial || debugUnlockButtons;
         
         private void Awake()
         {
+            tutorialCompleted = observedTutorialCompleted = TutorialProgress.Completed;
             if(animateBackground && concertBackground){
                 atmosphere = MainMenuAtmosphere.Create(concertBackground);
                 atmosphere.intensity = atmosphereIntensity;
@@ -84,6 +87,7 @@ namespace VocaloidTCG
                 musicProgress.maxValue = 1f;
                 musicProgress.wholeNumbers = false;
                 musicProgress.interactable = false;
+                musicProgress.onValueChanged.AddListener(SeekMusic);
             }
             try{
                 DeckLibrary.Get(catalog);
@@ -97,6 +101,9 @@ namespace VocaloidTCG
 
         private void Update()
         {
+            if (tutorialCompleted != observedTutorialCompleted) SetTutorialCompleted(tutorialCompleted);
+            else if (tutorialCompleted != TutorialProgress.Completed)
+                tutorialCompleted = observedTutorialCompleted = TutorialProgress.Completed;
             if(atmosphere){
                 atmosphere.gameObject.SetActive(animateBackground);
                 atmosphere.intensity = atmosphereIntensity;
@@ -131,7 +138,7 @@ namespace VocaloidTCG
 
         public void SetTutorialCompleted(bool completed)
         {
-            tutorialCompleted = completed;
+            tutorialCompleted = observedTutorialCompleted = completed;
             TutorialProgress.SetCompleted(completed);
             RefreshAccess();
         }
@@ -145,12 +152,34 @@ namespace VocaloidTCG
 
         private void UpdateMusicProgress()
         {
-            AudioClip clip = backgroundMusic ? backgroundMusic.clip : null;
+            AudioSource source = ResolveMusicSource();
+            AudioClip clip = source ? source.clip : null;
             float duration = clip ? clip.length : 0f;
-            float elapsed = clip ? Mathf.Clamp(backgroundMusic.time, 0f, duration) : 0f;
+            float elapsed = clip ? Mathf.Clamp(source.time, 0f, duration) : 0f;
             if (musicTimeText) musicTimeText.text = FormatTime(elapsed) + " / " + FormatTime(duration);
-            if (musicProgress) musicProgress.SetValueWithoutNotify(duration > 0f ? elapsed / duration : 0f);
+            if (musicProgress)
+            {
+                musicProgress.interactable = duration > 0f;
+                musicProgress.SetValueWithoutNotify(duration > 0f ? elapsed / duration : 0f);
+            }
             if (musicTitleText) musicTitleText.text = clip ? clip.name : "";
+        }
+
+        private AudioSource ResolveMusicSource()
+        {
+            var manager = BackgroundMusicManager.Instance;
+            var source = manager ? manager.PlaybackSource : null;
+            if (!source) source = backgroundMusic;
+            if (source) source.loop = loopMusic;
+            return source;
+        }
+
+        private void SeekMusic(float progress)
+        {
+            var source = ResolveMusicSource();
+            if (!source || !source.clip || source.clip.samples <= 0) return;
+            source.timeSamples = (int)(Mathf.Clamp01(progress) * (source.clip.samples - 1));
+            UpdateMusicProgress();
         }
 
         private static string FormatTime(float time)
@@ -234,6 +263,7 @@ namespace VocaloidTCG
         }
 
         private void OnDestroy(){
+            if(musicProgress) musicProgress.onValueChanged.RemoveListener(SeekMusic);
             if(storyButton) storyButton.onClick.RemoveListener(OpenStory);
             if(multiplayerButton) multiplayerButton.onClick.RemoveListener(OpenMultiplayer);
             if(decksButton) decksButton.onClick.RemoveListener(OpenDeckEditor);

@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class SFXManager : MonoBehaviour
 {
     public AudioClip card_hover;
@@ -42,7 +43,7 @@ public class SFXManager : MonoBehaviour
 
     private AudioSource audioSource;
     private AudioSource cardAudioSource;
-    public bool cardAudioSourceIsPlaying;
+    public bool cardAudioSourceIsPlaying => cardAudioSource && cardAudioSource.isPlaying;
 
     private void Awake() {
 
@@ -118,8 +119,7 @@ public class SFXManager : MonoBehaviour
         cardAudioSource.Stop();
         cardAudioSource.clip = clip;
         SyncCardAudioSettings();
-        if (clip) { cardAudioSourceIsPlaying = true;  cardAudioSource.Play(); }
-        cardAudioSourceIsPlaying = false;
+        if (clip) cardAudioSource.Play();
     }
 
     private void LateUpdate() { SyncCardAudioSettings(); }

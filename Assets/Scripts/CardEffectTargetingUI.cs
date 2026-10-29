@@ -6,17 +6,17 @@ using UnityEngine.UI;
 
 namespace VocaloidTCG.BoardUI
 {
-    public sealed class CardEffectTargetingUI : MonoBehaviour
+    public sealed partial class CardEffectTargetingUI : MonoBehaviour
     {
         private BoardUIController board;
         private GameplayBoardBridge bridge;
         private RectTransform root, choices;
         private CardState selected;
         private Button ability;
-        private bool revealExpanded;
         
         public void Initialize(BoardUIController owner){
             board=owner; bridge=owner.game as GameplayBoardBridge;
+            revealPrefab=owner.revealedCardsPrefab;
             ability=owner.useAbilityButton;
             if(!ability && owner.playerInfo)
                 ability=owner.playerInfo.GetComponentsInChildren<Button>(true).FirstOrDefault(b=>b.name=="use ability");
@@ -31,24 +31,12 @@ namespace VocaloidTCG.BoardUI
         }
         
         public void Refresh(){
-            Clear();
+            ClearChoices();
             RefreshAbility();
             if(!bridge || board.State==null) return;
+            ObserveReveal();
             var p=board.State.pendingEffect;
-            if(p==null){
-                if(board.State.revealedCards.Count>0){
-                    BuildRoot();
-                    StoryUIElements.Button(root,"REVEALED CARDS",new Vector2(0,460),()=>{ revealExpanded=!revealExpanded; Refresh(); });
-                    if(revealExpanded){
-                        var panel=StoryUIElements.Panel(root,"Last reveal",new Vector2(900,380));
-                        var details=board.State.revealMessage+"\n\n"+string.Join("\n\n",board.State.revealedCards.Select(c=>
-                            c.data ? c.data.cardName+" | Cost "+c.currentCost+" | INF "+c.currentInfluence+"\n"+c.data.info : ""));
-                        var label=StoryUIElements.Text(panel.transform,"Revealed cards",details,Vector2.zero,new Vector2(860,340));
-                        label.fontSize=20; label.richText=false;
-                    }
-                }
-                return;
-            }
+            if(p==null) return;
 
             BuildRoot();
             bool mine=p.actor==board.State.localPlayerId;
@@ -94,7 +82,12 @@ namespace VocaloidTCG.BoardUI
                 .FirstOrDefault(c=>c!=null && c.instanceId==selected.instanceId);
         }
 
-        private void Update(){ RefreshAbility(); }
+        private void Update(){
+            RefreshAbility();
+            if(!board || !board.isActiveAndEnabled){ ClearReveals(); return; }
+            ObserveReveal();
+            if(bridge && !bridge.IsPaused) TickReveal(Time.unscaledDeltaTime);
+        }
 
         private void RefreshAbility(){
             var card=SelectedPerformer();
@@ -140,13 +133,15 @@ namespace VocaloidTCG.BoardUI
             var scaler=obj.GetComponent<CanvasScaler>(); scaler.uiScaleMode=CanvasScaler.ScaleMode.ScaleWithScreenSize; scaler.referenceResolution=new Vector2(1920,1080); scaler.matchWidthOrHeight=0.5f;
         }
         
-        public void Clear(){
+        private void ClearChoices(){
             if(root){
                 root.gameObject.SetActive(false);
                 if(Application.isPlaying) Destroy(root.gameObject); else DestroyImmediate(root.gameObject);
             }
             root=null;
         }
+
+        public void Clear(){ ClearChoices(); ClearReveals(); }
 
         private void OnDisable(){
             Clear();

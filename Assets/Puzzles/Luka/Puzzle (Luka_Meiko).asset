@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: bf112f558a57c084293c62b8bb48e91e
   number: 2
-  puzzleName: Puzzle (Luka_Meiko)
-  shortDescription: luka vs meiko
-  longDescription: 
+  puzzleName: Velvet Eleven
+  shortDescription: Reach 11 points in one round.
+  longDescription: Reach a total score of at least 11 points in one round. You have
+    up to 5 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   againstClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
-  rewardCard: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  rewardCard: {fileID: 11400000, guid: ca8f0acfb2bfbd74988e6370f28a700e, type: 2}
   boardSetup: {fileID: 11400000, guid: 23b9f6b2c0d8f2240a138baefe6f6fe3, type: 2}
   player:
     energy: 8
@@ -30,7 +31,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: 369154a20cb01ba4598168ba42708da5, type: 2}
     - {fileID: 11400000, guid: eef2c099c8d40a446a5a93090ff2c29b, type: 2}
     - {fileID: 11400000, guid: 92247ec2d6d602e45b2fb4ad0491dbab, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds: []
   enemy:
     energy: 8
     score: 0
@@ -40,7 +41,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: bc5287a764d484e41a71533692813993, type: 2}
     - {fileID: 11400000, guid: 8e452bce61a71f1458d96fd66f75ca17, type: 2}
     - {fileID: 11400000, guid: 965ce64d67e184d489ea5f3ae6fba3c9, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds: []
   placements: []
   enemyTurns:
   - actions:

@@ -3083,6 +3083,7 @@ GameObject:
   m_Component:
   - component: {fileID: 338501024}
   - component: {fileID: 338501023}
+  - component: {fileID: 900000001}
   m_Layer: 0
   m_Name: music
   m_TagString: Untagged
@@ -3518,7 +3519,7 @@ MonoBehaviour:
   dialogue: {fileID: 348191837}
   sfx: {fileID: 2026985593}
   lockedClassOpacity: 0.1
-  debugTutorialCompleted: 1
+  debugTutorialCompleted: 0
 --- !u!1 &356041799
 GameObject:
   m_ObjectHideFlags: 0
@@ -7939,6 +7940,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 898844812}
   m_CullTransparentMesh: 1
+--- !u!114 &900000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338501022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79466dc316b41288d92737843bb66f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.AudioCategorySource
+  category: 2
 --- !u!1 &900770000
 GameObject:
   m_ObjectHideFlags: 0
@@ -15116,8 +15130,14 @@ MonoBehaviour:
   meiko_lose_tile: []
   miku_lose_tile: []
   rin_lose_tile: []
-  idle: []
+  kaito_idle: []
+  len_idle: []
+  luka_idle: []
+  meiko_idle: []
+  miku_idle: []
+  rin_idle: []
   start: []
+  multiplayer: []
 --- !u!4 &1891814993
 Transform:
   m_ObjectHideFlags: 0
@@ -16682,7 +16702,8 @@ MonoBehaviour:
   player_highlight: {fileID: 0}
   spotlight: {fileID: 0}
   tile_score_0: {fileID: 0}
-  card_effect: {fileID: 0}
+  ally_card_effect: {fileID: 0}
+  attack_card_effect: {fileID: 0}
   story_start: {fileID: 8300000, guid: 110e62c3fb2c1c3439b1b91bd6e532a8, type: 3}
   scroll: {fileID: 0}
   storyTextScroll:
@@ -16693,8 +16714,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: cbdb3d25480bc8643865a1273c9ba52a, type: 3}
   - {fileID: 8300000, guid: 699ad7bab5ce0bd4793fec0113dc78e7, type: 3}
   hoverSoundCooldown: 0.05
-  tileHoverSoundCooldown: 0.05
-  cardAudioSourceIsPlaying: 0
 --- !u!82 &2026985594
 AudioSource:
   m_ObjectHideFlags: 0

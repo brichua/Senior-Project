@@ -29,7 +29,10 @@ namespace VocaloidTCG
         [Tooltip("Fan score needed for this card's score-dependent effect. 0 disables the threshold until it is configured.")]
         [Min(0)] public int scoreThreshold;
         [Min(0)] public int harmonize, soloist;
-        public bool stageShare, encore, nimble, cheerEffect, venueEffect;
+        public bool stageShare, encore, nimble;
+        [Tooltip("Allow this Stage Effect to be played during Performance as well as Preparation. Normal energy and target requirements still apply.")]
+        public bool cheerEffect;
+        public bool venueEffect;
         [Tooltip("Restore 1 influence at the end of your turn, up to original influence.")]
         public bool regen;
         [Tooltip("Protected X: separate starting shield influence. 0 means no shield.")]

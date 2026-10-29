@@ -16,8 +16,10 @@ MonoBehaviour:
   id: 369154a20cb01ba4598168ba42708da5
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 0
-  info: All allied performers in Center Stage permanently gain +1 influence, or +2
-    instead if you have at least 2 fan score.
+  info: 'Cheer Effect.
+
+    All allied performers in Center Stage permanently gain
+    +1 influence, or +2 instead if you have at least 2 fan score.'
   performer: 0
   stageEffect: 1
   cost: 1
@@ -31,7 +33,7 @@ MonoBehaviour:
   stageShare: 0
   encore: 0
   nimble: 0
-  cheerEffect: 0
+  cheerEffect: 1
   venueEffect: 0
   regen: 0
   protectedInfluence: 0

@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 namespace VocaloidTCG.BoardUI
 {
@@ -60,7 +61,6 @@ namespace VocaloidTCG.BoardUI
 
         private void BeginResultReactions(){
             awaitingReactions=true; reactionStep=0;
-            // A disconnect line may have started immediately before Finished was published.
             reactionWait=bridge.DepartureVoicelinePlayed && board.playerHUD ? board.playerHUD.VoicelineRemaining : 0;
             if(reactionWait<=0) AdvanceResultReactions();
         }

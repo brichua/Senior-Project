@@ -34,8 +34,8 @@ namespace VocaloidTCG
         private readonly List<GameObject> classViews = new List<GameObject>(), cardViews = new List<GameObject>();
 
         private void Awake() {
-            if (startPuzzle) startPuzzle.onClick.AddListener(()=> { if (sfx) sfx.PlayEnterGameSound(); StartPuzzle(); });
-            if (backButton) backButton.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick2(); BackToMain(); });
+            if (startPuzzle) startPuzzle.onClick.AddListener(StartPuzzle);
+            if (backButton) backButton.onClick.AddListener(BackToMain);
         }
         
         private void OnEnable(){
@@ -48,6 +48,7 @@ namespace VocaloidTCG
                 
                 library = DeckLibrary.Get(catalog.deckCatalog);
                 library.Changed += Refresh;
+                if (!filter) filter = catalog.puzzles.FirstOrDefault(p => p)?.puzzleClass;
                 Refresh();
             }catch(Exception ex){
                 ReportError(ex.Message, catalog ? (UnityEngine.Object)catalog : this);
@@ -91,7 +92,8 @@ namespace VocaloidTCG
 
         private static void Clear(List<GameObject> views){
             foreach(var view in views) if(view){
-                view.SetActive(false); Destroy(view);
+                view.SetActive(false);
+                if (Application.isPlaying) Destroy(view); else DestroyImmediate(view);
             }
             views.Clear();
         }
@@ -106,6 +108,7 @@ namespace VocaloidTCG
                 var view = Instantiate(classPrefab, classesRoot);
                 view.gameObject.SetActive(true);
                 view.Bind(cls, puzzles.Count(p => library.IsPuzzleCompleted(p)), puzzles.Count, () => Filter(cls));
+                view.SetSelected(cls == filter);
                 classViews.Add(view.gameObject);
             }
             RenderCollection(); RenderInformation();
@@ -130,7 +133,14 @@ namespace VocaloidTCG
         }
         
         public void Filter(CharacterClassData cls){
+            if (library == null) return;
             filter = cls; selected = null;
+            if (sfx) sfx.PlayClassSelectSound();
+            foreach (var obj in classViews)
+            {
+                var view = obj.GetComponent<PuzzleClassView>();
+                view.SetSelected(view.Class == cls);
+            }
             RenderCollection();
             RenderInformation();
         }
@@ -142,6 +152,12 @@ namespace VocaloidTCG
                 view.gameObject.SetActive(true);
                 view.Bind(puzzle, library.IsPuzzleCompleted(puzzle), () => Select(puzzle));
                 cardViews.Add(view.gameObject);
+            }
+            if (collectionRoot is RectTransform content)
+            {
+                LayoutRebuilder.ForceRebuildLayoutImmediate(content);
+                var scroll = content.GetComponentInParent<ScrollRect>();
+                if (scroll) { scroll.StopMovement(); scroll.verticalNormalizedPosition = 1f; }
             }
         }
 
@@ -164,7 +180,7 @@ namespace VocaloidTCG
             DeckUI.Text(againstName, against ? against.DisplayName : "");
             
             if(againstName) againstName.color = against ? against.color : Color.white;
-            DeckUI.Text(description, selected.longDescription);
+            DeckUI.Text(description, string.IsNullOrWhiteSpace(selected.longDescription) ? selected.shortDescription : selected.longDescription);
             
             var reward = selected.rewardCard;
             var cls = reward ? reward.cardClass : null;

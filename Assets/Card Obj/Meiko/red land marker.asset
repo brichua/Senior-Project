@@ -16,8 +16,10 @@ MonoBehaviour:
   id: 415ddb0ba1af6b946a33b0d3091b247f
   cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
   vip: 0
-  info: Return a performer with 3 or less influence to its owner's hand. Then create
-    a copy in your hand.
+  info: 'Cheer Effect.
+
+    Return a performer with 3 or less influence to its owner''s
+    hand. Then create a copy in your hand.'
   performer: 0
   stageEffect: 1
   cost: 3
@@ -31,7 +33,7 @@ MonoBehaviour:
   stageShare: 0
   encore: 0
   nimble: 0
-  cheerEffect: 0
+  cheerEffect: 1
   venueEffect: 0
   regen: 0
   protectedInfluence: 0

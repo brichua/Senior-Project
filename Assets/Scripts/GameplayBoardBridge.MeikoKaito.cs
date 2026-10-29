@@ -49,6 +49,7 @@ namespace VocaloidTCG.BoardUI
         }
         private void Reveal(IEnumerable<CardState> cards,string message){
             state.revealedCards=cards.ToList(); state.revealMessage=message;
+            state.revealVersion++;
         }
 
         private void ExtendedPerformerPlayed(CardState card,int tile){
@@ -282,6 +283,8 @@ namespace VocaloidTCG.BoardUI
         private void RefreshPositionKeywords(CardState[] all){
             foreach(var c in all){
                 c.sharedKeywords=default;
+                if(state.Side(c.ownerId).harmonizeVenue && (c.ownerId==0 ? TileOf(c)%5>=2 : TileOf(c)%5<=2))
+                    c.sharedKeywords.harmonize=1;
                 if(state.Side(c.ownerId).positionKeywordVenue){
                     c.sharedKeywords.encore=TileOf(c)%5==2;
                     c.sharedKeywords.nimble=TileOf(c)%5==0 || TileOf(c)%5==4;

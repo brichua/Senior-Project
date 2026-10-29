@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.CardBackData
   id: d4213812defe31c4b8e760328f8ac52b
   image: {fileID: -2251083365473251825, guid: 4e6fffb14da12cf4584faa612dfcb664, type: 3}
-  deckImage: {fileID: 309184514471618766, guid: 1da61ae484b705244b0ef7bf9ef09e43, type: 3}
+  deckImage: {fileID: -4798467003071613678, guid: 1da61ae484b705244b0ef7bf9ef09e43, type: 3}

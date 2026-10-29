@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: 3138e62c23ca47c48a67840eb719b02c
   number: 2
-  puzzleName: Puzzle (Len_Rin)
-  shortDescription: len vs rin
-  longDescription: 
+  puzzleName: Twin Trick
+  shortDescription: Reach 4 points in one round.
+  longDescription: Reach a total score of at least 4 points in one round. You have
+    up to 6 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   againstClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
-  rewardCard: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  rewardCard: {fileID: 11400000, guid: 8f1a72e0ef7465a42bff6be3048b71fe, type: 2}
   boardSetup: {fileID: 11400000, guid: f6e9b9b5ffb65384c8a425ae937cd322, type: 2}
   player:
     energy: 8
@@ -30,7 +31,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: d687edf23c2cddc478edab69407244bd, type: 2}
     - {fileID: 11400000, guid: 09a2b575f38f22040b55b723d5bf4eee, type: 2}
     - {fileID: 11400000, guid: 66de2156b281c4b44bc6c9f875e51fe3, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds: []
   enemy:
     energy: 8
     score: 0
@@ -40,7 +41,7 @@ MonoBehaviour:
     - {fileID: 11400000, guid: f94c06f916fa2a44283aefa3f6a3651d, type: 2}
     - {fileID: 11400000, guid: 8a54e1ae4e59f3f49a05e87b95e8601c, type: 2}
     - {fileID: 11400000, guid: 061e434e4a34cc940b42ffecd9858ebb, type: 2}
-    cardsOnTurns: []
+    cardsOnRounds: []
   placements:
   - card: {fileID: 11400000, guid: 57debe442cbf3b6438795cb2f9438120, type: 2}
     enemy: 1

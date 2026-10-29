@@ -340,7 +340,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2009179169}
   m_HandleRect: {fileID: 2009179168}
   m_Direction: 2
-  m_Value: 0
+  m_Value: 1
   m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -504,6 +504,7 @@ GameObject:
   m_Component:
   - component: {fileID: 70113813}
   - component: {fileID: 70113814}
+  - component: {fileID: 900000001}
   m_Layer: 0
   m_Name: bg music
   m_TagString: Untagged
@@ -2385,6 +2386,7 @@ MonoBehaviour:
   scoringAnimator: {fileID: 8100000020}
   openingAnimator: {fileID: 8100000022}
   resultAnimator: {fileID: 8100000021}
+  revealedCardsPrefab: {fileID: 1323191495205493422, guid: 60441410fb5395245879999526e86621, type: 3}
 --- !u!1 &397331087
 GameObject:
   m_ObjectHideFlags: 0
@@ -5210,7 +5212,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -860, y: 319.00247}
+  m_AnchoredPosition: {x: -861, y: 333}
   m_SizeDelta: {x: 45, y: 41}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1107675200
@@ -10232,7 +10234,7 @@ MonoBehaviour:
   game: {fileID: 2001978995}
   classes:
   - {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
-  actionDelay: 0.75
+  actionDelay: 1.5
   scoringAxis: 1
   enableDecisionLogs: 1
 --- !u!4 &2001978997
@@ -14136,3 +14138,17 @@ SceneRoots:
   - {fileID: 1699977621}
   - {fileID: 72724381}
   - {fileID: 2081714147}
+
+--- !u!114 &900000001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 70113812}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b79466dc316b41288d92737843bb66f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.AudioCategorySource
+  category: 2

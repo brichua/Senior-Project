@@ -16,7 +16,9 @@ MonoBehaviour:
   id: 6583a1897eee0d744add7bc99a893801
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: "On play, create up to 2 tokens on legal tiles without allied performers. Choose their tiles one at a time. Each token has 1 influence, costs 0, uses this card's art, and has no effects or keywords."
+  info: On play, create up to 2 tokens on legal tiles without allied performers.
+    Choose their tiles one at a time. Each token has 1 influence and has no effects
+    or keywords.
   performer: 1
   stageEffect: 0
   cost: 4
@@ -24,11 +26,6 @@ MonoBehaviour:
   flags:
   - spawn_space
   stageInfluenceChange: 1
-  cardImage: {fileID: -5630954771888871196, guid: 6d6196289c3831d4887753d1f1cbb1ef, type: 3}
-  characterImage: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
-  iconImage: {fileID: -8786799165523561287, guid: 175f5b4d2d6673c4989574b5556e7da6, type: 3}
-  popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
-  playSfx: {fileID: 8300000, guid: d8518c7498d70cf4fab1e2f17c09c45f, type: 3}
   effect: 11
   scoreThreshold: 0
   harmonize: 0
@@ -38,3 +35,10 @@ MonoBehaviour:
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
+  regen: 0
+  protectedInfluence: 0
+  cardImage: {fileID: -5630954771888871196, guid: 6d6196289c3831d4887753d1f1cbb1ef, type: 3}
+  characterImage: {fileID: -7791428039026505738, guid: 08905605c3140264fb3ffcbf0dee90dc, type: 3}
+  iconImage: {fileID: -8786799165523561287, guid: 175f5b4d2d6673c4989574b5556e7da6, type: 3}
+  popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
+  playSfx: {fileID: 8300000, guid: d8518c7498d70cf4fab1e2f17c09c45f, type: 3}

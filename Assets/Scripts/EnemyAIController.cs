@@ -14,7 +14,8 @@ namespace VocaloidTCG.BoardUI
     {
         public GameplayBoardBridge game;
         public List<CharacterClassData> classes = new List<CharacterClassData>();
-        [Min(0.1f)] public float actionDelay = 0.75f;
+        [Tooltip("Pause before the enemy's first action and between plays, moves, effect choices, and passing. Restarts after draw/phase animations or a pause.")]
+        [Min(0.1f)] public float actionDelay = 1.5f;
         [Tooltip("Use the same axis that GameplayBoardBridge uses for end-of-round scoring.")]
         public EnemyAIScoringAxis scoringAxis = EnemyAIScoringAxis.Column;
         public bool enableDecisionLogs = true;
@@ -49,15 +50,19 @@ namespace VocaloidTCG.BoardUI
 
         protected virtual void Update()
         {
-            if (!game || game.IsPuzzle || !game.TutorialFreePlay || !game.isActiveAndEnabled || game.IsPaused || game.DrawAnimationPlaying || game.PhaseAnimationPlaying) return;
+            if (!game || game.IsPuzzle || !game.TutorialFreePlay || !game.isActiveAndEnabled || game.IsPaused || game.DrawAnimationPlaying || game.PhaseAnimationPlaying)
+            {
+                observedTurn = -1;
+                return;
+            }
             var state = game.Snapshot;
-            if (state == null || state.multiplayer) return;
+            if (state == null || state.multiplayer) { observedTurn = -1; return; }
             // Departure effects can ask the enemy to choose during the player's
             // turn or scoring. Resolve the choice before checking ordinary turns.
             int actor = state.pendingEffect != null ? state.pendingEffect.actor : state.activePlayerId;
-            if (actor == state.localPlayerId) return;
+            if (actor == state.localPlayerId) { observedTurn = -1; return; }
             if (state.pendingEffect == null && (!state.inputAllowed ||
-                (state.phase != RoundPhase.Preparation && state.phase != RoundPhase.Performance))) return;
+                (state.phase != RoundPhase.Preparation && state.phase != RoundPhase.Performance))) { observedTurn = -1; return; }
 
             if (observedTurn != game.TurnNumber)
             {
@@ -67,8 +72,6 @@ namespace VocaloidTCG.BoardUI
             wait -= Time.unscaledDeltaTime;
             if (wait > 0) return;
             wait = Mathf.Max(0.1f, actionDelay);
-
-            int actor = state.activePlayerId;
             // The final tutorial uses a legal easy deck, but makes only one play per turn.
             // Finish any resulting choices before ending the turn.
             if(game.IsTutorial && game.TutorialLesson == 4 && state.pendingEffect == null &&
@@ -86,6 +89,8 @@ namespace VocaloidTCG.BoardUI
                 game.TryPassFor(actor);
             }
         }
+
+        private void OnDisable() { observedTurn = -1; }
 
         // Also used by deterministic integration checks. This only reads state;
         // GameplayBoardBridge remains the authority for every legal action.
@@ -148,7 +153,8 @@ namespace VocaloidTCG.BoardUI
                     string reason;
                     if (game.CanSubmitFor(actor, ability, out reason))
                         Consider(ability, new EnemyActionEvaluation(unit.data.effect == CardEffect.ColumnMoveAbility ?
-                            ColumnAbilityBenefit(state, actor) : EnemyCardPolicy.AbilityBenefit(state, actor, unit),
+                            ColumnAbilityBenefit(state, actor) : unit.data.effect == CardEffect.DyingBreath ?
+                            DyingBreathAbilityBenefit(state, actor, unit) : EnemyCardPolicy.AbilityBenefit(state, actor, unit),
                             unit.data.effect + " activated ability"), ref found, ref best, ref bestEvaluation);
                 }
 
@@ -175,13 +181,16 @@ namespace VocaloidTCG.BoardUI
                 string reason;
                 if (!game.CanSubmitFor(actor, candidate, out reason)) continue;
                 int score = EnemyCardPolicy.ChoiceValue(game.Snapshot, pending, candidate);
-                if (pending.choice == EffectChoice.Extended && pending.effect == CardEffect.ColumnMoveAbility)
+                if (pending.choice == EffectChoice.Extended && pending.effect == CardEffect.ColumnMoveAbility ||
+                    pending.choice == EffectChoice.Duet && pending.effect == CardEffect.DyingBreath)
                 {
                     var unit = pending.cards.FirstOrDefault(c => c.instanceId == candidate.cardInstanceId);
                     if (unit != null)
                     {
                         visitedTiles.TryGetValue(unit.instanceId, out var visited);
-                        score = EnemyCardPolicy.ColumnMoveBenefit(game.Snapshot, actor, unit, visited);
+                        score = pending.effect == CardEffect.DyingBreath ?
+                            EnemyCardPolicy.DyingBreathMoveBenefit(game.Snapshot, actor, unit, visited) :
+                            EnemyCardPolicy.ColumnMoveBenefit(game.Snapshot, actor, unit, visited);
                     }
                     else if (pending.selected != null && visitedTiles.TryGetValue(pending.selected.instanceId, out var visited) &&
                         visited.Contains(candidate.toRow * 5 + candidate.toColumn)) score = -10000;
@@ -205,6 +214,18 @@ namespace VocaloidTCG.BoardUI
             return best;
         }
 
+        private int DyingBreathAbilityBenefit(BoardSnapshot state, int actor, CardState source)
+        {
+            int best = 0;
+            foreach (var unit in state.tiles.SelectMany(tile => actor == 0 ?
+                new[] { tile.side0, tile.assist0 } : new[] { tile.side1, tile.assist1 }).Where(c => c != null && c != source))
+            {
+                visitedTiles.TryGetValue(unit.instanceId, out var visited);
+                best = Mathf.Max(best, EnemyCardPolicy.DyingBreathMoveBenefit(state, actor, unit, visited));
+            }
+            return best;
+        }
+
         private void ConsiderMove(int actor, CardState card, int fromX, int fromY, int toX,
             BoardSnapshot state, EnemyPlacementBoard placementBoard, ref bool found, ref BoardAction best, ref EnemyActionEvaluation bestEvaluation)
         {
@@ -223,6 +244,7 @@ namespace VocaloidTCG.BoardUI
                 Lane(toX, fromY), Lane(fromX, fromY), influence, opponentInfluence, 0, true);
             evaluation = EnemyPlacementScorer.Evaluate(evaluation, card.data.flags, placementBoard,
                 toX, fromY, fromX, fromY, true, influence < opponentInfluence);
+            evaluation.score += EnemyCardPolicy.DuetMovementBenefit(state, actor, card, fromY * 5 + fromX, fromY * 5 + toX);
             Consider(candidate, evaluation, ref found, ref best, ref bestEvaluation);
         }
 

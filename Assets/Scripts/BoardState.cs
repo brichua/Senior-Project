@@ -98,6 +98,7 @@ namespace VocaloidTCG.BoardUI
         public List<TileWinReward> tileWinRewards = new List<TileWinReward>();
         public List<CardState> revealedCards = new List<CardState>();
         public string revealMessage;
+        public int revealVersion;
         public int[] roundTileBonus0 = new int[25], roundTileBonus1 = new int[25];
         public bool[] tileDraw0 = new bool[25], tileDraw1 = new bool[25];
         public SideState Side(int id) { return id == 0 ? side0 : side1; }

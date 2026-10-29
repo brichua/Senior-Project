@@ -20,19 +20,27 @@ public class BackgroundMusicManager : MonoBehaviour
 
     private AudioSource audioSource;
     private AudioClip currentClip;
+    private VocaloidTCG.AudioCategorySource channel;
+    public AudioSource PlaybackSource => audioSource;
 
     private void Awake()
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
 
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        if (Application.isPlaying) DontDestroyOnLoad(gameObject);
 
-        audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
+        if (!audioSource) audioSource = gameObject.AddComponent<AudioSource>();
+        audioSource.Stop();
         audioSource.playOnAwake = false;
         audioSource.loop = true;
         audioSource.volume = musicVolume;
         audioSource.spatialBlend = 0f;
+        channel = GetComponent<VocaloidTCG.AudioCategorySource>();
+        if (!channel) channel = gameObject.AddComponent<VocaloidTCG.AudioCategorySource>();
+        channel.SetCategory(VocaloidTCG.AudioCategory.Music);
+        channel.SetBaseVolume(musicVolume);
 
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
@@ -49,9 +57,10 @@ public class BackgroundMusicManager : MonoBehaviour
 
     private void PlaySceneMusic(string sceneName)
     {
+        if (bgmList == null) return;
         foreach (BGM entry in bgmList)
         {
-            if (entry.scene != sceneName) continue;
+            if (entry == null || entry.scene != sceneName) continue;
 
             if (entry.clip == null) return;
 
@@ -59,7 +68,7 @@ public class BackgroundMusicManager : MonoBehaviour
 
             currentClip = entry.clip;
             audioSource.clip = currentClip;
-            audioSource.volume = musicVolume;
+            channel.SetBaseVolume(musicVolume);
             audioSource.Play();
             return;
         }
@@ -67,14 +76,14 @@ public class BackgroundMusicManager : MonoBehaviour
 
     private void Update()
     {
-        if (audioSource != null) audioSource.volume = musicVolume;
+        if (channel) channel.SetBaseVolume(musicVolume);
     }
 
     public void SetVolume(float volume)
     {
         musicVolume = Mathf.Clamp01(volume);
 
-        if (audioSource != null) audioSource.volume = musicVolume;
+        if (channel) channel.SetBaseVolume(musicVolume);
     }
 
     private void OnDestroy()
