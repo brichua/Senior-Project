@@ -323,8 +323,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5666987fd47a569e2104e2d56522914c, type: 2}
   - {fileID: 11400000, guid: e18f2953280683638d63d0909bf206da, type: 2}
   - {fileID: 11400000, guid: 40db7158dd643a7100cd9f32249cb47f, type: 2}
-  - {fileID: 11400000, guid: 474795616575bd34ca7ae57ddeb537ab, type: 2}
-  - {fileID: 11400000, guid: fc0981e1aea58f14ab3b086c9b81c24c, type: 2}
-  - {fileID: 11400000, guid: 9a436b48ed4dfe54c8810dbf5f16d587, type: 2}
-  - {fileID: 11400000, guid: 7bf0a75be7206ee45854480be64d51f5, type: 2}
   starterDeck: {fileID: 11400000, guid: e18f2953280683638d63d0909bf206da, type: 2}

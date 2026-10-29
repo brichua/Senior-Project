@@ -16,27 +16,29 @@ MonoBehaviour:
   id: e3c15e26f753d1f4a897fd03a16ef815
   cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   vip: 0
-  info: cheer effect, move an ally to an adjacent tile, then give it and one adjacent
-    ally +1 inf this round
+  info: 'Cheer Effect.
+
+    Move an ally to an available adjacent tile. Give it and
+    one adjacent ally +1 influence this round.'
   performer: 0
   stageEffect: 1
   cost: 2
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 105
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
   stageShare: 0
   encore: 0
   nimble: 0
-  cheerEffect: 0
+  cheerEffect: 1
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
   cardImage: {fileID: 1409097576268773646, guid: 35fa651cb273e2d40b056e5a1aac9c4c, type: 3}
   characterImage: {fileID: 0}
-  iconImage: {fileID: 2943068927485428311, guid: 3ffa02f462c5aff4daf8d3138e287754, type: 3}
+  iconImage: {fileID: -7531167171320242516, guid: 15c7a7c1c732ba8498dc4f6adc60575a, type: 3}
   popupImage: {fileID: -2014337633463164255, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 67abf11418f7b6c4bbf804a31515e66e, type: 3}

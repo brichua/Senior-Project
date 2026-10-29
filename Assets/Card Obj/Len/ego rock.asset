@@ -16,15 +16,14 @@ MonoBehaviour:
   id: c8f7b1d2f80342247a7ec55b4538a462
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 1
-  info: choose one enemy performer. Remove its effects and keywords this round and
-    reduce its inf by 3. If its influence reaches 0, draw 1 card
+  info: "Choose an enemy performer. Remove its effects and keywords this round and reduce its influence by 3. If it reaches 0 influence, draw 1 card."
   performer: 0
   stageEffect: 1
   cost: 5
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 31
+  effect: 136
   scoreThreshold: 0
   harmonize: 0
   soloist: 0

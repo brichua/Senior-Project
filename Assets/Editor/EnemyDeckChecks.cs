@@ -14,7 +14,7 @@ public static class EnemyDeckChecks
     private static int assertions, actions, choices, abilities, matches;
     private static readonly List<string> evidence = new List<string>();
     private static readonly List<UnityEngine.Object> temporary = new List<UnityEngine.Object>();
-    private static readonly string[] Pools = { "Miku", "Len", "Luka" };
+    private static readonly string[] Pools = { "Miku", "Len", "Luka", "Rin", "Meiko", "Kaito" };
     private static void Check(bool ok, string message)
     {
         assertions++;
@@ -35,18 +35,22 @@ public static class EnemyDeckChecks
             foreach (string pool in Pools)
             {
                 var cards = AssetDatabase.FindAssets("t:CardData", new[] { "Assets/Card Obj/" + pool })
-                    .Select(g => AssetDatabase.LoadAssetAtPath<CardData>(AssetDatabase.GUIDToAssetPath(g))).OrderBy(c => c.id).ToArray();
+                    .Select(g => AssetDatabase.LoadAssetAtPath<CardData>(AssetDatabase.GUIDToAssetPath(g)))
+                    .Where(c => !c.vip || c.effect == CardEffect.DrawAndRevive).OrderBy(c => c.id).ToArray();
                 Check(cards.Length > 0, pool + " card pool is present.");
                 foreach (var card in cards)
                     for (int actor = 0; actor <= 1; actor++) CardScenario(catalog, card, actor);
-                evidence.Add(pool + ": " + cards.Length + " actual card definitions exercised as both actors.");
+                evidence.Add(pool + ": " + cards.Length + " standard/legacy definitions exercised as both actors; unfinished new VIPs excluded from effect claims.");
                 var deck = AssetDatabase.LoadAssetAtPath<DeckData>("Assets/Decks/" + pool.ToLowerInvariant() + " effects ai.asset");
                 Check(deck, pool + " AI deck exists.");
                 Check(DeckRules.Validate(deck.CreateRecord(), catalog, catalog.cards.Select(c => c.id).ToList(), out error), error);
             }
             ChoiceRegressions(catalog);
+            ExtendedRegressions(catalog);
             foreach (string enemy in Pools) foreach (string player in Pools) for (int side = 0; side <= 1; side++)
                 Match(catalog, player, enemy, side);
+            foreach (string enemy in Pools) foreach (string difficulty in new[] { "Easy", "Medium", "Hard" })
+                for (int side = 0; side <= 1; side++) Match(catalog, "Miku", enemy, side, difficulty);
             result = "PASS\n";
         }
         catch (Exception ex) { result = "FAIL\n" + ex + "\n"; Debug.LogException(ex); }
@@ -141,6 +145,7 @@ public static class EnemyDeckChecks
     {
         for (int i = 0; game.Snapshot.pendingEffect != null && i < 80; i++)
         {
+            actor = game.Snapshot.pendingEffect.actor;
             Check(game.enemyAI.TryChooseAction(actor, out var action, out _), "AI finds mandatory/optional effect action.");
             Check(game.CanSubmitFor(actor, action, out var error), error);
             Check(game.TrySubmitFor(actor, action), "Selected effect action executes."); choices++;
@@ -189,12 +194,15 @@ public static class EnemyDeckChecks
         UnityEngine.Object.DestroyImmediate(game.gameObject);
     }
 
-    private static void Match(DeckCatalog catalog, string player, string enemy, int local)
+    private static void Match(DeckCatalog catalog, string player, string enemy, int local, string difficulty = null)
     {
         UnityEngine.Random.InitState(1800 + matches);
         var game = NewGame(catalog, local);
         var p = AssetDatabase.LoadAssetAtPath<DeckData>("Assets/Decks/" + player.ToLowerInvariant() + " effects ai.asset");
-        game.enemyDeck = AssetDatabase.LoadAssetAtPath<DeckData>("Assets/Decks/" + enemy.ToLowerInvariant() + " effects ai.asset");
+        game.enemyDeck = AssetDatabase.LoadAssetAtPath<DeckData>(difficulty == null ?
+            "Assets/Decks/" + enemy.ToLowerInvariant() + " effects ai.asset" : "Assets/Decks/enemy ai/" + enemy + " " + difficulty + ".asset");
+        Check(game.enemyDeck, "Enemy preset exists.");
+        Check(DeckRules.Validate(game.enemyDeck.CreateRecord(), catalog, catalog.cards.Select(c => c.id).ToList(), out var deckError), deckError);
         if (local == 0) { game.player0Cards = p.cards.ToArray(); game.player0OpeningCard = p.vipCard; }
         else { game.player1Cards = p.cards.ToArray(); game.player1OpeningCard = p.vipCard; }
         game.minimumRoundEnergy = 1; game.StartMatch(matches % 2);
@@ -202,9 +210,11 @@ public static class EnemyDeckChecks
         for (step = 0; step < 3000 && game.Snapshot.phase != RoundPhase.Finished; step++)
         {
             var s = game.Snapshot;
-            if (s.phase == RoundPhase.EndRound)
+            if (s.pendingEffect == null && s.phase == RoundPhase.EndRound)
             {
-                while (game.RoundResolutionPending && game.ScoringRow < 5) game.ResolveNextScoringTile();
+                while (game.RoundResolutionPending && game.ScoringRow < 5 && s.pendingEffect == null)
+                    Check(game.ResolveNextScoringTile(), "Scoring advances without an unresolved choice.");
+                if (s.pendingEffect != null) continue;
                 if (game.RoundResolutionPending) game.FinishRoundResolution();
                 Check(game.CompleteRound(), "Round completes."); continue;
             }
@@ -224,9 +234,113 @@ public static class EnemyDeckChecks
             "; energy=" + final.side0.energy + "/" + final.side1.energy + "; hand=" + final.side0.hand.Count + "/" + final.side1.hand.Count +
             "; decks=" + final.side0.deckCount + "/" + final.side1.deckCount + "; scores=" + final.side0.score + "/" + final.side1.score);
         matches++;
-        evidence.Add(player + " vs " + enemy + " local=" + local + ": " + step + " steps, round " + game.Snapshot.roundNumber +
+        evidence.Add(player + " vs " + enemy + " " + (difficulty ?? "coverage") + " local=" + local + ": " + step + " steps, round " + game.Snapshot.roundNumber +
             ", score " + game.Snapshot.side0.score + "-" + game.Snapshot.side1.score + ".");
         UnityEngine.Object.DestroyImmediate(game.gameObject);
+    }
+
+    private static void ExtendedRegressions(DeckCatalog catalog)
+    {
+        for (int actor = 0; actor <= 1; actor++)
+        {
+            var game = NewGame(catalog);
+            var state = game.Snapshot;
+            var basic = Basic(catalog);
+            var weak = Card(basic, actor);
+            var strong = Card(basic, actor);
+            weak.currentInfluence = 1;
+            strong.currentInfluence = 8;
+            Put(state, weak, 1);
+            Put(state, strong, 2);
+            var source = Card(catalog.cards.First(c => c.effect == CardEffect.SacrificeRemoveEnemy && !c.vip), actor);
+            var pending = new PendingCardEffect { actor = actor, source = source, effect = source.data.effect,
+                choice = EffectChoice.SacrificeAlly, cards = new List<CardState> { strong, weak } };
+            state.pendingEffect = pending;
+            Check(game.enemyAI.TryChooseAction(actor, out var action, out _) && action.cardInstanceId == weak.instanceId,
+                "Sacrifice preserves the stronger scoring performer on either side.");
+
+            var enemy = Card(basic, 1 - actor);
+            enemy.currentInfluence = 6;
+            Put(state, enemy, 7);
+            Check(game.TrySubmitFor(actor, action), "Chosen weak ally is sacrificed by the real engine.");
+            Check((actor == 0 ? state.tiles[1].side0 : state.tiles[1].side1) == null, "Weak ally left the stage.");
+            Resolve(game, actor);
+            Check(!state.tiles.Any(t => t.side0 == enemy || t.side1 == enemy), "Sacrifice removal resolves its enemy target.");
+
+            foreach (var effect in new[] { CardEffect.OutsideCenterTokens, CardEffect.StrongestColumns })
+            {
+                var spell = PolicyCard(effect, actor, true);
+                Check(EnemyCardPolicy.SpellBenefit(state, actor, spell, 2) > 0, effect + " has positive value in a useful scenario.");
+            }
+            var protection = Card(catalog.cards.First(c => c.effect == CardEffect.GrantProtected && !c.vip), actor);
+            var frail = Card(basic, actor); frail.currentInfluence = 1; Put(state, frail, 12);
+            Check(EnemyCardPolicy.SpellBenefit(state, actor, protection, 12) > EnemyCardPolicy.SpellBenefit(state, actor, protection, 2),
+                "Protection does not mistake replacing strong influence for a straight buff.");
+
+            var defender = Card(basic, 1 - actor); defender.currentInfluence = 9; Put(state, defender, 12);
+            var mover = PolicyCard(CardEffect.ColumnMoveAbility, actor, false);
+            Check(EnemyCardPolicy.AbilityBenefit(state, actor, mover) > 0, "Column ability values escaping a losing contest.");
+            var formation = new PendingCardEffect { actor = actor, source = protection, effect = CardEffect.FormationBonus,
+                choice = EffectChoice.Extended, stage = 2, cards = new List<CardState> { strong } };
+            var chooseStrong = new BoardAction(BoardActionKind.ChooseEffect, strong.instanceId, -1, -1, -1, -1);
+            Check(EnemyCardPolicy.ChoiceValue(state, formation, chooseStrong) > 0, "Extended stage two uses formation value rather than old spell-target handling.");
+            var reveal = new PendingCardEffect { actor = actor, source = frail, effect = CardEffect.RevealHandKeywords,
+                choice = EffectChoice.Extended, cards = new List<CardState> { strong, weak } };
+            weak.gainedKeywords.nimble = true;
+            Check(EnemyCardPolicy.ChoiceValue(state, reveal, new BoardAction(BoardActionKind.ChooseEffect, weak.instanceId, -1, -1, -1, -1)) >
+                EnemyCardPolicy.ChoiceValue(state, reveal, chooseStrong), "Reveal values gained keywords over unrelated printed influence.");
+            weak.token = true; weak.tokenKeywords.harmonize = 3;
+            Put(state, Card(basic, actor), 6); Put(state, Card(basic, actor), 8);
+            Check(EnemyCardPolicy.EntryInfluence(state, actor, weak, 7) >= 3, "Token keyword data contributes to placement.");
+            // A created token can retain a stage-effect source asset. Runtime
+            // token identity must win over that asset's original card type.
+            for (int i = 0; i < 25; i++) state.tiles[i] = new TileState();
+            state.activePlayerId = actor;
+            state.Side(actor).hand.Clear();
+            state.Side(actor).energy = 8;
+            var createdToken = PolicyCard(CardEffect.None, actor, true);
+            createdToken.token = true;
+            createdToken.currentInfluence = createdToken.tokenInfluence = 2;
+            state.Side(actor).hand.Add(createdToken);
+            Check(game.enemyAI.TryChooseAction(actor, out action, out _) && action.kind == BoardActionKind.PlayCard,
+                "AI values a stage-effect-derived token as a performer.");
+            Check(game.TrySubmitFor(actor, action) && state.tiles.Any(t => t.side0 == createdToken || t.side1 == createdToken),
+                "The created token is placed through normal engine legality.");
+            UnityEngine.Object.DestroyImmediate(game.gameObject);
+        }
+
+        var departureGame = NewGame(catalog);
+        var strongData = catalog.cards.First(c => c.performer && !c.vip && c.influence >= 5);
+        departureGame.player1Cards = Enumerable.Repeat(strongData, 30).ToArray();
+        departureGame.StartMatch(0);
+        var snapshot = departureGame.Snapshot;
+        var departing = Card(catalog.cards.First(c => c.effect == CardEffect.LeaveSearchPerformer && !c.vip), 1);
+        Put(snapshot, departing, 12);
+        for (int i = 0; i < 3; i++) snapshot.side1.discard.Add(Card(strongData, 1));
+        var removal = Card(catalog.cards.First(c => c.stageEffect && c.effect == CardEffect.Remove && !c.vip), 0);
+        snapshot.side0.hand.Clear(); snapshot.side0.hand.Add(removal); snapshot.side0.energy = 8;
+        Check(departureGame.TrySubmitFor(0, new BoardAction(BoardActionKind.PlayCard, removal.instanceId, -1, -1, 2, 2)), "Player removes Rin's departure performer.");
+        Check(snapshot.pendingEffect != null && snapshot.pendingEffect.actor == 1 && snapshot.activePlayerId == 0,
+            "Real departure queues an enemy-owned choice during the player's turn.");
+        snapshot.phase = RoundPhase.EndRound;
+        snapshot.inputAllowed = false;
+        Resolve(departureGame, 1);
+        Check(snapshot.pendingEffect == null, "Departure choice executes while ordinary turn input is disabled.");
+        UnityEngine.Object.DestroyImmediate(departureGame.gameObject);
+        evidence.Add("Semantic regressions: sacrifice/removal, spells, protection, movement, formation stages, dynamic keywords and real off-turn departure.");
+    }
+
+    private static CardState PolicyCard(CardEffect effect, int actor, bool spell)
+    {
+        // Some implemented enum cases do not yet have a standard asset. Keep
+        // policy fixtures separate from the real-asset coverage above.
+        var data = ScriptableObject.CreateInstance<CardData>();
+        temporary.Add(data);
+        data.effect = effect;
+        data.performer = !spell;
+        data.stageEffect = spell;
+        data.influence = 3;
+        return Card(data, actor);
     }
 }
 #endif

@@ -157,9 +157,7 @@ namespace VocaloidTCG.BoardUI
 
         private void PlayTileReaction(int speaker, VoicelineEvent reaction){
             bool local = speaker == snapshot.localPlayerId;
-            var hud = local ? board.playerHUD : board.enemyHUD;
-            var character = local ? board.setup.PlayerClass : board.setup.EnemyClass;
-            if(hud) hud.PlayVoiceline(character, reaction, board.voicelines);
+            board.PlayVoiceline(local,reaction);
         }
 
         private Vector2 InLayer(Vector3 world, RectTransform source){

@@ -38,6 +38,12 @@ namespace VocaloidTCG.BoardUI
             if(!enemyAI) enemyAI = GetComponent<EnemyAIController>();
             if(!enemyAI) enemyAI = gameObject.AddComponent<BasicEnemyAITest>();
             enemyAI.game = this; enemyAI.enabled = true;
+            if(story.tutorial){
+                tutorialDirector = GetComponent<TutorialDirector>();
+                if(!tutorialDirector) tutorialDirector = gameObject.AddComponent<TutorialDirector>();
+                tutorialDirector.game = this;
+                enemyAI.enabled = TutorialLesson == 4;
+            }
             var ui = GetComponent<StoryBattleUI>();
             if(!ui) ui = gameObject.AddComponent<StoryBattleUI>();
             ui.bridge = this;

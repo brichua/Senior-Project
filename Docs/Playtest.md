@@ -8,6 +8,56 @@ steps produced the listed result; it does not prove the full game is finished.
 | Date | Scene / build | Steps | Result | Follow-up |
 |---|---|---|---|---|
 
+## 2026-10-25 — Six standard character pools
+
+Base: team main `695e449`, integrated into `weien/preview-rules-qa`; local AI
+changes on top. Existing Packages edits and local QA files were preserved.
+
+| Check | Actual result | Coverage limits |
+|---|---|---|
+| Compile runtime and Editor sources | PASS: 93 runtime and five Editor sources against Unity 6000.5.4f1 project references; Editor reload also completed with no script errors. | One existing CS0414 unused-voiceline-field warning. Standalone build not run. |
+| Existing action and placement scorers | PASS: 10 action + 671 placement assertions. | Pure scorer checks. |
+| Standard/legacy card execution | PASS: 107 real definitions, each played through engine legality as both actors. | Excludes the twelve newer unfinished VIPs and sixty duet definitions from mechanic-completeness claims. |
+| Semantic regressions | PASS: preserves stronger ally when sacrificing; executes actual sacrifice/removal chain; values new spells, protection and column movement; distinguishes Formation stage two; reads gained/token keywords; places a stage-effect-derived token as a performer; resolves an actual Rin departure choice while turn input is disabled. | Synthetic temporary board fixtures, no saved deck or scene mutation. |
+| Full native match suite | PASS: **23,503 assertions, 4,964 actions, 1,353 choices, 249 ability activations, 108 completed matches**. All 36 six-pool pairings on both local sides plus all 18 team difficulty decks on both sides against the Miku coverage deck. | Deterministic automated matches with ordinary scores/win conditions; not human difficulty approval. Team difficulty decks retain unfinished VIP mappings. |
+| Real Play Mode | PASS: six AI turns, one per coverage deck; each places a performer, resolves choices and passes to player. Pause blocks action. AI Update also resolves its own pending choices during the player's turn and EndRound with ordinary input disabled. | Guaranteed performer and 8 test energy; no user saves. Editor returned to stopped test scene. |
+
+Results: `Logs/enemy-deck-checks.txt` and `Logs/enemy-deck-turn-smoke.txt`.
+The first broader match run exposed repeated column-ability moves; accepted
+effect relocations now update per-round movement memory, and column activation
+requires an improving unvisited destination. The final suite above passed after
+that fix and the token/keyword review. Initial new-preset back references and a
+policy fixture that assumed an unused enum had a real card were corrected.
+
+Remaining: human pacing/challenge review, standalone build, and the card owner's
+unfinished VIP/duet mechanics. Passing a match with current VIP configuration is
+not evidence that it implements its printed description.
+
+## 2026-10-25 — Six standard character pools
+
+Base: team main `695e449`, integrated into `weien/preview-rules-qa`; local AI
+changes on top. Existing Packages edits and local QA files were preserved.
+
+| Check | Actual result | Coverage limits |
+|---|---|---|
+| Compile runtime and Editor sources | PASS: 93 runtime and five Editor sources against Unity 6000.5.4f1 project references; Editor reload also completed with no script errors. | One existing CS0414 unused-voiceline-field warning. Standalone build not run. |
+| Existing action and placement scorers | PASS: 10 action + 671 placement assertions. | Pure scorer checks. |
+| Standard/legacy card execution | PASS: 107 real definitions, each played through engine legality as both actors. | Excludes the twelve newer unfinished VIPs and sixty duet definitions from mechanic-completeness claims. |
+| Semantic regressions | PASS: preserves stronger ally when sacrificing; executes actual sacrifice/removal chain; values new spells, protection and column movement; distinguishes Formation stage two; reads gained/token keywords; places a stage-effect-derived token as a performer; resolves an actual Rin departure choice while turn input is disabled. | Synthetic temporary board fixtures, no saved deck or scene mutation. |
+| Full native match suite | PASS: **23,503 assertions, 4,964 actions, 1,353 choices, 249 ability activations, 108 completed matches**. All 36 six-pool pairings on both local sides plus all 18 team difficulty decks on both sides against the Miku coverage deck. | Deterministic automated matches with ordinary scores/win conditions; not human difficulty approval. Team difficulty decks retain unfinished VIP mappings. |
+| Real Play Mode | PASS: six AI turns, one per coverage deck; each places a performer, resolves choices and passes to player. Pause blocks action. AI Update also resolves its own pending choices during the player's turn and EndRound with ordinary input disabled. | Guaranteed performer and 8 test energy; no user saves. Editor returned to stopped test scene. |
+
+Results: `Logs/enemy-deck-checks.txt` and `Logs/enemy-deck-turn-smoke.txt`.
+The first broader match run exposed repeated column-ability moves; accepted
+effect relocations now update per-round movement memory, and column activation
+requires an improving unvisited destination. The final suite above passed after
+that fix and the token/keyword review. Initial new-preset back references and a
+policy fixture that assumed an unused enum had a real card were corrected.
+
+Remaining: human pacing/challenge review, standalone build, and the card owner's
+unfinished VIP/duet mechanics. Passing a match with current VIP configuration is
+not evidence that it implements its printed description.
+
 ## 2026-10-18 — Card effect AI and coverage presets
 
 | Check | Actual result | Remaining work |

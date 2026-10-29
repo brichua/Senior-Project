@@ -16,23 +16,25 @@ MonoBehaviour:
   id: e16c16b62a8c450448acb5446c21afd7
   cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   vip: 1
-  info: cheer effect, move up to 3 allies to available adjacent tiles. After moving
-    them, give each moved ally +1 inf this round for every unique column occupied
-    by those performers, up to +2
+  info: 'Cheer Effect.
+
+    Move up to 3 different allies to available adjacent tiles.
+    Then give each moved ally +1 influence this round per unique column those performers
+    now occupy, up to +2.'
   performer: 0
   stageEffect: 1
   cost: 4
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 92
+  effect: 133
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
   stageShare: 0
   encore: 0
   nimble: 0
-  cheerEffect: 0
+  cheerEffect: 1
   venueEffect: 0
   regen: 0
   protectedInfluence: 0

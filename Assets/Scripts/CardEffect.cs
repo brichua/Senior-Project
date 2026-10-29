@@ -25,6 +25,12 @@ namespace VocaloidTCG
         NextColumnBonus, OtherColumnToken, LoneCenterProtected, OpponentSideBonus,
         ThreeColumnsDraw, DisplaceContested, CrossColumnGreeting, AllyGreeting,
         PerformanceColumnsAura, ColumnMoveAbility, MoveAndAdjust, RowInfluence,
-        SwapAllies, FormationBonus, StrongestColumns
+        SwapAllies, FormationBonus, StrongestColumns,
+        RuinToken, Blender, Cendrillon, ColorfulMelody, ColorfulSexy, Division, StealKeyword,
+        Doubleganger, DropPopCandy, Fragile, FruitKiller, Futairo, Gemini, Leona, LoveHate,
+        Luoyang, Magnet, Makeup, Ohedo, OnTheRocks, Pallucination, PerfectCrime, Projection,
+        Pygmalion, SelfishPrincess, Taoyuan, UnbalanceHero, Wonderland, Void, WintryWinds,
+        Quarter, DyingBreath, EgoRenegade, EgoRock, LastOfMe, LucidDreamscape,
+        FairyTaled, YoungYouOut, Hibikase, RabbitHole, HappyHalloween, Shinjinrui, Attakaito
     }
 }

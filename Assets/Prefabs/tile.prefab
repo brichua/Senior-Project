@@ -103,6 +103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.CardPointer
   art: {fileID: 0}
   influencePopup: {fileID: 0}
+  vipStageEffect: {fileID: 0}
+  vipPerformer: {fileID: 0}
   cardName: {fileID: 0}
   influence: {fileID: 0}
   cost: {fileID: 0}
@@ -212,6 +214,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.CardPointer
   art: {fileID: 0}
   influencePopup: {fileID: 0}
+  vipStageEffect: {fileID: 0}
+  vipPerformer: {fileID: 0}
   cardName: {fileID: 0}
   influence: {fileID: 0}
   cost: {fileID: 0}
@@ -533,6 +537,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.CardPointer
   art: {fileID: 0}
   influencePopup: {fileID: 0}
+  vipStageEffect: {fileID: 0}
+  vipPerformer: {fileID: 0}
   cardName: {fileID: 0}
   influence: {fileID: 0}
   cost: {fileID: 0}
@@ -854,6 +860,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.CardPointer
   art: {fileID: 0}
   influencePopup: {fileID: 0}
+  vipStageEffect: {fileID: 0}
+  vipPerformer: {fileID: 0}
   cardName: {fileID: 0}
   influence: {fileID: 0}
   cost: {fileID: 0}
@@ -1215,6 +1223,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.BoardUI.CardPointer
   art: {fileID: 0}
   influencePopup: {fileID: 0}
+  vipStageEffect: {fileID: 0}
+  vipPerformer: {fileID: 0}
   cardName: {fileID: 0}
   influence: {fileID: 0}
   cost: {fileID: 0}
@@ -1755,6 +1765,12 @@ MonoBehaviour:
   enemyAssist: {fileID: 1092982297274333312}
   soloInfluence: {fileID: 3456982657516969230}
   duoInfluence: {fileID: 4851861588048989277}
+  soloShieldPopup: {fileID: 0}
+  playerShieldPopup: {fileID: 0}
+  enemyShieldPopup: {fileID: 0}
+  soloShieldInfluence: {fileID: 0}
+  playerShieldInfluence: {fileID: 0}
+  enemyShieldInfluence: {fileID: 0}
 --- !u!1 &7817412130828114958
 GameObject:
   m_ObjectHideFlags: 0

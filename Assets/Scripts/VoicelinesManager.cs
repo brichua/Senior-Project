@@ -73,6 +73,7 @@ public class VoicelinesManager : MonoBehaviour
 
     public void PlayStoryReaction(AudioClip voiceline)
     {
+        if(!audioSource) return;
         audioSource.Stop();
 
         if (voiceline)
@@ -80,37 +81,38 @@ public class VoicelinesManager : MonoBehaviour
             audioSource.PlayOneShot(voiceline);
         }
     }
-    public void PlayVoiceline( CharacterClass character, VoicelineEvent voiceline_event) {
-
-        AudioClip voiceline;
-        int character_index = GetCharacterIndex(character);
-        
-        if (!audioSource || character_index < 0 || character_index >= 6)
-            return;
-
-        if (voiceline_event == VoicelineEvent.Win_Tile || voiceline_event == VoicelineEvent.Lose_Tile || voiceline_event == VoicelineEvent.Idle)
-        {
-            AudioClip[] voicelines = GetCharacterArray(character, voiceline_event);
-            int random_index = UnityEngine.Random.Range(0, 3);
-            voiceline = voicelines[random_index];
-        }
-        else
-        {
-            AudioClip[] voicelines = GetVoicelines(voiceline_event);
-            if (voicelines == null || character_index >= voicelines.Length)
-                return;
-            voiceline = voicelines[character_index];
-        }
-
-        if (voiceline)
-        {
-            audioSource.PlayOneShot(voiceline);
-        }
-
+    public AudioClip PlayVoiceline(CharacterClass character, VoicelineEvent reaction){
+        return PlayVoiceline(character,reaction,out _);
+    }
+    public AudioClip PlayVoiceline(CharacterClass character, VoicelineEvent reaction,out int clipIndex){
+        clipIndex=-1;
+        if(!audioSource || !TryGetVoiceline(character,reaction,out var clip,out clipIndex)) return null;
+        audioSource.Stop();
+        audioSource.PlayOneShot(clip);
+        return clip;
+    }
+    public bool TryGetVoiceline(CharacterClass character,VoicelineEvent reaction,out AudioClip clip,out int clipIndex){
+        clip=null; clipIndex=-1;
+        int characterIndex=GetCharacterIndex(character);
+        if(characterIndex<0) return false;
+        bool variant=reaction==VoicelineEvent.Idle || reaction==VoicelineEvent.Win_Tile || reaction==VoicelineEvent.Lose_Tile;
+        var clips=variant ? GetCharacterArray(character,reaction) : GetVoicelines(reaction);
+        if(clips==null || clips.Length==0) return false;
+        if(variant){
+            // Select once from populated slots; the same index drives the subtitle and duration.
+            int count=0; foreach(var candidate in clips) if(candidate) count++;
+            if(count==0) return false;
+            int pick=UnityEngine.Random.Range(0,count);
+            for(int i=0;i<clips.Length;i++) if(clips[i] && pick--==0){ clipIndex=i; break; }
+        }else clipIndex=characterIndex;
+        if(clipIndex<0 || clipIndex>=clips.Length || !clips[clipIndex]) return false;
+        clip=clips[clipIndex]; return true;
     }
 
     public AudioClip GetVoiceline(CharacterClass character, VoicelineEvent reaction)
     {
+        var variants=GetCharacterArray(character,reaction);
+        if(variants!=null) return System.Array.Find(variants,c=>c);
         int index = GetCharacterIndex(character);
         var clips = GetVoicelines(reaction);
         return clips != null && index >= 0 && index < clips.Length ? clips[index] : null;
@@ -121,12 +123,12 @@ public class VoicelinesManager : MonoBehaviour
         int playerIndex = GetCharacterIndex(player);
         int opponentIndex = GetCharacterIndex(opponent);
 
-        if (playerIndex < 0 || opponentIndex < 0)
+        if (!audioSource || playerIndex < 0 || opponentIndex < 0)
             return;
 
         int clipIndex = startClipTable[playerIndex, opponentIndex];
 
-        if (clipIndex < 0)
+        if (start == null || clipIndex < 0 || clipIndex >= start.Length || !start[clipIndex])
             return;
 
         audioSource.PlayOneShot(start[clipIndex]);
@@ -135,7 +137,7 @@ public class VoicelinesManager : MonoBehaviour
 
     public bool IsVoicelinePlaying()
     {
-        return audioSource.isPlaying;
+        return audioSource && audioSource.isPlaying;
     }
 
     private AudioClip[] GetVoicelines(VoicelineEvent voiceline_event)

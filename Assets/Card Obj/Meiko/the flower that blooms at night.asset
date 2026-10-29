@@ -34,8 +34,8 @@ MonoBehaviour:
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: 6025122263036835777, guid: ab1629a51492c6c46878139d08dcf200, type: 3}
-  characterImage: {fileID: 4215792470811505543, guid: 8fe782fd5a653624696b560f4cc89939, type: 3}
-  iconImage: {fileID: 0}
+  cardImage: {fileID: -5980240818611411548, guid: 95c6069246888cd4b80f7ffd6dc638bd, type: 3}
+  characterImage: {fileID: -8258893330789370145, guid: 947daafeaad8130428d64a7c472a78eb, type: 3}
+  iconImage: {fileID: 492482020413282777, guid: fcff6579f1f29694184486ec7cecfdb4, type: 3}
   popupImage: {fileID: -469258639255709176, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 0a5c19479efb8134fa65c29444fe81bf, type: 3}

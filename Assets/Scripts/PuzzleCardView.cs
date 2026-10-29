@@ -17,6 +17,7 @@ namespace VocaloidTCG
             DeckUI.Text(puzzleName, puzzle.puzzleName); DeckUI.Text(description, puzzle.shortDescription);
             DeckUI.Text(rewardName, puzzle.rewardCard ? puzzle.rewardCard.cardName : "");
             var cls = puzzle.rewardCard ? puzzle.rewardCard.cardClass : null;
+            if(rewardName){ rewardName.color = cls ? cls.color : Color.white; rewardName.enableVertexGradient = false; }
             DeckUI.Image(rewardCardBack, cls && cls.specialCardBack ? cls.specialCardBack.image : null);
             
             if(clearedImage) clearedImage.SetActive(completed);

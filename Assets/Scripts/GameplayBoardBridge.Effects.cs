@@ -29,10 +29,14 @@ namespace VocaloidTCG.BoardUI
 
         private void ChangeInfluence(CardState c, int amount, bool round = false){
             CardInfluence.Change(c, amount, round);
+            if(amount>0 && influenceSource!=null && c!=influenceSource && HasEffect(c,CardEffect.Taoyuan))
+                QueueDuet(c,TileOf(c),keywords:PerformerKeywords.Of(influenceSource));
+            if(c!=null && amount<0 && c.currentInfluence<=0 && TileOf(c)>=0) RemoveSingle(c);
         }
 
         private bool SpellTarget(CardState card, int tile){
             int actor = card.ownerId;
+            if(IsDuetEffect(card.data.effect)) return DuetSpellTarget(card,tile);
             if(IsExtendedEffect(card.data.effect)) return ExtendedSpellTarget(card,tile);
             if(TryRinSpellTarget(card, tile, out var rinLegal)) return rinLegal;
             var ally = Performer(state.tiles[tile], actor); var enemy = Performer(state.tiles[tile], 1 - actor);
@@ -69,6 +73,12 @@ namespace VocaloidTCG.BoardUI
             var p = state.pendingEffect; if(p == null) return;
             p.tiles.Clear(); p.cards.Clear();
             var side = state.Side(p.actor);
+            if(p.choice == EffectChoice.Duet){
+                RefreshDuetChoice(p);
+                if(p.tiles.Count==0 && p.cards.Count==0) EndChoice();
+                if(clock) clock.EffectInputPending=state.pendingEffect!=null;
+                return;
+            }
             if(p.choice == EffectChoice.Extended){
                 RefreshExtendedChoice(p);
                 if(p.tiles.Count==0 && p.cards.Count==0) EndChoice();
@@ -136,6 +146,7 @@ namespace VocaloidTCG.BoardUI
         private void EndChoice(){
             var p=state.pendingEffect;
             state.pendingEffect=null;
+            if(p!=null && p.choice==EffectChoice.Duet) FinishDuetChoice(p);
             if(p!=null && p.effect==CardEffect.MoveAllToCenter)
                 foreach(var c in FieldCards(1-p.actor).Where(c=>TileOf(c)%5==2 && !Protected(c,p.actor)).ToList()) ChangeInfluence(c,-1);
             if(p!=null && p.stage==1 && (p.effect==CardEffect.FreePlayAndSearch || p.effect==CardEffect.ReviveAbility || p.effect==CardEffect.DrawAndRevive)){
@@ -155,10 +166,19 @@ namespace VocaloidTCG.BoardUI
         }
         
         private bool ResolveChoice(int actor, BoardAction action){
+            var previous=influenceSource; influenceSource=state.pendingEffect?.source;
+            try { return ResolveChoiceCore(actor,action); } finally { influenceSource=previous; }
+        }
+        private bool ResolveChoiceCore(int actor, BoardAction action){
             if(!CanChooseEffect(actor,action)) return false;
             var p=state.pendingEffect;
             if(action.kind==BoardActionKind.FinishEffect){ EndChoice(); Recompute(); Publish(); return true; }
             var chosen=p.cards.Find(c=>c.instanceId==action.cardInstanceId);
+            if(p.choice==EffectChoice.Duet){
+                ResolveDuetChoice(p,chosen,action.toRow*5+action.toColumn);
+                state.Side(actor).hiddenHandCount=state.Side(actor).hand.Count;
+                Recompute(); if(IsPuzzle && state.pendingEffect==null) CheckPuzzle(false,false); Publish(); return true;
+            }
             if(p.choice==EffectChoice.Extended){
                 ResolveExtendedChoice(p,chosen,action.toRow*5+action.toColumn);
                 state.Side(actor).hiddenHandCount=state.Side(actor).hand.Count;
@@ -232,7 +252,7 @@ namespace VocaloidTCG.BoardUI
             SetPerformer(state.tiles[to],actor,Performer(state.tiles[from],actor)); SetPerformer(state.tiles[from],actor,null);
             SetAssistant(state.tiles[to],actor,Assistant(state.tiles[from],actor)); SetAssistant(state.tiles[from],actor,null);
             foreach(var c in new[] {Performer(state.tiles[to],actor),Assistant(state.tiles[to],actor)})
-                if(c!=null) PerformerEntered(c,to);
+                if(c!=null){ PerformerEntered(c,to); DuetMoved(c,from,to); }
         }
         
         private static bool UsesPerformerTarget(CardEffect effect){
@@ -240,6 +260,21 @@ namespace VocaloidTCG.BoardUI
                 effect==CardEffect.ProtectTurn || effect==CardEffect.DoubleInfluence || effect==CardEffect.WeakenContested ||
                 effect==CardEffect.RemoveSmall || effect==CardEffect.Remove || effect==CardEffect.Silence ||
                 effect==CardEffect.WeakenAfterAllyLeft || effect==CardEffect.SacrificeWeakenAdjacent || effect==CardEffect.SacrificeDrawWeaken;
+        }
+
+        private IEnumerable<CardState> StageTargets(CardState card,int tile){
+            if(tile<0 || tile>=25) return Enumerable.Empty<CardState>();
+            if(card.data.effect==CardEffect.RowInfluence) return AtTile(tile).Where(c=>!Protected(c,card.ownerId));
+            if(IsDuetEffect(card.data.effect)) return DuetInitialTargets(card,tile);
+            if(IsExtendedEffect(card.data.effect)) return ExtendedInitialTargets(card,tile);
+            return UsesPerformerTarget(card.data.effect) ? DirectSpellTargets(card,tile) : Enumerable.Empty<CardState>();
+        }
+
+        public string StageTargetAt(CardState card,int tile,CardState hovered=null){
+            if(card==null || !card.data || !card.data.stageEffect || card.token) return null;
+            var targets=StageTargets(card,tile).ToArray();
+            if(hovered!=null && targets.Any(c=>c.instanceId==hovered.instanceId)) return hovered.instanceId;
+            return targets.Length==1 ? targets[0].instanceId : null;
         }
         
         private IEnumerable<CardState> DirectSpellTargets(CardState spell,int tile){
@@ -275,7 +310,9 @@ namespace VocaloidTCG.BoardUI
             c.auraInfluence=c.roundInfluence=0; c.silenced=c.grantedEncore=false; c.sharedTargetId=null;
             c.rootedRound=c.protectedTurn=c.noScoreRound=c.activatedTurn=c.activatedRound=c.nimbleRound=-1;
             c.inheritedEncore=c.inheritedNimble=c.inheritedStageShare=false; c.inheritedHarmonize=c.inheritedSoloist=0;
-            c.gainedKeywords=c.sharedKeywords=default; c.sharedProtectionLevel=0; c.soloProtectionCondition=false;
+            c.gainedKeywords=c.sharedKeywords=c.roundKeywords=c.suppressedKeywords=default;
+            c.triggerRound=c.silenceRound=-1; c.visitedColumns.Clear(); c.linkedTokenId=null; c.sharedProtectionLevel=0; c.soloProtectionCondition=false;
+            c.keywordAuraSources.Clear();
             c.protectedUntilRound=-1;
             c.activeEffects.Clear();
         }

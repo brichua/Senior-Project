@@ -16,15 +16,15 @@ MonoBehaviour:
   id: 6631ca9c73572a94cb689374408e2cba
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 0
-  info: adjacent allies get +1 inf. When this performer leaves the stage, give an
-    adjacent ally +2 inf this round
+  info: Adjacent allies have +1 influence. When this leaves the stage, give an adjacent
+    ally +2 influence this round.
   performer: 1
   stageEffect: 0
   cost: 2
   influence: 2
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 110
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
@@ -35,8 +35,8 @@ MonoBehaviour:
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: -6395042137496267648, guid: 4e69de19f048fed43b7d51eee79f02f5, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: -3647385321470557309, guid: 9da04220ee429c74ca5d697a68efc6cf, type: 3}
+  cardImage: {fileID: 306590170578011040, guid: a79e49e0d4a05244d9248ffb9e1d2509, type: 3}
+  characterImage: {fileID: 5686318905028455440, guid: d2f67dc5f5df972439bf7cfc82a568a6, type: 3}
+  iconImage: {fileID: -6164669723978437166, guid: 8128514e4960aa940b36c7099e86c505, type: 3}
   popupImage: {fileID: -2067420961456691871, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 8fb1820c973d825458ce96c33dc5ab9f, type: 3}

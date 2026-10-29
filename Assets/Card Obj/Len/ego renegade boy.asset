@@ -16,18 +16,20 @@ MonoBehaviour:
   id: 32502794a71d0644ab05b88f345753e1
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 1
-  info: soloist 2, once per round, give an enemy performer -2 inf this round. If
-    that performer reaches 0 inf, gain 1 energy
+  info: 'Soloist 2.
+
+    Once per round, give an enemy performer -2 influence this
+    round. If it reaches 0 influence, refill 1 energy.'
   performer: 1
   stageEffect: 0
   cost: 5
   influence: 6
   flags: []
   stageInfluenceChange: 1
-  effect: 31
+  effect: 135
   scoreThreshold: 0
   harmonize: 0
-  soloist: 0
+  soloist: 2
   stageShare: 0
   encore: 0
   nimble: 0

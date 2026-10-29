@@ -15,6 +15,8 @@ namespace VocaloidTCG.BoardUI
         [Tooltip("Covers the board during scene startup; hidden after the opening presentation and first board refresh are ready.")]
         public GameObject startupCover;
         public Button endTurn, pause;
+        [Tooltip("Shown for a selected allied performer with a manually activated ability. Uses the player's class reward card background.")]
+        public Button useAbilityButton;
         public SideHUD playerHUD, enemyHUD;
         public CardInfoView playerInfo, enemyInfo;
         public PausePanel pausePanel;
@@ -34,6 +36,27 @@ namespace VocaloidTCG.BoardUI
         public Vector2 ghostSize = new Vector2(120, 160);
         public SFXManager sfx;
         public VoicelinesManager voicelines;
+        private GameplayBoardBridge voicelineBridge;
+        public bool PlayVoiceline(bool playerSpeaks,VoicelineEvent reaction){
+            if(!setup || !voicelines) return false;
+            var character=playerSpeaks ? setup.PlayerClass : setup.EnemyClass;
+            if(!character) return false;
+            var hud=playerSpeaks ? playerHUD : enemyHUD;
+            bool played=hud ? hud.PlayVoiceline(character,reaction,voicelines) : voicelines.PlayVoiceline(character.identity,reaction)!=null;
+            if(played){
+                var other=playerSpeaks ? enemyHUD : playerHUD;
+                if(other) other.ClearVoiceline();
+            }
+            return played;
+        }
+        private void PlayLocalVoiceline(VoicelineEvent reaction){ PlayVoiceline(true,reaction); }
+        private void BindVoicelineBridge(){
+            var next=game as GameplayBoardBridge;
+            if(voicelineBridge==next) return;
+            if(voicelineBridge) voicelineBridge.LocalVoicelineRequested-=PlayLocalVoiceline;
+            voicelineBridge=next;
+            if(voicelineBridge) voicelineBridge.LocalVoicelineRequested+=PlayLocalVoiceline;
+        }
         public CardDrawAnimator drawAnimator;
         public PhaseAnnouncementAnimator phaseAnimator;
         [Tooltip("Particle and accent color for the End of Round announcement. Preparation and Performance use the round starter's board class color.")]
@@ -128,6 +151,7 @@ namespace VocaloidTCG.BoardUI
 
         private void Start()
         {
+            BindVoicelineBridge();
             ApplyMatchSetup();
             if (!setup || !game || !tilePrefab || !gridRoot || !handPrefab || !playerHandRoot || !enemyHandRoot || !dragLayer)
             {
@@ -198,6 +222,7 @@ namespace VocaloidTCG.BoardUI
 
         private void OnEnable()
         {
+            BindVoicelineBridge();
             if (ready)
             {
                 game.Changed += Refresh;
@@ -205,6 +230,8 @@ namespace VocaloidTCG.BoardUI
             }
         }
         private void OnDisable(){
+            if(voicelineBridge) voicelineBridge.LocalVoicelineRequested-=PlayLocalVoiceline;
+            voicelineBridge=null;
             if(effectTargeting) effectTargeting.Clear();
             if(resultAnimator) resultAnimator.Cancel();
             if(openingAnimator) openingAnimator.Cancel();
@@ -234,12 +261,14 @@ namespace VocaloidTCG.BoardUI
         private bool CanInteract()
         {
             var s = State;
-            return isActiveAndEnabled && s != null && s.inputAllowed && s.activePlayerId == s.localPlayerId &&
+            return isActiveAndEnabled && s != null && s.inputAllowed && s.pendingEffect==null && s.activePlayerId == s.localPlayerId &&
                 (!phaseAnimator || !phaseAnimator.IsPlaying) &&
                 (!drawAnimator || !drawAnimator.IsPlaying) &&
                 (s.phase == RoundPhase.Preparation || s.phase == RoundPhase.Performance) &&
                 (!pausePanel || !pausePanel.IsOpen);
         }
+
+        public bool CanUseAbilities => CanInteract();
 
         public void Refresh(){
             if(!ready || State == null) return;
@@ -306,14 +335,14 @@ namespace VocaloidTCG.BoardUI
             if (endTurn)
             {
                 endTurn.gameObject.SetActive(localTurn && playing);
-                endTurn.interactable = CanInteract();
+                var tutorialGame = game as GameplayBoardBridge;
+                endTurn.interactable = CanInteract() && (!tutorialGame || tutorialGame.TutorialCanPass);
             }
             SetImage(cd, localTurn ? setup.player.cd : setup.enemy.cd);
             if (playerHUD) playerHUD.SetTimerSubtitle("");
             if (enemyHUD) enemyHUD.SetTimerSubtitle("");
             if(playerHUD) playerHUD.RenderPhase(s.phase, playing && localTurn);
             if(enemyHUD) enemyHUD.RenderPhase(s.phase, playing && s.activePlayerId == 1 - s.localPlayerId);
-            // Older scenes reuse this legacy field for the player's voiceline subtitle.
             if(phaseText && (!playerHUD || (phaseText != playerHUD.phaseText && phaseText != playerHUD.subtitle)) &&
                 (!enemyHUD || (phaseText != enemyHUD.phaseText && phaseText != enemyHUD.subtitle)))
                 CardInfoView.Put(phaseText, "");
@@ -374,11 +403,49 @@ namespace VocaloidTCG.BoardUI
         public void Select(CardState card)
         {
             if (card == null || State == null || (pausePanel && pausePanel.IsOpen)) return;
+            if(TryChooseEffect(card)) return;
             bool local = card.ownerId == State.localPlayerId;
             if (local) selectedPlayer = card.instanceId; else selectedEnemy = card.instanceId;
             var view = local ? playerInfo : enemyInfo;
             if (view) view.Show(card, local ? setup.player : setup.enemy, setup);
             if(effectTargeting) effectTargeting.Select(card);
+            var tutorialGame = game as GameplayBoardBridge;
+            if(tutorialGame) tutorialGame.NotifyTutorialSelection(card);
+        }
+
+        public bool IsEffectTarget(int x, int y){
+            var p=State?.pendingEffect;
+            if(p==null || p.actor!=State.localPlayerId || (pausePanel && pausePanel.IsOpen) || x<0 || x>=5 || y<0 || y>=5) return false;
+            int index=y*5+x;
+            if(p.tiles.Contains(index)) return true;
+            var t=State.tiles[index];
+            return t!=null && System.Array.Exists(new[]{t.side0,t.side1,t.assist0,t.assist1},
+                c=>c!=null && p.cards.Exists(option=>option.instanceId==c.instanceId));
+        }
+
+        private bool TryChooseEffect(CardState card){
+            var p=State?.pendingEffect;
+            if(p==null || p.actor!=State.localPlayerId || (pausePanel && pausePanel.IsOpen)) return false;
+            if(p.cards.Exists(c=>c.instanceId==card.instanceId))
+                return game.TrySubmit(new BoardAction(BoardActionKind.ChooseEffect,card.instanceId,-1,-1,-1,-1));
+            for(int i=0;i<State.tiles.Length;i++){
+                var t=State.tiles[i];
+                if(t!=null && System.Array.Exists(new[]{t.side0,t.side1,t.assist0,t.assist1},c=>c!=null && c.instanceId==card.instanceId))
+                    return p.tiles.Contains(i) && ChooseEffectTile(i%5,i/5);
+            }
+            return false;
+        }
+
+        public bool ChooseEffectTile(int x,int y){
+            if(!IsEffectTarget(x,y)) return false;
+            var p=State.pendingEffect;
+            if(p.tiles.Contains(y*5+x)) return game.TrySubmit(new BoardAction(BoardActionKind.ChooseEffect,null,-1,-1,x,y));
+            var t=State.tiles[y*5+x];
+            var candidates=new List<CardState>();
+            foreach(var c in new[]{t.side0,t.side1,t.assist0,t.assist1})
+                if(c!=null && p.cards.Exists(option=>option.instanceId==c.instanceId)) candidates.Add(c);
+            // A contested/shared tile needs a specific character click; never choose an arbitrary team or partner.
+            return candidates.Count==1 && TryChooseEffect(candidates[0]);
         }
 
         private void RenderSelection(CardInfoView view, string id, SideArt side)
@@ -444,9 +511,12 @@ namespace VocaloidTCG.BoardUI
             if (RectTransformUtility.ScreenPointToLocalPointInRectangle(dragLayer, e.position, camera, out point))
                 ghostRect.localPosition = new Vector3(point.x, point.y, 0);
         }
-        private BoardAction ActionAt(int x, int y)
+        private BoardAction ActionAt(int x, int y, CardState target = null)
         {
-            return new BoardAction(dragKind, dragged.instanceId, sourceColumn, sourceRow, x, y);
+            var bridge=game as GameplayBoardBridge;
+            string targetId=bridge && dragged!=null && dragged.data && dragged.data.stageEffect && !dragged.token
+                ? bridge.StageTargetAt(dragged,y*5+x,target) : null;
+            return new BoardAction(dragKind, dragged.instanceId, sourceColumn, sourceRow, x, y,targetId);
         }
 
         public bool CanDrop(int x, int y)
@@ -455,21 +525,20 @@ namespace VocaloidTCG.BoardUI
             return dragged != null && CanInteract() && x >= 0 && x < 5 && y >= 0 && y < 5 &&
                 game.CanSubmit(ActionAt(x, y), out reason);
         }
-        public void Drop(int x, int y)
+        public void Drop(int x, int y, CardState target = null)
         {
             if (!CanDrop(x, y))
             {
                 CancelDrag(); return;
             }
 
-            StartCoroutine(DropCoroutine(x, y));
+            StartCoroutine(DropCoroutine(ActionAt(x,y,target)));
         }
 
         // wait for ticket tear sound to complete before placing card
-        private IEnumerator DropCoroutine(int x, int y)
+        private IEnumerator DropCoroutine(BoardAction action)
         {
             sfx.PlayTicketTearSound();
-            var action = ActionAt(x, y);
             if (dragSource)
                 dragSource.gameObject.SetActive(false);
 

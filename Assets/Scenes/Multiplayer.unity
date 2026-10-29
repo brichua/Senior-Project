@@ -9953,7 +9953,7 @@ MonoBehaviour:
     deckName: {fileID: 7000000053}
   playerDeck:
     avatar: {fileID: 7000000123}
-    art: {fileID: 426575000}
+    art: {fileID: 1309483165}
     firstClass: {fileID: 458635724}
     secondClass: {fileID: 2002838136}
     hostIcon: {fileID: 7000000045}

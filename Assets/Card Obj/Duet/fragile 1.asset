@@ -16,15 +16,14 @@ MonoBehaviour:
   id: 373701e0dcff4e3488c06ae45a9a384b
   cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   vip: 0
-  info: move an enemy to an adjacent tile, it gets -2 inf this round and cannot move
-    again this round
+  info: "Move an enemy performer to an available adjacent tile. It gets -2 influence this round and cannot move again this round."
   performer: 0
   stageEffect: 1
   cost: 2
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 112
   scoreThreshold: 0
   harmonize: 0
   soloist: 0

@@ -16,15 +16,14 @@ MonoBehaviour:
   id: 6513768b7a8a4e04e9b074d6027f2158
   cardClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   vip: 1
-  info: give every ally + 1 inf this round. Then choose one ally and apply half of
-    its current influence rounded down to one adjacent occupied tile this round
+  info: "Give every ally +1 influence this round. Then choose an ally and add half its current influence, rounded down, to one adjacent occupied tile for your team this round."
   performer: 0
   stageEffect: 1
   cost: 4
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 141
   scoreThreshold: 0
   harmonize: 0
   soloist: 0

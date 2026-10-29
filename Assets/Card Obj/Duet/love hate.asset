@@ -16,15 +16,15 @@ MonoBehaviour:
   id: 8f1a72e0ef7465a42bff6be3048b71fe
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: "when another ally leaves the stage, give an enemy on this performer\u2019s
-    tile -2 inf this round"
+  info: Whenever another ally leaves the stage, give an enemy performer on this performer's
+    tile -2 influence this round.
   performer: 1
   stageEffect: 0
   cost: 3
   influence: 4
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 117
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
@@ -35,8 +35,8 @@ MonoBehaviour:
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: 7147704725294069032, guid: 279947c0d2686ed41a898d8ebb7cca4c, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: -7129893193933484764, guid: b9ab4cc3553ea8540a3e226837febb9a, type: 3}
+  cardImage: {fileID: 6427802069065520518, guid: 68f380d63dcb0ca459d215d678929671, type: 3}
+  characterImage: {fileID: 4062390938484144002, guid: fcb357a4ac7580c45a42b698f9504243, type: 3}
+  iconImage: {fileID: 6976009738246597363, guid: 15e3acc1648091c4191b42eb79b577a5, type: 3}
   popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 5f22101270490ea4692243c5d541c6f3, type: 3}

@@ -26,10 +26,16 @@ namespace VocaloidTCG.BoardUI
                 harmonize = c.data.harmonize, soloist = c.data.soloist, protection = c.data.protectedInfluence
             };
             k.Include(c.gainedKeywords);
+            k.Include(c.roundKeywords);
             if(c.shieldActive) k.protection=Math.Max(k.protection,c.protectionValue);
             k.Include(new PerformerKeywords { stageShare=c.inheritedStageShare, encore=c.inheritedEncore || c.grantedEncore,
                 nimble=c.inheritedNimble, harmonize=c.inheritedHarmonize, soloist=c.inheritedSoloist });
             if(shared) k.Include(c.sharedKeywords);
+            var removed=c.suppressedKeywords;
+            if(removed.stageShare) k.stageShare=false; if(removed.encore) k.encore=false;
+            if(removed.nimble) k.nimble=false; if(removed.regen) k.regen=false;
+            if(removed.harmonize>0) k.harmonize=0; if(removed.soloist>0) k.soloist=0;
+            if(removed.protection>0) k.protection=0;
             return k;
         }
 

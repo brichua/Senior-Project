@@ -7,7 +7,7 @@ namespace VocaloidTCG.BoardUI
     public enum RoundPhase { Mulligan, Preparation, Performance, Finished, EndRound }
     public enum BoardActionKind { PlayCard, MovePerformer, ChooseEffect, FinishEffect, ActivateEffect }
 
-    public enum EffectChoice { None, Ally, Enemy, AdjacentAlly, TokenTile, MoveAlly, MoveTile, OccupiedTile, HandDiscard, HandPerformer, DeckPerformer, DiscardPerformer, SacrificeAlly, RinEnemy, StrongDeckPerformer, Extended }
+    public enum EffectChoice { None, Ally, Enemy, AdjacentAlly, TokenTile, MoveAlly, MoveTile, OccupiedTile, HandDiscard, HandPerformer, DeckPerformer, DiscardPerformer, SacrificeAlly, RinEnemy, StrongDeckPerformer, Extended, Duet }
 
     [Serializable] public sealed class PendingCardEffect {
         public int actor, sourceTile, amount, remaining, stage;
@@ -20,6 +20,8 @@ namespace VocaloidTCG.BoardUI
         public List<int> tiles = new List<int>();
         public List<CardState> cards = new List<CardState>();
         public List<string> eligibleIds = new List<string>();
+        public List<CardState> options = new List<CardState>();
+        public PerformerKeywords keyword;
     }
 
     [Serializable] public sealed class DelayedStageToken {
@@ -48,6 +50,11 @@ namespace VocaloidTCG.BoardUI
         public bool inheritedStageShare, inheritedEncore, inheritedNimble;
         public string sharedTargetId;
         public string effectProgress;
+        public PerformerKeywords roundKeywords, suppressedKeywords;
+        public int triggerRound = -1, silenceRound = -1;
+        public List<int> visitedColumns = new List<int>();
+        public string linkedTokenId;
+        public List<string> keywordAuraSources = new List<string>();
     }
 
     [Serializable]
@@ -68,6 +75,8 @@ namespace VocaloidTCG.BoardUI
         public List<int> nextPerformerColumns = new List<int>();
         public int alliesLeftThisRound, alliesLeftLastRound, nextPerformerInfluence;
         public bool leaveDiscardScoreVenue;
+        public int contestedWinBonus, contestedWinUsedRound = -1;
+        public int observedScore;
         public List<CardState> venueEffects = new List<CardState>();
     }
 
@@ -86,6 +95,7 @@ namespace VocaloidTCG.BoardUI
         public PendingCardEffect pendingEffect;
         public List<PendingCardEffect> queuedEffects = new List<PendingCardEffect>();
         public List<DelayedStageToken> delayedTokens = new List<DelayedStageToken>();
+        public List<TileWinReward> tileWinRewards = new List<TileWinReward>();
         public List<CardState> revealedCards = new List<CardState>();
         public string revealMessage;
         public int[] roundTileBonus0 = new int[25], roundTileBonus1 = new int[25];
@@ -93,14 +103,22 @@ namespace VocaloidTCG.BoardUI
         public SideState Side(int id) { return id == 0 ? side0 : side1; }
     }
 
+    [Serializable] public sealed class TileWinReward {
+        public int actor, tile, score, draws;
+        public bool contestedOnly;
+        public string performerId;
+    }
+
     [Serializable]
     public struct BoardAction{
         public BoardActionKind kind;
         public string cardInstanceId;
+        public string targetInstanceId;
         public int fromColumn, fromRow;
         public int toColumn, toRow;
-        public BoardAction(BoardActionKind kind, string id, int fromColumn, int fromRow, int toColumn, int toRow){
+        public BoardAction(BoardActionKind kind, string id, int fromColumn, int fromRow, int toColumn, int toRow, string targetInstanceId = null){
             this.kind = kind; cardInstanceId = id;
+            this.targetInstanceId = targetInstanceId;
             this.fromColumn = fromColumn; this.fromRow = fromRow;
             this.toColumn = toColumn; this.toRow = toRow;
         }

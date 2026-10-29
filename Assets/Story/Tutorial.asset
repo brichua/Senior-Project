@@ -14,6 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.StoryData
   id: story-tutorial
   tutorial: 1
+  tutorialMessagePrefab: {fileID: 4169471783399215178, guid: 9a7e27d942198db49b51fb1107322d09, type: 3}
+  tutorialExpressions:
+  - {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
+  - {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
+  - {fileID: 1414087313690171253, guid: bd2e8b9a35e8b5740a210eeda43ff22c, type: 3}
   storyClass: 0
   header: Tutorial
   playerStarterDeck: {fileID: 11400000, guid: e18f2953280683638d63d0909bf206da, type: 2}
@@ -22,8 +27,35 @@ MonoBehaviour:
   epilogue:
     lines: []
   auditions:
+  - opponent: 3
+    deckDescription: Kaito moves performers around the stage and rewards allies for
+      spreading across columns.
+    location: 
+    auditionText: 
+    firstClearReward: {fileID: 0}
+    easyDeck: {fileID: 11400000, guid: e3b30fb588f79c49aed6fc243283b8b7, type: 2}
+    mediumDeck: {fileID: 11400000, guid: ed6cee514bf29a43372c939ab3da0f18, type: 2}
+    hardDeck: {fileID: 11400000, guid: f63d3f6c9481491c655759b698f5b58a, type: 2}
+    before:
+      lines: []
+    after:
+      lines: []
+  - opponent: 5
+    deckDescription: Luka contests Center Stage and builds audience score to unlock
+      discounts and stronger buffs.
+    location: 
+    auditionText: 
+    firstClearReward: {fileID: 0}
+    easyDeck: {fileID: 11400000, guid: ceb93133aa9561c6a872dab0cfa2c39e, type: 2}
+    mediumDeck: {fileID: 11400000, guid: f4b2837e43d5e0cbd469618d517077ef, type: 2}
+    hardDeck: {fileID: 11400000, guid: f1256f254a989b509dcc07792658e523, type: 2}
+    before:
+      lines: []
+    after:
+      lines: []
   - opponent: 1
-    deckDescription: "Len weakens and removes opposing performers to control Center Stage."
+    deckDescription: Len weakens and removes opposing performers to control Center
+      Stage.
     location: 
     auditionText: 
     firstClearReward: {fileID: 0}
@@ -35,7 +67,8 @@ MonoBehaviour:
     after:
       lines: []
   - opponent: 2
-    deckDescription: "Rin creates tokens and turns discards and performers leaving the stage into bonuses."
+    deckDescription: Rin creates tokens and turns discards and performers leaving
+      the stage into bonuses.
     location: 
     auditionText: 
     firstClearReward: {fileID: 0}
@@ -46,38 +79,15 @@ MonoBehaviour:
       lines: []
     after:
       lines: []
-  - opponent: 3
-    deckDescription: "Kaito moves performers around the stage and rewards allies for spreading across columns."
-    location: 
-    auditionText: 
-    firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 11400000, guid: e3b30fb588f79c49aed6fc243283b8b7, type: 2}
-    mediumDeck: {fileID: 11400000, guid: ed6cee514bf29a43372c939ab3da0f18, type: 2}
-    hardDeck: {fileID: 11400000, guid: f63d3f6c9481491c655759b698f5b58a, type: 2}
-    before:
-      lines: []
-    after:
-      lines: []
   - opponent: 4
-    deckDescription: "Meiko creates new cards and shares keywords to strengthen her performers."
+    deckDescription: Meiko creates new cards and shares keywords to strengthen her
+      performers.
     location: 
     auditionText: 
     firstClearReward: {fileID: 0}
     easyDeck: {fileID: 11400000, guid: 066951dfb2fabf738bf0d86706f3ce72, type: 2}
     mediumDeck: {fileID: 11400000, guid: 667cedfedc6bc5f803e6556c38c79a7f, type: 2}
     hardDeck: {fileID: 11400000, guid: 25f74ba3e4be98bdaac0713570db66b4, type: 2}
-    before:
-      lines: []
-    after:
-      lines: []
-  - opponent: 5
-    deckDescription: "Luka contests Center Stage and builds audience score to unlock discounts and stronger buffs."
-    location: 
-    auditionText: 
-    firstClearReward: {fileID: 0}
-    easyDeck: {fileID: 11400000, guid: ceb93133aa9561c6a872dab0cfa2c39e, type: 2}
-    mediumDeck: {fileID: 11400000, guid: f4b2837e43d5e0cbd469618d517077ef, type: 2}
-    hardDeck: {fileID: 11400000, guid: f1256f254a989b509dcc07792658e523, type: 2}
     before:
       lines: []
     after:

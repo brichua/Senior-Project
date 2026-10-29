@@ -7,7 +7,7 @@ namespace VocaloidTCG.BoardUI
 {
     [RequireComponent(typeof(CanvasGroup))]
     public sealed class CardPointer : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler,
-        IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler
+        IPointerExitHandler, IBeginDragHandler, IDragHandler, IEndDragHandler, IDropHandler
     {
         public Image art;
         public Image influencePopup;
@@ -172,6 +172,11 @@ namespace VocaloidTCG.BoardUI
         public void OnEndDrag(PointerEventData e)
         {
             if (dragging) board.CancelDrag();
+        }
+
+        public void OnDrop(PointerEventData e){
+            if(!inHand && board && e.button==PointerEventData.InputButton.Left)
+                board.Drop(column,row,card);
         }
 
         public void Restore()

@@ -38,6 +38,8 @@ namespace VocaloidTCG
         public string mainMenuScene = "Main Menu";
         private DeckLibrary library;
         private bool favoritesOnly;
+        private string previewDeckId;
+        private DeckRecord PreviewedDeck => library?.Decks.FirstOrDefault(d => d.id == previewDeckId);
         private readonly List<DeckTileView> tiles = new List<DeckTileView>();
         private readonly List<DeckCardIconView> cards = new List<DeckCardIconView>();
         private Color defaultVIPTextColor;
@@ -58,7 +60,7 @@ namespace VocaloidTCG
             if(allDecks) allDecks.onClick.AddListener(() => { favoritesOnly = false; Refresh(); if(sfx) sfx.PlayButtonClick1(); });
             if(favorites) favorites.onClick.AddListener(() => { favoritesOnly = true; Refresh(); if (sfx) sfx.PlayButtonClick1(); });
             if(newDeck) newDeck.onClick.AddListener(() => { if(editor) editor.OpenNew(); if (sfx) sfx.PlayButtonClick1(); });
-            if(editDeck) editDeck.onClick.AddListener(() => { if(editor && library.Selected != null) editor.Open(library.Selected); if (sfx) sfx.PlayButtonClick1(); });
+            if(editDeck) editDeck.onClick.AddListener(() => { var deck = PreviewedDeck; if(editor && deck != null) editor.Open(deck); if (sfx) sfx.PlayButtonClick1(); });
             if(deleteDeck) deleteDeck.onClick.AddListener(Delete);
             if (back) back.onClick.AddListener(BackButton);
         }
@@ -85,12 +87,16 @@ namespace VocaloidTCG
             string error; library.Select(id, out error); StatusTextFade.Show(status, error);
             if (sfx) sfx.PlayButtonClick1();
         }
+        private void Inspect(string id){
+            previewDeckId = id; Refresh();
+            if(sfx) sfx.PlayButtonClick1();
+        }
         
         private void Favorite(string id){
             string error; library.Favorite(id, out error); StatusTextFade.Show(status, error);
             var deck = library.Decks.FirstOrDefault(d => d.id == id);
 
-            if (sfx) { 
+            if (sfx && deck != null) {
                 if (deck.favorite)
                     sfx.PlayFavDeckSound();
                 else
@@ -100,7 +106,8 @@ namespace VocaloidTCG
         }
         
         private void Delete(){
-            if(library.Selected == null) return; string error; library.Delete(library.Selected.id, out error); StatusTextFade.Show(status, error); 
+            var deck = PreviewedDeck;
+            if(deck == null) return; string error; library.Delete(deck.id, out error); StatusTextFade.Show(status, error);
             if (sfx) sfx.PlayButtonClick2();
         }
        
@@ -145,7 +152,7 @@ namespace VocaloidTCG
                 SetDeckActionsVisible(false); RenderVIPBorder(null); return;
             }
 
-            var decks = library.Decks; var selected = library.Selected;
+            var decks = library.Decks; var selected = PreviewedDeck; var defaultDeck = library.Selected;
             DeckUI.Text(allCount, decks.Count.ToString()); DeckUI.Text(favoritesCount, decks.Count(d => d.favorite).ToString());
 
             if(allDecks) DeckUI.Image(allDecks.image, favoritesOnly ? allDecksNormal : allDecksSelected);
@@ -165,7 +172,7 @@ namespace VocaloidTCG
             tiles.Clear();
             if(deckPrefab && gridRoot) foreach(var deck in decks.Where(d => !favoritesOnly || d.favorite)){
                 var tile = Instantiate(deckPrefab, gridRoot); tile.gameObject.SetActive(true);
-                tile.Bind(deck, catalog, selected != null && selected.id == deck.id, () => Choose(deck.id), () => Favorite(deck.id)); tiles.Add(tile);
+                tile.Bind(deck, catalog, defaultDeck != null && defaultDeck.id == deck.id, () => Choose(deck.id), () => Favorite(deck.id), () => Inspect(deck.id)); tiles.Add(tile);
             }
 
             if(newDeck) newDeck.transform.SetAsLastSibling();

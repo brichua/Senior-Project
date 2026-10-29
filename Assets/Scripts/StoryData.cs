@@ -52,6 +52,10 @@ namespace VocaloidTCG
         [Tooltip("Permanent save key. Do not change after releasing a story.")]
         public string id;
         public bool tutorial;
+        [Header("Tutorial presentation")]
+        public GameObject tutorialMessagePrefab;
+        [Tooltip("Miku expressions: neutral, happy, concerned. Missing entries use her class avatar.")]
+        public Sprite[] tutorialExpressions = new Sprite[3];
         public CharacterClass storyClass;
         public string header;
         [Tooltip("Optional starting deck provided when the player has no usable deck for this route.")]
@@ -63,7 +67,10 @@ namespace VocaloidTCG
         public StoryAudition Audition(CharacterClass opponent) => auditions?.Find(a => a != null && a.opponent == opponent);
 
         public bool HasPlayableContent(DeckCatalog catalog){
-            if(!catalog || !Validate(out _) || !HasLines(prologue) || !HasLines(epilogue)) return false;
+            if(!catalog || !Validate(out _)) return false;
+            if(tutorial) return playerStarterDeck && catalog.Class(CharacterClass.HatsuneMiku) &&
+                Enumerable.Range(0, 5).SelectMany(TutorialDirector.RequiredCards).All(name => catalog.cards.Any(c => c && c.cardName == name));
+            if(!HasLines(prologue) || !HasLines(epilogue)) return false;
             foreach(var audition in auditions){
                 if(string.IsNullOrWhiteSpace(audition.location) || string.IsNullOrWhiteSpace(audition.deckDescription) ||
                     string.IsNullOrWhiteSpace(audition.auditionText) || !HasLines(audition.before) || !HasLines(audition.after) ||
@@ -114,6 +121,13 @@ namespace VocaloidTCG
         public void ValidateContent(DeckCatalog catalog){
             var issues = new List<string>();
             if(!Validate(out var error)) issues.Add(error);
+            if(tutorial){
+                StoryDiagnostics.Require(issues, (nameof(playerStarterDeck), playerStarterDeck),
+                    (nameof(tutorialMessagePrefab), tutorialMessagePrefab));
+                if(catalog && !HasPlayableContent(catalog)) issues.Add("Tutorial cards or Miku starter are missing from the catalog.");
+                StoryDiagnostics.Report(this, issues);
+                return;
+            }
             StoryDiagnostics.Text(issues, nameof(header), header);
             StoryDiagnostics.Dialogue(issues, prologue, nameof(prologue));
             StoryDiagnostics.Dialogue(issues, epilogue, nameof(epilogue));
@@ -130,3 +144,4 @@ namespace VocaloidTCG
         }
     }
 }
+

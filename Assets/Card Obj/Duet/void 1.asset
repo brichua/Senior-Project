@@ -16,27 +16,30 @@ MonoBehaviour:
   id: b5505428e426eec4f8c562af1fb8880b
   cardClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   vip: 0
-  info: nimble, when this performer moves, you may move a 1 inf token you control
-    into its previous tile. When this leaves the stage, give that token +1 inf
+  info: 'Nimble.
+
+    Whenever this moves, you may move a 1-influence token you control
+    into its previous tile. When this leaves the stage, give the last token moved
+    this way +1 influence.'
   performer: 1
   stageEffect: 0
   cost: 2
   influence: 2
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 131
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
   stageShare: 0
   encore: 0
-  nimble: 0
+  nimble: 1
   cheerEffect: 0
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: 3797069580137803858, guid: 003d41f91ed19a0458edf36168ce3d4b, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: -1330443146153028195, guid: dcf79095997e7bf4aada373d3e1870e9, type: 3}
+  cardImage: {fileID: 1213832791910556223, guid: 63fea2ffa8e43a74faef31e6f08cde17, type: 3}
+  characterImage: {fileID: 704286116325924177, guid: 0ef1949a9f7f6984e9e8916de55bf8d1, type: 3}
+  iconImage: {fileID: 496628417500522269, guid: 39adde43680ada340bb42fbfe15ef6ad, type: 3}
   popupImage: {fileID: -2014337633463164255, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: ed0aceafd2a41aa44aad062cfc3c5e71, type: 3}

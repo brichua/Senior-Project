@@ -16,27 +16,29 @@ MonoBehaviour:
   id: ae843449459f31b43b550d1b6e052426
   cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   vip: 0
-  info: encore, when this leaves the stage while on a contested tile, create a 1
-    inf token on its tile
+  info: 'Encore.
+
+    When this leaves the stage from a contested tile, create a
+    1-influence token on that tile.'
   performer: 1
   stageEffect: 0
   cost: 3
   influence: 3
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 103
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
   stageShare: 0
-  encore: 0
+  encore: 1
   nimble: 0
   cheerEffect: 0
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: 3338954485453571720, guid: e5977cf034fd8244fae56853a3f41b0c, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: -882547721380952038, guid: 3f34f124c9b63e540ab5f57dd5eab1ab, type: 3}
+  cardImage: {fileID: 5468732555002783555, guid: 4cea8e79e9e69f34eaf6f7e74878d492, type: 3}
+  characterImage: {fileID: 7830766007547369891, guid: 6f5589f2472ee9e429b38ce1735c7d73, type: 3}
+  iconImage: {fileID: -8600306227328460058, guid: 2a72f5e6df29a6c4281aea1fc6c93e06, type: 3}
   popupImage: {fileID: -8004225029083858605, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: f0220f72772c77f4b9d7cf230a049d94, type: 3}

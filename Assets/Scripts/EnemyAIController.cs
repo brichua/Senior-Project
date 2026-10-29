@@ -49,11 +49,15 @@ namespace VocaloidTCG.BoardUI
 
         protected virtual void Update()
         {
-            if (!game || game.IsPuzzle || !game.isActiveAndEnabled || game.IsPaused || game.DrawAnimationPlaying || game.PhaseAnimationPlaying) return;
+            if (!game || game.IsPuzzle || !game.TutorialFreePlay || !game.isActiveAndEnabled || game.IsPaused || game.DrawAnimationPlaying || game.PhaseAnimationPlaying) return;
             var state = game.Snapshot;
-            if (state == null || state.multiplayer || !state.inputAllowed ||
-                state.activePlayerId == state.localPlayerId ||
-                (state.phase != RoundPhase.Preparation && state.phase != RoundPhase.Performance)) return;
+            if (state == null || state.multiplayer) return;
+            // Departure effects can ask the enemy to choose during the player's
+            // turn or scoring. Resolve the choice before checking ordinary turns.
+            int actor = state.pendingEffect != null ? state.pendingEffect.actor : state.activePlayerId;
+            if (actor == state.localPlayerId) return;
+            if (state.pendingEffect == null && (!state.inputAllowed ||
+                (state.phase != RoundPhase.Preparation && state.phase != RoundPhase.Performance))) return;
 
             if (observedTurn != game.TurnNumber)
             {
@@ -65,6 +69,10 @@ namespace VocaloidTCG.BoardUI
             wait = Mathf.Max(0.1f, actionDelay);
 
             int actor = state.activePlayerId;
+            // The final tutorial uses a legal easy deck, but makes only one play per turn.
+            // Finish any resulting choices before ending the turn.
+            if(game.IsTutorial && game.TutorialLesson == 4 && state.pendingEffect == null &&
+                game.TutorialEnemyHasActed){ game.TryPassFor(actor); return; }
             BoardAction action;
             EnemyActionEvaluation evaluation;
             if (TryChooseAction(actor, out action, out evaluation))
@@ -105,7 +113,7 @@ namespace VocaloidTCG.BoardUI
                     var tile = state.tiles[y * 5 + x];
                     var friendly = actor == 0 ? tile.side0 : tile.side1;
                     var opponent = actor == 0 ? tile.side1 : tile.side0;
-                    if (card.data.stageEffect)
+                    if (card.data.stageEffect && !card.token)
                     {
                         int benefit = EnemyCardPolicy.SpellBenefit(state, actor, card, y * 5 + x);
                         var spell = new EnemyActionEvaluation(benefit - 2 * card.currentCost - 2,
@@ -139,7 +147,8 @@ namespace VocaloidTCG.BoardUI
                     var ability = new BoardAction(BoardActionKind.ActivateEffect, unit.instanceId, x, y, x, y);
                     string reason;
                     if (game.CanSubmitFor(actor, ability, out reason))
-                        Consider(ability, new EnemyActionEvaluation(EnemyCardPolicy.AbilityBenefit(state, actor, unit),
+                        Consider(ability, new EnemyActionEvaluation(unit.data.effect == CardEffect.ColumnMoveAbility ?
+                            ColumnAbilityBenefit(state, actor) : EnemyCardPolicy.AbilityBenefit(state, actor, unit),
                             unit.data.effect + " activated ability"), ref found, ref best, ref bestEvaluation);
                 }
 
@@ -166,11 +175,34 @@ namespace VocaloidTCG.BoardUI
                 string reason;
                 if (!game.CanSubmitFor(actor, candidate, out reason)) continue;
                 int score = EnemyCardPolicy.ChoiceValue(game.Snapshot, pending, candidate);
+                if (pending.choice == EffectChoice.Extended && pending.effect == CardEffect.ColumnMoveAbility)
+                {
+                    var unit = pending.cards.FirstOrDefault(c => c.instanceId == candidate.cardInstanceId);
+                    if (unit != null)
+                    {
+                        visitedTiles.TryGetValue(unit.instanceId, out var visited);
+                        score = EnemyCardPolicy.ColumnMoveBenefit(game.Snapshot, actor, unit, visited);
+                    }
+                    else if (pending.selected != null && visitedTiles.TryGetValue(pending.selected.instanceId, out var visited) &&
+                        visited.Contains(candidate.toRow * 5 + candidate.toColumn)) score = -10000;
+                }
                 Consider(candidate, new EnemyActionEvaluation(score, pending.effect + " / " + pending.choice + " target value " + score),
                     ref found, ref best, ref evaluation);
             }
             // Mandatory effects must finish even when every option is unfavorable.
             return found;
+        }
+
+        private int ColumnAbilityBenefit(BoardSnapshot state, int actor)
+        {
+            int best = 0;
+            foreach (var unit in state.tiles.SelectMany(tile => actor == 0 ?
+                new[] { tile.side0, tile.assist0 } : new[] { tile.side1, tile.assist1 }).Where(c => c != null))
+            {
+                visitedTiles.TryGetValue(unit.instanceId, out var visited);
+                best = Mathf.Max(best, EnemyCardPolicy.ColumnMoveBenefit(state, actor, unit, visited));
+            }
+            return best;
         }
 
         private void ConsiderMove(int actor, CardState card, int fromX, int fromY, int toX,

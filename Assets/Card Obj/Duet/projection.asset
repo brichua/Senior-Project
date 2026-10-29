@@ -16,15 +16,15 @@ MonoBehaviour:
   id: a93b4abb8c7e93f48be77cf8a70f6cd6
   cardClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   vip: 0
-  info: "when this moves into a different column, give an enemy in that column -1
-    inf this round. While on the opponent\u2019s side, this gets +1 inf"
+  info: When this moves into a different column, give an enemy in that column -1
+    influence this round. While on the opponent's side, this has +1 influence.
   performer: 1
   stageEffect: 0
   cost: 3
   influence: 2
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 125
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
@@ -35,8 +35,8 @@ MonoBehaviour:
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: 6018689628390739698, guid: d0b7e99ec510f8e4e83d0a4fbe7312a8, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: -2843920855794017091, guid: 0cdb2a7804db06d4da4667890f687144, type: 3}
+  cardImage: {fileID: -7640220169004696251, guid: 50eaecfaafe5dee4999ec683c54723c8, type: 3}
+  characterImage: {fileID: 1345043291680764061, guid: b49454efbd358f648956a53e9fa56113, type: 3}
+  iconImage: {fileID: -4671052668530183128, guid: 303c9772ce2001c40bd6efb453b1cc65, type: 3}
   popupImage: {fileID: 7677845770918009091, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 63c2b2d1fa2101e4db02dc152b798870, type: 3}

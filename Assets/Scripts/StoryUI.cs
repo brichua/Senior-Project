@@ -103,7 +103,8 @@ namespace VocaloidTCG
                 {
                     selectedDeckId = StorySession.DeckId; chosenDifficulty = StorySession.Difficulty;
                     SelectStory(StorySession.Story);
-                    SelectAudition(StorySession.Opponent);
+                    if(selected.tutorial) ShowMap();
+                    else SelectAudition(StorySession.Opponent);
                     bool playAfter = StorySession.PlayAfterBattle;
                     StorySession.PlayAfterBattle = false;
                     if (playAfter && audition != null && library.IsAuditionCompleted(selected, audition.opponent))
@@ -337,14 +338,20 @@ namespace VocaloidTCG
             if (!selected) return;
             Panels(mapPanel); Clear(mapViews);
 
-            foreach (var pin in locationPins ?? new LocationPin[0])
-                if (pin != null && pin.button) pin.button.gameObject.SetActive(pin.characterClass != selected.Class);
-            foreach (var other in selected.auditions)
-            {
+            foreach(var pin in locationPins ?? new LocationPin[0])
+                if(pin != null && pin.button){
+                    bool unlocked = library.IsAuditionUnlocked(selected, pin.characterClass);
+                    pin.button.gameObject.SetActive(pin.characterClass != selected.Class && (!selected.tutorial || unlocked));
+                    pin.button.interactable = unlocked;
+                }
+            foreach(var other in selected.auditions){
                 var view = Spawn(mapPrefab, mapRoot, mapViews);
-                if (!view) continue;
-                view.Bind(() => SelectAudition(other.opponent)); view.SetClass(library.Catalog.Class(other.opponent), rival: true);
+                if(!view) continue;
+                bool unlocked = library.IsAuditionUnlocked(selected, other.opponent);
+                view.Bind(() => SelectAudition(other.opponent), unlocked); view.SetClass(library.Catalog.Class(other.opponent), rival: true);
+                if(selected.tutorial) DeckUI.Text(view.title, TutorialDirector.LessonTitle(selected.auditions.IndexOf(other)));
                 view.SetProgress(library.IsAuditionCompleted(selected, other.opponent) ? 1 : 0, 1);
+                view.gameObject.SetActive(!selected.tutorial || unlocked);
             }
             auditionSelectSoundPlayed = false;
             Progress(mapCount, mapSlider, library.StoryClearCount(selected));
@@ -358,11 +365,11 @@ namespace VocaloidTCG
             Active(epilogueLocked, !completed);
         }
 
-        private void BeginStory()
-        {
-            if (!selected) return;
-            if (!library.EnsureStoryDeck(selected, out var starterId, out var starterError)) { Report(starterError); return; }
-            if (!library.Decks.Any(d => d.id == selectedDeckId && d.classes.Contains(selected.Class) &&
+        private void BeginStory(){
+            if(!selected) return;
+            if(selected.tutorial){ ShowMap(); return; }
+            if (!library.EnsureStoryDeck(selected, out var starterId, out var starterError)){ Report(starterError); return; }
+            if(!library.Decks.Any(d => d.id == selectedDeckId && d.classes.Contains(selected.Class) &&
                 DeckRules.Validate(d, library.Catalog, library.Owned, out _))) selectedDeckId = starterId;
             if (library.HasViewedStoryDialogue(selected, false) || !HasDialogue(selected.prologue)) { ShowMap(); return; }
             PlayDialogue(selected.prologue, false, () =>
@@ -385,16 +392,15 @@ namespace VocaloidTCG
         private static bool HasDialogue(StoryDialogue script) => script?.lines != null &&
             script.lines.Any(entry => entry != null && !string.IsNullOrWhiteSpace(entry.text));
 
-        public void SelectAudition(CharacterClass opponent)
-        {
-            if (!selected || !CanPlay(selected)) return;
-            audition = selected.Audition(opponent); if (audition == null)
-            {
+        public void SelectAudition(CharacterClass opponent){
+            if(!selected || !CanPlay(selected)) return;
+            if(!library.IsAuditionUnlocked(selected, opponent)) { Report("Complete the previous tutorial lesson first."); return; }
+            audition = selected.Audition(opponent); if(audition == null){
                 ShowMap();
                 return;
             }
-            if (sfx && auditionSelectSoundPlayed == false) { sfx.PlayClassSelectSound(); auditionSelectSoundPlayed = true; }
-            ;
+            if(selected.tutorial){ LaunchTutorial(); return; }
+            if (sfx && auditionSelectSoundPlayed == false) { sfx.PlayClassSelectSound(); auditionSelectSoundPlayed = true; };
             Panels(auditionPanel);
             var data = library.Catalog.Class(opponent);
             var storyClass = library.Catalog.Class(selected.Class);
@@ -405,6 +411,11 @@ namespace VocaloidTCG
             DeckUI.Text(deckDescription, audition.deckDescription); DeckUI.Text(location, audition.location);
             DeckUI.Text(auditionText, audition.auditionText);
             DeckUI.Text(rewardName, audition.firstClearReward ? audition.firstClearReward.cardName : "Reward not assigned");
+            if(rewardName){
+                var rewardClass = audition.firstClearReward ? audition.firstClearReward.cardClass : null;
+                rewardName.color = rewardClass ? rewardClass.color : Color.white;
+                rewardName.enableVertexGradient = false;
+            }
             DeckUI.Image(rewardArt, audition.firstClearReward ?
                 (audition.firstClearReward.iconImage ? audition.firstClearReward.iconImage : audition.firstClearReward.cardImage) : null);
             bool cleared = library.IsAuditionCompleted(selected, opponent);
@@ -521,9 +532,9 @@ namespace VocaloidTCG
             Remember(); StorySession.EditingDeck = true; SceneManager.LoadScene(deckScene);
         }
 
-        public void StartAudition()
-        {
-            if (!selected || audition == null || !CanPlay(selected)) return;
+        public void StartAudition(){
+            if(!selected || audition == null || !CanPlay(selected)) return;
+            if(selected.tutorial){ LaunchTutorial(); return; }
             var deck = library.Decks.FirstOrDefault(d => d.id == selectedDeckId);
             if (deck == null || !deck.classes.Contains(selected.Class))
             {
@@ -565,11 +576,23 @@ namespace VocaloidTCG
             else launch();
         }
 
-        public void BackToMain()
-        {
-            if (SceneAvailable(mainScene))
-            {
-                StartCoroutine(BackToMainCoroutine());
+        private void LaunchTutorial(){
+            if(audition == null || !library.IsAuditionUnlocked(selected, audition.opponent) || !SceneAvailable(gameScene)) return;
+            // Loan the Miku starter directly; tutorials never require an owned or selected deck.
+            if(!selected.playerStarterDeck){ Report("Assign the tutorial's Miku starter deck."); return; }
+            Remember(); PuzzleLaunch.Clear();
+            StorySession.PlayerDeck = selected.playerStarterDeck.CreateRecord();
+            StorySession.EnemyDeck = audition.easyDeck;
+            StorySession.Catalog = library.Catalog;
+            StorySession.PendingBattle = true; StorySession.PlayAfterBattle = false;
+            SceneManager.LoadScene(gameScene);
+        }
+
+        public void BackToMain(){
+            if(SceneAvailable(mainScene)){
+                if (sfx) sfx.PlayButtonClick2();
+                StorySession.Clear();
+                SceneManager.LoadScene(mainScene);
             }
         }
         private IEnumerator BackToMainCoroutine()
@@ -585,3 +608,4 @@ namespace VocaloidTCG
         }
     }
 }
+

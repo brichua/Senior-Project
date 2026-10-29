@@ -16,27 +16,29 @@ MonoBehaviour:
   id: 0d28d46c05f34dc42a2f4d71bc30cc0a
   cardClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
   vip: 0
-  info: nimble, the first time this moves each round, gain a random keyword until
-    the end of the round
+  info: 'Nimble.
+
+    The first time this moves each round, gain a random keyword
+    until the end of the round.'
   performer: 1
   stageEffect: 0
   cost: 3
   influence: 3
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 132
   scoreThreshold: 0
   harmonize: 0
   soloist: 0
   stageShare: 0
   encore: 0
-  nimble: 0
+  nimble: 1
   cheerEffect: 0
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: 1451053323733823689, guid: 10f23ff4fd90ad14f94c1fa4cfb56ee0, type: 3}
-  characterImage: {fileID: 0}
-  iconImage: {fileID: 7290829106065472565, guid: 068ab80676fbbe348a1812cee8766246, type: 3}
+  cardImage: {fileID: -1229277323043307016, guid: 26045ca8ac8e9cf4f84154c2dba8b78e, type: 3}
+  characterImage: {fileID: -3172372950929623226, guid: d31808395f3e35541b9c833d7bdfbf29, type: 3}
+  iconImage: {fileID: -2085059582808641171, guid: dda7ec01de8514247941bcc65c75915c, type: 3}
   popupImage: {fileID: -469258639255709176, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: 682795b77894b8048962b6fbd2fbe8ff, type: 3}

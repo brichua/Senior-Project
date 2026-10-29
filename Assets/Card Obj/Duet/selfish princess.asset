@@ -16,15 +16,14 @@ MonoBehaviour:
   id: 2415ba62a4da37c4eb71ab9ea7a90831
   cardClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   vip: 0
-  info: discard a minion, create a random minion of the same cost in your hand. Then
-    create a 1 inf token on an available tile
+  info: "Discard a performer from your hand. Create a random performer of the same original cost in your hand, then create a 1-influence token on an available legal tile."
   performer: 0
   stageEffect: 1
   cost: 3
   influence: 0
   flags: []
   stageInfluenceChange: 1
-  effect: 0
+  effect: 127
   scoreThreshold: 0
   harmonize: 0
   soloist: 0

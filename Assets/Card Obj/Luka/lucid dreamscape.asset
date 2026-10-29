@@ -16,21 +16,23 @@ MonoBehaviour:
   id: 75e5740f250f9b847aa9371ba5faf55b
   cardClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   vip: 1
-  info: encore, harmonize 1, whenever this wins a contested tile in the middle zone,
-    gain 1 additional fan score, once per round, when you gain fan score, restore
-    1 inf to this performer
+  info: 'Encore. Harmonize 1.
+
+    Whenever this wins a contested tile in Center
+    Stage, gain 1 additional AS. Once per round, when you gain AS, restore 1 influence
+    to this performer, up to its original influence.'
   performer: 1
   stageEffect: 0
   cost: 4
   influence: 5
   flags: []
   stageInfluenceChange: 1
-  effect: 51
+  effect: 138
   scoreThreshold: 0
-  harmonize: 0
+  harmonize: 1
   soloist: 0
   stageShare: 0
-  encore: 0
+  encore: 1
   nimble: 0
   cheerEffect: 0
   venueEffect: 0

@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18d75c0d85338724ca61f930e6603d18, type: 3}
+  m_Name: Puzzle (Luka_Len)
+  m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
+  id: 7bf142c2b01201845be1cf348a9c6a0b
+  number: 2
+  puzzleName: Puzzle (Luka_Len)
+  shortDescription: luka vs len
+  longDescription: 
+  puzzleClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
+  againstClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
+  rewardCard: {fileID: 11400000, guid: 77cf392e8b795b0408c55d3c59d6d1b5, type: 2}
+  boardSetup: {fileID: 11400000, guid: a4a2f3fbc3787fb48af0f5c0102d9d9f, type: 2}
+  player:
+    energy: 8
+    score: 0
+    startingHand:
+    - {fileID: 11400000, guid: 9c4fbec4ad49cd849a5ee0274d91d301, type: 2}
+    - {fileID: 11400000, guid: 87d2026cf21132d47ae26b0afacc5fab, type: 2}
+    - {fileID: 11400000, guid: 369154a20cb01ba4598168ba42708da5, type: 2}
+    - {fileID: 11400000, guid: 92247ec2d6d602e45b2fb4ad0491dbab, type: 2}
+    - {fileID: 11400000, guid: eef2c099c8d40a446a5a93090ff2c29b, type: 2}
+    cardsOnTurns:
+    - turn: 2
+      cards:
+      - {fileID: 11400000, guid: 83e8cea1e8608bb45b9f387e080efd37, type: 2}
+  enemy:
+    energy: 8
+    score: 0
+    startingHand:
+    - {fileID: 11400000, guid: 8287bf7f839a1274abe989f816e17202, type: 2}
+    - {fileID: 11400000, guid: 840a8011cb920614193627793316de04, type: 2}
+    - {fileID: 11400000, guid: 0fb44630f3ed1334ea410bd7d9fcbb64, type: 2}
+    - {fileID: 11400000, guid: 09a2b575f38f22040b55b723d5bf4eee, type: 2}
+    - {fileID: 11400000, guid: 8b3db4a3382c3c043acde3018085077c, type: 2}
+    cardsOnTurns: []
+  placements:
+  - card: {fileID: 11400000, guid: fadb42c46f555084d87a9da9085aa8e7, type: 2}
+    enemy: 0
+    column: 2
+    row: 1
+    influence: 3
+  - card: {fileID: 11400000, guid: d687edf23c2cddc478edab69407244bd, type: 2}
+    enemy: 1
+    column: 2
+    row: 2
+    influence: 2
+  enemyTurns:
+  - actions:
+    - kind: 0
+      card: {fileID: 11400000, guid: 8287bf7f839a1274abe989f816e17202, type: 2}
+      fromColumn: 0
+      fromRow: 0
+      toColumn: 2
+      toRow: 2
+  - actions:
+    - kind: 0
+      card: {fileID: 11400000, guid: 840a8011cb920614193627793316de04, type: 2}
+      fromColumn: 0
+      fromRow: 0
+      toColumn: 2
+      toRow: 1
+  - actions:
+    - kind: 0
+      card: {fileID: 11400000, guid: 0fb44630f3ed1334ea410bd7d9fcbb64, type: 2}
+      fromColumn: 0
+      fromRow: 0
+      toColumn: 2
+      toRow: 4
+  enemyStarts: 1
+  startingPhase: 1
+  startingRound: 1
+  objective: 0
+  targetScore: 9
+  roundLimit: 1
+  playerTurnLimit: 6

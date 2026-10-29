@@ -21,7 +21,8 @@ MonoBehaviour:
   stageEffect: 0
   cost: 1
   influence: 1
-  flags: []
+  flags:
+  - support
   stageInfluenceChange: 1
   effect: 73
   scoreThreshold: 0
@@ -34,8 +35,8 @@ MonoBehaviour:
   venueEffect: 0
   regen: 0
   protectedInfluence: 0
-  cardImage: {fileID: 6025122263036835777, guid: ab1629a51492c6c46878139d08dcf200, type: 3}
-  characterImage: {fileID: 4215792470811505543, guid: 8fe782fd5a653624696b560f4cc89939, type: 3}
-  iconImage: {fileID: 0}
+  cardImage: {fileID: -4361882170761317907, guid: f26e79f61fed90846afef04a2039d55a, type: 3}
+  characterImage: {fileID: -6621308381616072065, guid: ef9cc231d36d8a442abb74c9fe610c6f, type: 3}
+  iconImage: {fileID: -7586882267847258659, guid: fd7b0bbd0052b6141ba4b936ba1411db, type: 3}
   popupImage: {fileID: -469258639255709176, guid: a1356f9a4f848814facc7e6a4c9a738a, type: 3}
   playSfx: {fileID: 8300000, guid: a96484c17e05776499a8cae297d0ec73, type: 3}

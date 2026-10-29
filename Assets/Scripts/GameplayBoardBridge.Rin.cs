@@ -31,6 +31,8 @@ namespace VocaloidTCG.BoardUI
 
         private void StageDeparture(CardState card, int tile, bool toDiscard = true){
             if(card == null) return;
+            bool contested=AtTile(tile).Any(c=>c.ownerId!=card.ownerId);
+            DuetDeparture(card,tile,contested);
             var side=state.Side(card.ownerId);
             side.alliesLeftThisRound++;
             if(toDiscard) Discard(card);
@@ -85,7 +87,6 @@ namespace VocaloidTCG.BoardUI
             DrawCards(source.ownerId,2);
             var drawn=state.Side(source.ownerId).hand.Where(c => !before.Contains(c.instanceId)).Select(c => c.instanceId).ToList();
             if(drawn.Count==0) return;
-            // Save the eligible IDs before refreshing choices; only cards that reached the hand qualify.
             state.pendingEffect=new PendingCardEffect { actor=source.ownerId, source=source, effect=source.data.effect,
                 sourceTile=tile,choice=EffectChoice.HandDiscard,remaining=1,eligibleIds=drawn };
             RefreshChoice();
