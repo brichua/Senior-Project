@@ -21,6 +21,7 @@ MonoBehaviour:
     lines:
     - speaker: Narrator
       portrait: {fileID: 0}
+      voiceline: {fileID: 8300000, guid: caacf738306f3f243a0a7b5c1e66e5b9, type: 3}
       text: Rin pins the audition invitation to an amp and starts circling names.
       avatars:
       - slot: 1
@@ -29,6 +30,7 @@ MonoBehaviour:
         sprite: {fileID: 7674018612228396797, guid: 87a8d465a23a180429198277114a8403, type: 3}
     - speaker: Len
       portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
       text: You circled my name twice.
       avatars:
       - slot: 1
@@ -37,6 +39,7 @@ MonoBehaviour:
         sprite: {fileID: 2109474199129327443, guid: 3464634288aedf349aea48de0f10dcdc, type: 3}
     - speaker: Rin
       portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 8300000, guid: 61c1a63a36ae7b8419adada6d302e2f5, type: 3}
       text: Making sure you don't chicken out.
       avatars:
       - slot: 1
@@ -45,6 +48,7 @@ MonoBehaviour:
         sprite: {fileID: 7674018612228396797, guid: 87a8d465a23a180429198277114a8403, type: 3}
     - speaker: Len
       portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
       text: I'm entering. And I'm going to beat you.
       avatars:
       - slot: 1
@@ -53,6 +57,7 @@ MonoBehaviour:
         sprite: {fileID: 8693415673057005869, guid: 9ef075f479c895643b7036e2307c9a93, type: 3}
     - speaker: Rin
       portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
       text: You've been saying that all week.
       avatars:
       - slot: 1
@@ -61,6 +66,7 @@ MonoBehaviour:
         sprite: {fileID: -956189301214819756, guid: 50d2a575c6258d946bf3eab369844e1a, type: 3}
     - speaker: Len
       portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 8300000, guid: f59308f04c385614bb04cd445f366120, type: 3}
       text: Just giving you time to prepare!
       avatars:
       - slot: 1
@@ -71,6 +77,7 @@ MonoBehaviour:
     lines:
     - speaker: Narrator
       portrait: {fileID: 0}
+      voiceline: {fileID: 0}
       text: The final results name Rin as headliner. She folds her marked-up audition
         invitation.
       avatars:
@@ -80,6 +87,7 @@ MonoBehaviour:
         sprite: {fileID: -2011553376209782307, guid: 1e7167ecc61eeb54d9c9e5259c17aed7, type: 3}
     - speaker: Len
       portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 8300000, guid: 86a43a7e0d638924caa41d51130c82c8, type: 3}
       text: You won. Can you stop looking so smug now?
       avatars:
       - slot: 1
@@ -88,6 +96,7 @@ MonoBehaviour:
         sprite: {fileID: -6684565600080182894, guid: 81787a12260dd21419b00634fb644544, type: 3}
     - speaker: Rin
       portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 8300000, guid: 0771560bb671a8e4197205ece7c398d7, type: 3}
       text: Nope.
       avatars:
       - slot: 1
@@ -96,6 +105,7 @@ MonoBehaviour:
         sprite: {fileID: -2011553376209782307, guid: 1e7167ecc61eeb54d9c9e5259c17aed7, type: 3}
     - speaker: Len
       portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
       text: So what are you doing with the headline spot?
       avatars:
       - slot: 1
@@ -104,6 +114,7 @@ MonoBehaviour:
         sprite: {fileID: 3078092795626919404, guid: ab92f6b78dac17343bb3f0a9c6589283, type: 3}
     - speaker: Rin
       portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 0}
       text: Putting everyone on the opening-night set list.
       avatars:
       - slot: 1
@@ -112,6 +123,7 @@ MonoBehaviour:
         sprite: {fileID: 1275116586176032080, guid: 715a83d076871134280f70cb8c7d6033, type: 3}
     - speaker: Len
       portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 8300000, guid: 10cd307c26b17b44a9fdfb93fa289a0f, type: 3}
       text: Even me?
       avatars:
       - slot: 1
@@ -120,6 +132,7 @@ MonoBehaviour:
         sprite: {fileID: -8751352758729138934, guid: d741e82c80bfba94dab9c3062b8c8110, type: 3}
     - speaker: Rin
       portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+      voiceline: {fileID: 8300000, guid: 17bb0ca23a2cc644882d63278fc0df31, type: 3}
       text: Especially you. I still want that rematch.
       avatars:
       - slot: 1
@@ -128,6 +141,7 @@ MonoBehaviour:
         sprite: {fileID: -8936150323484664188, guid: 606b73881be89c5458cf32485a5a036b, type: 3}
     - speaker: Narrator
       portrait: {fileID: 0}
+      voiceline: {fileID: 8300000, guid: caacf738306f3f243a0a7b5c1e66e5b9, type: 3}
       text: Len writes REMATCH on the back of her invitation. Rin grins.
       avatars:
       - slot: 1
@@ -148,6 +162,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 8300000, guid: f4cfad05acbcb784785667e03666e0c4, type: 3}
         text: People waiting for food are singing along as Miku checks her microphone.
         avatars:
         - slot: 1
@@ -156,6 +171,7 @@ MonoBehaviour:
           sprite: {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: da046eee1d715734e955c7a375ebed5c, type: 3}
         text: Did you start without me?!
         avatars:
         - slot: 1
@@ -164,6 +180,7 @@ MonoBehaviour:
           sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
       - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: It's just a sound check!
         avatars:
         - slot: 1
@@ -172,6 +189,7 @@ MonoBehaviour:
           sprite: {fileID: 5531041605552728420, guid: 8a62fd28134ed2841aa676a65b561ae9, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: 55f3890a0805e5542bd117ecb6d5c863, type: 3}
         text: Tell that to your fan club over there.
         avatars:
         - slot: 1
@@ -180,6 +198,7 @@ MonoBehaviour:
           sprite: {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
       - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: ebea650ba54e39342a2907330c193e29, type: 3}
         text: They know the chorus. Want to give them a new one?
         avatars:
         - slot: 1
@@ -188,6 +207,7 @@ MonoBehaviour:
           sprite: {fileID: 5531041605552728420, guid: 8a62fd28134ed2841aa676a65b561ae9, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Gladly. Hope you can keep up!
         avatars:
         - slot: 1
@@ -198,6 +218,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 8300000, guid: 1a07c2061a74d1e458acf4b765d7ca82, type: 3}
         text: Rin wins, but the crowd keeps singing the chorus with the wrong words.
         avatars:
         - slot: 1
@@ -206,6 +227,7 @@ MonoBehaviour:
           sprite: {fileID: -434653091246056264, guid: ad033b83d33c6dc45a9d86abcdcc004c, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: ffd1ee006714dda43a8db32373b47288, type: 3}
         text: That's not even close to the lyrics!
         avatars:
         - slot: 1
@@ -214,6 +236,7 @@ MonoBehaviour:
           sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
       - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: I think they're singing about noodles.
         avatars:
         - slot: 1
@@ -222,6 +245,7 @@ MonoBehaviour:
           sprite: {fileID: -5784461528446217249, guid: 0d1a9c5c749493e4db30ed7310bc43ef, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: ...Okay, that does fit the rhythm.
         avatars:
         - slot: 1
@@ -230,6 +254,7 @@ MonoBehaviour:
           sprite: {fileID: -434653091246056264, guid: ad033b83d33c6dc45a9d86abcdcc004c, type: 3}
       - speaker: Miku
         portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: bdece2fc8ba803b4c867ad555238b938, type: 3}
         text: See? It's catchy!
         avatars:
         - slot: 1
@@ -238,6 +263,7 @@ MonoBehaviour:
           sprite: {fileID: -5784461528446217249, guid: 0d1a9c5c749493e4db30ed7310bc43ef, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Don't encourage them. I'm gonna start singing it too.
         avatars:
         - slot: 1
@@ -257,6 +283,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 8300000, guid: 50b7ae3544a7d004996c51e7f7eb54a6, type: 3}
         text: Len is rehearsing an ending Rin hasn't heard before.
         avatars:
         - slot: 1
@@ -265,6 +292,7 @@ MonoBehaviour:
           sprite: {fileID: 1275116586176032080, guid: 715a83d076871134280f70cb8c7d6033, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: f397dcb211789f340ae48d113d3ed87c, type: 3}
         text: Hold on. Since when do you sing it like that?
         avatars:
         - slot: 1
@@ -273,6 +301,7 @@ MonoBehaviour:
           sprite: {fileID: 1275116586176032080, guid: 715a83d076871134280f70cb8c7d6033, type: 3}
       - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Since yesterday.
         avatars:
         - slot: 1
@@ -281,6 +310,7 @@ MonoBehaviour:
           sprite: {fileID: 8693415673057005869, guid: 9ef075f479c895643b7036e2307c9a93, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Yesterday?! We practiced this all week!
         avatars:
         - slot: 1
@@ -289,6 +319,7 @@ MonoBehaviour:
           sprite: {fileID: -956189301214819756, guid: 50d2a575c6258d946bf3eab369844e1a, type: 3}
       - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: d3c818ee27455fb43a2ad8d607c2241a, type: 3}
         text: Worried?
         avatars:
         - slot: 1
@@ -297,6 +328,7 @@ MonoBehaviour:
           sprite: {fileID: 8693415673057005869, guid: 9ef075f479c895643b7036e2307c9a93, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: About you? Never. About your timing? Constantly.
         avatars:
         - slot: 1
@@ -307,6 +339,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 8300000, guid: 50b7ae3544a7d004996c51e7f7eb54a6, type: 3}
         text: Rin wins, but Len is still humming the new ending he tried in the final
           round.
         avatars:
@@ -316,6 +349,7 @@ MonoBehaviour:
           sprite: {fileID: 1275116586176032080, guid: 715a83d076871134280f70cb8c7d6033, type: 3}
       - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: I almost had you with that last bit.
         avatars:
         - slot: 1
@@ -324,6 +358,7 @@ MonoBehaviour:
           sprite: {fileID: 8693415673057005869, guid: 9ef075f479c895643b7036e2307c9a93, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: 61c1a63a36ae7b8419adada6d302e2f5, type: 3}
         text: Almost. I heard you coming a mile away.
         avatars:
         - slot: 1
@@ -332,6 +367,7 @@ MonoBehaviour:
           sprite: {fileID: -956189301214819756, guid: 50d2a575c6258d946bf3eab369844e1a, type: 3}
       - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Then I'll change it again.
         avatars:
         - slot: 1
@@ -340,6 +376,7 @@ MonoBehaviour:
           sprite: {fileID: 8693415673057005869, guid: 9ef075f479c895643b7036e2307c9a93, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Go ahead. I'll come up with something new, too.
         avatars:
         - slot: 1
@@ -348,6 +385,7 @@ MonoBehaviour:
           sprite: {fileID: -956189301214819756, guid: 50d2a575c6258d946bf3eab369844e1a, type: 3}
       - speaker: Len
         portrait: {fileID: -3029326035077730249, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: b9fab24bb935d6848be5177fdfe0ae9f, type: 3}
         text: You never let me have anything, do you?
         avatars:
         - slot: 1
@@ -367,6 +405,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 8300000, guid: 242f9f45651c9a8479251e2f1ab506bb, type: 3}
         text: KAITO adjusts a microphone while the harbor broadcast camera gets into
           position.
         avatars:
@@ -376,6 +415,7 @@ MonoBehaviour:
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: 0771560bb671a8e4197205ece7c398d7, type: 3}
         text: KAITO! Bet I get the louder cheer!
         avatars:
         - slot: 1
@@ -384,6 +424,7 @@ MonoBehaviour:
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
       - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: You might want to test your microphone first.
         avatars:
         - slot: 1
@@ -392,6 +433,7 @@ MonoBehaviour:
           sprite: {fileID: 6506257976614099797, guid: e953fd9f6a3a3334884fede5ea8b3148, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Already did!
         avatars:
         - slot: 1
@@ -400,6 +442,7 @@ MonoBehaviour:
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
       - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: 68c7b893414bdb44d9339b53f31ba69d, type: 3}
         text: It's switched off.
         avatars:
         - slot: 1
@@ -408,6 +451,7 @@ MonoBehaviour:
           sprite: {fileID: 6149762242164147661, guid: c3005a6e00678e3419d81925b5c2da6a, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: ...That was a practice cheer.
         avatars:
         - slot: 1
@@ -418,6 +462,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 8300000, guid: 38aac9ac465517d4b9a6b2c46e142c29, type: 3}
         text: Rin strikes a victory pose at the camera just as its red light clicks
           off.
         avatars:
@@ -427,6 +472,7 @@ MonoBehaviour:
           sprite: {fileID: 3342472002854934847, guid: bb9fbdd48b2c8d14886a01142a8417df, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: ffd1ee006714dda43a8db32373b47288, type: 3}
         text: Hey! I wasn't finished!
         avatars:
         - slot: 1
@@ -435,6 +481,7 @@ MonoBehaviour:
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
       - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: The broadcast was.
         avatars:
         - slot: 1
@@ -443,6 +490,7 @@ MonoBehaviour:
           sprite: {fileID: 6506257976614099797, guid: e953fd9f6a3a3334884fede5ea8b3148, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: 1bc9f44978538da4bbc4d26819f0996e, type: 3}
         text: Did anybody see that?
         avatars:
         - slot: 1
@@ -451,6 +499,7 @@ MonoBehaviour:
           sprite: {fileID: 3997827281134827966, guid: 4dd0976292bb9044fa8be6053c057a52, type: 3}
       - speaker: KAITO
         portrait: {fileID: -2876897028097707340, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: 4faa01b6846ea3f4c8ad3c6cd2bb8456, type: 3}
         text: That gentleman by the fence did.
         avatars:
         - slot: 1
@@ -459,6 +508,7 @@ MonoBehaviour:
           sprite: {fileID: 6506257976614099797, guid: e953fd9f6a3a3334884fede5ea8b3148, type: 3}
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 0}
         text: A dockworker copies her pose. Rin bursts out laughing.
         avatars:
         - slot: 1
@@ -478,6 +528,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 8300000, guid: 55d5d43ba660b35438064fc3257056bb, type: 3}
         text: Rin is drumming on a seat back while MEIKO checks the set list.
         avatars:
         - slot: 1
@@ -486,6 +537,7 @@ MonoBehaviour:
           sprite: {fileID: 1025957635999731651, guid: e299bec22c3e3b04ca06e0001ac7ca64, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: 101f799527d7515428e83feb2ebee1bd, type: 3}
         text: Could you give that poor seat a break?
         avatars:
         - slot: 1
@@ -494,6 +546,7 @@ MonoBehaviour:
           sprite: {fileID: -5909369726638379594, guid: 15b288373541ce745b2a4fc354c46beb, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: There's nobody here! It's too quiet.
         avatars:
         - slot: 1
@@ -502,6 +555,7 @@ MonoBehaviour:
           sprite: {fileID: 1025957635999731651, guid: e299bec22c3e3b04ca06e0001ac7ca64, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: The doors don't open for another ten minutes.
         avatars:
         - slot: 1
@@ -510,6 +564,7 @@ MonoBehaviour:
           sprite: {fileID: 659807028895115265, guid: d5deaaf6772957344b6b32b1640b27d3, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: 61c1a63a36ae7b8419adada6d302e2f5, type: 3}
         text: ...Right. Well, they'll hear me when they get here.
         avatars:
         - slot: 1
@@ -518,6 +573,7 @@ MonoBehaviour:
           sprite: {fileID: -5024050331173424593, guid: 958fcfd1579699b4f92d3293e00f0594, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: I'm counting on it.
         avatars:
         - slot: 1
@@ -528,6 +584,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 0}
         text: Rin wins with a slower song than usual and drops into a seat beside
           MEIKO.
         avatars:
@@ -537,6 +594,7 @@ MonoBehaviour:
           sprite: {fileID: 8756508170796686454, guid: d93bc75ba5d83d14f859334df5b225e0, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: I thought I was going to speed up in that last verse.
         avatars:
         - slot: 1
@@ -545,6 +603,7 @@ MonoBehaviour:
           sprite: {fileID: -5024050331173424593, guid: 958fcfd1579699b4f92d3293e00f0594, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: 5a0f5bc9938ed0d4faf937d0c917096f, type: 3}
         text: Your foot definitely wanted to.
         avatars:
         - slot: 1
@@ -553,6 +612,7 @@ MonoBehaviour:
           sprite: {fileID: 1521368860836332526, guid: 18538c62a586e8e40880ac3a43b0ccca, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: But I didn't!
         avatars:
         - slot: 1
@@ -561,6 +621,7 @@ MonoBehaviour:
           sprite: {fileID: 8756508170796686454, guid: d93bc75ba5d83d14f859334df5b225e0, type: 3}
       - speaker: MEIKO
         portrait: {fileID: -9194733545542927407, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Nope. You kept it steady.
         avatars:
         - slot: 1
@@ -569,6 +630,7 @@ MonoBehaviour:
           sprite: {fileID: 1521368860836332526, guid: 18538c62a586e8e40880ac3a43b0ccca, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: ffd1ee006714dda43a8db32373b47288, type: 3}
         text: Don't sound so surprised!
         avatars:
         - slot: 1
@@ -588,6 +650,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 8300000, guid: 745a7f666834c3e4da40c0b7d9a887f9, type: 3}
         text: Luka has three versions of the same song spread across a bench.
         avatars:
         - slot: 1
@@ -596,6 +659,7 @@ MonoBehaviour:
           sprite: {fileID: 5076353916888053700, guid: 76bcca590ddfebc49b7f79afec057bfc, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Is that homework? You look like you're grading papers.
         avatars:
         - slot: 1
@@ -604,6 +668,7 @@ MonoBehaviour:
           sprite: {fileID: 5296954397734636559, guid: 88015ca618f77154aaacf58d9c875728, type: 3}
       - speaker: Luka
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: f97c4c4f3f9059843b2b0e0e76996353, type: 3}
         text: I'm trying to decide which verse to sing.
         avatars:
         - slot: 1
@@ -612,6 +677,7 @@ MonoBehaviour:
           sprite: {fileID: 2541232186797710645, guid: 8c2198f91143d7040ab0170e51459e2c, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Pick the one you like best.
         avatars:
         - slot: 1
@@ -620,6 +686,7 @@ MonoBehaviour:
           sprite: {fileID: 5076353916888053700, guid: 76bcca590ddfebc49b7f79afec057bfc, type: 3}
       - speaker: Luka
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: 6a82c17ab058e164cba3bf32e071e196, type: 3}
         text: And if I change my mind halfway through?
         avatars:
         - slot: 1
@@ -628,6 +695,7 @@ MonoBehaviour:
           sprite: {fileID: 3175777529518125329, guid: ade7196ac7a481444a7b0a658a4c788f, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: 61c1a63a36ae7b8419adada6d302e2f5, type: 3}
         text: Then change the verse. You can do that!
         avatars:
         - slot: 1
@@ -638,6 +706,7 @@ MonoBehaviour:
       lines:
       - speaker: Narrator
         portrait: {fileID: 0}
+        voiceline: {fileID: 0}
         text: Rin forgets a lyric, makes up another one, and still wins.
         avatars:
         - slot: 1
@@ -646,6 +715,7 @@ MonoBehaviour:
           sprite: {fileID: 1598156113020585522, guid: 4c2564655f98e7642a0ee005376de98c, type: 3}
       - speaker: Luka
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: 672266309e3b51746a62a805028a9457, type: 3}
         text: Since when did that song mention the last tram?
         avatars:
         - slot: 1
@@ -654,6 +724,7 @@ MonoBehaviour:
           sprite: {fileID: 3175777529518125329, guid: ade7196ac7a481444a7b0a658a4c788f, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Since I forgot what came next.
         avatars:
         - slot: 1
@@ -662,6 +733,7 @@ MonoBehaviour:
           sprite: {fileID: 1598156113020585522, guid: 4c2564655f98e7642a0ee005376de98c, type: 3}
       - speaker: Luka
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: a4bb8e8e103663f4082cf94abff1c9a3, type: 3}
         text: It actually suited the melody.
         avatars:
         - slot: 1
@@ -670,6 +742,7 @@ MonoBehaviour:
           sprite: {fileID: 3056756451418170359, guid: 624cf8f3ecbd433438e399a5ac16bc87, type: 3}
       - speaker: Rin
         portrait: {fileID: 1730541596440252085, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 8300000, guid: 0771560bb671a8e4197205ece7c398d7, type: 3}
         text: Great! Then I meant to do it.
         avatars:
         - slot: 1
@@ -678,6 +751,7 @@ MonoBehaviour:
           sprite: {fileID: -7160719286429738108, guid: 041fa33cda16c7044aeada8e9029e9e9, type: 3}
       - speaker: Luka
         portrait: {fileID: 3078160648837955091, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
+        voiceline: {fileID: 0}
         text: Of course you did.
         avatars:
         - slot: 1

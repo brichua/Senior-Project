@@ -147,7 +147,7 @@ namespace VocaloidTCG
             if(selectRoot) selectRoot.SetActive(true);
             if(deckSelect) deckSelect.Refresh();
             if(editorRoot) editorRoot.SetActive(false); else gameObject.SetActive(false);
-            if (sfx) sfx.PlayButtonClick1();
+            if (sfx) sfx.PlayButtonClick2();
         }
 
         public void Clear(){

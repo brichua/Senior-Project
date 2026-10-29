@@ -1280,6 +1280,7 @@ GameObject:
   m_Component:
   - component: {fileID: 338501024}
   - component: {fileID: 338501023}
+  - component: {fileID: 338501025}
   m_Layer: 0
   m_Name: music
   m_TagString: Untagged
@@ -1399,6 +1400,34 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &338501025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338501022}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 013d5901a7cd7d943867e31c75908d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackgroundMusicManager
+  bgmList:
+  - scene: Edit Deck
+    clip: {fileID: 8300000, guid: 06650645487f950478e3490f9d764825, type: 3}
+  - scene: Game
+    clip: {fileID: 8300000, guid: 6b1bca582992d9347820fdbd4cb1073b, type: 3}
+  - scene: Main
+    clip: {fileID: 8300000, guid: 54b94e88b7be5f046865e4592910f492, type: 3}
+  - scene: Multiplayer
+    clip: {fileID: 8300000, guid: fd7c59ec5ae4a4847a4b2435ab7b4346, type: 3}
+  - scene: Puzzles
+    clip: {fileID: 8300000, guid: 54b94e88b7be5f046865e4592910f492, type: 3}
+  - scene: Settings
+    clip: {fileID: 8300000, guid: 54b94e88b7be5f046865e4592910f492, type: 3}
+  - scene: Story
+    clip: {fileID: 8300000, guid: 54b94e88b7be5f046865e4592910f492, type: 3}
+  musicVolume: 0.1
 --- !u!1 &348191832
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,8 +1725,21 @@ MonoBehaviour:
   typing: {fileID: 0}
   class_select: {fileID: 0}
   enter_game: {fileID: 0}
+  crowd_noise: {fileID: 0}
+  hud_score: {fileID: 0}
+  clock_tick: {fileID: 0}
+  shimmer: {fileID: 0}
+  tile_score: {fileID: 0}
+  player_highlight: {fileID: 0}
+  spotlight: {fileID: 0}
+  tile_score_0: {fileID: 0}
+  ally_card_effect: {fileID: 0}
+  attack_card_effect: {fileID: 0}
+  story_start: {fileID: 0}
+  scroll: {fileID: 0}
+  storyTextScroll: []
   hoverSoundCooldown: 0.05
-  tileHoverSoundCooldown: 0.05
+  cardAudioSourceIsPlaying: 0
 --- !u!224 &375502108
 RectTransform:
   m_ObjectHideFlags: 0

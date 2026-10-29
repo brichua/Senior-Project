@@ -156,8 +156,7 @@ namespace VocaloidTCG.BoardUI
         private void OnDestroy(){ if(ability) ability.onClick.RemoveListener(ActivateSelectedAbility); }
     }
     public sealed class TileHoverHandler : MonoBehaviour,
-    UnityEngine.EventSystems.IPointerEnterHandler,
-    UnityEngine.EventSystems.IPointerClickHandler
+    UnityEngine.EventSystems.IPointerEnterHandler
     {
         public SFXManager sfx;
 
@@ -168,11 +167,5 @@ namespace VocaloidTCG.BoardUI
                 sfx.PlayTileHoverSound();
         }
 
-        public void OnPointerClick(
-            UnityEngine.EventSystems.PointerEventData eventData)
-        {
-            if (sfx)
-                sfx.PlayDropSound();
-        }
     }
 }

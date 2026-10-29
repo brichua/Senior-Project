@@ -5981,8 +5981,8 @@ MonoBehaviour:
   card_destroy: {fileID: 0}
   fav_deck: {fileID: 0}
   unfav_deck: {fileID: 0}
-  button_click_1: {fileID: 8300000, guid: d20bab0452e7596478028955f5a03a7f, type: 3}
-  button_click_2: {fileID: 8300000, guid: 04df4da46c5f6b347a27d1707e87f796, type: 3}
+  button_click_1: {fileID: 8300000, guid: 2d41ed3fe2451894bb89993ab313cc15, type: 3}
+  button_click_2: {fileID: 8300000, guid: d20bab0452e7596478028955f5a03a7f, type: 3}
   adjust_card_num_0: {fileID: 0}
   adjust_card_num_1: {fileID: 0}
   adjust_card_num_2: {fileID: 0}
@@ -5998,12 +5998,12 @@ MonoBehaviour:
   player_highlight: {fileID: 0}
   spotlight: {fileID: 0}
   tile_score_0: {fileID: 0}
-  card_effect: {fileID: 0}
+  ally_card_effect: {fileID: 0}
+  attack_card_effect: {fileID: 0}
   story_start: {fileID: 8300000, guid: 110e62c3fb2c1c3439b1b91bd6e532a8, type: 3}
   scroll: {fileID: 0}
   storyTextScroll: []
   hoverSoundCooldown: 0.05
-  tileHoverSoundCooldown: 0.05
   cardAudioSourceIsPlaying: 0
 --- !u!4 &1972112986
 Transform:

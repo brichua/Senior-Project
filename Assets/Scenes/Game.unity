@@ -6024,7 +6024,7 @@ MonoBehaviour:
   fav_deck: {fileID: 0}
   unfav_deck: {fileID: 0}
   button_click_1: {fileID: 8300000, guid: 2d41ed3fe2451894bb89993ab313cc15, type: 3}
-  button_click_2: {fileID: 0}
+  button_click_2: {fileID: 8300000, guid: d20bab0452e7596478028955f5a03a7f, type: 3}
   adjust_card_num_0: {fileID: 0}
   adjust_card_num_1: {fileID: 0}
   adjust_card_num_2: {fileID: 0}
@@ -6040,12 +6040,12 @@ MonoBehaviour:
   player_highlight: {fileID: 8300000, guid: c122408bd96c3c34795e5142f2b2f61f, type: 3}
   spotlight: {fileID: 8300000, guid: b61dd33f2961f4445a3a77907777ed61, type: 3}
   tile_score_0: {fileID: 8300000, guid: 9d9da32756ad97b479a53a7adcf82e40, type: 3}
-  card_effect: {fileID: 8300000, guid: 51066d9593bc4e943bf10d6e70526132, type: 3}
+  ally_card_effect: {fileID: 8300000, guid: 76e0202fe5025cd47b11c077e5fed5c9, type: 3}
+  attack_card_effect: {fileID: 8300000, guid: d208ebd1ba98fac44b3ac33091179265, type: 3}
   story_start: {fileID: 0}
   scroll: {fileID: 8300000, guid: d93db1aed2af4e9429b461d52dfaadb3, type: 3}
   storyTextScroll: []
   hoverSoundCooldown: 0.05
-  tileHoverSoundCooldown: 0.05
   cardAudioSourceIsPlaying: 0
 --- !u!82 &1288955614
 AudioSource:
@@ -8526,7 +8526,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 27b3deff008aa9e49a3d9068a76ea259, type: 3}
   - {fileID: 8300000, guid: b4112f5cb32b02b459f0279bf9ca40af, type: 3}
   luka_win_tile:
-  - {fileID: 8300000, guid: b620641707175d74bb9860d9d7d67d46, type: 3}
+  - {fileID: 8300000, guid: 0543a4e55b832dd4f93c22ba75676576, type: 3}
   - {fileID: 8300000, guid: 655d011970ee5d345b145038dd1f977f, type: 3}
   - {fileID: 8300000, guid: 42370bfa4dea98e43bf31c637f1c730d, type: 3}
   meiko_win_tile:

@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
-using System.Collections.Generic;
+using System.Collections;
 
 namespace VocaloidTCG.BoardUI
 {
@@ -345,11 +345,19 @@ namespace VocaloidTCG.BoardUI
             var button = StoryUIElements.Button(parent, label, position, action);
             button.GetComponent<RectTransform>().sizeDelta = new Vector2(420, 65);
             ConcertBackdrop.StyleButton(button, board.setup, classColor);
+            button.onClick.AddListener(() =>
+            {
+                if (board.sfx){
+                    if (label == "RETURN") board.sfx.PlayButtonClick2();
+                    else board.sfx.PlayButtonClick1();
+                }
+            });
             var text = button.GetComponentInChildren<TMP_Text>();
             if(font) text.font = font;
             else if(board.phaseAnimator && board.phaseAnimator.font) text.font = board.phaseAnimator.font;
             return button;
         }
+
         private static RectTransform Rect(Transform parent, string label, Vector2 position, Vector2 size){
             var rect = new GameObject(label, typeof(RectTransform)).GetComponent<RectTransform>(); rect.SetParent(parent, false);
             rect.anchorMin = rect.anchorMax = rect.pivot = Vector2.one * 0.5f; rect.anchoredPosition = position; rect.sizeDelta = size; return rect;

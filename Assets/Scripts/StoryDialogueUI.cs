@@ -71,7 +71,7 @@ namespace VocaloidTCG
 
         private void Awake(){
             if(legacyNext) legacyNext.gameObject.SetActive(false);
-            if(skip) skip.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick2(); Finish(); });
+            if(skip) skip.onClick.AddListener(Skip);
             if(auto) auto.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick1(); ToggleAuto(); });
             if(log) log.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick1(); ToggleLog(); });
             if (closeLog) closeLog.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick2(); CloseLog(); });
@@ -261,6 +261,21 @@ namespace VocaloidTCG
             if(playback != null) StopCoroutine(playback);
             playback = null;
             typing = false;
+        }
+
+        private void Skip()
+        {
+            StartCoroutine(SkipCoroutine());
+        }
+
+        private IEnumerator SkipCoroutine()
+        {
+            if (sfx)
+            {
+                sfx.PlayButtonClick2();
+                yield return new WaitForSecondsRealtime(sfx.GetButton2SoundLength());
+            }
+            Finish();
         }
 
         private void OnDisable(){
