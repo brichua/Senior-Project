@@ -1,4 +1,7 @@
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
@@ -6,8 +9,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
 using Unity.Collections;
 using Unity.Netcode;
 using Unity.Netcode.Transports.UTP;
@@ -42,6 +43,7 @@ namespace VocaloidTCG
         public DeckRecord[] MatchDecks { get; private set; }
         public event Action Changed;
         public event Action Sparkle;
+        private SFXManager sfx;
         private NetworkManager network;
         private Task networkShutdown = Task.CompletedTask;
         private GameplayBoardBridge board;
@@ -149,7 +151,12 @@ namespace VocaloidTCG
             SceneManager.sceneLoaded -= SceneLoaded;
             if(Instance == this) Instance = null;
         }
-        
+
+        public void SetSFXManager(SFXManager manager)
+        {
+            sfx = manager;
+        }
+
         private void SceneLoaded(Scene scene, LoadSceneMode mode){
             Notify();
         }
@@ -256,8 +263,18 @@ namespace VocaloidTCG
 
         public void BackToMain(){
             if(Busy || Lobby != null) return;
+            StartCoroutine(BackToMainCoroutine());
+        }
+
+        private IEnumerator BackToMainCoroutine()
+        {
+            if (sfx)
+            {
+                sfx.PlayButtonClick2();
+                yield return new WaitForSecondsRealtime(sfx.GetButton2SoundLength());
+            }
             ShowMenu = false; Notify();
-            if(SceneManager.GetActiveScene().name != MainScene) SceneManager.LoadScene(MainScene);
+            if (SceneManager.GetActiveScene().name != MainScene) SceneManager.LoadScene(MainScene);
         }
 
         public void EditDeck(){

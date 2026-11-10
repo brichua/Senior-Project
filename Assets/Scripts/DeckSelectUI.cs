@@ -57,8 +57,8 @@ namespace VocaloidTCG
             }catch(Exception ex){
                 StatusTextFade.Show(status, ex.Message); Debug.LogError(ex.Message, this); return;
             }
-            if(allDecks) allDecks.onClick.AddListener(() => { favoritesOnly = false; Refresh(); if(sfx) sfx.PlayButtonClick1(); });
-            if(favorites) favorites.onClick.AddListener(() => { favoritesOnly = true; Refresh(); if (sfx) sfx.PlayButtonClick1(); });
+            if(allDecks) allDecks.onClick.AddListener(() => { if (favoritesOnly && sfx) sfx.PlayButtonClick1(); favoritesOnly = false; Refresh(); });
+            if(favorites) favorites.onClick.AddListener(() => { if (!favoritesOnly && sfx) sfx.PlayButtonClick1(); favoritesOnly = true; Refresh(); });
             if(newDeck) newDeck.onClick.AddListener(() => { if(editor) editor.OpenNew(); if (sfx) sfx.PlayButtonClick1(); });
             if(editDeck) editDeck.onClick.AddListener(() => { var deck = PreviewedDeck; if(editor && deck != null) editor.Open(deck); if (sfx) sfx.PlayButtonClick1(); });
             if(deleteDeck) deleteDeck.onClick.AddListener(Delete);
@@ -84,12 +84,12 @@ namespace VocaloidTCG
         }
 
         private void Choose(string id){
+            if (library.Selected.id != id && sfx) sfx.PlayButtonClick1();
             string error; library.Select(id, out error); StatusTextFade.Show(status, error);
-            if (sfx) sfx.PlayButtonClick1();
         }
         private void Inspect(string id){
+            if (previewDeckId != id && sfx) sfx.PlayClickSound();
             previewDeckId = id; Refresh();
-            if(sfx) sfx.PlayButtonClick1();
         }
         
         private void Favorite(string id){
@@ -135,7 +135,7 @@ namespace VocaloidTCG
 
         private void BackButton()
         {
-            if (!MultiplayerSession.ReturnFromDeckEditor() && !StorySession.ReturnFromEditor()) StartCoroutine(BackToMainCoroutine());
+            StartCoroutine(BackToMainCoroutine());
         }
 
         private IEnumerator BackToMainCoroutine()
@@ -144,7 +144,7 @@ namespace VocaloidTCG
                 sfx.PlayButtonClick2();
                 yield return new WaitForSecondsRealtime(sfx.GetButton2SoundLength());
             }
-            SceneManager.LoadScene(mainMenuScene);
+            if (!MultiplayerSession.ReturnFromDeckEditor() && !StorySession.ReturnFromEditor()) SceneManager.LoadScene(mainMenuScene);
         }
 
         public void Refresh(){

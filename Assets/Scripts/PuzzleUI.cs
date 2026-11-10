@@ -134,8 +134,8 @@ namespace VocaloidTCG
         
         public void Filter(CharacterClassData cls){
             if (library == null) return;
+            if (filter != cls && sfx) sfx.PlayClassSelectSound();
             filter = cls; selected = null;
-            if (sfx) sfx.PlayClassSelectSound();
             foreach (var obj in classViews)
             {
                 var view = obj.GetComponent<PuzzleClassView>();
@@ -162,7 +162,7 @@ namespace VocaloidTCG
         }
 
         public void Select(PuzzleData puzzle){
-            if (sfx) sfx.PlayClickSound();
+            if (selected != puzzle && sfx) sfx.PlayClickSound();
             selected = puzzle;
             RenderInformation();
         }

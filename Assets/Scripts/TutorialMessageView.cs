@@ -24,6 +24,8 @@ namespace VocaloidTCG
         private Vector2 authoredSize;
         private Canvas overlay;
         public bool IsTyping => typing;
+        public SFXManager sfx;
+        private bool dialogueCanContinue;
 
         public static TutorialMessageView Create(BoardUIController board, GameObject prefab, Action onAdvance){
             if(!prefab) throw new InvalidOperationException("Assign Tutorial Message Prefab on the Tutorial story asset.");
@@ -31,6 +33,7 @@ namespace VocaloidTCG
             var obj = new GameObject("Tutorial overlay", typeof(RectTransform), typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             var view = obj.AddComponent<TutorialMessageView>();
             view.surface = (RectTransform)obj.transform; view.advance = onAdvance;
+            view.sfx = FindAnyObjectByType<SFXManager>();
             view.overlay = obj.GetComponent<Canvas>();
             view.overlay.enabled = false;
             view.overlay.renderMode = RenderMode.ScreenSpaceOverlay;
@@ -84,6 +87,7 @@ namespace VocaloidTCG
             var graphic = edge.gameObject.AddComponent<Image>(); graphic.color = new Color(0.4f, 1f, 0.85f); graphic.raycastTarget = false;
         }
         public void Show(string text, bool canContinue, int expression, StoryData story, Sprite fallback){
+            dialogueCanContinue = canContinue;
             shownFrame = Time.frameCount;
             gameObject.SetActive(true);
             if(panel){
@@ -133,13 +137,16 @@ namespace VocaloidTCG
             bool clicked = Input.GetMouseButtonUp(0);
             for(int i = 0; i < Input.touchCount; i++) clicked |= Input.GetTouch(i).phase == TouchPhase.Ended;
 #endif
-            if(clicked) advance.Invoke();
+            if(clicked) { if (!Reveal()) return; if (sfx && dialogueCanContinue) sfx.PlayWindowSound(); advance.Invoke(); }
         }
         private void TickTyping(float seconds){
             if(!typing) return;
+            int previousVisible = Mathf.FloorToInt(visible);
             visible = Mathf.Min(characterCount, visible + Mathf.Max(0, seconds) * 45);
-            if(visible >= characterCount){ Reveal(); return; }
+            int currentVisible = Mathf.FloorToInt(visible);
             body.maxVisibleCharacters = Mathf.FloorToInt(visible);
+            if (currentVisible / 3 > previousVisible / 3) { if (sfx) sfx.PlayTypingSound();}
+            if (visible >= characterCount) { Reveal(); return; }
         }
         public void SetPaused(bool paused){ if(overlay) overlay.enabled = hasMessage && !paused; }
         private Vector2 OnSurface(Vector3 world, RectTransform target){

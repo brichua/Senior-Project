@@ -95,6 +95,7 @@ namespace VocaloidTCG
                     if (difficultyButtons[i]) difficultyButtons[i].Bind(() =>
                     {
                         if (!library.IsStoryCompleted(selected)) return;
+                        if (chosenDifficulty != (StoryDifficulty)choice && sfx) sfx.PlayButtonClick1();
                         chosenDifficulty = (StoryDifficulty)choice; Remember(); RefreshDifficulty();
                     });
                 }
@@ -401,8 +402,13 @@ namespace VocaloidTCG
                 ShowMap();
                 return;
             }
-            if(selected.tutorial){ LaunchTutorial(); return; }
-            if (sfx && auditionSelectSoundPlayed == false) { sfx.PlayClassSelectSound(); auditionSelectSoundPlayed = true; };
+            if (selected.tutorial)
+            {
+                auditionSelectSoundPlayed = true;
+                StartCoroutine(AuditionSelectCoroutine(LaunchTutorial));
+                return;
+            }
+            if (sfx && !auditionSelectSoundPlayed) { sfx.PlayClassSelectSound(); auditionSelectSoundPlayed = true; };
             Panels(auditionPanel);
             var data = library.Catalog.Class(opponent);
             var storyClass = library.Catalog.Class(selected.Class);
@@ -592,9 +598,7 @@ namespace VocaloidTCG
 
         public void BackToMain(){
             if(SceneAvailable(mainScene)){
-                if (sfx) sfx.PlayButtonClick2();
-                StorySession.Clear();
-                SceneManager.LoadScene(mainScene);
+                StartCoroutine(BackToMainCoroutine());
             }
         }
         private IEnumerator BackToMainCoroutine()
@@ -607,6 +611,16 @@ namespace VocaloidTCG
 
             StorySession.Clear();
             SceneManager.LoadScene(mainScene);
+        }
+        private IEnumerator AuditionSelectCoroutine(Action action)
+        {
+            if (sfx)
+            {
+                sfx.PlayClassSelectSound();
+                yield return new WaitForSecondsRealtime(sfx.GetClassSelectSoundLength());
+            }
+
+            action?.Invoke();
         }
     }
 }

@@ -55,7 +55,8 @@ namespace VocaloidTCG
 
         private void Start(){
             session = MultiplayerSession.Instance;
-            if(!session){
+            if (session && sfx) session.SetSFXManager(sfx);
+            if (!session){
                 try {
                     session = MultiplayerSession.Open(catalog, mainScene, deckScene, UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
                     session.GameScene = gameScene;
@@ -70,7 +71,7 @@ namespace VocaloidTCG
             if (create) create.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick1(); session.CreateLobby(); });
             if (join) join.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick1(); Join(); });
             if (submitCode && submitCode != join) submitCode.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick1(); Join(); });
-            if (back) back.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick2(); session.BackToMain(); });
+            if (back) back.onClick.AddListener(session.BackToMain);
             if (editDeck) editDeck.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick1(); session.EditDeck(); });
             if (leave) leave.onClick.AddListener(() => { if (sfx) sfx.PlayButtonClick2(); session.LeaveLobby(); });
             if(copy) copy.onClick.AddListener(Copy);
@@ -83,7 +84,7 @@ namespace VocaloidTCG
         }
         private void OnCodeChanged(string value)
         {
-            if (sfx) sfx.PlayTypingSound();
+            if (value.Length != 0 && sfx) sfx.PlayTypingSound();
         }
 
         private void Join(){
