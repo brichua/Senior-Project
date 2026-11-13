@@ -429,6 +429,7 @@ namespace VocaloidTCG.BoardUI
                 sfx.PlayDropSound();
                 sfx.PlayCardSound(card.data.playSfx);
             }
+            else if (action.kind == BoardActionKind.MovePerformer && sfx) sfx.PlayDropSound();
             if(IsPuzzle && state.pendingEffect==null) CheckPuzzle(false, false);
             if(tutorialDirector) tutorialDirector.ActionAccepted(actor, action);
             Publish();

@@ -215,18 +215,14 @@ namespace VocaloidTCG
         public void Play(){
             OpenStory();
         }
-        
+
         public void OpenMultiplayer()
         {
-            if (!CanAccessModes)
-            {
-                DeckUI.Text(status, "Complete the tutorial to unlock multiplayer.");
-                return;
-            }
-            try { if (sfx) sfx.PlayButtonClick1(); MultiplayerSession.Open(catalog, SceneManager.GetActiveScene().name, deckScene, lobbyScene).GameScene = multiplayerGameScene; }
-            catch (Exception ex) { DeckUI.Text(status, ex.Message); }
+            if (isChangingScene) return;
+            if (!CanAccessModes) { DeckUI.Text(status, "Complete the tutorial to unlock multiplayer."); return; }
+            StartCoroutine(OpenMultiplayerAfterSFX());
         }
-        
+
         public void OpenDeckEditor(){
             if (CheckAccess()) PlayButtonSFX(deckScene);
         }
@@ -257,9 +253,25 @@ namespace VocaloidTCG
         private IEnumerator LoadSceneAfterSFX(string scene)
         {
             isChangingScene = true;
-            if (sfx) sfx.PlayButtonClick1();
-            yield return new WaitForSecondsRealtime(sfx.GetButton1SoundLength());
-            OpenScene(scene);
+            if (sfx) 
+            {
+                sfx.PlayButtonClick1();
+                yield return new WaitForSecondsRealtime(sfx.GetButton1SoundLength());
+            }
+            if (scene != multiplayerGameScene)
+                OpenScene(scene);
+        }
+
+        private IEnumerator OpenMultiplayerAfterSFX()
+        {
+            isChangingScene = true;
+            if (sfx)
+            {
+                sfx.PlayButtonClick1();
+                yield return new WaitForSecondsRealtime(sfx.GetButton1SoundLength());
+            }
+            try { MultiplayerSession.Open(catalog, SceneManager.GetActiveScene().name, deckScene, lobbyScene).GameScene = multiplayerGameScene;}
+            catch (Exception ex) {isChangingScene = false; DeckUI.Text(status, ex.Message); Debug.LogError(ex.Message, this); }
         }
 
         private void OnDestroy(){

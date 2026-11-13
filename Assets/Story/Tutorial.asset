@@ -34,7 +34,7 @@ MonoBehaviour:
         sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
     - speaker: Miku
       portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      voiceline: {fileID: 0}
+      voiceline: {fileID: 8300000, guid: a707dd6f88987884ead8de2a3d432588, type: 3}
       text: There you are! I saved you a spot for sound check.
       avatars:
       - slot: 2
@@ -72,7 +72,7 @@ MonoBehaviour:
         sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
     - speaker: Miku
       portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      voiceline: {fileID: 0}
+      voiceline: {fileID: 8300000, guid: 83305ff1ba5d06247b4b56ce7c60bf80, type: 3}
       text: Ready? Let's start with the opening act!
       avatars:
       - slot: 2
@@ -81,7 +81,7 @@ MonoBehaviour:
     lines:
     - speaker: Narrator
       portrait: {fileID: 0}
-      voiceline: {fileID: 0}
+      voiceline: {fileID: 8300000, guid: 1a07c2061a74d1e458acf4b765d7ca82, type: 3}
       text: The final rehearsal ends on a bright chord. This time, you know exactly
         why the crowd is cheering.
       avatars:
@@ -89,7 +89,7 @@ MonoBehaviour:
         sprite: {fileID: 531467281934478826, guid: b5204f013456e4745a67aceb894cb700, type: 3}
     - speaker: Miku
       portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      voiceline: {fileID: 0}
+      voiceline: {fileID: 8300000, guid: 7b40232ff6d8dad449bc64e55bd7460e, type: 3}
       text: You did it! From your first performer to your first full match... that
         was your show.
       avatars:
@@ -121,7 +121,7 @@ MonoBehaviour:
         sprite: {fileID: -772454078125462199, guid: c27636dc5f7cbbb468012701b90daea9, type: 3}
     - speaker: Miku
       portrait: {fileID: 855061685892153893, guid: 29b6669444f918e4ead6af724b83a075, type: 3}
-      voiceline: {fileID: 0}
+      voiceline: {fileID: 8300000, guid: 11baad9278ef7b84b8a2696684ce1e49, type: 3}
       text: Your next performance is up to you. I'll see you at on the center stage!
       avatars:
       - slot: 2

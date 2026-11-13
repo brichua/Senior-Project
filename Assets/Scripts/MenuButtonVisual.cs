@@ -75,7 +75,7 @@ namespace VocaloidTCG
             RefreshVisuals();
         }
 
-        public void OnPointerEnter(PointerEventData eventData) {hovered = !locked; if (sfx) sfx.PlayHoverSound(); RefreshVisuals(); }
+        public void OnPointerEnter(PointerEventData eventData) { if (!locked && sfx) sfx.PlayHoverSound(); RefreshVisuals(); hovered = !locked; }
 
         public void OnPointerExit(PointerEventData eventData) { hovered = false; RefreshVisuals(); }
         private void OnDisable()

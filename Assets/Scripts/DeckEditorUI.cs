@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using VocaloidTCG.BoardUI;
 
@@ -92,7 +94,7 @@ namespace VocaloidTCG
         private static void Hook(Button button, UnityEngine.Events.UnityAction action) { if(button) button.onClick.AddListener(action); }
         private void OnNameChanged(string value)
         {
-            if (sfx) sfx.PlayTypingSound();
+            if (value.Length != 0 && sfx) sfx.PlayTypingSound();
         }
         public void OpenNew(){
             Open(null);
@@ -142,12 +144,21 @@ namespace VocaloidTCG
         }
         
         public void Back(){
-            if(StorySession.ReturnFromEditor()) return;
+            StartCoroutine(BackCoroutine());
+            if (StorySession.ReturnFromEditor()) return;
             draft = null;
-            if(selectRoot) selectRoot.SetActive(true);
-            if(deckSelect) deckSelect.Refresh();
-            if(editorRoot) editorRoot.SetActive(false); else gameObject.SetActive(false);
-            if (sfx) sfx.PlayButtonClick2();
+            if (selectRoot) selectRoot.SetActive(true);
+            if (deckSelect) deckSelect.Refresh();
+            if (editorRoot) editorRoot.SetActive(false); else gameObject.SetActive(false);
+        }
+
+        private IEnumerator BackCoroutine()
+        {
+            if (sfx)
+            {
+                sfx.PlayButtonClick2();
+                yield return new WaitForSecondsRealtime(sfx.GetButton2SoundLength());
+            }
         }
 
         public void Clear(){
@@ -182,8 +193,8 @@ namespace VocaloidTCG
         private int Maximum => !selected ? 0 : !selected.vip ? 3 : string.IsNullOrEmpty(draft.vipCardId) || draft.vipCardId == selected.id ? 1 : 0;
 
         private void SelectCard(CardData card){
+            if (selected != card && sfx) sfx.PlayClickSound();
             selected = card; pendingCopies = draft.Copies(card); RenderCard();
-            if (sfx) sfx.PlayClickSound();
         }
 
         private void Adjust(int change){
@@ -203,9 +214,10 @@ namespace VocaloidTCG
 
         private void ApplyCopies(){
             if(draft == null || !selected) return;
-            if(!DeckRules.SetCopies(draft, selected, pendingCopies, library.Owned)) StatusTextFade.Show(status, "Only one VIP may be added. Remove the current VIP first.");
+            int currentCopies = draft.Copies(selected);
+            if (!DeckRules.SetCopies(draft, selected, pendingCopies, library.Owned)) StatusTextFade.Show(status, "Only one VIP may be added. Remove the current VIP first.");
             else StatusTextFade.Show(status, "");
-            if (sfx) sfx.PlayButtonClick1();
+            if (currentCopies != pendingCopies && sfx) sfx.PlayButtonClick1();
             Render();
         }
 
@@ -250,8 +262,9 @@ namespace VocaloidTCG
         
         private void ChooseBack(int slot){
             if(draft == null) return;
-            var backs = catalog.Backs(draft.classes); draft.cardBackId = backs[(backOffset + slot) % backs.Count].id;
-            if (sfx) sfx.PlayCardDrawSound();
+            var backs = catalog.Backs(draft.classes);
+            if (backs[(backOffset + slot) % backs.Count].id != draft.cardBackId && sfx) sfx.PlayCardDrawSound();
+            draft.cardBackId = backs[(backOffset + slot) % backs.Count].id;
             RenderBacks();
         }
 

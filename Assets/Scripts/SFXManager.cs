@@ -35,6 +35,7 @@ public class SFXManager : MonoBehaviour
     public AudioClip story_start;
     public AudioClip scroll;
     public AudioClip[] storyTextScroll;
+    public AudioClip tutorial_window;
 
     [Header("Hover SFX Cooldown")]
     [Min(0f)] public float hoverSoundCooldown = 0.05f;
@@ -198,6 +199,11 @@ public class SFXManager : MonoBehaviour
         if (audioSource && class_select)
             audioSource.PlayOneShot(class_select);
     }
+
+    public float GetClassSelectSoundLength()
+    {
+        return class_select.length;
+    }
     public void PlayEnterGameSound()
     {
         if (audioSource && enter_game)
@@ -297,5 +303,11 @@ public class SFXManager : MonoBehaviour
 
         if (audioSource && clip) audioSource.PlayOneShot(clip);
 
+    }
+
+    public void PlayWindowSound()
+    {
+        if (audioSource && tutorial_window)
+            audioSource.PlayOneShot(tutorial_window);
     }
 }

@@ -39,15 +39,9 @@ public class ScrollbarSFX : MonoBehaviour,
 
     private void PlayScrollSound(float value)
     {
-        if (!isInteracting)
-            return;
-
-        if (Time.time < nextSoundTime)
-            return;
-
-        if (scrollbar.value > 1 || scrollbar.value < 0)
-            return;
-
+        if (!isInteracting) return;
+        if (Time.time < nextSoundTime) return;
+        if (scrollbar.value >= 1 || scrollbar.value <= 0) return;
         if (audioSource) audioSource.Play();
         nextSoundTime = Time.time + soundCooldown;
     }
