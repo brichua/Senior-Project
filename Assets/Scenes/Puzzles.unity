@@ -1454,10 +1454,7 @@ MonoBehaviour:
   story_start: {fileID: 8300000, guid: 110e62c3fb2c1c3439b1b91bd6e532a8, type: 3}
   scroll: {fileID: 0}
   storyTextScroll: []
-<<<<<<< Updated upstream
   tutorial_window: {fileID: 0}
-=======
->>>>>>> Stashed changes
   hoverSoundCooldown: 0.05
 --- !u!82 &643688723
 AudioSource:
