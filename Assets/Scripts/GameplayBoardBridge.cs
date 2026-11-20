@@ -352,7 +352,9 @@ namespace VocaloidTCG.BoardUI
             reason = "Performers can only be placed or moved during preparation.";
             if((!card.data.performer && !card.token) || state.phase != RoundPhase.Preparation) return false;
             reason = "You already have a performer on that tile.";
-            if(Performer(target, actor) != null && !(action.kind==BoardActionKind.PlayCard && StageShare(card) && Assistant(target,actor)==null)) return false;
+            if(action.kind==BoardActionKind.MovePerformer){
+                if(!CanMoveWithPartner(action.fromRow*5+action.fromColumn,action.toRow*5+action.toColumn,actor)) return false;
+            }else if(!CanOccupy(card,target)) return false;
             if(action.kind == BoardActionKind.MovePerformer){
                 int placed;
                 if(!placedTurns.TryGetValue(card.instanceId, out placed)) placed = -1;

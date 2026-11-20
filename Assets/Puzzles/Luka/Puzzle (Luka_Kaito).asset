@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Luka_Kaito)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: 113b2c2ebaac3d049bfb89432ec6927d
-  number: 2
+  number: 4
   puzzleName: Twelve Tide
   shortDescription: Reach 12 points in one round.
   longDescription: Reach a total score of at least 12 points in one round. You have
     up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   againstClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
-  rewardCard: {fileID: 11400000, guid: 6ee93e4a6498c974fac42092e9222ef2, type: 2}
+  rewardCard: {fileID: 11400000, guid: 5243cca6d6b12df4190db7d30cffa0a8, type: 2}
   boardSetup: {fileID: 11400000, guid: a887c4a731f3ccf40bb17331ad1db4b1, type: 2}
   player:
     energy: 8

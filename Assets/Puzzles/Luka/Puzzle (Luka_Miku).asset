@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Luka_Miku)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: f0f4ced38a9c1c64198475a5c55fc4a5
-  number: 2
+  number: 1
   puzzleName: Pink Crescendo
   shortDescription: Reach 11 points in one round.
   longDescription: Reach a total score of at least 11 points in one round. You have
     up to 5 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   againstClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
-  rewardCard: {fileID: 11400000, guid: 6baaccdbf438f9d439af7926e7c1f820, type: 2}
+  rewardCard: {fileID: 11400000, guid: adc1a6c4a0d417e469d07d421980a877, type: 2}
   boardSetup: {fileID: 11400000, guid: 52c6d2d10e6de0e489e39f6affd24ee6, type: 2}
   player:
     energy: 8

@@ -94,6 +94,10 @@ namespace VocaloidTCG.BoardUI
                     TutorialPerformer(player, "Deep Sea Girl", 2, 2);
                     TutorialPerformer(enemy, "Fire Flower", 2, 2);
                     TutorialPerformer(enemy, "Butterfly on Your Right Shoulder", 3, 2);
+                    var movementRest = decks[player].ToArray(); decks[player].Clear();
+                    decks[player].Enqueue(MakeCard(TutorialCard("Glow"), player));
+                    foreach(var card in movementRest) decks[player].Enqueue(card);
+                    state.Side(player).deckCount = decks[player].Count;
                     break;
                 case 3:
                     TutorialHand(player, "Rabbit Hole", "Deep Sea Girl", "Glow", "From Y to Y");

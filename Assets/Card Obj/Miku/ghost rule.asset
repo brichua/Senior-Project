@@ -21,7 +21,7 @@ MonoBehaviour:
   performer: 1
   stageEffect: 0
   cost: 1
-  influence: 1
+  influence: 2
   flags:
   - spawn_space
   stageInfluenceChange: 1

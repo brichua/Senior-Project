@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Luka_Rin)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: d955b1b8794f23b44b1331811e783692
-  number: 2
+  number: 3
   puzzleName: Coral Chorus
   shortDescription: Reach 9 points in one round.
   longDescription: Reach a total score of at least 9 points in one round. You have
     up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   againstClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
-  rewardCard: {fileID: 11400000, guid: 39e2b83dfdceb094eade73a7edd2eff8, type: 2}
+  rewardCard: {fileID: 11400000, guid: e41f633548294644391b69194f0bfa9a, type: 2}
   boardSetup: {fileID: 11400000, guid: 54546bfe06f79934497d606ae1aa92f9, type: 2}
   player:
     energy: 8

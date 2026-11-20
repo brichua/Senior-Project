@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Kaito_Rin)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: 52bed1ccc7f85c946bfd26629257d94a
-  number: 2
+  number: 4
   puzzleName: Snowball Six
   shortDescription: Reach 6 points in one round.
   longDescription: Reach a total score of at least 6 points in one round. You have
     up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   againstClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
-  rewardCard: {fileID: 11400000, guid: b5505428e426eec4f8c562af1fb8880b, type: 2}
+  rewardCard: {fileID: 11400000, guid: 7178c82372f3adb4abaa4cac2cd26842, type: 2}
   boardSetup: {fileID: 11400000, guid: 044d6b3c6a33b894090477d171220152, type: 2}
   player:
     energy: 8

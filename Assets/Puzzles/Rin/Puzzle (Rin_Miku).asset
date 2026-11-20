@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Rin_Miku)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: 8604bd6cb3ed03c4f89fe9750fa6cd21
-  number: 2
+  number: 1
   puzzleName: Electric Pair
   shortDescription: Reach 2 points in one round.
   longDescription: Reach a total score of at least 2 points in one round. You have
     up to 5 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   againstClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
-  rewardCard: {fileID: 11400000, guid: 87631dd7578aa464faaa67117b262b75, type: 2}
+  rewardCard: {fileID: 11400000, guid: e4786ab1bc63aaa48b5380f6e22a03aa, type: 2}
   boardSetup: {fileID: 11400000, guid: 1c35f10a45c12ce46b8983c0455704fd, type: 2}
   player:
     energy: 8

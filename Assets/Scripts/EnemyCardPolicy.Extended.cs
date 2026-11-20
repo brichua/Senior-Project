@@ -60,7 +60,7 @@ namespace VocaloidTCG.BoardUI
             var tile = state.tiles[to];
             var primary = card.ownerId == 0 ? tile.side0 : tile.side1;
             var assistant = card.ownerId == 0 ? tile.assist0 : tile.assist1;
-            return primary == null || PerformerKeywords.Of(card).stageShare && assistant == null;
+            return primary == null || PerformerKeywords.Of(card).stageShare && !PerformerKeywords.Of(primary).stageShare && assistant == null;
         }
 
         private static int PositionValue(BoardSnapshot state, CardState card, int tile)

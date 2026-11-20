@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Rin_Kaito)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: ca63ff3022f25fe4c91c9b1cd2d4f696
-  number: 2
+  number: 4
   puzzleName: Citrus Six
   shortDescription: Reach 6 points in one round.
   longDescription: Reach a total score of at least 6 points in one round. You have
     up to 5 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   againstClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
-  rewardCard: {fileID: 11400000, guid: 375a78639b2c5564581dad8e8f2b5c84, type: 2}
+  rewardCard: {fileID: 11400000, guid: 06a345d42224d3a47a8ec81a8cec8896, type: 2}
   boardSetup: {fileID: 11400000, guid: 3c129262362e4d44abcdad436a4a7b89, type: 2}
   player:
     energy: 8

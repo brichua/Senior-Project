@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Luka_Meiko)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: bf112f558a57c084293c62b8bb48e91e
-  number: 2
+  number: 5
   puzzleName: Velvet Eleven
   shortDescription: Reach 11 points in one round.
   longDescription: Reach a total score of at least 11 points in one round. You have
     up to 5 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
   againstClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
-  rewardCard: {fileID: 11400000, guid: ca8f0acfb2bfbd74988e6370f28a700e, type: 2}
+  rewardCard: {fileID: 11400000, guid: f5d3de7b8040ad442b84bec378aa622d, type: 2}
   boardSetup: {fileID: 11400000, guid: 23b9f6b2c0d8f2240a138baefe6f6fe3, type: 2}
   player:
     energy: 8

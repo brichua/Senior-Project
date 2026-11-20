@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Kaito_Meiko)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: 112ba2b04e98d3043a9f376a4b565220
-  number: 2
+  number: 5
   puzzleName: Icebreaker
   shortDescription: Reach 4 points in one round.
   longDescription: Reach a total score of at least 4 points in one round. You have
     up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   againstClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
-  rewardCard: {fileID: 11400000, guid: e8e9644dad15eb64b94ca2f5ba1969b4, type: 2}
+  rewardCard: {fileID: 11400000, guid: fa68a4c2d5e168e4cb459a87e38614d7, type: 2}
   boardSetup: {fileID: 11400000, guid: 28cb7fb70600be149b4e88497afb411a, type: 2}
   player:
     energy: 8

@@ -23,7 +23,7 @@ MonoBehaviour:
   performer: 1
   stageEffect: 0
   cost: 1
-  influence: 0
+  influence: 1
   flags:
   - ally_cluster
   - near_allies

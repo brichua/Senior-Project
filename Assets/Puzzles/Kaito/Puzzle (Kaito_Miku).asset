@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Kaito_Miku)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: bd44c8217fa0e1148bf026d1754dfe2b
-  number: 2
+  number: 1
   puzzleName: Cool Combo
   shortDescription: Reach 6 points in one round.
   longDescription: Reach a total score of at least 6 points in one round. You have
     up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
   againstClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
-  rewardCard: {fileID: 11400000, guid: 49b34a7a26ce25b4eb71319e94a4d12c, type: 2}
+  rewardCard: {fileID: 11400000, guid: e3c15e26f753d1f4a897fd03a16ef815, type: 2}
   boardSetup: {fileID: 11400000, guid: 1aae4a4aaed558d45acf72ff3b927fed, type: 2}
   player:
     energy: 8

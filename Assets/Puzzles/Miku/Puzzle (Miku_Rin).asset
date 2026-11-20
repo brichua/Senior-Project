@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Miku_Rin)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: 64e6fd8af4bed98438dcee2c8cd9854b
-  number: 2
+  number: 3
   puzzleName: Six Appeal
   shortDescription: Reach 6 points in one round.
   longDescription: Reach a total score of at least 6 points in one round. You have
     up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   againstClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
-  rewardCard: {fileID: 11400000, guid: 6631ca9c73572a94cb689374408e2cba, type: 2}
+  rewardCard: {fileID: 11400000, guid: 057af517e34715440877122aac36f567, type: 2}
   boardSetup: {fileID: 11400000, guid: 9efdd5cc0610b504d838fa5bbed220cd, type: 2}
   player:
     energy: 8

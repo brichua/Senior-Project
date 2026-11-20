@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Miku_Meiko)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: d014d7a18e4c9394aa59cc1d15430ed7
-  number: 2
+  number: 5
   puzzleName: Perfect Ten
   shortDescription: Reach 10 points in one round.
   longDescription: Reach a total score of at least 10 points in one round. You have
     up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   againstClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
-  rewardCard: {fileID: 11400000, guid: 4dcfa479a1bb07c4c93f10a503340161, type: 2}
+  rewardCard: {fileID: 11400000, guid: 86cde7878bbc13f44bc5eb3d2c2c81e0, type: 2}
   boardSetup: {fileID: 11400000, guid: 1863d102f5aa22a4ba1a26d95c1f0a2c, type: 2}
   player:
     energy: 8

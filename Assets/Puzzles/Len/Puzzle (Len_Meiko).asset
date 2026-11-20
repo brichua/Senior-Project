@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Len_Meiko)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: d4af38985ed88374fa0e9684fc9a736a
-  number: 2
+  number: 5
   puzzleName: Lucky Riff
   shortDescription: Reach 7 points in one round.
   longDescription: Reach a total score of at least 7 points in one round. You have
     up to 5 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   againstClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
-  rewardCard: {fileID: 11400000, guid: 54acff21c2ab5c446ab78542699ad8b9, type: 2}
+  rewardCard: {fileID: 11400000, guid: 53e10972d920a1e4eaa99c0c0b9ac3d2, type: 2}
   boardSetup: {fileID: 11400000, guid: 9d6e8013efd7ad5468384c794d854eb7, type: 2}
   player:
     energy: 8

@@ -46,7 +46,7 @@ namespace VocaloidTCG
             switch(index){
                 case 0: return new[] { "Romeo and Cinderella" };
                 case 1: return new[] { "Romeo and Cinderella", "Glow", "From Y to Y", "Cool Me Down" };
-                case 2: return new[] { "Deep Sea Girl", "Darling Dance", "Romeo and Cinderella", "Fire Flower", "Butterfly on Your Right Shoulder" };
+                case 2: return new[] { "Deep Sea Girl", "Darling Dance", "Romeo and Cinderella", "Fire Flower", "Butterfly on Your Right Shoulder", "Glow" };
                 case 3: return new[] { "Rabbit Hole", "Deep Sea Girl", "Glow", "From Y to Y", "Romeo and Cinderella", "Sadistic Love", "Meltdown", "Tengaku" };
                 default: return Array.Empty<string>();
             }

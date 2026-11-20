@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Miku_Kaito)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: 2b6d80f5840b4ec4298dabe075dfc993
-  number: 2
+  number: 4
   puzzleName: Four on Ice
   shortDescription: Reach 4 points in one round.
   longDescription: Reach a total score of at least 4 points in one round. You have
     up to 5 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   againstClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
-  rewardCard: {fileID: 11400000, guid: 092135c832b21ae4db09f80496e9eecb, type: 2}
+  rewardCard: {fileID: 11400000, guid: 162f50c095db7c4488fbd193a7948097, type: 2}
   boardSetup: {fileID: 11400000, guid: 28906a6a67c24f742afb1211e2420868, type: 2}
   player:
     energy: 8

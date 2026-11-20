@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Meiko_Miku)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: 30f6fc739c49d184dbb0b1663e9bbc0e
-  number: 2
+  number: 1
   puzzleName: Octave Rush
   shortDescription: Reach 8 points in one round.
   longDescription: Reach a total score of at least 8 points in one round. You have
     up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
   againstClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
-  rewardCard: {fileID: 11400000, guid: 517baa67709e50446b3db9b300532c09, type: 2}
+  rewardCard: {fileID: 11400000, guid: c68903d76a11b194687059cd7042cd00, type: 2}
   boardSetup: {fileID: 11400000, guid: 56aac7daa8cc95c4db62e8707d620450, type: 2}
   player:
     energy: 8

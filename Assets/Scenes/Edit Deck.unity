@@ -2620,7 +2620,7 @@ MonoBehaviour:
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 1792, y: 1008}
   m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0.5
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -11112,10 +11112,12 @@ MonoBehaviour:
   player_highlight: {fileID: 0}
   spotlight: {fileID: 0}
   tile_score_0: {fileID: 0}
-  card_effect: {fileID: 0}
+  ally_card_effect: {fileID: 0}
+  attack_card_effect: {fileID: 0}
+  story_start: {fileID: 0}
+  scroll: {fileID: 0}
+  storyTextScroll: []
   hoverSoundCooldown: 0.05
-  tileHoverSoundCooldown: 0.05
-  cardAudioSourceIsPlaying: 0
 --- !u!82 &1351455318
 AudioSource:
   m_ObjectHideFlags: 0
@@ -11729,6 +11731,7 @@ MonoBehaviour:
   cardDescription: {fileID: 254770455}
   copiesText: {fileID: 1140670953}
   addCount: {fileID: 1609778829}
+  keywordTooltipTheme: {fileID: 0}
   cardArt: {fileID: 48235428}
   cardVIP: {fileID: 250897947}
   costImage: {fileID: 1236841499}

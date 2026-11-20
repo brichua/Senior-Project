@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Rin_Meiko)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: ab4cc222aa5c57d40a5fb1642ff17dd7
-  number: 2
+  number: 5
   puzzleName: Four to the Floor
   shortDescription: Reach 4 points in one round.
   longDescription: Reach a total score of at least 4 points in one round. You have
     up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 1d25fc3fe27f1d343addf0ff7d7e7db8, type: 2}
   againstClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
-  rewardCard: {fileID: 11400000, guid: 513ea5360b425bc4baa0018b37ba2c8d, type: 2}
+  rewardCard: {fileID: 11400000, guid: 2415ba62a4da37c4eb71ab9ea7a90831, type: 2}
   boardSetup: {fileID: 11400000, guid: 034844330593bf140ac9ec0b39338284, type: 2}
   player:
     energy: 8

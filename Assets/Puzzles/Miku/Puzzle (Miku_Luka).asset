@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Miku_Luka)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: 82b11563adc89f542bd8586d15673828
-  number: 2
+  number: 1
   puzzleName: Eight Bit Beat
   shortDescription: Reach 8 points in one round.
   longDescription: Reach a total score of at least 8 points in one round. You have
     up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
   againstClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
-  rewardCard: {fileID: 11400000, guid: 38a9db64453d91f43bb1644e0ca1d69b, type: 2}
+  rewardCard: {fileID: 11400000, guid: c3880512ec40acc4b9da9e683272ca01, type: 2}
   boardSetup: {fileID: 11400000, guid: cf420e2cd5019854f83a874feef6d995, type: 2}
   player:
     energy: 8

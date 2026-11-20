@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Len_Miku)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: 9f9692cd6db43ee418c6e27ac4c2d12b
-  number: 2
+  number: 1
   puzzleName: Golden Seven
   shortDescription: Reach 7 points in one round.
   longDescription: Reach a total score of at least 7 points in one round. You have
     up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   againstClass: {fileID: 11400000, guid: d1f3e8c3c11b9564fb78131a4ad138c9, type: 2}
-  rewardCard: {fileID: 11400000, guid: 9ec1e18bd838c0249b047995f3eff601, type: 2}
+  rewardCard: {fileID: 11400000, guid: 40c8e8bbe02db3a4d88470589a5687ad, type: 2}
   boardSetup: {fileID: 11400000, guid: 70cf9601d4c749e4093cb59421c8b690, type: 2}
   player:
     energy: 8

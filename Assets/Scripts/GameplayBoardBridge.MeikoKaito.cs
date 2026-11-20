@@ -98,7 +98,7 @@ namespace VocaloidTCG.BoardUI
         
         private bool CanRelocate(CardState c,int tile){
             if(c==null || tile<0 || tile>=25 || TileOf(c)==tile || c.rootedRound==state.roundNumber) return false;
-            return Performer(state.tiles[tile],c.ownerId)==null || StageShare(c) && Assistant(state.tiles[tile],c.ownerId)==null;
+            return CanOccupy(c,state.tiles[tile]);
         }
         private void Detach(CardState c){
             int from=TileOf(c); if(from<0) return;
@@ -180,7 +180,7 @@ namespace VocaloidTCG.BoardUI
                     }else{
                         p.prompt="Place the 3-influence token with both performers' keywords.";
                         p.tiles.AddRange(Enumerable.Range(0,25).Where(i=>CanPlace(p.actor,i%5,i/5) &&
-                            (Performer(state.tiles[i],p.actor)==null || StageShare(p.created) && Assistant(state.tiles[i],p.actor)==null)));
+                            CanOccupy(p.created,state.tiles[i])));
                     }
                     break;
                 case CardEffect.OtherColumnToken:

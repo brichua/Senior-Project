@@ -20,7 +20,7 @@ MonoBehaviour:
     up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 47f52dfd93c47fb46952d79fc394684a, type: 2}
   againstClass: {fileID: 11400000, guid: 6d4ffe0f5b3fdc4408be3dd53473493d, type: 2}
-  rewardCard: {fileID: 11400000, guid: d489ad287d3ecdf46b555c7bf83ee5d7, type: 2}
+  rewardCard: {fileID: 11400000, guid: f2aa838f57b6598439929f6b798d2217, type: 2}
   boardSetup: {fileID: 11400000, guid: b2727e4012f1a5b46837327eaa6b7163, type: 2}
   player:
     energy: 8

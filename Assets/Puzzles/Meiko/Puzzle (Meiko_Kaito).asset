@@ -13,14 +13,14 @@ MonoBehaviour:
   m_Name: Puzzle (Meiko_Kaito)
   m_EditorClassIdentifier: Assembly-CSharp::VocaloidTCG.PuzzleData
   id: e9f82107ff4acaa45b3ed2320766b9e6
-  number: 2
+  number: 5
   puzzleName: Five Alarm
   shortDescription: Reach 5 points in one round.
   longDescription: Reach a total score of at least 5 points in one round. You have
     up to 4 player turns; the enemy responds before the deadline is checked.
   puzzleClass: {fileID: 11400000, guid: 94c205ac94436774db42f7edb483fd40, type: 2}
   againstClass: {fileID: 11400000, guid: e4fc763541d9e3a40a4ca941fba519b0, type: 2}
-  rewardCard: {fileID: 11400000, guid: 0d28d46c05f34dc42a2f4d71bc30cc0a, type: 2}
+  rewardCard: {fileID: 11400000, guid: cc8aa4f8384ac9e4083bae44cf4a869d, type: 2}
   boardSetup: {fileID: 11400000, guid: 27de6b3e99770c84ca2b383ab0ac9366, type: 2}
   player:
     energy: 8

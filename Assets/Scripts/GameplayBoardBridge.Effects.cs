@@ -124,7 +124,9 @@ namespace VocaloidTCG.BoardUI
                             case EffectChoice.MoveAlly: legal=ally!=null && ally.rootedRound!=state.roundNumber && i%5!=2 && EmptyCenter(p.actor).Any(); break;
                             case EffectChoice.MoveTile:
                                 var placing=side.hand.Concat(side.discard).FirstOrDefault(c=>c.instanceId==p.selectedId);
-                                legal=ally==null || placing!=null && StageShare(placing) && Assistant(state.tiles[i],p.actor)==null;
+                                var moving=FieldCards(p.actor).FirstOrDefault(c=>c.instanceId==p.selectedId);
+                                legal=moving!=null ? CanMoveWithPartner(TileOf(moving),i,p.actor) :
+                                    placing!=null && CanOccupy(placing,state.tiles[i]);
                                 if(p.effect==CardEffect.MoveToEnemy) legal &= enemy!=null;
                                 else if(p.effect==CardEffect.MoveHome) legal &= p.actor==0 ? i%5<=2 : i%5>=2;
                                 else if(p.effect==CardEffect.ReturnToCenter || p.effect==CardEffect.MoveAllToCenter) legal &= i%5==2;
@@ -248,10 +250,31 @@ namespace VocaloidTCG.BoardUI
             Recompute(); if(IsPuzzle && state.pendingEffect==null) CheckPuzzle(false,false); Publish(); return true;
         }
 
+        private static bool CanOccupy(CardState card,TileState tile){
+            var primary=Performer(tile,card.ownerId);
+            return primary==null || StageShare(card) && !StageShare(primary) && Assistant(tile,card.ownerId)==null;
+        }
+
+        private bool CanMoveWithPartner(int from,int to,int actor){
+            if(from<0 || from>=25 || to<0 || to>=25 || from==to) return false;
+            var card=Performer(state.tiles[from],actor);
+            if(card==null) return false;
+            // A pair already fills both allied slots and cannot join another performer.
+            return Performer(state.tiles[to],actor)==null ||
+                Assistant(state.tiles[from],actor)==null && CanOccupy(card,state.tiles[to]);
+        }
+
         private void MoveWithPartner(int from,int to,int actor){
-            SetPerformer(state.tiles[to],actor,Performer(state.tiles[from],actor)); SetPerformer(state.tiles[from],actor,null);
-            SetAssistant(state.tiles[to],actor,Assistant(state.tiles[from],actor)); SetAssistant(state.tiles[from],actor,null);
-            foreach(var c in new[] {Performer(state.tiles[to],actor),Assistant(state.tiles[to],actor)})
+            if(!CanMoveWithPartner(from,to,actor)) return;
+            var primary=Performer(state.tiles[from],actor);
+            var partner=Assistant(state.tiles[from],actor);
+            SetPerformer(state.tiles[from],actor,null); SetAssistant(state.tiles[from],actor,null);
+            if(Performer(state.tiles[to],actor)!=null) SetAssistant(state.tiles[to],actor,primary);
+            else {
+                SetPerformer(state.tiles[to],actor,primary);
+                SetAssistant(state.tiles[to],actor,partner);
+            }
+            foreach(var c in new[] {primary,partner})
                 if(c!=null){ PerformerEntered(c,to); DuetMoved(c,from,to); }
         }
         
